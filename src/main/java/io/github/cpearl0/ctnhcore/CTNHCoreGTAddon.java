@@ -1,0 +1,30 @@
+package io.github.cpearl0.ctnhcore;
+
+import com.gregtechceu.gtceu.api.addon.GTAddon;
+import com.gregtechceu.gtceu.api.addon.IGTAddon;
+import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+import io.github.cpearl0.ctnhcore.registry.CTNHRegistration;
+import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
+
+@GTAddon
+public class CTNHCoreGTAddon implements IGTAddon {
+    @Override
+    public GTRegistrate getRegistrate() {
+        return CTNHRegistration.REGISTRATE;
+    }
+
+    @Override
+    public void initializeAddon() {
+
+    }
+
+    @Override
+    public String addonModId() {
+        return CTNHCore.MODID;
+    }
+
+    @Override
+    public void registerTagPrefixes() {
+        CTNHTagPrefixes.init();
+    }
+}
