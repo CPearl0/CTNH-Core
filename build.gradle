@@ -150,6 +150,7 @@ dependencies {
 
     implementation fg.deobf("com.tterrag.registrate:Registrate:MC1.20-1.3.11")
 
+    implementation fg.deobf("curse.maven:ldlib-626676:5680297")
     implementation fg.deobf("curse.maven:gregtechceu-modern-890405:5641637")
 
     implementation fg.deobf("com.teamresourceful.resourcefullib:resourcefullib-forge-${minecraft_version}:${resourcefullib_version}")
@@ -159,6 +160,10 @@ dependencies {
 
     implementation fg.deobf("curse.maven:aether-255308:5302178")
     implementation fg.deobf("curse.maven:deep-aether-852465:5441091")
+
+    implementation fg.deobf("curse.maven:cold-sweat-506194:5663723")
+
+    implementation fg.deobf("curse.maven:create-328085:4835191")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
