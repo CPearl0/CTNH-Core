@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.registry;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
@@ -11,13 +12,15 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import io.github.cpearl0.ctnhcore.coldsweat.UnderfloorHeatingSystemTempModifier;
+import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
-import org.w3c.dom.Text;
 
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -97,7 +100,7 @@ public class CTNHMultiblockMachines {
                 UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.remove(range);
             })
             .additionalDisplay((machine,display) -> {
-                if(machine.isFormed()) {
+                if (machine.isFormed()) {
                     double efficiency = machine.self().getHolder().self().getPersistentData().getDouble("efficiency");
 //                if(efficiency == 0){
 //                    efficiency = getEfficiency(machine);
@@ -106,7 +109,7 @@ public class CTNHMultiblockMachines {
                 }
             })
             .register();
-
+            
     public static double getEfficiency(IRecipeLogicMachine machine) {
         var pos = machine.self().getPos();
         var facing = machine.self().getFrontFacing();
@@ -140,6 +143,51 @@ public class CTNHMultiblockMachines {
                 }).count();
         return (copper_shingles + exposed_copper_shingles * 0.8 + weathered_copper_shingles * 0.75 + oxidized_copper_shingles * 0.6)/(copper_shingles + exposed_copper_shingles + weathered_copper_shingles + oxidized_copper_shingles);
     }
+
+    public static final MultiblockMachineDefinition ASTRONOMICAL_OBSERVATORY = REGISTRATE.multiblock("astronomical_observatory", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.ASTRONOMICAL_OBSERVATORY)
+            .appearanceBlock(CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAA", "AAA", "AAA", "AAA", "AAA", "AAA")
+                    .aisle("AAA", "A A", "A A", "A A", "A A", "AAA")
+                    .aisle("AAA", "A@A", "ABA", "AAA", "AAA", "AAA")
+                    .where("A", Predicates.blocks(CASING_STEEL_SOLID.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.abilities(CTNHPartAbility.CIRCUIT))
+                    .where(" ", Predicates.blocks(Blocks.AIR))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
+                    GTCEu.id("block/multiblock/assembly_line"))
+            .beforeWorking((machine, recipe) -> {
+                final boolean[] begin = {false};
+                ((MultiblockControllerMachine) machine.self()).getParts().stream()
+                        .filter(part -> part instanceof CircuitBusPartMachine)
+                        .findFirst()
+                        .ifPresent(bus -> {
+                            var circuitBus = (CircuitBusPartMachine) bus;
+                            if (!circuitBus.getInventory().isEmpty()) {
+                                var circuit = circuitBus.getInventory().getStackInSlot(0);
+                                begin[0] = AstronomyCircuitItem.workInLevel(circuit, machine.self().getLevel());
+                            }
+                        });
+                return begin[0];
+            })
+            .afterWorking(machine -> {
+                ((MultiblockControllerMachine) machine.self()).getParts().stream()
+                        .filter(part -> part instanceof CircuitBusPartMachine)
+                        .findFirst()
+                        .ifPresent(bus -> {
+                            var circuitBus = (CircuitBusPartMachine) bus;
+                            if (!circuitBus.getInventory().isEmpty()) {
+                                var circuit = circuitBus.getInventory().getStackInSlot(0);
+                                AstronomyCircuitItem.gainData(circuit, machine.self().getLevel());
+                            }
+                        });
+            })
+            .register();
+
     public static void init() {
 
     }
