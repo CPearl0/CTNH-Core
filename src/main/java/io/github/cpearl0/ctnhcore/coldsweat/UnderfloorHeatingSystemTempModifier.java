@@ -17,7 +17,7 @@ public class UnderfloorHeatingSystemTempModifier extends TempModifier {
     protected Function<Double, Double> calculate(LivingEntity entity, Temperature.Trait trait) {
         if (!(entity instanceof Player))
             return temp -> temp;
-        double heat = 12 * UNDERFLOOR_HEATING_SYSTEM_RANGE.entrySet().stream()
+        double heat = 1.2 * UNDERFLOOR_HEATING_SYSTEM_RANGE.entrySet().stream()
                 .filter(range -> range.getKey().contains(entity.getOnPos().getCenter()))
                 .map(Map.Entry::getValue)
                 .reduce(0.0, Double::sum);
