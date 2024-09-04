@@ -73,9 +73,9 @@ public class CTNHMultiblockMachines {
                 var pos = machine.self().getPos();
                 var facing = machine.self().getFrontFacing();
                 double efficiency = machine.self().getHolder().self().getPersistentData().getDouble("efficiency");
-                if(machine.self().getOffsetTimer() % 20 == 0){
+                if (machine.self().getOffsetTimer() % 20 == 0) {
                     efficiency = getEfficiency(machine);
-                    machine.self().getHolder().self().getPersistentData().putDouble("efficiency",efficiency);
+                    machine.self().getHolder().self().getPersistentData().putDouble("efficiency", efficiency);
                 }
                 AABB range = switch (facing) {
                     case NORTH -> AABB.of(BoundingBox.fromCorners(pos.offset(-23, 0, -16), pos.offset(24, 10, 31)));
@@ -84,7 +84,7 @@ public class CTNHMultiblockMachines {
                     case EAST -> AABB.of(BoundingBox.fromCorners(pos.offset(-31, 0, -23), pos.offset(16, 10, 24)));
                     default -> throw new IllegalStateException("Unexpected value: " + facing);
                 };
-                UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.put(range,efficiency);
+                UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.put(range, efficiency);
                 return true;
             })
             .afterWorking(machine -> {
@@ -121,24 +121,24 @@ public class CTNHMultiblockMachines {
             case EAST -> AABB.of(BoundingBox.fromCorners(pos.offset(-15, 0, -7), pos.offset(0, 1, 8)));
             default -> throw new IllegalStateException("Unexpected value: " + facing);
         };
-        int copper_shingles = (int) level.getBlockStates(blocks).map(BlockBehaviour.BlockStateBase::getBlock).filter(block -> block.getName() == AllBlocks.COPPER_SHINGLES.getStandard().get().getName()).count();
+        int copper_shingles = (int) level.getBlockStates(blocks).map(BlockBehaviour.BlockStateBase::getBlock).filter(block -> block.getName().equals(AllBlocks.COPPER_SHINGLES.getStandard().get().getName())).count();
         int exposed_copper_shingles = (int) level.getBlockStates(blocks).map(BlockBehaviour.BlockStateBase::getBlock)
                 .filter(block -> {
-                    boolean b1 = block.getName() == AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.EXPOSED, true).get().getName();
-                    boolean b2 = block.getName() == AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.UNAFFECTED, true).get().getName();
-                    boolean b = block.getName() == AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.EXPOSED, false).get().getName();
+                    boolean b1 = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.EXPOSED, true).get().getName());
+                    boolean b2 = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.UNAFFECTED, true).get().getName());
+                    boolean b = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.EXPOSED, false).get().getName());
                     return b1 || b2 || b;
                 }).count();
         int weathered_copper_shingles = (int) level.getBlockStates(blocks).map(BlockBehaviour.BlockStateBase::getBlock)
                 .filter(block -> {
-                    boolean b1 = block.getName() == AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.WEATHERED, true).get().getName();
-                    boolean b = block.getName() == AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.WEATHERED, false).get().getName();
+                    boolean b1 = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.WEATHERED, true).get().getName());
+                    boolean b = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.WEATHERED, false).get().getName());
                     return b1 || b;
                 }).count();
         int oxidized_copper_shingles = (int) level.getBlockStates(blocks).map(BlockBehaviour.BlockStateBase::getBlock)
                 .filter(block -> {
-                    boolean b1 = block.getName() == AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.OXIDIZED, true).get().getName();
-                    boolean b = block.getName() == AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.OXIDIZED, false).get().getName();
+                    boolean b1 = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.OXIDIZED, true).get().getName());
+                    boolean b = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.OXIDIZED, false).get().getName());
                     return b1 || b;
                 }).count();
         return (copper_shingles + exposed_copper_shingles * 0.8 + weathered_copper_shingles * 0.75 + oxidized_copper_shingles * 0.6)/(copper_shingles + exposed_copper_shingles + weathered_copper_shingles + oxidized_copper_shingles);
