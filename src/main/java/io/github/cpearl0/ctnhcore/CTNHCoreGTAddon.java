@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import io.github.cpearl0.ctnhcore.data.recipe.AstronomicalObservatoryRecipes;
+import io.github.cpearl0.ctnhcore.data.recipe.MachinesRecipes;
 import io.github.cpearl0.ctnhcore.data.recipe.UnderfloorHeatingSystemRecipes;
 import io.github.cpearl0.ctnhcore.registry.CTNHRegistration;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
@@ -37,5 +38,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
     public void addRecipes(Consumer<FinishedRecipe> provider) {
         UnderfloorHeatingSystemRecipes.init(provider);
         AstronomicalObservatoryRecipes.init(provider);
+        MachinesRecipes.init(provider);
     }
 }
