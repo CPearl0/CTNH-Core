@@ -21,8 +21,6 @@ import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
-import org.w3c.dom.Text;
 
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -102,7 +100,7 @@ public class CTNHMultiblockMachines {
                 UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.remove(range);
             })
             .additionalDisplay((machine,display) -> {
-                if(machine.isFormed()) {
+                if (machine.isFormed()) {
                     double efficiency = machine.self().getHolder().self().getPersistentData().getDouble("efficiency");
 //                if(efficiency == 0){
 //                    efficiency = getEfficiency(machine);

@@ -8,7 +8,6 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 
 public class UnderfloorHeatingSystemTempModifier extends TempModifier {
