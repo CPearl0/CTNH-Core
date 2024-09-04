@@ -6,20 +6,22 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 
 public class UnderfloorHeatingSystemTempModifier extends TempModifier {
-    public static final Set<AABB> UNDERFLOOR_HEATING_SYSTEM_RANGE = new HashSet<>();
+    public static final Map<AABB,Double> UNDERFLOOR_HEATING_SYSTEM_RANGE = new HashMap<>();
 
     @Override
     protected Function<Double, Double> calculate(LivingEntity entity, Temperature.Trait trait) {
         if (!(entity instanceof Player))
             return temp -> temp;
-        double heat = 12 * UNDERFLOOR_HEATING_SYSTEM_RANGE.stream()
-                .filter(range -> range.contains(entity.getOnPos().getCenter()))
-                .count();
+        double heat = 12 * UNDERFLOOR_HEATING_SYSTEM_RANGE.entrySet().stream()
+                .filter(range -> range.getKey().contains(entity.getOnPos().getCenter()))
+                .map(Map.Entry::getValue)
+                .reduce(0.0, Double::sum);
         return temp -> temp + heat;
     }
 }
