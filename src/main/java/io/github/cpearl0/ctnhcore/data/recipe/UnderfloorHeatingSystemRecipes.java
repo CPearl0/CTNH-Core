@@ -9,9 +9,9 @@ import java.util.function.Consumer;
 public class UnderfloorHeatingSystemRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         CTNHRecipeTypes.UNDERFLOOR_HEATING_SYSTEM.recipeBuilder("heating")
-                .inputFluids(GTMaterials.Steam.getFluid(1000))
-                .outputFluids(GTMaterials.Water.getFluid(10))
-                .duration(20)
+                .inputFluids(GTMaterials.Steam.getFluid(640))
+                .outputFluids(GTMaterials.DistilledWater.getFluid(4))
+                .duration(200)
                 .save(provider);
     }
 }
