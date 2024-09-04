@@ -3,12 +3,17 @@ package io.github.cpearl0.ctnhcore.registry;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import io.github.cpearl0.ctnhcore.coldsweat.UnderfloorHeatingSystemTempModifier;
+import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 
@@ -71,6 +76,50 @@ public class CTNHMultiblockMachines {
                     default -> throw new IllegalStateException("Unexpected value: " + facing);
                 };
                 UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.remove(range);
+            })
+            .register();
+
+    public static final MultiblockMachineDefinition ASTRONOMICAL_OBSERVATORY = REGISTRATE.multiblock("astronomical_observatory", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.ASTRONOMICAL_OBSERVATORY)
+            .appearanceBlock(CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAA", "AAA", "AAA", "AAA", "AAA", "AAA")
+                    .aisle("AAA", "A A", "A A", "A A", "A A", "AAA")
+                    .aisle("AAA", "A@A", "ABA", "AAA", "AAA", "AAA")
+                    .where("A", Predicates.blocks(CASING_STEEL_SOLID.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.abilities(CTNHPartAbility.CIRCUIT))
+                    .where(" ", Predicates.blocks(Blocks.AIR))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
+                    GTCEu.id("block/multiblock/assembly_line"))
+            .beforeWorking((machine, recipe) -> {
+                final boolean[] begin = {false};
+                ((MultiblockControllerMachine) machine.self()).getParts().stream()
+                        .filter(part -> part instanceof CircuitBusPartMachine)
+                        .findFirst()
+                        .ifPresent(bus -> {
+                            var circuitBus = (CircuitBusPartMachine) bus;
+                            if (!circuitBus.getInventory().isEmpty()) {
+                                var circuit = circuitBus.getInventory().getStackInSlot(0);
+                                begin[0] = AstronomyCircuitItem.workInLevel(circuit, machine.self().getLevel());
+                            }
+                        });
+                return begin[0];
+            })
+            .afterWorking(machine -> {
+                ((MultiblockControllerMachine) machine.self()).getParts().stream()
+                        .filter(part -> part instanceof CircuitBusPartMachine)
+                        .findFirst()
+                        .ifPresent(bus -> {
+                            var circuitBus = (CircuitBusPartMachine) bus;
+                            if (!circuitBus.getInventory().isEmpty()) {
+                                var circuit = circuitBus.getInventory().getStackInSlot(0);
+                                AstronomyCircuitItem.gainData(circuit, machine.self().getLevel());
+                            }
+                        });
             })
             .register();
 
