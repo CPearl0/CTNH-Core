@@ -10,7 +10,7 @@ public class CTNHItems {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.ITEM);
     }
 
-    public static ItemEntry<AstronomyCircuitItem> ASTRONOMY_CIRCUIT = REGISTRATE
+    public static ItemEntry<AstronomyCircuitItem> ASTRONOMY_CIRCUIT_1 = REGISTRATE
             .item("astronomy_circuit_1", properties -> new AstronomyCircuitItem(properties, 1))
             .lang("Astronomy Circuit I")
             .register();
