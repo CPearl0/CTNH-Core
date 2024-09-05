@@ -75,8 +75,7 @@ public class CTNHMultiblockMachines {
             .recipeModifier((machine,recipe) ->{
                 if(machine instanceof UnderfloorHeatingMachine){
                     var newrecipe = recipe.copy();
-                    //recipe.inputs.put(FluidRecipeCapability.CAP,newrecipe.copyContents(newrecipe.inputs, ContentModifier.of(1/((UnderfloorHeatingMachine) machine).rate, 0)).get(FluidRecipeCapability.CAP));
-                    newrecipe.duration *= ((UnderfloorHeatingMachine) machine).rate;
+                    recipe.inputs.put(FluidRecipeCapability.CAP,newrecipe.copyContents(newrecipe.inputs, ContentModifier.of(((UnderfloorHeatingMachine) machine).rate, 0)).get(FluidRecipeCapability.CAP));
                     return newrecipe;
                 }
                 return recipe;
