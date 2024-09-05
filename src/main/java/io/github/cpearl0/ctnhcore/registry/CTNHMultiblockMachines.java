@@ -5,7 +5,6 @@ import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
-import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
@@ -19,9 +18,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.UnderfloorHeatingMachine;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.WeatheringCopper;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 
@@ -74,9 +71,9 @@ public class CTNHMultiblockMachines {
             })
             .recipeModifier((machine,recipe) ->{
                 if(machine instanceof UnderfloorHeatingMachine){
-                    var newrecipe = recipe.copy();
-                    recipe.inputs.put(FluidRecipeCapability.CAP,newrecipe.copyContents(newrecipe.inputs, ContentModifier.of(((UnderfloorHeatingMachine) machine).rate/100, 0)).get(FluidRecipeCapability.CAP));
-                    return newrecipe;
+                    var new_recipe = recipe.copy();
+                    recipe.inputs.put(FluidRecipeCapability.CAP,new_recipe.copyContents(new_recipe.inputs, ContentModifier.of(((UnderfloorHeatingMachine) machine).rate/100, 0)).get(FluidRecipeCapability.CAP));
+                    return new_recipe;
                 }
                 return recipe;
             })

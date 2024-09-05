@@ -16,10 +16,10 @@
   "block.gtceu.uv_circuit_bus": "§3UV Circuit Bus",
   "block.gtceu.uxv_circuit_bus": "§eUXV Circuit Bus",
   "block.gtceu.zpm_circuit_bus": "§cZPM Circuit Bus",
-  "ctnh.multiblock.underfloor_heating_system.rate": "Rate：s%",
+  "ctnh.multiblock.underfloor_heating_system.rate": "Rate: %s",
   "ctnh.multiblock.underfloor_heating_system.rate.tooltip": "Reduce the consumption of steam to reduce the heating power of the floor heating",
-  "ctnh.multiblock.underfloor_heating_system.rate_modify": "Adjust rate:",
-  "ctnh.multiblock.underfloor_heating_system.steam_consumption": "Steam consumption rate：d%",
+  "ctnh.multiblock.underfloor_heating_system.rate_modify": "Adjust rate: ",
+  "ctnh.multiblock.underfloor_heating_system.steam_consumption": "Steam consumption rate: %d",
   "gtceu.astronomical_observatory": "Astronomical Observatory",
   "gtceu.underfloor_heating_system": "Underfloor Heating",
   "item.ctnhcore.astronomy_circuit_1": "Astronomy Circuit I",
@@ -30,5 +30,5 @@
   "material.ctnhcore.skyjade": "Skyjade",
   "material.ctnhcore.stratus": "Stratus",
   "material.ctnhcore.zanite": "Zanite",
-  "multiblock.ctnhcore.underfloor_heating_system.efficiency": "Efficiency：d%"
+  "multiblock.ctnhcore.underfloor_heating_system.efficiency": "Efficiency: %d"
 }

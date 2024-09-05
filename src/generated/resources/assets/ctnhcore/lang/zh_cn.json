@@ -16,10 +16,10 @@
   "block.gtceu.uv_circuit_bus": "§3UV 芯片总线",
   "block.gtceu.uxv_circuit_bus": "§eUXV 芯片总线",
   "block.gtceu.zpm_circuit_bus": "§cZPM 芯片总线",
-  "ctnh.multiblock.underfloor_heating_system.rate": "速率：s%",
+  "ctnh.multiblock.underfloor_heating_system.rate": "速率：%s",
   "ctnh.multiblock.underfloor_heating_system.rate.tooltip": "减少蒸汽的消耗来降低地暖的发热功率",
   "ctnh.multiblock.underfloor_heating_system.rate_modify": "调节速率：",
-  "ctnh.multiblock.underfloor_heating_system.steam_consumption": "蒸汽消耗速率：d%",
+  "ctnh.multiblock.underfloor_heating_system.steam_consumption": "蒸汽消耗速率：%d",
   "gtceu.astronomical_observatory": "天文台",
   "gtceu.underfloor_heating_system": "地暖",
   "item.ctnhcore.astronomy_circuit_1": "一阶航天数据芯片",
@@ -30,5 +30,5 @@
   "material.ctnhcore.skyjade": "穹玉",
   "material.ctnhcore.stratus": "云母钢",
   "material.ctnhcore.zanite": "紫晶石",
-  "multiblock.ctnhcore.underfloor_heating_system.efficiency": "效率：d%"
+  "multiblock.ctnhcore.underfloor_heating_system.efficiency": "效率：%d"
 }

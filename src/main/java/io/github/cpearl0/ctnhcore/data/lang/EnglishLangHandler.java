@@ -17,11 +17,11 @@ public class EnglishLangHandler {
 
         provider.add("gtceu.underfloor_heating_system", "Underfloor Heating");
         provider.add("gtceu.astronomical_observatory", "Astronomical Observatory");
-        provider.add("multiblock.ctnhcore.underfloor_heating_system.efficiency", "Efficiency：d%");
-        provider.add("ctnh.multiblock.underfloor_heating_system.rate", "Rate：s%");
+        provider.add("multiblock.ctnhcore.underfloor_heating_system.efficiency", "Efficiency: %d");
+        provider.add("ctnh.multiblock.underfloor_heating_system.rate", "Rate: %s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "Reduce the consumption of steam to reduce the heating power of the floor heating");
-        provider.add("ctnh.multiblock.underfloor_heating_system.rate_modify", "Adjust rate:");
-        provider.add("ctnh.multiblock.underfloor_heating_system.steam_consumption", "Steam consumption rate：d%");
+        provider.add("ctnh.multiblock.underfloor_heating_system.rate_modify", "Adjust rate: ");
+        provider.add("ctnh.multiblock.underfloor_heating_system.steam_consumption", "Steam consumption rate: %d");
 
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " Circuit Bus");

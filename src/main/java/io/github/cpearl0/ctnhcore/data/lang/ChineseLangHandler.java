@@ -19,11 +19,11 @@ public class ChineseLangHandler {
 
         provider.add("gtceu.underfloor_heating_system", "地暖");
         provider.add("gtceu.astronomical_observatory", "天文台");
-        provider.add("multiblock.ctnhcore.underfloor_heating_system.efficiency", "效率：d%");
-        provider.add("ctnh.multiblock.underfloor_heating_system.rate", "速率：s%");
+        provider.add("multiblock.ctnhcore.underfloor_heating_system.efficiency", "效率：%d");
+        provider.add("ctnh.multiblock.underfloor_heating_system.rate", "速率：%s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "减少蒸汽的消耗来降低地暖的发热功率");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate_modify", "调节速率：");
-        provider.add("ctnh.multiblock.underfloor_heating_system.steam_consumption", "蒸汽消耗速率：d%");
+        provider.add("ctnh.multiblock.underfloor_heating_system.steam_consumption", "蒸汽消耗速率：%d");
 
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");

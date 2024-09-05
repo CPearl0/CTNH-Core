@@ -16,10 +16,10 @@
   "block.gtceu.uv_circuit_bus": "snᗺ ʇınɔɹıƆ Λ∩Ɛ§",
   "block.gtceu.uxv_circuit_bus": "snᗺ ʇınɔɹıƆ ΛX∩ǝ§",
   "block.gtceu.zpm_circuit_bus": "snᗺ ʇınɔɹıƆ WԀZɔ§",
-  "ctnh.multiblock.underfloor_heating_system.rate": "%s：ǝʇɐᴚ",
+  "ctnh.multiblock.underfloor_heating_system.rate": "%s :ǝʇɐᴚ",
   "ctnh.multiblock.underfloor_heating_system.rate.tooltip": "buıʇɐǝɥ ɹooןɟ ǝɥʇ ɟo ɹǝʍod buıʇɐǝɥ ǝɥʇ ǝɔnpǝɹ oʇ ɯɐǝʇs ɟo uoıʇdɯnsuoɔ ǝɥʇ ǝɔnpǝᴚ",
-  "ctnh.multiblock.underfloor_heating_system.rate_modify": ":ǝʇɐɹ ʇsnظpⱯ",
-  "ctnh.multiblock.underfloor_heating_system.steam_consumption": "%p：ǝʇɐɹ uoıʇdɯnsuoɔ ɯɐǝʇS",
+  "ctnh.multiblock.underfloor_heating_system.rate_modify": " :ǝʇɐɹ ʇsnظpⱯ",
+  "ctnh.multiblock.underfloor_heating_system.steam_consumption": "%d :ǝʇɐɹ uoıʇdɯnsuoɔ ɯɐǝʇS",
   "gtceu.astronomical_observatory": "ʎɹoʇɐʌɹǝsqO ןɐɔıɯouoɹʇsⱯ",
   "gtceu.underfloor_heating_system": "buıʇɐǝH ɹooןɟɹǝpu∩",
   "item.ctnhcore.astronomy_circuit_1": "I ʇınɔɹıƆ ʎɯouoɹʇsⱯ",
@@ -30,5 +30,5 @@
   "material.ctnhcore.skyjade": "ǝpɐظʎʞS",
   "material.ctnhcore.stratus": "snʇɐɹʇS",
   "material.ctnhcore.zanite": "ǝʇıuɐZ",
-  "multiblock.ctnhcore.underfloor_heating_system.efficiency": "%p：ʎɔuǝıɔıɟɟƎ"
+  "multiblock.ctnhcore.underfloor_heating_system.efficiency": "%d :ʎɔuǝıɔıɟɟƎ"
 }
