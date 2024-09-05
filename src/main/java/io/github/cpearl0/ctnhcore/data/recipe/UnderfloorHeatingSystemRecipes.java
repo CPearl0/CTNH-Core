@@ -11,7 +11,7 @@ public class UnderfloorHeatingSystemRecipes {
         CTNHRecipeTypes.UNDERFLOOR_HEATING_SYSTEM.recipeBuilder("heating")
                 .inputFluids(GTMaterials.Steam.getFluid(640))
                 .outputFluids(GTMaterials.DistilledWater.getFluid(4))
-                .duration(200)
+                .duration(80)
                 .save(provider);
     }
 }

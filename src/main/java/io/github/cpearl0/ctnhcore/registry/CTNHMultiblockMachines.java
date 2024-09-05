@@ -68,14 +68,14 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer(Create.asResource("block/copper/copper_shingles"),
                     GTCEu.id("block/multiblock/multiblock_tank"), false)
             .beforeWorking((machine,recipe) ->{
-                var efficiency = getEfficiency(machine);
+                var efficiency = ((UnderfloorHeatingMachine) machine).getEfficiency();
                 machine.self().getHolder().self().getPersistentData().putDouble("efficiency",efficiency);
                 return true;
             })
             .recipeModifier((machine,recipe) ->{
                 if(machine instanceof UnderfloorHeatingMachine){
                     var newrecipe = recipe.copy();
-                    recipe.inputs.put(FluidRecipeCapability.CAP,newrecipe.copyContents(newrecipe.inputs, ContentModifier.of(((UnderfloorHeatingMachine) machine).rate, 0)).get(FluidRecipeCapability.CAP));
+                    recipe.inputs.put(FluidRecipeCapability.CAP,newrecipe.copyContents(newrecipe.inputs, ContentModifier.of(((UnderfloorHeatingMachine) machine).rate/100, 0)).get(FluidRecipeCapability.CAP));
                     return newrecipe;
                 }
                 return recipe;
@@ -86,7 +86,7 @@ public class CTNHMultiblockMachines {
                     var facing = machine.self().getFrontFacing();
                     double efficiency = machine.self().getHolder().self().getPersistentData().getDouble("efficiency");
                     if (machine.self().getOffsetTimer() % 20 == 0) {
-                        efficiency = getEfficiency(machine);
+                        efficiency = ((UnderfloorHeatingMachine) machine).getEfficiency();
                         machine.self().getHolder().self().getPersistentData().putDouble("efficiency", efficiency);
                     }
                     AABB range = switch (facing) {
@@ -112,50 +112,9 @@ public class CTNHMultiblockMachines {
                 };
                 UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.remove(range);
             })
-            .additionalDisplay((machine,display) -> {
-                if (machine.isFormed()) {
-                    double efficiency = machine.self().getHolder().self().getPersistentData().getDouble("efficiency");
-//                if(efficiency == 0){
-//                    efficiency = getEfficiency(machine);
-//                }
-                    display.add(display.size(), Component.translatable("multiblock.ctnhcore.underfloor_heating_system.efficiency", efficiency * 100));
-                }
-            })
             .register();
             
-    public static double getEfficiency(IRecipeLogicMachine machine) {
-        var pos = machine.self().getPos();
-        var facing = machine.self().getFrontFacing();
-        var level = machine.self().getLevel();
-        AABB blocks = switch (facing) {
-            case NORTH -> AABB.of(BoundingBox.fromCorners(pos.offset(-7, 0, 0), pos.offset(8, 1, 15)));
-            case SOUTH -> AABB.of(BoundingBox.fromCorners(pos.offset(-8, 0, -15), pos.offset(7, 1, 0)));
-            case WEST -> AABB.of(BoundingBox.fromCorners(pos.offset(0, 0, -8), pos.offset(15, 1, 7)));
-            case EAST -> AABB.of(BoundingBox.fromCorners(pos.offset(-15, 0, -7), pos.offset(0, 1, 8)));
-            default -> throw new IllegalStateException("Unexpected value: " + facing);
-        };
-        int copper_shingles = (int) level.getBlockStates(blocks).map(BlockBehaviour.BlockStateBase::getBlock).filter(block -> block.getName().equals(AllBlocks.COPPER_SHINGLES.getStandard().get().getName())).count();
-        int exposed_copper_shingles = (int) level.getBlockStates(blocks).map(BlockBehaviour.BlockStateBase::getBlock)
-                .filter(block -> {
-                    boolean b1 = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.EXPOSED, true).get().getName());
-                    boolean b2 = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.UNAFFECTED, true).get().getName());
-                    boolean b = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.EXPOSED, false).get().getName());
-                    return b1 || b2 || b;
-                }).count();
-        int weathered_copper_shingles = (int) level.getBlockStates(blocks).map(BlockBehaviour.BlockStateBase::getBlock)
-                .filter(block -> {
-                    boolean b1 = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.WEATHERED, true).get().getName());
-                    boolean b = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.WEATHERED, false).get().getName());
-                    return b1 || b;
-                }).count();
-        int oxidized_copper_shingles = (int) level.getBlockStates(blocks).map(BlockBehaviour.BlockStateBase::getBlock)
-                .filter(block -> {
-                    boolean b1 = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.OXIDIZED, true).get().getName());
-                    boolean b = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.OXIDIZED, false).get().getName());
-                    return b1 || b;
-                }).count();
-        return (copper_shingles + exposed_copper_shingles * 0.8 + weathered_copper_shingles * 0.75 + oxidized_copper_shingles * 0.6)/(copper_shingles + exposed_copper_shingles + weathered_copper_shingles + oxidized_copper_shingles);
-    }
+
 
     public static final MultiblockMachineDefinition ASTRONOMICAL_OBSERVATORY = REGISTRATE.multiblock("astronomical_observatory", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)

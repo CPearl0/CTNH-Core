@@ -1,5 +1,5 @@
-// 1.20.1	2024-09-04T15:45:11.6294915	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn)]
-5bb4d790800c48dca08f051b13767f6c4c233767 assets/ctnhcore/lang/en_ud.json
-b8acaaa054cfc7058517d455a8854788bf2d434d assets/ctnhcore/lang/en_us.json
-9c4248d1cbb4d34d07329bdf4509ef165e1cb802 assets/ctnhcore/lang/zh_cn.json
+// 1.20.1	2024-09-05T11:20:11.3154695	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn)]
+21a7b46f499bfddb5077c96f3c134569a7b89440 assets/ctnhcore/lang/en_ud.json
+f266f1ac32351b099dd8aeccf489a0ff30024c89 assets/ctnhcore/lang/en_us.json
+47b6e19af85f492a8fd8c4c38b8d8e5049516013 assets/ctnhcore/lang/zh_cn.json
 b71a03e50a4e1e99c8e999295ed3bb4b437d89f2 assets/ctnhcore/models/item/astronomy_circuit_1.json
