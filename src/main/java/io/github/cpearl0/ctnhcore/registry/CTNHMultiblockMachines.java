@@ -22,7 +22,8 @@ import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 
-import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_BRONZE_PIPE;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_SOLID;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CTNHMultiblockMachines {
@@ -51,34 +52,34 @@ public class CTNHMultiblockMachines {
                     .aisle("AAAAAAAABAAAAAAA")
                     .aisle("AAAAAAAA@AAAAAAA")
                     .where("A", Predicates.blocks(AllBlocks.COPPER_SHINGLES.getStandard().get())
-                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.EXPOSED,false).get()))
-                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.WEATHERED,false).get()))
-                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.OXIDIZED,false).get()))
-                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.EXPOSED,true).get()))
-                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.WEATHERED,true).get()))
-                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.OXIDIZED,true).get()))
-                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.UNAFFECTED,true).get()))
+                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.EXPOSED, false).get()))
+                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.WEATHERED, false).get()))
+                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.OXIDIZED, false).get()))
+                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.EXPOSED, true).get()))
+                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.WEATHERED, true).get()))
+                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.OXIDIZED, true).get()))
+                            .or(Predicates.blocks(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.UNAFFECTED, true).get()))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
                     .where("B", Predicates.blocks(CASING_BRONZE_PIPE.get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
             .workableCasingRenderer(Create.asResource("block/copper/copper_shingles"),
                     GTCEu.id("block/multiblock/multiblock_tank"), false)
-            .beforeWorking((machine,recipe) ->{
+            .beforeWorking((machine, recipe) -> {
                 var efficiency = ((UnderfloorHeatingMachine) machine).getEfficiency();
-                machine.self().getHolder().self().getPersistentData().putDouble("efficiency",efficiency);
+                machine.self().getHolder().self().getPersistentData().putDouble("efficiency", efficiency);
                 return true;
             })
-            .recipeModifier((machine,recipe) ->{
-                if(machine instanceof UnderfloorHeatingMachine){
+            .recipeModifier((machine, recipe) -> {
+                if (machine instanceof UnderfloorHeatingMachine underfloorHeatingMachine) {
                     var new_recipe = recipe.copy();
-                    recipe.inputs.put(FluidRecipeCapability.CAP,new_recipe.copyContents(new_recipe.inputs, ContentModifier.of(((UnderfloorHeatingMachine) machine).rate/100, 0)).get(FluidRecipeCapability.CAP));
+                    new_recipe.inputs.put(FluidRecipeCapability.CAP, new_recipe.copyContents(new_recipe.inputs, ContentModifier.of((double) underfloorHeatingMachine.rate / 100, 0)).get(FluidRecipeCapability.CAP));
                     return new_recipe;
                 }
                 return recipe;
             })
             .onWorking(machine -> {
-                if(machine instanceof UnderfloorHeatingMachine) {
+                if (machine instanceof UnderfloorHeatingMachine) {
                     var pos = machine.self().getPos();
                     var facing = machine.self().getFrontFacing();
                     double efficiency = machine.self().getHolder().self().getPersistentData().getDouble("efficiency");
@@ -93,7 +94,7 @@ public class CTNHMultiblockMachines {
                         case EAST -> AABB.of(BoundingBox.fromCorners(pos.offset(-31, 0, -23), pos.offset(16, 10, 24)));
                         default -> throw new IllegalStateException("Unexpected value: " + facing);
                     };
-                    UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.put(range, efficiency * ((UnderfloorHeatingMachine) machine).rate/100);
+                    UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.put(range, efficiency * ((UnderfloorHeatingMachine) machine).rate / 100);
                 }
                 return true;
             })
@@ -110,7 +111,6 @@ public class CTNHMultiblockMachines {
                 UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.remove(range);
             })
             .register();
-            
 
 
     public static final MultiblockMachineDefinition ASTRONOMICAL_OBSERVATORY = REGISTRATE.multiblock("astronomical_observatory", WorkableElectricMultiblockMachine::new)

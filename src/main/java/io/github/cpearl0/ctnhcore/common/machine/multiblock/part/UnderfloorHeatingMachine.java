@@ -9,6 +9,7 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.Style;
@@ -17,15 +18,18 @@ import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class UnderfloorHeatingMachine extends WorkableMultiblockMachine implements IDisplayUIMachine{
+public class UnderfloorHeatingMachine extends WorkableMultiblockMachine implements IDisplayUIMachine {
     @Getter
     public int rate = 100;
     public double steam_consumption_default = 8;
 
-    public UnderfloorHeatingMachine(IMachineBlockEntity holder){
+    public static final String RATE = "rate";
+
+    public UnderfloorHeatingMachine(IMachineBlockEntity holder) {
         super(holder);
     }
 
@@ -60,7 +64,7 @@ public class UnderfloorHeatingMachine extends WorkableMultiblockMachine implemen
                     boolean b = block.getName().equals(AllBlocks.COPPER_SHINGLES.get(CopperBlockSet.BlockVariant.INSTANCE, WeatheringCopper.WeatherState.OXIDIZED, false).get().getName());
                     return b1 || b;
                 }).count();
-        return (copper_shingles + exposed_copper_shingles * 0.8 + weathered_copper_shingles * 0.75 + oxidized_copper_shingles * 0.6)/(copper_shingles + exposed_copper_shingles + weathered_copper_shingles + oxidized_copper_shingles);
+        return (copper_shingles + exposed_copper_shingles * 0.8 + weathered_copper_shingles * 0.75 + oxidized_copper_shingles * 0.6) / (copper_shingles + exposed_copper_shingles + weathered_copper_shingles + oxidized_copper_shingles);
     }
 
     public void addDisplayText(List<Component> textList) {
@@ -81,7 +85,7 @@ public class UnderfloorHeatingMachine extends WorkableMultiblockMachine implemen
                 textList.add(Component.translatable("gtceu.multiblock.steam.low_steam")
                         .setStyle(Style.EMPTY.withColor(ChatFormatting.RED)));
             }
-            textList.add(Component.translatable("ctnh.multiblock.underfloor_heating_system.steam_consumption",String.format("%.1f", steam_consumption_default*rate/100)));
+            textList.add(Component.translatable("ctnh.multiblock.underfloor_heating_system.steam_consumption", String.format("%.1f", steam_consumption_default * rate / 100)));
             var rateText = Component.translatable("ctnh.multiblock.underfloor_heating_system.rate",
                             ChatFormatting.AQUA.toString() + getRate() + "%")
                     .withStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
@@ -95,10 +99,10 @@ public class UnderfloorHeatingMachine extends WorkableMultiblockMachine implemen
             buttonText.append(ComponentPanelWidget.withButton(Component.literal("[+]"), "add"));
             textList.add(buttonText);
             var efficiency = self().holder.self().getPersistentData().getDouble("efficiency");
-            if(efficiency == 0){
+            if (efficiency == 0) {
                 efficiency = getEfficiency();
             }
-            textList.add(Component.translatable("multiblock.ctnhcore.underfloor_heating_system.efficiency",String.format("%.1f",efficiency * 100)));
+            textList.add(Component.translatable("multiblock.ctnhcore.underfloor_heating_system.efficiency", String.format("%.1f", efficiency * 100)));
         }
     }
 
@@ -107,5 +111,19 @@ public class UnderfloorHeatingMachine extends WorkableMultiblockMachine implemen
             int result = componentData.equals("add") ? 5 : -5;
             this.rate = Mth.clamp(rate + result, 25, 100);
         }
+    }
+
+    @Override
+    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
+        super.saveCustomPersistedData(tag, forDrop);
+        if (!forDrop) {
+            tag.putInt(RATE, rate);
+        }
+    }
+
+    @Override
+    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
+        super.loadCustomPersistedData(tag);
+        rate = tag.contains(RATE) ? tag.getInt(RATE) : 100;
     }
 }
