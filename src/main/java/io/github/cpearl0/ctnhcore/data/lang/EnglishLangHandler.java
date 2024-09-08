@@ -6,9 +6,13 @@ import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 
 public class EnglishLangHandler {
     public static void init(RegistrateLangProvider provider) {
+        LangHandler.replace(provider, CTNHTagPrefixes.oreHolystone.getUnlocalizedName(), "Holystone %s Ore");
+        LangHandler.replace(provider, CTNHTagPrefixes.oreMossyHolystone.getUnlocalizedName(), "Mossy Holystone %s Ore");
+
         LangHandler.replace(provider, CTNHMaterials.Holystone.getUnlocalizedName(), "Holystone");
         LangHandler.replace(provider, CTNHMaterials.Zanite.getUnlocalizedName(), "Zanite");
         LangHandler.replace(provider, CTNHMaterials.Ambrosium.getUnlocalizedName(), "Ambrosium");

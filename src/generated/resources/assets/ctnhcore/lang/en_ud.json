@@ -30,5 +30,7 @@
   "material.ctnhcore.skyjade": "ǝpɐظʎʞS",
   "material.ctnhcore.stratus": "snʇɐɹʇS",
   "material.ctnhcore.zanite": "ǝʇıuɐZ",
-  "multiblock.ctnhcore.underfloor_heating_system.efficiency": "%d :ʎɔuǝıɔıɟɟƎ"
+  "multiblock.ctnhcore.underfloor_heating_system.efficiency": "%d :ʎɔuǝıɔıɟɟƎ",
+  "tagprefix.holystone": "ǝɹO %s ǝuoʇsʎןoH",
+  "tagprefix.mossy_holystone": "ǝɹO %s ǝuoʇsʎןoH ʎssoW"
 }

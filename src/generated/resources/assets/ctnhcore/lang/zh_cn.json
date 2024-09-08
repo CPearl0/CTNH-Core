@@ -30,5 +30,7 @@
   "material.ctnhcore.skyjade": "穹玉",
   "material.ctnhcore.stratus": "云母钢",
   "material.ctnhcore.zanite": "紫晶石",
-  "multiblock.ctnhcore.underfloor_heating_system.efficiency": "效率：%d"
+  "multiblock.ctnhcore.underfloor_heating_system.efficiency": "效率：%d",
+  "tagprefix.holystone": "圣石%s矿石",
+  "tagprefix.mossy_holystone": "覆苔圣石%s矿石"
 }

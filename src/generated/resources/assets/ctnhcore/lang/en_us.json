@@ -30,5 +30,7 @@
   "material.ctnhcore.skyjade": "Skyjade",
   "material.ctnhcore.stratus": "Stratus",
   "material.ctnhcore.zanite": "Zanite",
-  "multiblock.ctnhcore.underfloor_heating_system.efficiency": "Efficiency: %d"
+  "multiblock.ctnhcore.underfloor_heating_system.efficiency": "Efficiency: %d",
+  "tagprefix.holystone": "Holystone %s Ore",
+  "tagprefix.mossy_holystone": "Mossy Holystone %s Ore"
 }
