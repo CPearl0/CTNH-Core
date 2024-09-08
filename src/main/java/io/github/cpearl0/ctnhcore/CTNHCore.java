@@ -19,6 +19,8 @@ public class CTNHCore
     public static final String MODID = "ctnhcore";
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    public static final String CUSTOM_TAG_SOURCE = "CTNH Custom Tags";
+
     public CTNHCore() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addGenericListener(MachineDefinition.class, EventHandler::registerMachines);

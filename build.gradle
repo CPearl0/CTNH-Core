@@ -4,6 +4,7 @@ plugins {
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id "io.freefair.lombok" version "8.10"
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 version = mod_version
@@ -151,6 +152,9 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
+    // Apply Mixin AP
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
     implementation fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
@@ -177,6 +181,19 @@ dependencies {
     implementation fg.deobf("curse.maven:deep-aether-852465:5441091")
 
     implementation fg.deobf("curse.maven:cold-sweat-506194:5663723")
+
+    implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
+    implementation fg.deobf("curse.maven:ftb-library-forge-404465:5567591")
+    implementation fg.deobf("curse.maven:ftb-ultimine-forge-386134:5363345")
+}
+
+mixin {
+    // MixinGradle Settings
+    add sourceSets.main, 'mixins.ctnhcore.refmap.json'
+    config 'mixins.ctnhcore.json'
+
+    debug.verbose = true
+    debug.export = true
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
