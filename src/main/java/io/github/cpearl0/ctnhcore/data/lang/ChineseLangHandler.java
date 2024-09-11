@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.data.lang;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTMachines;
-import com.gregtechceu.gtceu.data.lang.LangHandler;
 import io.github.cpearl0.ctnhcore.registry.*;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.jetbrains.annotations.NotNull;
