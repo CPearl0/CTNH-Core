@@ -37,6 +37,8 @@ public class ChineseLangHandler {
         provider.add(CTNHCreativeModeTabs.ITEM.get(), "CTNH物品");
 
         provider.addItem(CTNHItems.ASTRONOMY_CIRCUIT_1, "一阶航天数据芯片");
+        provider.addItem(CTNHItems.STRAW,"吸管");
+        provider.addBlock(CTNHBlocks.LIQUID_BLAZE_BURNER,"流体烈焰人燃烧室");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
     }
