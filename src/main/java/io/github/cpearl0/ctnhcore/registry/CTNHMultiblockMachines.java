@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
@@ -9,6 +10,8 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
@@ -22,8 +25,7 @@ import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_BRONZE_PIPE;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_SOLID;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CTNHMultiblockMachines {
@@ -116,18 +118,28 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition ASTRONOMICAL_OBSERVATORY = REGISTRATE.multiblock("astronomical_observatory", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ASTRONOMICAL_OBSERVATORY)
-            .appearanceBlock(CASING_STEEL_SOLID)
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAA", "AAA", "AAA", "AAA", "AAA", "AAA")
-                    .aisle("AAA", "A A", "A A", "A A", "A A", "AAA")
-                    .aisle("AAA", "A@A", "ABA", "AAA", "AAA", "AAA")
-                    .where("A", Predicates.blocks(CASING_STEEL_SOLID.get())
+                    .aisle("   BBB   ", "   BBB   ", "   CCC   ", "   BBB   ", "   BBB   ", "   BDB   ", "         ", "         ", "         ")
+                    .aisle("  BBBBB  ", "  B   B  ", "  C E C  ", "  B F B  ", "  B   B  ", "  B   B  ", "   BDB   ", "         ", "         ")
+                    .aisle(" BBBBBBB ", " B     B ", " C  E  C ", " B  F  B ", " B     B ", " B     B ", "  B   B  ", "   BDB   ", "         ")
+                    .aisle("BBBBBBBBB", "B       B", "C   E   C", "B   F   B", "B       B", "B       B", " B     B ", "  B   B  ", "   BDB   ")
+                    .aisle("BBBBBBBBB", "B       B", "CEEEEEEEC", "B   F   B", "B       B", "B       B", " B     B ", "  B   B  ", "   BDB   ")
+                    .aisle("BBBBBBBBB", "B       B", "C   E   C", "B   F   B", "B       B", "B       B", " B     B ", "  B   B  ", "   BDB   ")
+                    .aisle(" BBBBBBB ", " B     B ", " C  E  C ", " B  F  B ", " B     B ", " B     B ", "  B   B  ", "   BDB   ", "         ")
+                    .aisle("  BBBBB  ", "  B   B  ", "  C E C  ", "  B F B  ", "  B   B  ", "  B   B  ", "   BDB   ", "         ", "         ")
+                    .aisle("   BBB   ", "   B@B   ", "   CAC   ", "   BBB   ", "   BBB   ", "   BDB   ", "         ", "         ", "         ")
+                    .where("A", Predicates.abilities(CTNHPartAbility.CIRCUIT))
+                    .where(" ", Predicates.any())
+                    .where("B", Predicates.blocks(CASING_STAINLESS_CLEAN.get()))
+                    .where("C", Predicates.blocks(CASING_STAINLESS_CLEAN.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
-                    .where("B", Predicates.abilities(CTNHPartAbility.CIRCUIT))
-                    .where(" ", Predicates.blocks(Blocks.AIR))
+                    .where("D", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
+                    .where("E", Predicates.blocks(GTMachines.HULL[GTValues.HV].getBlock()))
+                    .where("F", Predicates.blocks(Blocks.DAYLIGHT_DETECTOR))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     GTCEu.id("block/multiblock/assembly_line"))
             .beforeWorking((machine, recipe) -> {
                 final boolean[] begin = {false};
