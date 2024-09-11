@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "mixins.ctnhcore.refmap.json",
   "mixins": [
+    "ManaPoolBlockEntityMixin",
     "TagLoaderMixin"
   ],
   "client": [],
