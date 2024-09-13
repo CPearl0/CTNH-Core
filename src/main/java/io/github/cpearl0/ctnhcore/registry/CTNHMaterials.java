@@ -4,6 +4,7 @@ import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
@@ -21,21 +22,26 @@ public class CTNHMaterials {
     public static final Material Zanite = new Material.Builder(CTNHCore.id("zanite"))
             .gem()
             .color(0x9254ef).iconSet(EMERALD)
+            .ore()
+            .addOreByproducts(GTMaterials.Amethyst)
             .buildAndRegister();
 
     public static final Material Ambrosium = new Material.Builder(CTNHCore.id("ambrosium"))
             .gem()
             .color(0xf1ef5f).iconSet(GEM_HORIZONTAL)
+            .ore()
             .buildAndRegister();
 
     public static final Material Skyjade = new Material.Builder(CTNHCore.id("skyjade"))
             .gem()
             .color(0xb0e564).iconSet(GEM_HORIZONTAL)
+            .ore()
             .buildAndRegister();
 
     public static final Material Stratus = new Material.Builder(CTNHCore.id("stratus"))
             .ingot().liquid()
             .color(0xeac1d9).iconSet(METALLIC)
+            .ore()
             .buildAndRegister();
 
     public static void init() {
