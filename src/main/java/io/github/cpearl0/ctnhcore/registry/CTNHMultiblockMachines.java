@@ -10,7 +10,6 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
@@ -120,18 +119,19 @@ public class CTNHMultiblockMachines {
             .recipeType(CTNHRecipeTypes.ASTRONOMICAL_OBSERVATORY)
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("   BBB   ", "   BBB   ", "   CCC   ", "   BBB   ", "   BBB   ", "   BDB   ", "         ", "         ", "         ")
-                    .aisle("  BBBBB  ", "  B   B  ", "  C E C  ", "  B F B  ", "  B   B  ", "  B   B  ", "   BDB   ", "         ", "         ")
-                    .aisle(" BBBBBBB ", " B     B ", " C  E  C ", " B  F  B ", " B     B ", " B     B ", "  B   B  ", "   BDB   ", "         ")
-                    .aisle("BBBBBBBBB", "B       B", "C   E   C", "B   F   B", "B       B", "B       B", " B     B ", "  B   B  ", "   BDB   ")
-                    .aisle("BBBBBBBBB", "B       B", "CEEEEEEEC", "B   F   B", "B       B", "B       B", " B     B ", "  B   B  ", "   BDB   ")
-                    .aisle("BBBBBBBBB", "B       B", "C   E   C", "B   F   B", "B       B", "B       B", " B     B ", "  B   B  ", "   BDB   ")
-                    .aisle(" BBBBBBB ", " B     B ", " C  E  C ", " B  F  B ", " B     B ", " B     B ", "  B   B  ", "   BDB   ", "         ")
-                    .aisle("  BBBBB  ", "  B   B  ", "  C E C  ", "  B F B  ", "  B   B  ", "  B   B  ", "   BDB   ", "         ", "         ")
-                    .aisle("   BBB   ", "   B@B   ", "   CAC   ", "   BBB   ", "   BBB   ", "   BDB   ", "         ", "         ", "         ")
+                    .aisle("   BBB   ", "   BBB   ", "   CCC   ", "   BBB   ", "   BBB   ", "   RDR   ", "         ", "         ", "         ")
+                    .aisle("  BBBBB  ", "  B   B  ", "  C E C  ", "  B F B  ", "  B   B  ", "  R   R  ", "   RDR   ", "         ", "         ")
+                    .aisle(" BBBBBBB ", " B     B ", " C  E  C ", " B  F  B ", " B     B ", " R     R ", "  R   R  ", "   RDR   ", "         ")
+                    .aisle("BBBBBBBBB", "B       B", "C   E   C", "B   F   B", "B       B", "R       R", " R     R ", "  R   R  ", "   RDR   ")
+                    .aisle("BBBBBBBBB", "B       B", "CEEEEEEEC", "B   F   B", "B       B", "R       R", " R     R ", "  R   R  ", "   RDR   ")
+                    .aisle("BBBBBBBBB", "B       B", "C   E   C", "B   F   B", "B       B", "R       R", " R     R ", "  R   R  ", "   RDR   ")
+                    .aisle(" BBBBBBB ", " B     B ", " C  E  C ", " B  F  B ", " B     B ", " R     R ", "  R   R  ", "   RDR   ", "         ")
+                    .aisle("  BBBBB  ", "  B   B  ", "  C E C  ", "  B F B  ", "  B   B  ", "  R   R  ", "   RDR   ", "         ", "         ")
+                    .aisle("   BBB   ", "   B@B   ", "   CAC   ", "   BBB   ", "   BBB   ", "   RDR   ", "         ", "         ", "         ")
                     .where("A", Predicates.abilities(CTNHPartAbility.CIRCUIT))
                     .where(" ", Predicates.any())
                     .where("B", Predicates.blocks(CASING_STAINLESS_CLEAN.get()))
+                    .where("R", Predicates.blocks(CTNHBlocks.CASING_REFLECT_LIGHT.get()))
                     .where("C", Predicates.blocks(CASING_STAINLESS_CLEAN.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
                     .where("D", Predicates.blocks(CASING_TEMPERED_GLASS.get()))

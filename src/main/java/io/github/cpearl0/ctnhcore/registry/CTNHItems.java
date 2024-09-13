@@ -15,11 +15,6 @@ public class CTNHItems {
             .item("astronomy_circuit_1", properties -> new AstronomyCircuitItem(properties, 1))
             .lang("Astronomy Circuit I")
             .register();
-    public static ItemEntry<Item> STRAW = REGISTRATE
-            .item("straw", Item::new)
-            .lang("Straw")
-            .properties(p -> p.stacksTo(16))
-            .register();
     public static void init() {
 
     }

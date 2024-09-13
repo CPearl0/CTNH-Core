@@ -1,30 +1,56 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
-import com.simibubi.create.foundation.data.AssetLookup;
-import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import io.github.cpearl0.ctnhcore.block.LiquidBlazeBurnerBlock;
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.item.DyeColor;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import com.tterrag.registrate.util.nullness.NonNullFunction;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
 
-import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
+import java.util.function.Supplier;
+
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CTNHBlocks {
     static {
-        REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.MACHINE);
+        REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.BLOCK);
     }
-    public static final BlockEntry<LiquidBlazeBurnerBlock> LIQUID_BLAZE_BURNER = CTNHRegistration.REGISTRATE.block("liquid_blaze_burner",  LiquidBlazeBurnerBlock::new)
-            .initialProperties(SharedProperties::softMetal)
-            .lang("Liquid Blaze Burner")
-            .properties(p -> p.mapColor(DyeColor.GRAY))
-            .properties(p -> p.lightLevel(BlazeBurnerBlock::getLight))
-            .transform(pickaxeOnly())
-            .addLayer(() -> RenderType::cutoutMipped)
-            .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
-            .register();
+
+    public static final BlockEntry<Block> CASING_REFLECT_LIGHT = createCasingBlock("reflect_light_casing",
+            CTNHCore.id("block/casings/reflect_light_casing"));
+
     public static void init() {
 
+    }
+
+    // Utils
+    public static BlockEntry<Block> createCasingBlock(String name, ResourceLocation texture) {
+        return createCasingBlock(name, Block::new, texture, () -> Blocks.IRON_BLOCK,
+                () -> RenderType::cutoutMipped);
+    }
+
+    public static BlockEntry<Block> createCasingBlock(String name,
+                                                      NonNullFunction<BlockBehaviour.Properties, Block> blockSupplier,
+                                                      ResourceLocation texture,
+                                                      NonNullSupplier<? extends Block> properties,
+                                                      Supplier<Supplier<RenderType>> type) {
+        return REGISTRATE.block(name, blockSupplier)
+                .initialProperties(properties)
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+                .addLayer(type)
+                .blockstate((ctx, prov) -> {
+                    prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
+                })
+                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), new ResourceLocation("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new)
+                .build()
+                .register();
     }
 }

@@ -16,8 +16,14 @@ public class CTNHCreativeModeTabs {
         .register();
     public static RegistryEntry<CreativeModeTab> ITEM = REGISTRATE.defaultCreativeTab("item",
                     builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("item", REGISTRATE))
-                            .icon(() -> CTNHItems.ASTRONOMY_CIRCUIT_1.asStack())
+                            .icon(CTNHItems.ASTRONOMY_CIRCUIT_1::asStack)
                             .title(REGISTRATE.addLang("itemGroup", CTNHCore.id("item"), "CTNH Items"))
+                            .build())
+            .register();
+    public static RegistryEntry<CreativeModeTab> BLOCK = REGISTRATE.defaultCreativeTab("block",
+                    builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("block", REGISTRATE))
+                            .icon(CTNHBlocks.CASING_REFLECT_LIGHT::asStack)
+                            .title(REGISTRATE.addLang("itemGroup", CTNHCore.id("block"), "CTNH Blocks"))
                             .build())
             .register();
 
