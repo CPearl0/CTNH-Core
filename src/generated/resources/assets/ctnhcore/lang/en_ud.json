@@ -1,7 +1,13 @@
 {
   "block.ctnhcore.astronomical_observatory": "ʎɹoʇɐʌɹǝsqO ןɐɔıɯouoɹʇsⱯ",
+  "block.ctnhcore.energetic_photovoltaic_block": "ʞɔoןᗺ ɔıɐʇןoʌoʇoɥԀ ɔıʇǝbɹǝuƎ",
+  "block.ctnhcore.photovoltaic_power_station_energetic": "ɔıʇǝbɹǝuƎ uoıʇɐʇS ɹǝʍoԀ ɔıɐʇןoʌoʇoɥԀ",
+  "block.ctnhcore.photovoltaic_power_station_pulsating": "buıʇɐsןnԀ uoıʇɐʇS ɹǝʍoԀ ɔıɐʇןoʌoʇoɥԀ",
+  "block.ctnhcore.photovoltaic_power_station_vibrant": "ʇuɐɹqıΛ uoıʇɐʇS ɹǝʍoԀ ɔıɐʇןoʌoʇoɥԀ",
+  "block.ctnhcore.pulsating_photovoltaic_block": "ʞɔoןᗺ ɔıɐʇןoʌoʇoɥԀ buıʇɐsןnԀ",
   "block.ctnhcore.reflect_light_casing": "buısɐƆ ʇɥbıꞀ ʇɔǝןɟǝᴚ",
   "block.ctnhcore.underfloor_heating_system": "ɯǝʇsʎS buıʇɐǝH ɹooןɟɹǝpu∩",
+  "block.ctnhcore.vibrant_photovoltaic_block": "ʞɔoןᗺ ɔıɐʇןoʌoʇoɥԀ ʇuɐɹqıΛ",
   "block.gtceu.ev_circuit_bus": "snᗺ ʇınɔɹıƆ ΛƎϛ§",
   "block.gtceu.hv_circuit_bus": "snᗺ ʇınɔɹıƆ ΛH9§",
   "block.gtceu.iv_circuit_bus": "snᗺ ʇınɔɹıƆ ΛI6§",
@@ -32,6 +38,9 @@
   "material.ctnhcore.skyjade": "ǝpɐظʎʞS",
   "material.ctnhcore.stratus": "snʇɐɹʇS",
   "material.ctnhcore.zanite": "ǝʇıuɐZ",
+  "multiblock.ctnh.photovoltaic_power_station1": "%d%% :ʎɔuǝıɔıɟɟƎ",
+  "multiblock.ctnh.photovoltaic_power_station2": "ʇ/∩Ǝ %d/%d :buıʇɐɹǝuǝ⅁",
+  "multiblock.ctnh.photovoltaic_power_station_invalid": "pǝʍopɐɥS",
   "multiblock.ctnhcore.underfloor_heating_system.efficiency": "%d :ʎɔuǝıɔıɟɟƎ",
   "tagprefix.holystone": "ǝɹO %s ǝuoʇsʎןoH",
   "tagprefix.mossy_holystone": "ǝɹO %s ǝuoʇsʎןoH ʎssoW"

@@ -1,7 +1,13 @@
 {
   "block.ctnhcore.astronomical_observatory": "天文台",
+  "block.ctnhcore.energetic_photovoltaic_block": "充能光伏方块",
+  "block.ctnhcore.photovoltaic_power_station_energetic": "充能光伏发电站",
+  "block.ctnhcore.photovoltaic_power_station_pulsating": "脉冲光伏发电站",
+  "block.ctnhcore.photovoltaic_power_station_vibrant": "振动光伏发电站",
+  "block.ctnhcore.pulsating_photovoltaic_block": "脉冲光伏方块",
   "block.ctnhcore.reflect_light_casing": "反光机械方块",
   "block.ctnhcore.underfloor_heating_system": "地暖",
+  "block.ctnhcore.vibrant_photovoltaic_block": "振动光伏方块",
   "block.gtceu.ev_circuit_bus": "§5EV 芯片总线",
   "block.gtceu.hv_circuit_bus": "§6HV 芯片总线",
   "block.gtceu.iv_circuit_bus": "§9IV 芯片总线",
@@ -32,6 +38,9 @@
   "material.ctnhcore.skyjade": "穹玉",
   "material.ctnhcore.stratus": "云母钢",
   "material.ctnhcore.zanite": "紫晶石",
+  "multiblock.ctnh.photovoltaic_power_station1": "发电效率：%d%%",
+  "multiblock.ctnh.photovoltaic_power_station2": "产能功率：%d/%d EU/t",
+  "multiblock.ctnh.photovoltaic_power_station_invalid": "有方块阻挡",
   "multiblock.ctnhcore.underfloor_heating_system.efficiency": "效率：%d",
   "tagprefix.holystone": "圣石%s矿石",
   "tagprefix.mossy_holystone": "覆苔圣石%s矿石"

@@ -1,7 +1,13 @@
 {
   "block.ctnhcore.astronomical_observatory": "Astronomical Observatory",
+  "block.ctnhcore.energetic_photovoltaic_block": "Energetic Photovoltaic Block",
+  "block.ctnhcore.photovoltaic_power_station_energetic": "Photovoltaic Power Station Energetic",
+  "block.ctnhcore.photovoltaic_power_station_pulsating": "Photovoltaic Power Station Pulsating",
+  "block.ctnhcore.photovoltaic_power_station_vibrant": "Photovoltaic Power Station Vibrant",
+  "block.ctnhcore.pulsating_photovoltaic_block": "Pulsating Photovoltaic Block",
   "block.ctnhcore.reflect_light_casing": "Reflect Light Casing",
   "block.ctnhcore.underfloor_heating_system": "Underfloor Heating System",
+  "block.ctnhcore.vibrant_photovoltaic_block": "Vibrant Photovoltaic Block",
   "block.gtceu.ev_circuit_bus": "§5EV Circuit Bus",
   "block.gtceu.hv_circuit_bus": "§6HV Circuit Bus",
   "block.gtceu.iv_circuit_bus": "§9IV Circuit Bus",
@@ -32,6 +38,9 @@
   "material.ctnhcore.skyjade": "Skyjade",
   "material.ctnhcore.stratus": "Stratus",
   "material.ctnhcore.zanite": "Zanite",
+  "multiblock.ctnh.photovoltaic_power_station1": "Efficiency: %d%%",
+  "multiblock.ctnh.photovoltaic_power_station2": "Generating: %d/%d EU/t",
+  "multiblock.ctnh.photovoltaic_power_station_invalid": "Shadowed",
   "multiblock.ctnhcore.underfloor_heating_system.efficiency": "Efficiency: %d",
   "tagprefix.holystone": "Holystone %s Ore",
   "tagprefix.mossy_holystone": "Mossy Holystone %s Ore"

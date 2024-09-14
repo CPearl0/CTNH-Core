@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ctnhcore:block/pulsating_photovoltaic_block"
+    }
+  }
+}

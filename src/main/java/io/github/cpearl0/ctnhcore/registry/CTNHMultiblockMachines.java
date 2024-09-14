@@ -14,10 +14,13 @@ import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
+import com.tterrag.registrate.util.entry.BlockEntry;
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.coldsweat.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.PhotovoltaicPowerStationMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.UnderfloorHeatingMachine;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper;
@@ -168,6 +171,36 @@ public class CTNHMultiblockMachines {
                         });
             })
             .register();
+
+    public static final MultiblockMachineDefinition PHOTOVOLTAIC_POWER_STATION_ENERGETIC =
+            registerPhotovoltaicPowerStation("energetic", 1, CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK);
+    public static final MultiblockMachineDefinition PHOTOVOLTAIC_POWER_STATION_PULSATING =
+            registerPhotovoltaicPowerStation("pulsating", 4, CTNHBlocks.PULSATING_PHOTOVOLTAIC_BLOCK);
+    public static final MultiblockMachineDefinition PHOTOVOLTAIC_POWER_STATION_VIBRANT =
+            registerPhotovoltaicPowerStation("vibrant", 16, CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK);
+
+    public static MultiblockMachineDefinition registerPhotovoltaicPowerStation(String tier, int basicRate, BlockEntry<?> photovoltaicBlock) {
+        return REGISTRATE.multiblock("photovoltaic_power_station_" + tier, holder -> new PhotovoltaicPowerStationMachine(holder, basicRate))
+                .rotationState(RotationState.NON_Y_AXIS)
+                .recipeType(CTNHRecipeTypes.PHOTOVOLTAIC_POWER)
+                .pattern(definition -> FactoryBlockPattern.start()
+                        .aisle("AAAAAAA")
+                        .aisle("ABBBBBA")
+                        .aisle("ABBBBBA")
+                        .aisle("ABBBBBA")
+                        .aisle("ABBBBBA")
+                        .aisle("ABBBBBA")
+                        .aisle("AAA@AAA")
+                        .where("A", Predicates.blocks(CTNHBlocks.CASING_REFLECT_LIGHT.get())
+                                .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                        .where("B", Predicates.blocks(photovoltaicBlock.get()))
+                        .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                        .build())
+                .workableCasingRenderer(CTNHCore.id("block/casings/reflect_light_casing"),
+                        GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+                .recipeModifier(PhotovoltaicPowerStationMachine::recipeModifier)
+                .register();
+    }
 
     public static void init() {
 

@@ -26,6 +26,13 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> CASING_REFLECT_LIGHT = createCasingBlock("reflect_light_casing",
             CTNHCore.id("block/casings/reflect_light_casing"));
 
+    public static final BlockEntry<Block> ENERGETIC_PHOTOVOLTAIC_BLOCK = createCasingBlock("energetic_photovoltaic_block",
+            CTNHCore.id("block/energetic_photovoltaic_block"));
+    public static final BlockEntry<Block> PULSATING_PHOTOVOLTAIC_BLOCK = createCasingBlock("pulsating_photovoltaic_block",
+            CTNHCore.id("block/pulsating_photovoltaic_block"));
+    public static final BlockEntry<Block> VIBRANT_PHOTOVOLTAIC_BLOCK = createCasingBlock("vibrant_photovoltaic_block",
+            CTNHCore.id("block/vibrant_photovoltaic_block"));
+
     public static void init() {
 
     }

@@ -1,5 +1,5 @@
 {
     "ldlib": {
-        "connection": "kubejs:block/reflect_light_casing_ctm"
+        "connection": "ctnhcore:block/casings/reflect_light_casing_ctm"
     }
 }
