@@ -10,18 +10,18 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMachines;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import dev.latvian.mods.rhino.ast.Block;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.coldsweat.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.PhotovoltaicPowerStationMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.UnderfloorHeatingMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -202,6 +202,20 @@ public class CTNHMultiblockMachines {
                 .register();
     }
 
+    public static final MultiblockMachineDefinition WINDPOWERARRAY = REGISTRATE.multiblock("wind_power_array", WindPowerArrayMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.WIND_POWER_ARRAY)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAA","   ","   ","   ","BBB")
+                    .aisle("AAA"," A "," A "," A ","BAB")
+                    .aisle("A@A","   ","   ","   ","BBB")
+                    .where("A", Predicates.blocks(CASING_STEEL_SOLID.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.frames(GTMaterials.Steel))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),GTCEu.id("block/multiblock/implosion_compressor"),false)
+            .register();
     public static void init() {
 
     }
