@@ -33,7 +33,7 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
 
     @Override
     public void onDrops(List<ItemStack> drops) {
-        clearInventory(drops, getInventory().storage);
+        clearInventory(getInventory().storage);
     }
 
     @Override
@@ -61,5 +61,4 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
 
         return group;
     }
-
 }
