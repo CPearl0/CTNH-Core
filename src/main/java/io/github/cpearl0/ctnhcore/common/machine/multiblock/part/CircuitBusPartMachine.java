@@ -14,7 +14,6 @@ import com.lowdragmc.lowdraglib.jei.IngredientIO;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import lombok.Getter;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -33,7 +32,7 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
     }
 
     @Override
-    public void onDrops(List<ItemStack> drops, Player entity) {
+    public void onDrops(List<ItemStack> drops) {
         clearInventory(drops, getInventory().storage);
     }
 
@@ -62,4 +61,5 @@ public class CircuitBusPartMachine extends TieredIOPartMachine implements IDisti
 
         return group;
     }
+
 }

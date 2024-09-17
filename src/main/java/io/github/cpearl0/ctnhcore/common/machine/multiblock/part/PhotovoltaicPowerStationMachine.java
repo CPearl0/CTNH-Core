@@ -8,6 +8,8 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
+import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import earth.terrarium.adastra.api.planets.Planet;
@@ -86,7 +88,7 @@ public class PhotovoltaicPowerStationMachine  extends WorkableElectricMultiblock
     }
 
     @Nullable
-    public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe, @NotNull OCParams params, @NotNull OCResult result) {
         if (!(machine instanceof PhotovoltaicPowerStationMachine powerStationMachine))
             return null;
         var level = machine.getLevel();
