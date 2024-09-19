@@ -35,11 +35,15 @@ public class ChineseLangHandler {
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");
         }
+        for (var tier : GTMachines.ELECTRIC_TIERS) {
+            provider.add(CTNHMachines.PERSONAL_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + " 个人计算机");
+        }
 
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
         provider.add(CTNHCreativeModeTabs.ITEM.get(), "CTNH物品");
         provider.add(CTNHCreativeModeTabs.BLOCK.get(), "CTNH方块");
 
+        provider.addItem(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1, "完善的一阶航天数据芯片");
         provider.addItem(CTNHItems.ASTRONOMY_CIRCUIT_1, "一阶航天数据芯片");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK, "充能光伏方块");
@@ -50,6 +54,12 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_PULSATING.getBlock(), "脉冲光伏发电站");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_VIBRANT.getBlock(), "振动光伏发电站");
+        provider.add(CTNHMultiblockMachines.WINDPOWERARRAY.getBlock(), "风力发电机阵列");
+
+        // Programs
+        provider.addItem(CTNHItems.PROGRAM_EMPTY, "空白程序");
+        provider.addItem(CTNHItems.PROGRAM_ROCKET_CORE_1, "一阶航天核心代码");
+        provider.addItem(CTNHItems.PROGRAM_ROCKET_1, "一阶航天控制程序");
     }
 
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,
