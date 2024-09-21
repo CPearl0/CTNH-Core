@@ -31,6 +31,7 @@ public class ChineseLangHandler {
         provider.add("multiblock.ctnh.photovoltaic_power_station1", "发电效率：%d%%");
         provider.add("multiblock.ctnh.photovoltaic_power_station2", "产能功率：%d/%d EU/t");
         provider.add("info.ctnhcore.network_machine","发电网络机器数：%d");
+        provider.add("info.ctnhcore.network_machine_efficiency","发电效率：%d");
 
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");
