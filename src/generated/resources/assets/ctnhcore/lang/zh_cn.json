@@ -8,6 +8,7 @@
   "block.ctnhcore.reflect_light_casing": "反光机械方块",
   "block.ctnhcore.underfloor_heating_system": "地暖",
   "block.ctnhcore.vibrant_photovoltaic_block": "振动光伏方块",
+  "block.ctnhcore.wind_power_array": "风力发电阵列",
   "block.gtceu.ev_circuit_bus": "§5EV 芯片总线",
   "block.gtceu.hv_circuit_bus": "§6HV 芯片总线",
   "block.gtceu.iv_circuit_bus": "§9IV 芯片总线",
@@ -43,6 +44,7 @@
   "multiblock.ctnh.photovoltaic_power_station1": "发电效率：%d%%",
   "multiblock.ctnh.photovoltaic_power_station2": "产能功率：%d/%d EU/t",
   "multiblock.ctnh.photovoltaic_power_station_invalid": "有方块阻挡",
+  "multiblock.ctnh.photovoltaic_power_station_night": "光照过于微弱",
   "multiblock.ctnhcore.underfloor_heating_system.efficiency": "效率：%d",
   "tagprefix.holystone": "圣石%s矿石",
   "tagprefix.mossy_holystone": "覆苔圣石%s矿石"

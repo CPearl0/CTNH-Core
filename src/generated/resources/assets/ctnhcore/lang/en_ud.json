@@ -30,6 +30,8 @@
   "ctnh.multiblock.underfloor_heating_system.steam_consumption": "%d :ǝʇɐɹ uoıʇdɯnsuoɔ ɯɐǝʇS",
   "gtceu.astronomical_observatory": "ʎɹoʇɐʌɹǝsqO ןɐɔıɯouoɹʇsⱯ",
   "gtceu.underfloor_heating_system": "buıʇɐǝH ɹooןɟɹǝpu∩",
+  "info.ctnhcore.network_machine": "%d：ʇunoƆ ǝuıɥɔɐW ʞɹoʍʇǝN",
+  "info.ctnhcore.network_machine_efficiency": "%d：ʎɔuǝıɔıɟɟƎ buıʇɐɹǝuǝ⅁",
   "item.ctnhcore.astronomy_circuit_1": "I ʇınɔɹıƆ ʎɯouoɹʇsⱯ",
   "itemGroup.ctnhcore.block": "sʞɔoןᗺ HN⟘Ɔ",
   "itemGroup.ctnhcore.item": "sɯǝʇI HN⟘Ɔ",
@@ -42,6 +44,7 @@
   "multiblock.ctnh.photovoltaic_power_station1": "%d%% :ʎɔuǝıɔıɟɟƎ",
   "multiblock.ctnh.photovoltaic_power_station2": "ʇ/∩Ǝ %d/%d :buıʇɐɹǝuǝ⅁",
   "multiblock.ctnh.photovoltaic_power_station_invalid": "pǝʍopɐɥS",
+  "multiblock.ctnh.photovoltaic_power_station_night": "ʇɥbıu ʇⱯ",
   "multiblock.ctnhcore.underfloor_heating_system.efficiency": "%d :ʎɔuǝıɔıɟɟƎ",
   "tagprefix.holystone": "ǝɹO %s ǝuoʇsʎןoH",
   "tagprefix.mossy_holystone": "ǝɹO %s ǝuoʇsʎןoH ʎssoW"

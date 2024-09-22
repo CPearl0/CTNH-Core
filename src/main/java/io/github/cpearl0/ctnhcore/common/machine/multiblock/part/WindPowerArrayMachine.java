@@ -1,46 +1,56 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.part;
 
-import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
+import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
+import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.levelgen.structure.BoundingBox;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
     public int Threshold = 16;
-
     public double efficiency = 1;
+    public int altitude = 0;
     public int NetworkSize = 1;
     public static Map<WindPowerArrayMachine,BlockPos> MachineNet = new HashMap<>();
     public WindPowerArrayMachine(IMachineBlockEntity holder){
         super(holder);
-
+        altitude = getPos().getY();
     }
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        MachineNet.put(this,getPos());
+        if(!MachineNet.containsValue(getPos())){
+            MachineNet.put(this,getPos());
+        }
         NetworkSize = getMachineNetworkSize();
         efficiency = (NetworkSize - 1)*0.1 + 1;
-        return true;
+        return super.beforeWorking(recipe);
     }
-
+    public static GTRecipe WindPowerArrayRecipeModifier(MetaMachine machine, GTRecipe recipe, OCParams ocParams, OCResult ocResult){
+        if(machine instanceof WindPowerArrayMachine){
+            GTRecipe CopyRecipe = recipe.copy();
+            int realAltitude = Mth.clamp(((WindPowerArrayMachine) machine).altitude,64,256);
+            CopyRecipe.tickOutputs.put(EURecipeCapability.CAP,CopyRecipe.copyContents(CopyRecipe.tickOutputs, ContentModifier.of(((WindPowerArrayMachine) machine).efficiency, (double) (realAltitude - 64) /3).get(EURecipeCapability.CAP));
+            return CopyRecipe;
+        }
+        return null;
+    }
     @Override
     public boolean onWorking() {
         if(getOffsetTimer() % 20 == 0){
             NetworkSize = getMachineNetworkSize();
             efficiency = (NetworkSize - 1)*0.1 + 1;
+            //System.out.println(MachineNet.size());
+            //System.out.println(MachineNet);
         }
         return super.onWorking();
     }
@@ -48,20 +58,27 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
     @Override
     public void afterWorking() {
         MachineNet.remove(this,getPos());
-        NetworkSize = 1;
-        efficiency = 1;
+        //NetworkSize = 1;
+        //efficiency = 1;
+        super.afterWorking();
     }
 
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
-        textList.add(Component.translatable("info.ctnhcore.network_machine",NetworkSize));
-        textList.add(Component.translatable("info.ctnhcore.network_machine_efficiency",efficiency));
+        if(isFormed){
+            textList.add(Component.translatable("info.ctnhcore.network_machine",NetworkSize));
+            textList.add(Component.translatable("info.ctnhcore.network_machine_efficiency",efficiency));
+        }
     }
-
+    public static void clearNet() {
+        if(MachineNet != null) {
+            MachineNet = MachineNet.entrySet().stream().filter(entry -> entry.getKey() != null && entry.getKey().isActive()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        }
+    }
     public static double distance(BlockPos p1, BlockPos p2) {
-        return p1.distToCenterSqr(p2.getCenter());
-         //Math.sqrt(Math.pow(p1.getX() - p2.getX(), 2) + Math.pow(p1.getY() - p2.getY(), 2) + Math.pow(p1.getZ() - p2.getZ(), 2));
+        //return p1.distToCenterSqr(p2.getCenter());
+        return Math.sqrt(Math.pow(p1.getX() - p2.getX(), 2) + Math.pow(p1.getY() - p2.getY(), 2) + Math.pow(p1.getZ() - p2.getZ(), 2));
     }
 
     // DFS 深度优先遍历，计算连通分量的大小

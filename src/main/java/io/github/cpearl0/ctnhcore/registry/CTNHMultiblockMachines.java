@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMachines;
@@ -204,17 +205,10 @@ public class CTNHMultiblockMachines {
                 .register();
     }
 
-    public static final MultiblockMachineDefinition WINDPOWERARRAY = REGISTRATE.multiblock("wind_power_array", WindPowerArrayMachine::new)
+    public static final MultiblockMachineDefinition WIND_POWER_ARRAY = REGISTRATE.multiblock("wind_power_array", WindPowerArrayMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.WIND_POWER_ARRAY)
-            .recipeModifier((machine,recipe,ocParams,ocResult) ->{
-                if(machine instanceof WindPowerArrayMachine){
-                    GTRecipe CopyRecipe = recipe.copy();
-                    CopyRecipe.tickOutputs.put(EURecipeCapability.CAP,CopyRecipe.copyContents(CopyRecipe.tickOutputs,ContentModifier.of(((WindPowerArrayMachine) machine).efficiency,0)).get(EURecipeCapability.CAP));
-                    return  CopyRecipe;
-                }
-                return recipe;
-            })
+            .recipeModifier(WindPowerArrayMachine::WindPowerArrayRecipeModifier)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAA","   ","   ","   ","BBB")
                     .aisle("AAA"," A "," A "," A ","BAB")

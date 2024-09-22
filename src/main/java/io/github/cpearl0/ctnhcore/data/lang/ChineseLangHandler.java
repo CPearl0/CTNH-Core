@@ -28,6 +28,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.underfloor_heating_system.rate_modify", "调节速率：");
         provider.add("ctnh.multiblock.underfloor_heating_system.steam_consumption", "蒸汽消耗速率：%d");
         provider.add("multiblock.ctnh.photovoltaic_power_station_invalid", "有方块阻挡");
+        provider.add("multiblock.ctnh.photovoltaic_power_station_night", "光照过于微弱");
         provider.add("multiblock.ctnh.photovoltaic_power_station1", "发电效率：%d%%");
         provider.add("multiblock.ctnh.photovoltaic_power_station2", "产能功率：%d/%d EU/t");
         provider.add("info.ctnhcore.network_machine","发电网络机器数：%d");
@@ -51,6 +52,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_PULSATING.getBlock(), "脉冲光伏发电站");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_VIBRANT.getBlock(), "振动光伏发电站");
+        provider.add(CTNHMultiblockMachines.WIND_POWER_ARRAY.getBlock(), "风力发电阵列");
     }
 
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,

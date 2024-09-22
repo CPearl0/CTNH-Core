@@ -35,10 +35,12 @@ public class PhotovoltaicPowerStationMachine  extends WorkableElectricMultiblock
         return true;
     }
 
-    private boolean isValidPhotovoltaicPower() {
+    private int isValidPhotovoltaicPower() {
         var time = Objects.requireNonNull(getLevel()).dayTime();
-        if (time > 12000 && time < 23000)
-            return false;
+        if (time > 12000 && time < 23000) {
+            getHolder().self().getPersistentData().putInt("valid", 1);
+            return 1;
+        }
         var facing = getFrontFacing();
         var pos = getHolder().pos();
         switch (facing) {
@@ -46,8 +48,8 @@ public class PhotovoltaicPowerStationMachine  extends WorkableElectricMultiblock
                 for (var x = -2; x < 2; x++) {
                     for (var z = 1; z < 6; z++) {
                         if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
-                            getHolder().self().getPersistentData().putBoolean("valid", false);
-                            return false;
+                            getHolder().self().getPersistentData().putInt("valid", 2);
+                            return 2;
                         }
                     }
                 }
@@ -56,8 +58,8 @@ public class PhotovoltaicPowerStationMachine  extends WorkableElectricMultiblock
                 for (var x = -2; x < 2; x++) {
                     for (var z = -5; z < 0; z++) {
                         if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
-                            getHolder().self().getPersistentData().putBoolean("valid", false);
-                            return false;
+                            getHolder().self().getPersistentData().putInt("valid", 2);
+                            return 2;
                         }
                     }
                 }
@@ -66,8 +68,8 @@ public class PhotovoltaicPowerStationMachine  extends WorkableElectricMultiblock
                 for (var x = 1; x < 6; x++) {
                     for (var z = -2; z < 2; z++) {
                         if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
-                            getHolder().self().getPersistentData().putBoolean("valid", false);
-                            return false;
+                            getHolder().self().getPersistentData().putInt("valid", 2);
+                            return 2;
                         }
                     }
                 }
@@ -76,15 +78,15 @@ public class PhotovoltaicPowerStationMachine  extends WorkableElectricMultiblock
                 for (var x = -5; x < 0; x++) {
                     for (var z = -2; z < 2; z++) {
                         if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
-                            getHolder().self().getPersistentData().putBoolean("valid", false);
-                            return false;
+                            getHolder().self().getPersistentData().putInt("valid", 2);
+                            return 2;
                         }
                     }
                 }
             }
         }
-        getHolder().self().getPersistentData().putBoolean("valid", true);
-        return true;
+        getHolder().self().getPersistentData().putInt("valid", 0);
+        return 0;
     }
 
     @Nullable
@@ -94,7 +96,7 @@ public class PhotovoltaicPowerStationMachine  extends WorkableElectricMultiblock
         var level = machine.getLevel();
         assert level != null;
         var time = level.dayTime();
-        var rate = Math.sin((double) time / 12000 * 3.14);
+        var rate = Math.sin((double) time / 12000 * Math.PI);
         var basic_rate = powerStationMachine.BASIC_RATE;
         var dimension = level.dimension();
         if (dimension == Level.OVERWORLD ||
@@ -127,7 +129,7 @@ public class PhotovoltaicPowerStationMachine  extends WorkableElectricMultiblock
 
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        if (!isValidPhotovoltaicPower())
+        if (isValidPhotovoltaicPower() != 0)
             return false;
         return super.beforeWorking(recipe);
     }
@@ -136,14 +138,19 @@ public class PhotovoltaicPowerStationMachine  extends WorkableElectricMultiblock
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
         if (isFormed()) {
-            var valid = getHolder().self().getPersistentData().getBoolean("valid");
+            var valid = getHolder().self().getPersistentData().getInt("valid");
             var outputEnergy = getHolder().self().getPersistentData().getDouble("energy");
             var voltageName = GTValues.VNF[GTUtil.getTierByVoltage((long) outputEnergy)];
-            if (!valid) {
+            if (valid == 2) {
                 textList.add(textList.size(), Component.translatable("multiblock.ctnh.photovoltaic_power_station_invalid").withStyle(ChatFormatting.RED));
             }
-            textList.add(textList.size(), Component.translatable("multiblock.ctnh.photovoltaic_power_station1", (outputEnergy / 2048 * 100)));
-            textList.add(textList.size(), Component.translatable("multiblock.ctnh.photovoltaic_power_station2", FormattingUtil.formatNumbers(outputEnergy), voltageName));
+            else if(valid == 1){
+                textList.add(textList.size(),Component.translatable("multiblock.ctnh.photovoltaic_power_station_night").withStyle(ChatFormatting.RED));
+            }
+            else {
+                textList.add(textList.size(), Component.translatable("multiblock.ctnh.photovoltaic_power_station1", String.format("%.1f", (outputEnergy / (BASIC_RATE * 512) * 100))));
+                textList.add(textList.size(), Component.translatable("multiblock.ctnh.photovoltaic_power_station2", FormattingUtil.formatNumbers(outputEnergy), voltageName));
+            }
         }
     }
 }
