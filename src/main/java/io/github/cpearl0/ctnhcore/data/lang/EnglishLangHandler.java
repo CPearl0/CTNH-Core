@@ -32,9 +32,5 @@ public class EnglishLangHandler {
         provider.add("multiblock.ctnh.photovoltaic_power_station2", "Generating: %d/%d EU/t");
         provider.add("info.ctnhcore.network_machine","Network Machine Count：%d");
         provider.add("info.ctnhcore.network_machine_efficiency","Generating Efficiency：%d");
-
-        for (var tier : GTMachines.ALL_TIERS) {
-            provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " Circuit Bus");
-        }
     }
 }

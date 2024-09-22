@@ -1,11 +1,13 @@
 package io.github.cpearl0.ctnhcore.common.item;
 
+import lombok.Getter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 import java.util.Arrays;
+import java.util.function.Supplier;
 
 public class AstronomyCircuitItem extends Item {
     public static final ResourceLocation[][] DIMENSIONS = new ResourceLocation[][] {
@@ -13,11 +15,14 @@ public class AstronomyCircuitItem extends Item {
             { Level.OVERWORLD.location() , new ResourceLocation("ad_astra:moon") },
     };
 
-    public final int tier;
+    private final int tier;
+    @Getter
+    private final Supplier<Item> finishedItem;
 
-    public AstronomyCircuitItem(Properties properties, int tier) {
+    public AstronomyCircuitItem(Properties properties, int tier, Supplier<Item> finishedItem) {
         super(properties.stacksTo(1));
         this.tier = tier;
+        this.finishedItem = finishedItem;
     }
 
     public static boolean workInLevel(ItemStack stack, Level level) {
@@ -26,14 +31,31 @@ public class AstronomyCircuitItem extends Item {
         return Arrays.asList(DIMENSIONS[item.tier]).contains(level.dimension().location());
     }
 
-    public static void gainData(ItemStack stack, Level level) {
+    public static boolean gainData(ItemStack stack, Level level) {
         if (!workInLevel(stack, level))
-            return;
+            return false;
         var tagName = level.dimension().location().getPath().concat("_data");
         var tag = stack.getOrCreateTag();
         var data = tag.contains(tagName) ? tag.getInt(tagName) : 0;
-        if (data >= 100)
-            return;
+        if (data >= 99) {
+            if (data == 99)
+                tag.putInt(tagName, data + 1);
+            return hasEnoughData(stack);
+        }
         tag.putInt(tagName, data + 1);
+        return false;
+    }
+
+    public static boolean hasEnoughData(ItemStack stack) {
+        if (!(stack.getItem() instanceof AstronomyCircuitItem item))
+            return false;
+        var dimensions = DIMENSIONS[item.tier - 1];
+        for (var dimension : dimensions) {
+            var tagName = dimension.getPath().concat("_data");
+            var tag = stack.getOrCreateTag();
+            if (tag.contains(tagName) && tag.getInt(tagName) < 100)
+                return false;
+        }
+        return true;
     }
 }

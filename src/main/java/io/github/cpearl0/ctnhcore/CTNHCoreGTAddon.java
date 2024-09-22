@@ -38,6 +38,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         AstronomicalObservatoryRecipes.init(provider);
         PhotovoltaicPowerRecipes.init(provider);
         WindPowerArrayRecipes.init(provider);
+        PersonalComputerRecipes.init(provider);
         MachinesRecipes.init(provider);
     }
 }

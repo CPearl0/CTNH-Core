@@ -13,18 +13,17 @@ import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import dev.latvian.mods.rhino.ast.Block;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.coldsweat.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -169,7 +168,9 @@ public class CTNHMultiblockMachines {
                             var circuitBus = (CircuitBusPartMachine) bus;
                             if (!circuitBus.getInventory().isEmpty()) {
                                 var circuit = circuitBus.getInventory().getStackInSlot(0);
-                                AstronomyCircuitItem.gainData(circuit, machine.self().getLevel());
+                                if (!AstronomyCircuitItem.gainData(circuit, machine.self().getLevel()))
+                                    return;
+                                circuitBus.getInventory().setStackInSlot(0, new ItemStack(((AstronomyCircuitItem) circuit.getItem()).getFinishedItem().get()));
                             }
                         });
             })
@@ -220,6 +221,7 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),GTCEu.id("block/multiblock/implosion_compressor"),false)
             .register();
+
     public static void init() {
 
     }

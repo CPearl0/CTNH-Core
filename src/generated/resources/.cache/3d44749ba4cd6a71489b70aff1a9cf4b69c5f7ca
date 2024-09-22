@@ -1,17 +1,21 @@
-// 1.20.1	2024-09-23T00:07:53.8674111	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn)]
+// 1.20.1	2024-09-18T23:25:33.3199592	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn)]
 71e43ca2686f3112f828d538fd3f10304dc2df0b assets/ctnhcore/blockstates/energetic_photovoltaic_block.json
 11005ca40e147b64bcf9f674fb35ade493fdf920 assets/ctnhcore/blockstates/pulsating_photovoltaic_block.json
 5649585008b897cc69389f89f03ea7123f94a613 assets/ctnhcore/blockstates/reflect_light_casing.json
 f37e897ef97cb6a5e0cd1aa2213c2e60d6aa3841 assets/ctnhcore/blockstates/vibrant_photovoltaic_block.json
-da11fba0b4ad1bdb39a30b34b9508996c4ea86c3 assets/ctnhcore/lang/en_ud.json
-3b1b5b54ee42e6ea302b17c97497e8436b1c5f04 assets/ctnhcore/lang/en_us.json
-21e72f25f8dd0e05e87e7859f3e4e7d9e700d5fa assets/ctnhcore/lang/zh_cn.json
+be08bd6d9b19b70b7445fcfea5663b75f0470530 assets/ctnhcore/lang/en_ud.json
+7fab76659d20660ac1e098f4d3172fd0f484025f assets/ctnhcore/lang/en_us.json
+594ab21a521a496193390c6fbb6e2ae006e903ef assets/ctnhcore/lang/zh_cn.json
 6984b6775cf2021664d98623feb7b60fc3f8af5b assets/ctnhcore/models/block/energetic_photovoltaic_block.json
 edd6656e2b6b941d699fda6deb3d4a79d641d2f6 assets/ctnhcore/models/block/pulsating_photovoltaic_block.json
 aeccc28c1e7963a6d23d29ee8e92ecfa1592db4e assets/ctnhcore/models/block/reflect_light_casing.json
 54d9285514cac3426fcbae5c3b6a31f02a38131c assets/ctnhcore/models/block/vibrant_photovoltaic_block.json
 b71a03e50a4e1e99c8e999295ed3bb4b437d89f2 assets/ctnhcore/models/item/astronomy_circuit_1.json
 2e4c3f18532b1c4a8379fe08bc3e3d52369c875a assets/ctnhcore/models/item/energetic_photovoltaic_block.json
+7afea4d5b1ed4d0cfea0b3ed383a236af2c42b6c assets/ctnhcore/models/item/great_astronomy_circuit_1.json
+4fc98b6c5a82816b7398b4f22e7deda1abf9be2d assets/ctnhcore/models/item/program_empty.json
+c178358f684671d90ff09c28f0c322505f4099f1 assets/ctnhcore/models/item/program_rocket_1.json
+1e04e00bd490064e21ba76963cfb7dd23a443d22 assets/ctnhcore/models/item/program_rocket_core_1.json
 beed7ce0886c4882eda4f6548b541f2345fed104 assets/ctnhcore/models/item/pulsating_photovoltaic_block.json
 3e493b04ed0091f5aa3f754621d7ced517f284c6 assets/ctnhcore/models/item/reflect_light_casing.json
 a3af96985266aad0a6199435fc6829905ae5307e assets/ctnhcore/models/item/vibrant_photovoltaic_block.json
