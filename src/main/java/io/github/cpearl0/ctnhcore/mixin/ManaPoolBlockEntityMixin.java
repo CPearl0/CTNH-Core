@@ -11,7 +11,7 @@ import vazkii.botania.common.block.mana.ManaPoolBlock;
 @Mixin(ManaPoolBlockEntity.class)
 public class ManaPoolBlockEntityMixin {
     @Redirect(method = "initManaCapAndNetwork()V", at = @At(value = "FIELD", target = "Lvazkii/botania/common/block/block_entity/mana/ManaPoolBlockEntity;manaCap:I", opcode = Opcodes.PUTFIELD), remap = false)
-    public void initManaCapAndNetwork(ManaPoolBlockEntity be, int x) {
+    public void CTNH$initManaCapAndNetwork(ManaPoolBlockEntity be, int x) {
         int cap = x;
         if (((ManaPoolBlock)be.getBlockState().getBlock()).variant == ManaPoolBlock.Variant.FABULOUS)
             cap *= 10;
