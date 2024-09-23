@@ -1,7 +1,10 @@
 package io.github.cpearl0.ctnhcore.data.lang;
 
+import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
+import io.github.cpearl0.ctnhcore.registry.CTNHMachines;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 
@@ -23,8 +26,11 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "Reduce the consumption of steam to reduce the heating power of the floor heating");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate_modify", "Adjust rate: ");
         provider.add("ctnh.multiblock.underfloor_heating_system.steam_consumption", "Steam consumption rate: %d");
+        provider.add("multiblock.ctnh.photovoltaic_power_station_night", "At night");
         provider.add("multiblock.ctnh.photovoltaic_power_station_invalid", "Shadowed");
         provider.add("multiblock.ctnh.photovoltaic_power_station1", "Efficiency: %d%%");
         provider.add("multiblock.ctnh.photovoltaic_power_station2", "Generating: %d/%d EU/t");
+        provider.add("info.ctnhcore.network_machine","Network Machine Count：%d");
+        provider.add("info.ctnhcore.network_machine_efficiency","Generating Efficiency：%d");
     }
 }

@@ -6,6 +6,7 @@ import com.momosoftworks.coldsweat.api.util.Placement;
 import com.momosoftworks.coldsweat.api.util.Temperature;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.coldsweat.UnderfloorHeatingSystemTempModifier;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.WindPowerArrayMachine;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -33,6 +34,7 @@ public class ForgeEventHandler {
     public static void tick(TickEvent.ServerTickEvent event) {
         if (event.getServer().getTickCount() % 40 == 0) {
             UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.clear();
+            WindPowerArrayMachine.clearNet();
         }
     }
 }
