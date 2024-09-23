@@ -39,7 +39,7 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
         if(machine instanceof WindPowerArrayMachine){
             GTRecipe CopyRecipe = recipe.copy();
             int realAltitude = Mth.clamp(((WindPowerArrayMachine) machine).altitude,64,256);
-            CopyRecipe.tickOutputs.put(EURecipeCapability.CAP,CopyRecipe.copyContents(CopyRecipe.tickOutputs, ContentModifier.of(((WindPowerArrayMachine) machine).efficiency, (double) (realAltitude - 64) /3).get(EURecipeCapability.CAP));
+            CopyRecipe.tickOutputs.put(EURecipeCapability.CAP,CopyRecipe.copyContents(CopyRecipe.tickOutputs, ContentModifier.of(((WindPowerArrayMachine) machine).efficiency, (double) (realAltitude - 64) /3)).get(EURecipeCapability.CAP));
             return CopyRecipe;
         }
         return null;
