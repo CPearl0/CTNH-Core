@@ -22,6 +22,7 @@ public class ChineseLangHandler {
 
         provider.add("gtceu.underfloor_heating_system", "地暖");
         provider.add("gtceu.astronomical_observatory", "天文台");
+        provider.add("gtceu.photovoltaic_power", "光伏发电");
         provider.add("multiblock.ctnhcore.underfloor_heating_system.efficiency", "效率：%d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "速率：%s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "减少蒸汽的消耗来降低地暖的发热功率");
@@ -29,8 +30,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.underfloor_heating_system.steam_consumption", "蒸汽消耗速率：%d");
         provider.add("multiblock.ctnh.photovoltaic_power_station_invalid", "有方块阻挡");
         provider.add("multiblock.ctnh.photovoltaic_power_station_night", "光照过于微弱");
-        provider.add("multiblock.ctnh.photovoltaic_power_station1", "发电效率：%d%%");
-        provider.add("multiblock.ctnh.photovoltaic_power_station2", "产能功率：%d/%d EU/t");
+        provider.add("multiblock.ctnh.photovoltaic_power_station1", "发电效率：%s%%");
+        provider.add("multiblock.ctnh.photovoltaic_power_station2", "产能功率：%s/%s EU/t");
         provider.add("info.ctnhcore.network_machine","发电网络机器数：%d");
         provider.add("info.ctnhcore.network_machine_efficiency","发电效率：%d");
 

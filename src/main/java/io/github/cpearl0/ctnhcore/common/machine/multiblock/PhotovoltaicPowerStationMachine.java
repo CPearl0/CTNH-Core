@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.common.machine.multiblock.part;
+package io.github.cpearl0.ctnhcore.common.machine.multiblock;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -22,7 +22,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Objects;
 
-public class PhotovoltaicPowerStationMachine  extends WorkableElectricMultiblockMachine {
+public class PhotovoltaicPowerStationMachine extends WorkableElectricMultiblockMachine {
+    public static final int START_TIME = 23000;
+    public static final int END_TIME = 13000;
     public final int BASIC_RATE;
 
     public PhotovoltaicPowerStationMachine(IMachineBlockEntity holder, int basicRate, Object... args) {
@@ -30,95 +32,40 @@ public class PhotovoltaicPowerStationMachine  extends WorkableElectricMultiblock
         BASIC_RATE = basicRate;
     }
 
-    @Override
-    public boolean keepSubscribing() {
-        return true;
-    }
-
-    private int isValidPhotovoltaicPower() {
-        var time = Objects.requireNonNull(getLevel()).dayTime();
-        if (time > 12000 && time < 23000) {
-            getHolder().self().getPersistentData().putInt("valid", 1);
-            return 1;
-        }
-        var facing = getFrontFacing();
-        var pos = getHolder().pos();
-        switch (facing) {
-            case NORTH -> {
-                for (var x = -2; x < 2; x++) {
-                    for (var z = 1; z < 6; z++) {
-                        if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
-                            getHolder().self().getPersistentData().putInt("valid", 2);
-                            return 2;
-                        }
-                    }
-                }
-            }
-            case SOUTH -> {
-                for (var x = -2; x < 2; x++) {
-                    for (var z = -5; z < 0; z++) {
-                        if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
-                            getHolder().self().getPersistentData().putInt("valid", 2);
-                            return 2;
-                        }
-                    }
-                }
-            }
-            case WEST -> {
-                for (var x = 1; x < 6; x++) {
-                    for (var z = -2; z < 2; z++) {
-                        if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
-                            getHolder().self().getPersistentData().putInt("valid", 2);
-                            return 2;
-                        }
-                    }
-                }
-            }
-            case EAST -> {
-                for (var x = -5; x < 0; x++) {
-                    for (var z = -2; z < 2; z++) {
-                        if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
-                            getHolder().self().getPersistentData().putInt("valid", 2);
-                            return 2;
-                        }
-                    }
-                }
-            }
-        }
-        getHolder().self().getPersistentData().putInt("valid", 0);
-        return 0;
-    }
-
     @Nullable
     public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe, @NotNull OCParams params, @NotNull OCResult result) {
-        if (!(machine instanceof PhotovoltaicPowerStationMachine powerStationMachine))
+        if (!(machine instanceof PhotovoltaicPowerStationMachine powerStationMachine)) {
             return null;
+        }
         var level = machine.getLevel();
         assert level != null;
-        var time = level.dayTime();
-        var rate = Math.sin((double) time / 12000 * Math.PI);
+        var time = level.getDayTime() % 24000;
+        if (time > START_TIME) {
+            time -= START_TIME;
+        }
+        else if (time < END_TIME) {
+            time += 24000 - START_TIME;
+        }
+        else { // Invalid Time
+            return null;
+        }
+
+        var rate = Math.sin((double) time / (END_TIME + 24000 - START_TIME) * Math.PI);
         var basic_rate = powerStationMachine.BASIC_RATE;
         var dimension = level.dimension();
-        if (dimension == Level.OVERWORLD ||
-                dimension.location().getPath().equals("twilightforest:twilight_forest") ||
-                dimension.location().getPath().equals("mythicbotany:alfheim")) {
+        if (dimension == Level.OVERWORLD || dimension.location().getPath().equals("twilightforest:twilight_forest") || dimension.location().getPath().equals("mythicbotany:alfheim")) {
             rate *= 1;
         } else if (dimension == AetherDimensions.AETHER_LEVEL) {
             rate *= 2;
-        } else if (dimension == Planet.MOON ||
-                dimension == Planet.MOON_ORBIT) {
+        } else if (dimension == Planet.MOON || dimension == Planet.MOON_ORBIT) {
             rate *= 4;
-        } else if (dimension == Planet.VENUS ||
-                dimension == Planet.VENUS_ORBIT) {
+        } else if (dimension == Planet.VENUS || dimension == Planet.VENUS_ORBIT) {
             rate *= 6;
-        } else if (dimension == Planet.MERCURY ||
-                dimension == Planet.MERCURY_ORBIT) {
+        } else if (dimension == Planet.MERCURY || dimension == Planet.MERCURY_ORBIT) {
             rate *= 16;
-        } else if (dimension == Planet.MARS ||
-                dimension == Planet.MARS_ORBIT) {
+        } else if (dimension == Planet.MARS || dimension == Planet.MARS_ORBIT) {
             rate *= 2;
-        } else if (dimension == Planet.GLACIO ||
-                dimension == Planet.GLACIO_ORBIT) {
+        } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
             rate *= 32;
         }
         var newrecipe = recipe.copy();
@@ -128,26 +75,88 @@ public class PhotovoltaicPowerStationMachine  extends WorkableElectricMultiblock
     }
 
     @Override
+    public boolean keepSubscribing() {
+        return true;
+    }
+
+    public static final int VALID = 0;
+    public static final int NIGHT = 1;
+    public static final int SHADOWED = 2;
+
+    private int isValidPhotovoltaicPower() {
+        var time = Objects.requireNonNull(getLevel()).getDayTime() % 24000;
+        if (time > END_TIME && time < START_TIME) {
+            getHolder().self().getPersistentData().putInt("valid", 1);
+            return NIGHT;
+        }
+
+        var facing = getFrontFacing();
+        var pos = getHolder().pos();
+        switch (facing) {
+            case NORTH -> {
+                for (var x = -2; x <= 2; x++) {
+                    for (var z = 1; z < 6; z++) {
+                        if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
+                            getHolder().self().getPersistentData().putInt("valid", 2);
+                            return SHADOWED;
+                        }
+                    }
+                }
+            }
+            case SOUTH -> {
+                for (var x = -2; x <= 2; x++) {
+                    for (var z = -5; z < 0; z++) {
+                        if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
+                            getHolder().self().getPersistentData().putInt("valid", 2);
+                            return SHADOWED;
+                        }
+                    }
+                }
+            }
+            case WEST -> {
+                for (var x = 1; x < 6; x++) {
+                    for (var z = -2; z <= 2; z++) {
+                        if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
+                            getHolder().self().getPersistentData().putInt("valid", 2);
+                            return SHADOWED;
+                        }
+                    }
+                }
+            }
+            case EAST -> {
+                for (var x = -5; x < 0; x++) {
+                    for (var z = -2; z <= 2; z++) {
+                        if (!getLevel().canSeeSky(pos.offset(x, 1, z))) {
+                            getHolder().self().getPersistentData().putInt("valid", 2);
+                            return SHADOWED;
+                        }
+                    }
+                }
+            }
+        }
+        getHolder().self().getPersistentData().putInt("valid", 0);
+        return VALID;
+    }
+
+    @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        if (isValidPhotovoltaicPower() != 0)
+        if (isValidPhotovoltaicPower() != VALID)
             return false;
         return super.beforeWorking(recipe);
     }
 
     @Override
-    public void addDisplayText(List<Component> textList) {
+    public void addDisplayText(@NotNull List<Component> textList) {
         super.addDisplayText(textList);
         if (isFormed()) {
             var valid = getHolder().self().getPersistentData().getInt("valid");
             var outputEnergy = getHolder().self().getPersistentData().getDouble("energy");
             var voltageName = GTValues.VNF[GTUtil.getTierByVoltage((long) outputEnergy)];
-            if (valid == 2) {
+            if (valid == SHADOWED) {
                 textList.add(textList.size(), Component.translatable("multiblock.ctnh.photovoltaic_power_station_invalid").withStyle(ChatFormatting.RED));
-            }
-            else if(valid == 1){
-                textList.add(textList.size(),Component.translatable("multiblock.ctnh.photovoltaic_power_station_night").withStyle(ChatFormatting.RED));
-            }
-            else {
+            } else if (valid == NIGHT) {
+                textList.add(textList.size(), Component.translatable("multiblock.ctnh.photovoltaic_power_station_night").withStyle(ChatFormatting.RED));
+            } else {
                 textList.add(textList.size(), Component.translatable("multiblock.ctnh.photovoltaic_power_station1", String.format("%.1f", (outputEnergy / (BASIC_RATE * 512) * 100))));
                 textList.add(textList.size(), Component.translatable("multiblock.ctnh.photovoltaic_power_station2", FormattingUtil.formatNumbers(outputEnergy), voltageName));
             }
