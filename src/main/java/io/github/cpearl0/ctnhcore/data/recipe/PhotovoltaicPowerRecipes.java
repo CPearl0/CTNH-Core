@@ -9,7 +9,7 @@ public class PhotovoltaicPowerRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         CTNHRecipeTypes.PHOTOVOLTAIC_POWER.recipeBuilder("powering").circuitMeta(0)
                 .duration(20)
-                .EUt(-120)
+                .EUt(-512)
                 .save(provider);
     }
 }

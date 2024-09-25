@@ -1,4 +1,5 @@
 {
+  "block.ctnhcore.advanced_wind_power_array": "Advanced Wind Power Array",
   "block.ctnhcore.astronomical_observatory": "Astronomical Observatory",
   "block.ctnhcore.energetic_photovoltaic_block": "Energetic Photovoltaic Block",
   "block.ctnhcore.ev_circuit_bus": "§5EV Circuit Bus",
@@ -21,6 +22,7 @@
   "block.ctnhcore.photovoltaic_power_station_vibrant": "Photovoltaic Power Station Vibrant",
   "block.ctnhcore.pulsating_photovoltaic_block": "Pulsating Photovoltaic Block",
   "block.ctnhcore.reflect_light_casing": "Reflect Light Casing",
+  "block.ctnhcore.super_wind_power_array": "Super Wind Power Array",
   "block.ctnhcore.uev_circuit_bus": "§aUEV Circuit Bus",
   "block.ctnhcore.uev_personal_computer": "§aEpic Personal Computer II§r",
   "block.ctnhcore.uhv_circuit_bus": "§4UHV Circuit Bus",

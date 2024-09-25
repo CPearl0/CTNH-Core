@@ -19,6 +19,7 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import dev.latvian.mods.rhino.ast.Block;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.coldsweat.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
@@ -187,6 +188,7 @@ public class CTNHMultiblockMachines {
         return REGISTRATE.multiblock("photovoltaic_power_station_" + tier, holder -> new PhotovoltaicPowerStationMachine(holder, basicRate))
                 .rotationState(RotationState.NON_Y_AXIS)
                 .recipeType(CTNHRecipeTypes.PHOTOVOLTAIC_POWER)
+                .appearanceBlock(CTNHBlocks.CASING_REFLECT_LIGHT)
                 .pattern(definition -> FactoryBlockPattern.start()
                         .aisle("AAAAAAA")
                         .aisle("ABBBBBA")
@@ -206,9 +208,28 @@ public class CTNHMultiblockMachines {
                 .register();
     }
 
-    public static final MultiblockMachineDefinition WIND_POWER_ARRAY = REGISTRATE.multiblock("wind_power_array", WindPowerArrayMachine::new)
+//    public static MultiblockMachineDefinition registerWindPowerArray(String name, int tier) {
+//        return REGISTRATE.multiblock(name + "wind_power_array", holder -> new WindPowerArrayMachine(holder, tier))
+//                .rotationState(RotationState.NON_Y_AXIS)
+//                .recipeType(CTNHRecipeTypes.WIND_POWER_ARRAY)
+//                .appearanceBlock(CASING_STEEL_SOLID)
+//                .recipeModifier(WindPowerArrayMachine::WindPowerArrayRecipeModifier)
+//                .pattern(definition -> FactoryBlockPattern.start()
+//                        .aisle("AAA","   ","   ","   ","BBB")
+//                        .aisle("AAA"," A "," A "," A ","BAB")
+//                        .aisle("A@A","   ","   ","   ","BBB")
+//                        .where("A", Predicates.blocks(CASING_STEEL_SOLID.get())
+//                                .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+//                        .where("B", Predicates.frames(GTMaterials.Steel))
+//                        .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+//                        .build())
+//                .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),GTCEu.id("block/multiblock/implosion_compressor"),false)
+//                .register();
+//    }
+    public static final MultiblockMachineDefinition WIND_POWER_ARRAY = REGISTRATE.multiblock("wind_power_array", holder -> new WindPowerArrayMachine(holder,1))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.WIND_POWER_ARRAY)
+            .appearanceBlock(CASING_STEEL_SOLID)
             .recipeModifier(WindPowerArrayMachine::WindPowerArrayRecipeModifier)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAA","   ","   ","   ","BBB")
@@ -221,7 +242,38 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),GTCEu.id("block/multiblock/implosion_compressor"),false)
             .register();
-
+    public static final MultiblockMachineDefinition ADVANCED_WIND_POWER_ARRAY = REGISTRATE.multiblock("advanced_wind_power_array", holder -> new WindPowerArrayMachine(holder,2))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.WIND_POWER_ARRAY)
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
+            .recipeModifier(WindPowerArrayMachine::WindPowerArrayRecipeModifier)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAA","   ","   ","   ","BBB")
+                    .aisle("AAA"," A "," A "," A ","BAB")
+                    .aisle("A@A","   ","   ","   ","BBB")
+                    .where("A", Predicates.blocks(CASING_STAINLESS_CLEAN.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.frames(GTMaterials.StainlessSteel))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),GTCEu.id("block/multiblock/implosion_compressor"),false)
+            .register();
+    public static final MultiblockMachineDefinition SUPER_WIND_POWER_ARRAY = REGISTRATE.multiblock("super_wind_power_array", holder -> new WindPowerArrayMachine(holder,3))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.WIND_POWER_ARRAY)
+            .appearanceBlock(CASING_TUNGSTENSTEEL_ROBUST)
+            .recipeModifier(WindPowerArrayMachine::WindPowerArrayRecipeModifier)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAA","   ","   ","   ","BBB")
+                    .aisle("AAA"," A "," A "," A ","BAB")
+                    .aisle("A@A","   ","   ","   ","BBB")
+                    .where("A", Predicates.blocks(CASING_TUNGSTENSTEEL_ROBUST.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.frames(GTMaterials.TungstenSteel))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"),GTCEu.id("block/multiblock/implosion_compressor"),false)
+            .register();
     public static void init() {
 
     }

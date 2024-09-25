@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
 import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
@@ -21,10 +22,16 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
     public double efficiency = 1;
     public int altitude = 0;
     public int NetworkSize = 1;
+    @Getter
+    private int Multi;
+    @Getter
+    private int tier;
     public static Map<WindPowerArrayMachine,BlockPos> MachineNet = new HashMap<>();
-    public WindPowerArrayMachine(IMachineBlockEntity holder){
+    public WindPowerArrayMachine(IMachineBlockEntity holder,int tier){
         super(holder);
         altitude = getPos().getY();
+        this.tier = tier;
+        Multi = (int) Math.pow(4,tier - 1);
     }
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
@@ -39,7 +46,7 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
         if(machine instanceof WindPowerArrayMachine){
             GTRecipe CopyRecipe = recipe.copy();
             int realAltitude = Mth.clamp(((WindPowerArrayMachine) machine).altitude,64,256);
-            CopyRecipe.tickOutputs.put(EURecipeCapability.CAP,CopyRecipe.copyContents(CopyRecipe.tickOutputs, ContentModifier.of(((WindPowerArrayMachine) machine).efficiency, (double) (realAltitude - 64) /3)).get(EURecipeCapability.CAP));
+            CopyRecipe.tickOutputs.put(EURecipeCapability.CAP,CopyRecipe.copyContents(CopyRecipe.tickOutputs, ContentModifier.of(((WindPowerArrayMachine) machine).efficiency* ((WindPowerArrayMachine) machine).Multi, (double) (realAltitude - 64) /3)).get(EURecipeCapability.CAP));
             return CopyRecipe;
         }
         return null;
