@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.common.machine.multiblock.part;
+package io.github.cpearl0.ctnhcore.common.machine.multiblock;
 
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -14,36 +14,31 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
+    public static Map<WindPowerArrayMachine, BlockPos> MachineNet = new HashMap<>();
     public int Threshold = 16;
     public double efficiency = 1;
-    public int altitude = 0;
+    public int altitude;
     public int NetworkSize = 1;
     @Getter
     private int Multi;
     @Getter
     private int tier;
-    public static Map<WindPowerArrayMachine,BlockPos> MachineNet = new HashMap<>();
     public WindPowerArrayMachine(IMachineBlockEntity holder,int tier){
         super(holder);
         altitude = getPos().getY();
         this.tier = tier;
         Multi = (int) Math.pow(4,tier - 1);
     }
-    @Override
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        if(!MachineNet.containsValue(getPos())){
-            MachineNet.put(this,getPos());
-        }
-        NetworkSize = getMachineNetworkSize();
-        efficiency = (NetworkSize - 1)*0.1 + 1;
-        return super.beforeWorking(recipe);
-    }
-    public static GTRecipe WindPowerArrayRecipeModifier(MetaMachine machine, GTRecipe recipe, OCParams ocParams, OCResult ocResult){
-        if(machine instanceof WindPowerArrayMachine){
+
+    public static GTRecipe WindPowerArrayRecipeModifier(MetaMachine machine, GTRecipe recipe, OCParams ocParams, OCResult ocResult) {
+        if (machine instanceof WindPowerArrayMachine) {
             GTRecipe CopyRecipe = recipe.copy();
             int realAltitude = Mth.clamp(((WindPowerArrayMachine) machine).altitude,64,256);
             CopyRecipe.tickOutputs.put(EURecipeCapability.CAP,CopyRecipe.copyContents(CopyRecipe.tickOutputs, ContentModifier.of(((WindPowerArrayMachine) machine).efficiency* ((WindPowerArrayMachine) machine).Multi, (double) (realAltitude - 64) /3)).get(EURecipeCapability.CAP));
@@ -51,38 +46,13 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
         }
         return null;
     }
-    @Override
-    public boolean onWorking() {
-        if(getOffsetTimer() % 20 == 0){
-            NetworkSize = getMachineNetworkSize();
-            efficiency = (NetworkSize - 1)*0.1 + 1;
-            //System.out.println(MachineNet.size());
-            //System.out.println(MachineNet);
-        }
-        return super.onWorking();
-    }
 
-    @Override
-    public void afterWorking() {
-        MachineNet.remove(this,getPos());
-        //NetworkSize = 1;
-        //efficiency = 1;
-        super.afterWorking();
-    }
-
-    @Override
-    public void addDisplayText(List<Component> textList) {
-        super.addDisplayText(textList);
-        if(isFormed){
-            textList.add(Component.translatable("info.ctnhcore.network_machine",NetworkSize));
-            textList.add(Component.translatable("info.ctnhcore.network_machine_efficiency",efficiency));
-        }
-    }
     public static void clearNet() {
-        if(MachineNet != null) {
+        if (MachineNet != null) {
             MachineNet = MachineNet.entrySet().stream().filter(entry -> entry.getKey() != null && entry.getKey().isActive()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         }
     }
+
     public static double distance(BlockPos p1, BlockPos p2) {
         //return p1.distToCenterSqr(p2.getCenter());
         return Math.sqrt(Math.pow(p1.getX() - p2.getX(), 2) + Math.pow(p1.getY() - p2.getY(), 2) + Math.pow(p1.getZ() - p2.getZ(), 2));
@@ -101,6 +71,44 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
         }
 
         return size;
+    }
+
+    @Override
+    public boolean beforeWorking(@Nullable GTRecipe recipe) {
+        if (!MachineNet.containsValue(getPos())) {
+            MachineNet.put(this, getPos());
+        }
+        NetworkSize = getMachineNetworkSize();
+        efficiency = (NetworkSize - 1) * 0.1 + 1;
+        return super.beforeWorking(recipe);
+    }
+
+    @Override
+    public boolean onWorking() {
+        if (getOffsetTimer() % 20 == 0) {
+            NetworkSize = getMachineNetworkSize();
+            efficiency = (NetworkSize - 1) * 0.1 + 1;
+            //System.out.println(MachineNet.size());
+            //System.out.println(MachineNet);
+        }
+        return super.onWorking();
+    }
+
+    @Override
+    public void afterWorking() {
+        MachineNet.remove(this, getPos());
+        //NetworkSize = 1;
+        //efficiency = 1;
+        super.afterWorking();
+    }
+
+    @Override
+    public void addDisplayText(List<Component> textList) {
+        super.addDisplayText(textList);
+        if (isFormed) {
+            textList.add(Component.translatable("info.ctnhcore.network_machine", NetworkSize));
+            textList.add(Component.translatable("info.ctnhcore.network_machine_efficiency", efficiency));
+        }
     }
 
     public int getMachineNetworkSize() {
