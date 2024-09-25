@@ -41,7 +41,8 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
         if (machine instanceof WindPowerArrayMachine) {
             GTRecipe CopyRecipe = recipe.copy();
             int realAltitude = Mth.clamp(((WindPowerArrayMachine) machine).altitude,64,256);
-            CopyRecipe.tickOutputs.put(EURecipeCapability.CAP,CopyRecipe.copyContents(CopyRecipe.tickOutputs, ContentModifier.of(((WindPowerArrayMachine) machine).efficiency* ((WindPowerArrayMachine) machine).Multi, (double) (realAltitude - 64) /3)).get(EURecipeCapability.CAP));
+            CopyRecipe.tickOutputs.put(EURecipeCapability.CAP,CopyRecipe.copyContents(CopyRecipe.tickOutputs, ContentModifier.of(1, (double) (realAltitude - 64) /3)).get(EURecipeCapability.CAP));
+            CopyRecipe.tickOutputs.put(EURecipeCapability.CAP,CopyRecipe.copyContents(CopyRecipe.tickOutputs, ContentModifier.of(((WindPowerArrayMachine) machine).efficiency* ((WindPowerArrayMachine) machine).Multi, 0)).get(EURecipeCapability.CAP));
             return CopyRecipe;
         }
         return null;
@@ -54,16 +55,13 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
     }
 
     public static double distance(BlockPos p1, BlockPos p2) {
-        //return p1.distToCenterSqr(p2.getCenter());
         return Math.sqrt(Math.pow(p1.getX() - p2.getX(), 2) + Math.pow(p1.getY() - p2.getY(), 2) + Math.pow(p1.getZ() - p2.getZ(), 2));
     }
 
-    // DFS 深度优先遍历，计算连通分量的大小
     public static int dfs(int node, boolean[] visited, List<List<Integer>> graph) {
         visited[node] = true;
         int size = 1;
 
-        // 遍历所有相邻的未访问的节点
         for (int neighbor : graph.get(node)) {
             if (!visited[neighbor]) {
                 size += dfs(neighbor, visited, graph);
@@ -88,8 +86,6 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
         if (getOffsetTimer() % 20 == 0) {
             NetworkSize = getMachineNetworkSize();
             efficiency = (NetworkSize - 1) * 0.1 + 1;
-            //System.out.println(MachineNet.size());
-            //System.out.println(MachineNet);
         }
         return super.onWorking();
     }
@@ -97,8 +93,6 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
     @Override
     public void afterWorking() {
         MachineNet.remove(this, getPos());
-        //NetworkSize = 1;
-        //efficiency = 1;
         super.afterWorking();
     }
 
