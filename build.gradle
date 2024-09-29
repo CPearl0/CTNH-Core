@@ -157,6 +157,8 @@ repositories {
             includeGroup 'dev.toma.configuration'
         }
     }
+
+    maven { url 'https://maven.rover656.dev/releases' }
 }
 
 dependencies {
@@ -205,6 +207,11 @@ dependencies {
     implementation fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
     implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
     implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
+
+    //enderio
+    compileOnly fg.deobf("com.enderio:EnderIO:${enderio_version}:api")
+    runtimeOnly fg.deobf("com.enderio:EnderIO:${enderio_version}")
+    //compileOnly fg.deobf("com.enderio:EnderIO:${enderio_version}:api")
 }
 
 mixin {

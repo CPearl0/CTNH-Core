@@ -43,6 +43,7 @@
   "ctnh.multiblock.underfloor_heating_system.rate.tooltip": "减少蒸汽的消耗来降低地暖的发热功率",
   "ctnh.multiblock.underfloor_heating_system.rate_modify": "调节速率：",
   "ctnh.multiblock.underfloor_heating_system.steam_consumption": "蒸汽消耗速率：%d",
+  "ctnhcore.slaughter_house.moblist": "怪物种类：%d",
   "gtceu.astronomical_observatory": "天文台",
   "gtceu.photovoltaic_power": "光伏发电",
   "gtceu.underfloor_heating_system": "地暖",

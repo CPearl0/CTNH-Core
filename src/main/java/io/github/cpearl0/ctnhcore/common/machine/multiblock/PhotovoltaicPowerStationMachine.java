@@ -149,7 +149,7 @@ public class PhotovoltaicPowerStationMachine extends WorkableElectricMultiblockM
     public void addDisplayText(@NotNull List<Component> textList) {
         super.addDisplayText(textList);
         if (isFormed()) {
-            var valid = getHolder().self().getPersistentData().getInt("valid");
+            var valid = isValidPhotovoltaicPower();
             var outputEnergy = getHolder().self().getPersistentData().getDouble("energy");
             var voltageName = GTValues.VNF[GTUtil.getTierByVoltage((long) outputEnergy)];
             if (valid == SHADOWED) {
