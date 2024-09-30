@@ -40,5 +40,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
         WindPowerArrayRecipes.init(provider);
         PersonalComputerRecipes.init(provider);
         MachinesRecipes.init(provider);
+        SlaughterHouseRecipes.init(provider);
     }
 }

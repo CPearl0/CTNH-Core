@@ -1,26 +1,29 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.enderio.base.common.init.EIOBlocks;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import dev.latvian.mods.rhino.ast.Block;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.coldsweat.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.PhotovoltaicPowerStationMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.SlaughterHouseMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.UnderfloorHeatingMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.WindPowerArrayMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
@@ -272,8 +275,41 @@ public class CTNHMultiblockMachines {
                     .where("B", Predicates.frames(GTMaterials.TungstenSteel))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"),GTCEu.id("block/multiblock/implosion_compressor"),false)
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
             .register();
+
+    public static final MultiblockMachineDefinition SLAUGHTER_HOUSE = REGISTRATE.multiblock("slaughter_house", SlaughterHouseMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.SLAUGHTER_HOUSE)
+            .recipeModifier((machine, recipe, params, result) -> {
+                if (!(machine instanceof SlaughterHouseMachine slaughterHouseMachine))
+                    return recipe;
+                var newRecipe = recipe.copy();
+                var timeCost = slaughterHouseMachine.timeCost;
+                newRecipe.duration = (int) (40 * timeCost);
+                return newRecipe;
+            })
+            .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("ABBBA", "ABBBA", "CCCCC", "CCCCC", "CCCCC", "CCCCC", "ABBBA")
+                    .aisle("BAAAB", "BDDDB", "CDDDC", "CDDDC", "CDDDC", "CDDDC", "BAAAB")
+                    .aisle("BAAAB", "BD#DB", "CD#DC", "CD#DC", "CD#DC", "CD#DC", "BAEAB")
+                    .aisle("BAAAB", "BDDDB", "CDDDC", "CDDDC", "CDDDC", "CDDDC", "BAAAB")
+                    .aisle("AB@BA", "ABBBA", "CCCCC", "CCCCC", "CCCCC", "CCCCC", "ABBBA")
+                    .where("A", Predicates.blocks(CASING_STEEL_SOLID.get()))
+                    .where("B", Predicates.blocks(CASING_STEEL_SOLID.get()).setMinGlobalLimited(15)
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                    )
+                    .where("#", Predicates.any())
+                    .where("C", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
+                    .where("D", Predicates.blocks(EIOBlocks.DARK_STEEL_BARS.get()))
+                    .where("E", Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+
     public static void init() {
 
     }

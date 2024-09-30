@@ -208,10 +208,10 @@ dependencies {
     implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
     implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
 
-    //enderio
+    //  EnderIO
     compileOnly fg.deobf("com.enderio:EnderIO:${enderio_version}:api")
-    runtimeOnly fg.deobf("com.enderio:EnderIO:${enderio_version}")
-    //compileOnly fg.deobf("com.enderio:EnderIO:${enderio_version}:api")
+    implementation fg.deobf("com.enderio:EnderIO:${enderio_version}")
+    runtimeOnly "dev.gigaherz.graph:GraphLib3:$graphlib_version"
 }
 
 mixin {

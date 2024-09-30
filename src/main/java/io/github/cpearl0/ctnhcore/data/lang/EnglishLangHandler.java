@@ -30,6 +30,6 @@ public class EnglishLangHandler {
         provider.add("multiblock.ctnh.photovoltaic_power_station2", "Generating: %s/%s EU/t");
         provider.add("info.ctnhcore.network_machine","Network Machine Count：%d");
         provider.add("info.ctnhcore.network_machine_efficiency","Generating Efficiency: %d");
-        provider.add("ctnhcore.slaughter_house.moblist","Mob Types: %d");
+        provider.add("ctnh.multiblock.slaughter_house.mobcount","Mob Types: %d");
     }
 }
