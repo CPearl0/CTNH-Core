@@ -17,7 +17,7 @@ public class ManaPoolBlockEntityMixin {
             cap *= 10;
         try {
             var beclass = be.getClass();
-            var manaCap = beclass.getField("manaCap");
+            var manaCap = beclass.getDeclaredField("manaCap");
             manaCap.setAccessible(true);
             manaCap.set(be, cap);
         }
