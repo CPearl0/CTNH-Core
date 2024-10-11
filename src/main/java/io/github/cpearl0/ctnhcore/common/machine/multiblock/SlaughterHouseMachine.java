@@ -44,7 +44,7 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
                 if (mobentity instanceof LivingEntity) {
                     if (((LivingEntity) mobentity).getArmorValue() != 0) {
                         var armor = ((LivingEntity) mobentity).getArmorValue();
-                        totalhealth += ((LivingEntity) mobentity).getMaxHealth() / (20 / (armor + 20));
+                        totalhealth += ((LivingEntity) mobentity).getMaxHealth() / ((double) 20 / (armor + 20));
                     } else {
                         totalhealth += ((LivingEntity) mobentity).getMaxHealth();
                     }
