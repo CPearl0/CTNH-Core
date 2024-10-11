@@ -19,6 +19,8 @@ public class EnglishLangHandler {
         provider.add("gtceu.underfloor_heating_system", "Underfloor Heating");
         provider.add("gtceu.astronomical_observatory", "Astronomical Observatory");
         provider.add("gtceu.photovoltaic_power", "Photovoltaic Powering");
+        provider.add("gtceu.slaughter_house", "Slaughter House");
+        provider.add("gtceu.big_dam", "Big Dam");
         provider.add("multiblock.ctnhcore.underfloor_heating_system.efficiency", "Efficiency: %d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "Rate: %s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "Reduce the consumption of steam to reduce the heating power of the floor heating");
@@ -31,5 +33,7 @@ public class EnglishLangHandler {
         provider.add("info.ctnhcore.network_machine","Network Machine Count：%d");
         provider.add("info.ctnhcore.network_machine_efficiency","Generating Efficiency: %d");
         provider.add("ctnh.multiblock.slaughter_house.mobcount","Mob Types: %d");
+        provider.add("ctnh.stress_output", "Stress output: %ssu");
+        provider.add("ctnh.stress_input", "Stress input: %ssu");
     }
 }

@@ -1,6 +1,7 @@
 {
   "block.ctnhcore.advanced_wind_power_array": "Advanced Wind Power Array",
   "block.ctnhcore.astronomical_observatory": "Astronomical Observatory",
+  "block.ctnhcore.big_dam": "Big Dam",
   "block.ctnhcore.energetic_photovoltaic_block": "Energetic Photovoltaic Block",
   "block.ctnhcore.ev_circuit_bus": "§5EV Circuit Bus",
   "block.ctnhcore.ev_personal_computer": "§5Advanced Personal Computer III§r",
@@ -45,6 +46,8 @@
   "ctnh.multiblock.underfloor_heating_system.rate.tooltip": "Reduce the consumption of steam to reduce the heating power of the floor heating",
   "ctnh.multiblock.underfloor_heating_system.rate_modify": "Adjust rate: ",
   "ctnh.multiblock.underfloor_heating_system.steam_consumption": "Steam consumption rate: %d",
+  "ctnh.stress_input": "Stress input: %ssu",
+  "ctnh.stress_output": "Stress output: %ssu",
   "gtceu.astronomical_observatory": "Astronomical Observatory",
   "gtceu.photovoltaic_power": "Photovoltaic Powering",
   "gtceu.underfloor_heating_system": "Underfloor Heating",

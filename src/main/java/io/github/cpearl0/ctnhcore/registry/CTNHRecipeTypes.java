@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
+import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 
 public class CTNHRecipeTypes {
     public static final GTRecipeType UNDERFLOOR_HEATING_SYSTEM = GTRecipeTypes.register("underfloor_heating_system", GTRecipeTypes.ELECTRIC)
@@ -43,6 +44,13 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
+
+    public static final GTRecipeType BIG_DAM = GTRecipeTypes.register("big_dam", GTRecipeTypes.ELECTRIC)
+            .setMaxIOSize(0, 0, 1, 0)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.COOLING)
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_output", String.format("%.1f", data.getFloat("output_stress"))));
 
     public static void init() {
 

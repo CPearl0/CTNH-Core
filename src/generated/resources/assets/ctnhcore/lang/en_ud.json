@@ -1,6 +1,7 @@
 {
   "block.ctnhcore.advanced_wind_power_array": "ʎɐɹɹⱯ ɹǝʍoԀ puıM pǝɔuɐʌpⱯ",
   "block.ctnhcore.astronomical_observatory": "ʎɹoʇɐʌɹǝsqO ןɐɔıɯouoɹʇsⱯ",
+  "block.ctnhcore.big_dam": "ɯɐᗡ bıᗺ",
   "block.ctnhcore.energetic_photovoltaic_block": "ʞɔoןᗺ ɔıɐʇןoʌoʇoɥԀ ɔıʇǝbɹǝuƎ",
   "block.ctnhcore.ev_circuit_bus": "snᗺ ʇınɔɹıƆ ΛƎϛ§",
   "block.ctnhcore.ev_personal_computer": "ɹ§III ɹǝʇndɯoƆ ןɐuosɹǝԀ pǝɔuɐʌpⱯϛ§",
@@ -45,6 +46,8 @@
   "ctnh.multiblock.underfloor_heating_system.rate.tooltip": "buıʇɐǝɥ ɹooןɟ ǝɥʇ ɟo ɹǝʍod buıʇɐǝɥ ǝɥʇ ǝɔnpǝɹ oʇ ɯɐǝʇs ɟo uoıʇdɯnsuoɔ ǝɥʇ ǝɔnpǝᴚ",
   "ctnh.multiblock.underfloor_heating_system.rate_modify": " :ǝʇɐɹ ʇsnظpⱯ",
   "ctnh.multiblock.underfloor_heating_system.steam_consumption": "%d :ǝʇɐɹ uoıʇdɯnsuoɔ ɯɐǝʇS",
+  "ctnh.stress_input": "n%ss :ʇnduı ssǝɹʇS",
+  "ctnh.stress_output": "n%ss :ʇndʇno ssǝɹʇS",
   "gtceu.astronomical_observatory": "ʎɹoʇɐʌɹǝsqO ןɐɔıɯouoɹʇsⱯ",
   "gtceu.photovoltaic_power": "buıɹǝʍoԀ ɔıɐʇןoʌoʇoɥԀ",
   "gtceu.underfloor_heating_system": "buıʇɐǝH ɹooןɟɹǝpu∩",

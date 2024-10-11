@@ -23,6 +23,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.underfloor_heating_system", "地暖");
         provider.add("gtceu.astronomical_observatory", "天文台");
         provider.add("gtceu.photovoltaic_power", "光伏发电");
+        provider.add("gtceu.slaughter_house", "屠宰场");
+        provider.add("gtceu.big_dam", "三峡大坝");
         provider.add("multiblock.ctnhcore.underfloor_heating_system.efficiency", "效率：%d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "速率：%s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "减少蒸汽的消耗来降低地暖的发热功率");
@@ -32,9 +34,11 @@ public class ChineseLangHandler {
         provider.add("multiblock.ctnh.photovoltaic_power_station_night", "光照过于微弱");
         provider.add("multiblock.ctnh.photovoltaic_power_station1", "发电效率：%s%%");
         provider.add("multiblock.ctnh.photovoltaic_power_station2", "产能功率：%s/%s EU/t");
-        provider.add("info.ctnhcore.network_machine","发电网络机器数：%d");
-        provider.add("info.ctnhcore.network_machine_efficiency","发电效率：%d");
-        provider.add("ctnh.multiblock.slaughter_house.mobcount","怪物种类：%d");
+        provider.add("info.ctnhcore.network_machine", "发电网络机器数：%d");
+        provider.add("info.ctnhcore.network_machine_efficiency", "发电效率：%d");
+        provider.add("ctnh.multiblock.slaughter_house.mobcount", "怪物种类：%d");
+        provider.add("ctnh.stress_output", "产出应力：%ssu");
+        provider.add("ctnh.stress_input", "输入应力：%ssu");
 
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");
@@ -62,6 +66,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.ADVANCED_WIND_POWER_ARRAY.getBlock(), "进阶风力发电阵列");
         provider.add(CTNHMultiblockMachines.SUPER_WIND_POWER_ARRAY.getBlock(), "超级风力发电阵列");
         provider.add(CTNHMultiblockMachines.SLAUGHTER_HOUSE.getBlock(), "屠宰场");
+        provider.add(CTNHMultiblockMachines.BIG_DAM.getBlock(), "三峡大坝");
     }
 
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,
