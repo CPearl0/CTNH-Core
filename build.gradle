@@ -219,6 +219,8 @@ dependencies {
     compileOnly fg.deobf("com.enderio:EnderIO:${enderio_version}:api")
     implementation fg.deobf("com.enderio:EnderIO:${enderio_version}")
     runtimeOnly "dev.gigaherz.graph:GraphLib3:$graphlib_version"
+
+    implementation fg.deobf("curse.maven:applied-energistics-2-223794:5641282")
 }
 
 mixin {
