@@ -5,6 +5,7 @@
   "refmap": "mixins.ctnhcore.refmap.json",
   "mixins": [
     "ChunkMixin",
+    "ChunkSerializerMixin",
     "ManaPoolBlockEntityMixin",
     "TagLoaderMixin",
     "appeng.CraftingCpuLogicMixin"
