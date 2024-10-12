@@ -25,6 +25,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.photovoltaic_power", "光伏发电");
         provider.add("gtceu.slaughter_house", "屠宰场");
         provider.add("gtceu.big_dam", "三峡大坝");
+        provider.add("gtceu.coke_oven", "焦化塔");
         provider.add("multiblock.ctnhcore.underfloor_heating_system.efficiency", "效率：%d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "速率：%s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "减少蒸汽的消耗来降低地暖的发热功率");
@@ -67,6 +68,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.SUPER_WIND_POWER_ARRAY.getBlock(), "超级风力发电阵列");
         provider.add(CTNHMultiblockMachines.SLAUGHTER_HOUSE.getBlock(), "屠宰场");
         provider.add(CTNHMultiblockMachines.BIG_DAM.getBlock(), "三峡大坝");
+        provider.add(CTNHMultiblockMachines.COKE_OVEN.getBlock(), "焦化塔");
     }
 
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,

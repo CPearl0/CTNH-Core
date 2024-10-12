@@ -21,6 +21,7 @@ public class EnglishLangHandler {
         provider.add("gtceu.photovoltaic_power", "Photovoltaic Powering");
         provider.add("gtceu.slaughter_house", "Slaughter House");
         provider.add("gtceu.big_dam", "Big Dam");
+        provider.add("gtceu.coke_oven", "Coke Oven");
         provider.add("multiblock.ctnhcore.underfloor_heating_system.efficiency", "Efficiency: %d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "Rate: %s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "Reduce the consumption of steam to reduce the heating power of the floor heating");
