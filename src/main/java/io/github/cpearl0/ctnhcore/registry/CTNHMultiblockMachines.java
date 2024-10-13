@@ -351,38 +351,38 @@ public class CTNHMultiblockMachines {
             .register();
 
     public final static MultiblockMachineDefinition COKE_OVEN = REGISTRATE.multiblock("coke_oven", CoilWorkableElectricMultiblockMachine::new)
-                .rotationState(RotationState.ALL)
-                .recipeType(GTRecipeTypes.PYROLYSE_RECIPES)
-                .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, CTNHRecipeModifiers::chemicalPlantOverclock)
-                .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
-                .pattern(definition -> FactoryBlockPattern.start()
-                .aisle("ABBBA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
-                .aisle("BDDDB", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "ACCCA")
-                .aisle("BDDDB", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CCHCC")
-                .aisle("BDDDB", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "ACCCA")
-                .aisle("ABBBA", "ACCCA", "AC@CA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
-                .where("A", Predicates.frames(GTMaterials.StainlessSteel))
-                .where("B", Predicates.blocks(GCyMBlocks.HEAT_VENT.get()))
-                .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_CLEAN.get())
-                        .setMinGlobalLimited(60)
-                        .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
-                        .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                        .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
-                .where("#", Predicates.any())
-                .where("D", Predicates.blocks(FIREBOX_TITANIUM.get()))
-                .where("E", Predicates.heatingCoils())
-                .where("F", Predicates.blocks(CASING_INVAR_HEATPROOF.get()))
-                .where("G", Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
-                .where("H", Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1))
-                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                        .build())
-         .additionalDisplay((controller, components) -> {
-              if (controller.isFormed() && controller instanceof CoilWorkableElectricMultiblockMachine machine) {
-              components.add(Component.translatable("gtceu.multiblock.pyrolyse_oven.speed", machine.getCoilTier() == 0 ? 75 : 50 * (machine.getCoilTier() + 15)));
-              }
-              })
-                .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/machines/fluid_heater"))
-                .register();
+            .rotationState(RotationState.ALL)
+            .recipeType(GTRecipeTypes.PYROLYSE_RECIPES)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, CTNHRecipeModifiers::chemicalPlantOverclock)
+            .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("ABBBA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
+                    .aisle("BDDDB", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "ACCCA")
+                    .aisle("BDDDB", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CCHCC")
+                    .aisle("BDDDB", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "ACCCA")
+                    .aisle("ABBBA", "ACCCA", "AC@CA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
+                    .where("A", Predicates.frames(GTMaterials.StainlessSteel))
+                    .where("B", Predicates.blocks(GCyMBlocks.HEAT_VENT.get()))
+                    .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_CLEAN.get())
+                            .setMinGlobalLimited(60)
+                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .where("#", Predicates.any())
+                    .where("D", Predicates.blocks(FIREBOX_TITANIUM.get()))
+                    .where("E", Predicates.heatingCoils())
+                    .where("F", Predicates.blocks(CASING_INVAR_HEATPROOF.get()))
+                    .where("G", Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
+                    .where("H", Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .additionalDisplay((controller, components) -> {
+                  if (controller.isFormed() && controller instanceof CoilWorkableElectricMultiblockMachine machine) {
+                  components.add(Component.translatable("gtceu.multiblock.pyrolyse_oven.speed", machine.getCoilTier() == 0 ? 75 : 50 * (machine.getCoilTier() + 15)));
+                  }}
+            )
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/machines/fluid_heater"))
+            .register();
 
     public static void init() {
     }
