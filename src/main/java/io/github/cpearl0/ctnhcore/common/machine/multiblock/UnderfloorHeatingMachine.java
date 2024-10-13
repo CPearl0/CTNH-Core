@@ -102,7 +102,7 @@ public class UnderfloorHeatingMachine extends WorkableMultiblockMachine implemen
             if (efficiency == 0) {
                 efficiency = getEfficiency();
             }
-            textList.add(Component.translatable("multiblock.ctnhcore.underfloor_heating_system.efficiency", String.format("%.1f", efficiency * 100)));
+            textList.add(Component.translatable("ctnh.multiblock.underfloor_heating_system.efficiency", String.format("%.1f", efficiency * 100)));
         }
     }
 
