@@ -353,7 +353,7 @@ public class CTNHMultiblockMachines {
     public final static MultiblockMachineDefinition COKE_OVEN = REGISTRATE.multiblock("coke_oven", CoilWorkableElectricMultiblockMachine::new)
                 .rotationState(RotationState.ALL)
                 .recipeType(GTRecipeTypes.PYROLYSE_RECIPES)
-                .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::pyrolyseOvenOverclock)
+                .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, CTNHRecipeModifiers::chemicalPlantOverclock)
                 .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
                 .pattern(definition -> FactoryBlockPattern.start()
                 .aisle("ABBBA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
