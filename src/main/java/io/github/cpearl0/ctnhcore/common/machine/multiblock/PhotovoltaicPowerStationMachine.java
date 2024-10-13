@@ -153,12 +153,12 @@ public class PhotovoltaicPowerStationMachine extends WorkableElectricMultiblockM
             var outputEnergy = getHolder().self().getPersistentData().getDouble("energy");
             var voltageName = GTValues.VNF[GTUtil.getTierByVoltage((long) outputEnergy)];
             if (valid == SHADOWED) {
-                textList.add(textList.size(), Component.translatable("multiblock.ctnh.photovoltaic_power_station_invalid").withStyle(ChatFormatting.RED));
+                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station_invalid").withStyle(ChatFormatting.RED));
             } else if (valid == NIGHT) {
-                textList.add(textList.size(), Component.translatable("multiblock.ctnh.photovoltaic_power_station_night").withStyle(ChatFormatting.RED));
+                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station_night").withStyle(ChatFormatting.RED));
             } else {
-                textList.add(textList.size(), Component.translatable("multiblock.ctnh.photovoltaic_power_station1", String.format("%.1f", (outputEnergy / (BASIC_RATE * 512) * 100))));
-                textList.add(textList.size(), Component.translatable("multiblock.ctnh.photovoltaic_power_station2", FormattingUtil.formatNumbers(outputEnergy), voltageName));
+                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station1", String.format("%.1f", (outputEnergy / (BASIC_RATE * 512) * 100))));
+                textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station2", FormattingUtil.formatNumbers(outputEnergy), voltageName));
             }
         }
     }

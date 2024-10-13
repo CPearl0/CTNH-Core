@@ -13,9 +13,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
-import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.common.block.GTStandingSignBlock;
 import com.gregtechceu.gtceu.common.data.*;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
@@ -36,8 +34,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
-
-import java.awt.*;
 
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -287,8 +283,7 @@ public class CTNHMultiblockMachines {
                     .where("A", Predicates.blocks(CASING_STEEL_SOLID.get()))
                     .where("B", Predicates.blocks(CASING_STEEL_SOLID.get()).setMinGlobalLimited(15)
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                    )
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
                     .where("#", Predicates.any())
                     .where("C", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
                     .where("D", Predicates.blocks(EIOBlocks.DARK_STEEL_BARS.get()))
@@ -345,45 +340,44 @@ public class CTNHMultiblockMachines {
                             .or(Predicates.abilities(PartAbility.OUTPUT_KINETIC))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
+                    .build())
             .workableCasingRenderer(new ResourceLocation("block/stone_bricks"), GTCEu.id("block/multiblock/implosion_compressor"), false)
             .register();
 
     public final static MultiblockMachineDefinition COKE_OVEN = REGISTRATE.multiblock("coke_oven", CoilWorkableElectricMultiblockMachine::new)
-                .rotationState(RotationState.ALL)
-                .recipeType(GTRecipeTypes.PYROLYSE_RECIPES)
-                .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::pyrolyseOvenOverclock)
-                .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
-                .pattern(definition -> FactoryBlockPattern.start()
-                .aisle("ABBBA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
-                .aisle("BDDDB", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "ACCCA")
-                .aisle("BDDDB", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CCHCC")
-                .aisle("BDDDB", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "ACCCA")
-                .aisle("ABBBA", "ACCCA", "AC@CA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
-                .where("A", Predicates.frames(GTMaterials.StainlessSteel))
-                .where("B", Predicates.blocks(GCyMBlocks.HEAT_VENT.get()))
-                .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_CLEAN.get())
-                        .setMinGlobalLimited(60)
-                        .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
-                        .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                        .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
-                .where("#", Predicates.any())
-                .where("D", Predicates.blocks(FIREBOX_TITANIUM.get()))
-                .where("E", Predicates.heatingCoils())
-                .where("F", Predicates.blocks(CASING_INVAR_HEATPROOF.get()))
-                .where("G", Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
-                .where("H", Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1))
-                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                        .build())
-         .additionalDisplay((controller, components) -> {
-              if (controller.isFormed() && controller instanceof CoilWorkableElectricMultiblockMachine machine) {
-              components.add(Component.translatable("gtceu.multiblock.pyrolyse_oven.speed", machine.getCoilTier() == 0 ? 75 : 50 * (machine.getCoilTier() + 15)));
-              }
-              })
-                .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/machines/fluid_heater"))
-                .register();
+            .rotationState(RotationState.ALL)
+            .recipeType(GTRecipeTypes.PYROLYSE_RECIPES)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::pyrolyseOvenOverclock)
+            .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("ABBBA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
+                    .aisle("BDDDB", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "ACCCA")
+                    .aisle("BDDDB", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CFGFC", "CEGEC", "CCHCC")
+                    .aisle("BDDDB", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "ACCCA")
+                    .aisle("ABBBA", "ACCCA", "AC@CA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
+                    .where("A", Predicates.frames(GTMaterials.StainlessSteel))
+                    .where("B", Predicates.blocks(GCyMBlocks.HEAT_VENT.get()))
+                    .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(60)
+                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .where("#", Predicates.any())
+                    .where("D", Predicates.blocks(FIREBOX_TITANIUM.get()))
+                    .where("E", Predicates.heatingCoils())
+                    .where("F", Predicates.blocks(CASING_INVAR_HEATPROOF.get()))
+                    .where("G", Predicates.blocks(GTBlocks.CASING_STEEL_PIPE.get()))
+                    .where("H", Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .additionalDisplay((controller, components) -> {
+                if (controller.isFormed() && controller instanceof CoilWorkableElectricMultiblockMachine machine) {
+                    components.add(Component.translatable("gtceu.multiblock.pyrolyse_oven.speed", machine.getCoilTier() == 0 ? 75 : 50 * (machine.getCoilTier() + 15)));
+                }
+            })
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/machines/fluid_heater"))
+            .register();
 
     public static void init() {
+
     }
 }
