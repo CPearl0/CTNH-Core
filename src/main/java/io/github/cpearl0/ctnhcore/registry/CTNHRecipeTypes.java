@@ -1,12 +1,23 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.gregtechceu.gtceu.api.GTCEuAPI;
+import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
+import com.lowdragmc.lowdraglib.LDLib;
 import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
+import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
+import com.lowdragmc.lowdraglib.utils.CycleItemStackHandler;
 import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.world.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CTNHRecipeTypes {
     public static final GTRecipeType UNDERFLOOR_HEATING_SYSTEM = GTRecipeTypes.register("underfloor_heating_system", GTRecipeTypes.ELECTRIC)
@@ -51,6 +62,27 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING)
             .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_output", String.format("%.1f", data.getFloat("output_stress"))));
+
+    public static final  GTRecipeType FERMENTING = GTRecipeTypes.register("fermenting", "multiblock")
+            .setEUIO(IO.IN)
+            .setMaxIOSize(4, 4, 1, 1)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL)
+            .addDataInfo(data -> LocalizationUtils.format("gtceu.recipe.temperature", FormattingUtil.formatNumbers(data.getInt("ebf_temp"))))
+            .addDataInfo(data -> {
+                var requiredCoil = ICoilType.getMinRequiredType(data.getInt("ebf_temp"));
+                if (LDLib.isClient() && requiredCoil != null && requiredCoil.getMaterial() != null) {
+                    return LocalizationUtils.format("gtceu.recipe.coil.tier", I18n.get(requiredCoil.getMaterial().getUnlocalizedName()));
+                }
+                return "";
+            })
+            .setUiBuilder((recipe, widgetGroup) -> {
+                var temp = recipe.data.getInt("ebf_temp");
+                var items = new ArrayList<List<ItemStack>>();
+                items.add(GTCEuAPI.HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
+            widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
+            });
 
     public static void init() {
 

@@ -40,6 +40,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.slaughter_house.mobcount", "怪物种类：%d");
         provider.add("ctnh.stress_output", "产出应力：%ssu");
         provider.add("ctnh.stress_input", "输入应力：%ssu");
+        provider.add("ctnh.fermenting_tank.growing_temperature", "生长温度：§2%d°C§r");
+        provider.add("ctnh.fermenting_tank.growth_efficiency", "生长效率：%d%%");
 
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");
