@@ -36,5 +36,9 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.slaughter_house.mobcount","Mob Types: %d");
         provider.add("ctnh.stress_output", "Stress output: %ssu");
         provider.add("ctnh.stress_input", "Stress input: %ssu");
+        provider.add("ctnh.fermenting_tank.growing_temperature", "Growth Temperature：§2%d°C§r");
+        provider.add("ctnh.fermenting_tank.growth_efficiency", "Growth Efficiency：%d%%");
+        provider.add("ctnh.manaturbine.efficiency", "Generating Efficiency：%d%%");
+        provider.add("ctnh.manaturbine.consumption_rate", "Consumption Rate：%d");
     }
 }

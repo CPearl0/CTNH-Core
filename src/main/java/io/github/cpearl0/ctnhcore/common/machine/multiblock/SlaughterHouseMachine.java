@@ -41,44 +41,6 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
         super(holder);
     }
 
-//    @Override
-//    public boolean onWorking() {
-//        ServerLevel level = (ServerLevel) getLevel();
-//        if (level != null && !mobList.isEmpty() && getRecipeLogic().getProgress() == 10) {
-//            // 战利品模式
-//            double totalhealth = 0;
-//            for (int oc = 0; oc <= getTier() * 4; oc++) {
-//                int index = level.getRandom().nextInt(mobList.size());
-//                String mob = mobList.get(index);
-//                var mobentity = EntityType.byString(mob).get().create(getLevel());
-//                if (mobentity instanceof LivingEntity) {
-//                    if (((LivingEntity) mobentity).getArmorValue() != 0) {
-//                        var armor = ((LivingEntity) mobentity).getArmorValue();
-//                        totalhealth += ((LivingEntity) mobentity).getMaxHealth() / ((double) 20 / (armor + 20));
-//                    } else {
-//                        totalhealth += ((LivingEntity) mobentity).getMaxHealth();
-//                    }
-//                    var fakePlayer = new FakePlayer(level, new GameProfile(uuid, "slaughter"));
-//                    var loottable = Objects.requireNonNull(level.getServer()).getLootData().getLootTable(new ResourceLocation(mob.split(":")[0] + ":entities/" + mob.split(":")[1]));
-//                    var lootparams = new LootParams.Builder((ServerLevel) getLevel())
-//                            .withParameter(LootContextParams.LAST_DAMAGE_PLAYER, fakePlayer)
-//                            .withParameter(LootContextParams.THIS_ENTITY, mobentity)
-//                            .withParameter(LootContextParams.DAMAGE_SOURCE, new DamageSources(level .getServer().registryAccess()).mobAttack(fakePlayer))
-//                            .withParameter(LootContextParams.ORIGIN, getPos().getCenter())
-//                            .create(loottable.getParamSet());
-//                    var loots = loottable.getRandomItems(lootparams);
-//                    loots.forEach(itemStack -> {
-//                        var tmp = GTRecipeBuilder.ofRaw().outputItems(itemStack).buildRawRecipe();
-//                        if (tmp.matchRecipe(this).isSuccess()) {
-//                            tmp.handleRecipeIO(IO.OUT, this, recipeLogic.getChanceCaches());
-//                        }
-//                    });
-//                }
-//            }
-//            timeCost = totalhealth / (20 * getTier() * 4);
-//        }
-//        return super.onWorking();
-//    }
 
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
@@ -112,7 +74,7 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
             // 战利品模式
             double totalhealth = 0;
             List<Content> itemList = new ArrayList<>();
-            for (int oc = 0; oc <= (((SlaughterHouseMachine) machine).getTier() - 2) * 4; oc++) {
+            for (int i = 0; i <= (((SlaughterHouseMachine) machine).getTier() - 2) * 4; i++) {
                 int index = level.getRandom().nextInt(smachine.mobList.size());
                 String mob = smachine.mobList.get(index);
                 var mobentity = EntityType.byString(mob).get().create(machine.getLevel());
@@ -146,10 +108,6 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
             newrecipe.outputs.put(ItemRecipeCapability.CAP,itemList);
             newrecipe.duration = (int)(totalhealth / (20 * (((SlaughterHouseMachine) machine).getTier() - 2) * 4) * 40);
         }
-//        var itemOutputs = recipe.getOutputContents(ItemRecipeCapability.CAP);
-//        for(var item : itemOutputs) {
-//            System.out.println(ItemRecipeCapability.CAP.of(item.content).getItems());
-//        }
         return newrecipe;
     }
     @Override

@@ -42,6 +42,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.stress_input", "输入应力：%ssu");
         provider.add("ctnh.fermenting_tank.growing_temperature", "生长温度：§2%d°C§r");
         provider.add("ctnh.fermenting_tank.growth_efficiency", "生长效率：%d%%");
+        provider.add("ctnh.manaturbine.efficiency", "发电效率：%d%%");
+        provider.add("ctnh.manaturbine.consumption_rate", "消耗倍率：%d");
 
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");

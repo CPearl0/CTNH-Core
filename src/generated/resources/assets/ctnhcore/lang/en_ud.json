@@ -42,6 +42,10 @@
   "block.ctnhcore.wind_power_array": "ʎɐɹɹⱯ ɹǝʍoԀ puıM",
   "block.ctnhcore.zpm_circuit_bus": "snᗺ ʇınɔɹıƆ WԀZɔ§",
   "block.ctnhcore.zpm_personal_computer": "ɹ§III ɹǝʇndɯoƆ ןɐuosɹǝԀ ǝʇıןƎɔ§",
+  "ctnh.fermenting_tank.growing_temperature": "ɹ§Ɔ°%dᄅ§：ǝɹnʇɐɹǝdɯǝ⟘ ɥʇʍoɹ⅁",
+  "ctnh.fermenting_tank.growth_efficiency": "%d%%：ʎɔuǝıɔıɟɟƎ ɥʇʍoɹ⅁",
+  "ctnh.manaturbine.consumption_rate": "%d：ǝʇɐᴚ uoıʇdɯnsuoƆ",
+  "ctnh.manaturbine.efficiency": "%d%%：ʎɔuǝıɔıɟɟƎ buıʇɐɹǝuǝ⅁",
   "ctnh.multiblock.photovoltaic_power_station1": "%s%% :ʎɔuǝıɔıɟɟƎ",
   "ctnh.multiblock.photovoltaic_power_station2": "ʇ/∩Ǝ %s/%s :buıʇɐɹǝuǝ⅁",
   "ctnh.multiblock.photovoltaic_power_station_invalid": "pǝʍopɐɥS",
@@ -76,6 +80,5 @@
   "material.ctnhcore.stratus": "snʇɐɹʇS",
   "material.ctnhcore.zanite": "ǝʇıuɐZ",
   "tagprefix.holystone": "ǝɹO %s ǝuoʇsʎןoH",
-  "tagprefix.mossy_holystone": "ǝɹO %s ǝuoʇsʎןoH ʎssoW",
-  "ctnh.multiblock.parallelize.tooltip": "gniroc gnikool ylluf sdrawkcab eht fo ecneitilno ylno ti evol uoy"
+  "tagprefix.mossy_holystone": "ǝɹO %s ǝuoʇsʎןoH ʎssoW"
 }

@@ -42,6 +42,10 @@
   "block.ctnhcore.wind_power_array": "Wind Power Array",
   "block.ctnhcore.zpm_circuit_bus": "§cZPM Circuit Bus",
   "block.ctnhcore.zpm_personal_computer": "§cElite Personal Computer III§r",
+  "ctnh.fermenting_tank.growing_temperature": "Growth Temperature：§2%d°C§r",
+  "ctnh.fermenting_tank.growth_efficiency": "Growth Efficiency：%d%%",
+  "ctnh.manaturbine.consumption_rate": "Consumption Rate：%d",
+  "ctnh.manaturbine.efficiency": "Generating Efficiency：%d%%",
   "ctnh.multiblock.photovoltaic_power_station1": "Efficiency: %s%%",
   "ctnh.multiblock.photovoltaic_power_station2": "Generating: %s/%s EU/t",
   "ctnh.multiblock.photovoltaic_power_station_invalid": "Shadowed",
@@ -76,6 +80,5 @@
   "material.ctnhcore.stratus": "Stratus",
   "material.ctnhcore.zanite": "Zanite",
   "tagprefix.holystone": "Holystone %s Ore",
-  "tagprefix.mossy_holystone": "Mossy Holystone %s Ore",
-  "ctnh.multiblock.parallelize.tooltip": "Parallel calculations are automatically performed as the voltage and coil grade increase"
+  "tagprefix.mossy_holystone": "Mossy Holystone %s Ore"
 }

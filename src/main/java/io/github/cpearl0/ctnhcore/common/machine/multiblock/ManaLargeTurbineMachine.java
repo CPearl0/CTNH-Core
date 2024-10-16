@@ -2,43 +2,64 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
+import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IRotorHolderMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
+import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
+import com.lowdragmc.lowdraglib.gui.widget.Widget;
+import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
+import com.lowdragmc.lowdraglib.misc.ItemStackTransfer;
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import vazkii.botania.common.item.BotaniaItems;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine implements ITieredMachine {
     public static final int MIN_DURABILITY_TO_WARN = 10;
-
+    public final NotifiableItemStackHandler machineStorage;
     private final int BASE_EU_OUTPUT;
     @Getter
     private final int RestrictTier;
     @Getter
     private final int tier = GTValues.ULV;
     private int excessVoltage;
+    public double efficiency = 1;
+
+    public double consumpution_rate = 1;
+
+    private List<String> Tier4_rune = List.of("mythicbotany:asgard_rune","mythicbotany:vanaheim_rune","mythicbotany:alfheim_rune","mythicbotany:midgard_rune",
+            "mythicbotany:joetunheim_rune","mythicbotany:muspelheim_rune","mythicbotany:nifheim_rune","mythicbotany:nidavellir_rune","mythicbotany:helheim_rune");
 
     public ManaLargeTurbineMachine(IMachineBlockEntity holder, int BaseEuOutput, int tier) {
         super(holder);
         this.RestrictTier = tier;
         this.BASE_EU_OUTPUT = BaseEuOutput;
+        this.machineStorage = createMachineStorage((byte) 1);
     }
 
     //////////////////////////////////////
@@ -47,7 +68,34 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     @Nullable
     public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (!(machine instanceof ManaLargeTurbineMachine turbineMachine)) return null;
-
+        if (turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeAir) ||
+                turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeEarth) ||
+                turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeWater) ||
+                turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeFire)){
+            turbineMachine.efficiency = 1.5;
+            turbineMachine.consumpution_rate = 0.9;
+        }
+        else if(turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeSpring) ||
+                turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeSummer) ||
+                turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeAutumn) ||
+                turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeWinter)){
+            turbineMachine.efficiency = 2;
+            turbineMachine.consumpution_rate = 0.75;
+        }
+        else if(turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeEnvy) ||
+                turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeGluttony) ||
+                turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeGreed) ||
+                turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeLust) ||
+                turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runePride) ||
+                turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeSloth) ||
+                turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeWrath)){
+            turbineMachine.efficiency = 3;
+            turbineMachine.consumpution_rate = 0.6;
+        }
+        else if(turbineMachine.Tier4_rune.contains(turbineMachine.getMachineStorageItem().getItem().toString())){
+            turbineMachine.efficiency = 4;
+            turbineMachine.consumpution_rate = 0.5;
+        }
         var rotorHolder = turbineMachine.getRotorHolder();
         var EUt = RecipeHelper.getOutputEUt(recipe);
 
@@ -68,11 +116,46 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         turbineMachine.excessVoltage += (int) (maxParallel * EUt * holderEfficiency - turbineMaxVoltage);
         var parallelResult = GTRecipeModifiers.fastParallel(turbineMachine, recipe, Math.max(1, maxParallel), false);
         recipe = parallelResult.getFirst() == recipe ? recipe.copy() : parallelResult.getFirst();
-
+        recipe.inputs.put(FluidRecipeCapability.CAP,recipe.copyContents(recipe.inputs, ContentModifier.of(turbineMachine.consumpution_rate, 0)).get(FluidRecipeCapability.CAP));
         long eut = turbineMachine.boostProduction((long) (EUt * holderEfficiency * parallelResult.getSecond()));
         recipe.tickOutputs.put(EURecipeCapability.CAP, List.of(new Content(eut, ChanceLogic.getMaxChancedValue(), ChanceLogic.getMaxChancedValue(), 0, null, null)));
 
         return recipe;
+    }
+
+    @Override
+    public boolean onWorking() {
+        if (getOffsetTimer() % 100 == 0){
+            var random = Math.random();
+            if (getMachineStorageItem().getItem().equals(BotaniaItems.runeAir) ||
+                    getMachineStorageItem().getItem().equals(BotaniaItems.runeEarth) ||
+                    getMachineStorageItem().getItem().equals(BotaniaItems.runeWater) ||
+                    getMachineStorageItem().getItem().equals(BotaniaItems.runeFire)){
+                if (random <= 0.05){
+                    consumeItem();
+                }
+            }
+            else if(getMachineStorageItem().getItem().equals(BotaniaItems.runeSpring) ||
+                    getMachineStorageItem().getItem().equals(BotaniaItems.runeSummer) ||
+                    getMachineStorageItem().getItem().equals(BotaniaItems.runeAutumn) ||
+                    getMachineStorageItem().getItem().equals(BotaniaItems.runeWinter)){
+                if(random <= 0.02){
+                    consumeItem();
+                }
+            }
+            else if(getMachineStorageItem().getItem().equals(BotaniaItems.runeEnvy) ||
+                    getMachineStorageItem().getItem().equals(BotaniaItems.runeGluttony) ||
+                    getMachineStorageItem().getItem().equals(BotaniaItems.runeGreed) ||
+                    getMachineStorageItem().getItem().equals(BotaniaItems.runeLust) ||
+                    getMachineStorageItem().getItem().equals(BotaniaItems.runePride) ||
+                    getMachineStorageItem().getItem().equals(BotaniaItems.runeSloth) ||
+                    getMachineStorageItem().getItem().equals(BotaniaItems.runeWrath)){
+                if(random <= 0.01){
+                    consumeItem();
+                }
+            }
+        }
+        return super.onWorking();
     }
 
     @Nullable
@@ -89,7 +172,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     public long getOverclockVoltage() {
         var rotorHolder = getRotorHolder();
         if (rotorHolder != null && rotorHolder.hasRotor())
-            return (long) BASE_EU_OUTPUT * rotorHolder.getTotalPower() / 100;
+            return (long) (BASE_EU_OUTPUT * efficiency * rotorHolder.getTotalPower() / 100);
         return 0;
     }
 
@@ -117,7 +200,34 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     //////////////////////////////////////
     // ******* GUI ********//
     //////////////////////////////////////
+    protected NotifiableItemStackHandler createMachineStorage(byte value) {
+        return new NotifiableItemStackHandler(
+                this, 1, IO.NONE, IO.BOTH, slots -> new ItemStackTransfer(1) {
 
+            @Override
+            public int getSlotLimit(int slot) {
+                return value;
+            }
+        });
+    }
+
+    @Override
+    public @NotNull Widget createUIWidget() {
+        var widget = super.createUIWidget();
+        if (widget instanceof WidgetGroup group) {
+            var size = group.getSize();
+            group.addWidget(
+                    new SlotWidget(machineStorage.storage, 0, size.width - 30, size.height - 30, true, true)
+                            .setBackground(GuiTextures.SLOT));
+        }
+        return widget;
+    }
+
+    public ItemStack getMachineStorageItem() {
+        return machineStorage.getStackInSlot(0);
+    }
+
+    public void consumeItem() { machineStorage.extractItem(0, 1,false); }
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
@@ -142,6 +252,8 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                 } else {
                     textList.add(Component.translatable("gtceu.multiblock.turbine.rotor_durability", rotorDurability).setStyle(Style.EMPTY.withColor(ChatFormatting.RED)));
                 }
+                textList.add(Component.translatable("ctnh.manaturbine.efficiency",efficiency*100));
+                textList.add(Component.translatable("ctnh.manaturbine.consumption_rate",consumpution_rate));
             }
         }
     }
