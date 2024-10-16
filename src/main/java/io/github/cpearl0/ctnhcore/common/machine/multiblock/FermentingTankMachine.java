@@ -19,6 +19,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 
 import java.util.List;
+import java.util.Objects;
 
 public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine {
     public double Machine_Temperature = 0;
@@ -29,6 +30,7 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
 
     @Override
     public void addDisplayText(List<Component> textList) {
+        Machine_Temperature = Temperature.getTemperatureAt(getPos(), Objects.requireNonNull(getLevel())) * 25;
         super.addDisplayText(textList);
         textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component
                 .translatable(FormattingUtil.formatNumbers(getCoilType().getCoilTemperature() + 100L * Math.max(0, getTier() - GTValues.MV)) + "K")
@@ -38,6 +40,7 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
     }
     public static GTRecipe recipeModifier(MetaMachine machine, GTRecipe recipe, OCParams params, OCResult result){
         if(machine instanceof FermentingTankMachine fmachine){
+            fmachine.Machine_Temperature = Temperature.getTemperatureAt(fmachine.getPos(), Objects.requireNonNull(fmachine.getLevel())) * 25;
             fmachine.getParts().forEach((part) -> {
                 if(part instanceof FluidHatchPartMachine fpart) {
                     part.getRecipeHandlers().forEach((trait) -> {
@@ -66,12 +69,5 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
             return GTRecipeModifiers.ebfOverclock(machine, newrecipe, params, result);
         }
         return recipe;
-    }
-    @Override
-    public void clientTick() {
-        if(getLevel() != null){
-            Machine_Temperature = Temperature.getTemperatureAt(getPos(),getLevel()) * 25;
-        }
-        super.clientTick();
     }
 }

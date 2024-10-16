@@ -59,7 +59,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         super(holder);
         this.RestrictTier = tier;
         this.BASE_EU_OUTPUT = BaseEuOutput;
-        this.machineStorage = createMachineStorage((byte) 1);
+        this.machineStorage = createMachineStorage((byte) 64);
     }
 
     //////////////////////////////////////
@@ -92,9 +92,13 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
             turbineMachine.efficiency = 3;
             turbineMachine.consumpution_rate = 0.6;
         }
-        else if(turbineMachine.Tier4_rune.contains(turbineMachine.getMachineStorageItem().getItem().toString())){
+        else if(turbineMachine.Tier4_rune.contains(turbineMachine.getMachineStorageItem().getDescriptionId())){
             turbineMachine.efficiency = 4;
             turbineMachine.consumpution_rate = 0.5;
+        }
+        else {
+            turbineMachine.efficiency = 1;
+            turbineMachine.consumpution_rate = 1;
         }
         var rotorHolder = turbineMachine.getRotorHolder();
         var EUt = RecipeHelper.getOutputEUt(recipe);

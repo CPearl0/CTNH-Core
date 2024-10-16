@@ -14,6 +14,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 
 import java.util.List;
+import java.util.Objects;
 
 public class DigestionTankMachine extends WorkableElectricMultiblockMachine {
     public double Machine_Temperature = 0;
@@ -21,12 +22,14 @@ public class DigestionTankMachine extends WorkableElectricMultiblockMachine {
     public DigestionTankMachine(IMachineBlockEntity holder) {super(holder);}
     @Override
     public void addDisplayText(List<Component> textList) {
+        Machine_Temperature = Temperature.getTemperatureAt(getPos(), Objects.requireNonNull(getLevel())) * 25;
         super.addDisplayText(textList);
         textList.add(textList.size(), Component.translatable("ctnh.fermenting_tank.growing_temperature", String.format("%.1f",Machine_Temperature)).setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN)));
         textList.add(textList.size(), Component.translatable("ctnh.fermenting_tank.growth_efficiency", String.format("%.1f", Efficiency * 100)));
     }
     public static GTRecipe recipeModifier(MetaMachine machine, GTRecipe recipe, OCParams params, OCResult result){
         if(!(machine instanceof DigestionTankMachine dmachine)) return recipe;
+        dmachine.Machine_Temperature = Temperature.getTemperatureAt(dmachine.getPos(), Objects.requireNonNull(dmachine.getLevel())) * 25;
         var newrecipe = recipe.copy();
         if (dmachine.Machine_Temperature >= 36 && dmachine.Machine_Temperature <= 38) {
             dmachine.Efficiency *= 1.2;
@@ -36,12 +39,5 @@ public class DigestionTankMachine extends WorkableElectricMultiblockMachine {
         }
         newrecipe.duration = (int) (newrecipe.duration / dmachine.Machine_Temperature);
         return newrecipe;
-    }
-    @Override
-    public void clientTick() {
-        if(getLevel() != null){
-            Machine_Temperature = Temperature.getTemperatureAt(getPos(),getLevel()) * 25;
-        }
-        super.clientTick();
     }
 }
