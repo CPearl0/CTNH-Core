@@ -48,10 +48,10 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
                         if (trait.getHandlerIO() == IO.IN && trait.getCapability() == FluidRecipeCapability.CAP) {
                             trait.getContents().forEach((contents) -> {
                                 if (contents instanceof FluidStack fluid) {
-                                    var current = fluid.getAmount();
-                                    var total = fpart.getTankCapacity(fpart.INITIAL_TANK_CAPACITY_1X, part.self().getDefinition().getTier());
-                                    var density = current / total;
-                                    var logistic = density - Math.pow(density, 2);
+                                    double current = fluid.getAmount();
+                                    var total = FluidHatchPartMachine.getTankCapacity(FluidHatchPartMachine.INITIAL_TANK_CAPACITY_1X, part.self().getDefinition().getTier());
+                                    double density = current / total;
+                                    double logistic = density - Math.pow(density, 2);
                                     fmachine.Efficiency *= logistic * 8;
                                 }
                             });
