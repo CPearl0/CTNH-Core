@@ -23,6 +23,12 @@ public class DigestionTankMachine extends WorkableElectricMultiblockMachine {
     @Override
     public void addDisplayText(List<Component> textList) {
         Machine_Temperature = Temperature.getTemperatureAt(getPos(), Objects.requireNonNull(getLevel())) * 25;
+        if (Machine_Temperature >= 36 && Machine_Temperature <= 38) {
+            Efficiency = 1.2;
+        }
+        else {
+            Efficiency = 1/Math.min(3, Math.pow(Math.max(36 - Machine_Temperature, Machine_Temperature - 38), 2) / 10 + 1);
+        }
         super.addDisplayText(textList);
         textList.add(textList.size(), Component.translatable("ctnh.fermenting_tank.growing_temperature", String.format("%.1f",Machine_Temperature)).setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN)));
         textList.add(textList.size(), Component.translatable("ctnh.fermenting_tank.growth_efficiency", String.format("%.1f", Efficiency * 100)));
@@ -32,12 +38,12 @@ public class DigestionTankMachine extends WorkableElectricMultiblockMachine {
         dmachine.Machine_Temperature = Temperature.getTemperatureAt(dmachine.getPos(), Objects.requireNonNull(dmachine.getLevel())) * 25;
         var newrecipe = recipe.copy();
         if (dmachine.Machine_Temperature >= 36 && dmachine.Machine_Temperature <= 38) {
-            dmachine.Efficiency *= 1.2;
+            dmachine.Efficiency = 1.2;
         }
         else {
-            dmachine.Efficiency /= Math.min(3, Math.pow(Math.max(36 - dmachine.Machine_Temperature, dmachine.Machine_Temperature - 38), 2) / 10 + 1);
+            dmachine.Efficiency = 1/Math.min(3, Math.pow(Math.max(36 - dmachine.Machine_Temperature, dmachine.Machine_Temperature - 38), 2) / 10 + 1);
         }
-        newrecipe.duration = (int) (newrecipe.duration / dmachine.Machine_Temperature);
+        newrecipe.duration = (int) (newrecipe.duration / dmachine.Efficiency);
         return newrecipe;
     }
 }

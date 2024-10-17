@@ -52,8 +52,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
 
     public double consumpution_rate = 1;
 
-    private List<String> Tier4_rune = List.of("mythicbotany:asgard_rune","mythicbotany:vanaheim_rune","mythicbotany:alfheim_rune","mythicbotany:midgard_rune",
-            "mythicbotany:joetunheim_rune","mythicbotany:muspelheim_rune","mythicbotany:nifheim_rune","mythicbotany:nidavellir_rune","mythicbotany:helheim_rune");
+    private List<String> Tier4_rune = List.of("asgard_rune","vanaheim_rune","alfheim_rune","midgard_rune", "joetunheim_rune","muspelheim_rune","nifheim_rune","nidavellir_rune","helheim_rune");
 
     public ManaLargeTurbineMachine(IMachineBlockEntity holder, int BaseEuOutput, int tier) {
         super(holder);
@@ -92,7 +91,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
             turbineMachine.efficiency = 3;
             turbineMachine.consumpution_rate = 0.6;
         }
-        else if(turbineMachine.Tier4_rune.contains(turbineMachine.getMachineStorageItem().getDescriptionId())){
+        else if(turbineMachine.Tier4_rune.contains(turbineMachine.getMachineStorageItem().getItem().toString())){
             turbineMachine.efficiency = 4;
             turbineMachine.consumpution_rate = 0.5;
         }

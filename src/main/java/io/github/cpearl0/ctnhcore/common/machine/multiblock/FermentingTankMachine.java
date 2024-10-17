@@ -40,6 +40,7 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
     }
     public static GTRecipe recipeModifier(MetaMachine machine, GTRecipe recipe, OCParams params, OCResult result){
         if(machine instanceof FermentingTankMachine fmachine){
+            fmachine.Efficiency = 1;
             fmachine.Machine_Temperature = Temperature.getTemperatureAt(fmachine.getPos(), Objects.requireNonNull(fmachine.getLevel())) * 25;
             fmachine.getParts().forEach((part) -> {
                 if(part instanceof FluidHatchPartMachine fpart) {
@@ -65,7 +66,7 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
             else {
                 fmachine.Efficiency /= Math.min(3, Math.pow(Math.max(36 - fmachine.Machine_Temperature, fmachine.Machine_Temperature - 38), 2) / 10 + 1);
             }
-            newrecipe.duration /= fmachine.Machine_Temperature;
+            newrecipe.duration = (int) (newrecipe.duration / fmachine.Efficiency);
             return GTRecipeModifiers.ebfOverclock(machine, newrecipe, params, result);
         }
         return recipe;
