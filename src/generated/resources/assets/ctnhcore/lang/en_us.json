@@ -80,5 +80,6 @@
   "material.ctnhcore.stratus": "Stratus",
   "material.ctnhcore.zanite": "Zanite",
   "tagprefix.holystone": "Holystone %s Ore",
-  "tagprefix.mossy_holystone": "Mossy Holystone %s Ore"
+  "tagprefix.mossy_holystone": "Mossy Holystone %s Ore",
+  "ctnh.multiblock.parallelize.tooltip": "wo lan de fan yi cheng ying wen"
 }
