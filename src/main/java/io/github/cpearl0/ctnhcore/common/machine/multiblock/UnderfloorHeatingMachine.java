@@ -76,13 +76,17 @@ public class UnderfloorHeatingMachine extends WorkableMultiblockMachine implemen
             } else if (isActive()) {
                 textList.add(Component.translatable("gtceu.multiblock.running"));
                 int currentProgress = (int) (recipeLogic.getProgressPercent() * 100);
-                textList.add(Component.translatable("gtceu.multiblock.progress", currentProgress));
+                double maxInSec = (float) recipeLogic.getDuration() / 20.0f;
+                double currentInSec = (float) recipeLogic.getProgress() / 20.0f;
+                textList.add(
+                        Component.translatable("gtceu.multiblock.progress", String.format("%.2f", (float) currentInSec),
+                                String.format("%.2f", (float) maxInSec), currentProgress));
             } else {
                 textList.add(Component.translatable("gtceu.multiblock.idling"));
             }
 
             if (recipeLogic.isWaiting()) {
-                textList.add(Component.translatable("gtceu.multiblock.steam.low_steam")
+                textList.add(Component.translatable("gtceu.multiblock.waiting")
                         .setStyle(Style.EMPTY.withColor(ChatFormatting.RED)));
             }
             textList.add(Component.translatable("ctnh.multiblock.underfloor_heating_system.steam_consumption", String.format("%.1f", steam_consumption_default * rate / 100)));

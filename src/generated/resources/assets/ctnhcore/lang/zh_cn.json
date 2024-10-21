@@ -50,7 +50,7 @@
   "ctnh.multiblock.photovoltaic_power_station2": "产能功率：%s/%s EU/t",
   "ctnh.multiblock.photovoltaic_power_station_invalid": "有方块阻挡",
   "ctnh.multiblock.photovoltaic_power_station_night": "光照过于微弱",
-  "ctnh.multiblock.slaughter_house.mobcount": "怪物种类：%d",
+  "ctnh.multiblock.slaughter_house.mobcount": "怪物种类：%d (%s)",
   "ctnh.multiblock.underfloor_heating_system.efficiency": "效率：%d",
   "ctnh.multiblock.underfloor_heating_system.rate": "速率：%s",
   "ctnh.multiblock.underfloor_heating_system.rate.tooltip": "减少蒸汽的消耗来降低地暖的发热功率",
