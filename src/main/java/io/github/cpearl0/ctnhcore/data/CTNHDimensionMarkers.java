@@ -1,17 +1,9 @@
 package io.github.cpearl0.ctnhcore.data;
 
-
-import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
-import com.gregtechceu.gtceu.api.registry.GTRegistries;
-import com.gregtechceu.gtceu.common.registry.GTRegistration;
-import com.gregtechceu.gtceu.integration.kjs.GTRegistryInfo;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fml.ModLoader;
 
 import static com.gregtechceu.gtceu.common.data.GTDimensionMarkers.createAndRegister;
-import static com.gregtechceu.gtceu.common.registry.GTRegistration.REGISTRATE;
 
 public class CTNHDimensionMarkers {
 
@@ -35,12 +27,6 @@ public class CTNHDimensionMarkers {
             3, new ResourceLocation("botania:livingrock"), "dimension.mythicbotany:alfheim");
 
     public static void init() {
-
-    }
-
-    static {
-        //GTRegistries.DIMENSION_MARKERS.unfreeze();
-        //REGISTRATE.creativeModeTab(() -> null);
 
     }
 
