@@ -9,7 +9,8 @@
     "KineticMachineBlockEntityMixin",
     "ManaPoolBlockEntityMixin",
     "TagLoaderMixin",
-    "appeng.CraftingCpuLogicMixin"
+    "appeng.CraftingCpuLogicMixin",
+    "gtceu.GTCreateMachinesMixin"
   ],
   "client": [],
   "minVersion": "0.8"
