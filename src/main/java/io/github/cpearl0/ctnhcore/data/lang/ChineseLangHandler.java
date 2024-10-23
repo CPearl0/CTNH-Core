@@ -59,6 +59,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1, "完善的一阶航天数据芯片");
         provider.addItem(CTNHItems.ASTRONOMY_CIRCUIT_1, "一阶航天数据芯片");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
+        provider.addBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING, "W-Cu覆膜金刚石机械方块");
         provider.addBlock(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK, "充能光伏方块");
         provider.addBlock(CTNHBlocks.PULSATING_PHOTOVOLTAIC_BLOCK, "脉冲光伏方块");
         provider.addBlock(CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK, "振动光伏方块");
@@ -73,6 +74,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.SLAUGHTER_HOUSE.getBlock(), "屠宰场");
         provider.add(CTNHMultiblockMachines.BIG_DAM.getBlock(), "三峡大坝");
         provider.add(CTNHMultiblockMachines.COKE_OVEN.getBlock(), "焦化塔");
+        provider.add(CTNHMultiblockMachines.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
     }
 
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,

@@ -84,6 +84,13 @@ public class CTNHRecipeTypes {
             widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
             });
 
+    public static final GTRecipeType BEDROCK_DRILLING_RIGS = GTRecipeTypes.register("bedrock_drilling_rigs", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(1, 3, 1, 1)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.ELECTROLYZER);
+
     public static void init() {
 
     }

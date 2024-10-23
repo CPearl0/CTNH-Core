@@ -51,10 +51,8 @@ public class CTNHRecipeModifiers {
                                                   @NotNull OCResult result) {
         if (machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
             GTRecipe recipe1 = reduction(machine, recipe, (1.0 - coilMachine.getCoilTier() * 0.05) * 0.8, (1.0 - coilMachine.getCoilTier() * 0.05) * 0.6);
-            if (recipe1 != null) {
-                recipe1 = GTRecipeModifiers.hatchParallel(machine, recipe1, false, params, result);
-                if (recipe1 != null) return RecipeHelper.applyOverclock(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK, recipe1, coilMachine.getOverclockVoltage(), params, result);
-            }
+            recipe1 = GTRecipeModifiers.hatchParallel(machine, recipe1, false, params, result);
+            if (recipe1 != null) return RecipeHelper.applyOverclock(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK, recipe1, coilMachine.getOverclockVoltage(), params, result);
         }
         return null;
     }

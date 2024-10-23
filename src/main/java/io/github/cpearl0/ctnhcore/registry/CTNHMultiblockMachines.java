@@ -20,6 +20,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMac
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
+import com.simibubi.create.content.contraptions.mounted.CartAssemblerBlock;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
@@ -32,6 +33,8 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.WindPowerArrayMachin
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.vehicle.Minecart;
+import net.minecraft.world.entity.vehicle.MinecartCommandBlock;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper;
@@ -379,6 +382,31 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/machines/fluid_heater"))
             .register();
 
+    public final static MultiblockMachineDefinition BEDROCK_DRILLING_RIGS = REGISTRATE.multiblock("bedrock_drilling_rigs", CoilWorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.ALL)
+            .recipeType(CTNHRecipeTypes.BEDROCK_DRILLING_RIGS)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, CTNHRecipeModifiers::chemicalPlantOverclock)
+            .appearanceBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("#######","AAAAAAA", "A#####A", "A#####A", "A#####A", "A#####A", "A#####A", "AAAAAAA")
+                    .aisle("#######","A#####A", "#######", "#B###B#", "#######", "#######", "#######", "AB###BA")
+                    .aisle("#######","A#####A", "##BCB##", "###C###", "##CCC##", "##CCC##", "##CCC##", "A#BCB#A")
+                    .aisle("###E###","A##C##A", "##CCC##", "##CDC##", "##CDC##", "##CDC##", "##CDC##", "A#CCC#A")
+                    .aisle("#######","A#####A", "##BCB##", "###C###", "##CCC##", "##C@C##", "##CCC##", "A#BCB#A")
+                    .aisle("#######","A#####A", "#######", "#B###B#", "#######", "#######", "#######", "AB###BA")
+                    .aisle("#######","AAAAAAA", "A#####A", "A#####A", "A#####A", "A#####A", "A#####A", "AAAAAAA")
+                    .where("A", Predicates.blocks(GCyMBlocks.CASING_SECURE_MACERATION.get()))
+                    .where("#", Predicates.any())
+                    .where("B", Predicates.frames(GTMaterials.TungstenCarbide))
+                    .where("C", Predicates.blocks(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("D", Predicates.blocks(CASING_TUNGSTENSTEEL_PIPE.get()))
+                    .where("E", Predicates.blocks(Blocks.BEDROCK))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer(CTNHCore.id("block/casings/tungstencu_diamond_plating_casing"),
+                    GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
     public static void init() {
 
     }

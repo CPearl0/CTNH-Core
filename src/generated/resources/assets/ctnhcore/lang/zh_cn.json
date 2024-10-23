@@ -1,6 +1,7 @@
 {
   "block.ctnhcore.advanced_wind_power_array": "进阶风力发电阵列",
   "block.ctnhcore.astronomical_observatory": "天文台",
+  "block.ctnhcore.bedrock_drilling_rigs": "基岩钻机",
   "block.ctnhcore.big_dam": "三峡大坝",
   "block.ctnhcore.coke_oven": "焦化塔",
   "block.ctnhcore.energetic_photovoltaic_block": "充能光伏方块",
@@ -26,6 +27,7 @@
   "block.ctnhcore.reflect_light_casing": "反光机械方块",
   "block.ctnhcore.slaughter_house": "屠宰场",
   "block.ctnhcore.super_wind_power_array": "超级风力发电阵列",
+  "block.ctnhcore.tungstencu_diamond_plating_casing": "W-Cu覆膜金刚石机械方块",
   "block.ctnhcore.uev_circuit_bus": "§aUEV 芯片总线",
   "block.ctnhcore.uev_personal_computer": "§aUEV 个人计算机",
   "block.ctnhcore.uhv_circuit_bus": "§4UHV 芯片总线",
@@ -78,5 +80,5 @@
   "material.ctnhcore.zanite": "紫晶石",
   "tagprefix.holystone": "圣石%s矿石",
   "tagprefix.mossy_holystone": "覆苔圣石%s矿石",
-  "ctnh.multiblock.parallelize.tooltip": "根据电压和调节并行控制仓以到达最高效率"
+  "ctnh.multiblock.parallelize.tooltip": "随着电压和线圈等级上升，并行增加"
 }
