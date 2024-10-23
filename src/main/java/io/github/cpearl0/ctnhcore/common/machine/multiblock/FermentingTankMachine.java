@@ -51,8 +51,20 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
                                     double current = fluid.getAmount();
                                     var total = FluidHatchPartMachine.getTankCapacity(FluidHatchPartMachine.INITIAL_TANK_CAPACITY_1X, part.self().getDefinition().getTier());
                                     double density = current / total;
-                                    double logistic = density - Math.pow(density, 2);
-                                    fmachine.Efficiency *= logistic * 8;
+                                    double logistic = 8 * (density - Math.pow(density, 2));
+                                    if(machine.getHolder().self().getPersistentData().getString("extra").equals("water")){
+                                        logistic = Math.max(0.5,logistic);
+                                    }
+                                    else if(machine.getHolder().self().getPersistentData().getString("extra").equals("simple")){
+                                        logistic = Math.max(1.5,logistic);
+                                    }
+                                    else if(machine.getHolder().self().getPersistentData().getString("extra").equals("sterilized")){
+                                        logistic = Math.max(2,logistic);
+                                    }
+                                    else{
+                                        logistic = Math.max(0.2,logistic);
+                                    }
+                                    fmachine.Efficiency *= logistic;
                                 }
                             });
                         }
