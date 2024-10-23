@@ -6,6 +6,7 @@
   "mixins": [
     "ChunkMixin",
     "ChunkSerializerMixin",
+    "KineticMachineBlockEntityMixin",
     "ManaPoolBlockEntityMixin",
     "TagLoaderMixin",
     "appeng.CraftingCpuLogicMixin"

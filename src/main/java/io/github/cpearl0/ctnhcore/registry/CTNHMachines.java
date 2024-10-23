@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
@@ -16,6 +17,7 @@ import com.gregtechceu.gtceu.client.renderer.machine.OverlayTieredMachineRendere
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.ParallelHatchPartMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
@@ -28,8 +30,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.function.BiFunction;
 
-import static com.gregtechceu.gtceu.api.GTValues.VLVH;
-import static com.gregtechceu.gtceu.api.GTValues.VLVT;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
@@ -50,6 +51,24 @@ public class CTNHMachines {
 
     public static final MachineDefinition[] PERSONAL_COMPUTER = registerSimpleMachines("personal_computer",
             CTNHRecipeTypes.PERSONAL_COMPUTER);
+
+    public static final MachineDefinition[] PARALLEL_HATCH = registerTieredMachines("parallel_hatch",
+            ParallelHatchPartMachine::new,
+            (tier, builder) -> builder
+                    .langValue(switch (tier) {
+                        case UHV -> "Epic";
+                        case UEV -> "Epic";
+                        case UIV -> "Epic";
+                        case UXV -> "Legendary";
+                        case MAX -> "MAX";
+                        default -> "Simple"; // Should never be hit.
+                    } + " Parallel Control Hatch")
+                    .rotationState(RotationState.ALL)
+                    .abilities(PartAbility.PARALLEL_HATCH)
+                    .workableTieredHullRenderer(GTCEu.id("block/machines/parallel_hatch_mk" + (tier - 4)))
+                    .tooltips(Component.translatable("gtceu.machine.parallel_hatch_mk" + tier + ".tooltip"))
+                    .register(),
+            UHV, UEV, UIV, UXV, MAX);
 
     public static MachineDefinition[] registerTieredMachines(String name,
                                                              BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,
