@@ -37,7 +37,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.photovoltaic_power_station2", "产能功率：%s/%s EU/t");
         provider.add("info.ctnhcore.network_machine", "发电网络机器数：%d");
         provider.add("info.ctnhcore.network_machine_efficiency", "发电效率：%d");
-        provider.add("ctnh.multiblock.slaughter_house.mobcount", "怪物种类：%d");
+        provider.add("ctnh.multiblock.slaughter_house.mobcount", "怪物种类：%d (%s)");
         provider.add("ctnh.stress_output", "产出应力：%ssu");
         provider.add("ctnh.stress_input", "输入应力：%ssu");
         provider.add("ctnh.fermenting_tank.growing_temperature", "生长温度：§2%d°C§r");

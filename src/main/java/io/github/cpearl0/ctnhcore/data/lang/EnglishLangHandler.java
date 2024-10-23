@@ -33,7 +33,7 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.photovoltaic_power_station2", "Generating: %s/%s EU/t");
         provider.add("info.ctnhcore.network_machine","Network Machine Count：%d");
         provider.add("info.ctnhcore.network_machine_efficiency","Generating Efficiency: %d");
-        provider.add("ctnh.multiblock.slaughter_house.mobcount","Mob Types: %d");
+        provider.add("ctnh.multiblock.slaughter_house.mobcount","Mob Types: %d (%s)");
         provider.add("ctnh.stress_output", "Stress output: %ssu");
         provider.add("ctnh.stress_input", "Stress input: %ssu");
         provider.add("ctnh.fermenting_tank.growing_temperature", "Growth Temperature：§2%d°C§r");

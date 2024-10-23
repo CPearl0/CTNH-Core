@@ -17,6 +17,7 @@ import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
 import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.mojang.authlib.GameProfile;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -24,6 +25,7 @@ import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraftforge.common.util.FakePlayer;
@@ -74,9 +76,12 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
             // 战利品模式
             double totalhealth = 0;
             List<Content> itemList = new ArrayList<>();
-            for (int i = 0; i <= (((SlaughterHouseMachine) machine).getTier() - 2) * 4; i++) {
+            for (int i = 0; i < (((SlaughterHouseMachine) machine).getTier() - 2) * 4; i++) {
                 int index = level.getRandom().nextInt(smachine.mobList.size());
                 String mob = smachine.mobList.get(index);
+                if (mob.equals("minecraft:wither")){
+                    itemList.add(new Content(SizedIngredient.create(Items.NETHER_STAR.getDefaultInstance()), 1, 1, 0, null, null));
+                }
                 var mobentity = EntityType.byString(mob).get().create(machine.getLevel());
                 if (mobentity instanceof LivingEntity) {
                     if (((LivingEntity) mobentity).getArmorValue() != 0) {
@@ -98,10 +103,6 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
                         if (!itemStack.isEmpty()){
                             itemList.add(new Content(SizedIngredient.create(itemStack), 1, 1, 0, null, null));
                         }
-//                        var tmp = GTRecipeBuilder.ofRaw().outputItems(itemStack).buildRawRecipe();
-//                        if (tmp.matchRecipe((IRecipeCapabilityHolder) machine).isSuccess()) {
-//                            tmp.handleRecipeIO(IO.OUT, (IRecipeCapabilityHolder) machine, ((SlaughterHouseMachine) machine).recipeLogic.getChanceCaches());
-//                        }
                     });
                 }
             }
@@ -113,6 +114,7 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
     @Override
     public void addDisplayText(@NotNull List<Component> textList) {
         super.addDisplayText(textList);
-        textList.add(textList.size(), Component.translatable("ctnh.multiblock.slaughter_house.mobcount", mobList.size()));
+        var mobName = mobList.stream().map(mob -> EntityType.byString(mob).get().getDescription().getString()).toList();
+        textList.add(textList.size(), Component.translatable("ctnh.multiblock.slaughter_house.mobcount", mobList.size(),mobName));
     }
 }
