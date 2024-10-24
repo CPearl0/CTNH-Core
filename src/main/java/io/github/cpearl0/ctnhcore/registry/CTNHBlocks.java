@@ -34,7 +34,14 @@ public class CTNHBlocks {
             CTNHCore.id("block/pulsating_photovoltaic_block"));
     public static final BlockEntry<Block> VIBRANT_PHOTOVOLTAIC_BLOCK = createCasingBlock("vibrant_photovoltaic_block",
             CTNHCore.id("block/vibrant_photovoltaic_block"));
-
+    public static final BlockEntry<Block> CASING_NAQUADAH_BLOCK = createCasingBlock("naquadah_casing_block",
+            CTNHCore.id("block/casings/nq_casing"));
+    public static final BlockEntry<Block> CASING_NAQUADAH_ALLOY_BLOCK = createCasingBlock("naquadah_alloy_casing_block",
+            CTNHCore.id("block/casings/nq_alloy_casing"));
+    public static final BlockEntry<Block> ANNIHILATE_CORE = createCasingBlock("annihilate_core",
+            CTNHCore.id("block/annihilate_core"));
+    public static final BlockEntry<Block> ANNIHILATE_CORE1 = createCasingBlock("annihilate_core1",
+            CTNHCore.id("block/annihilate_core1"));
     public static void init() {
 
     }

@@ -22,6 +22,8 @@ public class EnglishLangHandler {
         provider.add("gtceu.slaughter_house", "Slaughter House");
         provider.add("gtceu.big_dam", "Big Dam");
         provider.add("gtceu.coke_oven", "Coke Oven");
+        provider.add("gtceu.naq_mk1", "Tier 1 Fuel");
+        provider.add("gtceu.naq_mk2", "Tier 2 Fuel");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "Efficiency: %d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "Rate: %s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "Reduce the consumption of steam to reduce the heating power of the floor heating");
@@ -47,5 +49,7 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_iron_plasma_to_boost","Supply Iron Plasma to boost.");
         provider.add("ctnh.multiblock.naq_reactor_machine.nickel_plasma_boosted","§bNickel Plasma boosted.");
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_nickel_plasma_to_boost","Supply Nickel Plasma to boost.");
+        provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1","Supply §f20 mB/s§7 of Oxygen Plasma to produce up to §f%s EU/t§7 at §f4x§7 fuel consumption.");
+        provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2","Supply §f20 mB/s§7 of Iron Plasma to produce up to §f%s EU/t§7 at §f4x§7 fuel consumption.");
     }
 }

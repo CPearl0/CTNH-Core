@@ -26,6 +26,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.slaughter_house", "屠宰场");
         provider.add("gtceu.big_dam", "三峡大坝");
         provider.add("gtceu.coke_oven", "焦化塔");
+        provider.add("gtceu.naq_mk1", "第一级燃料");
+        provider.add("gtceu.naq_mk2", "第二级燃料");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "速率：%s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "减少蒸汽的消耗来降低地暖的发热功率");
@@ -51,6 +53,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_iron_plasma_to_boost","提供铁等离子体以加速");
         provider.add("ctnh.multiblock.naq_reactor_machine.nickel_plasma_boosted","§b镍等离子体加速中");
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_nickel_plasma_to_boost","提供镍等离子体以加速");
+        provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1","提供§f20 mB/s§7的氧等离子体，并消耗§f四倍§7燃料以产生高达§f%s§7EU/t的功率。");
+        provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2","提供§f20 mB/s§7的铁等离子体，并消耗§f四倍§7燃料以产生高达§f%s§7EU/t的功率。");
 
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");
@@ -70,6 +74,10 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK, "充能光伏方块");
         provider.addBlock(CTNHBlocks.PULSATING_PHOTOVOLTAIC_BLOCK, "脉冲光伏方块");
         provider.addBlock(CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK, "振动光伏方块");
+        provider.addBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK,"硅岩机械方块");
+        provider.addBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK,"硅岩合金机械方块");
+        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE,"反应堆核心 MKI");
+        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE1,"反应堆核心 MKII");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -82,6 +90,8 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.BIG_DAM.getBlock(), "三峡大坝");
         provider.add(CTNHMultiblockMachines.COKE_OVEN.getBlock(), "焦化塔");
         provider.add(CTNHMultiblockMachines.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
+        provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK1.getBlock(),"超能反应堆 MKI");
+        provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK2.getBlock(),"超能反应堆 MKII");
     }
 
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,
