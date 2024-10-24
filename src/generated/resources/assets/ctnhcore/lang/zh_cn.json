@@ -1,7 +1,9 @@
 {
+  "block.ctnhcore.advanced_hyper_casing": "还没对应名字材料的硅岩系机械方块(未实现)",
   "block.ctnhcore.advanced_wind_power_array": "进阶风力发电阵列",
   "block.ctnhcore.annihilate_core": "反应堆核心 MKI",
   "block.ctnhcore.annihilate_core1": "反应堆核心 MKII",
+  "block.ctnhcore.annihilate_core2": "反应堆核心 MKIII",
   "block.ctnhcore.astronomical_observatory": "天文台",
   "block.ctnhcore.bedrock_drilling_rigs": "基岩钻机",
   "block.ctnhcore.big_dam": "三峡大坝",
@@ -11,6 +13,7 @@
   "block.ctnhcore.ev_personal_computer": "§5EV 个人计算机",
   "block.ctnhcore.hv_circuit_bus": "§6HV 芯片总线",
   "block.ctnhcore.hv_personal_computer": "§6HV 个人计算机",
+  "block.ctnhcore.hyper_casing": "黑钚强化超能硅岩机械方块(未实现)",
   "block.ctnhcore.iv_circuit_bus": "§9IV 芯片总线",
   "block.ctnhcore.iv_personal_computer": "§9IV 个人计算机",
   "block.ctnhcore.luv_circuit_bus": "§dLuV 芯片总线",
@@ -95,6 +98,5 @@
   "material.ctnhcore.stratus": "云母钢",
   "material.ctnhcore.zanite": "紫晶石",
   "tagprefix.holystone": "圣石%s矿石",
-  "tagprefix.mossy_holystone": "覆苔圣石%s矿石",
-  "ctnh.multiblock.parallelize.tooltip": "线圈等级和电压等级的提升会提高并行数"
+  "tagprefix.mossy_holystone": "覆苔圣石%s矿石"
 }

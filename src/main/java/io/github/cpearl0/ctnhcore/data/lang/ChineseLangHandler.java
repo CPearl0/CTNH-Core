@@ -77,6 +77,9 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK,"硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE,"反应堆核心 MKI");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE1,"反应堆核心 MKII");
+        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE2,"反应堆核心 MKIII");
+        provider.addBlock(CTNHBlocks.CASING_ADVANCED_HYPER,"还没对应名字材料的硅岩系机械方块(未实现)");
+        provider.addBlock(CTNHBlocks.CASING_HYPER,"黑钚强化超能硅岩机械方块(未实现)");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");

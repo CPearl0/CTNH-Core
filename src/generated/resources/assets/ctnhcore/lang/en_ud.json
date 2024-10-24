@@ -1,7 +1,9 @@
 {
+  "block.ctnhcore.advanced_hyper_casing": "buısɐƆ ɹǝdʎH pǝɔuɐʌpⱯ",
   "block.ctnhcore.advanced_wind_power_array": "ʎɐɹɹⱯ ɹǝʍoԀ puıM pǝɔuɐʌpⱯ",
   "block.ctnhcore.annihilate_core": "ǝɹoƆ ǝʇɐןıɥıuuⱯ",
   "block.ctnhcore.annihilate_core1": "ƖǝɹoƆ ǝʇɐןıɥıuuⱯ",
+  "block.ctnhcore.annihilate_core2": "ᄅǝɹoƆ ǝʇɐןıɥıuuⱯ",
   "block.ctnhcore.astronomical_observatory": "ʎɹoʇɐʌɹǝsqO ןɐɔıɯouoɹʇsⱯ",
   "block.ctnhcore.bedrock_drilling_rigs": "sbıᴚ buıןןıɹᗡ ʞɔoɹpǝᗺ",
   "block.ctnhcore.big_dam": "ɯɐᗡ bıᗺ",
@@ -11,6 +13,7 @@
   "block.ctnhcore.ev_personal_computer": "ɹ§III ɹǝʇndɯoƆ ןɐuosɹǝԀ pǝɔuɐʌpⱯϛ§",
   "block.ctnhcore.hv_circuit_bus": "snᗺ ʇınɔɹıƆ ΛH9§",
   "block.ctnhcore.hv_personal_computer": "ɹ§II ɹǝʇndɯoƆ ןɐuosɹǝԀ pǝɔuɐʌpⱯ9§",
+  "block.ctnhcore.hyper_casing": "buısɐƆ ɹǝdʎH",
   "block.ctnhcore.iv_circuit_bus": "snᗺ ʇınɔɹıƆ ΛI6§",
   "block.ctnhcore.iv_personal_computer": "ɹ§ ɹǝʇndɯoƆ ןɐuosɹǝԀ ǝʇıןƎ6§",
   "block.ctnhcore.luv_circuit_bus": "snᗺ ʇınɔɹıƆ ΛnꞀp§",

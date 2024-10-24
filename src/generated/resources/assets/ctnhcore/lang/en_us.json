@@ -1,7 +1,9 @@
 {
+  "block.ctnhcore.advanced_hyper_casing": "Advanced Hyper Casing",
   "block.ctnhcore.advanced_wind_power_array": "Advanced Wind Power Array",
   "block.ctnhcore.annihilate_core": "Annihilate Core",
   "block.ctnhcore.annihilate_core1": "Annihilate Core1",
+  "block.ctnhcore.annihilate_core2": "Annihilate Core2",
   "block.ctnhcore.astronomical_observatory": "Astronomical Observatory",
   "block.ctnhcore.bedrock_drilling_rigs": "Bedrock Drilling Rigs",
   "block.ctnhcore.big_dam": "Big Dam",
@@ -11,6 +13,7 @@
   "block.ctnhcore.ev_personal_computer": "§5Advanced Personal Computer III§r",
   "block.ctnhcore.hv_circuit_bus": "§6HV Circuit Bus",
   "block.ctnhcore.hv_personal_computer": "§6Advanced Personal Computer II§r",
+  "block.ctnhcore.hyper_casing": "Hyper Casing",
   "block.ctnhcore.iv_circuit_bus": "§9IV Circuit Bus",
   "block.ctnhcore.iv_personal_computer": "§9Elite Personal Computer §r",
   "block.ctnhcore.luv_circuit_bus": "§dLuV Circuit Bus",
@@ -103,6 +106,5 @@
   "material.ctnhcore.stratus": "Stratus",
   "material.ctnhcore.zanite": "Zanite",
   "tagprefix.holystone": "Holystone %s Ore",
-  "tagprefix.mossy_holystone": "Mossy Holystone %s Ore",
-  "ctnh.multiblock.parallelize.tooltip": "Increases in coil and voltage levels increase the number of parallels"
+  "tagprefix.mossy_holystone": "Mossy Holystone %s Ore"
 }
