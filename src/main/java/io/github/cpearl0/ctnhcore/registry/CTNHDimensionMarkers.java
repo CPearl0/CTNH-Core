@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.data;
+package io.github.cpearl0.ctnhcore.registry;
 
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
 import net.minecraft.resources.ResourceLocation;
@@ -6,7 +6,6 @@ import net.minecraft.resources.ResourceLocation;
 import static com.gregtechceu.gtceu.common.data.GTDimensionMarkers.createAndRegister;
 
 public class CTNHDimensionMarkers {
-
     public static final DimensionMarker MOON = createAndRegister(new ResourceLocation("ad_astra:moon"),
             1, new ResourceLocation("ad_astra:moon_stone"), "dimension.ad_astra:moon");
     public static final DimensionMarker MARS = createAndRegister(new ResourceLocation("ad_astra:mars"),
@@ -29,6 +28,4 @@ public class CTNHDimensionMarkers {
     public static void init() {
 
     }
-
-
 }
