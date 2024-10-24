@@ -52,7 +52,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
 
     public NaqReactorMachine(IMachineBlockEntity holder, int tier) {
         super(holder);
-        this.tier = tier + 7;
+        this.tier = tier + 8;
     }
 
     public boolean isBoostAllowed() {
@@ -76,7 +76,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
     }
 
     protected GTRecipe getBoostRecipe() {
-        return GTRecipeBuilder.ofRaw().inputFluids(PLASMA[tier - 8]).buildRawRecipe();
+        return GTRecipeBuilder.ofRaw().inputFluids(PLASMA[tier - 9]).buildRawRecipe();
     }
 
     @Nullable
@@ -89,7 +89,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
                 var maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
                 var parallelResult = GTRecipeModifiers.fastParallel(engineMachine, recipe, maxParallel, false);
                 if (engineMachine.isBoosted) { // boost production
-                    long eut = (long) (EUt * parallelResult.getSecond() * (MULTIPLE_RATE[engineMachine.tier - 8]));
+                    long eut = (long) (EUt * parallelResult.getSecond() * (MULTIPLE_RATE[engineMachine.tier - 9]));
                     result.init(-eut, recipe.duration, 1, params.getOcAmount());
                 } else {
                     long eut = (long) (EUt * parallelResult.getSecond());
