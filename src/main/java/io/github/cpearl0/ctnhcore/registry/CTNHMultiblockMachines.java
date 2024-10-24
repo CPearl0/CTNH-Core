@@ -419,22 +419,24 @@ public class CTNHMultiblockMachines {
             .aisle("#AAAAA#", "#A###A#", "#A###A#", "#A#C#A#", "#A###A#", "#A###A#", "#AAAAA#")
             .aisle("##A@A##", "##BBB##", "##BBB##", "##BBB##", "##BBB##", "##BBB##", "##AAA##")
             .where("#", Predicates.any())
-            .where("A", Predicates.blocks(CTNHBlocks.CASING_NAQUADAH_BLOCK.get()))
+            .where("A", Predicates.blocks(CTNHBlocks.CASING_NAQUADAH_BLOCK.get())
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                    .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
             .where("B", Predicates.blocks(FUSION_GLASS.get()))
             .where("C", Predicates.blocks(CTNHBlocks.ANNIHILATE_CORE.get()))
             .where("@", Predicates.controller(Predicates.blocks(definition.get())))
             .build()
         )
             .tooltips(
-            Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UV]),
+            Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UHV]),
             Component.translatable("gtceu.universal.tooltip.uses_per_hour_lubricant",1000),
-                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1",GTValues.V[GTValues.UV] * 8))
+                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1",GTValues.V[GTValues.UHV] * 8))
             .workableCasingRenderer(CTNHCore.id("block/casings/nq_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
                             .register();
 
     public final static MultiblockMachineDefinition NAQ_REACTOR_MK2 = REGISTRATE.multiblock("naq_reactor_mk2", holder -> new NaqReactorMachine(holder,2))
             .rotationState(RotationState.ALL)
-            .recipeTypes(CTNHRecipeTypes.NAQ_MK1,CTNHRecipeTypes.NAQ_MK2)
+            .recipeTypes(CTNHRecipeTypes.NAQ_MK1)
             .recipeModifiers(NaqReactorMachine::recipeModifier)
             .appearanceBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -452,9 +454,11 @@ public class CTNHMultiblockMachines {
             .aisle("###A#######A###", "###A#######A###", "##ABAA###AABA##", "###A#######A###", "###A#######A###")
             .aisle("###############", "####AA###AA####", "###ADDAAADDA###", "####AA###AA####", "###############")
             .aisle("#######A#######", "######AAA######", "####AABCBAA####", "######AAA######", "#######A#######")
-            .aisle("###############", "###############", "######A@A######", "###############", "##############E")
+            .aisle("###############", "###############", "######A@A######", "###############", "###############")
             .where("#", Predicates.any())
-            .where("A", Predicates.blocks(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK.get()))
+            .where("A", Predicates.blocks(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK.get())
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                    .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
             .where("B", Predicates.blocks(SUPERCONDUCTING_COIL.get()))
             .where("C", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block,GTMaterials.SamariumMagnetic).get()))
             .where("D", Predicates.blocks(CTNHBlocks.ANNIHILATE_CORE.get()))
@@ -465,9 +469,9 @@ public class CTNHMultiblockMachines {
             .build()
         )
             .tooltips(
-            Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UHV]),
+            Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UEV]),
             Component.translatable("gtceu.universal.tooltip.uses_per_hour_lubricant",1000),
-                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2",GTValues.V[GTValues.UHV] * 16))
+                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2",GTValues.V[GTValues.UEV] * 16))
             .workableCasingRenderer(CTNHCore.id("block/casings/nq_alloy_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .register();
     public static void init() {

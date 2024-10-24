@@ -136,14 +136,14 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
         super.addDisplayText(textList);
         if (isFormed()) {
             if (isBoostAllowed()) {
-                if (tier == GTValues.UV) {
+                if (tier == GTValues.UHV) {
                     if (isBoosted) {
                         textList.add(Component.translatable("ctnh.multiblock.naq_reactor_machine.oxygen_plasma_boosted"));
                     } else {
                         textList.add(Component
                                 .translatable("ctnh.multiblock.naq_reactor_machine.supply_oxygen_plasma_to_boost"));
                     }
-                } else if(tier == GTValues.UHV) {
+                } else if(tier == GTValues.UEV) {
                     if (isBoosted) {
                         textList.add(Component
                                 .translatable("ctnh.multiblock.naq_reactor_machine.iron_plasma_boosted"));
