@@ -44,6 +44,13 @@ public class ChineseLangHandler {
         provider.add("ctnh.fermenting_tank.growth_efficiency", "生长效率：%d%%");
         provider.add("ctnh.manaturbine.efficiency", "发电效率：%d%%");
         provider.add("ctnh.manaturbine.consumption_rate", "消耗倍率：%d");
+        provider.add("ctnh.multiblock.naq_reactor_machine.boost_disallowed", "§b升级你的动力仓以激活等离子体加速");
+        provider.add("ctnh.multiblock.naq_reactor_machine.oxygen_plasma_boosted","§b氧等离子体加速中");
+        provider.add("ctnh.multiblock.naq_reactor_machine.supply_oxygen_plasma_to_boost","提供氧等离子体以加速");
+        provider.add("ctnh.multiblock.naq_reactor_machine.iron_plasma_boosted","§b铁等离子体加速中");
+        provider.add("ctnh.multiblock.naq_reactor_machine.supply_iron_plasma_to_boost","提供铁等离子体以加速");
+        provider.add("ctnh.multiblock.naq_reactor_machine.nickel_plasma_boosted","§b镍等离子体加速中");
+        provider.add("ctnh.multiblock.naq_reactor_machine.supply_nickel_plasma_to_boost","提供镍等离子体以加速");
 
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");

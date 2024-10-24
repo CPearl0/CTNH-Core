@@ -48,6 +48,13 @@
   "ctnh.fermenting_tank.growth_efficiency": "生长效率：%d%%",
   "ctnh.manaturbine.consumption_rate": "消耗倍率：%d",
   "ctnh.manaturbine.efficiency": "发电效率：%d%%",
+  "ctnh.multiblock.naq_reactor_machine.boost_disallowed": "§b升级你的动力仓以激活等离子体加速",
+  "ctnh.multiblock.naq_reactor_machine.iron_plasma_boosted": "§b铁等离子体加速中",
+  "ctnh.multiblock.naq_reactor_machine.nickel_plasma_boosted": "§b镍等离子体加速中",
+  "ctnh.multiblock.naq_reactor_machine.oxygen_plasma_boosted": "§b氧等离子体加速中",
+  "ctnh.multiblock.naq_reactor_machine.supply_iron_plasma_to_boost": "提供铁等离子体以加速",
+  "ctnh.multiblock.naq_reactor_machine.supply_nickel_plasma_to_boost": "提供镍等离子体以加速",
+  "ctnh.multiblock.naq_reactor_machine.supply_oxygen_plasma_to_boost": "提供氧等离子体以加速",
   "ctnh.multiblock.photovoltaic_power_station1": "发电效率：%s%%",
   "ctnh.multiblock.photovoltaic_power_station2": "产能功率：%s/%s EU/t",
   "ctnh.multiblock.photovoltaic_power_station_invalid": "有方块阻挡",
@@ -79,6 +86,5 @@
   "material.ctnhcore.stratus": "云母钢",
   "material.ctnhcore.zanite": "紫晶石",
   "tagprefix.holystone": "圣石%s矿石",
-  "tagprefix.mossy_holystone": "覆苔圣石%s矿石",
-  "ctnh.multiblock.parallelize.tooltip": "随着电压和线圈等级上升，并行增加"
+  "tagprefix.mossy_holystone": "覆苔圣石%s矿石"
 }

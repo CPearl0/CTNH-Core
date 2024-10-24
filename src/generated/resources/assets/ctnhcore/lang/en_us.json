@@ -53,6 +53,13 @@
   "ctnh.fermenting_tank.growth_efficiency": "Growth Efficiency：%d%%",
   "ctnh.manaturbine.consumption_rate": "Consumption Rate：%d",
   "ctnh.manaturbine.efficiency": "Generating Efficiency：%d%%",
+  "ctnh.multiblock.naq_reactor_machine.boost_disallowed": "§bUpgrade the Dynamo Hatch to enable Plasma Boosting.",
+  "ctnh.multiblock.naq_reactor_machine.iron_plasma_boosted": "§bIron Plasma boosted.",
+  "ctnh.multiblock.naq_reactor_machine.nickel_plasma_boosted": "§bNickel Plasma boosted.",
+  "ctnh.multiblock.naq_reactor_machine.oxygen_plasma_boosted": "§bOxygen Plasma boosted.",
+  "ctnh.multiblock.naq_reactor_machine.supply_iron_plasma_to_boost": "Supply Iron Plasma to boost.",
+  "ctnh.multiblock.naq_reactor_machine.supply_nickel_plasma_to_boost": "Supply Nickel Plasma to boost.",
+  "ctnh.multiblock.naq_reactor_machine.supply_oxygen_plasma_to_boost": "Supply Oxygen Plasma to boost.",
   "ctnh.multiblock.photovoltaic_power_station1": "Efficiency: %s%%",
   "ctnh.multiblock.photovoltaic_power_station2": "Generating: %s/%s EU/t",
   "ctnh.multiblock.photovoltaic_power_station_invalid": "Shadowed",
@@ -87,6 +94,5 @@
   "material.ctnhcore.stratus": "Stratus",
   "material.ctnhcore.zanite": "Zanite",
   "tagprefix.holystone": "Holystone %s Ore",
-  "tagprefix.mossy_holystone": "Mossy Holystone %s Ore",
-  "ctnh.multiblock.parallelize.tooltip": "As The Voltage And Coil Grade Rise, The Parallel Increases"
+  "tagprefix.mossy_holystone": "Mossy Holystone %s Ore"
 }

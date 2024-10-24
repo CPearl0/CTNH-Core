@@ -40,5 +40,12 @@ public class EnglishLangHandler {
         provider.add("ctnh.fermenting_tank.growth_efficiency", "Growth Efficiency：%d%%");
         provider.add("ctnh.manaturbine.efficiency", "Generating Efficiency：%d%%");
         provider.add("ctnh.manaturbine.consumption_rate", "Consumption Rate：%d");
+        provider.add("ctnh.multiblock.naq_reactor_machine.boost_disallowed", "§bUpgrade the Dynamo Hatch to enable Plasma Boosting.");
+        provider.add("ctnh.multiblock.naq_reactor_machine.oxygen_plasma_boosted","§bOxygen Plasma boosted.");
+        provider.add("ctnh.multiblock.naq_reactor_machine.supply_oxygen_plasma_to_boost","Supply Oxygen Plasma to boost.");
+        provider.add("ctnh.multiblock.naq_reactor_machine.iron_plasma_boosted","§bIron Plasma boosted.");
+        provider.add("ctnh.multiblock.naq_reactor_machine.supply_iron_plasma_to_boost","Supply Iron Plasma to boost.");
+        provider.add("ctnh.multiblock.naq_reactor_machine.nickel_plasma_boosted","§bNickel Plasma boosted.");
+        provider.add("ctnh.multiblock.naq_reactor_machine.supply_nickel_plasma_to_boost","Supply Nickel Plasma to boost.");
     }
 }
