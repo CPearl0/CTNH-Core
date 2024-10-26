@@ -42,6 +42,12 @@ public class CTNHBlocks {
             CTNHCore.id("block/annihilate_core"));
     public static final BlockEntry<Block> ANNIHILATE_CORE1 = createCasingBlock("annihilate_core1",
             CTNHCore.id("block/annihilate_core1"));
+    public static final BlockEntry<Block> ANNIHILATE_CORE2 = createCasingBlock("annihilate_core2",
+            CTNHCore.id("block/annihilate_core2"));
+    public static final BlockEntry<Block> CASING_ADVANCED_HYPER = createCasingBlock("advanced_hyper_casing",
+            CTNHCore.id("block/advanced_hyper_casing"));
+    public static final BlockEntry<Block> CASING_HYPER = createCasingBlock("hyper_casing",
+            CTNHCore.id("block/hyper_casing"));
     public static void init() {
 
     }

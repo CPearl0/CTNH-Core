@@ -25,6 +25,8 @@ public class EnglishLangHandler {
         provider.add("gtceu.naq_mk1", "Super Fuel");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "Efficiency: %d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "Rate: %s");
+        provider.add("gtceu.multiblock.laser.tooltip", "The use of the laser chamber is permitted");
+        provider.add("ctnh.multiblock.parallelize.tooltip", "Increases in coil and voltage levels increase the number of parallels");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "Reduce the consumption of steam to reduce the heating power of the floor heating");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate_modify", "Adjust rate: ");
         provider.add("ctnh.multiblock.underfloor_heating_system.steam_consumption", "Steam consumption rate: %d");

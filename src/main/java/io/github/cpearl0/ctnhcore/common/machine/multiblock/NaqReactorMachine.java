@@ -52,7 +52,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
 
     public NaqReactorMachine(IMachineBlockEntity holder, int tier) {
         super(holder);
-        this.tier = tier + 8;
+        this.tier = tier + 9;
     }
 
     public boolean isBoostAllowed() {
@@ -76,7 +76,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
     }
 
     protected GTRecipe getBoostRecipe() {
-        return GTRecipeBuilder.ofRaw().inputFluids(PLASMA[tier - 9]).buildRawRecipe();
+        return GTRecipeBuilder.ofRaw().inputFluids(PLASMA[tier - 10]).buildRawRecipe();
     }
 
     @Nullable
@@ -90,7 +90,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
                 var parallelResult = GTRecipeModifiers.fastParallel(engineMachine, recipe, maxParallel, false);
                 long eut;
                 if (engineMachine.isBoosted) { // boost production
-                    eut = (long) (EUt * parallelResult.getSecond() * (MULTIPLE_RATE[engineMachine.tier - 9]));
+                    eut = (long) (EUt * parallelResult.getSecond() * (MULTIPLE_RATE[engineMachine.tier - 10]));
                 } else {
                     eut = (long) (EUt * parallelResult.getSecond());
                 }
@@ -136,14 +136,14 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
         super.addDisplayText(textList);
         if (isFormed()) {
             if (isBoostAllowed()) {
-                if (tier == GTValues.UHV) {
+                if (tier == GTValues.UEV) {
                     if (isBoosted) {
                         textList.add(Component.translatable("ctnh.multiblock.naq_reactor_machine.oxygen_plasma_boosted"));
                     } else {
                         textList.add(Component
                                 .translatable("ctnh.multiblock.naq_reactor_machine.supply_oxygen_plasma_to_boost"));
                     }
-                } else if(tier == GTValues.UEV) {
+                } else if(tier == GTValues.UIV) {
                     if (isBoosted) {
                         textList.add(Component
                                 .translatable("ctnh.multiblock.naq_reactor_machine.iron_plasma_boosted"));

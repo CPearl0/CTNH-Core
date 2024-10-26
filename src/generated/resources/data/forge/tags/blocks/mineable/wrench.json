@@ -8,6 +8,9 @@
     "ctnhcore:naquadah_casing_block",
     "ctnhcore:naquadah_alloy_casing_block",
     "ctnhcore:annihilate_core",
-    "ctnhcore:annihilate_core1"
+    "ctnhcore:annihilate_core1",
+    "ctnhcore:annihilate_core2",
+    "ctnhcore:advanced_hyper_casing",
+    "ctnhcore:hyper_casing"
   ]
 }

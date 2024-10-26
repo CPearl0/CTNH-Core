@@ -26,7 +26,13 @@ public class ChineseLangHandler {
         provider.add("gtceu.slaughter_house", "屠宰场");
         provider.add("gtceu.big_dam", "三峡大坝");
         provider.add("gtceu.coke_oven", "焦化塔");
+        provider.add("block.ctnhcore.luv_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-I");
+        provider.add("block.ctnhcore.zpm_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-II");
+        provider.add("block.ctnhcore.uv_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-III");
+
         provider.add("gtceu.naq_mk1", "超能燃料");
+        provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
+        provider.add("ctnh.multiblock.parallelize.tooltip", "线圈等级和电压等级的提升会提高并行数");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "速率：%s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "减少蒸汽的消耗来降低地暖的发热功率");
@@ -77,6 +83,9 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK,"硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE,"反应堆核心 MKI");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE1,"反应堆核心 MKII");
+        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE2,"反应堆核心 MKIII");
+        provider.addBlock(CTNHBlocks.CASING_ADVANCED_HYPER,"还没对应名字材料的硅岩系机械方块(未实现)");
+        provider.addBlock(CTNHBlocks.CASING_HYPER,"黑钚强化超能硅岩机械方块(未实现)");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -91,6 +100,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK1.getBlock(),"超能反应堆 MKI");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK2.getBlock(),"超能反应堆 MKII");
+
     }
 
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,

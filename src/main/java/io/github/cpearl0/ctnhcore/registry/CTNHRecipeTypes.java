@@ -93,7 +93,7 @@ public class CTNHRecipeTypes {
 
     public static final GTRecipeType NAQ_MK1 = GTRecipeTypes.register("naq_mk1", GTRecipeTypes.ELECTRIC)
             .setEUIO(IO.OUT)
-            .setMaxIOSize(0, 0, 4, 4)
+            .setMaxIOSize(0, 0, 2, 1)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
