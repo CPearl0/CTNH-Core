@@ -88,14 +88,14 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
             if (EUt > 0 && engineMachine.getLubricantRecipe().matchRecipe(engineMachine).isSuccess()) {
                 var maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
                 var parallelResult = GTRecipeModifiers.fastParallel(engineMachine, recipe, maxParallel, false);
+                long eut;
                 if (engineMachine.isBoosted) { // boost production
-                    long eut = (long) (EUt * parallelResult.getSecond() * (MULTIPLE_RATE[engineMachine.tier - 9]));
-                    result.init(-eut, recipe.duration, 1, params.getOcAmount());
+                    eut = (long) (EUt * parallelResult.getSecond() * (MULTIPLE_RATE[engineMachine.tier - 9]));
                 } else {
-                    long eut = (long) (EUt * parallelResult.getSecond());
-                    result.init(-eut, recipe.duration, 1, params.getOcAmount());
+                    eut = (long) (EUt * parallelResult.getSecond());
                 }
-                return recipe;
+                result.init(-eut, recipe.duration, 1, params.getOcAmount());
+                return parallelResult.getFirst();
             }
         }
         return null;

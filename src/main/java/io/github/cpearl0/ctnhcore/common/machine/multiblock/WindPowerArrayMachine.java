@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
-    public static Map<WindPowerArrayMachine, BlockPos> MachineNet = new HashMap<>();
+    public static Map<BlockPos,WindPowerArrayMachine> MachineNet = new HashMap<>();
     public int Threshold = 16;
     public double efficiency = 1;
     public int altitude;
@@ -50,7 +50,7 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
 
     public static void clearNet() {
         if (MachineNet != null) {
-            MachineNet = MachineNet.entrySet().stream().filter(entry -> entry.getKey() != null && entry.getKey().isActive()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+            MachineNet = MachineNet.entrySet().stream().filter(entry -> entry.getValue() != null && entry.getValue().isActive()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         }
     }
 
@@ -73,8 +73,13 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
 
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        if (!MachineNet.containsValue(getPos())) {
-            MachineNet.put(this, getPos());
+        if (!MachineNet.containsKey(getPos())) {
+            MachineNet.put(getPos(),this);
+        }
+        else {
+            if (!MachineNet.get(getPos()).equals(this)){
+                MachineNet.replace(getPos(),this);
+            }
         }
         NetworkSize = getMachineNetworkSize();
         efficiency = (NetworkSize - 1) * 0.1 + 1;
@@ -92,7 +97,7 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
 
     @Override
     public void afterWorking() {
-        MachineNet.remove(this, getPos());
+        MachineNet.remove(getPos(),this);
         super.afterWorking();
     }
 
@@ -110,12 +115,12 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
         int n = MachineNet.size();
 
         // 将 MachineNet 中的条目转换为列表
-        List<Map.Entry<WindPowerArrayMachine, BlockPos>> entryList = new ArrayList<>(MachineNet.entrySet());
+        List<Map.Entry<BlockPos,WindPowerArrayMachine>> entryList = new ArrayList<>(MachineNet.entrySet());
 
         // 找到目标机器的索引
         int targetIndex = -1;
         for (int i = 0; i < n; i++) {
-            if (entryList.get(i).getKey() == this) {
+            if (entryList.get(i).getValue() == this) {
                 targetIndex = i;
                 break;
             }
@@ -135,7 +140,7 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
         // 根据距离阈值构建图
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                if (distance(entryList.get(i).getValue(), entryList.get(j).getValue()) < Threshold) {
+                if (distance(entryList.get(i).getKey(), entryList.get(j).getKey()) < Threshold) {
                     graph.get(i).add(j);
                     graph.get(j).add(i);
                 }

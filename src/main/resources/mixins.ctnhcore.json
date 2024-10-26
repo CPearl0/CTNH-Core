@@ -10,7 +10,9 @@
     "ManaPoolBlockEntityMixin",
     "TagLoaderMixin",
     "appeng.CraftingCpuLogicMixin",
-    "gtceu.GTCreateMachinesMixin"
+    "gtceu.GTCreateMachinesMixin",
+    "gtceu.GTUtilMixin",
+    "gtceu.WorkableElectricMultiblockMachineMixin"
   ],
   "client": [],
   "minVersion": "0.8"
