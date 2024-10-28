@@ -26,9 +26,9 @@ public class CTNHFusionCasingBlock extends FusionCasingBlock {
 
     public static Block getCompressedCoilState(int tier) {
         return switch (tier) {
-            case LuV -> FUSION_CASING.get();
-            case ZPM -> FUSION_CASING_MK2.get();
-            default -> FUSION_CASING_MK3.get();
+            case LuV -> SUPERCONDUCTING_COIL.get();
+            case ZPM -> FUSION_COIL.get();
+            default -> FUSION_COIL.get();
         };
     }
 
