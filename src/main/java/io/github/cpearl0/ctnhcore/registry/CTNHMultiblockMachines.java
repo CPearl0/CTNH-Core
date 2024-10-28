@@ -385,7 +385,7 @@ public class CTNHMultiblockMachines {
     public final static MultiblockMachineDefinition BEDROCK_DRILLING_RIGS = REGISTRATE.multiblock("bedrock_drilling_rigs", CoilWorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.BEDROCK_DRILLING_RIGS)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, CTNHRecipeModifiers::chemicalPlantOverclock)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH)
             .appearanceBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#######","AAAAAAA", "A#####A", "A#####A", "A#####A", "A#####A", "A#####A", "AAAAAAA")
@@ -491,7 +491,7 @@ public class CTNHMultiblockMachines {
                     .rotationState(RotationState.ALL)
                     .langValue("Fusion Reactor Computer MK %s".formatted(FormattingUtil.toRomanNumeral(tier - 3)))
                     .recipeType(GTRecipeTypes.FUSION_RECIPES)
-                    .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, FusionReactorMachine::recipeModifier, CTNHRecipeModifiers::chemicalPlantOverclock)
+                    .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, FusionReactorMachine::recipeModifier)
                     .tooltips(
                             Component.translatable("gtceu.machine.fusion_reactor.capacity",
                                     FusionReactorMachine.calculateEnergyStorageFactor(tier, 16) / 1000000L),
