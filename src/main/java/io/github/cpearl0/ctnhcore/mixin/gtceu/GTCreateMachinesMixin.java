@@ -15,7 +15,7 @@ public class GTCreateMachinesMixin {
     @ModifyArg(method = "<clinit>", at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/common/data/machines/GTCreateMachines;registerTieredMachines(Ljava/lang/String;Ljava/util/function/BiFunction;Ljava/util/function/BiFunction;Ljava/util/function/BiFunction;Lcom/tterrag/registrate/util/nullness/NonNullSupplier;Z[I)[Lcom/gregtechceu/gtceu/common/machine/KineticMachineDefinition;"), index = 1, remap = false)
     private static BiFunction<Integer, ResourceLocation, KineticMachineDefinition> kinetic_input_output_box(BiFunction<Integer, ResourceLocation, KineticMachineDefinition> definitionFactory){
         return (tier, id) -> {
-            return (new KineticMachineDefinition(id, false, (float) GTValues.V[tier] * 4)).setFrontRotation(true);
+            return (new KineticMachineDefinition(id, definitionFactory.apply(1, null).isSource, (float) GTValues.V[tier] * 4)).setFrontRotation(true);
         };
     }
 
