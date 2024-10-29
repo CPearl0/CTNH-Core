@@ -114,23 +114,12 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    //mavenCentral()
+    mavenCentral()
     maven {
-        name = 'Architectury API'
         url = "https://maven.architectury.dev"
-        content { includeGroup "dev.architectury" }
     }
     maven {
-        name = 'KubeJS and Rhino'
         url = "https://maven.saps.dev/minecraft"
-        content { includeGroup "dev.latvian.mods" }
-    }
-    maven { url = 'https://maven.tterrag.com/'
-        content {
-            includeGroup "com.simibubi.create"
-            includeGroup "com.jozufozu.flywheel"
-            includeGroup "com.tterrag.registrate"
-        }
     }
     maven {
         url = "https://dvs1.progwml6.com/files/maven/"
@@ -144,28 +133,27 @@ repositories {
     maven {
         url = "https://cursemaven.com"
     }
-    maven { // Registrate
-        url "https://maven.tterrag.com/"
-    }
-    maven { url "https://maven.resourcefulbees.com/repository/maven-public/" }
-    maven { url "https://maven.teamresourceful.com/repository/maven-public/" }
-
-    maven { url = 'https://maven.firstdarkdev.xyz/snapshots'
-        content {
-            includeGroup 'com.lowdragmc.ldlib'
-            includeGroup 'dev.toma.configuration'
-        }
-    }
-
     maven {
-        name = 'GTCEu Maven'
-        url = 'https://maven.gtceu.com'
-        content {
-            includeGroup 'com.gregtechceu.gtceu'
-        }
+        url = "https://maven.tterrag.com/"
     }
-
-    maven { url 'https://maven.rover656.dev/releases' }
+    maven {
+        url = "https://maven.resourcefulbees.com/repository/maven-public/"
+    }
+    maven {
+        url = "https://maven.teamresourceful.com/repository/maven-public/"
+    }
+    maven {
+        url = "https://maven.firstdarkdev.xyz/snapshots"
+    }
+    maven {
+        url = "https://maven.gtceu.com"
+    }
+    maven {
+        url = "https://maven.rover656.dev/releases"
+    }
+    maven {
+        url = "https://maven.theillusivec4.top/"
+    }
 }
 
 dependencies {
@@ -215,13 +203,17 @@ dependencies {
     implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
     implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
 
-    //  EnderIO
+    // EnderIO
     compileOnly fg.deobf("com.enderio:EnderIO:${enderio_version}:api")
     implementation fg.deobf("com.enderio:EnderIO:${enderio_version}")
     runtimeOnly "dev.gigaherz.graph:GraphLib3:$graphlib_version"
 
     implementation fg.deobf("curse.maven:applied-energistics-2-223794:5641282")
     implementation fg.deobf("curse.maven:legendary_survival_overhaul-840254:5825918")
+
+    // Curios
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 }
 
 mixin {
