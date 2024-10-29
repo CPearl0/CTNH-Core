@@ -21,6 +21,8 @@ import net.minecraft.network.chat.Style;
 import java.util.List;
 import java.util.Objects;
 
+import static sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil.getWorldTemperature;
+
 public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine {
     public double Machine_Temperature = 0;
     public double Efficiency = 1;
@@ -41,7 +43,7 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
     public static GTRecipe recipeModifier(MetaMachine machine, GTRecipe recipe, OCParams params, OCResult result){
         if(machine instanceof FermentingTankMachine fmachine){
             fmachine.Efficiency = 1;
-            fmachine.Machine_Temperature = Temperature.getTemperatureAt(fmachine.getPos(), Objects.requireNonNull(fmachine.getLevel())) * 25;
+            fmachine.Machine_Temperature = getWorldTemperature(Objects.requireNonNull(fmachine.getLevel()),fmachine.getPos());
             fmachine.getParts().forEach((part) -> {
                 if(part instanceof FluidHatchPartMachine fpart) {
                     part.getRecipeHandlers().forEach((trait) -> {

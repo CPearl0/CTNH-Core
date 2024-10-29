@@ -15,20 +15,20 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEventHandler {
-    @SubscribeEvent
-    public static void registerTempModifiers(TempModifierRegisterEvent event)
-    {
-        event.register(CTNHCore.id("underfloor_heating_system"), UnderfloorHeatingSystemTempModifier::new);
-    }
+//    @SubscribeEvent
+//    public static void registerTempModifiers(TempModifierRegisterEvent event)
+//    {
+//        event.register(CTNHCore.id("underfloor_heating_system"), UnderfloorHeatingSystemTempModifier::new);
+//    }
 
-    @SubscribeEvent
-    public static void defineDefaultModifiers(GatherDefaultTempModifiersEvent event) {
-        if (event.getEntity() instanceof Player) {
-            if (event.getTrait() == Temperature.Trait.WORLD) {
-                event.addModifier(new UnderfloorHeatingSystemTempModifier().tickRate(10), Placement.Duplicates.BY_CLASS, Placement.AFTER_LAST);
-            }
-        }
-    }
+//    @SubscribeEvent
+//    public static void defineDefaultModifiers(GatherDefaultTempModifiersEvent event) {
+//        if (event.getEntity() instanceof Player) {
+//            if (event.getTrait() == Temperature.Trait.WORLD) {
+//                event.addModifier(new UnderfloorHeatingSystemTempModifier().tickRate(10), Placement.Duplicates.BY_CLASS, Placement.AFTER_LAST);
+//            }
+//        }
+//    }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void tick(TickEvent.ServerTickEvent event) {
