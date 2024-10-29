@@ -221,6 +221,7 @@ dependencies {
     runtimeOnly "dev.gigaherz.graph:GraphLib3:$graphlib_version"
 
     implementation fg.deobf("curse.maven:applied-energistics-2-223794:5641282")
+    implementation fg.deobf("curse.maven:legendary_survival_overhaul-840254:5825918")
 }
 
 mixin {

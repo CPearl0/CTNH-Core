@@ -16,13 +16,15 @@ import net.minecraft.network.chat.Style;
 import java.util.List;
 import java.util.Objects;
 
+import static sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil.getWorldTemperature;
+
 public class DigestionTankMachine extends WorkableElectricMultiblockMachine {
     public double Machine_Temperature = 0;
     public double Efficiency = 1;
     public DigestionTankMachine(IMachineBlockEntity holder) {super(holder);}
     @Override
     public void addDisplayText(List<Component> textList) {
-        Machine_Temperature = Temperature.getTemperatureAt(getPos(), Objects.requireNonNull(getLevel())) * 25;
+        Machine_Temperature = getWorldTemperature(Objects.requireNonNull(getLevel()),getPos());
         if (Machine_Temperature >= 36 && Machine_Temperature <= 38) {
             Efficiency = 1.2;
         }
@@ -35,7 +37,7 @@ public class DigestionTankMachine extends WorkableElectricMultiblockMachine {
     }
     public static GTRecipe recipeModifier(MetaMachine machine, GTRecipe recipe, OCParams params, OCResult result){
         if(!(machine instanceof DigestionTankMachine dmachine)) return recipe;
-        dmachine.Machine_Temperature = Temperature.getTemperatureAt(dmachine.getPos(), Objects.requireNonNull(dmachine.getLevel())) * 25;
+        dmachine.Machine_Temperature = getWorldTemperature(Objects.requireNonNull(dmachine.getLevel()),dmachine.getPos());
         var newrecipe = recipe.copy();
         if (dmachine.Machine_Temperature >= 36 && dmachine.Machine_Temperature <= 38) {
             dmachine.Efficiency = 1.2;
