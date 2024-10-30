@@ -83,6 +83,7 @@
   "ctnh.stress_input": "输入应力：%ssu",
   "ctnh.stress_output": "产出应力：%ssu",
   "gtceu.astronomical_observatory": "天文台",
+  "gtceu.bedrock_drilling_rigs": "基岩钻机",
   "gtceu.big_dam": "三峡大坝",
   "gtceu.coke_oven": "焦化塔",
   "gtceu.multiblock.laser.tooltip": "允许使用激光仓",

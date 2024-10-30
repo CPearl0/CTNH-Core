@@ -88,6 +88,7 @@
   "ctnh.stress_input": "Stress input: %ssu",
   "ctnh.stress_output": "Stress output: %ssu",
   "gtceu.astronomical_observatory": "Astronomical Observatory",
+  "gtceu.bedrock_drilling_rigs": "Bedrock Drilling Rigs",
   "gtceu.big_dam": "Big Dam",
   "gtceu.coke_oven": "Coke Oven",
   "gtceu.multiblock.laser.tooltip": "The use of the laser chamber is permitted",

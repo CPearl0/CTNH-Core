@@ -23,6 +23,7 @@ public class EnglishLangHandler {
         provider.add("gtceu.big_dam", "Big Dam");
         provider.add("gtceu.coke_oven", "Coke Oven");
         provider.add("gtceu.naq_mk1", "Super Fuel");
+        provider.add("gtceu.bedrock_drilling_rigs", "Bedrock Drilling Rigs");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "Efficiency: %d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "Rate: %s");
         provider.add("gtceu.multiblock.laser.tooltip", "The use of the laser chamber is permitted");
