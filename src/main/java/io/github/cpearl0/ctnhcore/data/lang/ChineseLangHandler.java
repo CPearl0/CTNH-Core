@@ -79,13 +79,13 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK, "充能光伏方块");
         provider.addBlock(CTNHBlocks.PULSATING_PHOTOVOLTAIC_BLOCK, "脉冲光伏方块");
         provider.addBlock(CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK, "振动光伏方块");
-        provider.addBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK,"硅岩机械方块");
-        provider.addBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK,"硅岩合金机械方块");
+        provider.addBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK,"铿铀强化硅岩铕机械方块");
+        provider.addBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK,"三钛强化中子素硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE,"反应堆核心 MKI");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE1,"反应堆核心 MKII");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE2,"反应堆核心 MKIII");
-        provider.addBlock(CTNHBlocks.CASING_ADVANCED_HYPER,"还没对应名字材料的硅岩系机械方块(未实现)");
-        provider.addBlock(CTNHBlocks.CASING_HYPER,"黑钚强化超能硅岩机械方块(未实现)");
+        provider.addBlock(CTNHBlocks.CASING_ADVANCED_HYPER,"黑矮星强化超能硅岩机械方块");
+        provider.addBlock(CTNHBlocks.CASING_HYPER,"黑钚强化硅岩合金机械方块");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
