@@ -31,6 +31,7 @@ public class ChineseLangHandler {
         provider.add("block.ctnhcore.uv_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-III");
 
         provider.add("gtceu.naq_mk1", "超能燃料");
+        provider.add("gtceu.bedrock_drilling_rigs", "基岩钻机");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
         provider.add("ctnh.multiblock.parallelize.tooltip", "线圈等级和电压等级的提升会提高并行数");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
