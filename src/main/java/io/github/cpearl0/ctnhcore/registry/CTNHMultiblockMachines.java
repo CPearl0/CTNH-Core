@@ -432,9 +432,9 @@ public class CTNHMultiblockMachines {
             .build()
         )
             .tooltips(
-            Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UHV]),
+            Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UEV]),
             Component.translatable("gtceu.universal.tooltip.uses_per_hour_lubricant",1000),
-                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1",GTValues.V[GTValues.UHV] * 8))
+                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1",GTValues.V[GTValues.UEV] * 8))
             .workableCasingRenderer(CTNHCore.id("block/casings/nq_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
                             .register();
 
@@ -474,9 +474,9 @@ public class CTNHMultiblockMachines {
             .build()
         )
             .tooltips(
-            Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UEV]),
+            Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UIV]),
             Component.translatable("gtceu.universal.tooltip.uses_per_hour_lubricant",1000),
-                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2",GTValues.V[GTValues.UEV] * 16))
+                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2",GTValues.V[GTValues.UIV] * 16))
             .workableCasingRenderer(CTNHCore.id("block/casings/nq_alloy_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .register();
 
