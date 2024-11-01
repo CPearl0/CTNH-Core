@@ -26,7 +26,7 @@ public class CommonProxy {
         CTNHRegistration.REGISTRATE.registerRegistrate();
 
         CTNHRecipes.init(modEventBus);
-
+        CTNHTemperatureModifierRegister.init();
         CTNHCoreDatagen.init();
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }

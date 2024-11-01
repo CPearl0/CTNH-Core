@@ -23,7 +23,7 @@ public class UnderfloorHeatingSystemTempModifier extends ModifierBase {
 //        if (!(entity instanceof Player))
 //            return temp -> temp;
         double heat = 30 * UNDERFLOOR_HEATING_SYSTEM_RANGE.entrySet().stream()
-                .filter(range -> range.getKey().contains(player.getOnPos().getCenter()))
+                .filter(range -> range.getKey().contains(pos.getCenter()))
                 .map(Map.Entry::getValue)
                 .reduce(0.0, Double::sum);
         return (float) heat;

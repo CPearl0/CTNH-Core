@@ -85,9 +85,6 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
             for (int i = 0; i < (((SlaughterHouseMachine) machine).getTier() - 2) * 4; i++) {
                 int index = level.getRandom().nextInt(smachine.mobList.size());
                 String mob = smachine.mobList.get(index);
-                if (mob.equals("minecraft:wither")){
-                    itemList.add(new Content(SizedIngredient.create(Items.NETHER_STAR.getDefaultInstance()), 1, 1, 0, null, null));
-                }
                 var mobentity = EntityType.byString(mob).get().create(machine.getLevel());
                 if (mobentity instanceof LivingEntity) {
                     if (((LivingEntity) mobentity).getArmorValue() != 0) {
@@ -95,6 +92,10 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
                         totalhealth += ((LivingEntity) mobentity).getMaxHealth() / ((double) 20 / (armor + 20));
                     } else {
                         totalhealth += ((LivingEntity) mobentity).getMaxHealth();
+                    }
+                    if (mob.equals("minecraft:wither")){
+                        itemList.add(new Content(SizedIngredient.create(Items.NETHER_STAR.getDefaultInstance()), 1, 1, 0, null, null));
+                        continue;
                     }
                     var fakePlayer = new FakePlayer(level, new GameProfile(smachine.uuid, "slaughter"));
                     var loottable = Objects.requireNonNull(level.getServer()).getLootData().getLootTable(new ResourceLocation(mob.split(":")[0] + ":entities/" + mob.split(":")[1]));
