@@ -187,8 +187,6 @@ dependencies {
     implementation fg.deobf("curse.maven:aether-255308:5302178")
     implementation fg.deobf("curse.maven:deep-aether-852465:5441091")
 
-    implementation fg.deobf("curse.maven:cold-sweat-506194:5775320")
-
     implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
     implementation fg.deobf("curse.maven:ftb-library-forge-404465:5567591")
     implementation fg.deobf("curse.maven:ftb-ultimine-forge-386134:5363345")
