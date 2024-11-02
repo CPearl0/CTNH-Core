@@ -32,6 +32,7 @@ public class ChineseLangHandler {
 
         provider.add("gtceu.naq_mk1", "超能燃料");
         provider.add("gtceu.bedrock_drilling_rigs", "基岩钻机");
+        provider.add("gtceu.plasma_condenser", "等离子冷凝");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
         provider.add("ctnh.multiblock.parallelize.tooltip", "线圈等级和电压等级的提升会提高并行数");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
@@ -82,6 +83,9 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK, "振动光伏方块");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK,"铿铀强化硅岩铕机械方块");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK,"三钛强化中子素硅岩合金机械方块");
+        provider.addBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE,"防冻隔热机械方块");
+        provider.addBlock(CTNHBlocks.NEUTRONIUM_PIPE_CASING,"中子素管道方块");
+        provider.addBlock(CTNHBlocks.LASER_COOLING_CASING,"激光冷却方块");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE,"反应堆核心 MKI");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE1,"反应堆核心 MKII");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE2,"反应堆核心 MKIII");
@@ -101,6 +105,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK1.getBlock(),"超能反应堆 MKI");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK2.getBlock(),"超能反应堆 MKII");
+        provider.add(CTNHMultiblockMachines.PLASMA_CONDENSER.getBlock(),"等离子冷凝器");
 
     }
 

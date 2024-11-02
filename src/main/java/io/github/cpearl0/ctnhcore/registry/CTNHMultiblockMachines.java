@@ -14,6 +14,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
+import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.common.block.FusionCasingBlock;
 import com.gregtechceu.gtceu.common.data.*;
@@ -565,6 +566,33 @@ public class CTNHMultiblockMachines {
                     .register(),
             GTValues.LuV, GTValues.ZPM, GTValues.UV);
 
+    public final static MultiblockMachineDefinition PLASMA_CONDENSER = REGISTRATE.multiblock("plasma_condenser", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.ALL)
+            .recipeType(CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES)
+            .tooltips(Component.translatable("gtceu.machine.perfect_oc"))
+            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
+                    Component.translatable("gtceu.plasma_condenser")))
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .appearanceBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("       ", "   a   ", "  aaa  ", "  aaa  ", "  aaa  ", "   a   ", "       ")
+                    .aisle("   a   ", "  aaa  ", " aaaaa ", " aabaa ", " aaaaa ", "  aaa  ", "   a   ")
+                    .aisle("  aaa  ", " aaaaa ", "aabbbaa", "aabcbaa", "aabbbaa", " aaaaa ", "  aaa  ")
+                    .aisle(" aaaaa ", "aaabaaa", "aabcbaa", "abcccba", "aabcbaa", "aaabaaa", " aaaaa ")
+                    .aisle("  aaa  ", " aaaaa ", "aabbbaa", "aabcbaa", "aabbbaa", " aaaaa ", "  aaa  ")
+                    .aisle("   a   ", "  aaa  ", " aaaaa ", " aabaa ", " aaaaa ", "  aaa  ", "   a   ")
+                    .aisle("       ", "   a   ", "  aaa  ", "  ada  ", "  aaa  ", "   a   ", "       ")
+                    .where("a", Predicates.blocks(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE.get())
+                            .setMinGlobalLimited(120)
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .where("b", Predicates.blocks(CTNHBlocks.NEUTRONIUM_PIPE_CASING.get()))
+                    .where("c", Predicates.blocks(CTNHBlocks.LASER_COOLING_CASING.get()))
+                    .where("d", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where(" ", Predicates.any())
+                    .build())
+            .workableCasingRenderer(CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"), GTCEu.id("block/multiblock/vacuum_freezer"))
+            .register();
 
     public static void init() {
 
