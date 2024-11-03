@@ -1,9 +1,6 @@
 package io.github.cpearl0.ctnhcore.coldsweat;
 
-import com.momosoftworks.coldsweat.api.temperature.modifier.TempModifier;
-import com.momosoftworks.coldsweat.api.util.Temperature;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -12,7 +9,6 @@ import sfiomn.legendarysurvivaloverhaul.api.temperature.ModifierBase;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 public class UnderfloorHeatingSystemTempModifier extends ModifierBase {
     public static final Map<AABB,Double> UNDERFLOOR_HEATING_SYSTEM_RANGE = new HashMap<>();

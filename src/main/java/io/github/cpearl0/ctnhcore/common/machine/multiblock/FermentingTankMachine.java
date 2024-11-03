@@ -13,7 +13,6 @@ import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
-import com.momosoftworks.coldsweat.api.util.Temperature;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -32,7 +31,7 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
 
     @Override
     public void addDisplayText(List<Component> textList) {
-        Machine_Temperature = Temperature.getTemperatureAt(getPos(), Objects.requireNonNull(getLevel())) * 25;
+        Machine_Temperature = getWorldTemperature(Objects.requireNonNull(getLevel()),getPos());
         super.addDisplayText(textList);
         textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", Component
                 .translatable(FormattingUtil.formatNumbers(getCoilType().getCoilTemperature() + 100L * Math.max(0, getTier() - GTValues.MV)) + "K")
