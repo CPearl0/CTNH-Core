@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.gregtechceu.gtceu.api.block.ActiveBlock;
+import com.gregtechceu.gtceu.api.item.tool.GTToolType;
+import com.gregtechceu.gtceu.common.data.GTModels;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import net.minecraft.client.renderer.RenderType;
@@ -27,7 +30,6 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/reflect_light_casing"));
     public static final BlockEntry<Block> CASING_TUNGSTENCU_DIAMOND_PLATING = createCasingBlock("tungstencu_diamond_plating_casing",
             CTNHCore.id("block/casings/tungstencu_diamond_plating_casing"));
-
     public static final BlockEntry<Block> ENERGETIC_PHOTOVOLTAIC_BLOCK = createCasingBlock("energetic_photovoltaic_block",
             CTNHCore.id("block/energetic_photovoltaic_block"));
     public static final BlockEntry<Block> PULSATING_PHOTOVOLTAIC_BLOCK = createCasingBlock("pulsating_photovoltaic_block",
@@ -54,6 +56,23 @@ public class CTNHBlocks {
             CTNHCore.id("block/advanced_hyper_casing"));
     public static final BlockEntry<Block> CASING_HYPER = createCasingBlock("hyper_casing",
             CTNHCore.id("block/hyper_casing"));
+    public static final BlockEntry<Block> MODULE_CONNECTOR = createCasingBlock(
+            "module_connector", CTNHCore.id("block/module_connector"));
+    public static final BlockEntry<Block> SPACE_ELEVATOR_MECHANICAL_CASING = createCasingBlock(
+            "space_elevator_mechanical_casing", CTNHCore.id("block/space_elevator_mechanical_casing"));
+    public static final BlockEntry<Block> HIGH_STRENGTH_CONCRETE = createCasingBlock(
+            "high_strength_concrete", CTNHCore.id("block/casings/module_base/side"));
+
+    public static final BlockEntry<Block> SPACE_ELEVATOR_INTERNAL_SUPPORT = createCasingBlock(
+            "space_elevator_internal_support", CTNHCore.id("block/casings/space_elevator_internal_support"));
+    public static final BlockEntry<Block> MODULE_BASE = createCasingBlock(
+            "module_base", CTNHCore.id("block/casings/module_base"));
+
+    public static final BlockEntry<Block> POWER_CORE = createCasingBlock("power_core",
+            CTNHCore.id("block/variant/hyper_core"));
+    public static final BlockEntry<Block> SPACE_ELEVATOR_SUPPORT = createCasingBlock("space_elevator_support",
+            CTNHCore.id("block/variant/space_elevator_support"));
+
     public static void init() {
 
     }
@@ -81,4 +100,7 @@ public class CTNHBlocks {
                 .build()
                 .register();
     }
+
+
+
 }

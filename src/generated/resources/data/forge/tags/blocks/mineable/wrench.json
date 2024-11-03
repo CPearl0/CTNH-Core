@@ -14,6 +14,13 @@
     "ctnhcore:annihilate_core1",
     "ctnhcore:annihilate_core2",
     "ctnhcore:advanced_hyper_casing",
-    "ctnhcore:hyper_casing"
+    "ctnhcore:hyper_casing",
+    "ctnhcore:module_connector",
+    "ctnhcore:space_elevator_mechanical_casing",
+    "ctnhcore:high_strength_concrete",
+    "ctnhcore:space_elevator_internal_support",
+    "ctnhcore:module_base",
+    "ctnhcore:power_core",
+    "ctnhcore:space_elevator_support"
   ]
 }

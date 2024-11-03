@@ -91,6 +91,14 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE2,"反应堆核心 MKIII");
         provider.addBlock(CTNHBlocks.CASING_ADVANCED_HYPER,"黑矮星强化超能硅岩机械方块");
         provider.addBlock(CTNHBlocks.CASING_HYPER,"黑钚强化硅岩合金机械方块");
+        provider.addBlock(CTNHBlocks.MODULE_CONNECTOR, "太空电梯模块连接器");
+        provider.addBlock(CTNHBlocks.MODULE_BASE, "太空电梯模块基座");
+        provider.addBlock(CTNHBlocks.POWER_CORE, "太空电梯动力核心");
+        provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_MECHANICAL_CASING, "太空电梯机械方块");
+        provider.addBlock(CTNHBlocks.HIGH_STRENGTH_CONCRETE, "高强度钢筋混凝土");
+        provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_INTERNAL_SUPPORT, "太空电梯内部支撑柱");
+        provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_SUPPORT, "太空电梯外部支撑柱");
+        provider.add(CTNHMultiblockMachines.JIADESPACE_ELEVATOR.getBlock(),"假的太空电梯");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
