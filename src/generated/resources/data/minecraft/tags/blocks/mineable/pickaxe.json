@@ -11,6 +11,12 @@
     "ctnhcore:annihilate_core1",
     "ctnhcore:annihilate_core2",
     "ctnhcore:advanced_hyper_casing",
-    "ctnhcore:hyper_casing"
+    "ctnhcore:hyper_casing",
+    "ctnhcore:abyssalalloy_coil_block",
+    "ctnhcore:titansteel_coil_block",
+    "ctnhcore:pikyonium_coil_block",
+    "ctnhcore:black_titanium_coil_block",
+    "ctnhcore:starmetal_coil_block",
+    "ctnhcore:infinity_coil_block"
   ]
 }

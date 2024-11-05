@@ -1,0 +1,9 @@
+{
+    "ldlib": {
+        "connection": "ctnhcore:block/casings/coils/abyssalalloy_coil_block_active_ctm",
+        "emissive": true
+    },
+    "shimmer": {
+        "bloom": true
+    }
+}

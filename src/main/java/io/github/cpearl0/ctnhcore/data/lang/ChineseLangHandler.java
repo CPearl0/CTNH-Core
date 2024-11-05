@@ -87,6 +87,12 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE2,"反应堆核心 MKIII");
         provider.addBlock(CTNHBlocks.CASING_ADVANCED_HYPER,"黑矮星强化超能硅岩机械方块");
         provider.addBlock(CTNHBlocks.CASING_HYPER,"黑钚强化硅岩合金机械方块");
+        provider.addBlock(CTNHBlocks.COIL_ABYSALALLOY, "渊狱合金线圈");
+        provider.addBlock(CTNHBlocks.COIL_TITANSTEEL, "泰坦钢线圈");
+        provider.addBlock(CTNHBlocks.COIL_PIKYONIUM, "皮卡优线圈");
+        provider.addBlock(CTNHBlocks.COIL_BLACKTITANIUM, "黑钛合金线圈");
+        provider.addBlock(CTNHBlocks.COIL_STARMETAL, "星辉线圈");
+        provider.addBlock(CTNHBlocks.COIL_INFINITY, "无尽线圈");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");

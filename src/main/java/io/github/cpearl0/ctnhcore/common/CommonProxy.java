@@ -21,7 +21,6 @@ public class CommonProxy {
 
         CTNHCreativeModeTabs.init();
         CTNHItems.init();
-        CTNHBlocks.init();
         CTNHBlockEntities.init();
         CTNHRegistration.REGISTRATE.registerRegistrate();
 

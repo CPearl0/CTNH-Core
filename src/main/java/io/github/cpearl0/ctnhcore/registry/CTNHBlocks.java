@@ -1,7 +1,16 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.gregtechceu.gtceu.api.GTCEuAPI;
+import com.gregtechceu.gtceu.api.block.ActiveBlock;
+import com.gregtechceu.gtceu.api.block.ICoilType;
+import com.gregtechceu.gtceu.api.item.tool.GTToolType;
+import com.gregtechceu.gtceu.common.block.CoilBlock;
+import com.gregtechceu.gtceu.common.data.GTCompassSections;
+import com.gregtechceu.gtceu.common.data.GTModels;
+import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.block.CoilType;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -13,9 +22,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import net.minecraftforge.client.model.generators.ModelFile;
 
 import java.util.function.Supplier;
 
+import static com.gregtechceu.gtceu.common.data.GTBlocks.compassNodeExist;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CTNHBlocks {
@@ -48,6 +59,12 @@ public class CTNHBlocks {
             CTNHCore.id("block/advanced_hyper_casing"));
     public static final BlockEntry<Block> CASING_HYPER = createCasingBlock("hyper_casing",
             CTNHCore.id("block/hyper_casing"));
+    public static final BlockEntry<CoilBlock> COIL_ABYSALALLOY = createCoilBlock(CoilType.ABYSSALALLOY);
+    public static final BlockEntry<CoilBlock> COIL_TITANSTEEL = createCoilBlock(CoilType.TITANSTEEL);
+    public static final BlockEntry<CoilBlock> COIL_PIKYONIUM = createCoilBlock(CoilType.PIKYONIUM);
+    public static final BlockEntry<CoilBlock> COIL_BLACKTITANIUM = createCoilBlock(CoilType.BLACKTITANIUM);
+    public static final BlockEntry<CoilBlock> COIL_STARMETAL = createCoilBlock(CoilType.STARMETAL);
+    public static final BlockEntry<CoilBlock> COIL_INFINITY = createCoilBlock(CoilType.INFINITY);
     public static void init() {
 
     }
@@ -74,5 +91,26 @@ public class CTNHBlocks {
                 .item(BlockItem::new)
                 .build()
                 .register();
+    }
+    private static BlockEntry<CoilBlock> createCoilBlock(ICoilType coilType) {
+        BlockEntry<CoilBlock> coilBlock = REGISTRATE
+                .block("%s_coil_block".formatted(coilType.getName()), p -> new CoilBlock(p, coilType))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate((ctx, prov) -> {
+                    ActiveBlock block = ctx.getEntry();
+                    ModelFile inactive = prov.models().getExistingFile(coilType.getTexture());
+                    ModelFile active = prov.models().getExistingFile(coilType.getTexture().withSuffix("_bloom"));
+                    prov.getVariantBuilder(block).partialState().with(ActiveBlock.ACTIVE, false).modelForState().modelFile(inactive).addModel().partialState().with(ActiveBlock.ACTIVE, true).modelForState().modelFile(active).addModel();
+                })
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new)
+                .model((ctx, prov) -> prov.withExistingParent(prov.name(ctx), coilType.getTexture()))
+                //.onRegister(compassNodeExist(GTCompassSections.BLOCKS, "coil_block"))
+                .build()
+                .register();
+        GTCEuAPI.HEATING_COILS.put(coilType, coilBlock);
+        return coilBlock;
     }
 }
