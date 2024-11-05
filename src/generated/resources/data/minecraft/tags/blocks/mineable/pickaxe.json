@@ -15,18 +15,18 @@
     "ctnhcore:annihilate_core2",
     "ctnhcore:advanced_hyper_casing",
     "ctnhcore:hyper_casing",
-    "ctnhcore:abyssalalloy_coil_block",
-    "ctnhcore:titansteel_coil_block",
-    "ctnhcore:pikyonium_coil_block",
-    "ctnhcore:black_titanium_coil_block",
-    "ctnhcore:starmetal_coil_block",
-    "ctnhcore:infinity_coil_block",
     "ctnhcore:module_connector",
     "ctnhcore:space_elevator_mechanical_casing",
     "ctnhcore:high_strength_concrete",
     "ctnhcore:space_elevator_internal_support",
     "ctnhcore:module_base",
     "ctnhcore:power_core",
-    "ctnhcore:space_elevator_support"
+    "ctnhcore:space_elevator_support",
+    "ctnhcore:abyssalalloy_coil_block",
+    "ctnhcore:titansteel_coil_block",
+    "ctnhcore:pikyonium_coil_block",
+    "ctnhcore:black_titanium_coil_block",
+    "ctnhcore:starmetal_coil_block",
+    "ctnhcore:infinity_coil_block"
   ]
 }

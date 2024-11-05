@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
+import com.gregtechceu.gtceu.common.data.GTModels;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.block.CoilType;
@@ -68,15 +69,15 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> HIGH_STRENGTH_CONCRETE = createCasingBlock(
             "high_strength_concrete", CTNHCore.id("block/casings/module_base/side"));
 
-    public static final BlockEntry<Block> SPACE_ELEVATOR_INTERNAL_SUPPORT = createCasingBlock(
+    public static final BlockEntry<Block> SPACE_ELEVATOR_INTERNAL_SUPPORT = createSidedCasingBlock(
             "space_elevator_internal_support", CTNHCore.id("block/casings/space_elevator_internal_support"));
-    public static final BlockEntry<Block> MODULE_BASE = createCasingBlock(
+    public static final BlockEntry<Block> MODULE_BASE = createSidedCasingBlock(
             "module_base", CTNHCore.id("block/casings/module_base"));
 
-    public static final BlockEntry<Block> POWER_CORE = createCasingBlock("power_core",
-            CTNHCore.id("block/variant/hyper_core"));
-    public static final BlockEntry<Block> SPACE_ELEVATOR_SUPPORT = createCasingBlock("space_elevator_support",
-            CTNHCore.id("block/variant/space_elevator_support"));
+    public static final BlockEntry<ActiveBlock> POWER_CORE = createActiveCasing("power_core",
+            "block/variant/hyper_core");
+    public static final BlockEntry<ActiveBlock> SPACE_ELEVATOR_SUPPORT = createActiveCasing("space_elevator_support",
+            "block/variant/space_elevator_support");
     public static final BlockEntry<CoilBlock> COIL_ABYSALALLOY = createCoilBlock(CoilType.ABYSSALALLOY);
     public static final BlockEntry<CoilBlock> COIL_TITANSTEEL = createCoilBlock(CoilType.TITANSTEEL);
     public static final BlockEntry<CoilBlock> COIL_PIKYONIUM = createCoilBlock(CoilType.PIKYONIUM);
@@ -130,5 +131,34 @@ public class CTNHBlocks {
                 .register();
         GTCEuAPI.HEATING_COILS.put(coilType, coilBlock);
         return coilBlock;
+    }
+    @SuppressWarnings("all")
+    public static BlockEntry<Block> createSidedCasingBlock(String name, ResourceLocation texture) {
+        return REGISTRATE.block(name, Block::new)
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+                .addLayer(() -> RenderType::solid)
+                .blockstate((ctx, prov) -> {
+                    prov.simpleBlock(ctx.getEntry(), prov.models().cubeBottomTop(name,
+                            texture.withSuffix("/side"),
+                            texture.withSuffix("/top"),
+                            texture.withSuffix("/top")));
+                })
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new)
+                .build()
+                .register();
+    }
+    @SuppressWarnings("all")
+    public static BlockEntry<ActiveBlock> createActiveCasing(String name, String baseModelPath) {
+        return REGISTRATE.block(name, ActiveBlock::new)
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::solid)
+                .blockstate(GTModels.createActiveModel(CTNHCore.id(baseModelPath)))
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new)
+                .model((ctx, prov) -> prov.withExistingParent(prov.name(ctx), CTNHCore.id(baseModelPath)))
+                .build()
+                .register();
     }
 }
