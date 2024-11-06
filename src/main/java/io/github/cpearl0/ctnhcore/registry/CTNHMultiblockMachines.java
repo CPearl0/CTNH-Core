@@ -664,6 +664,38 @@ public class CTNHMultiblockMachines {
             .hasTESR(true)
             .register();
 
+    public final static MultiblockMachineDefinition CHEMICAL_PLANT = REGISTRATE.multiblock("chemical_plant", CoilWorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.ALL)
+            .recipeType(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
+            .tooltips(Component.translatable("ctnh.machine.eut_multiplier.tooltip", 0.6))
+            .tooltips(Component.translatable("ctnh.machine.duration_multiplier.tooltip", 0.5))
+            .tooltips(Component.translatable("ctnh.machine.chemical_plant.tooltip.0"))
+            .tooltips(Component.translatable("gtceu.machine.perfect_oc"))
+            .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
+            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
+                    Component.translatable("gtceu.large_chemical_reactor")))
+            .recipeModifier(CTNHRecipeModifiers::chemicalPlantOverclock)
+            .appearanceBlock(GTBlocks.CASING_PTFE_INERT)
+            .pattern((definition) -> FactoryBlockPattern.start()
+                    .aisle("b   b", "bbbbb", "b   b", "bbbbb", "b   b")
+                    .aisle("bbbbb", "bcccb", "bdddb", "bcccb", "bbbbb")
+                    .aisle("b   b", "bdddb", "bcccb", "bdddb", "b   b")
+                    .aisle("bbbbb", "bcccb", "bdddb", "bcccb", "bbbbb")
+                    .aisle("b   b", "abbbb", "b   b", "bbbbb", "b   b")
+                    .where("a", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("b", Predicates.blocks(GTBlocks.CASING_PTFE_INERT.get())
+                            .setMinGlobalLimited(60)
+                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .where("c", Predicates.heatingCoils())
+                    .where("d", Predicates.blocks(GTBlocks.CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
+                    .where(" ", Predicates.any())
+                    .build())
+            .additionalDisplay(CTNHMachines.CHEMICAL_PLANT_DISPLAY)
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"), GTCEu.id("block/machines/chemical_reactor"))
+            .register();
+
     public static void init() {
 
     }

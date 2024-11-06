@@ -51,8 +51,11 @@ public class ChineseLangHandler {
         provider.add("ctnh.stress_input", "输入应力：%ssu");
         provider.add("ctnh.fermenting_tank.growing_temperature", "生长温度：§2%d°C§r");
         provider.add("ctnh.fermenting_tank.growth_efficiency", "生长效率：%d%%");
+        provider.add("ctnh.machine.eut_multiplier.tooltip", "耗能倍数：%s");
+        provider.add("ctnh.machine.duration_multiplier.tooltip", "耗时倍数：%s");
         provider.add("ctnh.manaturbine.efficiency", "发电效率：%d%%");
         provider.add("ctnh.manaturbine.consumption_rate", "消耗倍率：%d");
+        provider.add("ctnh.machine.chemical_plant.tooltip.0","线圈等级每高出白铜一级能耗与速度x5%");
         provider.add("ctnh.multiblock.naq_reactor_machine.boost_disallowed", "§b升级你的动力仓以激活等离子体加速");
         provider.add("ctnh.multiblock.naq_reactor_machine.oxygen_plasma_boosted","§b氧等离子体加速中");
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_oxygen_plasma_to_boost","提供氧等离子体以加速");
@@ -120,6 +123,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK1.getBlock(),"超能反应堆 MKI");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK2.getBlock(),"超能反应堆 MKII");
         provider.add(CTNHMultiblockMachines.PLASMA_CONDENSER.getBlock(),"等离子冷凝器");
+        provider.add(CTNHMultiblockMachines.CHEMICAL_PLANT.getBlock(),"化工厂");
 
     }
 

@@ -75,9 +75,9 @@ public class CTNHBlocks {
             "module_base", CTNHCore.id("block/casings/module_base"));
 
     public static final BlockEntry<ActiveBlock> POWER_CORE = createActiveCasing("power_core",
-            "block/variant/hyper_core");
+            "block/hyper_core");
     public static final BlockEntry<ActiveBlock> SPACE_ELEVATOR_SUPPORT = createActiveCasing("space_elevator_support",
-            "block/variant/space_elevator_support");
+            "block/space_elevator_support");
     public static final BlockEntry<CoilBlock> COIL_ABYSALALLOY = createCoilBlock(CoilType.ABYSSALALLOY);
     public static final BlockEntry<CoilBlock> COIL_TITANSTEEL = createCoilBlock(CoilType.TITANSTEEL);
     public static final BlockEntry<CoilBlock> COIL_PIKYONIUM = createCoilBlock(CoilType.PIKYONIUM);
