@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "ctnhcore:block/neutronium_pipe_casing"
-  }
-}

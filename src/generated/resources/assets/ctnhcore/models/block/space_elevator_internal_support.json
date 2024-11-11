@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "ctnhcore:block/casings/space_elevator_internal_support"
-  }
-}

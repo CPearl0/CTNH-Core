@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data.lang;
 
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import io.github.cpearl0.ctnhcore.registry.*;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -86,13 +87,11 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK, "振动光伏方块");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK,"铿铀强化硅岩铕机械方块");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK,"三钛强化中子素硅岩合金机械方块");
-        provider.addBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE,"防冻隔热机械方块");
-        provider.addBlock(CTNHBlocks.NEUTRONIUM_PIPE_CASING,"中子素管道方块");
-        provider.addBlock(CTNHBlocks.LASER_COOLING_CASING,"激光冷却方块");
+        provider.addBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE,"等离子冷凝机械方块");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE,"反应堆核心 MKI");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE1,"反应堆核心 MKII");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE2,"反应堆核心 MKIII");
-        provider.addBlock(CTNHBlocks.CASING_ADVANCED_HYPER,"黑矮星强化超能硅岩机械方块");
+        provider.addBlock(CTNHBlocks.CASING_ADVANCED_HYPER,"暗物质强化超能硅岩机械方块");
         provider.addBlock(CTNHBlocks.CASING_HYPER,"黑钚强化硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.COIL_ABYSALALLOY, "渊狱合金线圈");
         provider.addBlock(CTNHBlocks.COIL_TITANSTEEL, "泰坦钢线圈");
@@ -100,14 +99,13 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.COIL_BLACKTITANIUM, "黑钛合金线圈");
         provider.addBlock(CTNHBlocks.COIL_STARMETAL, "星辉线圈");
         provider.addBlock(CTNHBlocks.COIL_INFINITY, "无尽线圈");
-        provider.addBlock(CTNHBlocks.MODULE_CONNECTOR, "太空电梯模块连接器");
-        provider.addBlock(CTNHBlocks.MODULE_BASE, "太空电梯模块基座");
-        provider.addBlock(CTNHBlocks.POWER_CORE, "太空电梯动力核心");
-        provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_MECHANICAL_CASING, "太空电梯机械方块");
-        provider.addBlock(CTNHBlocks.HIGH_STRENGTH_CONCRETE, "高强度钢筋混凝土");
-        provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_INTERNAL_SUPPORT, "太空电梯内部支撑柱");
-        provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_SUPPORT, "太空电梯外部支撑柱");
-        provider.add(CTNHMultiblockMachines.JIADESPACE_ELEVATOR.getBlock(),"假的太空电梯");
+        //provider.addBlock(CTNHBlocks.MODULE_CONNECTOR, "太空电梯模块连接器");
+        //provider.addBlock(CTNHBlocks.SPACE_MODULE_BASE, "太空电梯模块基座");
+        //provider.addBlock(CTNHBlocks.SPACE_POWER_CORE, "太空电梯动力核心");
+        //provider.addBlock(CTNHBlocks.CASING_SPACE_ELEVATOR_MECHANICAL, "太空电梯机械方块");
+        //provider.addBlock(CTNHBlocks.HIGH_STRENGTH_CONCRETE, "高强度钢筋混凝土");
+        //provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_INTERNAL_SUPPORT, "太空电梯内部支撑柱");
+        //provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_SUPPORT, "太空电梯外部支撑柱");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -122,8 +120,6 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK1.getBlock(),"超能反应堆 MKI");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK2.getBlock(),"超能反应堆 MKII");
-        provider.add(CTNHMultiblockMachines.PLASMA_CONDENSER.getBlock(),"等离子冷凝器");
-        provider.add(CTNHMultiblockMachines.CHEMICAL_PLANT.getBlock(),"化工厂");
 
     }
 

@@ -21,6 +21,9 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
@@ -48,10 +51,6 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/nq_alloy_casing"));
     public static final BlockEntry<Block> CASING_ANTIFREEZE_HEATPROOF_MACHINE = createCasingBlock("antifreeze_heatproof_machine_casing",
             CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
-    public static final BlockEntry<Block> NEUTRONIUM_PIPE_CASING = createCasingBlock("neutronium_pipe_casing",
-            CTNHCore.id("block/neutronium_pipe_casing"));
-    public static final BlockEntry<Block> LASER_COOLING_CASING = createCasingBlock("laser_cooling_casing",
-            CTNHCore.id("block/laser_cooling_casing"));
     public static final BlockEntry<Block> ANNIHILATE_CORE = createCasingBlock("annihilate_core",
             CTNHCore.id("block/annihilate_core"));
     public static final BlockEntry<Block> ANNIHILATE_CORE1 = createCasingBlock("annihilate_core1",
@@ -62,22 +61,22 @@ public class CTNHBlocks {
             CTNHCore.id("block/advanced_hyper_casing"));
     public static final BlockEntry<Block> CASING_HYPER = createCasingBlock("hyper_casing",
             CTNHCore.id("block/hyper_casing"));
-    public static final BlockEntry<Block> MODULE_CONNECTOR = createCasingBlock(
-            "module_connector", CTNHCore.id("block/module_connector"));
-    public static final BlockEntry<Block> SPACE_ELEVATOR_MECHANICAL_CASING = createCasingBlock(
-            "space_elevator_mechanical_casing", CTNHCore.id("block/space_elevator_mechanical_casing"));
-    public static final BlockEntry<Block> HIGH_STRENGTH_CONCRETE = createCasingBlock(
-            "high_strength_concrete", CTNHCore.id("block/casings/module_base/side"));
+    //public static final BlockEntry<Block> MODULE_CONNECTOR = createCasingBlock(
+            //"module_connector", CTNHCore.id("block/module_connector"));
+    //public static final BlockEntry<Block> CASING_SPACE_ELEVATOR_MECHANICAL_CASING = createCasingBlock(
+            //"space_elevator_mechanical_casing", CTNHCore.id("block/space_elevator_mechanical_casing"));
+    //public static final BlockEntry<Block> HIGH_STRENGTH_CONCRETE = createCasingBlock(
+            //"high_strength_concrete", CTNHCore.id("block/casings/module_base/side"));
 
-    public static final BlockEntry<Block> SPACE_ELEVATOR_INTERNAL_SUPPORT = createSidedCasingBlock(
-            "space_elevator_internal_support", CTNHCore.id("block/casings/space_elevator_internal_support"));
-    public static final BlockEntry<Block> MODULE_BASE = createSidedCasingBlock(
-            "module_base", CTNHCore.id("block/casings/module_base"));
+    //public static final BlockEntry<Block> SPACE_ELEVATOR_INTERNAL_SUPPORT = createSidedCasingBlock(
+            //"space_elevator_internal_support", CTNHCore.id("block/casings/space_elevator_internal_support"));
+    //public static final BlockEntry<Block> SPACE_MODULE_BASE = createSidedCasingBlock(
+            //"module_base", CTNHCore.id("block/casings/module_base"));
 
-    public static final BlockEntry<ActiveBlock> POWER_CORE = createActiveCasing("power_core",
-            "block/hyper_core");
-    public static final BlockEntry<ActiveBlock> SPACE_ELEVATOR_SUPPORT = createActiveCasing("space_elevator_support",
-            "block/space_elevator_support");
+    //public static final BlockEntry<ActiveBlock> SPACE_POWER_CORE = createActiveCasing("space_elevator_power_core",
+            //"block/space_elevator_power_core");
+    //public static final BlockEntry<ActiveBlock> SPACE_ELEVATOR_SUPPORT = createActiveCasing("space_elevator_support",
+            //"block/space_elevator_support");
     public static final BlockEntry<CoilBlock> COIL_ABYSALALLOY = createCoilBlock(CoilType.ABYSSALALLOY);
     public static final BlockEntry<CoilBlock> COIL_TITANSTEEL = createCoilBlock(CoilType.TITANSTEEL);
     public static final BlockEntry<CoilBlock> COIL_PIKYONIUM = createCoilBlock(CoilType.PIKYONIUM);
@@ -87,13 +86,12 @@ public class CTNHBlocks {
     public static void init() {
 
     }
-
     // Utils
     public static BlockEntry<Block> createCasingBlock(String name, ResourceLocation texture) {
         return createCasingBlock(name, Block::new, texture, () -> Blocks.IRON_BLOCK,
                 () -> RenderType::cutoutMipped);
     }
-
+    @SuppressWarnings("all")
     public static BlockEntry<Block> createCasingBlock(String name,
                                                       NonNullFunction<BlockBehaviour.Properties, Block> blockSupplier,
                                                       ResourceLocation texture,
@@ -111,6 +109,7 @@ public class CTNHBlocks {
                 .build()
                 .register();
     }
+    @SuppressWarnings("all")
     private static BlockEntry<CoilBlock> createCoilBlock(ICoilType coilType) {
         BlockEntry<CoilBlock> coilBlock = REGISTRATE
                 .block("%s_coil_block".formatted(coilType.getName()), p -> new CoilBlock(p, coilType))
@@ -132,33 +131,5 @@ public class CTNHBlocks {
         GTCEuAPI.HEATING_COILS.put(coilType, coilBlock);
         return coilBlock;
     }
-    @SuppressWarnings("all")
-    public static BlockEntry<Block> createSidedCasingBlock(String name, ResourceLocation texture) {
-        return REGISTRATE.block(name, Block::new)
-                .initialProperties(() -> Blocks.IRON_BLOCK)
-                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
-                .addLayer(() -> RenderType::solid)
-                .blockstate((ctx, prov) -> {
-                    prov.simpleBlock(ctx.getEntry(), prov.models().cubeBottomTop(name,
-                            texture.withSuffix("/side"),
-                            texture.withSuffix("/top"),
-                            texture.withSuffix("/top")));
-                })
-                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
-                .item(BlockItem::new)
-                .build()
-                .register();
-    }
-    @SuppressWarnings("all")
-    public static BlockEntry<ActiveBlock> createActiveCasing(String name, String baseModelPath) {
-        return REGISTRATE.block(name, ActiveBlock::new)
-                .initialProperties(() -> Blocks.IRON_BLOCK)
-                .addLayer(() -> RenderType::solid)
-                .blockstate(GTModels.createActiveModel(CTNHCore.id(baseModelPath)))
-                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
-                .item(BlockItem::new)
-                .model((ctx, prov) -> prov.withExistingParent(prov.name(ctx), CTNHCore.id(baseModelPath)))
-                .build()
-                .register();
-    }
+
 }

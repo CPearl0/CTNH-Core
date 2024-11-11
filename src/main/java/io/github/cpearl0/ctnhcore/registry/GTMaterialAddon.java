@@ -8,5 +8,7 @@ public class GTMaterialAddon {
     public static void init() {
         Duranium.addFlags(GENERATE_FRAME);
         Naquadria.addFlags(GENERATE_FRAME);
+        NaquadahEnriched.addFlags(GENERATE_FRAME);
+        Naquadah.addFlags(GENERATE_FRAME);
     }
 }
