@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "ctnhcore:block/black_titanium_coil_block"
+    },
+    "active=true": {
+      "model": "ctnhcore:block/black_titanium_coil_block_active"
+    }
+  }
+}

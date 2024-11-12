@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
 
+@Getter
 public enum CoilType implements StringRepresentable, ICoilType {
 
     ABYSSALALLOY("abyssalalloy", 12600, 16, 8, CTNHMaterials.Abyssalalloy, CTNHCore.id("block/casings/coils/abyssalalloy_coil_block")),
@@ -19,21 +20,15 @@ public enum CoilType implements StringRepresentable, ICoilType {
     INFINITY("infinity", 36000, 128, 9, CTNHMaterials.Infinity, CTNHCore.id("block/casings/coils/infinity_coil_block"));
 
     @NotNull
-    @Getter
     private final String name;
     // electric blast furnace properties
-    @Getter
     private final int coilTemperature;
     // multi smelter properties
-    @Getter
     private final int level;
-    @Getter
     private final int energyDiscount;
     @NotNull
-    @Getter
     private final Material material;
     @NotNull
-    @Getter
     private final ResourceLocation texture;
 
     CoilType(String name, int coilTemperature, int level, int energyDiscount, Material material,
