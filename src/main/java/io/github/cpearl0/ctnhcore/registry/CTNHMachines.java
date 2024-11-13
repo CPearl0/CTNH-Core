@@ -62,6 +62,7 @@ public class CTNHMachines {
                         case UEV -> "Epic";
                         case UIV -> "Epic";
                         case UXV -> "Legendary";
+                        case OpV -> "Eternal";
                         case MAX -> "MAX";
                         default -> "Simple"; // Should never be hit.
                     } + " Parallel Control Hatch")
@@ -70,7 +71,7 @@ public class CTNHMachines {
                     .workableTieredHullRenderer(GTCEu.id("block/machines/parallel_hatch_mk" + (tier - 4)))
                     .tooltips(Component.translatable("gtceu.machine.parallel_hatch_mk" + tier + ".tooltip"))
                     .register(),
-            UHV, UEV, UIV, UXV, MAX);
+            UHV, UEV, UIV, UXV, OpV, MAX);
 
     public static MachineDefinition[] registerTieredMachines(String name,
                                                              BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,

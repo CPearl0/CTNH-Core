@@ -27,6 +27,12 @@ public class ChineseLangHandler {
         provider.add("gtceu.slaughter_house", "屠宰场");
         provider.add("gtceu.big_dam", "三峡大坝");
         provider.add("gtceu.coke_oven", "焦化塔");
+        provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
+        provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
+        provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
+        provider.add("gtceu.machine.parallel_hatch_mk12.tooltip", "允许同时处理至多65536个配方。");
+        provider.add("gtceu.machine.parallel_hatch_mk13.tooltip", "允许同时处理至多262144个配方。");
+        provider.add("gtceu.machine.parallel_hatch_mk14.tooltip", "允许同时处理至多1048576个配方。");
         provider.add("block.ctnhcore.luv_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-I");
         provider.add("block.ctnhcore.zpm_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-II");
         provider.add("block.ctnhcore.uv_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-III");
@@ -66,12 +72,20 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_nickel_plasma_to_boost","提供镍等离子体以加速");
         provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1","提供§f20 mB/s§7的氧等离子体，并消耗§f四倍§7燃料以产生高达§f%s§7EU/t的功率。");
         provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2","提供§f20 mB/s§7的铁等离子体，并消耗§f四倍§7燃料以产生高达§f%s§7EU/t的功率。");
+        provider.add("ctnh.test_terminal.lack_error","在%s处缺少");
+        provider.add("ctnh.test_terminal.wrong_error","在%s处应为");
+        provider.add("ctnh.test_terminal.position","(%s,%s,%s)");
+        provider.add("ctnh.testing_terminal.tooltip.1","用于检测多方块搭建时产生的错误");
+        provider.add("ctnh.testing_terminal.tooltip.2","右键多方块的主方块以显示错误信息");
 
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");
         }
         for (var tier : GTMachines.ELECTRIC_TIERS) {
             provider.add(CTNHMachines.PERSONAL_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + " 个人计算机");
+        }
+        for (int tier = GTValues.UHV; tier <= GTValues.MAX; tier++){
+            provider.add(CTNHMachines.PARALLEL_HATCH[tier].getBlock(),GTValues.VNF[tier] + " 并行控制仓");
         }
 
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
@@ -80,6 +94,7 @@ public class ChineseLangHandler {
 
         provider.addItem(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1, "完善的一阶航天数据芯片");
         provider.addItem(CTNHItems.ASTRONOMY_CIRCUIT_1, "一阶航天数据芯片");
+        provider.addItem(CTNHItems.TESTING_TERMINAL, "检测终端");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING, "W-Cu覆膜金刚石机械方块");
         provider.addBlock(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK, "充能光伏方块");

@@ -1,11 +1,17 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.gregtechceu.gtceu.api.item.ComponentItem;
+import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
 import io.github.cpearl0.ctnhcore.common.item.ProgramItem;
+import io.github.cpearl0.ctnhcore.common.item.TestingTerminalBehavior;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import org.apache.commons.lang3.StringUtils;
 
+import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CTNHItems {
@@ -16,6 +22,16 @@ public class CTNHItems {
     public static ItemEntry<Item> GREAT_ASTRONOMY_CIRCUIT_1 = REGISTRATE
             .item("great_astronomy_circuit_1", Item::new)
             .lang("Great Astronomy Circuit I")
+            .register();
+    public static ItemEntry<ComponentItem> TESTING_TERMINAL = REGISTRATE
+            .item("testing_terminal",ComponentItem::create)
+            .lang("Test Terminal")
+            .properties(p -> p.stacksTo(1))
+            .onRegister(attach(new TestingTerminalBehavior()))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.testing_terminal.tooltip.1").withStyle(ChatFormatting.GRAY));
+                list.add(Component.translatable("ctnh.testing_terminal.tooltip.2"));
+            })))
             .register();
     public static ItemEntry<AstronomyCircuitItem> ASTRONOMY_CIRCUIT_1 = REGISTRATE
             .item("astronomy_circuit_1", properties -> new AstronomyCircuitItem(properties, 1, GREAT_ASTRONOMY_CIRCUIT_1))

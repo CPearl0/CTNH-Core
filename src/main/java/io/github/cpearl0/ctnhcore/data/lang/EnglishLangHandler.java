@@ -54,5 +54,10 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_nickel_plasma_to_boost","Supply Nickel Plasma to boost.");
         provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1","Supply §f20 mB/s§7 of Oxygen Plasma to produce up to §f%s EU/t§7 at §f4x§7 fuel consumption.");
         provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2","Supply §f20 mB/s§7 of Iron Plasma to produce up to §f%s EU/t§7 at §f4x§7 fuel consumption.");
+        provider.add("ctnh.test_terminal.lack_error","At %s, you need");
+        provider.add("ctnh.test_terminal.wrong_error","At %s, it should be");
+        provider.add("ctnh.test_terminal.position","(%s,%s,%s)");
+        provider.add("ctnh.testing_terminal.tooltip.1","Use to check the error when building the multiblock");
+        provider.add("ctnh.testing_terminal.tooltip.2","Right-click the controller to show the error info");
     }
 }

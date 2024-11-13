@@ -570,6 +570,34 @@ public class CTNHMultiblockMachines {
                     .workableCasingRenderer(CTNHFusionCasingType.getCasingType(tier).getTexture(), GTCEu.id("block/multiblock/fusion_reactor"))
                     .register(),
             GTValues.LuV, GTValues.ZPM, GTValues.UV);
+    public final static MultiblockMachineDefinition SWEATSHOP = REGISTRATE.multiblock("sweat_shop", FactoryMachine::new)
+            .rotationState(RotationState.ALL)
+            .recipeType(CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES)
+            .tooltips(Component.translatable("gtceu.machine.perfect_oc"))
+            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
+                    Component.translatable("gtceu.plasma_condenser")))
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .appearanceBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("       ", "   a   ", "  aaa  ", "  aaa  ", "  aaa  ", "   a   ", "       ")
+                    .aisle("   a   ", "  aaa  ", " aaaaa ", " aabaa ", " aaaaa ", "  aaa  ", "   a   ")
+                    .aisle("  aaa  ", " aaaaa ", "aabbbaa", "aabcbaa", "aabbbaa", " aaaaa ", "  aaa  ")
+                    .aisle(" aaaaa ", "aaabaaa", "aabcbaa", "abcccba", "aabcbaa", "aaabaaa", " aaaaa ")
+                    .aisle("  aaa  ", " aaaaa ", "aabbbaa", "aabcbaa", "aabbbaa", " aaaaa ", "  aaa  ")
+                    .aisle("   a   ", "  aaa  ", " aaaaa ", " aabaa ", " aaaaa ", "  aaa  ", "   a   ")
+                    .aisle("       ", "   a   ", "  aaa  ", "  ada  ", "  aaa  ", "   a   ", "       ")
+                    .where("a", Predicates.blocks(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE.get())
+                            .setMinGlobalLimited(120)
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .where("b", Predicates.blocks(CTNHBlocks.CASING_HYPER.get()))
+                    .where("c", Predicates.blocks(CTNHBlocks.CASING_HYPER.get()))
+                    .where("d", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where(" ", Predicates.any())
+                    .build())
+            .workableCasingRenderer(CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"), GTCEu.id("block/multiblock/vacuum_freezer"))
+            .register();
+
     public static void init() {
 
     }
