@@ -572,7 +572,7 @@ public class CTNHMultiblockMachines {
             GTValues.LuV, GTValues.ZPM, GTValues.UV);
     public final static MultiblockMachineDefinition SWEATSHOP = REGISTRATE.multiblock("sweat_shop", FactoryMachine::new)
             .rotationState(RotationState.ALL)
-            .recipeTypes(GTRecipeTypes.CENTRIFUGE_RECIPES,GTRecipeTypes.LATHE_RECIPES,GTRecipeTypes.COMPRESSOR_RECIPES,
+            .recipeTypes(GTRecipeTypes.CENTRIFUGE_RECIPES,GTRecipeTypes.LATHE_RECIPES,GTRecipeTypes.BENDER_RECIPES,
                     GTRecipeTypes.MACERATOR_RECIPES,GTRecipeTypes.MIXER_RECIPES,GTRecipeTypes.EXTRACTOR_RECIPES,
                     GTRecipeTypes.WIREMILL_RECIPES,GTRecipeTypes.LASER_ENGRAVER_RECIPES,GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES)
             .recipeModifiers(FactoryMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))

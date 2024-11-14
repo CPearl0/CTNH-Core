@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.registry;
 
 import com.aetherteam.aether.block.AetherBlocks;
 import com.aetherteam.aether.item.AetherItems;
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -46,14 +47,14 @@ public class CTNHMaterials {
             .color(0xeac1d9).iconSet(METALLIC)
             .ore()
             .buildAndRegister();
-    public static final Material Jasper = new Material.Builder(CTNHCore.id("jasper"))
+    public static final Material Jasper = new Material.Builder(GTCEu.id("jasper"))
             .gem()
             .ore()
             .color(0xC85050)
             .flags(GENERATE_PLATE, GENERATE_ROD)
             .iconSet(EMERALD)
             .buildAndRegister();
-    public static final Material Eglinalloy = new Material.Builder(CTNHCore.id("eglin_alloy"))
+    public static final Material Eglinalloy = new Material.Builder(GTCEu.id("eglin_alloy"))
             .ingot()
             .liquid()
             .color(0x6e3204)
@@ -62,7 +63,7 @@ public class CTNHMaterials {
             .blastTemp(1048)
             .components(Invar,5, Iron,4, Kanthal,1, Sulfur,1, Silver,1, Carbon,1)
             .buildAndRegister();
-    public static final Material Inconel625 = new Material.Builder(CTNHCore.id("inconel_625"))
+    public static final Material Inconel625 = new Material.Builder(GTCEu.id("inconel_625"))
             .ingot()
             .liquid()
             .color(0x6eab6c)
@@ -71,7 +72,7 @@ public class CTNHMaterials {
             .blastTemp(6200)
             .components(Nickel,2,Aluminium,2, Niobium,1,Nichrome,1)
             .buildAndRegister();
-    public static final Material Abyssalalloy = new Material.Builder(CTNHCore.id("abyssalalloy"))
+    public static final Material Abyssalalloy = new Material.Builder(GTCEu.id("abyssalalloy"))
             .ingot().liquid()
             .blastTemp(10800, HIGHER, GTValues.VA[GTValues.UV], 1800)
             .components(StainlessSteel, 5,TungstenCarbide,5, Nichrome,5,Bronze,5,IncoloyMA956,5, Iodine, 1,Germanium,1,Radon,1 ,Hafnium,1)
@@ -80,7 +81,7 @@ public class CTNHMaterials {
             .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
             .cableProperties(GTValues.V[GTValues.UHV], 4, 64)
             .buildAndRegister();
-    public static final Material Titansteel = new Material.Builder(CTNHCore.id("titansteel"))
+    public static final Material Titansteel = new Material.Builder(GTCEu.id("titansteel"))
             .ingot().liquid()
             .blastTemp(12600, HIGHER, GTValues.VA[GTValues.UHV], 1200)
             .components(TitaniumTungstenCarbide,4,Plutonium241,1, Einsteinium, 2,Rhenium,1, Erbium,1, Jasper,3)
@@ -89,7 +90,7 @@ public class CTNHMaterials {
             .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
             .cableProperties(GTValues.V[GTValues.UEV], 4, 64)
             .buildAndRegister();
-    public static final Material Pikyonium = new Material.Builder(CTNHCore.id("pikyonium"))
+    public static final Material Pikyonium = new Material.Builder(GTCEu.id("pikyonium"))
             .ingot()
             .liquid()
             .radioactiveHazard(3)
@@ -100,7 +101,7 @@ public class CTNHMaterials {
             .flags(GENERATE_FINE_WIRE)
             .cableProperties(GTValues.V[GTValues.UIV], 4, 128)
             .buildAndRegister();
-    public static final Material BlackTitanium = new Material.Builder(CTNHCore.id("black_titanium"))
+    public static final Material BlackTitanium = new Material.Builder(GTCEu.id("black_titanium"))
             .ingot()
             .liquid()
             .blastTemp(16200, HIGHEST, GTValues.VA[GTValues.UXV], 1400)
@@ -110,7 +111,7 @@ public class CTNHMaterials {
             .flags(GENERATE_ROD, GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
             .cableProperties(GTValues.V[GTValues.UXV], 4, 128)
             .buildAndRegister();
-    public static final Material Starmetal = new Material.Builder(CTNHCore.id("starmetal"))
+    public static final Material Starmetal = new Material.Builder(GTCEu.id("starmetal"))
             .ingot()
             .liquid()
             .plasma()
@@ -123,7 +124,7 @@ public class CTNHMaterials {
             .flags(GENERATE_FINE_WIRE)
             .cableProperties(GTValues.V[GTValues.OpV], 4, 256)
             .buildAndRegister();
-    public static final Material Infinity = new Material.Builder(CTNHCore.id("my_infinity"))
+    public static final Material Infinity = new Material.Builder(GTCEu.id("infinity"))
             .ingot()
             .radioactiveHazard(20)
             .blastTemp(32000, HIGHEST)
@@ -132,7 +133,7 @@ public class CTNHMaterials {
             .flags(GENERATE_FRAME)
             .cableProperties(GTValues.V[GTValues.MAX], 8192, 0, true)
             .buildAndRegister();
-    public static final Material PreciousAlloy = new Material.Builder(CTNHCore.id("precious_alloy"))
+    public static final Material PreciousAlloy = new Material.Builder(GTCEu.id("precious_alloy"))
             .ingot()
             .ore()
             .addOreByproducts(Silver)
@@ -141,7 +142,7 @@ public class CTNHMaterials {
             .iconSet(METALLIC)
             .buildAndRegister()
             .setFormula("Au?", true);
-    public static final Material Cryolite = new Material.Builder(CTNHCore.id("cryolite"))
+    public static final Material Cryolite = new Material.Builder(GTCEu.id("cryolite"))
             .dust()
             .ore()
             .addOreByproducts(GTMaterials.Sodium, GTMaterials.BlueTopaz)
@@ -149,7 +150,7 @@ public class CTNHMaterials {
             .buildAndRegister()
             .setFormula("Na3AlF6", true);
 
-    public static final Material Zircon = new Material.Builder(CTNHCore.id("zircon"))
+    public static final Material Zircon = new Material.Builder(GTCEu.id("zircon"))
             .gem()
             .ore()
             .addOreByproducts(GTMaterials.SiliconDioxide, GTMaterials.Yttrium)
@@ -157,28 +158,28 @@ public class CTNHMaterials {
             .iconSet(GEM_VERTICAL)
             .components(Zirconium,1, Silicon,1, Oxygen,4)
             .buildAndRegister();
-    public static final Material Zirkelite = new Material.Builder(CTNHCore.id("zirkelite"))
+    public static final Material Zirkelite = new Material.Builder(GTCEu.id("zirkelite"))
             .dust()
             .ore()
             .addOreByproducts(Thorium)
             .color(0x525e50)
             .components(Calcium,2, Thorium,2, Cerium,1, Zirconium,7, Rutile,2, Niobium,4, Oxygen,10)
             .buildAndRegister();
-    public static final Material Nickeline = new Material.Builder(CTNHCore.id("nickeline"))
+    public static final Material Nickeline = new Material.Builder(GTCEu.id("nickeline"))
             .dust()
             .ore()
             .addOreByproducts(GTMaterials.ArsenicTrioxide)
             .color(0xe8a3a3)
             .components(Nickel,1, Arsenic,1)
             .buildAndRegister();
-    public static final Material TrisodiumPhosphate = new Material.Builder(CTNHCore.id("trisodium_phosphate"))
+    public static final Material TrisodiumPhosphate = new Material.Builder(GTCEu.id("trisodium_phosphate"))
             .dust()
             .color(0xdbff67)
             .ore()
             .addOreByproducts(GTMaterials.Phosphate, GTMaterials.Salt)
             .components(Sodium,3, Phosphate,1)
             .buildAndRegister();
-    public static final Material Alumina = new Material.Builder(CTNHCore.id("alumina"))
+    public static final Material Alumina = new Material.Builder(GTCEu.id("alumina"))
             .dust()
             .color(0x09474A)
             .ore()

@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
@@ -31,7 +32,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FactoryMachine extends WorkableElectricMultiblockMachine {
+public class FactoryMachine extends WorkableElectricMultiblockMachine implements IMachineModifyDrops {
     public int CENTRIFUGE_COUNT = 0;
     public int LATHE_COUNT = 0;
     public int CRUSHING_COUNT = 0;
@@ -75,6 +76,10 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine {
     }
 
     @Override
+    public void onDrops(List<ItemStack> drops) {
+        clearInventory(machineStorage.storage);
+    }
+    @Override
     public @NotNull Widget createUIWidget() {
         var widget = super.createUIWidget();
         if (widget instanceof WidgetGroup group) {
@@ -104,6 +109,9 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine {
         BURNER_COUNT = 0;
         PRESSOR_COUNT = 0;
         MIXER_COUNT = 0;
+        LASER_COUNT = 0;
+        BASIN_COUNT = 0;
+        SAW_COUNT = 0;
         TOTAL_COUNT = 0;
         for (ItemStack itemStack : itemlist) {
             switch (itemStack.getItem().toString()) {
@@ -160,7 +168,7 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine {
                 return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.CRUSHING_COUNT), false).getFirst();
             } else if (recipeType.equals(GTRecipeTypes.EXTRACTOR_RECIPES)) {
                 return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.BURNER_COUNT), false).getFirst();
-            } else if (recipeType.equals(GTRecipeTypes.COMPRESSOR_RECIPES)) {
+            } else if (recipeType.equals(GTRecipeTypes.BENDER_RECIPES)) {
                 return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.PRESSOR_COUNT), false).getFirst();
             } else if (recipeType.equals(GTRecipeTypes.MIXER_RECIPES)) {
                 return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.MIXER_COUNT), false).getFirst();
@@ -188,5 +196,9 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine {
                              - Math.pow((double) machine.BASIN_COUNT / machine.TOTAL_COUNT,2)
                              - Math.pow((double) machine.SAW_COUNT / machine.TOTAL_COUNT,2);
         return diversity;
+    }
+    @Override
+    public ManagedFieldHolder getFieldHolder() {
+        return MANAGED_FIELD_HOLDER;
     }
 }

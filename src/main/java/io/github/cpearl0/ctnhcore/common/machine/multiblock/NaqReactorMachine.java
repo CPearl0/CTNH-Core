@@ -39,7 +39,6 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
     private static final FluidStack OXYGEN_PLASMA_STACK = GTMaterials.Oxygen.getFluid(FluidStorageKeys.PLASMA,20);
     private static final FluidStack IRON_PLASMA_STACK = GTMaterials.Iron.getFluid(FluidStorageKeys.PLASMA, 20);
     private static final FluidStack NICKEL_PLASMA_STACK = GTMaterials.Nickel.getFluid(FluidStorageKeys.PLASMA,20);
-    private static final FluidStack LUBRICANT_STACK = GTMaterials.Lubricant.getFluid(1);
 
     //依次填入增加效率的等离子体
     private static final FluidStack[] PLASMA = {OXYGEN_PLASMA_STACK,IRON_PLASMA_STACK,NICKEL_PLASMA_STACK};
@@ -71,10 +70,6 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
             return GTValues.V[tier];
     }
 
-    protected GTRecipe getLubricantRecipe() {
-        return GTRecipeBuilder.ofRaw().inputFluids(LUBRICANT_STACK).buildRawRecipe();
-    }
-
     protected GTRecipe getBoostRecipe() {
         return GTRecipeBuilder.ofRaw().inputFluids(PLASMA[tier - 10]).buildRawRecipe();
     }
@@ -85,7 +80,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
         if (machine instanceof NaqReactorMachine engineMachine) {
             var EUt = RecipeHelper.getOutputEUt(recipe);
             // has lubricant
-            if (EUt > 0 && engineMachine.getLubricantRecipe().matchRecipe(engineMachine).isSuccess()) {
+            if (EUt > 0) {
                 var maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
                 var parallelResult = GTRecipeModifiers.fastParallel(engineMachine, recipe, maxParallel, false);
                 long eut;
@@ -104,15 +99,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
     @Override
     public boolean onWorking() {
         boolean value = super.onWorking();
-        // check lubricant
         long totalContinuousRunningTime = recipeLogic.getTotalContinuousRunningTime();
-        if ((totalContinuousRunningTime == 1 || totalContinuousRunningTime % 72 == 0)) {
-            // insufficient lubricant
-            if (!getLubricantRecipe().handleRecipeIO(IO.IN, this, this.recipeLogic.getChanceCaches())) {
-                recipeLogic.interruptRecipe();
-                return false;
-            }
-        }
         // check boost fluid
         if ((totalContinuousRunningTime == 1 || totalContinuousRunningTime % 20 == 0) && isBoostAllowed()) {
             var boosterRecipe = getBoostRecipe();
