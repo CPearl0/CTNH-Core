@@ -77,6 +77,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.test_terminal.position","(%s,%s,%s)");
         provider.add("ctnh.testing_terminal.tooltip.1","用于检测多方块搭建时产生的错误");
         provider.add("ctnh.testing_terminal.tooltip.2","右键多方块的主方块以显示错误信息");
+        provider.add("ctnh.simple_nutritious_meal.tooltip.1","能维持机体基本的生理功能");
 
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");
@@ -95,6 +96,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1, "完善的一阶航天数据芯片");
         provider.addItem(CTNHItems.ASTRONOMY_CIRCUIT_1, "一阶航天数据芯片");
         provider.addItem(CTNHItems.TESTING_TERMINAL, "检测终端");
+        provider.addItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL, "简易营养餐");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING, "W-Cu覆膜金刚石机械方块");
         provider.addBlock(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK, "充能光伏方块");

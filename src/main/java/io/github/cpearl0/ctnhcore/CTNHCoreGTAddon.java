@@ -4,9 +4,7 @@ import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import io.github.cpearl0.ctnhcore.data.recipe.*;
-import io.github.cpearl0.ctnhcore.registry.CTNHElements;
-import io.github.cpearl0.ctnhcore.registry.CTNHRegistration;
-import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
+import io.github.cpearl0.ctnhcore.registry.*;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
@@ -36,6 +34,16 @@ public class CTNHCoreGTAddon implements IGTAddon {
     @Override
     public void registerElements() {
         CTNHElements.init();
+    }
+
+    @Override
+    public void registerOreVeins() {
+        CTNHOres.init();
+    }
+
+    @Override
+    public void registerWorldgenLayers() {
+        CTNHWorldgenLayers.init();
     }
 
     @Override

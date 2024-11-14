@@ -132,6 +132,57 @@ public class CTNHMaterials {
             .flags(GENERATE_FRAME)
             .cableProperties(GTValues.V[GTValues.MAX], 8192, 0, true)
             .buildAndRegister();
+    public static final Material PreciousAlloy = new Material.Builder(CTNHCore.id("precious_alloy"))
+            .ingot()
+            .ore()
+            .addOreByproducts(Silver)
+            .liquid()
+            .color(0xA4801F)
+            .iconSet(METALLIC)
+            .buildAndRegister()
+            .setFormula("Au?", true);
+    public static final Material Cryolite = new Material.Builder(CTNHCore.id("cryolite"))
+            .dust()
+            .ore()
+            .addOreByproducts(GTMaterials.Sodium, GTMaterials.BlueTopaz)
+            .color(0x8D8686)
+            .buildAndRegister()
+            .setFormula("Na3AlF6", true);
+
+    public static final Material Zircon = new Material.Builder(CTNHCore.id("zircon"))
+            .gem()
+            .ore()
+            .addOreByproducts(GTMaterials.SiliconDioxide, GTMaterials.Yttrium)
+            .color(0xEB9E3F)
+            .iconSet(GEM_VERTICAL)
+            .components(Zirconium,1, Silicon,1, Oxygen,4)
+            .buildAndRegister();
+    public static final Material Zirkelite = new Material.Builder(CTNHCore.id("zirkelite"))
+            .dust()
+            .ore()
+            .addOreByproducts(Thorium)
+            .color(0x525e50)
+            .components(Calcium,2, Thorium,2, Cerium,1, Zirconium,7, Rutile,2, Niobium,4, Oxygen,10)
+            .buildAndRegister();
+    public static final Material Nickeline = new Material.Builder(CTNHCore.id("nickeline"))
+            .dust()
+            .ore()
+            .addOreByproducts(GTMaterials.ArsenicTrioxide)
+            .color(0xe8a3a3)
+            .components(Nickel,1, Arsenic,1)
+            .buildAndRegister();
+    public static final Material TrisodiumPhosphate = new Material.Builder(CTNHCore.id("trisodium_phosphate"))
+            .dust()
+            .color(0xdbff67)
+            .ore()
+            .addOreByproducts(GTMaterials.Phosphate, GTMaterials.Salt)
+            .components(Sodium,3, Phosphate,1)
+            .buildAndRegister();
+    public static final Material Alumina = new Material.Builder(CTNHCore.id("alumina"))
+            .dust()
+            .color(0x09474A)
+            .ore()
+            .buildAndRegister();
     public static void init() {
         TagPrefix.block.setIgnored(Holystone, AetherBlocks.HOLYSTONE);
 
