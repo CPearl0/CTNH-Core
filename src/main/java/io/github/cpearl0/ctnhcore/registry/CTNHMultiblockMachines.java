@@ -443,7 +443,8 @@ public class CTNHMultiblockMachines {
         )
             .tooltips(
             Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UEV]),
-                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1",GTValues.V[GTValues.UEV] * 8))
+                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1",GTValues.V[GTValues.UEV] * 8),
+                    Component.translatable("gtceu.multiblock.laser.tooltip"))
             .workableCasingRenderer(CTNHCore.id("block/casings/nq_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
                             .register();
 
@@ -485,7 +486,9 @@ public class CTNHMultiblockMachines {
         )
             .tooltips(
             Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UIV]),
-                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2",GTValues.V[GTValues.UIV] * 16))
+                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2",GTValues.V[GTValues.UIV] * 16),
+                    Component.translatable("gtceu.multiblock.laser.tooltip"))
+
             .workableCasingRenderer(CTNHCore.id("block/casings/nq_alloy_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .register();
 
@@ -568,9 +571,9 @@ public class CTNHMultiblockMachines {
                                 .where('F', Predicates.blocks(CTNHFusionCasingType.getFrameState(tier)))
                                 .where('H', Predicates.blocks(CTNHFusionCasingType.getCompressedCoilState(tier)))
                                 .where('E', casing.or(Predicates.abilities(PartAbility.INPUT_ENERGY)).or(Predicates.abilities(PartAbility.INPUT_LASER).setPreviewCount(16)))
-                                .where('#', Predicates.air())
+                                .where('#', Predicates.any())
                                 .where(' ', Predicates.any())
-                                .build();
+                                .build();//结构相关代码取自GTL
                     })
                     .workableCasingRenderer(CTNHFusionCasingType.getCasingType(tier).getTexture(), GTCEu.id("block/multiblock/fusion_reactor"))
                     .register(),
