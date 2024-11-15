@@ -128,7 +128,7 @@ public class CTNHMaterials {
             .ingot()
             .radioactiveHazard(20)
             .blastTemp(32000, HIGHEST)
-            .element(CTNHElements.INFINITY)
+            .element(CTNHElements.MY_INFINITY)
             .iconSet(METALLIC)
             .flags(GENERATE_FRAME)
             .cableProperties(GTValues.V[GTValues.MAX], 8192, 0, true)
