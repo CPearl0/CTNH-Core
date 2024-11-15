@@ -102,6 +102,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK, "充能光伏方块");
         provider.addBlock(CTNHBlocks.PULSATING_PHOTOVOLTAIC_BLOCK, "脉冲光伏方块");
         provider.addBlock(CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK, "振动光伏方块");
+        provider.addBlock(CTNHBlocks.PLASMA_COOLED_CORE,"等离子冷凝核心");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK,"铿铀强化硅岩铕机械方块");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK,"三钛强化中子素硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE,"等离子冷凝机械方块");
@@ -119,8 +120,8 @@ public class ChineseLangHandler {
         //provider.addBlock(CTNHBlocks.MODULE_CONNECTOR, "太空电梯模块连接器");
         //provider.addBlock(CTNHBlocks.SPACE_MODULE_BASE, "太空电梯模块基座");
         //provider.addBlock(CTNHBlocks.SPACE_POWER_CORE, "太空电梯动力核心");
-        //provider.addBlock(CTNHBlocks.CASING_SPACE_ELEVATOR_MECHANICAL, "太空电梯机械方块");
-        //provider.addBlock(CTNHBlocks.HIGH_STRENGTH_CONCRETE, "高强度钢筋混凝土");
+        provider.addBlock(CTNHBlocks.CASING_SPACE_ELEVATOR_MECHANICAL, "太空电梯机械方块");
+        provider.addBlock(CTNHBlocks.HIGH_STRENGTH_CONCRETE, "高强度钢筋混凝土");
         //provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_INTERNAL_SUPPORT, "太空电梯内部支撑柱");
         //provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_SUPPORT, "太空电梯外部支撑柱");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
@@ -134,6 +135,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.SLAUGHTER_HOUSE.getBlock(), "屠宰场");
         provider.add(CTNHMultiblockMachines.BIG_DAM.getBlock(), "三峡大坝");
         provider.add(CTNHMultiblockMachines.COKE_OVEN.getBlock(), "焦化塔");
+        provider.add(CTNHMultiblockMachines.PLASMA_CONDENSER.getBlock(),"等离子冷凝器");
         provider.add(CTNHMultiblockMachines.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK1.getBlock(),"超能反应堆 MKI");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK2.getBlock(),"超能反应堆 MKII");

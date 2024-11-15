@@ -107,12 +107,6 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
 
-    public static final GTRecipeType SPACE_ELEVATOR_RECIPES = GTRecipeTypes.register("space_elevator", MULTIBLOCK)
-            .setEUIO(IO.IN)
-            .setMaxIOSize(1, 0, 0, 0)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
-            .setXEIVisible(false);
-
     public static void init() {
 
     }

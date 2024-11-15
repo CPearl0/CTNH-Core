@@ -61,12 +61,14 @@ public class CTNHBlocks {
             CTNHCore.id("block/advanced_hyper_casing"));
     public static final BlockEntry<Block> CASING_HYPER = createCasingBlock("hyper_casing",
             CTNHCore.id("block/hyper_casing"));
+    public static final BlockEntry<Block> PLASMA_COOLED_CORE = createCasingBlock("plasma_cooled_core",
+            CTNHCore.id("block/plasma_cooled_core"));
     //public static final BlockEntry<Block> MODULE_CONNECTOR = createCasingBlock(
             //"module_connector", CTNHCore.id("block/module_connector"));
-    //public static final BlockEntry<Block> CASING_SPACE_ELEVATOR_MECHANICAL_CASING = createCasingBlock(
-            //"space_elevator_mechanical_casing", CTNHCore.id("block/space_elevator_mechanical_casing"));
-    //public static final BlockEntry<Block> HIGH_STRENGTH_CONCRETE = createCasingBlock(
-            //"high_strength_concrete", CTNHCore.id("block/casings/module_base/side"));
+    public static final BlockEntry<Block> CASING_SPACE_ELEVATOR_MECHANICAL = createCasingBlock(
+            "space_elevator_mechanical_casing", CTNHCore.id("block/space_elevator_mechanical_casing"));
+    public static final BlockEntry<Block> HIGH_STRENGTH_CONCRETE = createCasingBlock(
+            "high_strength_concrete", CTNHCore.id("block/casings/module_base/side"));
 
     //public static final BlockEntry<Block> SPACE_ELEVATOR_INTERNAL_SUPPORT = createSidedCasingBlock(
             //"space_elevator_internal_support", CTNHCore.id("block/casings/space_elevator_internal_support"));
