@@ -124,11 +124,11 @@ public class CTNHMaterials {
             .flags(GENERATE_FINE_WIRE)
             .cableProperties(GTValues.V[GTValues.OpV], 4, 256)
             .buildAndRegister();
-    public static final Material Infinityy = new Material.Builder(GTCEu.id("infinityy"))
+    public static final Material Infinity = new Material.Builder(GTCEu.id("infinity"))
             .ingot()
             .radioactiveHazard(20)
             .blastTemp(32000, HIGHEST)
-            .element(CTNHElements.INFINITYY)
+            .element(CTNHElements.INFINITY)
             .iconSet(METALLIC)
             .flags(GENERATE_FRAME)
             .cableProperties(GTValues.V[GTValues.MAX], 8192, 0, true)
