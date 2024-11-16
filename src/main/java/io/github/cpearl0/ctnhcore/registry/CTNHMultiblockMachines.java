@@ -33,6 +33,7 @@ import io.github.cpearl0.ctnhcore.common.block.CTNHFusionCasingType;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.profiling.metrics.profiling.InactiveMetricsRecorder;
@@ -584,17 +585,25 @@ public class CTNHMultiblockMachines {
                     GTRecipeTypes.MACERATOR_RECIPES,GTRecipeTypes.MIXER_RECIPES,GTRecipeTypes.EXTRACTOR_RECIPES,
                     GTRecipeTypes.WIREMILL_RECIPES,GTRecipeTypes.LASER_ENGRAVER_RECIPES,GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES)
             .recipeModifiers(FactoryMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.1").withStyle(ChatFormatting.GRAY))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.2"))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.3"))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.4"))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.5"))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.6"))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.7"))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.8"))
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("aaaaa", "aaaaa", "aaaaa", "aaaaa")
-                    .aisle("ccccc", "c b c", "e   e", "ccccc").setRepeatable(3,16)
+                    .aisle("ccccc", "a b a", "e   e", "ccccc").setRepeatable(3,16)
                     .aisle("aaaaa", "aadaa", "aaaaa", "aaaaa")
                     .where("a", Predicates.blocks(CASING_STEEL_SOLID.get())
                             .setMinGlobalLimited(120)
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
                     .where("b", Predicates.blocks(AllBlocks.ANDESITE_CASING.get()))
-                    .where("c", Predicates.blocks(CTNHBlocks.CASING_HYPER.get()))
+                    .where("c", Predicates.blocks(CASING_STEEL_SOLID.get()))
                     .where("d", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("e", Predicates.blocks(Blocks.IRON_BARS))
                     .where(" ", Predicates.any())

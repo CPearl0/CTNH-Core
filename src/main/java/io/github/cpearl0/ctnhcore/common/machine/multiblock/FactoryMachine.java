@@ -146,7 +146,9 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
                 var entities = level.getEntities(null,area);
                 VILLAGER_COUNT = (int) entities.stream().filter(entity -> entity instanceof Villager).count();
             }
-            MachineUtils.inputItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL.asStack(VILLAGER_COUNT),this);
+            if (getOffsetTimer() % 100 == 0) {
+                MachineUtils.inputItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL.asStack(VILLAGER_COUNT), this);
+            }
         }
         return super.onWorking();
     }

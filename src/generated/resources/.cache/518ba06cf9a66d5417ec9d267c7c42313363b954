@@ -1,4 +1,4 @@
-// 1.20.1	2024-11-16T18:05:27.3800921	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn)]
+// 1.20.1	2024-11-16T21:29:27.9127561	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
 8cbfdc96434837058b4a258a0e30cadcd9acd5b9 assets/ctnhcore/blockstates/annihilate_core_mki.json
@@ -24,9 +24,9 @@ d9fd5e8cca6e78f3afabb5a9ea4a807d41e2dfc0 assets/ctnhcore/blockstates/space_eleva
 884b52e7b0398e5bac55bff93d6b78ea8ff3d5ce assets/ctnhcore/blockstates/titansteel_coil_block.json
 8733499f9e7058f250b2932b33516e7299e1574c assets/ctnhcore/blockstates/tungstencu_diamond_plating_casing.json
 f37e897ef97cb6a5e0cd1aa2213c2e60d6aa3841 assets/ctnhcore/blockstates/vibrant_photovoltaic_block.json
-26b7381f9dc8ae5aa64165dfea1dabd6643ee4a4 assets/ctnhcore/lang/en_ud.json
-79d57336a47f8c5dd9214e14d1e5432f651697cc assets/ctnhcore/lang/en_us.json
-2443a46385fcffff79a065deb752d917639443ae assets/ctnhcore/lang/zh_cn.json
+6ba863c764d191c87d88e67b6a333cafaa590677 assets/ctnhcore/lang/en_ud.json
+ff41ba901019aa16aaa76cb5b084512de64f6bb8 assets/ctnhcore/lang/en_us.json
+054ce09e7bbb65a5fa60cf1cd0e0efe5a4cacae3 assets/ctnhcore/lang/zh_cn.json
 df65321a1742a74b662d28389e11b0a2406960b1 assets/ctnhcore/models/block/abyssalalloy_coil_block.json
 13db5d9c835eeecee9dc13bee7a130e73a4bc89e assets/ctnhcore/models/block/abyssalalloy_coil_block_active.json
 f71f923fa116eb739a092989b758041fda8ca55f assets/ctnhcore/models/block/advanced_hyper_casing.json
