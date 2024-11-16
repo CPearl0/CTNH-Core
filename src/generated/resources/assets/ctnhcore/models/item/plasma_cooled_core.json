@@ -1,3 +1,3 @@
 {
-  "parent": "ctnhcore:block/plasma_cooled_core"
+  "parent": "ctnhcore:block/flux/plasma_cooled_core"
 }

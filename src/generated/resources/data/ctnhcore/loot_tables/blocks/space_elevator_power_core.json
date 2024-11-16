@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ctnhcore:annihilate_core1"
+          "name": "ctnhcore:space_elevator_power_core"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "ctnhcore:blocks/annihilate_core1"
+  "random_sequence": "ctnhcore:blocks/space_elevator_power_core"
 }

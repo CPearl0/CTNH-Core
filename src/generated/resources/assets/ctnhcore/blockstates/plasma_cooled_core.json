@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
-      "model": "ctnhcore:block/plasma_cooled_core"
+    "active=false": {
+      "model": "ctnhcore:block/flux/plasma_cooled_core"
+    },
+    "active=true": {
+      "model": "ctnhcore:block/flux/plasma_cooled_core_active"
     }
   }
 }

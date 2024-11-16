@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ctnhcore:annihilate_core"
+          "name": "ctnhcore:annihilate_core_mkiii"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "ctnhcore:blocks/annihilate_core"
+  "random_sequence": "ctnhcore:blocks/annihilate_core_mkiii"
 }

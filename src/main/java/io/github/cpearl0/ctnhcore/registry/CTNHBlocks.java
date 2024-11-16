@@ -51,34 +51,30 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/nq_alloy_casing"));
     public static final BlockEntry<Block> CASING_ANTIFREEZE_HEATPROOF_MACHINE = createCasingBlock("antifreeze_heatproof_machine_casing",
             CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
-    public static final BlockEntry<Block> ANNIHILATE_CORE = createCasingBlock("annihilate_core",
-            CTNHCore.id("block/annihilate_core"));
-    public static final BlockEntry<Block> ANNIHILATE_CORE1 = createCasingBlock("annihilate_core1",
-            CTNHCore.id("block/annihilate_core1"));
-    public static final BlockEntry<Block> ANNIHILATE_CORE2 = createCasingBlock("annihilate_core2",
-            CTNHCore.id("block/annihilate_core2"));
     public static final BlockEntry<Block> CASING_ADVANCED_HYPER = createCasingBlock("advanced_hyper_casing",
             CTNHCore.id("block/advanced_hyper_casing"));
     public static final BlockEntry<Block> CASING_HYPER = createCasingBlock("hyper_casing",
             CTNHCore.id("block/hyper_casing"));
-    public static final BlockEntry<Block> PLASMA_COOLED_CORE = createCasingBlock("plasma_cooled_core",
-            CTNHCore.id("block/plasma_cooled_core"));
-    //public static final BlockEntry<Block> MODULE_CONNECTOR = createCasingBlock(
-            //"module_connector", CTNHCore.id("block/module_connector"));
     public static final BlockEntry<Block> CASING_SPACE_ELEVATOR_MECHANICAL = createCasingBlock(
             "space_elevator_mechanical_casing", CTNHCore.id("block/space_elevator_mechanical_casing"));
     public static final BlockEntry<Block> HIGH_STRENGTH_CONCRETE = createCasingBlock(
             "high_strength_concrete", CTNHCore.id("block/casings/module_base/side"));
 
-    //public static final BlockEntry<Block> SPACE_ELEVATOR_INTERNAL_SUPPORT = createSidedCasingBlock(
-            //"space_elevator_internal_support", CTNHCore.id("block/casings/space_elevator_internal_support"));
-    //public static final BlockEntry<Block> SPACE_MODULE_BASE = createSidedCasingBlock(
-            //"module_base", CTNHCore.id("block/casings/module_base"));
+    public static final BlockEntry<ActiveBlock> SPACE_ELEVATOR_POWER_CORE = createActiveCasing("space_elevator_power_core",
+            "block/flux/space_elevator_power_core");
+    public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKI = createActiveCasing("annihilate_core_mki",
+            "block/flux/annihilate_core_mk1");
+    public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKII = createActiveCasing("annihilate_core_mkii",
+            "block/flux/annihilate_core_mk2");
+    public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKIII = createActiveCasing("annihilate_core_mkiii",
+            "block/flux/annihilate_core_mk3");
+    public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKIV = createActiveCasing("annihilate_core_mkiv",
+            "block/flux/annihilate_core_mk4");
+    public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKV = createActiveCasing("annihilate_core_mkv",
+            "block/flux/annihilate_core_mk5");
+    public static final BlockEntry<ActiveBlock> PLASMA_COOLED_CORE = createActiveCasing("plasma_cooled_core",
+            "block/flux/plasma_cooled_core");
 
-    //public static final BlockEntry<ActiveBlock> SPACE_POWER_CORE = createActiveCasing("space_elevator_power_core",
-            //"block/space_elevator_power_core");
-    //public static final BlockEntry<ActiveBlock> SPACE_ELEVATOR_SUPPORT = createActiveCasing("space_elevator_support",
-            //"block/space_elevator_support");
     public static final BlockEntry<CoilBlock> COIL_ABYSALALLOY = createCoilBlock(CoilType.ABYSSALALLOY);
     public static final BlockEntry<CoilBlock> COIL_TITANSTEEL = createCoilBlock(CoilType.TITANSTEEL);
     public static final BlockEntry<CoilBlock> COIL_PIKYONIUM = createCoilBlock(CoilType.PIKYONIUM);
@@ -126,5 +122,19 @@ public class CTNHBlocks {
         GTCEuAPI.HEATING_COILS.put(coilType, coilBlock);
         return coilBlock;
     }
+
+    @SuppressWarnings("all")
+    public static BlockEntry<ActiveBlock> createActiveCasing(String name, String baseModelPath) {
+        return REGISTRATE.block(name, ActiveBlock::new)
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(GTModels.createActiveModel(CTNHCore.id(baseModelPath)))
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new)
+                .model((ctx, prov) -> prov.withExistingParent(prov.name(ctx), CTNHCore.id(baseModelPath)))
+                .build()
+                .register();
+    }//来自GTleisure
+
 
 }

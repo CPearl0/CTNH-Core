@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "ctnhcore:block/flux/annihilate_core_mk1"
+    },
+    "active=true": {
+      "model": "ctnhcore:block/flux/annihilate_core_mk1_active"
+    }
+  }
+}
