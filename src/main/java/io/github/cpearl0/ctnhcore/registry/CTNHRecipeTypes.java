@@ -105,7 +105,7 @@ public class CTNHRecipeTypes {
             .setEUIO(IO.IN)
             .setMaxIOSize(2, 2, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
 
     public static void init() {
