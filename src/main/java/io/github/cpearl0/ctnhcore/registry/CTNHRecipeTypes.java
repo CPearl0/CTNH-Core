@@ -101,7 +101,7 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
 
-    public static final GTRecipeType PLASMA_CONDENSER_RECIPES = GTRecipeTypes.register("plasma_condenser", MULTIBLOCK)
+    public static final GTRecipeType PLASMA_CONDENSER_RECIPES = GTRecipeTypes.register("plasma_condenser", GTRecipeTypes.ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(2, 2, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
