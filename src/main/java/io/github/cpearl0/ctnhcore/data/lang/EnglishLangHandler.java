@@ -57,6 +57,8 @@ public class EnglishLangHandler {
         provider.add("ctnh.test_terminal.lack_error","At %s, you need");
         provider.add("ctnh.test_terminal.wrong_error","At %s, it should be");
         provider.add("ctnh.test_terminal.position","(%s,%s,%s)");
+        provider.add("ctnh.test_terminal.error_info","(%s)");
+        provider.add("ctnh.test_terminal.success","Everything is OK！");
         provider.add("ctnh.testing_terminal.tooltip.1","Use to check the error when building the multiblock");
         provider.add("ctnh.testing_terminal.tooltip.2","Right-click the controller to show the error info");
         provider.add("ctnh.sweat_shop.tooltips.1", "Means of Production and Surplus Value");

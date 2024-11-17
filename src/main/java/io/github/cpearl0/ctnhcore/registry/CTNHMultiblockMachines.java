@@ -599,7 +599,6 @@ public class CTNHMultiblockMachines {
                     .aisle("ccccc", "a b a", "e   e", "ccccc").setRepeatable(3,16)
                     .aisle("aaaaa", "aadaa", "aaaaa", "aaaaa")
                     .where("a", Predicates.blocks(CASING_STEEL_SOLID.get())
-                            .setMinGlobalLimited(120)
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
                     .where("b", Predicates.blocks(AllBlocks.ANDESITE_CASING.get()))
