@@ -15,12 +15,10 @@ public class GTMaterialAddon {
         Naquadria.addFlags(GENERATE_FRAME);
         NaquadahEnriched.addFlags(GENERATE_FRAME);
         Naquadah.addFlags(GENERATE_FRAME);
-        //resetAluminium(Emerald,Beryllium);
+//        resetAluminium(Emerald,Beryllium);
     }
     public static void resetAluminium(Material material, Material byproduct1) {
         var oreproperty = material.getProperty(PropertyKey.ORE);
-        material.setProperty(PropertyKey.ORE, new OreProperty(oreproperty.getOreMultiplier(),
-                                oreproperty.getByProductMultiplier()));
-        material.getProperty(PropertyKey.ORE).setOreByProducts(byproduct1,Alumina);
+        oreproperty.setOreByProducts(byproduct1,Alumina);
     }
 }

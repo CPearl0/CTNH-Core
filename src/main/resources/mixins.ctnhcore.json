@@ -11,6 +11,7 @@
     "TagLoaderMixin",
     "appeng.CraftingCpuLogicMixin",
     "gtceu.GTCreateMachinesMixin",
+    "gtceu.GTMaterialMixin",
     "gtceu.GTUtilMixin",
     "gtceu.WorkableElectricMultiblockMachineMixin"
   ],
