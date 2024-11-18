@@ -184,6 +184,10 @@ public class CTNHMaterials {
             .color(0x09474A)
             .ore()
             .buildAndRegister();
+    public static final Material ImpureOil = new Material.Builder(GTCEu.id("impure_oil"))
+            .liquid()
+            .color(0x171717)
+            .buildAndRegister();
     public static void init() {
         TagPrefix.block.setIgnored(Holystone, AetherBlocks.HOLYSTONE);
 

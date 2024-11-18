@@ -66,7 +66,7 @@ public class EnglishLangHandler {
         provider.add("ctnh.sweat_shop.tooltips.3", "The effective number of workers in the factory is limited by the factory size. Initial limit: 4 workers; for every 4 blocks added to the factory length, the limit increases by 1.");
         provider.add("ctnh.sweat_shop.tooltips.4", "The production materials (machines) placed determine the available recipes:\nPowered Rolling Machine ---- Rolling Mill Recipes\nPowered Mixer ---- Mixer Recipes\nLathe ---- Lathe Recipes\nCentrifuge ---- Extractor Recipes\nBlaze Burner ---- Extractor Recipes\nWork Basin ---- Fluid Forming Recipes\nCrushing Wheel ---- Grinder Recipes\nPowered Saw ---- Wire Rolling Machine Recipes\nLaser Processor ---- Laser Etching Recipes");
         provider.add("ctnh.sweat_shop.tooltips.5", "The number of production materials (machines) placed determines the parallelism of corresponding recipes: Parallelism = sqrt(number of machines)");
-        provider.add("ctnh.sweat_shop.tooltips.6", "Adding robotic arms improves the overall recipe execution speed. Recipe time x sqrt(number of robotic arms)");
+        provider.add("ctnh.sweat_shop.tooltips.6", "Adding robotic arms improves the overall recipe execution speed. Recipe time x (1 / 1 + sqrt(number of robotic arms))");
         provider.add("ctnh.sweat_shop.tooltips.7", "The diversity of machines placed improves recipe execution speed.");
         provider.add("ctnh.sweat_shop.tooltips.8", "Every 5 seconds, machines consume (number of workers) servings of simple worker meals.");
 

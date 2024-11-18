@@ -12,22 +12,22 @@ import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
 import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import com.gregtechceu.gtceu.common.machine.multiblock.part.EnergyHatchPartMachine;
 import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.misc.ItemStackTransfer;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+import com.simibubi.create.AllBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.npc.Villager;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +45,8 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
     public int SAW_COUNT = 0;
     public int TOTAL_COUNT = 0;
     public int VILLAGER_COUNT = 0;
+    public double basicRate = 1;
+    public int SLOT_COUNT = 10;
 
     public int length = 0;
     @Persisted
@@ -56,11 +58,10 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
     public FactoryMachine(IMachineBlockEntity holder) {
         super(holder);
         this.machineStorage = createMachineStorage((byte) 64);
-        this.length = getDefinition().getPatternFactory().get().getFormedRepetitionCount().length;
     }
     protected NotifiableItemStackHandler createMachineStorage(byte value) {
         return new NotifiableItemStackHandler(
-                this, 9, IO.NONE, IO.BOTH, slots -> new ItemStackTransfer(9) {
+            this, SLOT_COUNT, IO.NONE, IO.BOTH, slots -> new ItemStackTransfer(SLOT_COUNT) {
             @Override
             public int getSlotLimit(int slot) {
                 return value;
@@ -76,6 +77,22 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
     }
 
     @Override
+    public void onStructureFormed() {
+        int len = 1;
+        while(true) {
+            var pos = MachineUtils.getOffset(this,len);
+            if(getLevel().getBlockState(pos).getBlock().equals(AllBlocks.ANDESITE_CASING.get())){
+                len ++;
+            }
+            else {
+                break;
+            }
+        }
+        length = len;
+        super.onStructureFormed();
+    }
+
+    @Override
     public void onDrops(List<ItemStack> drops) {
         clearInventory(machineStorage.storage);
     }
@@ -84,13 +101,23 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
         var widget = super.createUIWidget();
         if (widget instanceof WidgetGroup group) {
             var size = group.getSize();
-            for(int i = 0; i < 9 ;i++){
+            for(int i = 0; i < SLOT_COUNT/2 ;i++){
                 group.addWidget(
                         new SlotWidget(machineStorage.storage, i, size.width - 30 - 18*i, size.height - 30, true, true)
                                 .setBackground(GuiTextures.SLOT));
             }
+            for(int i = 0; i < SLOT_COUNT/2; i++){
+                group.addWidget(
+                        new SlotWidget(machineStorage.storage, i + 5, size.width - 30 - 18*i, size.height - 48, true, true)
+                                .setBackground(GuiTextures.SLOT));
+            }
         }
         return widget;
+    }
+
+    @Override
+    public boolean keepSubscribing() {
+        return true;
     }
 
     public List<ItemStack> getMachineStorageItem() {
@@ -127,27 +154,50 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
                 case "mechanical_saw" -> SAW_COUNT = SAW_COUNT + itemStack.getCount();
             }
         }
+        TOTAL_COUNT = CENTRIFUGE_COUNT + CRUSHING_COUNT + LASER_COUNT + LATHE_COUNT + DEPLOYER_COUNT + BURNER_COUNT + PRESSOR_COUNT + MIXER_COUNT + BASIN_COUNT + SAW_COUNT;
     }
+    @Override
+    public boolean beforeWorking(@Nullable GTRecipe recipe) {
+        updateVillagerCount();
+        updateBasicRate();
+        if (VILLAGER_COUNT == 0) {
+            return false;
+        }
+        else {
+            if (getRecipeType().equals(GTRecipeTypes.CENTRIFUGE_RECIPES) && CENTRIFUGE_COUNT == 0) {
+                return false;
+            } else if (getRecipeType().equals(GTRecipeTypes.LATHE_RECIPES) && LATHE_COUNT == 0) {
+                return false;
+            } else if (getRecipeType().equals(GTRecipeTypes.MACERATOR_RECIPES) && CRUSHING_COUNT == 0) {
+                return false;
+            } else if (getRecipeType().equals(GTRecipeTypes.EXTRACTOR_RECIPES) && BURNER_COUNT == 0) {
+                return false;
+            } else if (getRecipeType().equals(GTRecipeTypes.BENDER_RECIPES) && PRESSOR_COUNT == 0) {
+                return false;
+            } else if (getRecipeType().equals(GTRecipeTypes.MIXER_RECIPES) && MIXER_COUNT == 0) {
+                return false;
+            } else if (getRecipeType().equals(GTRecipeTypes.WIREMILL_RECIPES) && SAW_COUNT == 0) {
+                return false;
+            } else if (getRecipeType().equals(GTRecipeTypes.LASER_ENGRAVER_RECIPES) && LASER_COUNT == 0) {
+                return false;
+            } else if (getRecipeType().equals(GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES) && BASIN_COUNT == 0) {
+                return false;
+            }
+        }
+        if (!MachineUtils.canInputItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL.asStack(VILLAGER_COUNT), this)) {
+            return false;
+        }
+        return super.beforeWorking(recipe);
+    }
+
     @Override
     public boolean onWorking() {
         if (getOffsetTimer() % 20 == 0){
-            var level = getLevel();
-            var pos = getPos();
-            var facing = getFrontFacing();
-            AABB area;
-            switch (facing){
-                case NORTH -> area = AABB.of(BoundingBox.fromCorners(pos.offset(-2,-1,0),pos.offset(2,2,length + 2)));
-                case SOUTH -> area = AABB.of(BoundingBox.fromCorners(pos.offset(-2,-1,0),pos.offset(2,2,-length - 2)));
-                case EAST -> area = AABB.of(BoundingBox.fromCorners(pos.offset(0,-1,-2),pos.offset(-length - 2,2,2)));
-                case WEST -> area = AABB.of(BoundingBox.fromCorners(pos.offset(0,-1,-2),pos.offset(length + 2,2,2)));
-                default -> throw new IllegalStateException("Unexpected value: ");
-            }
-            if (level != null) {
-                var entities = level.getEntities(null,area);
-                VILLAGER_COUNT = (int) entities.stream().filter(entity -> entity instanceof Villager).count();
-            }
+            updateVillagerCount();
             if (getOffsetTimer() % 100 == 0) {
-                MachineUtils.inputItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL.asStack(VILLAGER_COUNT), this);
+                if(!MachineUtils.inputItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL.asStack(VILLAGER_COUNT), this)){
+                    recipeLogic.setProgress(0);
+                }
             }
         }
         return super.onWorking();
@@ -157,11 +207,10 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
         if (machine instanceof FactoryMachine fmachine) {
             var newrecipe = recipe.copy();
             var recipeType = fmachine.getRecipeType();
-        var basicRate = Math.min(fmachine.VILLAGER_COUNT,(fmachine.length - 2)/4 + 4) * calculateDiversity(fmachine) * Math.sqrt(fmachine.DEPLOYER_COUNT);
-        if(basicRate == 0) {
+        if(fmachine.basicRate == 0) {
             return null;
         }
-            newrecipe.duration = (int) (newrecipe.duration / basicRate);
+            newrecipe.duration = (int) (newrecipe.duration / fmachine.basicRate);
             if (recipeType.equals(GTRecipeTypes.CENTRIFUGE_RECIPES)) {
                 return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.CENTRIFUGE_COUNT), false).getFirst();
             } else if (recipeType.equals(GTRecipeTypes.LATHE_RECIPES)) {
@@ -186,21 +235,52 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
         return recipe;
     }
 
-    public static double calculateDiversity(FactoryMachine machine) {
-        double diversity = 1.5 - Math.pow((double) machine.CRUSHING_COUNT / machine.TOTAL_COUNT,2)
-                             - Math.pow((double) machine.MIXER_COUNT / machine.TOTAL_COUNT,2)
-                             - Math.pow((double) machine.LATHE_COUNT / machine.TOTAL_COUNT,2)
-                             - Math.pow((double) machine.BURNER_COUNT / machine.TOTAL_COUNT,2)
-                             - Math.pow((double) machine.PRESSOR_COUNT / machine.TOTAL_COUNT,2)
-                             - Math.pow((double) machine.MIXER_COUNT / machine.TOTAL_COUNT,2)
-                             - Math.pow((double) machine.DEPLOYER_COUNT / machine.TOTAL_COUNT,2)
-                             - Math.pow((double) machine.LASER_COUNT / machine.TOTAL_COUNT,2)
-                             - Math.pow((double) machine.BASIN_COUNT / machine.TOTAL_COUNT,2)
-                             - Math.pow((double) machine.SAW_COUNT / machine.TOTAL_COUNT,2);
+    public double calculateDiversity() {
+        double diversity = 1.5 - Math.pow((double) CRUSHING_COUNT / TOTAL_COUNT,2)
+                             - Math.pow((double) MIXER_COUNT / TOTAL_COUNT,2)
+                             - Math.pow((double) LATHE_COUNT / TOTAL_COUNT,2)
+                             - Math.pow((double) BURNER_COUNT / TOTAL_COUNT,2)
+                             - Math.pow((double) PRESSOR_COUNT / TOTAL_COUNT,2)
+                             - Math.pow((double) MIXER_COUNT / TOTAL_COUNT,2)
+                             - Math.pow((double) DEPLOYER_COUNT / TOTAL_COUNT,2)
+                             - Math.pow((double) LASER_COUNT / TOTAL_COUNT,2)
+                             - Math.pow((double) BASIN_COUNT / TOTAL_COUNT,2)
+                             - Math.pow((double) SAW_COUNT / TOTAL_COUNT,2);
         return diversity;
+    }
+
+    public void updateVillagerCount() {
+        var level = getLevel();
+        var pos = getPos();
+        var facing = getFrontFacing();
+        AABB area;
+        switch (facing){
+            case NORTH -> area = AABB.of(BoundingBox.fromCorners(pos.offset(-2,-1,0),pos.offset(2,2,length + 2)));
+            case SOUTH -> area = AABB.of(BoundingBox.fromCorners(pos.offset(-2,-1,0),pos.offset(2,2,-length - 2)));
+            case EAST -> area = AABB.of(BoundingBox.fromCorners(pos.offset(0,-1,-2),pos.offset(-length - 2,2,2)));
+            case WEST -> area = AABB.of(BoundingBox.fromCorners(pos.offset(0,-1,-2),pos.offset(length + 2,2,2)));
+            default -> throw new IllegalStateException("Unexpected value: ");
+        }
+        if (level != null) {
+            var entities = level.getEntities(null,area);
+            VILLAGER_COUNT = (int) entities.stream().filter(entity -> entity instanceof Villager).count();
+        }
+    }
+    public void updateBasicRate() {
+        updateMachineCount(getMachineStorageItem());
+        basicRate = Math.min(VILLAGER_COUNT,(length - 2)/4 + 4) * calculateDiversity() * (1 + Math.sqrt(DEPLOYER_COUNT) / 4);
     }
     @Override
     public ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;
+    }
+
+    @Override
+    public void addDisplayText(List<Component> textList) {
+        updateVillagerCount();
+        updateBasicRate();
+        super.addDisplayText(textList);
+        textList.add(Component.translatable("ctnh.multiblock.sweat_shop.villager_count",VILLAGER_COUNT));
+        textList.add(Component.translatable("ctnh.multiblock.sweat_shop.basic_rate",String.format("%.1f",basicRate)));
     }
 }

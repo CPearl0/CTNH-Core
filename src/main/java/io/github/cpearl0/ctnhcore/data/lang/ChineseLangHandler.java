@@ -85,9 +85,11 @@ public class ChineseLangHandler {
         provider.add("ctnh.sweat_shop.tooltips.3","工厂内的有效员工数量受限于工厂大小，初始上限为4，工厂长度每增加4格上限+1");
         provider.add("ctnh.sweat_shop.tooltips.4","放入的生产资料(机器)决定了可以工作的配方：\n动力辊压机----卷板机配方\n动力搅拌机----搅拌机配方\n车床----车床配方\n离心机----离心机配方\n烈焰人燃烧室----提取机配方\n工作盆----流体成型配方\n粉碎轮----研磨机配方\n动力锯----线材轧机配方\n激光加工器----激光蚀刻配方\n==============================");
         provider.add("ctnh.sweat_shop.tooltips.5","放入的生产资料(机器)数量决定了对应工作配方的并行数：并行数 = sqrt(机器数)");
-        provider.add("ctnh.sweat_shop.tooltips.6","放入机械手可以提高整体配方运行速度，配方耗时x sqrt(机械手数)");
+        provider.add("ctnh.sweat_shop.tooltips.6","放入机械手可以提高整体配方运行速度，配方耗时x (1/1 + sqrt(机械手数))");
         provider.add("ctnh.sweat_shop.tooltips.7","放入机器的多样性会提高配方运行速度");
         provider.add("ctnh.sweat_shop.tooltips.8","每5秒机器会消耗(员工数量)份简易员工餐");
+        provider.add("ctnh.multiblock.sweat_shop.villager_count","员工数量：%s");
+        provider.add("ctnh.multiblock.sweat_shop.basic_rate","基础效率：x%s");
 
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");
