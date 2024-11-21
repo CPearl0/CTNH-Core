@@ -195,7 +195,7 @@ dependencies {
     implementation fg.deobf("curse.maven:ftb-library-forge-404465:5567591")
     implementation fg.deobf("curse.maven:ftb-ultimine-forge-386134:5363345")
 
-    implementation fg.deobf("curse.maven:gt-985872:5900164")
+    implementation fg.deobf("curse.maven:gt-985872:5908977")
 
     implementation fg.deobf("curse.maven:patchouli-306770:4966125")
     implementation fg.deobf("curse.maven:botania-225643:5594997")
@@ -216,10 +216,6 @@ dependencies {
     // Curios
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
-
-    implementation fg.deobf("curse.maven:createutilities-881586:5225304")
-
-    //runtimeOnly files("C:\\Users\\Administrator\\Downloads\\[Forge][1.12.2 - 1.20.1]网络检测.jar")
 
     // Blood Magic
     implementation fg.deobf("maven.modrinth:blood-magic:${bloodmagic_version}")

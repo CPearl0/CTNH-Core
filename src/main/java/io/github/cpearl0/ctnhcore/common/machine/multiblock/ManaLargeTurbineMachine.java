@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IRotorHolderMachine;
@@ -25,7 +26,6 @@ import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
-import com.lowdragmc.lowdraglib.misc.ItemStackTransfer;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
@@ -38,7 +38,7 @@ import vazkii.botania.common.item.BotaniaItems;
 
 import java.util.List;
 
-public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine implements ITieredMachine,IMachineModifyDrops {
+public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine implements ITieredMachine, IMachineModifyDrops {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             ManaLargeTurbineMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public static final int MIN_DURABILITY_TO_WARN = 10;
