@@ -166,10 +166,10 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         Sacrifice_rune = 0;
         Runes.forEach(rune ->{
             var runeBlock = Objects.requireNonNull(getLevel()).getBlockState(rune).getBlock();
-            if (runeBlock.equals(BloodMagicBlocks.ACCELERATION_RUNE.get())) {
+            if (runeBlock.equals(BloodMagicBlocks.SPEED_RUNE.get())) {
                 Speed_rune ++;
             }
-            else if (runeBlock.equals(BloodMagicBlocks.ACCELERATION_RUNE_2.get())) {
+            else if (runeBlock.equals(BloodMagicBlocks.SPEED_RUNE_2.get())) {
                 Speed_rune += 2;
             }
             else if (runeBlock.equals(BloodMagicBlocks.AUGMENTED_CAPACITY_RUNE.get())) {
