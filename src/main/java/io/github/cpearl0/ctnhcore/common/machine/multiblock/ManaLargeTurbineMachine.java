@@ -42,7 +42,7 @@ import java.util.List;
 
 public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine implements ITieredMachine,IMachineModifyDrops {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            FactoryMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
+            ManaLargeTurbineMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public static final int MIN_DURABILITY_TO_WARN = 10;
     public final NotifiableItemStackHandler machineStorage;
     private final int BASE_EU_OUTPUT;

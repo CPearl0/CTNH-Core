@@ -108,6 +108,12 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
 
+    public static final GTRecipeType DEMON_WILL_GENERATOR_RECIPE = GTRecipeTypes.register("demon_will_generator", GTRecipeTypes.GENERATOR)
+            .setEUIO(IO.OUT)
+            .setMaxIOSize(1, 2, 1, 2)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_CRYSTALLIZATION, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
     public static void init() {
 
     }

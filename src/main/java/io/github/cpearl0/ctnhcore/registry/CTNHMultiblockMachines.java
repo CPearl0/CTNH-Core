@@ -580,7 +580,7 @@ public class CTNHMultiblockMachines {
                     .register(),
             GTValues.LuV, GTValues.ZPM, GTValues.UV);
     public final static MultiblockMachineDefinition SWEATSHOP = REGISTRATE.multiblock("sweat_shop", FactoryMachine::new)
-            .rotationState(RotationState.ALL)
+            .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.CENTRIFUGE_RECIPES,GTRecipeTypes.LATHE_RECIPES,GTRecipeTypes.BENDER_RECIPES,
                     GTRecipeTypes.MACERATOR_RECIPES,GTRecipeTypes.MIXER_RECIPES,GTRecipeTypes.EXTRACTOR_RECIPES,
                     GTRecipeTypes.WIREMILL_RECIPES,GTRecipeTypes.LASER_ENGRAVER_RECIPES,GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES)
@@ -644,6 +644,31 @@ public class CTNHMultiblockMachines {
                     GTCEu.id("block/multiblock/implosion_compressor"), false)
             .register();
 
+    public final static MultiblockMachineDefinition DEMON_WILL_GENERATOR = REGISTRATE.multiblock("demon_will_generator", DemonWillMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(CTNHRecipeTypes.DEMON_WILL_GENERATOR_RECIPE)
+            .recipeModifiers(DemonWillMachine::recipeModifier)
+            .tooltips(Component.translatable("ctnh.demon_will_generator.tooltips.1").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.demon_will_generator.tooltips.2"),
+                    Component.translatable("ctnh.demon_will_generator.tooltips.3"),
+                    Component.translatable("ctnh.demon_will_generator.tooltips.4"),
+                    Component.translatable("ctnh.demon_will_generator.tooltips.5"),
+                    Component.translatable("ctnh.demon_will_generator.tooltips.6"),
+                    Component.translatable("ctnh.demon_will_generator.tooltips.7"))
+            .appearanceBlock(CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("aaaaaaaaaaaaaaaaaaaaa")
+                    .aisle("ccccccccccccccccccccc")
+                    .aisle("aaaaaaaaaadaaaaaaaaaa")
+                    .where("a", Predicates.blocks(CASING_STEEL_SOLID.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .where("c", Predicates.blocks(CASING_STEEL_SOLID.get()))
+                    .where("d", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where(" ", Predicates.any())
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/vacuum_freezer"))
+            .register();
 
     public static void init() {
 

@@ -80,7 +80,7 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
     public void onStructureFormed() {
         int len = 1;
         while(true) {
-            var pos = MachineUtils.getOffset(this,len);
+            var pos = MachineUtils.getOffset(this,0,0,len);
             if(getLevel().getBlockState(pos).getBlock().equals(AllBlocks.ANDESITE_CASING.get())){
                 len ++;
             }

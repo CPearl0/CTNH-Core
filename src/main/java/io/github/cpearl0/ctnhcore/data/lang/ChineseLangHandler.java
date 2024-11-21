@@ -27,6 +27,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.slaughter_house", "屠宰场");
         provider.add("gtceu.big_dam", "三峡大坝");
         provider.add("gtceu.coke_oven", "焦化塔");
+        provider.add("gtceu.demon_will_generator", "恶魔意志发电");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -88,8 +89,23 @@ public class ChineseLangHandler {
         provider.add("ctnh.sweat_shop.tooltips.6","放入机械手可以提高整体配方运行速度，配方耗时x (1/1 + sqrt(机械手数))");
         provider.add("ctnh.sweat_shop.tooltips.7","放入机器的多样性会提高配方运行速度");
         provider.add("ctnh.sweat_shop.tooltips.8","每5秒机器会消耗(员工数量)份简易员工餐");
+        provider.add("ctnh.demon_will_generator.tooltips.1","借用恶魔之力");
+        provider.add("ctnh.demon_will_generator.tooltips.2","利用机器两侧的区块内的恶魔意志浓度差发电，浓度差与发电量呈指数关系");
+        provider.add("ctnh.demon_will_generator.tooltips.3","以机器两侧的恶魔合金方块处的意志浓度为基准进行计算");
+        provider.add("ctnh.demon_will_generator.tooltips.4","两侧区块中的各种恶魔意志的多样性会影响发电效率");
+        provider.add("ctnh.demon_will_generator.tooltips.5","机器内可以放入意志核心，将机器转化为对于某种意志专精的模式");
+        provider.add("ctnh.demon_will_generator.tooltips.6","机器内的符文方块可替换，从而起到不同的增益效果:\n§4献祭符文和牺牲符文----提高生命源质强化模式的发电倍率§r\n§3速度符文----提升一次配方运行的时长（节省恶魔意志消耗）§r\n§e增容符文----每一个符文增加1点恶魔意志浓度差§r\n§c超容符文----每一个符文增加百分之5的恶魔意志浓度差（叠乘）§r\n==============================");
+        provider.add("ctnh.demon_will_generator.tooltips.7","输入§4生命源质§r开启强化模式，发电量翻倍，每秒消耗§a100mb§r的生命源质");
         provider.add("ctnh.multiblock.sweat_shop.villager_count","员工数量：%s");
         provider.add("ctnh.multiblock.sweat_shop.basic_rate","基础效率：x%s");
+        provider.add("ctnh.multiblock.demon_generator.info.default","专精强化：无");
+        provider.add("ctnh.multiblock.demon_generator.info.vengeful","专精强化：复仇");
+        provider.add("ctnh.multiblock.demon_generator.info.corrosive","专精强化：腐蚀");
+        provider.add("ctnh.multiblock.demon_generator.info.steadfast","专精强化：坚韧");
+        provider.add("ctnh.multiblock.demon_generator.info.destructive","专精强化：破坏");
+        provider.add("ctnh.multiblock.demon_generator.info.1","浓度差异：%s");
+        provider.add("ctnh.multiblock.demon_generator.info.boosted","§b生命源质强化中");
+
 
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");
@@ -149,7 +165,8 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK1.getBlock(),"超能反应堆 MKI");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK2.getBlock(),"超能反应堆 MKII");
-        provider.add(CTNHMultiblockMachines.SWEATSHOP.getBlock(),"血汗工厂");
+        provider.add(CTNHMultiblockMachines.SWEATSHOP.getBlock(),"§4血汗工厂");
+        provider.add(CTNHMultiblockMachines.DEMON_WILL_GENERATOR.getBlock(),"§b恶魔意志发电机");
 
     }
 
