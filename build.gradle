@@ -154,6 +154,10 @@ repositories {
     maven {
         url = "https://maven.theillusivec4.top/"
     }
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+    }
 }
 
 dependencies {
@@ -216,6 +220,9 @@ dependencies {
     implementation fg.deobf("curse.maven:createutilities-881586:5225304")
 
     //runtimeOnly files("C:\\Users\\Administrator\\Downloads\\[Forge][1.12.2 - 1.20.1]网络检测.jar")
+
+    // Blood Magic
+    implementation fg.deobf("maven.modrinth:blood-magic:${bloodmagic_version}")
 }
 
 mixin {

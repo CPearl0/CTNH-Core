@@ -41,7 +41,7 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.COOLING);
 
     public static final GTRecipeType WIND_POWER_ARRAY = GTRecipeTypes.register("wind_power_array", GTRecipeTypes.ELECTRIC)
-            .setMaxIOSize(1, 0, 0, 0)
+            .setMaxIOSize(0, 0, 1, 0)
             .setEUIO(IO.OUT)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
@@ -101,18 +101,19 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
 
-    public static final GTRecipeType PLASMA_CONDENSER_RECIPES = GTRecipeTypes.register("plasma_condenser", MULTIBLOCK)
+    public static final GTRecipeType PLASMA_CONDENSER_RECIPES = GTRecipeTypes.register("plasma_condenser", GTRecipeTypes.ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(2, 2, 2, 2)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
 
-    public static final GTRecipeType SPACE_ELEVATOR_RECIPES = GTRecipeTypes.register("space_elevator", MULTIBLOCK)
-            .setEUIO(IO.IN)
-            .setMaxIOSize(1, 0, 0, 0)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
-            .setXEIVisible(false);
-
+    public static final GTRecipeType DEMON_WILL_GENERATOR_RECIPE = GTRecipeTypes.register("demon_will_generator", GTRecipeTypes.GENERATOR)
+            .setEUIO(IO.OUT)
+            .setMaxIOSize(1, 2, 1, 2)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_CRYSTALLIZATION, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
     public static void init() {
 
     }

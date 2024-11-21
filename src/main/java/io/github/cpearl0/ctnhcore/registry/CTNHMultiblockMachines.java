@@ -29,6 +29,7 @@ import io.github.cpearl0.ctnhcore.common.block.CTNHFusionCasingType;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -382,6 +383,8 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.BEDROCK_DRILLING_RIGS)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH)
+            .tooltips(Component.translatable("gtceu.multiblock.laser.tooltip"))
+            .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
             .appearanceBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#######","AAAAAAA", "A#####A", "A#####A", "A#####A", "A#####A", "A#####A", "AAAAAAA")
@@ -395,7 +398,8 @@ public class CTNHMultiblockMachines {
                     .where("#", Predicates.any())
                     .where("B", Predicates.frames(GTMaterials.TungstenCarbide))
                     .where("C", Predicates.blocks(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.INPUT_LASER).setPreviewCount(2)))
                     .where("D", Predicates.blocks(CASING_TUNGSTENSTEEL_PIPE.get()))
                     .where("E", Predicates.blocks(Blocks.BEDROCK))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
@@ -421,15 +425,17 @@ public class CTNHMultiblockMachines {
             .where("#", Predicates.any())
             .where("A", Predicates.blocks(CTNHBlocks.CASING_NAQUADAH_BLOCK.get())
                     .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                    .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                    .or(Predicates.abilities(PartAbility.OUTPUT_LASER).setPreviewCount(1)))
             .where("B", Predicates.blocks(FUSION_GLASS.get()))
-            .where("C", Predicates.blocks(CTNHBlocks.ANNIHILATE_CORE.get()))
+            .where("C", Predicates.blocks(CTNHBlocks.ANNIHILATE_CORE_MKI.get()))
             .where("@", Predicates.controller(Predicates.blocks(definition.get())))
             .build()
         )
             .tooltips(
             Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UEV]),
-                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1",GTValues.V[GTValues.UEV] * 8))
+                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1",GTValues.V[GTValues.UEV] * 8),
+                    Component.translatable("gtceu.multiblock.laser.tooltip"))
             .workableCasingRenderer(CTNHCore.id("block/casings/nq_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
                             .register();
 
@@ -458,19 +464,22 @@ public class CTNHMultiblockMachines {
             .where("#", Predicates.any())
             .where("A", Predicates.blocks(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK.get())
                     .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                    .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                    .or(Predicates.abilities(PartAbility.OUTPUT_LASER).setPreviewCount(1)))
             .where("B", Predicates.blocks(SUPERCONDUCTING_COIL.get()))
             .where("C", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block,GTMaterials.SamariumMagnetic).get()))
-            .where("D", Predicates.blocks(CTNHBlocks.ANNIHILATE_CORE.get()))
+            .where("D", Predicates.blocks(CTNHBlocks.ANNIHILATE_CORE_MKI.get()))
             .where("E", Predicates.blocks(CTNHBlocks.CASING_NAQUADAH_BLOCK.get()))
             .where("F", Predicates.blocks(FUSION_GLASS.get()))
-            .where("G", Predicates.blocks(CTNHBlocks.ANNIHILATE_CORE1.get()))
+            .where("G", Predicates.blocks(CTNHBlocks.ANNIHILATE_CORE_MKII.get()))
             .where("@", Predicates.controller(Predicates.blocks(definition.get())))
             .build()
         )
             .tooltips(
             Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UIV]),
-                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2",GTValues.V[GTValues.UIV] * 16))
+                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2",GTValues.V[GTValues.UIV] * 16),
+                    Component.translatable("gtceu.multiblock.laser.tooltip"))
+
             .workableCasingRenderer(CTNHCore.id("block/casings/nq_alloy_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .register();
 
@@ -553,39 +562,102 @@ public class CTNHMultiblockMachines {
                                 .where('F', Predicates.blocks(CTNHFusionCasingType.getFrameState(tier)))
                                 .where('H', Predicates.blocks(CTNHFusionCasingType.getCompressedCoilState(tier)))
                                 .where('E', casing.or(Predicates.abilities(PartAbility.INPUT_ENERGY)).or(Predicates.abilities(PartAbility.INPUT_LASER).setPreviewCount(16)))
-                                .where('#', Predicates.air())
+                                .where('#', Predicates.any())
                                 .where(' ', Predicates.any())
-                                .build();
+                                .build();//结构相关代码取自GTL
                     })
                     .workableCasingRenderer(CTNHFusionCasingType.getCasingType(tier).getTexture(), GTCEu.id("block/multiblock/fusion_reactor"))
                     .register(),
             GTValues.LuV, GTValues.ZPM, GTValues.UV);
     public final static MultiblockMachineDefinition SWEATSHOP = REGISTRATE.multiblock("sweat_shop", FactoryMachine::new)
-            .rotationState(RotationState.ALL)
-            .recipeType(CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES)
-            .tooltips(Component.translatable("gtceu.machine.perfect_oc"))
-            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
-                    Component.translatable("gtceu.plasma_condenser")))
-            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .appearanceBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(GTRecipeTypes.CENTRIFUGE_RECIPES,GTRecipeTypes.LATHE_RECIPES,GTRecipeTypes.BENDER_RECIPES,
+                    GTRecipeTypes.MACERATOR_RECIPES,GTRecipeTypes.MIXER_RECIPES,GTRecipeTypes.EXTRACTOR_RECIPES,
+                    GTRecipeTypes.WIREMILL_RECIPES,GTRecipeTypes.LASER_ENGRAVER_RECIPES,GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES)
+            .recipeModifiers(FactoryMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.1").withStyle(ChatFormatting.GRAY))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.2"))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.3"))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.4"))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.5"))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.6"))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.7"))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.8"))
+            .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("       ", "   a   ", "  aaa  ", "  aaa  ", "  aaa  ", "   a   ", "       ")
-                    .aisle("   a   ", "  aaa  ", " aaaaa ", " aabaa ", " aaaaa ", "  aaa  ", "   a   ")
-                    .aisle("  aaa  ", " aaaaa ", "aabbbaa", "aabcbaa", "aabbbaa", " aaaaa ", "  aaa  ")
-                    .aisle(" aaaaa ", "aaabaaa", "aabcbaa", "abcccba", "aabcbaa", "aaabaaa", " aaaaa ")
-                    .aisle("  aaa  ", " aaaaa ", "aabbbaa", "aabcbaa", "aabbbaa", " aaaaa ", "  aaa  ")
-                    .aisle("   a   ", "  aaa  ", " aaaaa ", " aabaa ", " aaaaa ", "  aaa  ", "   a   ")
-                    .aisle("       ", "   a   ", "  aaa  ", "  ada  ", "  aaa  ", "   a   ", "       ")
-                    .where("a", Predicates.blocks(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE.get())
-                            .setMinGlobalLimited(120)
+                    .aisle("aaaaa", "aaaaa", "aaaaa", "aaaaa")
+                    .aisle("ccccc", "a b a", "e   e", "ccccc").setRepeatable(3,16)
+                    .aisle("aaaaa", "aadaa", "aaaaa", "aaaaa")
+                    .where("a", Predicates.blocks(CASING_STEEL_SOLID.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
-                    .where("b", Predicates.blocks(CTNHBlocks.CASING_HYPER.get()))
-                    .where("c", Predicates.blocks(CTNHBlocks.CASING_HYPER.get()))
+                    .where("b", Predicates.blocks(AllBlocks.ANDESITE_CASING.get()))
+                    .where("c", Predicates.blocks(CASING_STEEL_SOLID.get()))
+                    .where("d", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("e", Predicates.blocks(Blocks.IRON_BARS))
+                    .where(" ", Predicates.any())
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/vacuum_freezer"))
+            .register();
+
+    public  final  static  MultiblockMachineDefinition PLASMA_CONDENSER = REGISTRATE.multiblock("plasma_condenser", CoilWorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.ALL)
+            .recipeType(CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH)
+            .tooltips(Component.translatable("gtceu.multiblock.laser.tooltip"))
+            .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
+            .appearanceBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("#####AAA#####", "#####AAA#####", "#####AAA#####")
+                    .aisle("####AAAAA####", "####BCCCB####", "####AAAAA####")
+                    .aisle("##AAAAAAAAA##", "##AACABACAA##", "##AAAAAAAAA##")
+                    .aisle("##AAA###AAA##", "##ACA###ACA##", "##AAA###AAA##")
+                    .aisle("#AAA#####AAA#", "#BCA#####ACB#", "#AAA#####AAA#")
+                    .aisle("AAA#######AAA", "ACA#######ACA", "AAA#######AAA")
+                    .aisle("AAA#######AAA", "ACB#######BCA", "AAA#######AAA")
+                    .aisle("AAA#######AAA", "ACA#######ACA", "AAA#######AAA")
+                    .aisle("#AAA#####AAA#", "#BCA#####ACB#", "#AAA#####AAA#")
+                    .aisle("##AAA###AAA##", "##ACA###ACA##", "##AAA###AAA##")
+                    .aisle("##AAAAAAAAA##", "##AACABACAA##", "##AAAAAAAAA##")
+                    .aisle("####AAAAA####", "####BCCCB####", "####AAAAA####")
+                    .aisle("#####AAA#####", "#####A@A#####", "#####AAA#####")
+                    .where("A", Predicates.blocks(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE.get())
+                            .or(Predicates.abilities(PartAbility.INPUT_LASER).setPreviewCount(2))
+                            .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setPreviewCount(2))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("#", Predicates.any())
+                    .where('B', Predicates.blocks(FUSION_GLASS.get()))
+                    .where("C", Predicates.blocks(CTNHBlocks.PLASMA_COOLED_CORE.get()))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer(CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"),
+                    GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition DEMON_WILL_GENERATOR = REGISTRATE.multiblock("demon_will_generator", DemonWillMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(CTNHRecipeTypes.DEMON_WILL_GENERATOR_RECIPE)
+            .recipeModifiers(DemonWillMachine::recipeModifier)
+            .tooltips(Component.translatable("ctnh.demon_will_generator.tooltips.1").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.demon_will_generator.tooltips.2"),
+                    Component.translatable("ctnh.demon_will_generator.tooltips.3"),
+                    Component.translatable("ctnh.demon_will_generator.tooltips.4"),
+                    Component.translatable("ctnh.demon_will_generator.tooltips.5"),
+                    Component.translatable("ctnh.demon_will_generator.tooltips.6"),
+                    Component.translatable("ctnh.demon_will_generator.tooltips.7"))
+            .appearanceBlock(CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("aaaaaaaaaaaaaaaaaaaaa")
+                    .aisle("ccccccccccccccccccccc")
+                    .aisle("aaaaaaaaaadaaaaaaaaaa")
+                    .where("a", Predicates.blocks(CASING_STEEL_SOLID.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .where("c", Predicates.blocks(CASING_STEEL_SOLID.get()))
                     .where("d", Predicates.controller(Predicates.blocks(definition.get())))
                     .where(" ", Predicates.any())
                     .build())
-            .workableCasingRenderer(CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"), GTCEu.id("block/multiblock/vacuum_freezer"))
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/vacuum_freezer"))
             .register();
 
     public static void init() {

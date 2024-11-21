@@ -56,7 +56,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
     }
 
     private void sendSuccessMessage(Player player) {
-        player.sendSystemMessage(Component.literal("已成型").withStyle(ChatFormatting.GREEN));
+        player.sendSystemMessage(Component.translatable("ctnh.test_terminal.success").withStyle(ChatFormatting.GREEN));
     }
 
     private void handleUnformedController(Player player, IMultiController controller) {
@@ -132,7 +132,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
             List<List<ItemStack>> candidates = error.getCandidates();
             var root = candidates.get(0).get(0).getHoverName();
             messages.add(Component.translatable("ctnh.test_terminal.lack_error", Component.translatable("ctnh.test_terminal.position", pos.getX(), pos.getY(), pos.getZ())));
-            messages.add(Component.literal(" - ").append(root).append(error.getErrorInfo()));
+            messages.add(Component.literal(" - ").append(root).append(Component.translatable("ctnh.test_terminal.error_info",error.getErrorInfo())));
         } else {
             messages.add(Component.translatable("ctnh.test_terminal.wrong_error", Component.translatable("ctnh.test_terminal.position", pos.getX(), pos.getY(), pos.getZ())));
             List<List<ItemStack>> candidates = error.getCandidates();

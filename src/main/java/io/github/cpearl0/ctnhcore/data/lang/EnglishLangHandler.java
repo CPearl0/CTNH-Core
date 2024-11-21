@@ -57,7 +57,42 @@ public class EnglishLangHandler {
         provider.add("ctnh.test_terminal.lack_error","At %s, you need");
         provider.add("ctnh.test_terminal.wrong_error","At %s, it should be");
         provider.add("ctnh.test_terminal.position","(%s,%s,%s)");
+        provider.add("ctnh.test_terminal.error_info","(%s)");
+        provider.add("ctnh.test_terminal.success","Everything is OK！");
         provider.add("ctnh.testing_terminal.tooltip.1","Use to check the error when building the multiblock");
         provider.add("ctnh.testing_terminal.tooltip.2","Right-click the controller to show the error info");
+        provider.add("ctnh.sweat_shop.tooltips.1", "Means of Production and Surplus Value");
+        provider.add("ctnh.sweat_shop.tooltips.2", "The number of villagers in the factory determines efficiency. Recipe time x (1 / number of villagers)");
+        provider.add("ctnh.sweat_shop.tooltips.3", "The effective number of workers in the factory is limited by the factory size. Initial limit: 4 workers; for every 4 blocks added to the factory length, the limit increases by 1.");
+        provider.add("ctnh.sweat_shop.tooltips.4", "The production materials (machines) placed determine the available recipes:\nPowered Rolling Machine ---- Rolling Mill Recipes\nPowered Mixer ---- Mixer Recipes\nLathe ---- Lathe Recipes\nCentrifuge ---- Extractor Recipes\nBlaze Burner ---- Extractor Recipes\nWork Basin ---- Fluid Forming Recipes\nCrushing Wheel ---- Grinder Recipes\nPowered Saw ---- Wire Rolling Machine Recipes\nLaser Processor ---- Laser Etching Recipes");
+        provider.add("ctnh.sweat_shop.tooltips.5", "The number of production materials (machines) placed determines the parallelism of corresponding recipes: Parallelism = sqrt(number of machines)");
+        provider.add("ctnh.sweat_shop.tooltips.6", "Adding robotic arms improves the overall recipe execution speed. Recipe time x (1 / 1 + sqrt(number of robotic arms))");
+        provider.add("ctnh.sweat_shop.tooltips.7", "The diversity of machines placed improves recipe execution speed.");
+        provider.add("ctnh.sweat_shop.tooltips.8", "Every 5 seconds, machines consume (number of workers) servings of simple worker meals.");
+        provider.add("ctnh.demon_will_generator.tooltips.1", "Harnessing demonic power");
+        provider.add("ctnh.demon_will_generator.tooltips.2", "Generates power by utilizing the difference in demonic will concentration between the chunks on either side of the machine. The power generation increases exponentially with the concentration difference.");
+        provider.add("ctnh.demon_will_generator.tooltips.3", "Calculations are based on the will concentration at the demonic alloy blocks on either side of the machine.");
+        provider.add("ctnh.demon_will_generator.tooltips.4", "The diversity of various demonic wills in the chunks on both sides affects power generation efficiency.");
+        provider.add("ctnh.demon_will_generator.tooltips.5", "Will cores can be placed inside the machine, transforming it into a specialized mode focused on a specific type of will.");
+        provider.add("ctnh.demon_will_generator.tooltips.6",
+                "The rune blocks inside the machine can be replaced to provide different enhancements:\n" +
+                        "§4Sacrifice Runes and Self-Sacrifice Runes§r----Increase the power generation multiplier for the Life Essence Fortified Mode§r\n" +
+                        "§3Speed Runes§r----Increase the duration of a single recipe operation (saving demonic will consumption)§r\n" +
+                        "§eAugment Runes§r----Each rune increases the demonic will concentration difference by 1§r\n" +
+                        "§cSupercharge Runes§r----Each rune increases the demonic will concentration difference by 5% (multiplied)§r\n" +
+                        "=============================="
+        );
+        provider.add("ctnh.demon_will_generator.tooltips.7",
+                "Insert §4Life Essence§r to activate the Fortified Mode, doubling power output while consuming §a100mb§r of Life Essence per second."
+        );
+        provider.add("ctnh.multiblock.demon_generator.info.default", "Specialization Boost: None");
+        provider.add("ctnh.multiblock.demon_generator.info.vengeful", "Specialization Boost: Vengeful");
+        provider.add("ctnh.multiblock.demon_generator.info.corrosive", "Specialization Boost: Corrosive");
+        provider.add("ctnh.multiblock.demon_generator.info.steadfast", "Specialization Boost: Steadfast");
+        provider.add("ctnh.multiblock.demon_generator.info.destructive", "Specialization Boost: Destructive");
+        provider.add("ctnh.multiblock.demon_generator.info.1", "Concentration Difference: %s");
+        provider.add("ctnh.multiblock.demon_generator.info.boosted", "§bLife Essence Boost Active");
+
+
     }
 }

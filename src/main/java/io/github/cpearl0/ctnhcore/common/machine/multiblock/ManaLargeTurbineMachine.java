@@ -26,6 +26,7 @@ import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.misc.ItemStackTransfer;
+import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -37,7 +38,9 @@ import vazkii.botania.common.item.BotaniaItems;
 
 import java.util.List;
 
-public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine implements ITieredMachine {
+public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine implements ITieredMachine,IMachineModifyDrops {
+    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
+            ManaLargeTurbineMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public static final int MIN_DURABILITY_TO_WARN = 10;
     public final NotifiableItemStackHandler machineStorage;
     private final int BASE_EU_OUTPUT;
@@ -122,6 +125,10 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         recipe.tickOutputs.put(EURecipeCapability.CAP, List.of(new Content(eut, ChanceLogic.getMaxChancedValue(), ChanceLogic.getMaxChancedValue(), 0, null, null)));
 
         return recipe;
+    }
+    @Override
+    public void onDrops(List<ItemStack> drops) {
+        clearInventory(machineStorage.storage);
     }
 
     @Override
@@ -256,5 +263,9 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                 textList.add(Component.translatable("ctnh.manaturbine.consumption_rate",consumpution_rate));
             }
         }
+    }
+    @Override
+    public ManagedFieldHolder getFieldHolder() {
+        return MANAGED_FIELD_HOLDER;
     }
 }

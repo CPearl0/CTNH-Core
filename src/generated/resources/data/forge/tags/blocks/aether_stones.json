@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "aether:holystone",
+      "required": false
+    },
+    {
+      "id": "aether:mossy_holystone",
+      "required": false
+    },
+    {
+      "id": "aether:icestone",
+      "required": false
+    }
+  ]
+}

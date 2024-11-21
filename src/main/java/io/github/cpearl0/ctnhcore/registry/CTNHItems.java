@@ -23,6 +23,13 @@ public class CTNHItems {
             .item("great_astronomy_circuit_1", Item::new)
             .lang("Great Astronomy Circuit I")
             .register();
+    public static ItemEntry<ComponentItem> SIMPLE_NUTRITIOUS_MEAL = REGISTRATE
+            .item("simple_nutritious_meal", ComponentItem::create)
+            .lang("Simple Nutritious meal")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.simple_nutritious_meal.tooltip.1").withStyle(ChatFormatting.GRAY));
+            })))
+            .register();
     public static ItemEntry<ComponentItem> TESTING_TERMINAL = REGISTRATE
             .item("testing_terminal",ComponentItem::create)
             .lang("Test Terminal")

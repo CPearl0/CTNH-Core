@@ -10,7 +10,9 @@
     "ManaPoolBlockEntityMixin",
     "TagLoaderMixin",
     "appeng.CraftingCpuLogicMixin",
+    "gtceu.GTConfiguredFeaturesMixin",
     "gtceu.GTCreateMachinesMixin",
+    "gtceu.GTMaterialMixin",
     "gtceu.GTUtilMixin",
     "gtceu.WorkableElectricMultiblockMachineMixin"
   ],

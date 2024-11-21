@@ -27,6 +27,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.slaughter_house", "屠宰场");
         provider.add("gtceu.big_dam", "三峡大坝");
         provider.add("gtceu.coke_oven", "焦化塔");
+        provider.add("gtceu.demon_will_generator", "恶魔意志发电");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -75,8 +76,36 @@ public class ChineseLangHandler {
         provider.add("ctnh.test_terminal.lack_error","在%s处缺少");
         provider.add("ctnh.test_terminal.wrong_error","在%s处应为");
         provider.add("ctnh.test_terminal.position","(%s,%s,%s)");
+        provider.add("ctnh.test_terminal.error_info","(%s)");
+        provider.add("ctnh.test_terminal.success","一切正常！");
         provider.add("ctnh.testing_terminal.tooltip.1","用于检测多方块搭建时产生的错误");
         provider.add("ctnh.testing_terminal.tooltip.2","右键多方块的主方块以显示错误信息");
+        provider.add("ctnh.simple_nutritious_meal.tooltip.1","能维持机体基本的生理功能");
+        provider.add("ctnh.sweat_shop.tooltips.1","生产资料与剩余价值");
+        provider.add("ctnh.sweat_shop.tooltips.2","工厂内的村民数量决定了工作效率，配方耗时x(1/村民数量)");
+        provider.add("ctnh.sweat_shop.tooltips.3","工厂内的有效员工数量受限于工厂大小，初始上限为4，工厂长度每增加4格上限+1");
+        provider.add("ctnh.sweat_shop.tooltips.4","放入的生产资料(机器)决定了可以工作的配方：\n动力辊压机----卷板机配方\n动力搅拌机----搅拌机配方\n车床----车床配方\n离心机----离心机配方\n烈焰人燃烧室----提取机配方\n工作盆----流体成型配方\n粉碎轮----研磨机配方\n动力锯----线材轧机配方\n激光加工器----激光蚀刻配方\n==============================");
+        provider.add("ctnh.sweat_shop.tooltips.5","放入的生产资料(机器)数量决定了对应工作配方的并行数：并行数 = sqrt(机器数)");
+        provider.add("ctnh.sweat_shop.tooltips.6","放入机械手可以提高整体配方运行速度，配方耗时x (1/1 + sqrt(机械手数))");
+        provider.add("ctnh.sweat_shop.tooltips.7","放入机器的多样性会提高配方运行速度");
+        provider.add("ctnh.sweat_shop.tooltips.8","每5秒机器会消耗(员工数量)份简易员工餐");
+        provider.add("ctnh.demon_will_generator.tooltips.1","借用恶魔之力");
+        provider.add("ctnh.demon_will_generator.tooltips.2","利用机器两侧的区块内的恶魔意志浓度差发电，浓度差与发电量呈指数关系");
+        provider.add("ctnh.demon_will_generator.tooltips.3","以机器两侧的恶魔合金方块处的意志浓度为基准进行计算");
+        provider.add("ctnh.demon_will_generator.tooltips.4","两侧区块中的各种恶魔意志的多样性会影响发电效率");
+        provider.add("ctnh.demon_will_generator.tooltips.5","机器内可以放入意志核心，将机器转化为对于某种意志专精的模式");
+        provider.add("ctnh.demon_will_generator.tooltips.6","机器内的符文方块可替换，从而起到不同的增益效果:\n§4献祭符文和牺牲符文----提高生命源质强化模式的发电倍率§r\n§3速度符文----提升一次配方运行的时长（节省恶魔意志消耗）§r\n§e增容符文----每一个符文增加1点恶魔意志浓度差§r\n§c超容符文----每一个符文增加百分之5的恶魔意志浓度差（叠乘）§r\n==============================");
+        provider.add("ctnh.demon_will_generator.tooltips.7","输入§4生命源质§r开启强化模式，发电量翻倍，每秒消耗§a100mb§r的生命源质");
+        provider.add("ctnh.multiblock.sweat_shop.villager_count","员工数量：%s");
+        provider.add("ctnh.multiblock.sweat_shop.basic_rate","基础效率：x%s");
+        provider.add("ctnh.multiblock.demon_generator.info.default","专精强化：无");
+        provider.add("ctnh.multiblock.demon_generator.info.vengeful","专精强化：复仇");
+        provider.add("ctnh.multiblock.demon_generator.info.corrosive","专精强化：腐蚀");
+        provider.add("ctnh.multiblock.demon_generator.info.steadfast","专精强化：坚韧");
+        provider.add("ctnh.multiblock.demon_generator.info.destructive","专精强化：破坏");
+        provider.add("ctnh.multiblock.demon_generator.info.1","浓度差异：%s");
+        provider.add("ctnh.multiblock.demon_generator.info.boosted","§b生命源质强化中");
+
 
         for (var tier : GTMachines.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");
@@ -95,17 +124,21 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1, "完善的一阶航天数据芯片");
         provider.addItem(CTNHItems.ASTRONOMY_CIRCUIT_1, "一阶航天数据芯片");
         provider.addItem(CTNHItems.TESTING_TERMINAL, "检测终端");
+        provider.addItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL, "简易营养餐");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING, "W-Cu覆膜金刚石机械方块");
         provider.addBlock(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK, "充能光伏方块");
         provider.addBlock(CTNHBlocks.PULSATING_PHOTOVOLTAIC_BLOCK, "脉冲光伏方块");
         provider.addBlock(CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK, "振动光伏方块");
+        provider.addBlock(CTNHBlocks.PLASMA_COOLED_CORE,"等离子冷凝线圈方块");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK,"铿铀强化硅岩铕机械方块");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK,"三钛强化中子素硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE,"等离子冷凝机械方块");
-        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE,"反应堆核心 MKI");
-        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE1,"反应堆核心 MKII");
-        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE2,"反应堆核心 MKIII");
+        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKI,"反应堆核心 MKI");
+        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKII,"反应堆核心 MKII");
+        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKIII,"反应堆核心 MKIII");
+        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKIV,"反应堆核心 MKIV");
+        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKV,"反应堆核心 MKV");
         provider.addBlock(CTNHBlocks.CASING_ADVANCED_HYPER,"暗物质强化超能硅岩机械方块");
         provider.addBlock(CTNHBlocks.CASING_HYPER,"黑钚强化硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.COIL_ABYSALALLOY, "渊狱合金线圈");
@@ -114,13 +147,9 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.COIL_BLACKTITANIUM, "黑钛合金线圈");
         provider.addBlock(CTNHBlocks.COIL_STARMETAL, "星辉线圈");
         provider.addBlock(CTNHBlocks.COIL_INFINITY, "无尽线圈");
-        //provider.addBlock(CTNHBlocks.MODULE_CONNECTOR, "太空电梯模块连接器");
-        //provider.addBlock(CTNHBlocks.SPACE_MODULE_BASE, "太空电梯模块基座");
-        //provider.addBlock(CTNHBlocks.SPACE_POWER_CORE, "太空电梯动力核心");
-        //provider.addBlock(CTNHBlocks.CASING_SPACE_ELEVATOR_MECHANICAL, "太空电梯机械方块");
-        //provider.addBlock(CTNHBlocks.HIGH_STRENGTH_CONCRETE, "高强度钢筋混凝土");
-        //provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_INTERNAL_SUPPORT, "太空电梯内部支撑柱");
-        //provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_SUPPORT, "太空电梯外部支撑柱");
+        provider.addBlock(CTNHBlocks.CASING_SPACE_ELEVATOR_MECHANICAL, "太空电梯机械方块");
+        provider.addBlock(CTNHBlocks.HIGH_STRENGTH_CONCRETE, "高强度钢筋混凝土");
+        provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_POWER_CORE, "太空电梯维持反应堆核心");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -132,9 +161,12 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.SLAUGHTER_HOUSE.getBlock(), "屠宰场");
         provider.add(CTNHMultiblockMachines.BIG_DAM.getBlock(), "三峡大坝");
         provider.add(CTNHMultiblockMachines.COKE_OVEN.getBlock(), "焦化塔");
+        provider.add(CTNHMultiblockMachines.PLASMA_CONDENSER.getBlock(),"等离子冷凝器");
         provider.add(CTNHMultiblockMachines.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK1.getBlock(),"超能反应堆 MKI");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK2.getBlock(),"超能反应堆 MKII");
+        provider.add(CTNHMultiblockMachines.SWEATSHOP.getBlock(),"§4血汗工厂");
+        provider.add(CTNHMultiblockMachines.DEMON_WILL_GENERATOR.getBlock(),"§b恶魔意志发电机");
 
     }
 
