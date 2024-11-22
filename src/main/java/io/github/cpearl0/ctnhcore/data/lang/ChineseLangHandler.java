@@ -41,7 +41,6 @@ public class ChineseLangHandler {
         provider.add("gtceu.naq_mk1", "超能燃料");
         provider.add("gtceu.bedrock_drilling_rigs", "基岩钻机");
         provider.add("gtceu.plasma_condenser", "等离子冷凝");
-        provider.add("ctnh.plasma_condenser.tooltips.1", "氤氲之气，凝为霜露");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
         provider.add("ctnh.multiblock.parallelize.tooltip", "线圈等级和电压等级的提升会提高并行数");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
@@ -82,6 +81,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.testing_terminal.tooltip.1","用于检测多方块搭建时产生的错误");
         provider.add("ctnh.testing_terminal.tooltip.2","右键多方块的主方块以显示错误信息");
         provider.add("ctnh.simple_nutritious_meal.tooltip.1","能维持机体基本的生理功能");
+        provider.add("ctnh.plasma_condenser.tooltips.1", "氤氲之气，凝为霜露");
         provider.add("ctnh.sweat_shop.tooltips.1","生产资料与剩余价值");
         provider.add("ctnh.sweat_shop.tooltips.2","工厂内的村民数量决定了工作效率，配方耗时x(1/村民数量)");
         provider.add("ctnh.sweat_shop.tooltips.3","工厂内的有效员工数量受限于工厂大小，初始上限为4，工厂长度每增加4格上限+1");
