@@ -134,7 +134,7 @@ public class CTNHBlocks {
                 .model((ctx, prov) -> prov.withExistingParent(prov.name(ctx), CTNHCore.id(baseModelPath)))
                 .build()
                 .register();
-    }//来自GTleisure
+    }
 
 
 }

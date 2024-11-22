@@ -121,6 +121,7 @@
   "ctnh.multiblock.underfloor_heating_system.rate.tooltip": "减少蒸汽的消耗来降低地暖的发热功率",
   "ctnh.multiblock.underfloor_heating_system.rate_modify": "调节速率：",
   "ctnh.multiblock.underfloor_heating_system.steam_consumption": "蒸汽消耗速率：%d",
+  "ctnh.plasma_condenser.tooltips.1": "氤氲之气，凝为霜露",
   "ctnh.simple_nutritious_meal.tooltip.1": "能维持机体基本的生理功能",
   "ctnh.stress_input": "输入应力：%ssu",
   "ctnh.stress_output": "产出应力：%ssu",

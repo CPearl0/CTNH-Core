@@ -41,6 +41,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.naq_mk1", "超能燃料");
         provider.add("gtceu.bedrock_drilling_rigs", "基岩钻机");
         provider.add("gtceu.plasma_condenser", "等离子冷凝");
+        provider.add("ctnh.plasma_condenser.tooltips.1", "氤氲之气，凝为霜露");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
         provider.add("ctnh.multiblock.parallelize.tooltip", "线圈等级和电压等级的提升会提高并行数");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
