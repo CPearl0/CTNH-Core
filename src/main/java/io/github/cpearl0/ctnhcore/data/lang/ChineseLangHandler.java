@@ -149,7 +149,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.COIL_STARMETAL, "星辉线圈");
         provider.addBlock(CTNHBlocks.COIL_INFINITY, "无尽线圈");
         provider.addBlock(CTNHBlocks.CASING_SPACE_ELEVATOR_MECHANICAL, "太空电梯机械方块");
-        provider.addBlock(CTNHBlocks.HIGH_STRENGTH_CONCRETE, "高强度钢筋混凝土");
+        provider.addBlock(CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS, "高级焦炉砖");
         provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_POWER_CORE, "太空电梯维持反应堆核心");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");

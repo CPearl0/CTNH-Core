@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ctnhcore:block/casings/module_base/side"
+    "all": "ctnhcore:block/high_grade_coke_oven_bricks"
   }
 }
