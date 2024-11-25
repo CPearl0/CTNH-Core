@@ -37,6 +37,16 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
     public List<String> mobList = new ArrayList<>();
     public double timeCost = 20;
 
+    private FakePlayer fakePlayer;
+
+    public FakePlayer getFakePlayer(ServerLevel level) {
+        if (fakePlayer == null) {
+            fakePlayer = new FakePlayer(level, new GameProfile(uuid, "slaughter"));
+        }
+        return fakePlayer;
+    }
+
+
     public SlaughterHouseMachine(IMachineBlockEntity holder) {
         super(holder);
     }
@@ -89,7 +99,7 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
                         itemList.add(new Content(SizedIngredient.create(Items.NETHER_STAR.getDefaultInstance()), 1, 1, 0, null, null));
                         continue;
                     }
-                    var fakePlayer = new FakePlayer(level, new GameProfile(smachine.uuid, "slaughter"));
+                    var fakePlayer = smachine.getFakePlayer(level);
                     var loottable = Objects.requireNonNull(level.getServer()).getLootData().getLootTable(new ResourceLocation(mob.split(":")[0] + ":entities/" + mob.split(":")[1]));
                     var lootparams = new LootParams.Builder((ServerLevel) machine.getLevel())
                             .withParameter(LootContextParams.LAST_DAMAGE_PLAYER, fakePlayer)
