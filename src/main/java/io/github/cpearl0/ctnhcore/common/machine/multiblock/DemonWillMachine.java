@@ -12,18 +12,18 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
 import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
-import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
+import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
-import com.lowdragmc.lowdraglib.misc.ItemStackTransfer;
-import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wayoftime.bloodmagic.api.compat.EnumDemonWillType;
@@ -68,7 +68,7 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
     }
     protected NotifiableItemStackHandler createMachineStorage(byte value) {
         return new NotifiableItemStackHandler(
-                this, 1, IO.NONE, IO.BOTH, slots -> new ItemStackTransfer(1) {
+                this, 1, IO.NONE, IO.BOTH, slots -> new CustomItemStackHandler(1) {
 
             @Override
             public int getSlotLimit(int slot) {
@@ -76,9 +76,9 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
             }
 
             @Override
-            public void onContentsChanged() {
+            public void onContentsChanged(int slot) {
                 resetMode();
-                super.onContentsChanged();
+                super.onContentsChanged(slot);
             }
         }).setFilter(itemStack -> enableTypes.contains(itemStack.getItem().toString()));
     }
@@ -196,7 +196,7 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         return 2 + 0.5 * Sacrifice_rune;
     }
     public GTRecipe getBloodRecipe() {
-        return GTRecipeBuilder.ofRaw().inputFluids(FluidStack.create(BloodMagicFluids.LIFE_ESSENCE_FLUID_FLOWING.get(),100)).buildRawRecipe();
+        return GTRecipeBuilder.ofRaw().inputFluids(new FluidStack(BloodMagicFluids.LIFE_ESSENCE_FLUID_FLOWING.get(),100)).buildRawRecipe();
     }
     public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe, @NotNull OCParams params,
                                           @NotNull OCResult result) {

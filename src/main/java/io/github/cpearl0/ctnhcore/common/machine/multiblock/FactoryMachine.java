@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
+import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
@@ -10,12 +11,11 @@ import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
 import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
-import com.lowdragmc.lowdraglib.misc.ItemStackTransfer;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import com.simibubi.create.AllBlocks;
@@ -61,17 +61,17 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
     }
     protected NotifiableItemStackHandler createMachineStorage(byte value) {
         return new NotifiableItemStackHandler(
-            this, SLOT_COUNT, IO.NONE, IO.BOTH, slots -> new ItemStackTransfer(SLOT_COUNT) {
+                this, 9, IO.NONE, IO.BOTH, slots -> new CustomItemStackHandler(SLOT_COUNT) {
             @Override
             public int getSlotLimit(int slot) {
                 return value;
             }
 
             @Override
-            public void onContentsChanged() {
+            public void onContentsChanged(int slot) {
                 var Machine = getMachineStorageItem();
                 updateMachineCount(Machine);
-                super.onContentsChanged();
+                super.onContentsChanged(slot);
             }
         }).setFilter(itemStack -> AvailableMachine.contains(itemStack.getItem().toString()));
     }
