@@ -81,6 +81,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.testing_terminal.tooltip.1","用于检测多方块搭建时产生的错误");
         provider.add("ctnh.testing_terminal.tooltip.2","右键多方块的主方块以显示错误信息");
         provider.add("ctnh.simple_nutritious_meal.tooltip.1","能维持机体基本的生理功能");
+        provider.add("ctnh.plasma_condenser.tooltips.1", "氤氲之气，凝为霜露");
         provider.add("ctnh.sweat_shop.tooltips.1","生产资料与剩余价值");
         provider.add("ctnh.sweat_shop.tooltips.2","工厂内的村民数量决定了工作效率，配方耗时x(1/村民数量)");
         provider.add("ctnh.sweat_shop.tooltips.3","工厂内的有效员工数量受限于工厂大小，初始上限为4，工厂长度每增加4格上限+1");
@@ -148,7 +149,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.COIL_STARMETAL, "星辉线圈");
         provider.addBlock(CTNHBlocks.COIL_INFINITY, "无尽线圈");
         provider.addBlock(CTNHBlocks.CASING_SPACE_ELEVATOR_MECHANICAL, "太空电梯机械方块");
-        provider.addBlock(CTNHBlocks.HIGH_STRENGTH_CONCRETE, "高强度钢筋混凝土");
+        provider.addBlock(CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS, "高级焦炉砖");
         provider.addBlock(CTNHBlocks.SPACE_ELEVATOR_POWER_CORE, "太空电梯维持反应堆核心");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");

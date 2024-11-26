@@ -1,4 +1,4 @@
-// 1.20.1	2024-11-21T20:52:09.8618191	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn)]
+// 1.20.1	2024-11-23T20:10:53.9850551	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
 8cbfdc96434837058b4a258a0e30cadcd9acd5b9 assets/ctnhcore/blockstates/annihilate_core_mki.json
@@ -26,7 +26,7 @@ d9fd5e8cca6e78f3afabb5a9ea4a807d41e2dfc0 assets/ctnhcore/blockstates/space_eleva
 f37e897ef97cb6a5e0cd1aa2213c2e60d6aa3841 assets/ctnhcore/blockstates/vibrant_photovoltaic_block.json
 1a94838fd8357ac210ed0f3e2ec53f418d62ef03 assets/ctnhcore/lang/en_ud.json
 c99d750372475316bbb2744de88e356e5e496b28 assets/ctnhcore/lang/en_us.json
-1958dab0c4abb140dc7a036fe0a83f5bc906bd0f assets/ctnhcore/lang/zh_cn.json
+dcea2175ebd6f811db6d648b646913de813a25d4 assets/ctnhcore/lang/zh_cn.json
 df65321a1742a74b662d28389e11b0a2406960b1 assets/ctnhcore/models/block/abyssalalloy_coil_block.json
 13db5d9c835eeecee9dc13bee7a130e73a4bc89e assets/ctnhcore/models/block/abyssalalloy_coil_block_active.json
 f71f923fa116eb739a092989b758041fda8ca55f assets/ctnhcore/models/block/advanced_hyper_casing.json
@@ -34,7 +34,7 @@ f71f923fa116eb739a092989b758041fda8ca55f assets/ctnhcore/models/block/advanced_h
 37f115a6ac3352b47c8b45d703f86ae2c3c4fffb assets/ctnhcore/models/block/black_titanium_coil_block.json
 ba3f90d89ceb0aa39fba6a5f24a3862d3b41ab28 assets/ctnhcore/models/block/black_titanium_coil_block_active.json
 6984b6775cf2021664d98623feb7b60fc3f8af5b assets/ctnhcore/models/block/energetic_photovoltaic_block.json
-fb7b09c2b9e2def777518e0818b830bc7b6efb89 assets/ctnhcore/models/block/high_strength_concrete.json
+a0ce88e83ac78ebacb34ae8cd8c56e63a954ce3e assets/ctnhcore/models/block/high_strength_concrete.json
 3997d275caf61e69d4f320194a22398f58ee813e assets/ctnhcore/models/block/hyper_casing.json
 bb3c462a48dc022201dc70e140fb5c7a919634ba assets/ctnhcore/models/block/infinity_coil_block.json
 1d5b1a51be6c2a0ea46f1ae42a237b967a282202 assets/ctnhcore/models/block/infinity_coil_block_active.json
