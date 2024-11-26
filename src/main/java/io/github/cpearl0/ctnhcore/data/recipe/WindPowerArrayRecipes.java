@@ -14,5 +14,10 @@ public class WindPowerArrayRecipes {
                 .duration(20)
                 .EUt(-32)
                 .save(provider);
+        CTNHRecipeTypes.WIND_POWER_ARRAY.recipeBuilder("wind_power_no_lubricant")
+                .circuitMeta(0)
+                .duration(20)
+                .EUt(-24)
+                .save(provider);
     }
 }

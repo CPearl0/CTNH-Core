@@ -41,7 +41,7 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.COOLING);
 
     public static final GTRecipeType WIND_POWER_ARRAY = GTRecipeTypes.register("wind_power_array", GTRecipeTypes.ELECTRIC)
-            .setMaxIOSize(0, 0, 1, 0)
+            .setMaxIOSize(1, 0, 1, 0)
             .setEUIO(IO.OUT)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)

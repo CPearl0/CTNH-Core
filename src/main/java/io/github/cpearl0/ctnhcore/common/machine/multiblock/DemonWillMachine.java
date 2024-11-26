@@ -44,7 +44,36 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
     public int Speed_rune = 0;
     public int Capacity_rune = 0;
     public int Augmented_rune = 0;
-    public List<BlockPos> Runes = List.of();
+    public BlockPos[] Runes = new BlockPos[]{
+            getPos().offset(6,34,0),
+            getPos().offset(6,34,1),
+            getPos().offset(6,34,2),
+            getPos().offset(6,34,-1),
+            getPos().offset(6,34,-2),
+            getPos().offset(5,34,-3),
+            getPos().offset(5,34,3),
+            getPos().offset(-6,34,0),
+            getPos().offset(-6,34,1),
+            getPos().offset(-6,34,2),
+            getPos().offset(-6,34,-1),
+            getPos().offset(-6,34,-2),
+            getPos().offset(-5,34,-3),
+            getPos().offset(-5,34,3),
+            getPos().offset(0,34,6),
+            getPos().offset(1,34,6),
+            getPos().offset(2,34,6),
+            getPos().offset(-1,34,6),
+            getPos().offset(-2,34,6),
+            getPos().offset(-3,34,5),
+            getPos().offset(3,34,5),
+            getPos().offset(0,34,-6),
+            getPos().offset(1,34,-6),
+            getPos().offset(2,34,-6),
+            getPos().offset(-1,34,-6),
+            getPos().offset(-2,34,-6),
+            getPos().offset(-3,34,-5),
+            getPos().offset(3,34,-5)
+    };
 
     public EnumDemonWillType type = EnumDemonWillType.DEFAULT;
     public int MAX_WILL = 100;
@@ -87,8 +116,8 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         return machineStorage.getStackInSlot(0);
     }
     public double getTotalWillDifference() {
-        var pos1 = MachineUtils.getOffset(this,10,0,2);
-        var pos2 = MachineUtils.getOffset(this,-10,0,2);
+        var pos1 = MachineUtils.getOffset(this,10,0,10);
+        var pos2 = MachineUtils.getOffset(this,-10,0,-10);
         double difference = 0;
         if (type == EnumDemonWillType.DEFAULT) {
             for (EnumDemonWillType type1 : EnumDemonWillType.values()) {
@@ -164,7 +193,7 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         Augmented_rune = 0;
         Capacity_rune = 0;
         Sacrifice_rune = 0;
-        Runes.forEach(rune ->{
+        for(var rune : Runes){
             var runeBlock = Objects.requireNonNull(getLevel()).getBlockState(rune).getBlock();
             if (runeBlock.equals(BloodMagicBlocks.SPEED_RUNE.get())) {
                 Speed_rune ++;
@@ -190,7 +219,7 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
             else if (runeBlock.equals(BloodMagicBlocks.SACRIFICE_RUNE_2.get()) || runeBlock.equals(BloodMagicBlocks.SELF_SACRIFICE_RUNE_2.get())){
                 Sacrifice_rune += 2;
             }
-        });
+        }
     }
     public double getBoostRate() {
         return 2 + 0.5 * Sacrifice_rune;

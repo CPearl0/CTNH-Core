@@ -24,7 +24,8 @@ import java.util.stream.Collectors;
 
 public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
     public static Map<BlockPos,WindPowerArrayMachine> MachineNet = new HashMap<>();
-    public int Threshold = 16;
+    public static List<List<WindPowerArrayMachine>> NetGroup = new ArrayList<>();
+    public static int Threshold = 16;
     public double efficiency = 1;
     public int altitude;
     public int NetworkSize = 1;
@@ -83,7 +84,11 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
                 MachineNet.replace(getPos(),this);
             }
         }
-        NetworkSize = getMachineNetworkSize();
+        for(var machineNet: NetGroup) {
+            if (machineNet.contains(this)) {
+                NetworkSize = machineNet.size();
+            }
+        }
         efficiency = (NetworkSize - 1) * 0.1 + 1;
         return super.beforeWorking(recipe);
     }
@@ -91,7 +96,11 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
     @Override
     public boolean onWorking() {
         if (getOffsetTimer() % 20 == 0) {
-            NetworkSize = getMachineNetworkSize();
+            for(var machineNet: NetGroup) {
+                if (machineNet.contains(this)) {
+                    NetworkSize = machineNet.size();
+                }
+            }
             efficiency = (NetworkSize - 1) * 0.1 + 1;
         }
         return super.onWorking();
@@ -112,45 +121,57 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
         }
     }
 
-    public int getMachineNetworkSize() {
-        // 机器网络的大小
-        int n = MachineNet.size();
+    public static void groupByNetwork() {
+        List<List<WindPowerArrayMachine>> groups = new ArrayList<>();
+        Map<BlockPos, WindPowerArrayMachine> nodeMap = new HashMap<>(MachineNet); // 复制 MachineNet，避免修改原数据
+        List<BlockPos> positions = new ArrayList<>(nodeMap.keySet());
+        int n = positions.size();
 
-        // 将 MachineNet 中的条目转换为列表
-        List<Map.Entry<BlockPos,WindPowerArrayMachine>> entryList = new ArrayList<>(MachineNet.entrySet());
-
-        // 找到目标机器的索引
-        int targetIndex = -1;
-        for (int i = 0; i < n; i++) {
-            if (entryList.get(i).getValue() == this) {
-                targetIndex = i;
-                break;
-            }
-        }
-
-        // 如果找不到目标机器，则返回 0
-        if (targetIndex == -1) {
-            return 0;
-        }
-
-        // 创建图，使用邻接表
+        // 构造邻接表
         List<List<Integer>> graph = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             graph.add(new ArrayList<>());
         }
-
-        // 根据距离阈值构建图
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                if (distance(entryList.get(i).getKey(), entryList.get(j).getKey()) < Threshold) {
+                if (distance(positions.get(i), positions.get(j)) < Threshold) {
                     graph.get(i).add(j);
                     graph.get(j).add(i);
                 }
             }
         }
 
-        // DFS 遍历以找到与目标机器连通的所有机器
+        // 记录访问状态
         boolean[] visited = new boolean[n];
-        return dfs(targetIndex, visited, graph);
+
+        // 遍历所有节点，找到连通子图
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                List<WindPowerArrayMachine> group = new ArrayList<>();
+                dfsGroup(i, visited, graph, positions, nodeMap, group);
+                groups.add(group);
+            }
+        }
+
+        NetGroup = groups;
+    }
+
+    private static void dfsGroup(
+            int node,
+            boolean[] visited,
+            List<List<Integer>> graph,
+            List<BlockPos> positions,
+            Map<BlockPos, WindPowerArrayMachine> nodeMap,
+            List<WindPowerArrayMachine> group
+    ) {
+        visited[node] = true;
+        BlockPos position = positions.get(node);
+        group.add(nodeMap.get(position));
+
+        for (int neighbor : graph.get(node)) {
+            if (!visited[neighbor]) {
+                dfsGroup(neighbor, visited, graph, positions, nodeMap, group);
+            }
+        }
     }
 }

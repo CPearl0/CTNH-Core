@@ -30,6 +30,7 @@ public class ForgeEventHandler {
         if (event.getServer().getTickCount() % 40 == 0) {
             UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.clear();
             WindPowerArrayMachine.clearNet();
+            WindPowerArrayMachine.groupByNetwork();
         }
     }
 }
