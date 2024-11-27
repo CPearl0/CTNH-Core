@@ -19,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.GENERATOR;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.MULTIBLOCK;
 import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.LEFT_TO_RIGHT;
 
@@ -126,6 +127,11 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.BATH)
             .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_input", String.format("%.1f",data.getFloat("input_stress"))));
+    public static final GTRecipeType MANA_GENERATOR = GTRecipeTypes.register("mana_generator",GENERATOR)
+            .setMaxIOSize(2, 0, 1, 1)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.TURBINE);
     public static void init() {
 
     }

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ctnhcore:alf_steel_casing"
+          "name": "ctnhcore:alfsteel_casing"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "ctnhcore:blocks/alf_steel_casing"
+  "random_sequence": "ctnhcore:blocks/alfsteel_casing"
 }

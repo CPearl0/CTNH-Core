@@ -33,6 +33,7 @@ import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.DemonWillMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ManaLargeTurbineMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ManaMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
 import net.minecraft.ChatFormatting;
@@ -777,6 +778,9 @@ public class CTNHMultiblockMachines {
     public final static MultiblockMachineDefinition LARGE_BOTTLE = REGISTRATE.multiblock("large_bottle",holder -> new MultiblockTankMachine(holder,10000*1000,null))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.DUMMY_RECIPES)
+            .tooltips(Component.translatable("large_bottle").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.large_bottle.basic"),
+                    Component.translatable("ctnh.large_bottle.consume"))
             .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                 .aisle("##AAAAA##", "##BBBBB##", "##BBBBB##", "##BBBBB##", "##CCCCC##", "##BBBBB##", "##BBBBB##", "##BBBBB##", "#########", "#########", "#########", "#########", "#########", "#########", "#########")
@@ -1066,6 +1070,111 @@ public class CTNHMultiblockMachines {
                 .build()
             )
             .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+
+    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER1 = REGISTRATE.multiblock("mana_generator_turbine_tier1",holder -> new ManaLargeTurbineMachine(holder,256, GTValues.MV))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
+            .tooltips(Component.translatable("mana_generator_turbine_tier1").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.mana_generator_turbine_tier1.basic_power"),
+                    Component.translatable("ctnh.mana_generator_turbine_tier1.restriction"),
+                    Component.translatable("ctnh.mana_generator_turbine_rune"))
+            .recipeModifier(ManaLargeTurbineMachine::recipeModifier)
+            .appearanceBlock(CTNHBlocks.MANA_STEEL_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("AAAA", "ASSA", "AAAA")
+                .aisle("ASSA", "BCCB", "ASSA")
+                .aisle("AAAA", "A@SA", "AAAA")
+                .where("A", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
+                .where("B", Predicates.abilities(PartAbility.OUTPUT_ENERGY).setExactLimit(1)
+                    .or(Predicates.abilities(PartAbility.ROTOR_HOLDER).setExactLimit(1)))
+                .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_STEEL_GEARBOX.get()))
+                .where("S", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get())
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                .or(Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1)))
+                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                .build()
+            )
+            .workableCasingRenderer(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER2 = REGISTRATE.multiblock("mana_generator_turbine_tier2",holder -> new ManaLargeTurbineMachine(holder,512, GTValues.EV))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
+            .tooltips(Component.translatable("mana_generator_turbine_tier2").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.mana_generator_turbine_tier2.basic_power"),
+                    Component.translatable("ctnh.mana_generator_turbine_tier2.restriction"),
+                    Component.translatable("ctnh.mana_generator_turbine_rune"))
+            .recipeModifier(ManaLargeTurbineMachine::recipeModifier)
+            .appearanceBlock(CTNHBlocks.ELEMENTIUM_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAA", "ASSA", "AAAA")
+                    .aisle("ASSA", "BCCB", "ASSA")
+                    .aisle("AAAA", "A@SA", "AAAA")
+                    .where("A", Predicates.blocks(CTNHBlocks.ELEMENTIUM_CASING.get()))
+                    .where("B", Predicates.abilities(PartAbility.OUTPUT_ENERGY).setExactLimit(1)
+                            .or(Predicates.abilities(PartAbility.ROTOR_HOLDER).setExactLimit(1)))
+                    .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_STEEL_GEARBOX.get()))
+                    .where("S", Predicates.blocks(CTNHBlocks.ELEMENTIUM_CASING.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1)))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build()
+            )
+            .workableCasingRenderer(CTNHCore.id("block/casings/elementium_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER3 = REGISTRATE.multiblock("mana_generator_turbine_tier3",holder -> new ManaLargeTurbineMachine(holder,2048, GTValues.LuV))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
+            .tooltips(Component.translatable("mana_generator_turbine_tier3").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.mana_generator_turbine_tier3.basic_power"),
+                    Component.translatable("ctnh.mana_generator_turbine_tier3.restriction"),
+                    Component.translatable("ctnh.mana_generator_turbine_rune"))
+            .recipeModifier(ManaLargeTurbineMachine::recipeModifier)
+            .appearanceBlock(CTNHBlocks.TERRA_STEEL_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAA", "ASSA", "AAAA")
+                    .aisle("ASSA", "BCCB", "ASSA")
+                    .aisle("AAAA", "A@SA", "AAAA")
+                    .where("A", Predicates.blocks(CTNHBlocks.TERRA_STEEL_CASING.get()))
+                    .where("B", Predicates.abilities(PartAbility.OUTPUT_ENERGY).setExactLimit(1)
+                            .or(Predicates.abilities(PartAbility.ROTOR_HOLDER).setExactLimit(1)))
+                    .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_STEEL_GEARBOX.get()))
+                    .where("S", Predicates.blocks(CTNHBlocks.TERRA_STEEL_CASING.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1)))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build()
+            )
+            .workableCasingRenderer(CTNHCore.id("block/casings/terra_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER4 = REGISTRATE.multiblock("mana_generator_turbine_tier4",holder -> new ManaLargeTurbineMachine(holder,8192, GTValues.UV))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
+            .tooltips(Component.translatable("mana_generator_turbine_tier4").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.mana_generator_turbine_tier4.basic_power"),
+                    Component.translatable("ctnh.mana_generator_turbine_tier4.restriction"),
+                    Component.translatable("ctnh.mana_generator_turbine_rune"))
+            .recipeModifier(ManaLargeTurbineMachine::recipeModifier)
+            .appearanceBlock(CTNHBlocks.ALF_STEEL_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAA", "ASSA", "AAAA")
+                    .aisle("ASSA", "BCCB", "ASSA")
+                    .aisle("AAAA", "A@SA", "AAAA")
+                    .where("A", Predicates.blocks(CTNHBlocks.ALF_STEEL_CASING.get()))
+                    .where("B", Predicates.abilities(PartAbility.OUTPUT_ENERGY).setExactLimit(1)
+                            .or(Predicates.abilities(PartAbility.ROTOR_HOLDER).setExactLimit(1)))
+                    .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_STEEL_GEARBOX.get()))
+                    .where("S", Predicates.blocks(CTNHBlocks.ALF_STEEL_CASING.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1)))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build()
+            )
+            .workableCasingRenderer(CTNHCore.id("block/casings/alfsteel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
     public static void init() {
 

@@ -137,6 +137,19 @@ public class ChineseLangHandler {
         provider.add("ctnh.mana_assembler", "机器类型：§e组装机§r");
         provider.add("ctnh.mana_wiremill", "机器类型：§e线材轧机§r");
         provider.add("ctnh.perfect_overclock", "§a无损超频！§r");
+        provider.add("mana_generator_turbine_tier1", "简易魔力转换器");
+        provider.add("ctnh.mana_generator_turbine_tier1.basic_power", "§e基础产能功率：§r256 EU/t");
+        provider.add("ctnh.mana_generator_turbine_tier1.restriction", "转子支架等级不能超过§bMV§r");
+        provider.add("mana_generator_turbine_tier2", "进阶魔力转换器");
+        provider.add("ctnh.mana_generator_turbine_tier2.basic_power", "§e基础产能功率：§r256 EU/t");
+        provider.add("ctnh.mana_generator_turbine_tier2.restriction", "转子支架等级不能超过§5EV§r");
+        provider.add("mana_generator_turbine_tier3", "精密魔力转换器");
+        provider.add("ctnh.mana_generator_turbine_tier3.basic_power", "§e基础产能功率：§r1024 EU/t");
+        provider.add("ctnh.mana_generator_turbine_tier3.restriction", "转子支架等级不能超过§dLuV§r");
+        provider.add("mana_generator_turbine_tier4", "神奇的能量守恒");
+        provider.add("ctnh.mana_generator_turbine_tier4.basic_power", "§e基础产能功率：§r4096 EU/t");
+        provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§3UV§r");
+        provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，消耗量x0.9\n  二级符文：发电量x2，消耗量x0.75\n  三级符文：发电量x3，消耗量x0.6\n  四级符文：发电量x4，消耗量x0.4");
 
 
         for (var tier : GTMachines.ALL_TIERS) {
@@ -216,6 +229,11 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.MANA_WIREMILL.getBlock(),"§b魔力线材轧机");
         provider.add(CTNHMultiblockMachines.MANA_LATHE.getBlock(),"§b魔力车床");
         provider.add(CTNHMultiblockMachines.MANA_ASSEMBLER.getBlock(),"§b魔力组装机");
+        provider.add(CTNHMultiblockMachines.LARGE_BOTTLE.getBlock(), "发酵瓶");
+        provider.add(CTNHMultiblockMachines.MANA_GENERATOR_TIER1.getBlock(), "魔力涡轮发电机MK1");
+        provider.add(CTNHMultiblockMachines.MANA_GENERATOR_TIER2.getBlock(), "魔力涡轮发电机MK2");
+        provider.add(CTNHMultiblockMachines.MANA_GENERATOR_TIER3.getBlock(), "魔力涡轮发电机MK3");
+        provider.add(CTNHMultiblockMachines.MANA_GENERATOR_TIER4.getBlock(), "魔力涡轮发电机MK4");
     }
 
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,

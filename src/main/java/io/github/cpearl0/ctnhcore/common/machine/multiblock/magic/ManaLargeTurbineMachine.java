@@ -20,8 +20,11 @@ import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
+import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.RotorHolderPartMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
@@ -66,7 +69,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     // ****** Recipe Logic *******//
     //////////////////////////////////////
     @Nullable
-    public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
+    public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe, OCParams ocParams, OCResult ocResult) {
         if (!(machine instanceof ManaLargeTurbineMachine turbineMachine)) return null;
         if (turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeAir) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeEarth) ||
@@ -164,6 +167,19 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
             }
         }
         return super.onWorking();
+    }
+
+    @Override
+    public boolean beforeWorking(@Nullable GTRecipe recipe) {
+        var rotorHolder = (RotorHolderPartMachine) getParts().stream().filter(part -> part instanceof RotorHolderPartMachine).findFirst().get();
+            if (!rotorHolder.hasRotor()) {
+                return false;
+            }
+            if (rotorHolder.getTier() > RestrictTier) {
+                getRecipeLogic().interruptRecipe();
+                return false;
+            }
+        return super.beforeWorking(recipe);
     }
 
     @Nullable

@@ -63,7 +63,7 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> ELEMENTIUM_CASING = createCasingBlock(
             "elementium_casing",CTNHCore.id("block/casings/elementium_casing"));
     public static final BlockEntry<Block> ALF_STEEL_CASING = createCasingBlock(
-            "alf_steel_casing",CTNHCore.id("block/casings/alf_steel_casing"));
+            "alfsteel_casing",CTNHCore.id("block/casings/alfsteel_casing"));
 
     public static final BlockEntry<ActiveBlock> SPACE_ELEVATOR_POWER_CORE = createActiveCasing("space_elevator_power_core",
             "block/flux/space_elevator_power_core");
