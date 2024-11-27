@@ -158,6 +158,10 @@ repositories {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
     }
+    maven {
+        name = 'ModdingX Maven'
+        url = 'https://maven.moddingx.org/'
+    }
 }
 
 dependencies {
@@ -219,6 +223,12 @@ dependencies {
 
     // Blood Magic
     implementation fg.deobf("maven.modrinth:blood-magic:${bloodmagic_version}")
+
+    implementation fg.deobf("curse.maven:gtmthings-1104310:5902291")
+
+    implementation fg.deobf("curse.maven:mythicbotany-400058:5101899")
+    annotationProcessor fg.deobf("org.moddingx:LibX:${minecraft_version}-${libx_version}")
+    implementation fg.deobf("org.moddingx:LibX:${minecraft_version}-${libx_version}")
 }
 
 mixin {

@@ -25,6 +25,7 @@ import static sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil.g
 public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine {
     public double Machine_Temperature = 0;
     public double Efficiency = 1;
+    public double Lower_limit = 0.2;
     public FermentingTankMachine(IMachineBlockEntity holder){
         super(holder);
     }
@@ -53,18 +54,7 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
                                     var total = FluidHatchPartMachine.getTankCapacity(FluidHatchPartMachine.INITIAL_TANK_CAPACITY_1X, part.self().getDefinition().getTier());
                                     double density = current / total;
                                     double logistic = 8 * (density - Math.pow(density, 2));
-                                    if(machine.getHolder().self().getPersistentData().getString("extra").equals("water")){
-                                        logistic = Math.max(0.5,logistic);
-                                    }
-                                    else if(machine.getHolder().self().getPersistentData().getString("extra").equals("simple")){
-                                        logistic = Math.max(1.5,logistic);
-                                    }
-                                    else if(machine.getHolder().self().getPersistentData().getString("extra").equals("sterilized")){
-                                        logistic = Math.max(2,logistic);
-                                    }
-                                    else{
-                                        logistic = Math.max(0.2,logistic);
-                                    }
+                                    logistic = Math.max(fmachine.Lower_limit, logistic);
                                     fmachine.Efficiency *= logistic;
                                 }
                             });

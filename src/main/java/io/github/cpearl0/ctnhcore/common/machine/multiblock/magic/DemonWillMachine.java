@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.common.machine.multiblock;
+package io.github.cpearl0.ctnhcore.common.machine.multiblock.magic;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
@@ -20,6 +20,7 @@ import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -31,7 +32,6 @@ import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
 import wayoftime.bloodmagic.common.fluid.BloodMagicFluids;
 import wayoftime.bloodmagic.demonaura.WorldDemonWillHandler;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 

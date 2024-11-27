@@ -30,6 +30,14 @@ public class CTNHItems {
                 list.add(Component.translatable("ctnh.simple_nutritious_meal.tooltip.1").withStyle(ChatFormatting.GRAY));
             })))
             .register();
+    public static ItemEntry<Item> ANIMAL_EXCRETA = REGISTRATE
+            .item("animal_excreta",Item::new)
+            .lang("Animal Excreta")
+            .register();
+    public static ItemEntry<Item> TUMOR = REGISTRATE
+            .item("tumor",Item::new)
+            .lang("Tumor")
+            .register();
     public static ItemEntry<ComponentItem> TESTING_TERMINAL = REGISTRATE
             .item("testing_terminal",ComponentItem::create)
             .lang("Test Terminal")

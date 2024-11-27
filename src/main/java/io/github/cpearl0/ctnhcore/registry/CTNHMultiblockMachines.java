@@ -19,16 +19,21 @@ import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.MultiblockTankMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import dev.arbor.gtnn.data.GTNNMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.coldsweat.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.common.block.CTNHFusionCasingType;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.*;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.DemonWillMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ManaMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -558,17 +563,17 @@ public class CTNHMultiblockMachines {
                                 .aisle("                    FCCCCCF                    ", "                   CC#####CC                   ", "                CCCCC#####CCCCC                ", "                CCCHHHHHHHHHCCC                ", "                CCCCC#####CCCCC                ", "                   CC#####CC                   ", "                    FCCCCCF                    ")
                                 .aisle("                                               ", "                    FCBBBCF                    ", "                   CC#####CC                   ", "                   CC#####CC                   ", "                   CC#####CC                   ", "                    FCBBBCF                    ", "                                               ")
                                 .aisle("                                               ", "                                               ", "                    FCPPPCF                    ", "                    FCISICF                    ", "                    FCPPPCF                    ", "                                               ", "                                               ")
-                                .where('S', Predicates.controller(Predicates.blocks(definition.get())))
-                                .where('B', Predicates.blocks(FUSION_GLASS.get()))
-                                .where('C', casing)
-                                .where('P', casing.or(Predicates.abilities(PartAbility.PARALLEL_HATCH)))
-                                .where('I', casing.or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setPreviewCount(16))
+                                .where("S", Predicates.controller(Predicates.blocks(definition.get())))
+                                .where("B", Predicates.blocks(FUSION_GLASS.get()))
+                                .where("C", casing)
+                                .where("P", casing.or(Predicates.abilities(PartAbility.PARALLEL_HATCH)))
+                                .where("I", casing.or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setPreviewCount(16))
                                         .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setPreviewCount(16)))
-                                .where('F', Predicates.blocks(CTNHFusionCasingType.getFrameState(tier)))
-                                .where('H', Predicates.blocks(CTNHFusionCasingType.getCompressedCoilState(tier)))
-                                .where('E', casing.or(Predicates.abilities(PartAbility.INPUT_ENERGY)).or(Predicates.abilities(PartAbility.INPUT_LASER).setPreviewCount(16)))
-                                .where('#', Predicates.any())
-                                .where(' ', Predicates.any())
+                                .where("F", Predicates.blocks(CTNHFusionCasingType.getFrameState(tier)))
+                                .where("H", Predicates.blocks(CTNHFusionCasingType.getCompressedCoilState(tier)))
+                                .where("E", casing.or(Predicates.abilities(PartAbility.INPUT_ENERGY)).or(Predicates.abilities(PartAbility.INPUT_LASER).setPreviewCount(16)))
+                                .where("#", Predicates.any())
+                                .where(" ", Predicates.any())
                                 .build();//结构相关代码取自GTL
                     })
                     .workableCasingRenderer(CTNHFusionCasingType.getCasingType(tier).getTexture(), GTCEu.id("block/multiblock/fusion_reactor"))
@@ -634,7 +639,7 @@ public class CTNHMultiblockMachines {
                             .or(Predicates.abilities(PartAbility.INPUT_LASER))
                             .or(Predicates.abilities(PartAbility.INPUT_ENERGY)))
                     .where("#", Predicates.any())
-                    .where('B', Predicates.blocks(FUSION_GLASS.get()))
+                    .where("B", Predicates.blocks(FUSION_GLASS.get()))
                     .where("C", Predicates.blocks(CTNHBlocks.PLASMA_COOLED_CORE.get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
@@ -731,6 +736,337 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer(BloodMagic.rl("block/obsidiantilepath"), GTCEu.id("block/multiblock/vacuum_freezer"))
             .register();
 
+    public final static MultiblockMachineDefinition MEADOW = REGISTRATE.multiblock("meadow", MeadowMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.MEADOW)
+            .recipeModifier(MeadowMachine::recipmeModifier)
+            .tooltips(Component.translatable("meadow").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.meadow.basic"),
+                    Component.translatable("ctnh.meadow.mechanism"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("BBBBBBBBBBB", "JCCCJCCCCCC", "J###J######", "JJJJJD#####", "EEEEE######", "###########")
+                .aisle("BBBBFFFBBBB", "CEE####GG#C", "#E#####GG##", "J###JD#####", "EEEEE######", "#EEE#######")
+                .aisle("BBBBFFFBBBB", "CE#####GG#C", "###########", "J###JD#####", "EEEEE######", "#EEE#######")
+                .aisle("BBBBFFFBBBB", "C#######G#C", "###########", "J###JD#####", "EEEEE######", "#EEE#######")
+                .aisle("BBBBBFFBBBB", "J###J#####C", "J###J######", "JJJJJD#####", "EEEEE######", "###########")
+                .aisle("BEEBFFFHHHB", "C#########C", "###########", "DDDDDD#####", "###########", "###########")
+                .aisle("BEEBFFFHHHB", "C######II#C", "###########", "###########", "###########", "###########")
+                .aisle("BEEBFFFHHHB", "C#######I#C", "###########", "###########", "###########", "###########")
+                .aisle("BEEBFFFBHHB", "C#########C", "###########", "###########", "###########", "###########")
+                .aisle("BEEBFFFBHHB", "C########IC", "###########", "###########", "###########", "###########")
+                .aisle("BBBBB@BBBBB", "CCCCCCCCCCC", "###########", "###########", "###########", "###########")
+                .where("B", Predicates.blocks(Blocks.DIRT)
+                            .or(Predicates.blocks(Blocks.GRASS_BLOCK))
+                .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                .or(Predicates.abilities(PartAbility.INPUT_KINETIC)))
+                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                .where("C", Predicates.blocks(Blocks.OAK_FENCE))
+                .where("#", Predicates.any())
+                .where("D", Predicates.blocks(Blocks.OAK_STAIRS))
+                .where("E", Predicates.blocks(Blocks.HAY_BLOCK))
+                .where("F", Predicates.blocks(Blocks.DIRT_PATH))
+                .where("G", Predicates.blocks(Blocks.BONE_BLOCK))
+                .where("H", Predicates.blocks(Blocks.WATER))
+                .where("I", Predicates.blocks(Blocks.LILY_PAD))
+                .where("J",Predicates.blocks(Blocks.OAK_LOG))
+                .build()
+            )
+            .workableCasingRenderer(new ResourceLocation("block/dirt"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition LARGE_BOTTLE = REGISTRATE.multiblock("large_bottle",holder -> new MultiblockTankMachine(holder,10000*1000,null))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.DUMMY_RECIPES)
+            .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("##AAAAA##", "##BBBBB##", "##BBBBB##", "##BBBBB##", "##CCCCC##", "##BBBBB##", "##BBBBB##", "##BBBBB##", "#########", "#########", "#########", "#########", "#########", "#########", "#########")
+                .aisle("#AAAAAAA#", "#B#####B#", "#B#####B#", "#BAAAAAB#", "#C#####C#", "#B#####B#", "#B#####B#", "#B#####B#", "#BBBBBBB#", "###BBB###", "#########", "#########", "#########", "#########", "#########")
+                .aisle("AAAAAAAAA", "B#######B", "B#######B", "BAAAAAAAB", "C#######C", "B#######B", "B#######B", "B#######B", "#B#####B#", "##BBBBB##", "###CCC###", "###BBB###", "###BBB###", "###BBB###", "###AAA###")
+                .aisle("AAAAAAAAA", "B#######B", "B#######B", "BAAAAAAAB", "C#######C", "B#######B", "B#######B", "B#######B", "#B#####B#", "#BB###BB#", "##CDDDC##", "##B###B##", "##B###B##", "##B###B##", "##AEEEA##")
+                .aisle("AAAAAAAAA", "B###E###B", "B###E###B", "BAAAEAAAB", "C###E###C", "B###E###B", "B###E###B", "B###E###B", "#B##E##B#", "#BB#E#BB#", "##CDEDC##", "##B###B##", "##B###B##", "##B###B##", "##AEEEA##")
+                .aisle("AAAAAAAAA", "B#######B", "B#######B", "BAAAAAAAB", "C#######C", "B#######B", "B#######B", "B#######B", "#B#####B#", "#BB###BB#", "##CDDDC##", "##B###B##", "##B###B##", "##B###B##", "##AEEEA##")
+                .aisle("AAAAAAAAA", "B#######B", "B#######B", "BAAAAAAAB", "C#######C", "B#######B", "B#######B", "B#######B", "#B#####B#", "##BBBBB##", "###CCC###", "###BBB###", "###BBB###", "###BBB###", "###AAA###")
+                .aisle("#AAAAAAA#", "#B#####B#", "#B#####B#", "#BAAAAAB#", "#C#####C#", "#B#####B#", "#B#####B#", "#B#####B#", "#BBBBBBB#", "###BBB###", "#########", "#########", "#########", "#########", "#########")
+                .aisle("##AA@AA##", "##BBBBB##", "##BBBBB##", "##BBBBB##", "##CCCCC##", "##BBBBB##", "##BBBBB##", "##BBBBB##", "#########", "#########", "#########", "#########", "#########", "#########", "#########")
+                .where("#", Predicates.any())
+                .where("A", Predicates.blocks(CASING_STEEL_SOLID.get()))
+                .where("B", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
+                .where("C", Predicates.heatingCoils())
+                .where("D", Predicates.blocks(FILTER_CASING.get()))
+                .where("E", Predicates.blocks(CASING_TITANIUM_PIPE.get()))
+                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                .build()
+            )
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+    public final static MultiblockMachineDefinition FERMENTING_TANK = REGISTRATE.multiblock("fermenting_tank",FermentingTankMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.FERMENTING)
+            .tooltips(Component.translatable("fermenting_introduction").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"),
+                    Component.translatable("subtick_overclock").withStyle(ChatFormatting.YELLOW),
+                    Component.literal("=========================================================="),
+                    Component.translatable("ctnh.fermenting_tank.bio_growth_mechanism").withStyle(ChatFormatting.GREEN),
+                    Component.translatable("ctnh.fermenting_tank.bio_growth_temperature"),
+                    Component.translatable("ctnh.fermenting_tank.bio_growth"))
+            .recipeModifiers(FermentingTankMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("C   C", "C   C", "CCCCC", "H   H", "H   H", "H   H", "DAAAD")
+                .aisle("     ", " GGG ", "CGGGC", " MMM ", " GGG ", " GGG ", "AAAAA")
+                .aisle("     ", " GGG ", "CG GC", " M M ", " G G ", " G G ", "AABAA")
+                .aisle("     ", " GGG ", "CGGGC", " MMM ", " GGG ", " GGG ", "AAAAA")
+                .aisle("C   C", "CAKAC", "CAAAC", "H   H", "H   H", "H   H", "DAAAD")
+                .where("C", Predicates.frames(GTMaterials.Steel))
+                .where("H", Predicates.blocks(AllBlocks.METAL_GIRDER.get()))
+                .where("K", Predicates.controller(Predicates.blocks(definition.get())))
+                .where("M", Predicates.heatingCoils())
+                .where("D", Predicates.blocks(GTBlocks.CASING_STEEL_SOLID.get()))
+                .where("B", Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1))
+                .where("A", Predicates.blocks(GTBlocks.CASING_STEEL_SOLID.get()).setMinGlobalLimited(15)
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setExactLimit(1))
+                .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                )
+                .where("G", Predicates.blocks(GTBlocks.CASING_TEMPERED_GLASS.get()))
+                .where(" ", Predicates.air())
+                .build()
+            )
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition LARGE_FERMENTING_TANK = REGISTRATE.multiblock("large_fermenting_tank", LargeFermentingTankMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.FERMENTING)
+            .tooltips(Component.translatable("fermenting_introduction").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"),
+                    Component.translatable("subtick_overclock").withStyle(ChatFormatting.YELLOW),
+                    Component.literal("=========================================================="),
+                    Component.translatable("ctnh.fermenting_tank.bio_growth_mechanism").withStyle(ChatFormatting.GREEN),
+                    Component.translatable("ctnh.fermenting_tank.bio_growth_temperature"),
+                    Component.translatable("ctnh.fermenting_tank.bio_growth"),
+                    Component.translatable("ctnh.large_fermenting_tank.bio_growth"))
+            .recipeModifier((machine,recipe, params, result) -> {
+                var newrecipe =  FermentingTankMachine.recipeModifier(machine,recipe,params,result);
+                return GTRecipeModifiers.accurateParallel(machine,newrecipe,8,false).getFirst();
+            })
+            .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("##########AAAAAAAAAAA", "##########ABBBBBBBBBA", "##########ABBBBBBBBBA", "##########AAAAAAAAAAA", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "############AAAAAAA##", "############AABBBAA##", "############AABBBAA##", "############AABBBAA##", "############AAAAAAA##")
+                .aisle("##########AAAAAAAAAAA", "##########B#########B", "##########B#########B", "##########AAAAAAAAAAA", "############CCCCCCC##", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "############CCCCCCC##", "###########DABBBBBAD#", "###########DB#####BD#", "###########DB#####BD#", "###########DB#####BD#", "###########DAAAAAAAD#")
+                .aisle("##########AAAAAAAAAAA", "##########B#########B", "##########B#########B", "##########AAAAAAAAAAA", "###########CCDAAADCC#", "#############D###D###", "#############D###D###", "#############D###D###", "#############D###D###", "#############D###D###", "#############D###D###", "#############D###D###", "#############D###D###", "###########CCDAAADCC#", "##########AAABBBBBAAA", "##########ABB#####BBA", "##########ABB#####BBA", "##########ABB#####BBA", "##########AAAAAAAAAAA")
+                .aisle("##########AAAAAAAAAAA", "##########B#########B", "##########B#########B", "##########AAAAAAAAAAA", "###########CDAAAAADC#", "############DBBBBBD##", "############DBBBBBD##", "############DBBBBBD##", "############DFFFFFD##", "############DFFFFFD##", "############DBBBBBD##", "############DBBBBBD##", "############DBBBBBD##", "###########CDAAAAADC#", "##########ABBBBBBBBBA", "AAAAA#####A#########A", "ABBBA#####A#########A", "AAAAA#####A#########A", "##########AAAAAAAAAAA")
+                .aisle("##########AAAAAAAAAAA", "##########B#########B", "##########B#########B", "##########AAAAAAAAAAA", "###########CAAFFFAAC#", "#############B###B###", "#############B###B###", "#############B###B###", "#############F###F###", "#############F###F###", "#############B###B###", "#############B###B###", "#############B###B###", "###########CAAFFFAAC#", "##########ABBBBBBBBBA", "AHHHAAAAAAA#########B", "B###BBBBBBB#########B", "AAAAAAAAAAA#########B", "##########AAAAAAAAAAA")
+                .aisle("##########AAAAAAAAAAA", "##########B#########B", "##########B#########B", "##########AAAAAAAAAAA", "###########CAAFFFAAC#", "#############B#H#B###", "#############B#H#B###", "#############B#H#B###", "#############F#H#F###", "#############F#H#F###", "#############B#H#B###", "#############B#H#B###", "#############B#H#B###", "###########CAAFIFAAC#", "##########ABBBBBBBBBA", "AHHHBBBBBBB#########B", "B###################B", "AAAAABBBBBB#########B", "##########AAAAAAAAAAA")
+                .aisle("##########AAAAAAAAAAA", "##########B#########B", "##########B#########B", "##########AAAAAAAAAAA", "###########CAAFFFAAC#", "#############B###B###", "#############B###B###", "#############B###B###", "#############F###F###", "#############F###F###", "#############B###B###", "#############B###B###", "#############B###B###", "###########CAAFFFAAC#", "##########ABBBBBBBBBA", "AHHHAAAAAAA#########B", "B###BBBBBBB#########B", "AAAAAAAAAAA#########B", "##########AAAAAAAAAAA")
+                .aisle("##########AAAAAAAAAAA", "##########B#########B", "##########B#########B", "##########AAAAAAAAAAA", "###########CDAAAAADC#", "############DBBBBBD##", "############DBBBBBD##", "############DBBBBBD##", "############DFFFFFD##", "############DFFFFFD##", "############DBBBBBD##", "############DBBBBBD##", "############DBBBBBD##", "###########CDAAAAADC#", "##########ABBBBBBBBBA", "AAAAA#####A#########A", "ABBBA#####A#########A", "AAAAA#####A#########A", "##########AAAAAAAAAAA")
+                .aisle("##########AAAAAAAAAAA", "##########B#########B", "##########B#########B", "##########AAAAAAAAAAA", "###########CCDAAADCC#", "#############D###D###", "#############D###D###", "#############D###D###", "#############D###D###", "#############D###D###", "#############D###D###", "#############D###D###", "#############D###D###", "###########CCDAAADCC#", "##########AAABBBBBAAA", "##########ABB#####BBA", "##########ABB#####BBA", "##########ABB#####BBA", "##########AAAAAAAAAAA")
+                .aisle("##########AAAAAAAAAAA", "##########B#########B", "##########B#########B", "##########AAAAAAAAAAA", "############CCCCCCC##", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "############CCCCCCC##", "###########DABBBBBAD#", "###########DB#####BD#", "###########DB#####BD#", "###########DB#####BD#", "###########DAAAAAAAD#")
+                .aisle("##########AJJJJ@JJJJA", "##########AJJJJJJJJJA", "##########AJJJJJJJJJA", "##########AJJJJJJJJJA", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "############AAAAAAA##", "############AABBBAA##", "############AABBBAA##", "############AABBBAA##", "############AAAAAAA##")
+                .where("#", Predicates.any())
+                .where("A", Predicates.blocks(CASING_STEEL_SOLID.get()))
+                .where("B", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
+                .where("C", Predicates.blocks(Blocks.SMOOTH_STONE_SLAB))
+                .where("D", Predicates.frames(GTMaterials.Invar))
+                .where("F", Predicates.heatingCoils())
+                .where("H", Predicates.blocks(CASING_TITANIUM_PIPE.get()))
+                .where("I", Predicates.blocks(CASING_TITANIUM_GEARBOX.get()))
+                .where("J", Predicates.blocks(CASING_STEEL_SOLID.get())
+                        .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                .build()
+            )
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+    public final static MultiblockMachineDefinition DIGESTION_TANK = REGISTRATE.multiblock("digestion_tank",DigestionTankMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.DIGESTING)
+            .tooltips(Component.translatable("digestion_tank_introduction").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.digestion_tank.bio_growth_mechanism").withStyle(ChatFormatting.GREEN),
+                    Component.translatable("ctnh.digestion_tank.bio_growth_temperature"))
+            .recipeModifiers(DigestionTankMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("CCCCC", "CAAAC", "CCCCC")
+                .aisle("CCCCC", "AWWWA", "CDDDC")
+                .aisle("CCCCC", "CAKAC", "CGGGC")
+                .where("C", Predicates.blocks(Blocks.BRICKS))
+                .where("K", Predicates.controller(Predicates.blocks(definition.get())))
+                .where("D", Predicates.blocks(Blocks.IRON_TRAPDOOR))
+                .where("A", Predicates.blocks(Blocks.BRICKS)
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                )
+                .where("G", Predicates.blocks(GTBlocks.CASING_TEMPERED_GLASS.get()))
+                .where("W", Predicates.blocks(Blocks.WATER))
+                .build()
+            )
+            .workableCasingRenderer(new ResourceLocation("block/bricks"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+    public final static MultiblockMachineDefinition BLAZE_BLAST_FURNACE = REGISTRATE.multiblock("blaze_blast_furnace",BlazeBlastFurnaceMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.BLAST_RECIPES)
+            .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .appearanceBlock(CTNHBlocks.BLAZE_BLAST_FURNACE_CASING)
+            .tooltips(Component.translatable("blaze_blast_furnace").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.blaze_blast_furnace.consume"),
+                    Component.translatable("ctnh.blaze_blast_furnace.energy"),
+                    Component.translatable("ctnh.blaze_blast_furnace.parallel").withStyle(ChatFormatting.DARK_GREEN),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("GGG", "MMM", "MMM", "GGG")
+                .aisle("GGG", "M M", "M M", "GBG")
+                .aisle("GKG", "MMM", "MMM", "GGG")
+                .where("K", Predicates.controller(Predicates.blocks(definition.get())))
+                .where("M", Predicates.heatingCoils())
+                .where("B", Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1))
+                .where("G", Predicates.blocks(CTNHBlocks.BLAZE_BLAST_FURNACE_CASING.get()).setMinGlobalLimited(4)
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                )
+                .where(" ", Predicates.air())
+                .build()
+            )
+            .workableCasingRenderer(CTNHCore.id("block/casings/blaze_blast_furnace_casing"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+    public final static MultiblockMachineDefinition MANA_MACERATOR = REGISTRATE.multiblock("mana_macerator",holder -> new ManaMachine(holder,8,2))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.MACERATOR_RECIPES)
+            .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.mana_macerator"),
+                    Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.basic_mana_machine.mana_consume"),
+                    Component.translatable("ctnh.perfect_overclock"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("ABBA", "AAAA", "ABBA")
+                .aisle("ABBA", "ACCA", "ABBA")
+                .aisle("ABBA", "A@DA", "ABBA")
+                .where("A", Predicates.blocks(BotaniaBlocks.livingrockPolished)
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                .where("B", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
+                .where("C", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
+                .where("D", Predicates.abilities(PartAbility.IMPORT_FLUIDS))
+                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                .build()
+            )
+            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition MANA_BENDER = REGISTRATE.multiblock("mana_bender",holder -> new ManaMachine(holder,8,2))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.BENDER_RECIPES)
+            .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.mana_bender"),
+                    Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.basic_mana_machine.mana_consume"),
+                    Component.translatable("ctnh.perfect_overclock"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("EEEEE", "ABBBA", "ABBBA", "ACCCA")
+                .aisle("EDDDE", "B###B", "B###B", "CDDDC")
+                .aisle("EDDDE", "B#F#B", "B#F#B", "CDDDC")
+                .aisle("EDDDE", "B###B", "B###B", "CDDDC")
+                .aisle("EEEEE", "AE@EA", "AEEEA", "ACCCA")
+                .where("A", Predicates.blocks(BotaniaBlocks.livingrockPolished))
+                .where("B", Predicates.frames(GTNNMaterials.ManaSteel))
+                .where("C", Predicates.blocks(BotaniaBlocks.livingrockBrickStairs))
+                .where("D", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
+                .where("#", Predicates.any())
+                .where("E",Predicates.blocks(BotaniaBlocks.livingrockPolished)
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS)))
+                .where("F", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
+                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                .build()
+            )
+            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public final static MultiblockMachineDefinition MANA_WIREMILL = REGISTRATE.multiblock("mana_wiremill",holder -> new ManaMachine(holder,8,2))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.WIREMILL_RECIPES)
+            .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.mana_wiremill"),
+                    Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.basic_mana_machine.mana_consume"),
+                    Component.translatable("ctnh.perfect_overclock"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("AAA", "BBB", "CCC")
+                .aisle("AAA", "BBB", "CCC")
+                .aisle("AAA", "B@B", "CCC")
+                .where("A", Predicates.blocks(BotaniaBlocks.livingrockPolished)
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS)))
+                .where("B", Predicates.frames(GTNNMaterials.Elementium))
+                .where("C", Predicates.blocks(CTNHBlocks.ELEMENTIUM_CASING.get()))
+                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                .build()
+            )
+            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public final static MultiblockMachineDefinition MANA_LATHE = REGISTRATE.multiblock("mana_lathe",holder -> new ManaMachine(holder,8,2))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.LATHE_RECIPES)
+            .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.mana_lathe"),
+                    Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.basic_mana_machine.mana_consume"),
+                    Component.translatable("ctnh.perfect_overclock"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("ABA", "AAA", "AAA", "CAC")
+                .aisle("ABA", "D#D", "D#D", "CAC")
+                .aisle("ABA", "D#D", "D#D", "CAC")
+                .aisle("ABA", "D#D", "D#D", "CAC")
+                .aisle("ABA", "A@A", "AAA", "CAC")
+                .where("A", Predicates.blocks(BotaniaBlocks.livingrockPolished)
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS)))
+                .where("B", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
+                .where("C", Predicates.blocks(BotaniaBlocks.livingrockBrickStairs))
+                .where("D", Predicates.frames(GTNNMaterials.ManaSteel))
+                .where("#", Predicates.any())
+                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                .build()
+            )
+            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public final static MultiblockMachineDefinition MANA_ASSEMBLER = REGISTRATE.multiblock("mana_assembler",holder -> new ManaMachine(holder,8,5))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.ASSEMBLER_RECIPES)
+            .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.mana_assembler"),
+                    Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.advanced_mana_machine.mana_consume"),
+                    Component.translatable("ctnh.perfect_overclock"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("ABBBBBA", "ABBBBBA", "ABBBBBA", "ACCCCCA", "AAAAAAA")
+                .aisle("BDEEEDB", "B#####B", "B#####B", "C#####C", "ABBBBBA")
+                .aisle("BEDFDEB", "B#####B", "B##G##B", "C#####C", "ABBBBBA")
+                .aisle("BEFDFEB", "B##H##B", "B#GHG#B", "C##H##C", "ABBBBBA")
+                .aisle("BEDFDEB", "B#####B", "B##G##B", "C#####C", "ABBBBBA")
+                .aisle("BDEEEDB", "B#####B", "B#####B", "C#####C", "ABBBBBA")
+                .aisle("ABBBBBA", "ABB@BBA", "ABBBBBA", "ACCCCCA", "AAAAAAA")
+                .where("A", Predicates.frames(CTNHMaterials.AlfSteel))
+                .where("B", Predicates.blocks(BotaniaBlocks.livingrockPolished)
+                    .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setExactLimit(1))
+                .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
+                .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                .where("C", Predicates.blocks(BotaniaBlocks.manaGlass))
+                .where("D", Predicates.blocks(CTNHBlocks.ELEMENTIUM_CASING.get()))
+                .where("E", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
+                .where("#", Predicates.any())
+                .where("F", Predicates.blocks(CTNHBlocks.TERRA_STEEL_CASING.get()))
+                .where("G", Predicates.blocks(CASING_STAINLESS_STEEL_GEARBOX.get()))
+                .where("H", Predicates.blocks(CASING_TITANIUM_GEARBOX.get()))
+                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                .build()
+            )
+            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
     public static void init() {
 
     }

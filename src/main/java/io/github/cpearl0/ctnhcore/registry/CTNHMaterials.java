@@ -5,16 +5,26 @@ import com.aetherteam.aether.item.AetherItems;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.WireProperties;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import dev.arbor.gtnn.data.GTNNMaterials;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import mythicbotany.MythicBotany$;
+import mythicbotany.register.ModBlocks;
+import mythicbotany.register.ModItems;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
+import vazkii.botania.common.block.BotaniaBlocks;
+import vazkii.botania.common.item.BotaniaItems;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static dev.arbor.gtnn.data.GTNNMaterials.*;
 
 public class CTNHMaterials {
     public static final Material Holystone = new Material.Builder(CTNHCore.id("holystone"))
@@ -188,6 +198,34 @@ public class CTNHMaterials {
             .liquid()
             .color(0x171717)
             .buildAndRegister();
+    public static final Material SimpleGrowthMedium = new Material.Builder(GTCEu.id("simple_growth_medium"))
+            .liquid()
+            .color(0xeef295)
+            .buildAndRegister();
+    public static final Material Pyrotheum = new Material.Builder(GTCEu.id("pyrotheum"))
+            .dust()
+            .liquid(new FluidBuilder().temperature(5700).customStill())
+            .color(0xe8a62b)
+            .buildAndRegister();
+    public static final Material Cryotheum = new Material.Builder(GTCEu.id("cryotheum"))
+            .dust()
+            .liquid(new FluidBuilder()
+                    .temperature(20)
+                    .customStill())
+            .color(0x34daf7)
+            .buildAndRegister();
+    public static final Material Mana = new Material.Builder(GTCEu.id("mana"))
+            .liquid()
+            .color(0x43e7ed)
+            .buildAndRegister();
+    public static final Material AlfSteel = new Material.Builder(GTCEu.id("alfsteel"))
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .ingot()
+            .color(0xFD9D31)
+            .iconSet(METALLIC)
+            .cableProperties(GTValues.V[GTValues.EV], 6, 1, false)
+            .buildAndRegister();
+
     public static void init() {
         TagPrefix.block.setIgnored(Holystone, AetherBlocks.HOLYSTONE);
 

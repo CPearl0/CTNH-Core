@@ -27,6 +27,10 @@ public class MachineUtils {
         }
         return false;
     }
+    public static boolean canInputFluid(FluidStack fluidStack, WorkableMultiblockMachine machine) {
+        var Recipe = GTRecipeBuilder.ofRaw().inputFluids(fluidStack).buildRawRecipe();
+        return Recipe.matchRecipe(machine).isSuccess();
+    }
     public static boolean canInputItem(ItemStack itemStack, WorkableMultiblockMachine machine) {
         var Recipe = GTRecipeBuilder.ofRaw().inputItems(itemStack).buildRawRecipe();
         return Recipe.matchRecipe(machine).isSuccess();

@@ -54,6 +54,16 @@ public class CTNHBlocks {
             "space_elevator_mechanical_casing", CTNHCore.id("block/space_elevator_mechanical_casing"));
     public static final BlockEntry<Block> HIGH_GRADE_COKE_OVEN_BRICKS = createCasingBlock(
             "high_strength_concrete", CTNHCore.id("block/high_grade_coke_oven_bricks"));
+    public static final BlockEntry<Block> BLAZE_BLAST_FURNACE_CASING = createCasingBlock(
+            "blaze_blast_furnace_casing",CTNHCore.id("block/casings/blaze_blast_furnace_casing"));
+    public static final BlockEntry<Block> MANA_STEEL_CASING = createCasingBlock(
+            "mana_steel_casing",CTNHCore.id("block/casings/mana_steel_casing"));
+    public static final BlockEntry<Block> TERRA_STEEL_CASING = createCasingBlock(
+            "terra_steel_casing",CTNHCore.id("block/casings/terra_steel_casing"));
+    public static final BlockEntry<Block> ELEMENTIUM_CASING = createCasingBlock(
+            "elementium_casing",CTNHCore.id("block/casings/elementium_casing"));
+    public static final BlockEntry<Block> ALF_STEEL_CASING = createCasingBlock(
+            "alf_steel_casing",CTNHCore.id("block/casings/alf_steel_casing"));
 
     public static final BlockEntry<ActiveBlock> SPACE_ELEVATOR_POWER_CORE = createActiveCasing("space_elevator_power_core",
             "block/flux/space_elevator_power_core");

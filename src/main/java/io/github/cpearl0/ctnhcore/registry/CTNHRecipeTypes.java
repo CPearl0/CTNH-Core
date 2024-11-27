@@ -86,7 +86,12 @@ public class CTNHRecipeTypes {
                 items.add(GTCEuAPI.HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
             widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
             });
-
+    public static final GTRecipeType DIGESTING = GTRecipeTypes.register("digesting", MULTIBLOCK)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(2, 1, 2, 4)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType BEDROCK_DRILLING_RIGS = GTRecipeTypes.register("bedrock_drilling_rigs", GTRecipeTypes.ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(1, 3, 1, 1)
@@ -114,6 +119,13 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_CRYSTALLIZATION, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
+
+    public static final GTRecipeType MEADOW = GTRecipeTypes.register("meadow", MULTIBLOCK)
+            .setMaxIOSize(3, 3, 3, 3)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.BATH)
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_input", String.format("%.1f",data.getFloat("input_stress"))));
     public static void init() {
 
     }

@@ -92,7 +92,36 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.demon_generator.info.destructive", "Specialization Boost: Destructive");
         provider.add("ctnh.multiblock.demon_generator.info.1", "Concentration Difference: %s");
         provider.add("ctnh.multiblock.demon_generator.info.boosted", "§bLife Essence Boost Active");
-
+        provider.add("meadow", "Automated Pasture");
+        provider.add("ctnh.meadow.basic", "Can only raise chickens, cows, pigs and sheep. Cows produce leather, sheep produce wool, pigs produce pork and chickens produce eggs.");
+        provider.add("ctnh.meadow.mechanism", "The more animals in the pasture, the more waste they generate. The more animals you have, the more byproducts are produced.");
+        provider.add("ctnh.fermenting_tank.bio_growth_mechanism", "Biological Growth Mechanism of the Fermenting Tank:");
+        provider.add("ctnh.fermenting_tank.bio_growth_temperature", "The optimal growth temperature is between §236§r and §238§r degrees. Recipes get 1.2x efficiency at optimal temperature. The further it deviates, the lower the efficiency, down to one-third.");
+        provider.add("ctnh.fermenting_tank.bio_growth", "Microbial growth follows the logistic equation. When the liquid volume in the input tank is half of its capacity, §2growth efficiency doubles§r. Efficiency is lowest when the tank is full or empty, with a minimum of 20%.");
+        provider.add("subtick_overclock", "When recipe runtime is less than 1 tick, parallel calculations will be performed automatically.");
+        provider.add("fermenting_introduction", "A tank designed specifically for microbial growth. Always keep an eye on it!");
+        provider.add("large_fermenting_tank", "Efficient Industrial Fermentation");
+        provider.add("ctnh.large_fermenting_tank.bio_growth", "Can connect auxiliary structures. By attaching a large fermentation bottle with a specific liquid type, the minimum efficiency increases: Water (50%), Basic Medium (150%), Sterile Medium (200%).");
+        provider.add("large_bottle", "This is truly a large container.");
+        provider.add("ctnh.large_bottle.basic", "Can store up to 10,000 buckets of liquid.");
+        provider.add("ctnh.large_bottle.consume", "When used with a large fermenting tank, its liquid will be consumed at a rate of §e100mb/s§r.");
+        provider.add("digestion_tank_introduction", "Actually, it produces very valuable materials...");
+        provider.add("ctnh.digestion_tank.bio_growth_mechanism", "Composting Mechanism of the Digestion Tank:");
+        provider.add("ctnh.digestion_tank.bio_growth_temperature", "The optimal growth temperature is between §236§r and §238§r degrees. Recipes get 1.2x efficiency at optimal temperature. The further it deviates, the lower the efficiency, down to one-third.");
+        provider.add("ctnh.blaze_blast_furnace.pyrotheum", "Blazing Pyrotheum: %d mB");
+        provider.add("ctnh.blaze_blast_furnace.consume", "Base consumption is §a10mB§r of Blazing Pyrotheum per second. For each voltage tier above §6HV§r, the consumption doubles.");
+        provider.add("ctnh.blaze_blast_furnace.energy", "Consumes 0.75x energy.");
+        provider.add("ctnh.blaze_blast_furnace.parallel", "Allows processing of 8 recipes simultaneously.");
+        provider.add("blaze_blast_furnace", "Faster than an electric blast furnace.");
+        provider.add("mana_machine", "Magic, isn't it?");
+        provider.add("ctnh.basic_mana_machine.mana_consume", "Base consumption is 4mB of Liquid Mana per second. For each voltage tier above §7LV§r, the consumption doubles.");
+        provider.add("ctnh.advanced_mana_machine.mana_consume", "Base consumption is 10mB of Liquid Mana per second. For each voltage tier above §7LV§r, the consumption doubles.");
+        provider.add("ctnh.mana_macerator", "Machine Type: §eMacerator§r");
+        provider.add("ctnh.mana_bender", "Machine Type: §eBender§r");
+        provider.add("ctnh.mana_lathe", "Machine Type: §eLathe§r");
+        provider.add("ctnh.mana_assembler", "Machine Type: §eAssembler§r");
+        provider.add("ctnh.mana_wiremill", "Machine Type: §eWire Mill§r");
+        provider.add("ctnh.perfect_overclock", "§aPerfect Overclock!§r");
 
     }
 }
