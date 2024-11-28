@@ -32,6 +32,7 @@ import io.github.cpearl0.ctnhcore.common.block.CTNHFusionCasingType;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.ChemicalGeneratorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NaqReactorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotovoltaicPowerStationMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.WindPowerArrayMachine;
@@ -46,6 +47,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -53,6 +55,9 @@ import net.minecraft.world.phys.AABB;
 import vazkii.botania.common.block.BotaniaBlocks;
 import wayoftime.bloodmagic.BloodMagic;
 import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
+
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
@@ -657,6 +662,7 @@ public class CTNHMultiblockMachines {
     public final static MultiblockMachineDefinition DEMON_WILL_GENERATOR = REGISTRATE.multiblock("demon_will_generator", DemonWillMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.DEMON_WILL_GENERATOR_RECIPE)
+            .generator(true)
             .recipeModifiers(DemonWillMachine::recipeModifier)
             .tooltips(Component.translatable("ctnh.demon_will_generator.tooltips.1").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.demon_will_generator.tooltips.2"),
@@ -1081,6 +1087,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition MANA_GENERATOR_TIER1 = REGISTRATE.multiblock("mana_generator_turbine_tier1",holder -> new ManaLargeTurbineMachine(holder,256, MV))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
+            .generator(true)
             .tooltips(Component.translatable("mana_generator_turbine_tier1").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.mana_generator_turbine_tier1.basic_power"),
                     Component.translatable("ctnh.mana_generator_turbine_tier1.restriction"),
@@ -1107,6 +1114,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition MANA_GENERATOR_TIER2 = REGISTRATE.multiblock("mana_generator_turbine_tier2",holder -> new ManaLargeTurbineMachine(holder,512, GTValues.EV))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
+            .generator(true)
             .tooltips(Component.translatable("mana_generator_turbine_tier2").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.mana_generator_turbine_tier2.basic_power"),
                     Component.translatable("ctnh.mana_generator_turbine_tier2.restriction"),
@@ -1133,6 +1141,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition MANA_GENERATOR_TIER3 = REGISTRATE.multiblock("mana_generator_turbine_tier3",holder -> new ManaLargeTurbineMachine(holder,2048, GTValues.LuV))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
+            .generator(true)
             .tooltips(Component.translatable("mana_generator_turbine_tier3").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.mana_generator_turbine_tier3.basic_power"),
                     Component.translatable("ctnh.mana_generator_turbine_tier3.restriction"),
@@ -1159,6 +1168,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition MANA_GENERATOR_TIER4 = REGISTRATE.multiblock("mana_generator_turbine_tier4",holder -> new ManaLargeTurbineMachine(holder,8192, GTValues.UV))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
+            .generator(true)
             .tooltips(Component.translatable("mana_generator_turbine_tier4").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.mana_generator_turbine_tier4.basic_power"),
                     Component.translatable("ctnh.mana_generator_turbine_tier4.restriction"),
@@ -1215,8 +1225,8 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), CTNHCore.id("block/overlay/super_ebf"), true)
             .tooltips(
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"),
-                    Component.translatable("gtceu.machine.available_recipe_map_1.tooltip", "Electric Blast Furnace")
-                    //Component.translatable("gtca.machine.AEBF_desc.tooltip1")
+                    Component.translatable("gtceu.machine.available_recipe_map_1.tooltip", Component.translatable("ctnh.super_ebf.recipe_type")),
+                    Component.translatable("ctnh.machine.super_ebf.tooltip1")
             )
             .additionalDisplay((controller, components) -> {
                 if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
@@ -1270,7 +1280,7 @@ public class CTNHMultiblockMachines {
                 }
             })
             .tooltips(
-                    Component.translatable("gtceu.machine.available_recipe_map_1.tooltip", "Oil Cracker")
+                    Component.translatable("gtceu.machine.available_recipe_map_1.tooltip", Component.translatable("ctnh.mega_oil_cracker.recipe_type"))
             )
             .compassSections(GTCompassSections.TIER[EV])
             .compassNodeSelf()
@@ -1311,9 +1321,73 @@ public class CTNHMultiblockMachines {
             )
             .tooltips(
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"),
-                    Component.translatable("gtceu.machine.available_recipe_map_1.tooltip", "Chemical Reactor / LCR")
+                    Component.translatable("gtceu.machine.available_recipe_map_1.tooltip", Component.translatable("ctnh.mega_lcr.recipe_type"))
             )
             .register();
+    public static final MultiblockMachineDefinition IV_CHEMICAL_GENERATOR = registerChemicalGenerator(
+            "iv_chemical_generator", IV,
+            CASING_TUNGSTENSTEEL_TURBINE, CASING_TUNGSTENSTEEL_GEARBOX, FIREBOX_TUNGSTENSTEEL, CASING_TUNGSTENSTEEL_PIPE,
+            GTCEu.id("block/casings/mechanic/machine_casing_turbine_tungstensteel"),
+            CTNHCore.id("block/overlay/super_chemical"));
+
+    public static final MultiblockMachineDefinition EV_CHEMICAL_GENERATOR = registerChemicalGenerator(
+            "ev_chemical_generator", EV,
+            CASING_TITANIUM_TURBINE, CASING_TITANIUM_GEARBOX, FIREBOX_TITANIUM, CASING_TITANIUM_PIPE,
+            GTCEu.id("block/casings/mechanic/machine_casing_turbine_titanium"),
+            CTNHCore.id("block/overlay/super_chemical"));
+
+//Comes from GTCA
+    public static MultiblockMachineDefinition registerChemicalGenerator(String name, int tier,
+                                                                        Supplier<? extends Block> casing,
+                                                                        Supplier<? extends Block> gear,
+                                                                        Supplier<? extends Block> firebox,
+                                                                        Supplier<? extends Block> pipe,
+                                                                        ResourceLocation casingTexture,
+                                                                        ResourceLocation overlayModel) {
+        return REGISTRATE.multiblock(name, holder -> new ChemicalGeneratorMachine(holder, tier))
+                .rotationState(RotationState.NON_Y_AXIS)
+                .recipeType(CTNHRecipeTypes.CHEMICAL_GENERATOR)
+                .generator(true)
+                .recipeModifier(ChemicalGeneratorMachine::recipeModifier, true)
+                .appearanceBlock(casing)
+                .pattern(definition -> FactoryBlockPattern.start()
+                        .aisle("III", "PPP", "III")
+                        .aisle("III", "P#P", "III")
+                        .aisle("III", "PPP", "III")
+                        .aisle("III", "CSC", "III")
+                        .aisle("III", "FGF", "III")
+                        .aisle("IMI", "IDI", "III")
+                        .where('M', Predicates.controller(Predicates.blocks(definition.getBlock())))
+                        .where('P', Predicates.blocks(GTBlocks.CASING_PTFE_INERT.get()))
+                        .where('#', Predicates.blocks(GTBlocks.CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
+                        .where('C', Predicates.blocks(GTBlocks.COIL_CUPRONICKEL.get()))
+                        .where('S', Predicates.blocks(pipe.get()))
+                        .where('F', Predicates.blocks(firebox.get()))
+                        .where('G', Predicates.blocks(gear.get()))
+                        .where('I', Predicates.blocks(casing.get()).setMinGlobalLimited(30)
+                                .or(Predicates.autoAbilities(definition.getRecipeTypes(), false, false, true, true, true, true))
+                                .or(Predicates.autoAbilities(true, true, false)))
+                        .where('D',
+                                Predicates.ability(PartAbility.OUTPUT_ENERGY,
+                                        Stream.of(ULV, LV, MV, HV, EV, IV, LuV, ZPM, UV, UHV).filter(t -> t >= tier)
+                                                .mapToInt(Integer::intValue).toArray())
+                                        .addTooltips(Component.translatable("gtceu.multiblock.pattern.error.limited.1",
+                                                GTValues.VN[tier])))
+                        .build())
+                .recoveryItems(
+                        () -> new ItemLike[]{GTItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get()})
+                .workableCasingRenderer(casingTexture, overlayModel)
+                .tooltips(
+                        Component.translatable("gtceu.universal.tooltip.base_production_eut", V[tier]),
+                        tier > EV ?
+                                Component.translatable("gtceu.machine.large_combustion_engine.tooltip.boost_extreme",
+                                        V[tier] * 4) :
+                                Component.translatable("gtceu.machine.large_combustion_engine.tooltip.boost_regular",
+                                        V[tier] * 3))
+                .compassSections(GTCompassSections.TIER[EV])
+                .compassNode("chemical_generator")
+                .register();
+    }
     public static void init() {
 
     }

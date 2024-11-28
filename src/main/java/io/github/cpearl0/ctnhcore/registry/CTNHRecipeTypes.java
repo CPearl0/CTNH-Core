@@ -128,10 +128,17 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.BATH)
             .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_input", String.format("%.1f",data.getFloat("input_stress"))));
     public static final GTRecipeType MANA_GENERATOR = GTRecipeTypes.register("mana_generator",GENERATOR)
+            .setEUIO(IO.OUT)
             .setMaxIOSize(2, 0, 1, 1)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
+    public static final GTRecipeType CHEMICAL_GENERATOR = GTRecipeTypes.register("chemical_generator",GENERATOR)
+            .setEUIO(IO.OUT)
+            .setMaxIOSize(2,0,2,0)
+            .setSlotOverlay(false, false, GuiTextures.BOX_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.COMBUSTION);
     public static void init() {
 
     }

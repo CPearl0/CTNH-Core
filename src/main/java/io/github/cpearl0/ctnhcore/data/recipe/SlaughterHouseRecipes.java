@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 public class SlaughterHouseRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         CTNHRecipeTypes.SLAUGHTER_HOUSE.recipeBuilder("kill")
-                .inputFluids(FluidIngredient.of(2, GTMaterials.Lubricant.getFluid()))
+                .inputFluids(GTMaterials.Lubricant.getFluid(2))
                 .duration(60)
                 .EUt(480)
                 .save(provider);

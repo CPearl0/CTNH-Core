@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 public class BigDamRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         CTNHRecipeTypes.BIG_DAM.recipeBuilder("big_dam")
-                .inputFluids(FluidIngredient.of(50, GTMaterials.Lubricant.getFluid()))
+                .inputFluids(GTMaterials.Lubricant.getFluid(50))
                 .outputStress(1048576)
                 .addData("output_stress", 1048576)
                 .duration(200)

@@ -150,6 +150,10 @@ public class ChineseLangHandler {
         provider.add("ctnh.mana_generator_turbine_tier4.basic_power", "§e基础产能功率：§r4096 EU/t");
         provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§3UV§r");
         provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，消耗量x0.9\n  二级符文：发电量x2，消耗量x0.75\n  三级符文：发电量x3，消耗量x0.6\n  四级符文：发电量x4，消耗量x0.4");
+        provider.add("ctnh.machine.super_ebf.tooltip1", "所有配方耗时减半");
+        provider.add("ctnh.mega_lcr.recipe_type","化学反应釜 / 大型化学反应釜");
+        provider.add("ctnh.mega_oil_cracker.recipe_type", "裂化机");
+        provider.add("ctnh.super_ebf.recipe_type","电力高炉");
 
 
         for (var tier : GTMachines.ALL_TIERS) {
@@ -234,6 +238,11 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.MANA_GENERATOR_TIER2.getBlock(), "魔力涡轮发电机MK2");
         provider.add(CTNHMultiblockMachines.MANA_GENERATOR_TIER3.getBlock(), "魔力涡轮发电机MK3");
         provider.add(CTNHMultiblockMachines.MANA_GENERATOR_TIER4.getBlock(), "魔力涡轮发电机MK4");
+        provider.add(CTNHMultiblockMachines.SUPER_EBF.getBlock(),"超级电力高炉");
+        provider.add(CTNHMultiblockMachines.MEGA_LCR.getBlock(), "巨型化学反应釜");
+        provider.add(CTNHMultiblockMachines.EV_CHEMICAL_GENERATOR.getBlock(), "化学能发电机");
+        provider.add(CTNHMultiblockMachines.IV_CHEMICAL_GENERATOR.getBlock(), "化学能吞噬者");
+        provider.add(CTNHMultiblockMachines.MEGA_OIL_CRACKING_UNIT.getBlock(), "巨型原油裂解厂");
     }
 
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,

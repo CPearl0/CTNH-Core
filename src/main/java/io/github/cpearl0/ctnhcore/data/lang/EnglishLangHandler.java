@@ -135,6 +135,10 @@ public class EnglishLangHandler {
         provider.add("ctnh.mana_generator_turbine_tier4.basic_power", "§eBase Power Output:§r 4096 EU/t");
         provider.add("ctnh.mana_generator_turbine_tier4.restriction", "Rotor frame tier cannot exceed §3UV§r");
         provider.add("ctnh.mana_generator_turbine_rune", "Insert runes into the machine to increase power generation efficiency:\n  Tier 1 Rune: Power x1.5, Consumption x0.9\n  Tier 2 Rune: Power x2, Consumption x0.75\n  Tier 3 Rune: Power x3, Consumption x0.6\n  Tier 4 Rune: Power x4, Consumption x0.4");
+        provider.add("ctnh.machine.super_ebf.tooltip1", "All recipes are 50% faster!");
+        provider.add("ctnh.mega_lcr.recipe_type","Chemical Reactor / LCR");
+        provider.add("ctnh.mega_oil_cracker.recipe_type", "Oil Cracker");
+        provider.add("ctnh.super_ebf.recipe_type","Electric Blast Furnace");
 
     }
 }
