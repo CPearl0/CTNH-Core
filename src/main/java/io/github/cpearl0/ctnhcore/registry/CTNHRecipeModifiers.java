@@ -58,7 +58,28 @@ public class CTNHRecipeModifiers {
         }
         return null;
     }
-
+    public static GTRecipe superEbfOverclock(MetaMachine machine, @NotNull GTRecipe recipe, @NotNull OCParams params,
+                                         @NotNull OCResult result) {
+        if (machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
+            final var blastFurnaceTemperature = coilMachine.getCoilType().getCoilTemperature() +
+                    100 * Math.max(0, coilMachine.getTier() - GTValues.MV);
+            if (!recipe.data.contains("ebf_temp") || recipe.data.getInt("ebf_temp") > blastFurnaceTemperature) {
+                return null;
+            }
+            if (RecipeHelper.getRecipeEUtTier(recipe) > coilMachine.getTier()) {
+                return null;
+            }
+            var newrecipe = RecipeHelper.applyOverclock(
+                    new OverclockingLogic((p, r, maxVoltage) -> OverclockingLogic.heatingCoilOC(
+                            params, result, maxVoltage,
+                            blastFurnaceTemperature,
+                            recipe.data.contains("ebf_temp") ? recipe.data.getInt("ebf_temp") : 0)),
+                    recipe, coilMachine.getOverclockVoltage(), params, result);
+            result.setDuration((int) result.getDuration() / 2);
+            return newrecipe;
+        }
+        return null;
+    }
     private static GTRecipe reduction(MetaMachine machine, @NotNull GTRecipe recipe, double v, double v1) {
         return recipe;
     }

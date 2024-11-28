@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.common.machine.multiblock;
+package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
 import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
