@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.common.machine.multiblock;
+package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.gregtechceu.gtceu.api.GTValues;
