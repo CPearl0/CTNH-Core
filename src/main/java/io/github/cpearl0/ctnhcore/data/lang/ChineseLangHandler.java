@@ -29,6 +29,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.coke_oven", "焦化塔");
         provider.add("gtceu.demon_will_generator", "恶魔意志发电");
         provider.add("gtceu.meadow","牧场养殖");
+        provider.add("gtceu.chemical_generator","化学能发电");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -154,6 +155,10 @@ public class ChineseLangHandler {
         provider.add("ctnh.mega_lcr.recipe_type","化学反应釜 / 大型化学反应釜");
         provider.add("ctnh.mega_oil_cracker.recipe_type", "裂化机");
         provider.add("ctnh.super_ebf.recipe_type","电力高炉");
+        provider.add("ctnh.slaughter_house.mechanism", "输入总线放入电动刷怪笼后，机器会自动输出对应怪物的战利品，可放入多个电动刷怪笼");
+        provider.add("ctnh.slaughter_house.parallel", "电压每升高1级，虚拟刷怪量会增加4（HV为4）");
+        provider.add("ctnh.slaughter_house.health", "§a怪物血量和护甲值越高，配方运行所需时间越长§r");
+        provider.add("slaughter_house", "无情的杀戮机器");
 
 
         for (var tier : GTMachines.ALL_TIERS) {
