@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
@@ -36,6 +37,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.ChemicalGe
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NaqReactorMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotovoltaicPowerStationMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.WindPowerArrayMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.IndustrialPrimitiveBlastFurnaceMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.DemonWillMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ManaLargeTurbineMachine;
@@ -1392,6 +1394,33 @@ public class CTNHMultiblockMachines {
                 .compassNode("chemical_generator")
                 .register();
     }
+    public static final MachineDefinition INDUSTRIAL_PRIMITIVE_BLAST_FURNACE = REGISTRATE.multiblock("industrial_primitive_blast_furnace", IndustrialPrimitiveBlastFurnaceMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.PRIMITIVE_BLAST_FURNACE_RECIPES)
+            .appearanceBlock(CASING_PRIMITIVE_BRICKS)
+            .tooltips(Component.translatable("industrial_primitive_blast_furnace_introduction").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.industrial_primitive_blast_furnace.temperature"),
+                    Component.translatable("ctnh.industrial_primitive_blast_furnace.parallel").withStyle(ChatFormatting.GREEN),
+                    Component.translatable("ctnh.industrial_primitive_blast_furnace.efficiency").withStyle(ChatFormatting.GREEN))
+            .recipeModifier(IndustrialPrimitiveBlastFurnaceMachine::recipeModifier)
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("CAAAC", " CCC ", " CCC ", " CCC ", "  C  ", "  C  ", "  C  ")
+                .aisle("ABBBA", "C   C", "C   C", "C   C", " C C ", " C C ", " C C ")
+                .aisle("CCBCC", "FC CF", "FC CF", "FC CF", "  C  ", "  C  ", "  C  ")
+                .aisle("CAAAC", " AKA ", " CAC ", " CCC ", "     ", "     ", "     ")
+                .where("C", Predicates.blocks(CASING_PRIMITIVE_BRICKS.get()))
+                .where("K", Predicates.controller(Predicates.blocks(definition.get())))
+                .where("F", Predicates.frames(GTMaterials.Bronze))
+                .where("A", Predicates.blocks(CASING_PRIMITIVE_BRICKS.get())
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                )
+                .where("B", Predicates.blocks(GTBlocks.FIREBOX_BRONZE.get()))
+                .where(" ", Predicates.any())
+                .build()
+            )
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_primitive_bricks"), GTCEu.id("block/multiblock/steam_oven"), false)
+            .register();
     public static void init() {
 
     }

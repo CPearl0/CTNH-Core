@@ -159,6 +159,11 @@ public class ChineseLangHandler {
         provider.add("ctnh.slaughter_house.parallel", "电压每升高1级，虚拟刷怪量会增加4（HV为4）");
         provider.add("ctnh.slaughter_house.health", "§a怪物血量和护甲值越高，配方运行所需时间越长§r");
         provider.add("slaughter_house", "无情的杀戮机器");
+        provider.add("ctnh.industrial_primitive_blast_furnace.parallel_count", "并行数：%d");
+        provider.add("industrial_primitive_blast_furnace_introduction", "更强大的土高炉，你的炼钢好帮手");
+        provider.add("ctnh.industrial_primitive_blast_furnace.temperature", "工业土高炉在持续运行配方时，会不断升温，而一旦中止，则会迅速冷却");
+        provider.add("ctnh.industrial_primitive_blast_furnace.parallel", "温度越高，工业土高炉的并行数越高，最高为8并行");
+        provider.add("ctnh.industrial_primitive_blast_furnace.efficiency", "温度越高，工业土高炉的效率越高，最高为两倍效率");
 
 
         for (var tier : GTMachines.ALL_TIERS) {
@@ -248,6 +253,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.EV_CHEMICAL_GENERATOR.getBlock(), "化学能发电机");
         provider.add(CTNHMultiblockMachines.IV_CHEMICAL_GENERATOR.getBlock(), "化学能吞噬者");
         provider.add(CTNHMultiblockMachines.MEGA_OIL_CRACKING_UNIT.getBlock(), "巨型原油裂解厂");
+        provider.add(CTNHMultiblockMachines.INDUSTRIAL_PRIMITIVE_BLAST_FURNACE.getBlock(), "工业土高炉");
     }
 
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,

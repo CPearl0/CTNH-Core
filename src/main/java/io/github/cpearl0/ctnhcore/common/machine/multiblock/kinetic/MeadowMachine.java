@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fluids.FluidStack;
 
-public class MeadowMachine extends WorkableMultiblockMachine {
+public class MeadowMachine extends KineticMachine {
     public int CowCount = 0;
     public int SheepCount = 0;
     public int ChickenCount = 0;
