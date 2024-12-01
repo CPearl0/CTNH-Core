@@ -47,9 +47,9 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> CASING_ANTIFREEZE_HEATPROOF_MACHINE = createCasingBlock("antifreeze_heatproof_machine_casing",
             CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
     public static final BlockEntry<Block> CASING_ADVANCED_HYPER = createCasingBlock("advanced_hyper_casing",
-            CTNHCore.id("block/advanced_hyper_casing"));
+            CTNHCore.id("block/casings/advanced_hyper_casing"));
     public static final BlockEntry<Block> CASING_HYPER = createCasingBlock("hyper_casing",
-            CTNHCore.id("block/hyper_casing"));
+            CTNHCore.id("block/casings/hyper_casing"));
     public static final BlockEntry<Block> CASING_SPACE_ELEVATOR_MECHANICAL = createCasingBlock(
             "space_elevator_mechanical_casing", CTNHCore.id("block/space_elevator_mechanical_casing"));
     public static final BlockEntry<Block> HIGH_GRADE_COKE_OVEN_BRICKS = createCasingBlock(
@@ -64,6 +64,8 @@ public class CTNHBlocks {
             "elementium_casing",CTNHCore.id("block/casings/elementium_casing"));
     public static final BlockEntry<Block> ALF_STEEL_CASING = createCasingBlock(
             "alfsteel_casing",CTNHCore.id("block/casings/alfsteel_casing"));
+    public static final BlockEntry<Block> DEPTH_FORCE_FIELD_STABILIZING_CASING = createCasingBlock(
+            "depth_force_field_stabilizing_casing",CTNHCore.id("block/casings/depth_force_field_stabilizing_casing"));
 
     public static final BlockEntry<ActiveBlock> SPACE_ELEVATOR_POWER_CORE = createActiveCasing("space_elevator_power_core",
             "block/flux/space_elevator_power_core");

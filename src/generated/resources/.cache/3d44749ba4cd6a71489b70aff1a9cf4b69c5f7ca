@@ -1,4 +1,4 @@
-// 1.20.1	2024-11-30T19:34:19.2401873	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn)]
+// 1.20.1	2024-12-01T19:18:05.86327	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
 71126adb864d9a6630664cb50c2f9136343a4359 assets/ctnhcore/blockstates/alfsteel_casing.json
@@ -10,6 +10,7 @@ e9372aff5d971452fa72b15f602cc4d1579097d3 assets/ctnhcore/blockstates/annihilate_
 e7604f1c44e89756989fdb0d797ed11319dcd35e assets/ctnhcore/blockstates/antifreeze_heatproof_machine_casing.json
 7ccb25274a465f486fd447e25341584e08f17da5 assets/ctnhcore/blockstates/black_titanium_coil_block.json
 f81ec3db8b6e420d915dae1fb716c15f3febefa5 assets/ctnhcore/blockstates/blaze_blast_furnace_casing.json
+a54cd4f63b454dd6a7b9b982d131604896afd1f5 assets/ctnhcore/blockstates/depth_force_field_stabilizing_casing.json
 59ed44a5971e71070ca73aacd777204ec396108c assets/ctnhcore/blockstates/elementium_casing.json
 71e43ca2686f3112f828d538fd3f10304dc2df0b assets/ctnhcore/blockstates/energetic_photovoltaic_block.json
 b42f5a8278c9244c3232f552e5af726c291db70f assets/ctnhcore/blockstates/high_strength_concrete.json
@@ -29,21 +30,22 @@ d9fd5e8cca6e78f3afabb5a9ea4a807d41e2dfc0 assets/ctnhcore/blockstates/space_eleva
 884b52e7b0398e5bac55bff93d6b78ea8ff3d5ce assets/ctnhcore/blockstates/titansteel_coil_block.json
 8733499f9e7058f250b2932b33516e7299e1574c assets/ctnhcore/blockstates/tungstencu_diamond_plating_casing.json
 f37e897ef97cb6a5e0cd1aa2213c2e60d6aa3841 assets/ctnhcore/blockstates/vibrant_photovoltaic_block.json
-1c41a61d82cada35a601b7aff41c1fba04138f32 assets/ctnhcore/lang/en_ud.json
-569e6af09f9c72d9e2f5ec0e6953b19bfd663c82 assets/ctnhcore/lang/en_us.json
-07cd35ef0cd52b1e13e692eb875b8bec7425311f assets/ctnhcore/lang/zh_cn.json
+f80234d1185f6907dcb5f7af5f88b80467d97904 assets/ctnhcore/lang/en_ud.json
+511c3b84b536e30a5f9ad353f527df344dc4ace4 assets/ctnhcore/lang/en_us.json
+151b6ccd8c80b53878ddcb16b2462ca74c82dd24 assets/ctnhcore/lang/zh_cn.json
 df65321a1742a74b662d28389e11b0a2406960b1 assets/ctnhcore/models/block/abyssalalloy_coil_block.json
 13db5d9c835eeecee9dc13bee7a130e73a4bc89e assets/ctnhcore/models/block/abyssalalloy_coil_block_active.json
-f71f923fa116eb739a092989b758041fda8ca55f assets/ctnhcore/models/block/advanced_hyper_casing.json
+b096394b9e6976c2213b74fa8b04bf8e9c5ebabc assets/ctnhcore/models/block/advanced_hyper_casing.json
 180a515cfd518de3d89784fb06b05623b545b85d assets/ctnhcore/models/block/alfsteel_casing.json
 9a5d6de8b7086daaa57acbc740f8f62377e8cad2 assets/ctnhcore/models/block/antifreeze_heatproof_machine_casing.json
 37f115a6ac3352b47c8b45d703f86ae2c3c4fffb assets/ctnhcore/models/block/black_titanium_coil_block.json
 ba3f90d89ceb0aa39fba6a5f24a3862d3b41ab28 assets/ctnhcore/models/block/black_titanium_coil_block_active.json
 82199ed26f0a31fe31bf6a9d06dbb15b7fe24608 assets/ctnhcore/models/block/blaze_blast_furnace_casing.json
+7594709bdd0847b4c6deda2d33412177b2eae576 assets/ctnhcore/models/block/depth_force_field_stabilizing_casing.json
 9ebfeefa4535f78825671a0465b95716e31ce62c assets/ctnhcore/models/block/elementium_casing.json
 6984b6775cf2021664d98623feb7b60fc3f8af5b assets/ctnhcore/models/block/energetic_photovoltaic_block.json
 a0ce88e83ac78ebacb34ae8cd8c56e63a954ce3e assets/ctnhcore/models/block/high_strength_concrete.json
-3997d275caf61e69d4f320194a22398f58ee813e assets/ctnhcore/models/block/hyper_casing.json
+65895068243a8ea4cb6448a7f04d1f8a4cc9a2d8 assets/ctnhcore/models/block/hyper_casing.json
 bb3c462a48dc022201dc70e140fb5c7a919634ba assets/ctnhcore/models/block/infinity_coil_block.json
 1d5b1a51be6c2a0ea46f1ae42a237b967a282202 assets/ctnhcore/models/block/infinity_coil_block_active.json
 88fc4a1fe98d7db2afcd224b4aabccf6965db9b7 assets/ctnhcore/models/block/mana_steel_casing.json
@@ -74,6 +76,7 @@ a5f177163335ae9db4392e6265103e7f8c041f1f assets/ctnhcore/models/item/annihilate_
 b71a03e50a4e1e99c8e999295ed3bb4b437d89f2 assets/ctnhcore/models/item/astronomy_circuit_1.json
 5353b05bb6eefc63cb1928b5881fedbc0c92e356 assets/ctnhcore/models/item/black_titanium_coil_block.json
 194c386763df46122d0f3ef95b2d809da26cedc6 assets/ctnhcore/models/item/blaze_blast_furnace_casing.json
+1b06d7816465e05fe5c3ccad71768b4fc352cff3 assets/ctnhcore/models/item/depth_force_field_stabilizing_casing.json
 b4c52f5e6e017ca48f839a3c13a5b412595b7c08 assets/ctnhcore/models/item/elementium_casing.json
 2e4c3f18532b1c4a8379fe08bc3e3d52369c875a assets/ctnhcore/models/item/energetic_photovoltaic_block.json
 7afea4d5b1ed4d0cfea0b3ed383a236af2c42b6c assets/ctnhcore/models/item/great_astronomy_circuit_1.json
@@ -111,6 +114,7 @@ e29e016b019a00c647f8dd0dac9cbcf9a44294d4 data/ctnhcore/loot_tables/blocks/annihi
 3eb5236e83063a3cc5509fb035962ce3548263c5 data/ctnhcore/loot_tables/blocks/antifreeze_heatproof_machine_casing.json
 2c4786cab24b9395d46bfa69660c381f31ac675b data/ctnhcore/loot_tables/blocks/black_titanium_coil_block.json
 c8c3795e8499ca9d6b7e1476ccba62b79abb1405 data/ctnhcore/loot_tables/blocks/blaze_blast_furnace_casing.json
+e2f38f3ca30e8871e3c38d18c12de012bc6b3149 data/ctnhcore/loot_tables/blocks/depth_force_field_stabilizing_casing.json
 bb20643f309f4372e4425f52a9a1cb467514d225 data/ctnhcore/loot_tables/blocks/elementium_casing.json
 bb9e76cbe2b22f3baddfd6c24e720237162c8c60 data/ctnhcore/loot_tables/blocks/energetic_photovoltaic_block.json
 7ccffaac921b4717c0b665f81b06a4c88080969c data/ctnhcore/loot_tables/blocks/high_strength_concrete.json
@@ -132,5 +136,5 @@ f0e2664fc479400b23c6d1af07b786b68da46403 data/ctnhcore/loot_tables/blocks/space_
 81a2751f7d9e3e5c43f79fbd6faa30ceee22d6b7 data/ctnhcore/loot_tables/blocks/vibrant_photovoltaic_block.json
 801c0ddbdd107af720ccb4feddaf685d8f514d5c data/forge/tags/blocks/ad_astra_stones.json
 8b23a2ed8bfd251bd2a8952d236a8809502f5444 data/forge/tags/blocks/aether_stones.json
-ed8f17a615abd4f99a396ff7b81287ab3c87cc17 data/forge/tags/blocks/mineable/wrench.json
-ed8f17a615abd4f99a396ff7b81287ab3c87cc17 data/minecraft/tags/blocks/mineable/pickaxe.json
+df60674542800f38a7de95e05887157a2e709633 data/forge/tags/blocks/mineable/wrench.json
+df60674542800f38a7de95e05887157a2e709633 data/minecraft/tags/blocks/mineable/pickaxe.json
