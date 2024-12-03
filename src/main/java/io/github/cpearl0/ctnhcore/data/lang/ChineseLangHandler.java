@@ -30,6 +30,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.demon_will_generator", "恶魔意志发电");
         provider.add("gtceu.meadow","牧场养殖");
         provider.add("gtceu.chemical_generator","化学能发电");
+        provider.add("gtceu.void_miner","虚空采矿");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -126,6 +127,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.digestion_tank.bio_growth_mechanism", "化粪池堆肥机制：");
         provider.add("ctnh.digestion_tank.bio_growth_temperature", "当化粪池温度处于§236§r至§238§r度之间时为最适生长温度，配方获得1.2倍效率，越偏离最适生长温度，配方效率越低，最低为三分之一");
         provider.add("ctnh.blaze_blast_furnace.pyrotheum", "烈焰之炽焱：%d mB");
+        provider.add("ctnh.void_miner.cryotheum", "极寒之凛冰：%d mB");
         provider.add("ctnh.blaze_blast_furnace.consume", "每秒基础消耗§a10mB§r烈焰之炽焱，电压每超过§6HV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.blaze_blast_furnace.energy", "运行耗能x0.75");
         provider.add("ctnh.blaze_blast_furnace.parallel", "允许一次性处理8个配方");
@@ -257,6 +259,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.IV_CHEMICAL_GENERATOR.getBlock(), "化学能吞噬者");
         provider.add(CTNHMultiblockMachines.MEGA_OIL_CRACKING_UNIT.getBlock(), "巨型原油裂解厂");
         provider.add(CTNHMultiblockMachines.INDUSTRIAL_PRIMITIVE_BLAST_FURNACE.getBlock(), "工业土高炉");
+        provider.add(CTNHMultiblockMachines.VOID_MINER.getBlock(), "虚空采矿场");
     }
 
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,

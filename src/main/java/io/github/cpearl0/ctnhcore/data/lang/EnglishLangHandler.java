@@ -111,6 +111,7 @@ public class EnglishLangHandler {
         provider.add("ctnh.digestion_tank.bio_growth_mechanism", "Composting Mechanism of the Digestion Tank:");
         provider.add("ctnh.digestion_tank.bio_growth_temperature", "The optimal growth temperature is between §236§r and §238§r degrees. Recipes get 1.2x efficiency at optimal temperature. The further it deviates, the lower the efficiency, down to one-third.");
         provider.add("ctnh.blaze_blast_furnace.pyrotheum", "Blazing Pyrotheum: %d mB");
+        provider.add("ctnh.void_miner.cryotheum", "Cryotheum：%d mB");
         provider.add("ctnh.blaze_blast_furnace.consume", "Base consumption is §a10mB§r of Blazing Pyrotheum per second. For each voltage tier above §6HV§r, the consumption doubles.");
         provider.add("ctnh.blaze_blast_furnace.energy", "Consumes 0.75x energy.");
         provider.add("ctnh.blaze_blast_furnace.parallel", "Allows processing of 8 recipes simultaneously.");
