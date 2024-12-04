@@ -1479,6 +1479,7 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.VOID_MINER)
             .appearanceBlock(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST)
+            .recipeModifier(VoidMinerProcessingMachine::recipeModifier)
             .pattern(definition -> FactoryBlockPattern.start()
             .aisle("CCCCCCC", "XF   FX", "XF   FX", "XXXXXXX", "XF   FX", "XF   FX", "XF   FX", " F   F ", "       ", "       ", "       ", "       ")
             .aisle("CCCCCCC", "F     F", "F     F", "X     X", "F     F", "F     F", "FX   XF", "FX   XF", " FFFFF ", "       ", "       ", "       ")
