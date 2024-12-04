@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.lang;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import io.github.cpearl0.ctnhcore.registry.*;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -14,6 +13,12 @@ public class ChineseLangHandler {
     public static void init(RegistrateCNLangProvider provider) {
         replace(provider, CTNHTagPrefixes.oreHolystone.getUnlocalizedName(), "圣石%s矿石");
         replace(provider, CTNHTagPrefixes.oreMossyHolystone.getUnlocalizedName(), "覆苔圣石%s矿石");
+
+        replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "月石");
+        replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "火星石");
+        replace(provider, CTNHMaterials.Venusstone.getUnlocalizedName(), "金星石");
+        replace(provider, CTNHMaterials.Mercurystone.getUnlocalizedName(), "水星石");
+        replace(provider, CTNHMaterials.Glaciostone.getUnlocalizedName(), "霜原石");
 
         replace(provider, CTNHMaterials.Holystone.getUnlocalizedName(), "圣石");
         replace(provider, CTNHMaterials.Zanite.getUnlocalizedName(), "紫晶石");

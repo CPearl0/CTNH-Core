@@ -10,6 +10,12 @@ public class EnglishLangHandler {
         LangHandler.replace(provider, CTNHTagPrefixes.oreHolystone.getUnlocalizedName(), "Holystone %s Ore");
         LangHandler.replace(provider, CTNHTagPrefixes.oreMossyHolystone.getUnlocalizedName(), "Mossy Holystone %s Ore");
 
+        LangHandler.replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "Moon Stone");
+        LangHandler.replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "Mars Stone");
+        LangHandler.replace(provider, CTNHMaterials.Venusstone.getUnlocalizedName(), "Venus Stone");
+        LangHandler.replace(provider, CTNHMaterials.Mercurystone.getUnlocalizedName(), "Mercury Stone");
+        LangHandler.replace(provider, CTNHMaterials.Glaciostone.getUnlocalizedName(), "Glacio Stone");
+
         LangHandler.replace(provider, CTNHMaterials.Holystone.getUnlocalizedName(), "Holystone");
         LangHandler.replace(provider, CTNHMaterials.Zanite.getUnlocalizedName(), "Zanite");
         LangHandler.replace(provider, CTNHMaterials.Ambrosium.getUnlocalizedName(), "Ambrosium");
@@ -142,6 +148,5 @@ public class EnglishLangHandler {
         provider.add("ctnh.mega_lcr.recipe_type","Chemical Reactor / LCR");
         provider.add("ctnh.mega_oil_cracker.recipe_type", "Oil Cracker");
         provider.add("ctnh.super_ebf.recipe_type","Electric Blast Furnace");
-
     }
 }

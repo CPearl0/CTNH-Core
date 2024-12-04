@@ -5,28 +5,52 @@ import com.aetherteam.aether.item.AetherItems;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.WireProperties;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import dev.arbor.gtnn.data.GTNNMaterials;
+import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import mythicbotany.MythicBotany$;
-import mythicbotany.register.ModBlocks;
-import mythicbotany.register.ModItems;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
-import vazkii.botania.common.block.BotaniaBlocks;
-import vazkii.botania.common.item.BotaniaItems;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static dev.arbor.gtnn.data.GTNNMaterials.*;
 
 public class CTNHMaterials {
+    // Ad Astra
+    public static final Material Moonstone = new Material.Builder(CTNHCore.id("moon_stone"))
+            .dust()
+            .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .buildAndRegister();
+
+    public static final Material Marsstone = new Material.Builder(CTNHCore.id("mars_stone"))
+            .dust()
+            .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .buildAndRegister();
+
+    public static final Material Venusstone = new Material.Builder(CTNHCore.id("venus_stone"))
+            .dust()
+            .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .buildAndRegister();
+
+    public static final Material Mercurystone = new Material.Builder(CTNHCore.id("mercury_stone"))
+            .dust()
+            .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .buildAndRegister();
+
+    public static final Material Glaciostone = new Material.Builder(CTNHCore.id("glacio_stone"))
+            .dust()
+            .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .buildAndRegister();
+
+    // Aether
     public static final Material Holystone = new Material.Builder(CTNHCore.id("holystone"))
             .dust()
             .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
@@ -57,6 +81,8 @@ public class CTNHMaterials {
             .color(0xeac1d9).iconSet(METALLIC)
             .ore()
             .buildAndRegister();
+
+    // Custom
     public static final Material Jasper = new Material.Builder(GTCEu.id("jasper"))
             .gem()
             .ore()
@@ -227,6 +253,12 @@ public class CTNHMaterials {
             .buildAndRegister();
 
     public static void init() {
+        TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
+        TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);
+        TagPrefix.block.setIgnored(Venusstone, ModBlocks.VENUS_STONE);
+        TagPrefix.block.setIgnored(Mercurystone, ModBlocks.MERCURY_STONE);
+        TagPrefix.block.setIgnored(Glaciostone, ModBlocks.GLACIO_STONE);
+
         TagPrefix.block.setIgnored(Holystone, AetherBlocks.HOLYSTONE);
 
         TagPrefix.gem.setIgnored(Zanite, AetherItems.ZANITE_GEMSTONE);

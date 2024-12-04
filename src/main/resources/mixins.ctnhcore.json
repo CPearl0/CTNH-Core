@@ -6,6 +6,7 @@
   "mixins": [
     "ChunkMixin",
     "ChunkSerializerMixin",
+    "GTNNAddonMixin",
     "KineticMachineBlockEntityMixin",
     "ManaPoolBlockEntityMixin",
     "TagLoaderMixin",
@@ -14,6 +15,7 @@
     "gtceu.GTCreateMachinesMixin",
     "gtceu.GTMaterialMixin",
     "gtceu.GTUtilMixin",
+    "gtceu.TagPrefixMixin",
     "gtceu.WorkableElectricMultiblockMachineMixin"
   ],
   "client": [],

@@ -1,4 +1,4 @@
-// 1.20.1	2024-12-03T21:57:37.5737619	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn)]
+// 1.20.1	2024-12-04T22:22:25.7118936	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
 71126adb864d9a6630664cb50c2f9136343a4359 assets/ctnhcore/blockstates/alfsteel_casing.json
@@ -30,9 +30,9 @@ d9fd5e8cca6e78f3afabb5a9ea4a807d41e2dfc0 assets/ctnhcore/blockstates/space_eleva
 884b52e7b0398e5bac55bff93d6b78ea8ff3d5ce assets/ctnhcore/blockstates/titansteel_coil_block.json
 8733499f9e7058f250b2932b33516e7299e1574c assets/ctnhcore/blockstates/tungstencu_diamond_plating_casing.json
 f37e897ef97cb6a5e0cd1aa2213c2e60d6aa3841 assets/ctnhcore/blockstates/vibrant_photovoltaic_block.json
-cc1f1d0db462c9eb466191e0c785f3f14534264f assets/ctnhcore/lang/en_ud.json
-5f3f4f329e951cc75e1f1e06007c1e3610773138 assets/ctnhcore/lang/en_us.json
-d147dfdcbc9b750af1626355b95376589d878563 assets/ctnhcore/lang/zh_cn.json
+776965693923b0aef326384be6bd10555360e995 assets/ctnhcore/lang/en_ud.json
+7a2939a03c615ee328ba57158103d15920226eca assets/ctnhcore/lang/en_us.json
+fbe3b258b524e85259b786a3be1f6ddcd8edd7f2 assets/ctnhcore/lang/zh_cn.json
 df65321a1742a74b662d28389e11b0a2406960b1 assets/ctnhcore/models/block/abyssalalloy_coil_block.json
 13db5d9c835eeecee9dc13bee7a130e73a4bc89e assets/ctnhcore/models/block/abyssalalloy_coil_block_active.json
 b096394b9e6976c2213b74fa8b04bf8e9c5ebabc assets/ctnhcore/models/block/advanced_hyper_casing.json
