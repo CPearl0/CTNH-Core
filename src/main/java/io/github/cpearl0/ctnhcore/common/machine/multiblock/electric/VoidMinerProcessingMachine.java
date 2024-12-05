@@ -35,37 +35,44 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         super(holder);
     }
 
+    // 声明标志变量
+    private boolean isCoolingDown = false;  // 默认不在降温模式
+
     @Override
     public boolean onWorking() {
-        // 每20 tick检查一次
         if (getOffsetTimer() % 20 == 0) {
-            // 获取当前的温度
             int temperature = getCurrentTemperature();
 
-            // 进入强制降温模式，温度过高时只能降温
-            if (temperature >= MAX_TEMP) {
-                // 只有极寒之凌冰才能消耗并降温
+            // 强制降温模式逻辑
+            if (isCoolingDown || temperature >= MAX_TEMP) {
+                isCoolingDown = true; // 确保强制降温模式被激活
                 FluidStack cryotheumFluid = CTNHMaterials.Cryotheum.getFluid(FLUID_AMOUNT);
-                if (MachineUtils.inputFluid(cryotheumFluid, this)) { // 调用接口方法
-                    temperature = Math.max(MIN_TEMP, temperature - 100);  // 每次消耗100mB极寒之凌冰降温100K
+                if (MachineUtils.inputFluid(cryotheumFluid, this)) {
+                    temperature = Math.max(MIN_TEMP, temperature - 100); // 降温
                     setCurrentTemperature(temperature);
-                    // 强制降温后不执行其他配方
-                    getRecipeLogic().interruptRecipe();
+
+                    // 如果温度降到 300K，退出强制降温模式
+                    if (temperature <= MIN_TEMP) {
+                        isCoolingDown = false; // 恢复正常运行状态
+                    }
+
+                    getRecipeLogic().interruptRecipe(); // 禁止正常配方运行
                     return true;
+                } else {
+                    getRecipeLogic().setProgress(0); // 流体不足时停止
+                    return false;
                 }
             }
 
-            // 检查是否有足够的流体来维持正常运行
+            // 正常配方运行逻辑
             FluidStack pyrotheumFluid = CTNHMaterials.Pyrotheum.getFluid(FLUID_AMOUNT);
-            if (MachineUtils.inputFluid(pyrotheumFluid, this)) { // 调用接口方法
-                // 使用烈焰之赤炎增加温度
-                temperature = Math.min(MAX_TEMP, temperature + HEAT_SPEED);  // 每消耗1000mB烈焰之赤炎温度增加10K
+            if (MachineUtils.inputFluid(pyrotheumFluid, this)) {
+                temperature = Math.min(MAX_TEMP, temperature + HEAT_SPEED);
                 setCurrentTemperature(temperature);
-                return true;  // 成功消耗烈焰之赤炎，继续运行
+                return true;
             }
 
-            // 如果没有足够的流体，暂停机器运行
-            getRecipeLogic().setProgress(0);
+            getRecipeLogic().setProgress(0); // 流体不足时停止
             return false;
         }
 
@@ -74,20 +81,24 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
     @Override
     public boolean beforeWorking(GTRecipe recipe) {
-        // 在执行配方之前检查流体
-        FluidStack pyrotheumFluid = CTNHMaterials.Pyrotheum.getFluid(FLUID_AMOUNT);
-        if (!MachineUtils.canInputFluid(pyrotheumFluid, this)) { // 调用接口方法
-            getRecipeLogic().interruptRecipe();
-            return false;  // 没有足够的烈焰之赤炎，无法执行配方
+        int temperature = getCurrentTemperature();
+
+        // 强制降温模式逻辑
+        if (isCoolingDown || temperature >= MAX_TEMP) {
+            isCoolingDown = true; // 确保强制降温模式被激活
+            FluidStack cryotheumFluid = CTNHMaterials.Cryotheum.getFluid(FLUID_AMOUNT);
+            if (!MachineUtils.canInputFluid(cryotheumFluid, this)) {
+                getRecipeLogic().interruptRecipe(); // 禁止正常配方运行
+                return false;
+            }
+            return true; // 允许降温配方运行
         }
 
-        // 检查是否处于强制降温模式
-        if (getCurrentTemperature() >= MAX_TEMP) {
-            FluidStack cryotheumFluid = CTNHMaterials.Cryotheum.getFluid(FLUID_AMOUNT);
-            if (!MachineUtils.canInputFluid(cryotheumFluid, this)) { // 调用接口方法
-                getRecipeLogic().interruptRecipe();
-                return false;  // 没有足够的极寒之凌冰，无法降温
-            }
+        // 正常运行检查
+        FluidStack pyrotheumFluid = CTNHMaterials.Pyrotheum.getFluid(FLUID_AMOUNT);
+        if (!MachineUtils.canInputFluid(pyrotheumFluid, this)) {
+            getRecipeLogic().interruptRecipe(); // 禁止正常配方运行
+            return false;
         }
 
         return super.beforeWorking(recipe);
