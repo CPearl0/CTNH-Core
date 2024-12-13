@@ -36,6 +36,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.meadow","牧场养殖");
         provider.add("gtceu.chemical_generator","化学能发电");
         provider.add("gtceu.void_miner","虚空采矿");
+        provider.add("gtceu.sintering_kiln","烧结");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -172,6 +173,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.industrial_primitive_blast_furnace.temperature", "工业土高炉在持续运行配方时，会不断升温，而一旦中止，则会迅速冷却");
         provider.add("ctnh.industrial_primitive_blast_furnace.parallel", "温度越高，工业土高炉的并行数越高，最高为8并行");
         provider.add("ctnh.industrial_primitive_blast_furnace.efficiency", "温度越高，工业土高炉的效率越高，最高为两倍效率");
+        provider.add("sintering_kiln_introduction", "需要通入8192应力使其内部活塞压实待加工料");
 
 
         for (var tier : GTMachines.ALL_TIERS) {

@@ -1515,8 +1515,8 @@ public class CTNHMultiblockMachines {
     public static final MachineDefinition SINTERING_KILN = REGISTRATE.multiblock("sintering_kiln", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.SINTERING_KILN)
+            .tooltips(Component.translatable("sintering_kiln_introduction").withStyle(ChatFormatting.GRAY))
             .appearanceBlock(CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS)
-            .recipeModifier(VoidMinerProcessingMachine::recipeModifier)
             .pattern(definition -> FactoryBlockPattern.start()
             .aisle("AAAAA", "#AAA#", "#AAA#", "#ADA#", "#####")
             .aisle("AAAAA", "ABBBA", "AB#BA", "ABCBA", "#AAA#")
@@ -1536,7 +1536,7 @@ public class CTNHMultiblockMachines {
                     .or(Predicates.blocks(CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS.get())))
                     .build()
             )
-            .workableCasingRenderer(CTNHCore.id("block/high_grade_coke_oven_bricks"), GTCEu.id("block/multiblock/coke_oven"), false)
+            .workableCasingRenderer(CTNHCore.id("block/high_grade_coke_oven_bricks"), GTCEu.id("block/machines/alloy_smelter"), false)
             .register();
 
     public static void init() {
