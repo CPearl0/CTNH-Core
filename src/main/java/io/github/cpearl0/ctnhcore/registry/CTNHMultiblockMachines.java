@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import appeng.block.networking.CreativeEnergyCellBlock;
 import appeng.core.definitions.AEBlocks;
 import com.enderio.base.common.init.EIOBlocks;
 import com.gregtechceu.gtceu.GTCEu;
@@ -24,6 +25,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.electric.MultiblockTankMa
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
+import com.simibubi.create.content.contraptions.piston.MechanicalPistonBlock;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.arbor.gtnn.GTNNAddon;
@@ -1508,6 +1510,32 @@ public class CTNHMultiblockMachines {
             .build()
     )
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"), GTCEu.id("block/multiblock/large_chemical_reactor"), false)
+            .register();
+
+    public static final MachineDefinition SINTERING_KILN = REGISTRATE.multiblock("sintering_kiln", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.SINTERING_KILN)
+            .appearanceBlock(CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS)
+            .recipeModifier(VoidMinerProcessingMachine::recipeModifier)
+            .pattern(definition -> FactoryBlockPattern.start()
+            .aisle("AAAAA", "#AAA#", "#AAA#", "#ADA#", "#####")
+            .aisle("AAAAA", "ABBBA", "AB#BA", "ABCBA", "#AAA#")
+            .aisle("AAAAA", "ABBBA", "AB#BA", "ABCBA", "#AAA#")
+            .aisle("AAAAA", "ABBBA", "AB#BA", "ABCBA", "#AAA#")
+            .aisle("AAAAA", "ABBBA", "AB#BA", "ABCBA", "#AAA#")
+            .aisle("AAAAA", "ABBBA", "AB#BA", "ABCBA", "#AAA#")
+            .aisle("AAAAA", "#AAA#", "#A@A#", "#ADA#", "#####")
+            .where("A", Predicates.blocks(CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS.get())
+                    .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1))
+                    .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1)))
+            .where("#", Predicates.any())
+            .where("B", Predicates.blocks(CASING_PRIMITIVE_BRICKS.get()))
+            .where("C", Predicates.blocks(Blocks.PISTON))
+            .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+            .where("D", Predicates.abilities(PartAbility.INPUT_KINETIC).setExactLimit(1))
+                    .build()
+            )
+            .workableCasingRenderer(CTNHCore.id("block/high_grade_coke_oven_bricks"), GTCEu.id("block/multiblock/coke_oven"), false)
             .register();
 
     public static void init() {

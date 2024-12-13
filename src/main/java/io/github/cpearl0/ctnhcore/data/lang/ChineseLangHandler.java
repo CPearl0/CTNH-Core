@@ -194,6 +194,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL, "简易营养餐");
         provider.addItem(CTNHItems.ANIMAL_EXCRETA, "动物排泄物");
         provider.addItem(CTNHItems.TUMOR, "肿瘤");
+        provider.addItem(CTNHItems.REFINED_IRON_INGOT, "精炼铁方坯");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING, "W-Cu覆膜金刚石机械方块");
         provider.addBlock(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK, "充能光伏方块");
@@ -225,6 +226,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ELEMENTIUM_CASING,"源质钢机械外壳");
         provider.addBlock(CTNHBlocks.ALF_STEEL_CASING,"精灵钢机械外壳");
         provider.addBlock(CTNHBlocks.DEPTH_FORCE_FIELD_STABILIZING_CASING,"深度力场稳定外壳");
+        provider.addBlock(CTNHBlocks.BRONZE_FRAMED_GLASS, "青铜镶边玻璃");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -265,6 +267,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.MEGA_OIL_CRACKING_UNIT.getBlock(), "巨型原油裂解厂");
         provider.add(CTNHMultiblockMachines.INDUSTRIAL_PRIMITIVE_BLAST_FURNACE.getBlock(), "工业土高炉");
         provider.add(CTNHMultiblockMachines.VOID_MINER.getBlock(), "虚空采矿场");
+        provider.add(CTNHMultiblockMachines.SINTERING_KILN.getBlock(), "烧结窑");
     }
 
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,
