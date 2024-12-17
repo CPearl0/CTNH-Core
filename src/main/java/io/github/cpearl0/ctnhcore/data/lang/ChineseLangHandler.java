@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.lang;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import io.github.cpearl0.ctnhcore.registry.*;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -14,6 +13,12 @@ public class ChineseLangHandler {
     public static void init(RegistrateCNLangProvider provider) {
         replace(provider, CTNHTagPrefixes.oreHolystone.getUnlocalizedName(), "圣石%s矿石");
         replace(provider, CTNHTagPrefixes.oreMossyHolystone.getUnlocalizedName(), "覆苔圣石%s矿石");
+
+        replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "月石");
+        replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "火星石");
+        replace(provider, CTNHMaterials.Venusstone.getUnlocalizedName(), "金星石");
+        replace(provider, CTNHMaterials.Mercurystone.getUnlocalizedName(), "水星石");
+        replace(provider, CTNHMaterials.Glaciostone.getUnlocalizedName(), "霜原石");
 
         replace(provider, CTNHMaterials.Holystone.getUnlocalizedName(), "圣石");
         replace(provider, CTNHMaterials.Zanite.getUnlocalizedName(), "紫晶石");
@@ -30,6 +35,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.demon_will_generator", "恶魔意志发电");
         provider.add("gtceu.meadow","牧场养殖");
         provider.add("gtceu.chemical_generator","化学能发电");
+        provider.add("gtceu.void_miner","虚空采矿");
+        provider.add("gtceu.sintering_kiln","烧结");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -44,7 +51,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.bedrock_drilling_rigs", "基岩钻机");
         provider.add("gtceu.plasma_condenser", "等离子冷凝");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
-        provider.add("ctnh.multiblock.parallelize.tooltip", "线圈等级和电压等级的提升会提高并行数");
+        provider.add("ctnh.multiblock.parallelize.tooltip", "自带无损超频且可以使用并行仓");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "速率：%s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "减少蒸汽的消耗来降低地暖的发热功率");
@@ -75,6 +82,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_nickel_plasma_to_boost","提供镍等离子体以加速");
         provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1","提供§f20 mB/s§7的氧等离子体，并消耗§f四倍§7燃料以产生高达§f%s§7EU/t的功率。");
         provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2","提供§f20 mB/s§7的铁等离子体，并消耗§f四倍§7燃料以产生高达§f%s§7EU/t的功率。");
+        provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk3","提供§f20 mB/s§7的镍等离子体，并消耗§f四倍§7燃料以产生高达§f%s§7EU/t的功率。");
         provider.add("ctnh.test_terminal.lack_error","在%s处缺少");
         provider.add("ctnh.test_terminal.wrong_error","在%s处应为");
         provider.add("ctnh.test_terminal.position","(%s,%s,%s)");
@@ -125,6 +133,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.digestion_tank.bio_growth_mechanism", "化粪池堆肥机制：");
         provider.add("ctnh.digestion_tank.bio_growth_temperature", "当化粪池温度处于§236§r至§238§r度之间时为最适生长温度，配方获得1.2倍效率，越偏离最适生长温度，配方效率越低，最低为三分之一");
         provider.add("ctnh.blaze_blast_furnace.pyrotheum", "烈焰之炽焱：%d mB");
+        provider.add("ctnh.void_miner.cryotheum", "极寒之凛冰：%d mB");
         provider.add("ctnh.blaze_blast_furnace.consume", "每秒基础消耗§a10mB§r烈焰之炽焱，电压每超过§6HV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.blaze_blast_furnace.energy", "运行耗能x0.75");
         provider.add("ctnh.blaze_blast_furnace.parallel", "允许一次性处理8个配方");
@@ -164,6 +173,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.industrial_primitive_blast_furnace.temperature", "工业土高炉在持续运行配方时，会不断升温，而一旦中止，则会迅速冷却");
         provider.add("ctnh.industrial_primitive_blast_furnace.parallel", "温度越高，工业土高炉的并行数越高，最高为8并行");
         provider.add("ctnh.industrial_primitive_blast_furnace.efficiency", "温度越高，工业土高炉的效率越高，最高为两倍效率");
+        provider.add("sintering_kiln_introduction", "需要通入8192应力使其内部活塞压实待加工料");
 
 
         for (var tier : GTMachines.ALL_TIERS) {
@@ -186,12 +196,13 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL, "简易营养餐");
         provider.addItem(CTNHItems.ANIMAL_EXCRETA, "动物排泄物");
         provider.addItem(CTNHItems.TUMOR, "肿瘤");
+        provider.addItem(CTNHItems.REFINED_IRON_INGOT, "精炼铁方坯");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING, "W-Cu覆膜金刚石机械方块");
         provider.addBlock(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK, "充能光伏方块");
         provider.addBlock(CTNHBlocks.PULSATING_PHOTOVOLTAIC_BLOCK, "脉冲光伏方块");
         provider.addBlock(CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK, "振动光伏方块");
-        provider.addBlock(CTNHBlocks.PLASMA_COOLED_CORE,"等离子冷凝线圈方块");
+        provider.addBlock(CTNHBlocks.PLASMA_COOLED_CORE,"等离子交换热线圈方块");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK,"铿铀强化硅岩铕机械方块");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK,"三钛强化中子素硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE,"等离子冷凝机械方块");
@@ -216,6 +227,8 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.TERRA_STEEL_CASING,"泰拉钢机械外壳");
         provider.addBlock(CTNHBlocks.ELEMENTIUM_CASING,"源质钢机械外壳");
         provider.addBlock(CTNHBlocks.ALF_STEEL_CASING,"精灵钢机械外壳");
+        provider.addBlock(CTNHBlocks.DEPTH_FORCE_FIELD_STABILIZING_CASING,"深度力场稳定外壳");
+        provider.addBlock(CTNHBlocks.BRONZE_FRAMED_GLASS, "青铜镶边玻璃");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -231,6 +244,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK1.getBlock(),"超能反应堆 MKI");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK2.getBlock(),"超能反应堆 MKII");
+        provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK3.getBlock(),"超能反应堆 MKIII");
         provider.add(CTNHMultiblockMachines.SWEATSHOP.getBlock(),"§4血汗工厂");
         provider.add(CTNHMultiblockMachines.DEMON_WILL_GENERATOR.getBlock(),"§b恶魔意志发电机");
         provider.add(CTNHMultiblockMachines.MEADOW.getBlock(),"§6牧场");
@@ -254,6 +268,8 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.IV_CHEMICAL_GENERATOR.getBlock(), "化学能吞噬者");
         provider.add(CTNHMultiblockMachines.MEGA_OIL_CRACKING_UNIT.getBlock(), "巨型原油裂解厂");
         provider.add(CTNHMultiblockMachines.INDUSTRIAL_PRIMITIVE_BLAST_FURNACE.getBlock(), "工业土高炉");
+        provider.add(CTNHMultiblockMachines.VOID_MINER.getBlock(), "虚空采矿场");
+        provider.add(CTNHMultiblockMachines.SINTERING_KILN.getBlock(), "烧结窑");
     }
 
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,

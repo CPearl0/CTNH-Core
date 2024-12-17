@@ -10,6 +10,12 @@ public class EnglishLangHandler {
         LangHandler.replace(provider, CTNHTagPrefixes.oreHolystone.getUnlocalizedName(), "Holystone %s Ore");
         LangHandler.replace(provider, CTNHTagPrefixes.oreMossyHolystone.getUnlocalizedName(), "Mossy Holystone %s Ore");
 
+        LangHandler.replace(provider, CTNHMaterials.Moonstone.getUnlocalizedName(), "Moon Stone");
+        LangHandler.replace(provider, CTNHMaterials.Marsstone.getUnlocalizedName(), "Mars Stone");
+        LangHandler.replace(provider, CTNHMaterials.Venusstone.getUnlocalizedName(), "Venus Stone");
+        LangHandler.replace(provider, CTNHMaterials.Mercurystone.getUnlocalizedName(), "Mercury Stone");
+        LangHandler.replace(provider, CTNHMaterials.Glaciostone.getUnlocalizedName(), "Glacio Stone");
+
         LangHandler.replace(provider, CTNHMaterials.Holystone.getUnlocalizedName(), "Holystone");
         LangHandler.replace(provider, CTNHMaterials.Zanite.getUnlocalizedName(), "Zanite");
         LangHandler.replace(provider, CTNHMaterials.Ambrosium.getUnlocalizedName(), "Ambrosium");
@@ -54,6 +60,7 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_nickel_plasma_to_boost","Supply Nickel Plasma to boost.");
         provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1","Supply §f20 mB/s§7 of Oxygen Plasma to produce up to §f%s EU/t§7 at §f4x§7 fuel consumption.");
         provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2","Supply §f20 mB/s§7 of Iron Plasma to produce up to §f%s EU/t§7 at §f4x§7 fuel consumption.");
+        provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk3","Supply §f20 mB/s§7 of Nickel Plasma to produce up to §f%s EU/t§7 at §f4x§7 fuel consumption.");
         provider.add("ctnh.test_terminal.lack_error","At %s, you need");
         provider.add("ctnh.test_terminal.wrong_error","At %s, it should be");
         provider.add("ctnh.test_terminal.position","(%s,%s,%s)");
@@ -110,6 +117,7 @@ public class EnglishLangHandler {
         provider.add("ctnh.digestion_tank.bio_growth_mechanism", "Composting Mechanism of the Digestion Tank:");
         provider.add("ctnh.digestion_tank.bio_growth_temperature", "The optimal growth temperature is between §236§r and §238§r degrees. Recipes get 1.2x efficiency at optimal temperature. The further it deviates, the lower the efficiency, down to one-third.");
         provider.add("ctnh.blaze_blast_furnace.pyrotheum", "Blazing Pyrotheum: %d mB");
+        provider.add("ctnh.void_miner.cryotheum", "Cryotheum：%d mB");
         provider.add("ctnh.blaze_blast_furnace.consume", "Base consumption is §a10mB§r of Blazing Pyrotheum per second. For each voltage tier above §6HV§r, the consumption doubles.");
         provider.add("ctnh.blaze_blast_furnace.energy", "Consumes 0.75x energy.");
         provider.add("ctnh.blaze_blast_furnace.parallel", "Allows processing of 8 recipes simultaneously.");
@@ -140,6 +148,5 @@ public class EnglishLangHandler {
         provider.add("ctnh.mega_lcr.recipe_type","Chemical Reactor / LCR");
         provider.add("ctnh.mega_oil_cracker.recipe_type", "Oil Cracker");
         provider.add("ctnh.super_ebf.recipe_type","Electric Blast Furnace");
-
     }
 }

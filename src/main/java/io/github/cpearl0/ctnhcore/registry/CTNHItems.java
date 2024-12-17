@@ -38,6 +38,10 @@ public class CTNHItems {
             .item("tumor",Item::new)
             .lang("Tumor")
             .register();
+    public static ItemEntry<Item> REFINED_IRON_INGOT = REGISTRATE
+            .item("refined_iron_ingot",Item::new)
+            .lang("REFINED IRON INGOT")
+            .register();
     public static ItemEntry<ComponentItem> TESTING_TERMINAL = REGISTRATE
             .item("testing_terminal",ComponentItem::create)
             .lang("Test Terminal")

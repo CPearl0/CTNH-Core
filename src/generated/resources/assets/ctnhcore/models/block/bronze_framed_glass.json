@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ctnhcore:block/casings/hyper_casing"
+    "all": "ctnhcore:block/casings/bronze_framed_glass"
   }
 }

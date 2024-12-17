@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ctnhcore:block/casings/depth_force_field_stabilizing_casing"
+  }
+}

@@ -139,6 +139,17 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.BOX_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COMBUSTION);
+    public static final GTRecipeType VOID_MINER = GTRecipeTypes.register("void_miner",GENERATOR)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(2,36,2,0)
+            .setSlotOverlay(false, false, GuiTextures.BOX_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.COMBUSTION);
+    public static final GTRecipeType SINTERING_KILN = GTRecipeTypes.register("sintering_kiln", GTRecipeTypes.ELECTRIC)
+            .setMaxIOSize(4, 4, 2, 0)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.COOLING);
     public static void init() {
 
     }
