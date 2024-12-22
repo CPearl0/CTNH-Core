@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "ctnhcore:block/casings/advanced_hyper_casing"
-  }
-}

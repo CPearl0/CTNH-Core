@@ -1,7 +1,0 @@
-{
-  "parent": "ctnhcore:block/cube_2_layer/all",
-  "textures": {
-    "bot_all": "ctnhcore:block/casings/coils/titansteel_coil_block",
-    "top_all": "ctnhcore:block/casings/coils/titansteel_coil_block_bloom"
-  }
-}
