@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "package": "io.github.cpearl0.ctnhcore.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "mixins.ctnhcore.refmap.json",
+  "mixins": [
+    "ChunkMixin",
+    "ChunkSerializerMixin",
+    "GTNNAddonMixin",
+    "KineticMachineBlockEntityMixin",
+    "ManaPoolBlockEntityMixin",
+    "TagLoaderMixin",
+    "appeng.CraftingCpuLogicMixin",
+    "gtceu.GTConfiguredFeaturesMixin",
+    "gtceu.GTCreateMachinesMixin",
+    "gtceu.GTMaterialMixin",
+    "gtceu.GTUtilMixin",
+    "gtceu.TagPrefixMixin",
+    "gtceu.WorkableElectricMultiblockMachineMixin"
+  ],
+  "client": [],
+  "minVersion": "0.8"
+}

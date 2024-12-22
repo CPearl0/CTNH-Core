@@ -1,0 +1,7 @@
+{
+  "parent": "gtceu:block/cube_2_layer/all",
+  "textures": {
+    "bot_all": "ctnhcore:block/casings/coils/pikyonium_coil_block",
+    "top_all": "ctnhcore:block/casings/coils/pikyonium_coil_block_bloom"
+  }
+}

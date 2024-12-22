@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ctnhcore:block/energetic_photovoltaic_block"
+    }
+  }
+}

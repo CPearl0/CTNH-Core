@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "ctnhcore:block/flux/space_elevator_power_core"
+    },
+    "active=true": {
+      "model": "ctnhcore:block/flux/space_elevator_power_core_active"
+    }
+  }
+}
