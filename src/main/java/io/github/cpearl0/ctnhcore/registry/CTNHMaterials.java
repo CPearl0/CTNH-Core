@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import net.minecraft.server.commands.PublishCommand;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 
@@ -37,7 +38,6 @@ public class CTNHMaterials {
             .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
             .flags(DECOMPOSITION_BY_CENTRIFUGING)
             .buildAndRegister();
-
     public static final Material Mercurystone = new Material.Builder(CTNHCore.id("mercury_stone"))
             .dust()
             .color(0xababab).secondaryColor(0x757575).iconSet(ROUGH)
@@ -243,6 +243,11 @@ public class CTNHMaterials {
     public static final Material Mana = new Material.Builder(GTCEu.id("mana"))
             .liquid()
             .color(0x43e7ed)
+            .buildAndRegister();
+    public static final Material Zenith_essence = new Material.Builder(GTCEu.id("zenith_essence"))
+            .liquid()
+            .color(0x7D26CD)
+            .secondaryColor(0x836FFF)
             .buildAndRegister();
     public static final Material AlfSteel = new Material.Builder(GTCEu.id("alfsteel"))
             .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)

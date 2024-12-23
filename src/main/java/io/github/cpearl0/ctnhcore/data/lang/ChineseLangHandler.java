@@ -25,7 +25,8 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Ambrosium.getUnlocalizedName(), "神能晶");
         replace(provider, CTNHMaterials.Skyjade.getUnlocalizedName(), "穹玉");
         replace(provider, CTNHMaterials.Stratus.getUnlocalizedName(), "云母钢");
-
+        replace(provider,CTNHMaterials.Zenith_essence.getUnlocalizedName(), "§5天顶源质§r");
+        provider.add("gtceu.phase_inversion","反相蚀刻");
         provider.add("gtceu.underfloor_heating_system", "地暖");
         provider.add("gtceu.astronomical_observatory", "天文台");
         provider.add("gtceu.photovoltaic_power", "光伏发电");
@@ -139,8 +140,12 @@ public class ChineseLangHandler {
         provider.add("ctnh.blaze_blast_furnace.parallel", "允许一次性处理8个配方");
         provider.add("blaze_blast_furnace", "比电力高炉快");
         provider.add("mana_machine", "魔法，神奇吧");
+        provider.add("zenith_machine","§5超越魔法");
+        provider.add("ctnh.zenith_laser","机器类型：§e激光蚀刻机§r,§5反相蚀刻§r");
+        provider.add("ctnh.zenith_laser_sp","允许使用§5反相蚀刻§r，消耗§5天顶源质§r来将芯片制成晶圆");
         provider.add("ctnh.basic_mana_machine.mana_consume", "每秒基础消耗4mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.advanced_mana_machine.mana_consume", "每秒基础消耗10mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
+        provider.add("ctnh.super_mana_machine.mana_consume", "每秒基础消耗25mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.mana_macerator", "机器类型：§e研磨机§r");
         provider.add("ctnh.mana_bender", "机器类型：§e卷板机§r");
         provider.add("ctnh.mana_lathe", "机器类型：§e车床§r");
@@ -200,6 +205,9 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING, "W-Cu覆膜金刚石机械方块");
         provider.addBlock(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK, "充能光伏方块");
+        provider.addBlock(CTNHBlocks.ZENITH_CASING_BLOCK, "天顶强化机械方块");
+        provider.addBlock(CTNHBlocks.ZENITH_EYE, "§5天顶之眼");
+        provider.addBlock(CTNHBlocks.ZENITH_CASING_GEARBOX,"天顶强化魔力齿轮箱机械方块");
         provider.addBlock(CTNHBlocks.PULSATING_PHOTOVOLTAIC_BLOCK, "脉冲光伏方块");
         provider.addBlock(CTNHBlocks.VIBRANT_PHOTOVOLTAIC_BLOCK, "振动光伏方块");
         provider.addBlock(CTNHBlocks.PLASMA_COOLED_CORE,"等离子交换热线圈方块");
@@ -241,6 +249,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.BIG_DAM.getBlock(), "三峡大坝");
         provider.add(CTNHMultiblockMachines.COKE_OVEN.getBlock(), "焦化塔");
         provider.add(CTNHMultiblockMachines.PLASMA_CONDENSER.getBlock(),"等离子冷凝器");
+        provider.add(CTNHMultiblockMachines.ZENITH_LASER.getBlock(), "天顶激光蚀刻机");
         provider.add(CTNHMultiblockMachines.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK1.getBlock(),"超能反应堆 MKI");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK2.getBlock(),"超能反应堆 MKII");
@@ -271,7 +280,6 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.VOID_MINER.getBlock(), "虚空采矿场");
         provider.add(CTNHMultiblockMachines.SINTERING_KILN.getBlock(), "烧结窑");
     }
-
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,
                                @NotNull String value) {
         try {

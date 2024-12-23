@@ -40,8 +40,10 @@ public class CTNHBlocks {
             CTNHCore.id("block/pulsating_photovoltaic_block"));
     public static final BlockEntry<Block> VIBRANT_PHOTOVOLTAIC_BLOCK = createCasingBlock("vibrant_photovoltaic_block",
             CTNHCore.id("block/vibrant_photovoltaic_block"));
+    public static final BlockEntry<Block> ZENITH_CASING_BLOCK = createCasingBlock("zenith_casing",
+            CTNHCore.id("block/casings/zenith_casing"));
     public static final BlockEntry<Block> CASING_NAQUADAH_BLOCK = createCasingBlock("naquadah_casing_block",
-            CTNHCore.id("block/casings/nq_casing"));
+            CTNHCore.id("block/casings/tungstencu_diamond_plating_casing"));
     public static final BlockEntry<Block> CASING_NAQUADAH_ALLOY_BLOCK = createCasingBlock("naquadah_alloy_casing_block",
             CTNHCore.id("block/casings/nq_alloy_casing"));
     public static final BlockEntry<Block> CASING_ANTIFREEZE_HEATPROOF_MACHINE = createCasingBlock("antifreeze_heatproof_machine_casing",
@@ -60,10 +62,15 @@ public class CTNHBlocks {
             "mana_steel_casing",CTNHCore.id("block/casings/mana_steel_casing"));
     public static final BlockEntry<Block> TERRA_STEEL_CASING = createCasingBlock(
             "terra_steel_casing",CTNHCore.id("block/casings/terra_steel_casing"));
+    public static final BlockEntry<Block> ZENITH_EYE = createCasingBlock(
+            "zenith_eye",CTNHCore.id("block/zenith_eye")
+                    );
     public static final BlockEntry<Block> ELEMENTIUM_CASING = createCasingBlock(
             "elementium_casing",CTNHCore.id("block/casings/elementium_casing"));
     public static final BlockEntry<Block> ALF_STEEL_CASING = createCasingBlock(
             "alfsteel_casing",CTNHCore.id("block/casings/alfsteel_casing"));
+    public static final BlockEntry<Block> ZENITH_CASING_GEARBOX = createCasingBlock(
+            "zenith_casing_gearbox",CTNHCore.id("block/zenith_casing_gearbox"));
     public static final BlockEntry<Block> DEPTH_FORCE_FIELD_STABILIZING_CASING = createCasingBlock(
             "depth_force_field_stabilizing_casing",CTNHCore.id("block/casings/depth_force_field_stabilizing_casing"));
     public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createCasingBlock(
@@ -118,8 +125,7 @@ public class CTNHBlocks {
     }
     @SuppressWarnings("all")
     private static BlockEntry<CoilBlock> createCoilBlock(ICoilType coilType) {
-        BlockEntry<CoilBlock> coilBlock = REGISTRATE
-                .block("%s_coil_block".formatted(coilType.getName()), p -> new CoilBlock(p, coilType))
+        BlockEntry<CoilBlock> coilBlock = REGISTRATE.block("%s_coil_block".formatted(coilType.getName()), p -> new CoilBlock(p, coilType))
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
                 .addLayer(() -> RenderType::cutoutMipped)

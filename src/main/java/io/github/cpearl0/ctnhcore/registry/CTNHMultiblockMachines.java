@@ -1064,6 +1064,38 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
+    public final static MultiblockMachineDefinition ZENITH_LASER = REGISTRATE.multiblock("zenith_laser",holder -> new ManaMachine(holder,24,20))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(GTRecipeTypes.LASER_ENGRAVER_RECIPES,CTNHRecipeTypes.PHASE_INVERSION)
+            .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
+            .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.zenith_laser"),
+                    Component.translatable("zenith_machine").withStyle(ChatFormatting.DARK_PURPLE),
+                    Component.translatable("ctnh.super_mana_machine.mana_consume"),
+                    Component.translatable("ctnh.zenith_laser_sp"),
+                    Component.translatable("ctnh.perfect_overclock"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("EEEEE", "EAAAE", "EAAAE", "EEEEE")
+                    .aisle("EECEE", "A###A", "A###A", "EDDDE")
+                    .aisle("ECECE", "F#D#F", "F###F", "EDBDE")
+                    .aisle("EECEE", "A###A", "A###A", "EDDDE")
+                    .aisle("EEEEE", "EA@AE", "EAEAE", "EEEEE")
+                    .where("A", Predicates.blocks(CTNHBlocks.DEPTH_FORCE_FIELD_STABILIZING_CASING.get()))
+                    .where("B",Predicates.blocks(CTNHBlocks.ZENITH_EYE.get()))
+                    .where("C", Predicates.blocks(CTNHBlocks.ALF_STEEL_CASING.get()))
+                    .where("D", Predicates.blocks(CTNHBlocks.ZENITH_CASING_GEARBOX.get()))
+                    .where("#", Predicates.any())
+                    .where("E",Predicates.blocks(CTNHBlocks.ZENITH_CASING_BLOCK.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS)))
+                    .where("F", Predicates.blocks(BotaniaBlocks.manaGlass))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+
+                    .build()
+            )
+            .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+
     public final static MultiblockMachineDefinition MANA_WIREMILL = REGISTRATE.multiblock("mana_wiremill",holder -> new ManaMachine(holder,8,2))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.WIREMILL_RECIPES)
