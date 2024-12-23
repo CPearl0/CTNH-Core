@@ -68,6 +68,8 @@ import java.util.stream.Stream;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.registerLargeCombustionEngine;
+import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CTNHMultiblockMachines {
@@ -1482,7 +1484,7 @@ public class CTNHMultiblockMachines {
                 .compassNode("chemical_generator")
                 .register();
     }
-    public static final MachineDefinition INDUSTRIAL_PRIMITIVE_BLAST_FURNACE = REGISTRATE.multiblock("industrial_primitive_blast_furnace", IndustrialPrimitiveBlastFurnaceMachine::new)
+    public static final MultiblockMachineDefinition INDUSTRIAL_PRIMITIVE_BLAST_FURNACE = REGISTRATE.multiblock("industrial_primitive_blast_furnace", IndustrialPrimitiveBlastFurnaceMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.PRIMITIVE_BLAST_FURNACE_RECIPES)
             .appearanceBlock(CASING_PRIMITIVE_BRICKS)
@@ -1509,7 +1511,7 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_primitive_bricks"), GTCEu.id("block/multiblock/steam_oven"), false)
             .register();
-    public static final MachineDefinition VOID_MINER = REGISTRATE.multiblock("void_miner", VoidMinerProcessingMachine::new)
+    public static final MultiblockMachineDefinition VOID_MINER = REGISTRATE.multiblock("void_miner", VoidMinerProcessingMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.VOID_MINER)
             .appearanceBlock(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST)
@@ -1544,7 +1546,7 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"), GTCEu.id("block/multiblock/large_chemical_reactor"), false)
             .register();
 
-    public static final MachineDefinition SINTERING_KILN = REGISTRATE.multiblock("sintering_kiln", WorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition SINTERING_KILN = REGISTRATE.multiblock("sintering_kiln", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.SINTERING_KILN)
             .tooltips(Component.translatable("sintering_kiln_introduction").withStyle(ChatFormatting.GRAY))
@@ -1570,6 +1572,11 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(CTNHCore.id("block/high_grade_coke_oven_bricks"), GTCEu.id("block/machines/alloy_smelter"), false)
             .register();
+    public static final MultiblockMachineDefinition ULTIMATE_COMBUSTION_ENGINE = registerLargeCombustionEngine(
+            "ultimate_combustion_engine", LuV,
+            CASING_NAQUADAH_BLOCK, CASING_NAQUADAH_GEARBOX, CASING_ULTIMATE_ENGINE_INTAKE,
+            CTNHCore.id("block/casings/nq_casing"),
+            GTCEu.id("block/multiblock/generator/extreme_combustion_engine"));
 
     public static void init() {
 

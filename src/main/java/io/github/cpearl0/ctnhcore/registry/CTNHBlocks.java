@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
@@ -75,6 +76,8 @@ public class CTNHBlocks {
             "depth_force_field_stabilizing_casing",CTNHCore.id("block/casings/depth_force_field_stabilizing_casing"));
     public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createCasingBlock(
             "bronze_framed_glass",CTNHCore.id("block/casings/bronze_framed_glass"));
+    public static final BlockEntry<Block> CASING_NAQUADAH_GEARBOX = createCasingBlock("naquadah_gearbox",
+            CTNHCore.id("block/casings/gearbox/machine_casing_gearbox_naquadah"));
 
     public static final BlockEntry<ActiveBlock> SPACE_ELEVATOR_POWER_CORE = createActiveCasing("space_elevator_power_core",
             "block/flux/space_elevator_power_core");
@@ -90,6 +93,8 @@ public class CTNHBlocks {
             "block/flux/annihilate_core_mk5");
     public static final BlockEntry<ActiveBlock> PLASMA_COOLED_CORE = createActiveCasing("plasma_cooled_core",
             "block/flux/plasma_cooled_core");
+    public static final BlockEntry<ActiveBlock> CASING_ULTIMATE_ENGINE_INTAKE = createActiveCasing(
+            "ultimate_engine_intake_casing", "block/variant/ultimate_engine_intake");
 
     public static final BlockEntry<CoilBlock> COIL_ABYSALALLOY = createCoilBlock(CoilType.ABYSSALALLOY);
     public static final BlockEntry<CoilBlock> COIL_TITANSTEEL = createCoilBlock(CoilType.TITANSTEEL);
