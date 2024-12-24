@@ -10,8 +10,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -141,7 +140,7 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         if (will1 == will2){
             return 0;
         }
-        return (Math.abs(will1 - will2) + Capacity_rune) * Math.pow(1.05,Augmented_rune);
+        return (Math.abs(will1 - will2) + Capacity_rune * 2) * Math.pow(1.02,Augmented_rune);
     }
     public void adjustWillChunk(BlockPos pos1, BlockPos pos2,EnumDemonWillType type1) {
         var willChunk1 = WorldDemonWillHandler.getWillChunk(Objects.requireNonNull(getLevel()),pos1);
@@ -227,22 +226,20 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
     public GTRecipe getBloodRecipe() {
         return GTRecipeBuilder.ofRaw().inputFluids(new FluidStack(BloodMagicFluids.LIFE_ESSENCE_FLUID_FLOWING.get(),100)).buildRawRecipe();
     }
-    public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe, @NotNull OCParams params,
-                                          @NotNull OCResult result) {
+    public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (machine instanceof DemonWillMachine dmachine) {
             var difference = dmachine.difference;
             var diversity = dmachine.diversity;
-            var newrecipe = recipe.copy();
+            var modifierFunction = ModifierFunction.builder().durationMultiplier(1 + dmachine.Speed_rune * 0.2);
             if (dmachine.isBoosted) {
-                newrecipe.tickOutputs.put(EURecipeCapability.CAP,newrecipe.copyContents(newrecipe.tickOutputs, ContentModifier.of(diversity*Math.pow(difference,1.5)* dmachine.getBoostRate(),0)).get(EURecipeCapability.CAP));
+                modifierFunction.eutMultiplier(diversity*Math.pow(difference,1.5)* dmachine.getBoostRate());
             }
             else {
-                newrecipe.tickOutputs.put(EURecipeCapability.CAP,newrecipe.copyContents(newrecipe.tickOutputs, ContentModifier.of(diversity*Math.pow(difference,1.5),0)).get(EURecipeCapability.CAP));
+                modifierFunction.eutMultiplier(diversity*Math.pow(difference,1.5));
             }
-            newrecipe.duration = (int) (newrecipe.duration * (1 + dmachine.Speed_rune * 0.2));
-            return newrecipe;
+            return modifierFunction.build();
         }
-        return recipe;
+        return ModifierFunction.IDENTITY;
     }
     @Override
     public boolean onWorking() {

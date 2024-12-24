@@ -6,8 +6,7 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -38,15 +37,16 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
         Multi = (int) Math.pow(4,tier - 1);
     }
 
-    public static GTRecipe WindPowerArrayRecipeModifier(MetaMachine machine, GTRecipe recipe, OCParams ocParams, OCResult ocResult) {
-        if (machine instanceof WindPowerArrayMachine) {
-            GTRecipe CopyRecipe = recipe.copy();
-            int realAltitude = Mth.clamp(((WindPowerArrayMachine) machine).altitude,64,256);
-            CopyRecipe.tickOutputs.put(EURecipeCapability.CAP,CopyRecipe.copyContents(CopyRecipe.tickOutputs, ContentModifier.of(1, (double) (realAltitude - 64) /3)).get(EURecipeCapability.CAP));
-            CopyRecipe.tickOutputs.put(EURecipeCapability.CAP,CopyRecipe.copyContents(CopyRecipe.tickOutputs, ContentModifier.of(((WindPowerArrayMachine) machine).efficiency, 0)).get(EURecipeCapability.CAP));
-            return CopyRecipe.copy(ContentModifier.multiplier(((WindPowerArrayMachine) machine).Multi), false);
+    public static ModifierFunction WindPowerArrayRecipeModifier(MetaMachine machine, GTRecipe recipe) {
+        if (machine instanceof WindPowerArrayMachine wmachine) {
+            int realAltitude = Mth.clamp(wmachine.altitude,64,256);
+            return ModifierFunction.builder()
+                    .eutMultiplier(wmachine.efficiency * ((double) (realAltitude + 128) / 192) * wmachine.Multi)
+                    .inputModifier(ContentModifier.multiplier(wmachine.Multi))
+                    .outputModifier(ContentModifier.multiplier(wmachine.Multi))
+                    .build();
         }
-        return null;
+        return ModifierFunction.NULL;
     }
 
     public static void clearNet() {
@@ -87,7 +87,7 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
                 NetworkSize = machineNet.size();
             }
         }
-        efficiency = (NetworkSize - 1) * 0.1 + 1;
+        efficiency = Math.sqrt(NetworkSize) * 0.2 + 1;
         return super.beforeWorking(recipe);
     }
 
@@ -99,7 +99,7 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
                     NetworkSize = machineNet.size();
                 }
             }
-            efficiency = (NetworkSize - 1) * 0.1 + 1;
+            efficiency = Math.sqrt(NetworkSize) * 0.2 + 1;
         }
         return super.onWorking();
     }

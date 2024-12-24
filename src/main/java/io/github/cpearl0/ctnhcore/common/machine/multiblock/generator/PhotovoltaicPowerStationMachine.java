@@ -8,8 +8,7 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import earth.terrarium.adastra.api.planets.Planet;
@@ -33,7 +32,7 @@ public class PhotovoltaicPowerStationMachine extends WorkableElectricMultiblockM
     }
 
     @Nullable
-    public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe, @NotNull OCParams params, @NotNull OCResult result) {
+    public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (!(machine instanceof PhotovoltaicPowerStationMachine powerStationMachine)) {
             return null;
         }
@@ -68,10 +67,8 @@ public class PhotovoltaicPowerStationMachine extends WorkableElectricMultiblockM
         } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
             rate *= 32;
         }
-        var newrecipe = recipe.copy();
-        newrecipe.tickOutputs.put(EURecipeCapability.CAP, newrecipe.copyContents(newrecipe.tickOutputs, ContentModifier.of(rate * basic_rate, 0)).get(EURecipeCapability.CAP));
         machine.getHolder().self().getPersistentData().putDouble("energy", rate * basic_rate * 512);
-        return newrecipe;
+        return ModifierFunction.builder().eutMultiplier(rate*basic_rate).build();
     }
 
     @Override

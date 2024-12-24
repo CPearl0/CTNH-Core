@@ -20,8 +20,8 @@ import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.RotorHolderPartMachine;
@@ -69,7 +69,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     // ****** Recipe Logic *******//
     //////////////////////////////////////
     @Nullable
-    public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe, OCParams ocParams, OCResult ocResult) {
+    public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (!(machine instanceof ManaLargeTurbineMachine turbineMachine)) return null;
         if (turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeAir) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeEarth) ||
@@ -121,13 +121,13 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
 
         // this is necessary to prevent over-consumption of fuel
         turbineMachine.excessVoltage += (int) (maxParallel * EUt * holderEfficiency - turbineMaxVoltage);
-        var parallelResult = GTRecipeModifiers.fastParallel(turbineMachine, recipe, Math.max(1, maxParallel), false);
-        recipe = parallelResult.getFirst() == recipe ? recipe.copy() : parallelResult.getFirst();
-        recipe.inputs.put(FluidRecipeCapability.CAP,recipe.copyContents(recipe.inputs, ContentModifier.of(turbineMachine.consumpution_rate, 0)).get(FluidRecipeCapability.CAP));
-        long eut = turbineMachine.boostProduction((long) (EUt * holderEfficiency * parallelResult.getSecond()));
-        recipe.tickOutputs.put(EURecipeCapability.CAP, List.of(new Content(eut, ChanceLogic.getMaxChancedValue(), ChanceLogic.getMaxChancedValue(), 0, null, null)));
-
-        return recipe;
+        int actualParallel = ParallelLogic.getParallelAmountFast(turbineMachine, recipe, maxParallel);
+        return ModifierFunction.builder()
+                .inputModifier(ContentModifier.multiplier(actualParallel))
+                .outputModifier(ContentModifier.multiplier(actualParallel))
+                .eutMultiplier(turbineMachine.productionBoost() * actualParallel)
+                .durationMultiplier(holderEfficiency/turbineMachine.consumpution_rate)
+                .build();
     }
     @Override
     public void onDrops(List<ItemStack> drops) {
@@ -200,13 +200,13 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         return 0;
     }
 
-    protected long boostProduction(long production) {
+    protected double productionBoost() {
         var rotorHolder = getRotorHolder();
         if (rotorHolder != null && rotorHolder.hasRotor()) {
             int maxSpeed = rotorHolder.getMaxRotorHolderSpeed();
             int currentSpeed = rotorHolder.getRotorSpeed();
-            if (currentSpeed >= maxSpeed) return production;
-            return (long) (production * Math.pow(1.0 * currentSpeed / maxSpeed, 2));
+            if (currentSpeed >= maxSpeed) return 1;
+            return Math.pow(1.0 * currentSpeed / maxSpeed, 2);
         }
         return 0;
     }
@@ -262,7 +262,8 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                 textList.add(Component.translatable("gtceu.multiblock.turbine.efficiency", rotorHolder.getTotalEfficiency()));
 
                 long maxProduction = getOverclockVoltage();
-                long currentProduction = isActive() ? boostProduction((int) maxProduction) : 0;
+                long currentProduction = isActive() && recipeLogic.getLastRecipe() != null ?
+                        RecipeHelper.getOutputEUt(recipeLogic.getLastRecipe()) : 0;
                 String voltageName = GTValues.VNF[GTUtil.getTierByVoltage(currentProduction)];
 
                 if (isActive()) {

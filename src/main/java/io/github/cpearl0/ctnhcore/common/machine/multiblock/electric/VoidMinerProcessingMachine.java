@@ -5,8 +5,8 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import net.minecraft.ChatFormatting;
@@ -143,23 +143,20 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
     }
 
     // 修改配方的时长
-    public static GTRecipe recipeModifier(MetaMachine machine, GTRecipe recipe, OCParams params, OCResult result) {
+    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         int temperature = ((VoidMinerProcessingMachine) machine).getCurrentTemperature();
-        GTRecipe newRecipe = recipe.copy();
+        var modifierFunction = ModifierFunction.builder();
 
         // 根据温度修改配方的时长
         if (temperature >= 20000) {
-            newRecipe.duration = 100;
+            modifierFunction.durationModifier(ContentModifier.multiplier((double) 100 / recipe.duration));
         } else if (temperature >= 15000) {
-            newRecipe.duration = 300;
+            modifierFunction.durationModifier(ContentModifier.multiplier((double) 300 / recipe.duration));
         } else if (temperature >= 10000) {
-            newRecipe.duration = 600;
+            modifierFunction.durationModifier(ContentModifier.multiplier((double) 600 / recipe.duration));
         } else if (temperature >= 5000) {
-            newRecipe.duration = 1200;
-        } else {
-            newRecipe.duration = recipe.duration; // 保持原配方时长
+            modifierFunction.durationModifier(ContentModifier.multiplier((double) 1200 / recipe.duration));
         }
-
-        return newRecipe;
+        return modifierFunction.build();
     }
 }

@@ -1,16 +1,14 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.magic;
 
-import com.gregtechceu.gtceu.api.gui.fancy.TooltipsPanel;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import org.jetbrains.annotations.Nullable;
 
 public class ManaMachine extends WorkableElectricMultiblockMachine {
@@ -43,13 +41,10 @@ public class ManaMachine extends WorkableElectricMultiblockMachine {
         return false;
     }
 
-    public static GTRecipe recipeModifier(MetaMachine machine, GTRecipe recipe, OCParams params, OCResult result) {
+    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof ManaMachine mmachine) {
-            var newrecipe = recipe.copy();
-            if (newrecipe != null) {
-                return GTRecipeModifiers.accurateParallel(machine, newrecipe, mmachine.parallel, false).getFirst();
-            }
+                return CTNHRecipeModifiers.accurateParallel(mmachine.parallel);
         }
-        return recipe;
+        return ModifierFunction.IDENTITY;
     }
 }

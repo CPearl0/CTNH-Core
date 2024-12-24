@@ -5,7 +5,6 @@ import com.enderio.machines.common.init.MachineBlocks;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
-import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -16,8 +15,7 @@ import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
@@ -25,7 +23,6 @@ import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import com.mojang.authlib.GameProfile;
 import io.github.cpearl0.ctnhcore.api.gui.CTNHGuiTextures;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ManaLargeTurbineMachine;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -130,9 +127,9 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
 
         return !mobList.isEmpty();
     }
-    public static GTRecipe recipeModifier(MetaMachine machine, GTRecipe recipe, OCParams params, OCResult result){
+    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe){
         ServerLevel level = (ServerLevel) machine.getLevel();
-        var newrecipe = GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK).apply(machine,recipe,params,result);
+        var newrecipe = GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK).applyModifier(machine,recipe);
         if(machine instanceof SlaughterHouseMachine smachine && !smachine.mobList.isEmpty()) {
             // 战利品模式
             double totalhealth = 0;
@@ -173,7 +170,7 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
             newrecipe.outputs.put(FluidRecipeCapability.CAP, List.of(new Content(FluidIngredient.of(new FluidStack(EIOFluids.XP_JUICE.get().getSource(), (int) (totalhealth * 5))), 1, 1, 0, null, null)));
             newrecipe.duration = (int)(totalhealth / (20 * (smachine.getTier() - 2) * 4) * 40);
         }
-        return newrecipe;
+        return recipe1 -> newrecipe;
     }
     @Override
     public void addDisplayText(@NotNull List<Component> textList) {

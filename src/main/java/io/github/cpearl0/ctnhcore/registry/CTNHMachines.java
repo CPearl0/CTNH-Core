@@ -18,6 +18,7 @@ import com.gregtechceu.gtceu.client.renderer.machine.OverlayTieredMachineRendere
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ParallelHatchPartMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.github.cpearl0.ctnhcore.CTNHCore;
@@ -49,7 +50,7 @@ public class CTNHMachines {
                     .abilities(CTNHPartAbility.CIRCUIT)
                     .renderer(() -> new OverlayTieredMachineRenderer(tier, GTCEu.id("block/machine/part/item_bus.import")))
                     .register(),
-            GTMachines.ALL_TIERS);
+            GTMachineUtils.ALL_TIERS);
 
     public static final MachineDefinition[] PERSONAL_COMPUTER = registerSimpleMachines("personal_computer",
             CTNHRecipeTypes.PERSONAL_COMPUTER);
@@ -124,7 +125,6 @@ public class CTNHMachines {
                             .workableTieredHullRenderer(CTNHCore.id("block/machines/" + name))
                             .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
                                     tankScalingFunction.apply(tier), true))
-                            .compassNode(name)
                             .register();
                 },
                 tiers);
@@ -133,7 +133,7 @@ public class CTNHMachines {
     public static MachineDefinition[] registerSimpleMachines(String name, GTRecipeType recipeType,
                                                              Int2IntFunction tankScalingFunction,
                                                              boolean hasPollutionDebuff) {
-        return registerSimpleMachines(name, recipeType, tankScalingFunction, hasPollutionDebuff, GTMachines.ELECTRIC_TIERS);
+        return registerSimpleMachines(name, recipeType, tankScalingFunction, hasPollutionDebuff, GTMachineUtils.ELECTRIC_TIERS);
     }
 
     public static MachineDefinition[] registerSimpleMachines(String name, GTRecipeType recipeType,
@@ -142,7 +142,7 @@ public class CTNHMachines {
     }
 
     public static MachineDefinition[] registerSimpleMachines(String name, GTRecipeType recipeType) {
-        return registerSimpleMachines(name, recipeType, GTMachines.defaultTankSizeFunction);
+        return registerSimpleMachines(name, recipeType, GTMachineUtils.defaultTankSizeFunction);
     }
 
     public static Component environmentRequirement(MedicalCondition condition) {

@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Duranium;
 
 public class CTNHFusionCasingType extends FusionCasingBlock {
@@ -35,9 +36,9 @@ public class CTNHFusionCasingType extends FusionCasingBlock {
 
     public static Block getFrameState(int tier) {
         return switch (tier) {
-            case LuV -> GTBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.Naquadah).get();
-            case ZPM -> GTBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.NaquadahEnriched).get();
-            default -> GTBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.Naquadria).get();
+            case LuV -> MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.Naquadah).get();
+            case ZPM -> MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.NaquadahEnriched).get();
+            default -> MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.Naquadria).get();
         };
     }
 

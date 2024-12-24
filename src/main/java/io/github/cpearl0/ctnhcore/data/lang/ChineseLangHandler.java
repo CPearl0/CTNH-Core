@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.data.lang;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTMachines;
+import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import io.github.cpearl0.ctnhcore.registry.*;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.jetbrains.annotations.NotNull;
@@ -106,7 +107,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.demon_will_generator.tooltips.3","以机器两侧的恶魔合金方块处的意志浓度为基准进行计算");
         provider.add("ctnh.demon_will_generator.tooltips.4","两侧区块中的各种恶魔意志的多样性会影响发电效率");
         provider.add("ctnh.demon_will_generator.tooltips.5","机器内可以放入意志核心，将机器转化为对于某种意志专精的模式");
-        provider.add("ctnh.demon_will_generator.tooltips.6","机器内的符文方块可替换，从而起到不同的增益效果:\n§4献祭符文和牺牲符文----提高生命源质强化模式的发电倍率§r\n§3速度符文----提升一次配方运行的时长（节省恶魔意志消耗）§r\n§e增容符文----每一个符文增加1点恶魔意志浓度差§r\n§c超容符文----每一个符文增加百分之5的恶魔意志浓度差（叠乘）§r\n==============================");
+        provider.add("ctnh.demon_will_generator.tooltips.6","机器内的符文方块可替换，从而起到不同的增益效果:\n§4献祭符文和牺牲符文----提高生命源质强化模式的发电倍率§r\n§3速度符文----提升一次配方运行的时长（节省恶魔意志消耗）§r\n§e增容符文----每一个符文增加2点恶魔意志浓度差§r\n§c超容符文----每一个符文增加百分之2的恶魔意志浓度差（叠乘）§r\n==============================");
         provider.add("ctnh.demon_will_generator.tooltips.7","输入§4生命源质§r开启强化模式，发电量翻倍，每秒消耗§a100mb§r的生命源质");
         provider.add("ctnh.multiblock.sweat_shop.villager_count","员工数量：%s");
         provider.add("ctnh.multiblock.sweat_shop.basic_rate","基础效率：x%s");
@@ -181,10 +182,10 @@ public class ChineseLangHandler {
         provider.add("sintering_kiln_introduction", "需要通入8192应力使其内部活塞压实待加工料");
 
 
-        for (var tier : GTMachines.ALL_TIERS) {
+        for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");
         }
-        for (var tier : GTMachines.ELECTRIC_TIERS) {
+        for (var tier : GTMachineUtils.ELECTRIC_TIERS) {
             provider.add(CTNHMachines.PERSONAL_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + " 个人计算机");
         }
         for (int tier = GTValues.UHV; tier <= GTValues.MAX; tier++){

@@ -1,87 +1,69 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
-import com.gregtechceu.gtceu.api.data.RotationState;
-import com.gregtechceu.gtceu.api.data.medicalcondition.MedicalCondition;
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
-import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
-import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
-import com.gregtechceu.gtceu.client.renderer.machine.OverlayTieredMachineRenderer;
-import com.gregtechceu.gtceu.common.data.GTMachines;
-import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
-import com.gregtechceu.gtceu.utils.FormattingUtil;
-import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
-import it.unimi.dsi.fastutil.ints.Int2LongFunction;
-import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.function.BiFunction;
-
-import static com.gregtechceu.gtceu.api.GTValues.VLVH;
-import static com.gregtechceu.gtceu.api.GTValues.VLVT;
-import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
-import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
+import static com.gregtechceu.gtceu.api.recipe.OverclockingLogic.getCoilEUtDiscount;
 
 public class CTNHRecipeModifiers {
+    public static final ModifierFunction accurateParallel(int parallel) {
+        return ModifierFunction.builder()
+                .inputModifier(ContentModifier.multiplier(parallel))
+                .outputModifier(ContentModifier.multiplier(parallel))
+                .eutMultiplier(parallel)
+                .build();
+    }
 
-    public static final RecipeModifier GCYM_REDUCTION = (machine, recipe, params, result) -> CTNHRecipeModifiers
+    public static final RecipeModifier GCYM_REDUCTION = (machine, recipe) -> CTNHRecipeModifiers
             .reduction(machine, recipe, 0.8, 0.6);
 
-    public static final RecipeModifier COIL_PARALLEL = (machine, recipe, params, result) -> GTRecipeModifiers.accurateParallel(machine, recipe, Math.min(2147483647, (int) Math.pow(2, ((double) ((CoilWorkableElectricMultiblockMachine) machine).getCoilType().getCoilTemperature() / 900))), false).getFirst();
+    public static final RecipeModifier COIL_PARALLEL = (machine, recipe) -> CTNHRecipeModifiers.accurateParallel(Math.min(2147483647, (int) Math.pow(2, ((double) ((CoilWorkableElectricMultiblockMachine) machine).getCoilType().getCoilTemperature() / 900))));
 
-    public static GTRecipe chemicalPlantOverclock(MetaMachine machine, @NotNull GTRecipe recipe, @NotNull OCParams params,
-                                                  @NotNull OCResult result) {
-        if (machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
-            GTRecipe recipe1 = reduction(machine, recipe, (1.0 - coilMachine.getCoilTier() * 0.05) * 0.8, (1.0 - coilMachine.getCoilTier() * 0.05) * 0.6);
-            if (recipe1 != null) {
-                recipe1 = GTRecipeModifiers.hatchParallel(machine, recipe1, false, params, result);
-                if (recipe1 != null) return RecipeHelper.applyOverclock(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK, recipe1, coilMachine.getOverclockVoltage(), params, result);
-            }
-        }
-        return null;
-    }
-    public static GTRecipe superEbfOverclock(MetaMachine machine, @NotNull GTRecipe recipe, @NotNull OCParams params,
-                                         @NotNull OCResult result) {
+//    public static ModifierFunction chemicalPlantOverclock(MetaMachine machine, @NotNull GTRecipe recipe) {
+//        if (machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
+//            GTRecipe recipe1 = reduction(machine, recipe, (1.0 - coilMachine.getCoilTier() * 0.05) * 0.8, (1.0 - coilMachine.getCoilTier() * 0.05) * 0.6);
+//            if (recipe1 != null) {
+//                recipe1 = GTRecipeModifiers.hatchParallel(machine, recipe1);
+//                if (recipe1 != null) return RecipeHelper.applyOverclock(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK, recipe1, coilMachine.getOverclockVoltage(), params, result);
+//            }
+//        }
+//        return null;
+//    }
+    public static ModifierFunction superEbfOverclock(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (machine instanceof CoilWorkableElectricMultiblockMachine coilMachine) {
             final var blastFurnaceTemperature = coilMachine.getCoilType().getCoilTemperature() +
                     100 * Math.max(0, coilMachine.getTier() - GTValues.MV);
+            var recipeTemp = recipe.data.getInt("ebf_temp");
             if (!recipe.data.contains("ebf_temp") || recipe.data.getInt("ebf_temp") > blastFurnaceTemperature) {
                 return null;
             }
             if (RecipeHelper.getRecipeEUtTier(recipe) > coilMachine.getTier()) {
                 return null;
             }
-            var newrecipe = RecipeHelper.applyOverclock(
-                    new OverclockingLogic((p, r, maxVoltage) -> OverclockingLogic.heatingCoilOC(
-                            params, result, maxVoltage,
-                            blastFurnaceTemperature,
-                            recipe.data.contains("ebf_temp") ? recipe.data.getInt("ebf_temp") : 0)),
-                    recipe, coilMachine.getOverclockVoltage(), params, result);
-            result.setDuration((int) result.getDuration() / 2);
-            return newrecipe;
+            var discount = ModifierFunction.builder()
+                    .eutMultiplier(getCoilEUtDiscount(recipeTemp, blastFurnaceTemperature))
+                    .durationMultiplier(0.5)
+                    .build();
+
+            OverclockingLogic logic = (p, v) -> OverclockingLogic.heatingCoilOC(p, v, recipeTemp, blastFurnaceTemperature);
+            var oc = logic.getModifier(machine, recipe, coilMachine.getOverclockVoltage());
+            return oc.compose(discount);
         }
-        return null;
+        return ModifierFunction.IDENTITY;
     }
-    private static GTRecipe reduction(MetaMachine machine, @NotNull GTRecipe recipe, double v, double v1) {
-        return recipe;
+    private static ModifierFunction reduction(MetaMachine machine, @NotNull GTRecipe recipe, double v, double v1) {
+        return ModifierFunction.builder()
+                .durationMultiplier(v)
+                .eutMultiplier(v1)
+                .build();
     }
 
 

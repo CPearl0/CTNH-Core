@@ -18,13 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
+
 @Mixin(value = TagLoader.class, priority = 0)
 public class TagLoaderMixin {
     @Inject(method = "load", at = @At("RETURN"))
     public void CTNH$loadTags(ResourceManager manager, CallbackInfoReturnable<Map<ResourceLocation, List<TagLoader.EntryWithSource>>> cir) {
         if (Config.disableFTBUltimineOnGTOres) {
             List<TagLoader.EntryWithSource> tags = new ArrayList<>();
-            GTBlocks.MATERIAL_BLOCKS.rowMap().forEach((prefix, map) -> {
+            MATERIAL_BLOCKS.rowMap().forEach((prefix, map) -> {
                 if (TagPrefix.ORES.containsKey(prefix)) {
                     map.forEach((material, blockEntry) -> {
                         tags.add(new TagLoader.EntryWithSource(

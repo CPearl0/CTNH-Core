@@ -9,10 +9,9 @@ import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
@@ -203,36 +202,36 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
         return super.onWorking();
     }
 
-    public static GTRecipe recipeModifier(MetaMachine machine, GTRecipe recipe, OCParams params, OCResult result){
+    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe){
         if (machine instanceof FactoryMachine fmachine) {
-            var newrecipe = recipe.copy();
+            var modifierFunction = ModifierFunction.builder();
             var recipeType = fmachine.getRecipeType();
         if(fmachine.basicRate == 0) {
             return null;
         }
-            newrecipe.duration = (int) (newrecipe.duration / fmachine.basicRate);
+        modifierFunction.durationModifier(ContentModifier.multiplier(1/fmachine.basicRate));
             if (recipeType.equals(GTRecipeTypes.CENTRIFUGE_RECIPES)) {
-                return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.CENTRIFUGE_COUNT), false).getFirst();
+                return modifierFunction.parallels((int) Math.sqrt(fmachine.CENTRIFUGE_COUNT)).build();
             } else if (recipeType.equals(GTRecipeTypes.LATHE_RECIPES)) {
-                return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.LATHE_COUNT), false).getFirst();
+                return modifierFunction.parallels((int) Math.sqrt(fmachine.LATHE_COUNT)).build();
             } else if (recipeType.equals(GTRecipeTypes.MACERATOR_RECIPES)) {
-                return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.CRUSHING_COUNT), false).getFirst();
+                return modifierFunction.parallels((int) Math.sqrt(fmachine.CRUSHING_COUNT)).build();
             } else if (recipeType.equals(GTRecipeTypes.EXTRACTOR_RECIPES)) {
-                return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.BURNER_COUNT), false).getFirst();
+                return modifierFunction.parallels((int) Math.sqrt(fmachine.BURNER_COUNT)).build();
             } else if (recipeType.equals(GTRecipeTypes.BENDER_RECIPES)) {
-                return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.PRESSOR_COUNT), false).getFirst();
+                return modifierFunction.parallels((int) Math.sqrt(fmachine.PRESSOR_COUNT)).build();
             } else if (recipeType.equals(GTRecipeTypes.MIXER_RECIPES)) {
-                return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.MIXER_COUNT), false).getFirst();
+                return modifierFunction.parallels((int) Math.sqrt(fmachine.MIXER_COUNT)).build();
             } else if (recipeType.equals(GTRecipeTypes.WIREMILL_RECIPES)) {
-                return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.SAW_COUNT), false).getFirst();
+                return modifierFunction.parallels((int) Math.sqrt(fmachine.SAW_COUNT)).build();
             } else if (recipeType.equals(GTRecipeTypes.LASER_ENGRAVER_RECIPES)) {
-                return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.LASER_COUNT), false).getFirst();
+                return modifierFunction.parallels((int) Math.sqrt(fmachine.LASER_COUNT)).build();
             } else if (recipeType.equals(GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES)) {
-                return GTRecipeModifiers.accurateParallel(fmachine, newrecipe, (int) Math.sqrt(fmachine.BASIN_COUNT), false).getFirst();
+                return modifierFunction.parallels((int) Math.sqrt(fmachine.BASIN_COUNT)).build();
             }
             throw new IllegalStateException("Unexpected value: " + recipeType);
         }
-        return recipe;
+        return ModifierFunction.IDENTITY;
     }
 
     public double calculateDiversity() {

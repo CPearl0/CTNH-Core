@@ -8,10 +8,13 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeCombustionEngineMachine;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
 import lombok.Getter;
@@ -57,27 +60,29 @@ public class ChemicalGeneratorMachine extends WorkableElectricMultiblockMachine 
     protected GTRecipe getBoostRecipe() {
         return GTRecipeBuilder.ofRaw().inputFluids(isExtreme() ? LIQUID_OXYGEN_STACK : OXYGEN_STACK).buildRawRecipe();
     }
-
-    @Nullable
-    public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe, @NotNull OCParams params,
-                                          @NotNull OCResult result) {
-        if (machine instanceof ChemicalGeneratorMachine engineMachine) {
-            var EUt = RecipeHelper.getOutputEUt(recipe);
-            // has lubricant
-            if (EUt > 0) {
-                var maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
-                var parallelResult = GTRecipeModifiers.fastParallel(engineMachine, recipe, maxParallel, false);
-                if (engineMachine.isOxygenBoosted) { // boost production
-                    long eut = (long) (EUt * parallelResult.getSecond() * (engineMachine.isExtreme() ? 2 : 1.5));
-                    result.init(-eut, recipe.duration, 1, params.getOcAmount());
-                } else {
-                    long eut = (long) (EUt * parallelResult.getSecond());
-                    result.init(-eut, recipe.duration, 1, params.getOcAmount());
-                }
-                return recipe;
-            }
+    public static ModifierFunction recipeModifier(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
+        if (!(machine instanceof ChemicalGeneratorMachine engineMachine)) {
+            return RecipeModifier.nullWrongType(LargeCombustionEngineMachine.class, machine);
         }
-        return null;
+        long EUt = RecipeHelper.getOutputEUt(recipe);
+        // has lubricant
+        if (EUt > 0) {
+            int maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
+            int actualParallel = ParallelLogic.getParallelAmount(engineMachine, recipe, maxParallel);
+            double eutMultiplier = actualParallel * engineMachine.getProductionBoost();
+
+            return ModifierFunction.builder()
+                    .inputModifier(ContentModifier.multiplier(actualParallel))
+                    .outputModifier(ContentModifier.multiplier(actualParallel))
+                    .eutMultiplier(eutMultiplier)
+                    .parallels(actualParallel)
+                    .build();
+        }
+        return ModifierFunction.NULL;
+    }
+    protected double getProductionBoost() {
+        if (!isOxygenBoosted) return 1;
+        return isExtreme() ? 2.0 : 1.5;
     }
 
     @Override

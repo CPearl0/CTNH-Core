@@ -12,8 +12,9 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeTurbineMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -59,14 +60,13 @@ public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implem
         return 0;
     }
 
-    protected long boostProduction(long production) {
+    protected double productionBoost() {
         var rotorHolder = getRotorHolder();
         if (rotorHolder != null && rotorHolder.hasRotor()) {
             int maxSpeed = rotorHolder.getMaxRotorHolderSpeed();
             int currentSpeed = rotorHolder.getRotorSpeed();
-            if (currentSpeed >= maxSpeed)
-                return production;
-            return (long) (production * Math.pow(1.0 * currentSpeed / maxSpeed, 2));
+            if (currentSpeed >= maxSpeed) return 1;
+            return Math.pow(1.0 * currentSpeed / maxSpeed, 2);
         }
         return 0;
     }
@@ -74,46 +74,32 @@ public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implem
     //////////////////////////////////////
     // ****** Recipe Logic *******//
     //////////////////////////////////////
-    @Nullable
-    public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe, @NotNull OCParams params,
-                                          @NotNull OCResult result) {
-        if (!(machine instanceof MegaTurbineMachine turbineMachine))
-            return null;
-
-        var rotorHolder = turbineMachine.getRotorHolder();
-        var EUt = RecipeHelper.getOutputEUt(recipe);
-
-        if (rotorHolder == null || EUt <= 0)
-            return null;
-
-        var turbineMaxVoltage = turbineMachine.getOverclockVoltage();
-        if (turbineMachine.excessVoltage >= turbineMaxVoltage) {
-            turbineMachine.excessVoltage -= turbineMaxVoltage;
-            return null;
+    public static ModifierFunction recipeModifier(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
+        if (!(machine instanceof MegaTurbineMachine turbineMachine)) {
+            return RecipeModifier.nullWrongType(MegaTurbineMachine.class, machine);
         }
 
+        var rotorHolder = turbineMachine.getRotorHolder();
+        if (rotorHolder == null) return ModifierFunction.NULL;
+
+        long EUt = RecipeHelper.getOutputEUt(recipe);
+        long turbineMaxVoltage = turbineMachine.getOverclockVoltage();
         double holderEfficiency = rotorHolder.getTotalEfficiency() / 100.0;
 
+        if (EUt <= 0 || turbineMaxVoltage <= EUt || holderEfficiency <= 0) return ModifierFunction.NULL;
+
         // get the amount of parallel required to match the desired output voltage
-        var maxParallel = (int) ((turbineMaxVoltage - turbineMachine.excessVoltage) / (EUt * holderEfficiency));
+        int maxParallel = (int) (turbineMaxVoltage / EUt);
+        int actualParallel = ParallelLogic.getParallelAmountFast(turbineMachine, recipe, maxParallel);
+        double eutMultiplier = turbineMachine.productionBoost() * actualParallel;
 
-        // this is necessary to prevent over-consumption of fuel
-        turbineMachine.excessVoltage += (long) (maxParallel * EUt * holderEfficiency - turbineMaxVoltage);
-        var parallelResult = GTRecipeModifiers.fastParallel(turbineMachine, recipe, Math.max(1, maxParallel), false);
-
-        long eut = turbineMachine.boostProduction((long) (EUt * holderEfficiency * parallelResult.getSecond()));
-
-        recipe = new GTRecipe(recipe.recipeType, recipe.id,
-                recipe.copyContents(recipe.inputs, ContentModifier.multiplier(parallelResult.getSecond())),
-                recipe.copyContents(recipe.outputs, ContentModifier.multiplier(parallelResult.getSecond())),
-                recipe.tickInputs, recipe.tickOutputs, recipe.inputChanceLogics, recipe.outputChanceLogics,
-                recipe.tickInputChanceLogics, recipe.tickOutputChanceLogics, recipe.conditions,
-                recipe.ingredientActions,
-                recipe.data, recipe.duration, recipe.isFuel, recipe.recipeCategory);
-
-        result.init(-eut, recipe.duration, 1, params.getOcAmount());
-
-        return recipe;
+        return ModifierFunction.builder()
+                .inputModifier(ContentModifier.multiplier(actualParallel))
+                .outputModifier(ContentModifier.multiplier(actualParallel))
+                .eutMultiplier(eutMultiplier)
+                .parallels(actualParallel)
+                .durationMultiplier(holderEfficiency)
+                .build();
     }
 
     @Override
@@ -144,7 +130,8 @@ public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implem
                         rotorHolder.getTotalEfficiency()));
 
                 long maxProduction = getOverclockVoltage();
-                long currentProduction = isActive() ? boostProduction(maxProduction) : 0;
+                long currentProduction = isActive() && recipeLogic.getLastRecipe() != null ?
+                        RecipeHelper.getOutputEUt(recipeLogic.getLastRecipe()) : 0;
                 String voltageName = GTValues.VNF[GTUtil.getTierByVoltage(currentProduction)];
 
                 if (isActive()) {

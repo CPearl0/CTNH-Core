@@ -7,9 +7,8 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
@@ -40,7 +39,7 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
         textList.add(textList.size(), Component.translatable("ctnh.fermenting_tank.growing_temperature", String.format("%.1f",Machine_Temperature)).setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN)));
         textList.add(textList.size(), Component.translatable("ctnh.fermenting_tank.growth_efficiency", String.format("%.1f", Efficiency * 100)));
     }
-    public static GTRecipe recipeModifier(MetaMachine machine, GTRecipe recipe, OCParams params, OCResult result){
+    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe){
         if(machine instanceof FermentingTankMachine fmachine){
             fmachine.Efficiency = 1;
             fmachine.Machine_Temperature = getWorldTemperature(Objects.requireNonNull(fmachine.getLevel()),fmachine.getPos());
@@ -62,16 +61,14 @@ public class FermentingTankMachine extends CoilWorkableElectricMultiblockMachine
                     });
                 }
             });
-            var newrecipe = recipe.copy();
             if (fmachine.Machine_Temperature >= 36 && fmachine.Machine_Temperature <= 38) {
                 fmachine.Efficiency *= 1.2;
             }
             else {
                 fmachine.Efficiency /= Math.min(3, Math.pow(Math.max(36 - fmachine.Machine_Temperature, fmachine.Machine_Temperature - 38), 2) / 10 + 1);
             }
-            newrecipe.duration = (int) (newrecipe.duration / fmachine.Efficiency);
-            return GTRecipeModifiers.ebfOverclock(machine, newrecipe, params, result);
+            return ModifierFunction.builder().durationModifier(ContentModifier.multiplier(1/fmachine.Efficiency)).build();
         }
-        return recipe;
+        return ModifierFunction.IDENTITY;
     }
 }

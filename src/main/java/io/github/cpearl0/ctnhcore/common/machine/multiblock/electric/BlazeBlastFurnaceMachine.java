@@ -1,15 +1,12 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
-import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import net.minecraft.ChatFormatting;
@@ -72,11 +69,14 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
         }
     }
 
-    public static GTRecipe recipeModifier(MetaMachine machine, GTRecipe recipe, OCParams params, OCResult result) {
-        var parallel = 8;
-        var newrecipe = recipe.copy();
-        newrecipe.tickInputs.put(EURecipeCapability.CAP, newrecipe.copyContents(newrecipe.tickInputs, ContentModifier.of(0.75, 0)).get(EURecipeCapability.CAP));
-        newrecipe = GTRecipeModifiers.accurateParallel(machine, newrecipe, parallel, false).getFirst();
-        return GTRecipeModifiers.ebfOverclock(machine, newrecipe, params, result);
+    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+        int parallel = 8;
+        var reduce = new ContentModifier(0.75 * parallel,0);
+        return ModifierFunction.builder()
+                .eutModifier(reduce)
+                .inputModifier(ContentModifier.multiplier(parallel))
+                .outputModifier(ContentModifier.multiplier(parallel))
+                .parallels(8)
+                .build();
     }
 }

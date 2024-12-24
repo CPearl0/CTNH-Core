@@ -5,9 +5,8 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
@@ -21,7 +20,7 @@ import sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil;
 
 import java.util.List;
 
-public class IndustrialPrimitiveBlastFurnaceMachine extends KineticMachine {
+public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(IndustrialPrimitiveBlastFurnaceMachine.class,
             WorkableMultiblockMachine.MANAGED_FIELD_HOLDER);
     @Nullable
@@ -39,14 +38,17 @@ public class IndustrialPrimitiveBlastFurnaceMachine extends KineticMachine {
     public ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;
     }
-    public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe, OCParams ocParams, OCResult ocResult) {
+    public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (machine instanceof IndustrialPrimitiveBlastFurnaceMachine imachine) {
             var parallel = imachine.getParallelCount();
-            var newrecipe = recipe.copy();
-            newrecipe.duration *= (int) (1.25 - (imachine.currentTemperature - imachine.basicTemperature) / (imachine.maxTemperature - imachine.basicTemperature) * 0.75);
-            return GTRecipeModifiers.accurateParallel(machine, newrecipe, parallel, false).getFirst();
+            return ModifierFunction.builder()
+                    .inputModifier(ContentModifier.multiplier(parallel))
+                    .outputModifier(ContentModifier.multiplier(parallel))
+                    .durationMultiplier((int) (1.25 - (imachine.currentTemperature - imachine.basicTemperature) / (imachine.maxTemperature - imachine.basicTemperature) * 0.75) * parallel)
+                    .parallels(parallel)
+                    .build();
         }
-        return recipe;
+        return ModifierFunction.IDENTITY;
     }
 
     public int getParallelCount() {

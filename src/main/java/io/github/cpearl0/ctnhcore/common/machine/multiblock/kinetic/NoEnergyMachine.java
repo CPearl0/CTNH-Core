@@ -7,7 +7,6 @@ import com.gregtechceu.gtceu.api.gui.fancy.IFancyUIProvider;
 import com.gregtechceu.gtceu.api.gui.fancy.TooltipsPanel;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
-import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
@@ -21,8 +20,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class KineticMachine extends WorkableMultiblockMachine implements IFancyUIMachine, IDisplayUIMachine {
-    public KineticMachine(IMachineBlockEntity holder) {
+public class NoEnergyMachine extends WorkableMultiblockMachine implements IFancyUIMachine, IDisplayUIMachine {
+    public NoEnergyMachine(IMachineBlockEntity holder) {
         super(holder);
     }
 
@@ -42,7 +41,7 @@ public class KineticMachine extends WorkableMultiblockMachine implements IFancyU
                 .addWorkingStatusLine()
                 .addProgressLine(recipeLogic.getProgress(), recipeLogic.getMaxProgress(),
                         recipeLogic.getProgressPercent())
-                .addOutputLines(recipeLogic.getLastRecipe(), this.getChanceTier());
+                .addOutputLines(recipeLogic.getLastRecipe());
         getDefinition().getAdditionalDisplay().accept(this, textList);
         IDisplayUIMachine.super.addDisplayText(textList);
     }

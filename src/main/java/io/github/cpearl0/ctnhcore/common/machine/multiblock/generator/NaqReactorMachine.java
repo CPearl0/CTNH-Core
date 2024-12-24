@@ -9,8 +9,9 @@ import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
@@ -69,25 +70,23 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
     }
 
     @Nullable
-    public static GTRecipe recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe, @NotNull OCParams params,
-                                          @NotNull OCResult result) {
+    public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (machine instanceof NaqReactorMachine engineMachine) {
             var EUt = RecipeHelper.getOutputEUt(recipe);
             // has lubricant
             if (EUt > 0) {
                 var maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
-                var parallelResult = GTRecipeModifiers.fastParallel(engineMachine, recipe, maxParallel, false);
-                long eut;
-                if (engineMachine.isBoosted) { // boost production
-                    eut = (long) (EUt * parallelResult.getSecond() * (MULTIPLE_RATE[engineMachine.tier - 10]));
-                } else {
-                    eut = (long) (EUt * parallelResult.getSecond());
-                }
-                result.init(-eut, recipe.duration, 1, params.getOcAmount());
-                return parallelResult.getFirst();
+                int actualParallel = ParallelLogic.getParallelAmount(engineMachine, recipe, maxParallel);
+                double eutMultiplier = actualParallel * (engineMachine.isBoosted? MULTIPLE_RATE[engineMachine.tier - 10] : 1);
+                return ModifierFunction.builder()
+                        .inputModifier(ContentModifier.multiplier(actualParallel))
+                        .outputModifier(ContentModifier.multiplier(actualParallel))
+                        .eutMultiplier(eutMultiplier)
+                        .parallels(actualParallel)
+                        .build();
             }
         }
-        return null;
+        return ModifierFunction.NULL;
     }
 
     @Override
