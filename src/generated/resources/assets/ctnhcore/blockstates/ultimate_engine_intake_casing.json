@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "ctnhcore:block/variant/ultimate_engine_intake"
+    },
+    "active=true": {
+      "model": "ctnhcore:block/variant/ultimate_engine_intake_active"
+    }
+  }
+}

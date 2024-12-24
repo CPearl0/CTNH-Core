@@ -39,6 +39,12 @@ public class ChineseLangHandler {
         provider.add("gtceu.chemical_generator","化学能发电");
         provider.add("gtceu.void_miner","虚空采矿");
         provider.add("gtceu.sintering_kiln","烧结");
+        provider.add("chemical_vapor_deposition_machine","化学气相沉积");
+        provider.add("martial_morality_eye","真正的虚空采矿!");
+        provider.add("advanced_coke_oven","高级焦炉");
+        provider.add("dimensional_gas_collection_chamber","维度集气");
+        provider.add("condensing_discrete","冷凝离散");
+        provider.add("ion_exchanger","离子交换");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -125,6 +131,32 @@ public class ChineseLangHandler {
         provider.add("ctnh.fermenting_tank.bio_growth_temperature", "当发酵罐温度处于§236§r至§238§r度之间时为最适生长温度，配方获得1.2倍效率，越偏离最适生长温度，配方效率越低，最低为三分之一");
         provider.add("ctnh.fermenting_tank.bio_growth", "微生物的生长符合逻辑斯蒂方程，当输入仓内液体体积为容量的一半时，§2生长效率达到两倍§r，而满仓和空仓时生长效率最低，保底为20%");
         provider.add("subtick_overclock", "当配方运行时间小于1t时,会自动计算并行");
+        provider.add("void_miner", "取天材，掘地精");
+        provider.add("ctnh.void_miner.tooltip.0", "虚空采矿场自动生成并提取矿石");
+        provider.add("ctnh.void_miner.tooltip.1", "生成各种矿石，无需依赖周围区块");
+        provider.add("ctnh.void_miner.tooltip.2", "需要充足的能量和流体来维持运行");
+        provider.add("ctnh.void_miner.tooltip.3", "温度过高时进入强制降温模式,建议控制流量交替输入烈焰之炽焱或者极寒之凛冰");
+        provider.add("ctnh.void_miner.tooltip.4", "最大温度为 25000K，降温到 300K 方可恢复工作");
+        provider.add("ctnh.void_miner.tooltip.5", "每消耗 10mB 的烈焰之炽焱或者极寒之凛冰，温度增加10K或降低6K");
+        provider.add("ctnh.void_miner.tooltip.6", "当进入强制降温模式时，只能消耗极寒之凛冰，且消耗量为每降温3K/10mb");
+        provider.add("ctnh.void_miner.tooltip.7", "温度越高，虚空采矿场的工作效率越高");
+        provider.add("ctnh.void_miner.tooltip.8", "矿石生成随机，生成速率可调节");
+        provider.add("ctnh.void_miner.tooltip.9", "矿石生成可通过配置文件控制，支持自定义矿石种类");
+        provider.add("eye_homo", "丐版鸿蒙之眼");
+        provider.add("ctnh.eye_homo.tooltip.0", "原始时代时消耗64000mb的蒸汽和64个原石");
+        provider.add("ctnh.eye_homo.tooltip.1", "产出主世界和暮色森林以及月球的矿");
+        provider.add("ctnh.eye_homo.tooltip.2", "随着电压等级提高能够解锁更多配方");
+        provider.add("ctnh.eye_homo.tooltip.3", "在前期比坠星好用");
+        provider.add("ctnh.eye_homo.tooltip.4", "结构来源:Twist Space Technology");
+        provider.add("advanced_blast_furnace", "高级焦炉");
+        provider.add("ctnh.advanced_blast_furnace.tooltip.0", "§6§l自带32并行");
+        provider.add("ctnh.advanced_blast_furnace.tooltip.1", "只可运行焦炉配方,且运行配方时间固定为15s");
+        provider.add("ctnh.advanced_blast_furnace.tooltip.2", "产生大量的焦化产物与杂酚油");
+        provider.add("ctnh.advanced_blast_furnace.tooltip.3", "§c§l不能使用焦炉仓");
+        provider.add("large_gas_collection_chamber", "全维度集气");
+        provider.add("ctnh.large_gas_collection_chamber.tooltip.0", "这台机器可以收集任意维度的气体");
+        provider.add("ctnh.large_gas_collection_chamber.tooltip.1", "由于它的产量较大，建议你用ME输出总成来收集产物");
+        provider.add("ctnh.large_gas_collection_chamber.tooltip.2", "无损超频");
         provider.add("fermenting_introduction", "一个专为微生物提供的生长罐，注意时刻关注他！");
         provider.add("large_fermenting_tank", "高效工业化发酵生产");
         provider.add("ctnh.large_fermenting_tank.bio_growth", "可接入附属结构，在对应位置连接上一个大发酵瓶后，可以根据发酵瓶中的液体种类提升保底效率：水(50%)，简易培养基(150%)，无菌培养基(200%)");
@@ -204,6 +236,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.TUMOR, "肿瘤");
         provider.addItem(CTNHItems.REFINED_IRON_INGOT, "精炼铁方坯");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
+        provider.addBlock(CTNHBlocks.CASING_OSMIRIDIUM, "铱锇合金机械方块");
         provider.addBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING, "W-Cu覆膜金刚石机械方块");
         provider.addBlock(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK, "充能光伏方块");
         provider.addBlock(CTNHBlocks.ZENITH_CASING_BLOCK, "天顶强化机械方块");
@@ -280,6 +313,12 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.INDUSTRIAL_PRIMITIVE_BLAST_FURNACE.getBlock(), "工业土高炉");
         provider.add(CTNHMultiblockMachines.VOID_MINER.getBlock(), "虚空采矿场");
         provider.add(CTNHMultiblockMachines.SINTERING_KILN.getBlock(), "烧结窑");
+        provider.add(CTNHMultiblockMachines.CHEMICAL_VAPOR_DEPOSITION_MACHINE.getBlock(), "化学气相沉积器");
+        provider.add(CTNHMultiblockMachines.MARTIAL_MORALITY_EYE.getBlock(),"武德之眼");
+        provider.add(CTNHMultiblockMachines.ADVANCED_COKE_OVEN.getBlock(),"高级焦炉");
+        provider.add(CTNHMultiblockMachines.DIMENSIONAL_GAS_COLLECTION_CHAMBER.getBlock(),"维度集气室");
+        provider.add(CTNHMultiblockMachines.CONDENSING_DISCRETE.getBlock(),"冷凝离散塔");
+        provider.add(CTNHMultiblockMachines.ION_EXCHANGER.getBlock(),"离子交换机");
     }
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,
                                @NotNull String value) {

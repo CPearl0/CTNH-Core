@@ -33,6 +33,8 @@ public class CTNHBlocks {
 
     public static final BlockEntry<Block> CASING_REFLECT_LIGHT = createCasingBlock("reflect_light_casing",
             CTNHCore.id("block/casings/reflect_light_casing"));
+    public static final BlockEntry<Block> CASING_OSMIRIDIUM = createCasingBlock("osmiridium_casing",
+            CTNHCore.id("block/casings/osmiridium_casing"));
     public static final BlockEntry<Block> CASING_TUNGSTENCU_DIAMOND_PLATING = createCasingBlock("tungstencu_diamond_plating_casing",
             CTNHCore.id("block/casings/tungstencu_diamond_plating_casing"));
     public static final BlockEntry<Block> ENERGETIC_PHOTOVOLTAIC_BLOCK = createCasingBlock("energetic_photovoltaic_block",
