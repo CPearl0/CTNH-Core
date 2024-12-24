@@ -1672,25 +1672,19 @@ public class CTNHMultiblockMachines {
             //newrecipe.duration = 300
             //return GTRecipeModifiers.accurateParallel(machine, newrecipe, parallel, false).getFirst()
 //})
-            .appearanceBlock(CASING_STEEL_SOLID)
-            .tooltips(Component.translatable("advanced_blast_furnace").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.advanced_blast_furnace.tooltip.0"),
-                    Component.translatable("ctnh.advanced_blast_furnace.tooltip.1"),
-                    Component.translatable("ctnh.advanced_blast_furnace.tooltip.2"),
-                    Component.translatable("ctnh.advanced_blast_furnace.tooltip.3"))
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAAAAA", "AAABBBA", "AAABBBA")
-                    .aisle("AAAAAAA", "ACADDDA", "AAABBBA")
-                    .aisle("AAAAAAA", "A@ABBBA", "AAABBBA")
-                    .where("A", Predicates.blocks(CASING_STEEL_SOLID.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
-                    .where("B", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
-                    .where("C", Predicates.blocks(GCYMBlocks.MOLYBDENUM_DISILICIDE_COIL_BLOCK.get()))
-                    .where("D", Predicates.blocks(CASING_PTFE_INERT.get()))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .build()
-            )
+        .appearanceBlock(HIGH_GRADE_COKE_OVEN_BRICKS)
+        .pattern(definition -> FactoryBlockPattern.start()
+            .aisle("BBB", "BBB", "BBB")
+            .aisle("BBB", "B#B", "BBB")
+            .aisle("BBB", "B@B", "BBB")
+            .where("B", Predicates.blocks(HIGH_GRADE_COKE_OVEN_BRICKS.get())
+                .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+        .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
+        .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(9))
+        .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(9)))
+        .where("#", Predicates.any())
+        .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+        .build())
             .workableCasingRenderer(CTNHCore.id("block/high_grade_coke_oven_bricks"), GTCEu.id("block/machines/arc_furnace"), false)
             .register();
 
@@ -1782,6 +1776,67 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(CTNHCore.id("block/casings/solid/machine_casing_sturdy_hsse"), GTCEu.id("block/multiblock/implosion_compressor"), false)
             .register();
+
+    public static final MultiblockMachineDefinition LARGE_STEEL_FURNACE = REGISTRATE.multiblock("large_steel_furnace", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.ALL)
+            .recipeType(GTRecipeTypes.FURNACE_RECIPES)
+            //.recipeModifier((machine,/**@type {$GTRecipe}*/recipe, params, result) => {
+            //let parallel = 32
+            //let newrecipe = recipe.copy()
+            //newrecipe = GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK).apply(machine, newrecipe, params, result)
+            //return GTRecipeModifiers.accurateParallel(machine, newrecipe, parallel, false).getFirst()
+//})
+        .appearanceBlock(CASING_PRIMITIVE_BRICKS)
+            .tooltips(
+                    Component.translatable("large_steel_alloy_furnace").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.large_steel_furnaces.tooltip.0"),
+                    Component.translatable("ctnh.large_steel_furnaces.tooltip.1"),
+                    Component.translatable("ctnh.large_steel_furnaces.tooltip.2")
+            )
+        .pattern(definition -> FactoryBlockPattern.start()
+            .aisle("AAA", "BBB", "BBB", "#B#")
+            .aisle("AAA", "BCB", "BAB", "#B#")
+            .aisle("AAA", "B@B", "BBB", "#B#")
+            .where("A", Predicates.blocks(FIREBOX_STEEL.get()))
+        .where("B", Predicates.blocks(CASING_PRIMITIVE_BRICKS.get())
+                .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+        .where("#", Predicates.any())
+        .where("C", Predicates.blocks(CASING_STEEL_PIPE.get()))
+        .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+        .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_primitive_bricks"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+
+    public static final MultiblockMachineDefinition LARGE_STEEL_ALLOY_FURNACE = REGISTRATE.multiblock("large_steel_alloy_furnace", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.ALL)
+            .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
+            //.recipeModifier((machine,/**@type {$GTRecipe}*/recipe, params, result) => {
+            //let parallel = 32
+            //let newrecipe = recipe.copy()
+            //newrecipe = GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK).apply(machine, newrecipe, params, result)
+            //return GTRecipeModifiers.accurateParallel(machine, newrecipe, parallel, false).getFirst()
+//})
+        .appearanceBlock(CASING_PRIMITIVE_BRICKS)
+            .tooltips(
+                    Component.translatable("large_steel_alloy_furnace").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.large_steel_furnaces.tooltip.0"),
+                    Component.translatable("ctnh.large_steel_furnaces.tooltip.1"),
+                    Component.translatable("ctnh.large_steel_furnaces.tooltip.2")
+            )
+        .pattern(definition -> FactoryBlockPattern.start()
+            .aisle("ABA", "CCC", "CBC", "CCC")
+            .aisle("BBB", "CCC", "BDB", "CCC")
+            .aisle("ABA", "C@C", "CBC", "CCC")
+            .where("A", Predicates.frames(GTMaterials.Steel))
+        .where("B", Predicates.blocks(FIREBOX_STEEL.get()))
+        .where("C", Predicates.blocks(CASING_PRIMITIVE_BRICKS.get())
+                .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+        .where("D", Predicates.blocks(CASING_STEEL_PIPE.get()))
+        .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+        .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_primitive_bricks"), GTCEu.id("block/machines/alloy_smelter"), false)
+            .register();
+
     public static void init() {
 
     }

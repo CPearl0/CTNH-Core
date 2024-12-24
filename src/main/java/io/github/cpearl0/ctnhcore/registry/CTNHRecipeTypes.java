@@ -181,6 +181,11 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
+    public static final GTRecipeType DECAY_VESSEL = GTRecipeTypes.register("decay_vessel", GTRecipeTypes.ELECTRIC)
+            .setMaxIOSize(2, 1, 0, 2)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.MINER);
     public static void init() {
 
     }

@@ -43,6 +43,8 @@
   "block.ctnhcore.iv_personal_computer": "§9Elite Personal Computer §r",
   "block.ctnhcore.large_bottle": "Large Bottle",
   "block.ctnhcore.large_fermenting_tank": "Large Fermenting Tank",
+  "block.ctnhcore.large_steel_alloy_furnace": "Large Steel Alloy Furnace",
+  "block.ctnhcore.large_steel_furnace": "Large Steel Furnace",
   "block.ctnhcore.luv_circuit_bus": "§dLuV Circuit Bus",
   "block.ctnhcore.luv_compressed_fusion_reactor": "Fusion Reactor Computer MK III",
   "block.ctnhcore.luv_personal_computer": "§dElite Personal Computer II§r",

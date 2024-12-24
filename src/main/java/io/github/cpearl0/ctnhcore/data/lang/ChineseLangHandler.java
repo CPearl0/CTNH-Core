@@ -39,12 +39,14 @@ public class ChineseLangHandler {
         provider.add("gtceu.chemical_generator","化学能发电");
         provider.add("gtceu.void_miner","虚空采矿");
         provider.add("gtceu.sintering_kiln","烧结");
-        provider.add("chemical_vapor_deposition_machine","化学气相沉积");
-        provider.add("martial_morality_eye","真正的虚空采矿!");
-        provider.add("advanced_coke_oven","高级焦炉");
-        provider.add("dimensional_gas_collection_chamber","维度集气");
-        provider.add("condensing_discrete","冷凝离散");
-        provider.add("ion_exchanger","离子交换");
+        provider.add("gtceu.chemical_vapor_deposition_machine","化学气相沉积");
+        provider.add("gtceu.martial_morality_eye","真正的虚空采矿!");
+        provider.add("gtceu.advanced_coke_oven","高级焦炉");
+        provider.add("gtceu.dimensional_gas_collection_chamber","维度集气");
+        provider.add("gtceu.condensing_discrete","冷凝离散");
+        provider.add("gtceu.ion_exchanger","离子交换");
+        provider.add("gtceu.large_steel_furnace","大型钢制熔炉");
+        provider.add("gtceu.large_steel_alloy_furnace","大型钢制合金炉");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -142,6 +144,11 @@ public class ChineseLangHandler {
         provider.add("ctnh.void_miner.tooltip.7", "温度越高，虚空采矿场的工作效率越高");
         provider.add("ctnh.void_miner.tooltip.8", "矿石生成随机，生成速率可调节");
         provider.add("ctnh.void_miner.tooltip.9", "矿石生成可通过配置文件控制，支持自定义矿石种类");
+        provider.add("large_steel_furnaces", "钢质熔炉");
+        provider.add("ctnh.large_steel_furnaces.tooltip.0", "只能使用HV级能源仓及以下等级");
+        provider.add("ctnh.large_steel_furnaces.tooltip.1", "最大并行为32");
+        provider.add("ctnh.large_steel_furnaces.tooltip.2", "无损超频");
+        provider.add("large_steel_alloy_furnace", "钢质合金炉");
         provider.add("eye_homo", "丐版鸿蒙之眼");
         provider.add("ctnh.eye_homo.tooltip.0", "原始时代时消耗64000mb的蒸汽和64个原石");
         provider.add("ctnh.eye_homo.tooltip.1", "产出主世界和暮色森林以及月球的矿");
@@ -319,6 +326,8 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.DIMENSIONAL_GAS_COLLECTION_CHAMBER.getBlock(),"维度集气室");
         provider.add(CTNHMultiblockMachines.CONDENSING_DISCRETE.getBlock(),"冷凝离散塔");
         provider.add(CTNHMultiblockMachines.ION_EXCHANGER.getBlock(),"离子交换机");
+        provider.add(CTNHMultiblockMachines.LARGE_STEEL_FURNACE.getBlock(),"大型钢制熔炉");
+        provider.add(CTNHMultiblockMachines.LARGE_STEEL_ALLOY_FURNACE.getBlock(),"大型钢制合金炉");
     }
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,
                                @NotNull String value) {
