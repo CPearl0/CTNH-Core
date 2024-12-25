@@ -1516,9 +1516,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.void_miner.tooltip.4"),
                     Component.translatable("ctnh.void_miner.tooltip.5"),
                     Component.translatable("ctnh.void_miner.tooltip.6"),
-                    Component.translatable("ctnh.void_miner.tooltip.7"),
-                    Component.translatable("ctnh.void_miner.tooltip.8"),
-                    Component.translatable("ctnh.void_miner.tooltip.9"))
+                    Component.translatable("ctnh.void_miner.tooltip.7"))
             .recipeModifier(VoidMinerProcessingMachine::recipeModifier)
             .pattern(definition -> FactoryBlockPattern.start()
             .aisle("CCCCCCC", "XF   FX", "XF   FX", "XXXXXXX", "XF   FX", "XF   FX", "XF   FX", " F   F ", "       ", "       ", "       ", "       ")
@@ -1673,6 +1671,11 @@ public class CTNHMultiblockMachines {
             //return GTRecipeModifiers.accurateParallel(machine, newrecipe, parallel, false).getFirst()
 //})
         .appearanceBlock(HIGH_GRADE_COKE_OVEN_BRICKS)
+            .tooltips(Component.translatable("advanced_blast_furnace").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.advanced_blast_furnace.tooltip.0"),
+                    Component.translatable("ctnh.advanced_blast_furnace.tooltip.1"),
+                    Component.translatable("ctnh.advanced_blast_furnace.tooltip.2"),
+                    Component.translatable("ctnh.advanced_blast_furnace.tooltip.3"))
         .pattern(definition -> FactoryBlockPattern.start()
             .aisle("BBB", "BBB", "BBB")
             .aisle("BBB", "B#B", "BBB")
