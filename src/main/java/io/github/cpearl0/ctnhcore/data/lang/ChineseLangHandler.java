@@ -10,6 +10,8 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Field;
 import java.util.Map;
 
+import static com.gregtechceu.gtceu.api.GTValues.*;
+
 public class ChineseLangHandler {
     public static void init(RegistrateCNLangProvider provider) {
         replace(provider, CTNHTagPrefixes.oreHolystone.getUnlocalizedName(), "圣石%s矿石");
@@ -26,7 +28,8 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Ambrosium.getUnlocalizedName(), "神能晶");
         replace(provider, CTNHMaterials.Skyjade.getUnlocalizedName(), "穹玉");
         replace(provider, CTNHMaterials.Stratus.getUnlocalizedName(), "云母钢");
-        replace(provider,CTNHMaterials.Zenith_essence.getUnlocalizedName(), "§5天顶源质§r");
+        replace(provider, CTNHMaterials.Zenith_essence.getUnlocalizedName(), "§5天顶源质§r");
+        replace(provider, CTNHMaterials.Ignitium.getUnlocalizedName(), "腾炎");
         provider.add("gtceu.phase_inversion","反相蚀刻");
         provider.add("gtceu.underfloor_heating_system", "地暖");
         provider.add("gtceu.astronomical_observatory", "天文台");
@@ -47,6 +50,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.ion_exchanger","离子交换");
         provider.add("gtceu.large_steel_furnace","大型钢制熔炉");
         provider.add("gtceu.large_steel_alloy_furnace","大型钢制合金炉");
+        provider.add("gtceu.fuel_refining", "燃料精炼");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -219,6 +223,17 @@ public class ChineseLangHandler {
         provider.add("ctnh.industrial_primitive_blast_furnace.parallel", "温度越高，工业土高炉的并行数越高，最高为8并行");
         provider.add("ctnh.industrial_primitive_blast_furnace.efficiency", "温度越高，工业土高炉的效率越高，最高为两倍效率");
         provider.add("sintering_kiln_introduction", "需要通入8192应力使其内部活塞压实待加工料");
+        provider.add("decay_pools_machine", "衰变");
+        provider.add("ctnh.decay_pools_machine.tooltip.0", "当电路板为0时为不通电状态---不启用世界加速");
+        provider.add("ctnh.decay_pools_machine.tooltip.1", "当电路板为1时为通电状态---启用世界加速");
+        provider.add("ctnh.decay_pools_machine.tooltip.2", "加速衰变过程");
+        provider.add("vacuum_sintering_tower", "真空烧结");
+        provider.add("crystallizer", "专业结晶");
+        provider.add("ctnh.crystallizer.basic", "结晶器能更加快速的完成晶体配方");
+        provider.add("ctnh.crystallizer.coolant", "随着线圈等级上升，工作效率逐级提升");
+        provider.add("ctnh.crystallizer.overclock", "可以运行化学气相沉积的配方和部分高压釜的配方");
+        provider.add("ctnh.crystallizer.safe", "省材料的最佳帮手");
+        provider.add("desalting_introduction", "从海水中烘干出盐，很环保不是吗？");
 
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
@@ -229,6 +244,12 @@ public class ChineseLangHandler {
         }
         for (int tier = GTValues.UHV; tier <= GTValues.MAX; tier++){
             provider.add(CTNHMachines.PARALLEL_HATCH[tier].getBlock(),GTValues.VNF[tier] + " 并行控制仓");
+        }
+        for (int tier : GTValues.tiersBetween(LV, HV)){
+            provider.add(CTNHMachines.ENERGY_OUTPUT_HATCH_4A_LOWER[tier].getBlock(), GTValues.VNF[tier] + " 4A动力仓");
+        }
+        for (int tier : GTValues.tiersBetween(LV, MV)){
+            provider.add(CTNHMachines.ROTOR_HOLDER_EXTEND[tier].getBlock(), GTValues.VNF[tier] + " 转子支架");
         }
 
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
@@ -328,6 +349,11 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.ION_EXCHANGER.getBlock(),"离子交换机");
         provider.add(CTNHMultiblockMachines.LARGE_STEEL_FURNACE.getBlock(),"大型钢制熔炉");
         provider.add(CTNHMultiblockMachines.LARGE_STEEL_ALLOY_FURNACE.getBlock(),"大型钢制合金炉");
+        provider.add(CTNHMultiblockMachines.ZPM_LARGE_MINER.getBlock(),"§c精英大型采矿机 III§r");
+        provider.add(CTNHMultiblockMachines.DECAY_POOLS.getBlock(), "衰变罐");
+        provider.add(CTNHMultiblockMachines.FUEL_REFINING_FACTORY.getBlock(), "燃料精炼厂");
+        provider.add(CTNHMultiblockMachines.VACUUM_SINTERING_TOWER.getBlock(), "真空烧结厂");
+        provider.add(CTNHMultiblockMachines.CRYSTALLIZER.getBlock(), "结晶器");
     }
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,
                                @NotNull String value) {

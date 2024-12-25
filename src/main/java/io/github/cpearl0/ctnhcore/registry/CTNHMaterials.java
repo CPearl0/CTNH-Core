@@ -257,6 +257,12 @@ public class CTNHMaterials {
             .cableProperties(GTValues.V[GTValues.EV], 6, 1, false)
             .buildAndRegister();
 
+    public static final Material Ignitium = new Material.Builder(GTCEu.id("ignitium"))
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .ingot()
+            .color(0xffd919)
+            .iconSet(METALLIC)
+            .buildAndRegister();
     public static void init() {
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);

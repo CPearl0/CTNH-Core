@@ -192,8 +192,8 @@ public class CTNHOres {
                 .radius(5)
         ));
     public static GTOreDefinition SHELDONITE_VEIN_MOON = create(CTNHCore.id("sheldonite_vein_moon"),vein ->
-        vein.clusterSize(29)
-        .density(0.2F)
+        vein.clusterSize(40)
+        .density(0.3F)
         .weight(40)
         .layer(CTNHWorldgenLayers.ADASTRA)
         .heightRangeUniform(5, 50)

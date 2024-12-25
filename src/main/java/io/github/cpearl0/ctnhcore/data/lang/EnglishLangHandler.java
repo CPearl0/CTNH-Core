@@ -148,5 +148,17 @@ public class EnglishLangHandler {
         provider.add("ctnh.mega_lcr.recipe_type","Chemical Reactor / LCR");
         provider.add("ctnh.mega_oil_cracker.recipe_type", "Oil Cracker");
         provider.add("ctnh.super_ebf.recipe_type","Electric Blast Furnace");
+        provider.add("decay_pools_machine", "Decay");
+        provider.add("ctnh.decay_pools_machine.tooltip.0", "When the circuit board is set to 0, the machine is unpowered and world acceleration is disabled.");
+        provider.add("ctnh.decay_pools_machine.tooltip.1", "When the circuit board is set to 1, the machine is powered and world acceleration is enabled.");
+        provider.add("ctnh.decay_pools_machine.tooltip.2", "Accelerates the decay process.");
+        provider.add("vacuum_sintering_tower", "Vacuum Sintering");
+        provider.add("crystallizer", "Professional Crystallization");
+        provider.add("ctnh.crystallizer.basic", "The crystallizer completes crystal recipes more efficiently.");
+        provider.add("ctnh.crystallizer.coolant", "Efficiency improves as the coil level increases.");
+        provider.add("ctnh.crystallizer.overclock", "Can process chemical vapor deposition recipes and some autoclave recipes.");
+        provider.add("ctnh.crystallizer.safe", "The best assistant for saving materials.");
+        provider.add("desalting_introduction", "Drying salt out of seawater—eco-friendly, isn't it?");
+
     }
 }

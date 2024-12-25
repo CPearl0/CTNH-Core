@@ -19,8 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.GENERATOR;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.MULTIBLOCK;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.LEFT_TO_RIGHT;
 
 public class CTNHRecipeTypes {
@@ -186,6 +185,93 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MINER);
+    public static final GTRecipeType DECAY_POOLS = GTRecipeTypes.register("decay_pools", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(2, 1, 0, 2)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.MINER);
+    public static final GTRecipeType FUEL_REFINING = GTRecipeTypes.register("fuel_refining", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(3, 3, 3, 3)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.ELECTROLYZER)
+            .addDataInfo(data -> LocalizationUtils.format("gtceu.recipe.temperature", FormattingUtil.formatNumbers(data.getInt("ebf_temp"))))
+            .addDataInfo(data -> {
+                var requiredCoil = ICoilType.getMinRequiredType(data.getInt("ebf_temp"));
+                if (LDLib.isClient() && requiredCoil != null && requiredCoil.getMaterial() != null) {
+                    return LocalizationUtils.format("gtceu.recipe.coil.tier", I18n.get(requiredCoil.getMaterial().getUnlocalizedName()));
+                }
+                return "";
+            })
+            .setUiBuilder((recipe, widgetGroup) -> {
+                var temp = recipe.data.getInt("ebf_temp");
+                var items = new ArrayList();
+                items.add(GTCEuAPI.HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
+                widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
+            });
+    public static final GTRecipeType VACUUM_SINTERING = GTRecipeTypes.register("vacuum_sintering", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(6, 6, 6, 6)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.ELECTROLYZER)
+            .addDataInfo(data -> LocalizationUtils.format("gtceu.recipe.temperature", FormattingUtil.formatNumbers(data.getInt("ebf_temp"))))
+            .addDataInfo(data -> {
+                var requiredCoil = ICoilType.getMinRequiredType(data.getInt("ebf_temp"));
+                if (LDLib.isClient() && requiredCoil != null && requiredCoil.getMaterial() != null) {
+                    return LocalizationUtils.format("gtceu.recipe.coil.tier", I18n.get(requiredCoil.getMaterial().getUnlocalizedName()));
+                }
+                return "";
+            })
+            .setUiBuilder((recipe, widgetGroup) -> {
+                var temp = recipe.data.getInt("ebf_temp");
+                var items = new ArrayList();
+                items.add(GTCEuAPI.HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
+                widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
+            });
+    public static final GTRecipeType CRYSTALLIZER = GTRecipeTypes.register("crystallizer", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(6, 6, 6, 6)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_CRYSTALLIZATION, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL)
+            .addDataInfo(data -> LocalizationUtils.format("gtceu.recipe.temperature", FormattingUtil.formatNumbers(data.getInt("ebf_temp"))))
+            .addDataInfo(data -> {
+                var requiredCoil = ICoilType.getMinRequiredType(data.getInt("ebf_temp"));
+                if (LDLib.isClient() && requiredCoil != null && requiredCoil.getMaterial() != null) {
+                    return LocalizationUtils.format("gtceu.recipe.coil.tier", I18n.get(requiredCoil.getMaterial().getUnlocalizedName()));
+                }
+                return "";
+            })
+            .setUiBuilder((recipe, widgetGroup) -> {
+                var temp = recipe.data.getInt("ebf_temp");
+                var items = new ArrayList();
+                items.add(GTCEuAPI.HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
+                widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
+            });
+    public static final GTRecipeType DESALTING = GTRecipeTypes.register("desalting", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(1, 4, 1, 1)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.ELECTROLYZER)
+            .addDataInfo(data -> LocalizationUtils.format("gtceu.recipe.temperature", FormattingUtil.formatNumbers(data.getInt("ebf_temp"))))
+            .addDataInfo(data -> {
+                var requiredCoil = ICoilType.getMinRequiredType(data.getInt("ebf_temp"));
+                if (LDLib.isClient() && requiredCoil != null && requiredCoil.getMaterial() != null) {
+                    return LocalizationUtils.format("gtceu.recipe.coil.tier", I18n.get(requiredCoil.getMaterial().getUnlocalizedName()));
+                }
+                return "";
+            })
+            .setUiBuilder((recipe, widgetGroup) -> {
+                var temp = recipe.data.getInt("ebf_temp");
+                var items = new ArrayList();
+                items.add(GTCEuAPI.HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
+                widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
+            });
+
     public static void init() {
 
     }
