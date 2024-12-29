@@ -51,6 +51,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.large_steel_furnace","大型钢制熔炉");
         provider.add("gtceu.large_steel_alloy_furnace","大型钢制合金炉");
         provider.add("gtceu.fuel_refining", "燃料精炼");
+        provider.add("gtceu.water_power", "水力发电");
+        provider.add("gtceu.bio_reactor", "生物反应");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -195,6 +197,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.mana_lathe", "机器类型：§e车床§r");
         provider.add("ctnh.mana_assembler", "机器类型：§e组装机§r");
         provider.add("ctnh.mana_wiremill", "机器类型：§e线材轧机§r");
+        provider.add("ctnh.mana_mixer", "机器类型：§e搅拌机§r");
         provider.add("ctnh.perfect_overclock", "§a无损超频！§r");
         provider.add("mana_generator_turbine_tier1", "简易魔力转换器");
         provider.add("ctnh.mana_generator_turbine_tier1.basic_power", "§e基础产能功率：§r256 EU/t");
@@ -234,6 +237,13 @@ public class ChineseLangHandler {
         provider.add("ctnh.crystallizer.overclock", "可以运行化学气相沉积的配方和部分高压釜的配方");
         provider.add("ctnh.crystallizer.safe", "省材料的最佳帮手");
         provider.add("desalting_introduction", "从海水中烘干出盐，很环保不是吗？");
+        provider.add("multiblock.ctnh.water_power_station1", "水量：%d");
+        provider.add("multiblock.ctnh.water_power_station.efficiency", "线圈效率：%d%%");
+        provider.add("multiblock.ctnh.water_power_station2", "产能功率：%d/%d EU/t");
+        provider.add("ctnh.water_power_station.mechanism", "发电量和以控制器为中心，机器长度为半径，高为4的范围内的水量成正比");
+        provider.add("ctnh.water_power_station.random", "发电量随机在0.6至1的倍率间波动");
+        provider.add("water_power_station", "环保能源！");
+        provider.add("bio_reactor", "一个大罐子");
 
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
@@ -299,6 +309,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ALF_STEEL_CASING,"精灵钢机械外壳");
         provider.addBlock(CTNHBlocks.DEPTH_FORCE_FIELD_STABILIZING_CASING,"深度力场稳定外壳");
         provider.addBlock(CTNHBlocks.BRONZE_FRAMED_GLASS, "青铜镶边玻璃");
+        provider.addBlock(CTNHBlocks.BIO_REACTOR_CASING, "生物反应器外壳");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -354,6 +365,9 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.FUEL_REFINING_FACTORY.getBlock(), "燃料精炼厂");
         provider.add(CTNHMultiblockMachines.VACUUM_SINTERING_TOWER.getBlock(), "真空烧结厂");
         provider.add(CTNHMultiblockMachines.CRYSTALLIZER.getBlock(), "结晶器");
+        provider.add(CTNHMultiblockMachines.WATER_POWER_STATION.getBlock(), "水电站");
+        provider.add(CTNHMultiblockMachines.SEAWATER_DESALTING_FACTORY.getBlock(), "海水晒盐工厂");
+        provider.add(CTNHMultiblockMachines.BIO_REACTOR.getBlock(), "生物反应器");
     }
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,
                                @NotNull String value) {

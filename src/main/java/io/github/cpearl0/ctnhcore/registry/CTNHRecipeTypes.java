@@ -271,7 +271,18 @@ public class CTNHRecipeTypes {
                 items.add(GTCEuAPI.HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
                 widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
             });
-
+    public static final GTRecipeType WATER_POWER = GTRecipeTypes.register("water_power", GENERATOR)
+            .setEUIO(IO.OUT)
+            .setMaxIOSize(0, 0, 1, 0)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.COOLING);
+    public static final GTRecipeType BIO_REACTOR = GTRecipeTypes.register("bio_reactor", ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(4, 4, 2, 2)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
     public static void init() {
 
     }

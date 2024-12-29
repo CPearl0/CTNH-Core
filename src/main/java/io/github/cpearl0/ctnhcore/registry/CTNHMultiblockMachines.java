@@ -37,10 +37,7 @@ import io.github.cpearl0.ctnhcore.common.block.CTNHFusionCasingType;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.ChemicalGeneratorMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NaqReactorMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotovoltaicPowerStationMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.WindPowerArrayMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.IndustrialPrimitiveBlastFurnaceMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.DemonWillMachine;
@@ -963,13 +960,13 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
             .register();
-    public final static MultiblockMachineDefinition DIGESTION_TANK = REGISTRATE.multiblock("digestion_tank", DigestionTankMachine::new)
+    public final static MultiblockMachineDefinition DIGESTION_TANK = REGISTRATE.multiblock("digestion_tank", BioMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.DIGESTING)
             .tooltips(Component.translatable("digestion_tank_introduction").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.digestion_tank.bio_growth_mechanism").withStyle(ChatFormatting.GREEN),
                     Component.translatable("ctnh.digestion_tank.bio_growth_temperature"))
-            .recipeModifiers(DigestionTankMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(BioMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
             .pattern(definition -> FactoryBlockPattern.start()
                 .aisle("CCCCC", "CAAAC", "CCCCC")
                 .aisle("CCCCC", "AWWWA", "CDDDC")
@@ -2026,6 +2023,77 @@ public class CTNHMultiblockMachines {
                 }
             })
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+    public static final MultiblockMachineDefinition WATER_POWER_STATION = REGISTRATE.multiblock("water_power_station", WaterPowerStationMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.WATER_POWER)
+            .recipeModifier(WaterPowerStationMachine::recipeModifier)
+            .tooltips(Component.translatable("water_power_station").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.water_power_station.mechanism"),
+                    Component.translatable("ctnh.water_power_station.random").withStyle(ChatFormatting.GREEN))
+            .pattern(definition -> FactoryBlockPattern.start()
+            .aisle("#BCB#", "#BCB#", "BBBBB", "#BBB#")
+            .aisle("#B#B#", "#BDB#", "BEFEB", "#BGB#").setRepeatable(1, 15)
+            .aisle("#C#C#", "#CDC#", "BEFEB", "#BCB#")
+            .aisle("#CCC#", "#CCC#", "BBHBB", "#B@B#")
+            .where("B", Predicates.frames(GTNNMaterials.ManaSteel))
+            .where("C", Predicates.blocks(MANA_STEEL_CASING.get()))
+            .where("#", Predicates.any())
+            .where("D", Predicates.heatingCoils())
+            .where("E", Predicates.blocks(CASING_STEEL_PIPE.get()))
+            .where("F", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
+            .where("G", Predicates.abilities(PartAbility.OUTPUT_ENERGY))
+            .where("H", Predicates.abilities(PartAbility.IMPORT_FLUIDS))
+            .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+            .build())
+            .workableCasingRenderer(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public static final  MultiblockMachineDefinition BIO_REACTOR = REGISTRATE.multiblock("bio_reactor",BioMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.BIO_REACTOR)
+            .tooltips(Component.translatable("bio_reactor").withStyle(ChatFormatting.GRAY))
+            .recipeModifiers(BioMachine::recipeModifier,GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
+            .appearanceBlock(BIO_REACTOR_CASING)
+                .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("AAAAA", "ABBBA", "ABBBA", "ABBBA", "AAAAA")
+                .aisle("AAAAA", "B###B", "B###B", "B###B", "AAAAA")
+                .aisle("AAAAA", "B###B", "B###B", "B###B", "AAAAA")
+                .aisle("AAAAA", "B###B", "B###B", "B###B", "AAAAA")
+                .aisle("AA@AA", "ABBBA", "ABBBA", "ABBBA", "AAAAA")
+                .where("A", Predicates.blocks(BIO_REACTOR_CASING.get()).setMinGlobalLimited(35)
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                .where("B", Predicates.blocks(CLEANROOM_GLASS.get()))
+                .where("#", Predicates.air())
+                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                .build())
+            .workableCasingRenderer(CTNHCore.id("block/casings/bio_reactor_casing"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+    public static final MultiblockMachineDefinition MANA_MIXER = REGISTRATE.multiblock("mana_mixer", holder -> new ManaMachine(holder,4,2))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.MIXER_RECIPES)
+            .tooltips(Component.translatable("ctnh.mana_mixer"),
+                    Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.advanced_mana_machine.mana_consume"),
+                    Component.translatable("ctnh.perfect_overclock"))
+            .pattern(definition -> FactoryBlockPattern.start()
+            .aisle("#EEE#", "#EEE#", "#EEE#", "#EEE#", "#EEE#", "##B##")
+            .aisle("EEEEE", "E#A#E", "E###E", "E#A#E", "E###E", "##B##")
+            .aisle("EEEEE", "EAAAE", "E#A#E", "EAAAE", "E#C#E", "BBCBB")
+            .aisle("EEEEE", "E#A#E", "E###E", "E#A#E", "E###E", "##B##")
+            .aisle("#EEE#", "#E@E#", "#EEE#", "#EEE#", "#EEE#", "##B##")
+            .where("A", Predicates.blocks(ELEMENTIUM_PIPE_CASING.get()))
+            .where("B", Predicates.frames(GTNNMaterials.ManaSteel))
+            .where("C", Predicates.blocks(CASING_MANASTEEL_GEARBOX.get()))
+            .where("D", Predicates.blocks(MANA_STEEL_CASING.get()))
+            .where("#", Predicates.any())
+            .where("E",Predicates.blocks(MANA_STEEL_CASING.get())
+                .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS)))
+            .where("F", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
+            .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+            .build())
+            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
     public static void init() {
 

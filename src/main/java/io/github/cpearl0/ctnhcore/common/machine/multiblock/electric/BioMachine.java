@@ -15,10 +15,10 @@ import java.util.Objects;
 
 import static sfiomn.legendarysurvivaloverhaul.api.temperature.TemperatureUtil.getWorldTemperature;
 
-public class DigestionTankMachine extends WorkableElectricMultiblockMachine {
+public class BioMachine extends WorkableElectricMultiblockMachine {
     public double Machine_Temperature = 0;
     public double Efficiency = 1;
-    public DigestionTankMachine(IMachineBlockEntity holder) {super(holder);}
+    public BioMachine(IMachineBlockEntity holder) {super(holder);}
     @Override
     public void addDisplayText(List<Component> textList) {
         Machine_Temperature = getWorldTemperature(Objects.requireNonNull(getLevel()),getPos());
@@ -33,7 +33,7 @@ public class DigestionTankMachine extends WorkableElectricMultiblockMachine {
         textList.add(textList.size(), Component.translatable("ctnh.fermenting_tank.growth_efficiency", String.format("%.1f", Efficiency * 100)));
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe){
-        if(!(machine instanceof DigestionTankMachine dmachine)) return ModifierFunction.IDENTITY;
+        if(!(machine instanceof BioMachine dmachine)) return ModifierFunction.IDENTITY;
         dmachine.Machine_Temperature = getWorldTemperature(Objects.requireNonNull(dmachine.getLevel()),dmachine.getPos());
         if (dmachine.Machine_Temperature >= 36 && dmachine.Machine_Temperature <= 38) {
             dmachine.Efficiency = 1.2;

@@ -130,6 +130,7 @@ public class EnglishLangHandler {
         provider.add("ctnh.mana_lathe", "Machine Type: §eLathe§r");
         provider.add("ctnh.mana_assembler", "Machine Type: §eAssembler§r");
         provider.add("ctnh.mana_wiremill", "Machine Type: §eWire Mill§r");
+        provider.add("ctnh.mana_mixer", "Machine Type: §eMixer§r");
         provider.add("ctnh.perfect_overclock", "§aPerfect Overclock!§r");
         provider.add("mana_generator_turbine_tier1", "Basic Mana Converter");
         provider.add("ctnh.mana_generator_turbine_tier1.basic_power", "§eBase Power Output:§r 256 EU/t");
@@ -159,6 +160,13 @@ public class EnglishLangHandler {
         provider.add("ctnh.crystallizer.overclock", "Can process chemical vapor deposition recipes and some autoclave recipes.");
         provider.add("ctnh.crystallizer.safe", "The best assistant for saving materials.");
         provider.add("desalting_introduction", "Drying salt out of seawater—eco-friendly, isn't it?");
+        provider.add("multiblock.ctnh.water_power_station1", "Water Flow: %d");
+        provider.add("multiblock.ctnh.water_power_station.efficiency", "Coil Efficiency: %d%%");
+        provider.add("multiblock.ctnh.water_power_station2", "Power Output: %d/%d EU/t");
+        provider.add("ctnh.water_power_station.mechanism", "Power generation is proportional to the amount of water within a radius equal to the machine length and height of 4, centered on the controller.");
+        provider.add("ctnh.water_power_station.random", "Power output fluctuates randomly between a multiplier of 0.6 to 1.");
+        provider.add("water_power_station", "Eco-Friendly Energy!");
+        provider.add("bio_reactor", "A big tank");
 
     }
 }
