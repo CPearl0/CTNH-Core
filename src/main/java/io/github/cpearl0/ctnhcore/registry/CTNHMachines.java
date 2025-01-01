@@ -113,20 +113,7 @@ public class CTNHMachines {
                             Component.translatable("gtceu.universal.disabled"))
                     .register(),
             GTValues.tiersBetween(LV, MV));
-    public static final MachineDefinition SUPER_CLEANING_MAINTENANCE_HATCH = GTRegistration.REGISTRATE
-            .machine("super_cleaning_maintenance_hatch",
-                    holder -> new CleaningMaintenanceHatchPartMachine(holder, CleanroomType. STERILE_CLEANROOM))
-            .rotationState(RotationState.ALL)
-            .abilities(PartAbility.MAINTENANCE)
-            .tooltips(Component.translatable("gtceu.universal.disabled"),
-                    Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.0"),
-                    Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.1"))
-            .tooltipBuilder((stack, tooltips) -> {
-                tooltips.add(Component.literal("  ").append(Component
-                        .translatable(CleanroomType. STERILE_CLEANROOM.getTranslationKey()).withStyle(ChatFormatting.GREEN)));
-            })
-            .renderer(() -> new MaintenanceHatchPartRenderer(3, GTCEu.id("block/machine/part/maintenance.cleaning")))
-            .register();
+
     public static MachineDefinition[] registerTieredMachines(String name,
                                                              BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,
                                                              BiFunction<Integer, MachineBuilder<MachineDefinition>, MachineDefinition> builder,
