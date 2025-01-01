@@ -43,6 +43,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachin
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.DemonWillMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ManaLargeTurbineMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ManaMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ZenithMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -1063,16 +1064,19 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public final static MultiblockMachineDefinition ZENITH_LASER = REGISTRATE.multiblock("zenith_laser",holder -> new ManaMachine(holder,24,20))
+    public final static MultiblockMachineDefinition ZENITH_LASER = REGISTRATE.multiblock("zenith_laser",holder -> new ZenithMachine(holder,24,25,60,20))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.LASER_ENGRAVER_RECIPES,CTNHRecipeTypes.PHASE_INVERSION)
             .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
-            .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(ZenithMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.zenith_laser"),
                     Component.translatable("zenith_machine").withStyle(ChatFormatting.DARK_PURPLE),
                     Component.translatable("ctnh.super_mana_machine.mana_consume"),
                     Component.translatable("ctnh.zenith_laser_sp"),
+                    Component.translatable("ctnh.zenith_machine_tip"),
+                    Component.translatable("ctnh.zenith_waring"),
                     Component.translatable("ctnh.perfect_overclock"))
+
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("EEEEE", "EAAAE", "EAAAE", "EEEEE")
                     .aisle("EECEE", "A###A", "A###A", "EDDDE")
@@ -1085,6 +1089,7 @@ public class CTNHMultiblockMachines {
                     .where("D", Predicates.blocks(CTNHBlocks.ZENITH_CASING_GEARBOX.get()))
                     .where("#", Predicates.any())
                     .where("E",Predicates.blocks(CTNHBlocks.ZENITH_CASING_BLOCK.get())
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS)))
                     .where("F", Predicates.blocks(BotaniaBlocks.manaGlass))
@@ -1162,8 +1167,10 @@ public class CTNHMultiblockMachines {
                 .where("A", Predicates.frames(CTNHMaterials.AlfSteel))
                 .where("B", Predicates.blocks(BotaniaBlocks.livingrockPolished)
                     .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setExactLimit(1))
+                        .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                 .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
                 .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+
                 .where("C", Predicates.blocks(BotaniaBlocks.manaGlass))
                 .where("D", Predicates.blocks(CTNHBlocks.ELEMENTIUM_CASING.get()))
                 .where("E", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
@@ -1273,9 +1280,9 @@ public class CTNHMultiblockMachines {
                     .aisle("ASSA", "BCCB", "ASSA")
                     .aisle("AAAA", "A@SA", "AAAA")
                     .where("A", Predicates.blocks(CTNHBlocks.ALF_STEEL_CASING.get()))
-                    .where("B", Predicates.abilities(PartAbility.OUTPUT_ENERGY).setExactLimit(1)
+                    .where("B", Predicates.abilities(PartAbility.OUTPUT_LASER).setExactLimit(1)
                             .or(Predicates.abilities(PartAbility.ROTOR_HOLDER).setExactLimit(1)))
-                    .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_STEEL_GEARBOX.get()))
+                    .where("C", Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_GEARBOX.get()))
                     .where("S", Predicates.blocks(CTNHBlocks.ALF_STEEL_CASING.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
@@ -2095,6 +2102,75 @@ public class CTNHMultiblockMachines {
             .build())
             .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
+    public final static MultiblockMachineDefinition ZENITH_CIRCUIT_ASSEMBLER = REGISTRATE.multiblock("zenith_circult_assembler",holder -> new ZenithMachine(holder,24,25,60,12))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES,CTNHRecipeTypes.RESONANT_MAGICAL_ASSEMBLY)
+            .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
+            .recipeModifiers(ZenithMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.zenith_circut_assember"),
+                    Component.translatable("zenith_machine").withStyle(ChatFormatting.DARK_PURPLE),
+                    Component.translatable("ctnh.super_mana_machine.mana_consume"),
+                    Component.translatable("ctnh.zenith_circut_assember_sp"),
+                    Component.translatable("ctnh.zenith_machine_tip"),
+                    Component.translatable("ctnh.zenith_waring"),
+                    Component.translatable("ctnh.perfect_overclock"))
+            .pattern(definition -> FactoryBlockPattern.start()
+            .aisle("####PPP####", "####PHP####", "####PPP####", "###########")
+            .aisle("###B#C#B###", "###D###D###", "###D###D###", "####BEB####")
+            .aisle("#BB##C##BB#", "#DD#####DD#", "#DD#####DD#", "###BBEBB###")
+            .aisle("B###CCC###B", "B#########B", "B#########B", "#BBBEEEBBB#")
+            .aisle("BCCCCBCCCCB", "H####A####H", "B#########B", "#EEEEHEEEE#")
+            .aisle("B###CCC###B", "B#########B", "B#########B", "#BBBEEEBBB#")
+            .aisle("#BB##C##BB#", "#DD#####DD#", "#DD#####DD#", "###BBEBB###")
+            .aisle("###B#C#B###", "###D###D###", "###D###D###", "####BEB####")
+            .aisle("####PPP####", "####P@P####", "####PPP####", "###########")
+            .where("A", Predicates.blocks(CTNHBlocks.ZENITH_CASING_GEARBOX.get()))
+            .where("#",Predicates.any())
+            .where("B",Predicates.blocks(CTNHBlocks.ZENITH_CASING_BLOCK.get()))
+            .where("C",Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
+            .where("D",Predicates.blocks(CTNHBlocks.DEPTH_FORCE_FIELD_STABILIZING_CASING.get()))
+            .where("E",Predicates.blocks(CTNHBlocks.ALF_STEEL_CASING.get()))
+            .where("H",Predicates.blocks(CTNHBlocks.ZENITH_EYE.get()))
+            .where("P",Predicates.blocks(CTNHBlocks.ZENITH_CASING_BLOCK.get())
+
+                    .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                    .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setExactLimit(1))
+            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+            .where("@",Predicates.controller(Predicates.blocks(definition.get())))
+            .build())
+            .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition ZENITH_DISTILLATION_TOWER = REGISTRATE.multiblock("zenith_distillation_tower",holder -> new ZenithMachine(holder,10,25,60,5))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(GTRecipeTypes.DISTILLATION_RECIPES)
+            .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
+            .recipeModifiers(ZenithMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.zenth_tower"),
+                    Component.translatable("zenith_machine").withStyle(ChatFormatting.DARK_PURPLE),
+                    Component.translatable("ctnh.super_mana_machine.mana_consume"),
+                    Component.translatable("ctnh.zenith_machine_tip"),
+                    Component.translatable("ctnh.zenith_waring"),
+                    Component.translatable("ctnh.perfect_overclock"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "BBBBB", "BBEBB", "BEEEB", "BEEEB", "BEEEB", "BDDDB")
+                    .aisle("#PPP#", "#PPP#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "BDDDB", "B###B", "E###E", "E###E", "E###E", "DEEED")
+                    .aisle("#PAP#", "#P#P#", "#B#B#", "#B#B#", "#B#B#", "#B#B#", "#B#B#", "#B#B#", "#B#B#", "#B#B#", "#B#B#", "#B#B#", "#B#B#", "BD#DB", "E###E", "E###E", "E###E", "E###E", "DEEED")
+                    .aisle("#P@P#", "#PPP#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "BDDDB", "B###B", "E###E", "E###E", "E###E", "DEEED")
+                    .aisle("#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "BBBBB", "BBEBB", "BEEEB", "BEEEB", "BEEEB", "BDDDB")
+                    .where("#",Predicates.any())
+                    .where("B",Predicates.blocks(CTNHBlocks.ZENITH_CASING_BLOCK.get()))
+                    .where("D",Predicates.blocks(CTNHBlocks.DEPTH_FORCE_FIELD_STABILIZING_CASING.get()))
+                    .where("E",Predicates.blocks(BotaniaBlocks.manaGlass))
+                    .where("A",Predicates.blocks(CTNHBlocks.ZENITH_EYE.get()))
+                    .where("P",Predicates.blocks(CTNHBlocks.ZENITH_CASING_BLOCK.get())
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("@",Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+
     public static void init() {
 
     }
