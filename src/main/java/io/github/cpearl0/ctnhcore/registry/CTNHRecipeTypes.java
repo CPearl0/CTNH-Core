@@ -111,6 +111,12 @@ public class CTNHRecipeTypes {
         .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
         .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
         .setSound(GTSoundEntries.ELECTROLYZER);
+public static final GTRecipeType RESONANT_MAGICAL_ASSEMBLY = GTRecipeTypes.register("resonant_assemble", GTRecipeTypes.ELECTRIC)
+        .setEUIO(IO.IN)
+        .setMaxIOSize(9,9,2,2)
+        .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+        .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+        .setSound(GTSoundEntries.ELECTROLYZER);
 
     public static final GTRecipeType PLASMA_CONDENSER_RECIPES = GTRecipeTypes.register("plasma_condenser", GTRecipeTypes.ELECTRIC)
             .setEUIO(IO.IN)
