@@ -53,6 +53,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.fuel_refining", "燃料精炼");
         provider.add("gtceu.water_power", "水力发电");
         provider.add("gtceu.bio_reactor", "生物反应");
+        provider.add("gtceu.resonant_assemble","振动共鸣组装");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -189,6 +190,10 @@ public class ChineseLangHandler {
         provider.add("zenith_machine","§5超越魔法");
         provider.add("ctnh.zenith_laser","机器类型：§e激光蚀刻机§r,§5反相蚀刻§r");
         provider.add("ctnh.zenith_laser_sp","允许使用§5反相蚀刻§r，消耗§5天顶源质§r来将芯片制成晶圆");
+        provider.add("ctnh.zenith_circut_assember","机器类型：§e电路组装机§r,§5魔力共振电路组装§r");
+        provider.add("ctnh.zenith_circut_assember_sp","允许使用§5魔力共振电路组装§r，以更低电压和特殊材料组装共振电路");
+        provider.add("ctnh.zenith_machine_tip","在达到LUV电压后，如果§5天顶源质§r足够，每次运行会消耗(60*(当前电压等级-6))的天顶源质，获得2*(当前电压等级-6)的并行数，最大并行数取决于当前电压。但是不输入天顶源质会损失4并行数。");
+        provider.add("ctnh.zenith_waring","注意，源质的消耗与当前你输入的物品数无关，即使没有并行，我也会克扣你的天顶源质，当并行达到上限后仍然会消耗天顶源质");
         provider.add("ctnh.basic_mana_machine.mana_consume", "每秒基础消耗4mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.advanced_mana_machine.mana_consume", "每秒基础消耗10mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.super_mana_machine.mana_consume", "每秒基础消耗25mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
@@ -242,8 +247,12 @@ public class ChineseLangHandler {
         provider.add("multiblock.ctnh.water_power_station2", "产能功率：%d/%d EU/t");
         provider.add("ctnh.water_power_station.mechanism", "发电量和以控制器为中心，机器长度为半径，高为4的范围内的水量成正比");
         provider.add("ctnh.water_power_station.random", "发电量随机在0.6至1的倍率间波动");
+        provider.add("ctnh.zenith_max_parallel","最大并行数：%d");
+        provider.add("ctnh.zenith_now_parallel","当前并行数：%d");
         provider.add("water_power_station", "环保能源！");
         provider.add("bio_reactor", "一个大罐子");
+        provider.add("ctnh.zenith_tower", "机器类型:蒸馏塔");
+
 
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
@@ -310,6 +319,8 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.DEPTH_FORCE_FIELD_STABILIZING_CASING,"深度力场稳定外壳");
         provider.addBlock(CTNHBlocks.BRONZE_FRAMED_GLASS, "青铜镶边玻璃");
         provider.addBlock(CTNHBlocks.BIO_REACTOR_CASING, "生物反应器外壳");
+        provider.addBlock(CTNHBlocks.ELEMENTIUM_NORMAL_FLUID_PIPE,"源质管道方块");
+        provider.addBlock(CTNHBlocks.CASING_MANASTEEL_GEARBOX,"魔力钢齿轮箱方");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -322,7 +333,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.BIG_DAM.getBlock(), "三峡大坝");
         provider.add(CTNHMultiblockMachines.COKE_OVEN.getBlock(), "焦化塔");
         provider.add(CTNHMultiblockMachines.PLASMA_CONDENSER.getBlock(),"等离子冷凝器");
-        provider.add(CTNHMultiblockMachines.ZENITH_LASER.getBlock(), "天顶激光蚀刻机");
+        provider.add(CTNHMultiblockMachines.ZENITH_LASER.getBlock(), "§5天顶激光蚀刻机");
         provider.add(CTNHMultiblockMachines.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK1.getBlock(),"超能反应堆 MKI");
         provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK2.getBlock(),"超能反应堆 MKII");
@@ -368,6 +379,9 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.WATER_POWER_STATION.getBlock(), "水电站");
         provider.add(CTNHMultiblockMachines.SEAWATER_DESALTING_FACTORY.getBlock(), "海水晒盐工厂");
         provider.add(CTNHMultiblockMachines.BIO_REACTOR.getBlock(), "生物反应器");
+        provider.add(CTNHMultiblockMachines.MANA_MIXER.getBlock(),"§b魔力搅拌机");
+        provider.add(CTNHMultiblockMachines.ZENITH_CIRCUIT_ASSEMBLER.getBlock(), "§5天顶电路组装机§r");
+        provider.add(CTNHMultiblockMachines.ZENITH_DISTILLATION_TOWER.getBlock(),"§5天顶聚焦蒸馏塔");
     }
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,
                                @NotNull String value) {
