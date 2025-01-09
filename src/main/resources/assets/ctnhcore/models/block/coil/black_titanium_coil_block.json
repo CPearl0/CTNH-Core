@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ctnhcore:block/casings/coils/black_titanium_coil_block"
+  }
+}
