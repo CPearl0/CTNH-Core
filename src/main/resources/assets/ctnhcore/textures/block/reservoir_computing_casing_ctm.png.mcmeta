@@ -1,0 +1,5 @@
+{
+    "ldlib": {
+        "connection": "ctnhcore:block/reservoir_computing_casing_ctm"
+    }
+}
