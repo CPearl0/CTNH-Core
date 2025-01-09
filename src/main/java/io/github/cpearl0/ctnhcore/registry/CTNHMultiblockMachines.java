@@ -72,8 +72,7 @@ import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.register
 import static com.gregtechceu.gtceu.common.entity.GTBoat.BoatType.TREATED_WOOD;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static net.minecraft.world.level.block.Blocks.GRANITE;
-import static net.minecraft.world.level.block.Blocks.OAK_PLANKS;
+import static net.minecraft.world.level.block.Blocks.*;
 
 public class CTNHMultiblockMachines {
     static {
@@ -1201,7 +1200,7 @@ public class CTNHMultiblockMachines {
                 .where("A", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
                 .where("B", Predicates.abilities(PartAbility.OUTPUT_ENERGY).setExactLimit(1)
                     .or(Predicates.abilities(PartAbility.ROTOR_HOLDER).setExactLimit(1)))
-                .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_STEEL_GEARBOX.get()))
+                .where("C", Predicates.blocks(GTBlocks.CASING_STEEL_GEARBOX.get()))
                 .where("S", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get())
                     .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                 .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
@@ -1228,7 +1227,7 @@ public class CTNHMultiblockMachines {
                     .where("A", Predicates.blocks(CTNHBlocks.ELEMENTIUM_CASING.get()))
                     .where("B", Predicates.abilities(PartAbility.OUTPUT_ENERGY).setExactLimit(1)
                             .or(Predicates.abilities(PartAbility.ROTOR_HOLDER).setExactLimit(1)))
-                    .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_STEEL_GEARBOX.get()))
+                    .where("C", Predicates.blocks(CTNHBlocks.MANA_STEEL_CASING.get()))
                     .where("S", Predicates.blocks(CTNHBlocks.ELEMENTIUM_CASING.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
@@ -2146,7 +2145,7 @@ public class CTNHMultiblockMachines {
             .recipeTypes(GTRecipeTypes.DISTILLATION_RECIPES)
             .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
             .recipeModifiers(ZenithMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.zenth_tower"),
+            .tooltips(Component.translatable("ctnh.zenith_tower"),
                     Component.translatable("zenith_machine").withStyle(ChatFormatting.DARK_PURPLE),
                     Component.translatable("ctnh.super_mana_machine.mana_consume"),
                     Component.translatable("ctnh.zenith_machine_tip"),
@@ -2166,6 +2165,44 @@ public class CTNHMultiblockMachines {
                     .where("P",Predicates.blocks(CTNHBlocks.ZENITH_CASING_BLOCK.get())
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("@",Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public final static MultiblockMachineDefinition SCALABLE_RESERVOIR_COMPUTING = REGISTRATE.multiblock("scalable_reservoir_computing",holder -> new ZenithMachine(holder,10,25,60,5))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(GTRecipeTypes.DISTILLATION_RECIPES)
+            .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
+            .recipeModifiers(ZenithMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.computer.a1"),
+                    Component.translatable("ctnh.computer.a2").withStyle(ChatFormatting.DARK_PURPLE),
+                    Component.translatable("ctnh.computer.a3"),
+                    Component.translatable("ctnh.computer.a4"),
+                    Component.translatable("ctnh.computer.a5"),
+                    Component.translatable("ctnh.computer.a6"),
+                    Component.translatable("ctnh.computer.a7"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("YX##########################X#","XWX#########XXXXXXX########XWX","XWX########X#######X#######XWX","#X########X#########X#######X#","##########X#########X#########","##########X#########X#########","##########X#########X#########","##########X#########X#########","##########X#########X#########","##########X#########X#########","###########X#######X##########","############XXXXXXX###########","#X##########################X#","XWX########################XWX","XWX########################XWX","#X##########################XY")
+                    .aisle("XVX#########XXXXXXX########XVX","W#W########X#######X#######W#W","W#W#######X#########X######W#W","XVX######X###########X#####XVX","#########X###########X########","#########X###########X########","#########X###########X########","#########X###########X########","#########X###########X########","#########X###########X########","##########X#########X#########","###########X#######X##########","XVX#########XXXXXXX########XVX","W#W########################W#W","W#W########################W#W","XVX########################XVX")
+                    .aisle("#XXXXX######XXXXXXX#####XXX#X#","XWX##XX####X#######X###XX##XWX","XWX###XX##X#########X#XX###XWX","#X#####XXX###########XX#####X#","#########X###UUUUU###X########","#########X###UUUUU###X########","#########X###UUUUU###X########","#########X###UUUUU###X########","#########X###UUUUU###X########","#######XXX###########XXX######","######XX##X#########X##XX#####","#####XX####X#######X####XX####","#X#XXX######XXXXXXX######XX#X#","XWX########################XWX","XWX########################XWX","#X##########################XY")
+                    .aisle("YT##XX######XXXXXXX#####XX##T#","#####XX####X#######X###XX#####","######XX##X#########X#XX######","#T#####XXX###########XX#####T#","#########X###UUSUU###X########","#########X###USUSU###X########","#########X###SURUS###X########","#########X###USUSU###X########","#########X###UUSUU###X########","#######XXX###########XXX######","######XX##X#########X##XX#####","#####XX####X#######X####X#####","#T##XX######XXXXXXX#########T#","##############################","##############################","#T##########################TY")
+                    .aisle("YT##########Q#####Q#########T#","###########Q#######Q##########","##########Q#########Q#########","#T#######Q###########Q######T#","########Q####UUSUU####Q#######","########Q#####SRSU####Q#######","########Q####SRPRS####Q#######","########Q#####SRSU####Q#######","########Q####UUSUU####Q#######","#########Q###########Q########","##########Q#########Q#########","###########Q#######Q##########","#T##########Q#####Q#########T#","#############QQQQQ############","##############################","#T##########################TY")
+                    .aisle("YT##XX######XXXXXXX#####XX##T#","#####XX####X#######X###XX#####","######XX##X#########X#XX######","#T#####XXX###########XX#####T#","#########X###UUSUU###X########","#########X###USUSU###X########","#########X###S#RUS###X########","#########X###USUSU###X########","#########X###UUSUU###X########","#######XXX###########XXX######","######XX##X#########X##XX#####","#####XX####X#######X####X#####","#T##XX######XXXXXXX#########T#","##############################","##############################","#T##########################TY")
+                    .aisle("YX#XXX######XXXXXXX#####XXX#X#","XWX##XX####X#######X###XX##XWX","XWX###XX##X#########X#XX###XWX","#X#####XXX###########XX#####X#","#########X###UUUUU###X########","#########X###UUUUU###X########","#########X###UUUUU###X########","#########X###UUUUU###X########","#########X###UUUUU###X########","#######XXX###########XXX######","######XX##X#########X##XX#####","#####XX####X#######X####XX####","#X#XXX######XXXXXXX######XX#X#","XWX########################X#X","XWX########################X#X","#X##########################XY")
+                    .aisle("XVX########################XVX","W#W#########XXXXXXX########W#W","W#W########X#######X#######W#W","XVX#######X#########X######XVX","#########X##########X#########","#########X##########X#########","#########X##########X#########","#########X##########X#########","#########X##########X#########","##########X#########X#########","###########X#######X##########","############XXXXXXX###########","XVX##########XXXXX#########XVX","W#W########################W#W","W#W########################W#W","XVX########################XVX")
+                    .aisle("#X##########################X#","XWX########################X#X","XWX#########XXXXXXX########X#X","#X#########XOOO@OOOX########X#","##########XOOOOOOOOOX#########","#########XOOOOOOOOOOX#########","#########XOOOOOOOOOOX#########","#########XOOOOOOOOOOX#########","#########XOOOOOOOOOOX#########","##########XOOOOOOOOOX#########","###########XOOOOOOOX##########","############XXXXXXX###########","#X##########################X#","XWX########################XWX","XWX########################XWX","PX##########################XY")
+                    .where("Y",Predicates.any())
+                    .where("X",Predicates.blocks(GTBlocks.HIGH_POWER_CASING.get()))
+                    .where("#",Predicates.any())
+                    .where("W",Predicates.blocks(IRON_BARS))
+                    .where("V",Predicates.blocks(GTBlocks.CASING_ASSEMBLY_CONTROL.get()))
+                    .where("U",Predicates.blocks(BotaniaBlocks.alfglassPane))
+                    .where("T",Predicates.blocks(GTBlocks.FUSION_COIL.get()))
+                    .where("S",Predicates.blocks(CTNHBlocks.RESERVOIR_COMPUTING_CASING.get()))
+                    .where("R",Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_GEARBOX.get()))
+                    .where("Q",Predicates.blocks(CTNHBlocks.ZENITH_CASING_BLOCK.get()))
+                    .where("P",Predicates.blocks(CTNHBlocks.CASING_ADVANCED_HYPER.get()))
+                    .where("O",Predicates.blocks(BotaniaBlocks.manaGlass))
                     .where("@",Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
             .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)

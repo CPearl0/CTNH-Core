@@ -51,7 +51,7 @@ public class ZenithMachine extends WorkableElectricMultiblockMachine {
         var tier = getTier();
         if (MachineUtils.canInputFluid(CTNHMaterials.Zenith_essence.getFluid((int) (2 * zenithconsumption)),this)){
             if(parallel<basic_parallel+(maxparallel*(Math.max(tier-6,0)))) {
-                parallel += 2 * (Math.max(tier - 6, 0));
+                parallel += (int) Math.pow(2,(Math.max(tier - 6, 0)));
             }
             else {
                 parallel=basic_parallel+(maxparallel*(Math.max(tier-6,0)));
