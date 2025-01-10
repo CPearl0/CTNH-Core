@@ -67,6 +67,9 @@ public class ChineseLangHandler {
         provider.add("gtceu.naq_mk1", "超能燃料");
         provider.add("gtceu.bedrock_drilling_rigs", "基岩钻机");
         provider.add("gtceu.plasma_condenser", "等离子冷凝");
+        provider.add("gtceu.decay_pools", "衰变");
+        provider.add("gtceu.crystallizer", "结晶");
+        provider.add("gtceu.vacuum_sintering", "真空烧结");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
         provider.add("ctnh.multiblock.parallelize.tooltip", "自带无损超频且可以使用并行仓");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");

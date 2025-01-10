@@ -1718,7 +1718,7 @@ public class CTNHMultiblockMachines {
         .where("@", Predicates.controller(Predicates.blocks(definition.get())))
         .build()
         )
-            .workableCasingRenderer(CTNHCore.id("block/casings/cleanroom/plascrete"), GTCEu.id("block/multiblock/fusion_reactor"), false)
+            .workableCasingRenderer(GTCEu.id("block/casings/cleanroom/plascrete"), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .register();
 
     public static final MultiblockMachineDefinition CONDENSING_DISCRETE = REGISTRATE.multiblock("condensing_discrete", WorkableElectricMultiblockMachine::new)
@@ -1744,7 +1744,7 @@ public class CTNHMultiblockMachines {
                     .where("S", Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1))
                     .build()
             )
-            .workableCasingRenderer(CTNHCore.id("block/casings/solid/machine_casing_frost_proof"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_frost_proof"), GTCEu.id("block/multiblock/implosion_compressor"), false)
             .register();
 
     public static final MultiblockMachineDefinition ION_EXCHANGER = REGISTRATE.multiblock("ion_exchanger", WorkableElectricMultiblockMachine::new)
@@ -1772,7 +1772,7 @@ public class CTNHMultiblockMachines {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
-            .workableCasingRenderer(CTNHCore.id("block/casings/solid/machine_casing_sturdy_hsse"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_sturdy_hsse"), GTCEu.id("block/multiblock/implosion_compressor"), false)
             .register();
 
     public static final MultiblockMachineDefinition LARGE_STEEL_FURNACE = REGISTRATE.multiblock("large_steel_furnace", WorkableElectricMultiblockMachine::new)
