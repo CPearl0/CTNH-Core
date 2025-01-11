@@ -69,6 +69,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.bedrock_drilling_rigs", "基岩钻机");
         provider.add("gtceu.plasma_condenser", "等离子冷凝");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
+        provider.add("gtceu.silica_rock_fuel_refinery", "硅岩燃料精炼");
         provider.add("ctnh.multiblock.parallelize.tooltip", "自带无损超频且可以使用并行仓");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "速率：%s");
@@ -399,6 +400,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.ZENITH_DISTILLATION_TOWER.getBlock(),"§5天顶聚焦蒸馏塔");
         provider.add(CTNHMultiblockMachines.SCALABLE_RESERVOIR_COMPUTING.getBlock(), "§j突触凝练机");
         provider.add(CTNHMultiblockMachines.SEASON_REACTER.getBlock(), "§b季节共振器");
+        provider.add(CTNHMultiblockMachines.SILICA_ROCK_FUEL_REFINERY.getBlock(),"硅岩燃料精炼厂");
 
 
     }

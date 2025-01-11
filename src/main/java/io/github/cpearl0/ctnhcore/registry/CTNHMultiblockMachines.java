@@ -2233,6 +2233,30 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
+
+    public final static MultiblockMachineDefinition SILICA_ROCK_FUEL_REFINERY = REGISTRATE.multiblock("silica_rock_fuel_refinery", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.ALL)
+            .recipeTypes(CTNHRecipeTypes.SILICA_ROCK_FUEL_REFINERY)
+            .appearanceBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK)
+            .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("##AAA##", "##ABA##", "##AAA##", "###B###", "###B###", "###A###")
+                    .aisle("###A###", "##AAA##", "###C###", "##ADA##", "###A###", "###A###")
+                    .aisle("A##A##A", "AAADAAA", "A#ACA#A", "#AACAA#", "##ADA##", "###C###")
+                    .aisle("AAAAAAA", "BADDDAB", "ACCDCCA", "BDCDCDB", "BADDDAB", "AACCCAA")
+                    .aisle("A##A##A", "AAADAAA", "A#ACA#A", "#AACAA#", "##ADA##", "###C###")
+                    .aisle("###A###", "##AAA##", "###C###", "##ADA##", "###A###", "###A###")
+                    .aisle("##AAA##", "##A@A##", "##AAA##", "###B###", "###B###", "###A###")
+                    .where("#", Predicates.any())
+                    .where("A", Predicates.blocks(CASING_NAQUADAH_BLOCK.get()))
+                    .where("B", Predicates.frames(GTMaterials.NaquadahEnriched))
+                    .where("C", Predicates.blocks(ANNIHILATE_CORE_MKI.get()))
+                    .where("D", Predicates.blocks(PLASMA_COOLED_CORE.get()))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer((CTNHCore.id("block/casings/nq_casing")), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+
     public static void init() {
 
     }

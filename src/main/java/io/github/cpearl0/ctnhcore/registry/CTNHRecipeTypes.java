@@ -199,6 +199,12 @@ public static final GTRecipeType RESONANT_MAGICAL_ASSEMBLY = GTRecipeTypes.regis
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MINER);
+    public static final GTRecipeType SILICA_ROCK_FUEL_REFINERY = GTRecipeTypes.register("silica_rock_fuel_refinery", ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(3, 0, 3, 2)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType FUEL_REFINING = GTRecipeTypes.register("fuel_refining", GTRecipeTypes.ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(3, 3, 3, 3)
