@@ -34,6 +34,10 @@ public class CTNHItems {
             .item("animal_excreta",Item::new)
             .lang("Animal Excreta")
             .register();
+    public static ItemEntry<Item> HORIZEN_RUNE = REGISTRATE
+            .item("horizen_rune",Item::new)
+            .lang("horizen_rune")
+            .register();
     public static ItemEntry<Item> TUMOR = REGISTRATE
             .item("tumor",Item::new)
             .lang("Tumor")

@@ -16,6 +16,7 @@ import static com.gregtechceu.gtceu.api.recipe.OverclockingLogic.getCoilEUtDisco
 public class CTNHRecipeModifiers {
     public static final ModifierFunction accurateParallel(int parallel) {
         return ModifierFunction.builder()
+                .parallels(parallel)
                 .inputModifier(ContentModifier.multiplier(parallel))
                 .outputModifier(ContentModifier.multiplier(parallel))
                 .eutMultiplier(parallel)
