@@ -8,6 +8,7 @@ import net.minecraftforge.common.data.LanguageProvider;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Field;
+import java.security.Provider;
 import java.util.Map;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -70,6 +71,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.decay_pools", "衰变");
         provider.add("gtceu.crystallizer", "结晶");
         provider.add("gtceu.vacuum_sintering", "真空烧结");
+        provider.add("gtceu.silica_rock_fuel_refinery", "硅岩燃料精炼");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
         provider.add("ctnh.multiblock.parallelize.tooltip", "自带无损超频且可以使用并行仓");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
@@ -385,6 +387,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.MANA_MIXER.getBlock(),"§b魔力搅拌机");
         provider.add(CTNHMultiblockMachines.ZENITH_CIRCUIT_ASSEMBLER.getBlock(), "§5天顶电路组装机§r");
         provider.add(CTNHMultiblockMachines.ZENITH_DISTILLATION_TOWER.getBlock(),"§5天顶聚焦蒸馏塔");
+        provider.add(CTNHMultiblockMachines.SILICA_ROCK_FUEL_REFINERY.getBlock(),"硅岩燃料精炼厂");
     }
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,
                                @NotNull String value) {
