@@ -142,7 +142,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                     getMachineStorageItem().getItem().equals(BotaniaItems.runeEarth) ||
                     getMachineStorageItem().getItem().equals(BotaniaItems.runeWater) ||
                     getMachineStorageItem().getItem().equals(BotaniaItems.runeFire)){
-                if (random <= 0.05){
+                if (random <= 0.20){
                     consumeItem();
                 }
             }
@@ -150,7 +150,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                     getMachineStorageItem().getItem().equals(BotaniaItems.runeSummer) ||
                     getMachineStorageItem().getItem().equals(BotaniaItems.runeAutumn) ||
                     getMachineStorageItem().getItem().equals(BotaniaItems.runeWinter)){
-                if(random <= 0.02){
+                if(random <= 0.10){
                     consumeItem();
                 }
             }
@@ -161,7 +161,14 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                     getMachineStorageItem().getItem().equals(BotaniaItems.runePride) ||
                     getMachineStorageItem().getItem().equals(BotaniaItems.runeSloth) ||
                     getMachineStorageItem().getItem().equals(BotaniaItems.runeWrath)){
-                if(random <= 0.01){
+                if(random <= 0.05){
+                    consumeItem();
+                }
+            }
+            else if(Tier4_rune.contains(getMachineStorageItem().getItem().toString()))
+            {
+                if(random<=0.025)
+                {
                     consumeItem();
                 }
             }

@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -13,6 +14,7 @@ import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
 import com.lowdragmc.lowdraglib.utils.CycleItemStackHandler;
 import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
+import com.simibubi.create.AllBlocks;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.world.item.ItemStack;
 
@@ -289,12 +291,18 @@ public static final GTRecipeType RESONANT_MAGICAL_ASSEMBLY = GTRecipeTypes.regis
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
-    public static final GTRecipeType SILICA_ROCK_FUEL_REFINERY = GTRecipeTypes.register("silica_rock_fuel_refinery", ELECTRIC)
-            .setEUIO(IO.IN)
-            .setMaxIOSize(3, 0, 3, 2)
+    public static final String KINETIC = "kinetic";
+    public static final GTRecipeType SEASON_STEAM_RECIPES = GTRecipeTypes.register("season_steam",KINETIC)
+            .setMaxIOSize(1, 0, 0, 1)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.CHEMICAL);
+            .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.TURBINE)
+            .setUiBuilder((recipe, group) -> {
+                var handler = new CustomItemStackHandler(AllBlocks.SHAFT.asStack());
+                group.addWidget(new com.gregtechceu.gtceu.api.gui.widget.SlotWidget(handler, 0, group.getSize().width - 30,
+                        group.getSize().height - 30, false, false));
+            })
+            .addDataInfo(data -> LocalizationUtils.format("ctpp.stress_output",String.format("%.1f",data.getFloat("stress"))));
     public static void init() {
 
     }

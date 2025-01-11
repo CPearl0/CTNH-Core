@@ -49,19 +49,20 @@ public class ZenithMachine extends WorkableElectricMultiblockMachine {
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         var tier = getTier();
-        if (MachineUtils.canInputFluid(CTNHMaterials.Zenith_essence.getFluid((int) (2 * zenithconsumption)),this)){
-            if(parallel<basic_parallel+(maxparallel*(Math.max(tier-6,0)))) {
-                parallel += 2 * (Math.max(tier - 6, 0));
-            }
-            else {
-                parallel=basic_parallel+(maxparallel*(Math.max(tier-6,0)));
 
-            }
-        }
-        else{
-            parallel-=4;
-        }
         if (MachineUtils.canInputFluid(CTNHMaterials.Mana.getFluid((int) (Math.pow(2, tier) * basicConsumption)),this)){
+            if (MachineUtils.canInputFluid(CTNHMaterials.Zenith_essence.getFluid((int) (2 * zenithconsumption)),this)){
+                if(parallel<basic_parallel+(maxparallel*(Math.max(tier-6,0)))) {
+                    parallel += (int) Math.pow(2,(Math.max(tier - 5, 0)));
+                }
+                else {
+                    parallel=basic_parallel+(maxparallel*(Math.max(tier-6,0)));
+
+                }
+            }
+            else{
+                parallel-=4;
+            }
             return super.beforeWorking(recipe);
         }
         return false;
