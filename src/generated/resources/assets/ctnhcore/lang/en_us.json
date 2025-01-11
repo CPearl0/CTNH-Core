@@ -138,6 +138,8 @@
   "block.ctnhcore.wind_power_array": "Wind Power Array",
   "block.ctnhcore.zenith_casing": "Zenith Casing",
   "block.ctnhcore.zenith_casing_gearbox": "Zenith Casing Gearbox",
+  "block.ctnhcore.zenith_circult_assembler": "Zenith Circult Assembler",
+  "block.ctnhcore.zenith_distillation_tower": "Zenith Distillation Tower",
   "block.ctnhcore.zenith_eye": "Zenith Eye",
   "block.ctnhcore.zenith_laser": "Zenith Laser",
   "block.ctnhcore.zpm_circuit_bus": "§cZPM Circuit Bus",
