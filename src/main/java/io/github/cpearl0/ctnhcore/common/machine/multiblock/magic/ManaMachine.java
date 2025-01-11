@@ -19,7 +19,6 @@ public class ManaMachine extends WorkableElectricMultiblockMachine {
         this.parallel = Parallel;
         this.basicConsumption = consumption;
     }
-
     @Override
     public boolean onWorking() {
         if (getOffsetTimer() % 20 == 0) {
