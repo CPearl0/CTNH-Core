@@ -25,6 +25,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMac
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.MultiblockTankMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
+import com.mo_guang.ctpp.CTPPRegistration;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
@@ -40,10 +41,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.IndustrialPrimitiveBlastFurnaceMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.DemonWillMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ManaLargeTurbineMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ManaMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ZenithMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -57,6 +55,7 @@ import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 import vazkii.botania.common.block.BotaniaBlocks;
+import vazkii.botania.common.block.BotaniaFlowerBlocks;
 import wayoftime.bloodmagic.BloodMagic;
 import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
 
@@ -1283,8 +1282,8 @@ public class CTNHMultiblockMachines {
                             .or(Predicates.abilities(PartAbility.ROTOR_HOLDER).setExactLimit(1)))
                     .where("C", Predicates.blocks(GTBlocks.CASING_TUNGSTENSTEEL_GEARBOX.get()))
                     .where("S", Predicates.blocks(CTNHBlocks.ALF_STEEL_CASING.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
                             .or(Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1)))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
@@ -2207,7 +2206,33 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-
+    public static MultiblockMachineDefinition SEASON_REACTER = CTPPRegistration.REGISTRATE.multiblock("season_reacter", season_reacter::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.SEASON_STEAM_RECIPES)
+            // .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
+            .tooltips(Component.translatable("ctnh.season.a1"),
+                    Component.translatable("ctnh.season.a2"),
+                    Component.translatable("ctnh.season.a3"))
+            .recipeModifier(season_reacter::recipeModifier)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("YXY","XWX","KKK")
+                    .aisle("XVX","WUW","KOK")
+                    .aisle("Y@Y","XWX","KKK")
+                    .where("Y",Predicates.blocks(BotaniaBlocks.livingwood))
+                    .where("#",Predicates.any())
+                    .where("W",Predicates.blocks(BotaniaBlocks.manaGlass))
+                    .where("V",Predicates.blocks(DIRT))
+                    .where("O",Predicates.blocks((BotaniaBlocks.manaPylon)))
+                    .where("K",Predicates.blocks(BotaniaBlocks.livingrockBrickStairs))
+                    .where("U",Predicates.blocks(BotaniaFlowerBlocks.pureDaisy))
+                    .where("X", Predicates.abilities(CTPPPartAbility.OUTPUT_KINETIC).setExactLimit(1)
+                            .or(Predicates.blocks(BotaniaBlocks.livingrockBrick))
+                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
+                    )
+                    .where("@",Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
     public static void init() {
 
     }
