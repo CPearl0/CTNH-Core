@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ctnhcore:block/casings/tungstencu_diamond_plating_casing"
+    "all": "ctnhcore:block/casings/nq_casing"
   }
 }
