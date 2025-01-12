@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
@@ -42,7 +43,7 @@ public class ManaMachine extends WorkableElectricMultiblockMachine {
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof ManaMachine mmachine) {
-                return CTNHRecipeModifiers.accurateParallel(mmachine.parallel);
+            return CTNHRecipeModifiers.accurateParallel(mmachine,recipe,mmachine.parallel);
         }
         return ModifierFunction.IDENTITY;
     }
