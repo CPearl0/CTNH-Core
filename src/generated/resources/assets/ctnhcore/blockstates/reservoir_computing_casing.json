@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "ctnhcore:block/flux/reservoir_computing_casing"
+    },
+    "active=true": {
+      "model": "ctnhcore:block/flux/reservoir_computing_casing_active"
+    }
+  }
+}
