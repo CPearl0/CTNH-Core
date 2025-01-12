@@ -34,7 +34,7 @@ public class PhotovoltaicPowerStationMachine extends WorkableElectricMultiblockM
     @Nullable
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (!(machine instanceof PhotovoltaicPowerStationMachine powerStationMachine)) {
-            return null;
+            return ModifierFunction.NULL;
         }
         var level = machine.getLevel();
         assert level != null;
@@ -46,7 +46,7 @@ public class PhotovoltaicPowerStationMachine extends WorkableElectricMultiblockM
             time += 24000 - START_TIME;
         }
         else { // Invalid Time
-            return null;
+            return ModifierFunction.NULL;
         }
 
         var rate = Math.sin((double) time / (END_TIME + 24000 - START_TIME) * Math.PI);

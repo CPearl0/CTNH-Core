@@ -207,7 +207,7 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
             var modifierFunction = ModifierFunction.builder();
             var recipeType = fmachine.getRecipeType();
         if(fmachine.basicRate == 0) {
-            return null;
+            return ModifierFunction.NULL;
         }
         modifierFunction.durationModifier(ContentModifier.multiplier(1/fmachine.basicRate));
             if (recipeType.equals(GTRecipeTypes.CENTRIFUGE_RECIPES)) {

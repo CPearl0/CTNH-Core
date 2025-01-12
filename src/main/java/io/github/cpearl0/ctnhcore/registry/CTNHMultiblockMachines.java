@@ -929,7 +929,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.fermenting_tank.bio_growth_temperature"),
                     Component.translatable("ctnh.fermenting_tank.bio_growth"),
                     Component.translatable("ctnh.large_fermenting_tank.bio_growth"))
-            .recipeModifier((machine,recipe) -> FermentingTankMachine.recipeModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(8)))
+            .recipeModifier((machine,recipe) -> FermentingTankMachine.recipeModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,8)))
             .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                 .aisle("##########AAAAAAAAAAA", "##########ABBBBBBBBBA", "##########ABBBBBBBBBA", "##########AAAAAAAAAAA", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "############AAAAAAA##", "############AABBBAA##", "############AABBBAA##", "############AABBBAA##", "############AAAAAAA##")
@@ -1667,7 +1667,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition ADVANCED_COKE_OVEN = REGISTRATE.multiblock("advanced_coke_oven", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.COKE_OVEN_RECIPES)
-            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(32).andThen(ModifierFunction.builder().eutMultiplier((double) 300 /recipe.duration).build()))
+            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,32).andThen(ModifierFunction.builder().eutMultiplier((double) 300 /recipe.duration).build()))
         .appearanceBlock(HIGH_GRADE_COKE_OVEN_BRICKS)
             .tooltips(Component.translatable("advanced_blast_furnace").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.advanced_blast_furnace.tooltip.0"),
@@ -1692,7 +1692,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition DIMENSIONAL_GAS_COLLECTION_CHAMBER = REGISTRATE.multiblock("dimensional_gas_collection_chamber", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION)
-            .recipeModifier((machine,recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(1)))
+            .recipeModifier((machine,recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,1)))
             .appearanceBlock(PLASTCRETE)
             .tooltips(
                     Component.translatable("large_gas_collection_chamber").withStyle(ChatFormatting.GRAY),
@@ -1776,7 +1776,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition LARGE_STEEL_FURNACE = REGISTRATE.multiblock("large_steel_furnace", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.FURNACE_RECIPES)
-            .recipeModifier((machine,recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(32)))
+            .recipeModifier((machine,recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,32)))
         .appearanceBlock(CASING_PRIMITIVE_BRICKS)
             .tooltips(
                     Component.translatable("large_steel_alloy_furnace").withStyle(ChatFormatting.GRAY),
@@ -1801,7 +1801,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition LARGE_STEEL_ALLOY_FURNACE = REGISTRATE.multiblock("large_steel_alloy_furnace", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
-            .recipeModifier((machine,recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(32)))
+            .recipeModifier((machine,recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,32)))
             .appearanceBlock(CASING_PRIMITIVE_BRICKS)
             .tooltips(
                     Component.translatable("large_steel_alloy_furnace").withStyle(ChatFormatting.GRAY),
@@ -1926,7 +1926,7 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.VACUUM_SINTERING)
             .tooltips(Component.translatable("vacuum_sintering_tower").withStyle(ChatFormatting.GRAY))
-            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(16).compose(GTRecipeModifiers.ebfOverclock(machine,recipe)))
+            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,16).compose(GTRecipeModifiers.ebfOverclock(machine,recipe)))
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern(definition -> FactoryBlockPattern.start()
                 .aisle("AAAAA", "AAAAA", "A###A", "#####", "#####", "#####")
@@ -1965,7 +1965,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.crystallizer.coolant"),
                     Component.translatable("ctnh.crystallizer.overclock"),
                     Component.translatable("ctnh.crystallizer.safe"))
-            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(16).compose(GTRecipeModifiers.ebfOverclock(machine,recipe)))
+            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,16).compose(GTRecipeModifiers.ebfOverclock(machine,recipe)))
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern(definition -> FactoryBlockPattern.start()
                 .aisle("##AAAAA##", "###BCB###", "###BBB###", "#########", "#########", "#########", "#########", "#########", "#########")

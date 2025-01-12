@@ -70,7 +70,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     //////////////////////////////////////
     @Nullable
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
-        if (!(machine instanceof ManaLargeTurbineMachine turbineMachine)) return null;
+        if (!(machine instanceof ManaLargeTurbineMachine turbineMachine)) return ModifierFunction.NULL;
         if (turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeAir) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeEarth) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeWater) ||
@@ -106,12 +106,12 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         var rotorHolder = turbineMachine.getRotorHolder();
         var EUt = RecipeHelper.getOutputEUt(recipe);
 
-        if (rotorHolder == null || EUt <= 0) return null;
+        if (rotorHolder == null || EUt <= 0) return ModifierFunction.NULL;
 
         var turbineMaxVoltage = (int) turbineMachine.getOverclockVoltage();
         if (turbineMachine.excessVoltage >= turbineMaxVoltage) {
             turbineMachine.excessVoltage -= turbineMaxVoltage;
-            return null;
+            return ModifierFunction.NULL;
         }
 
         double holderEfficiency = rotorHolder.getTotalEfficiency() / 100.0;
