@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
+import com.mo_guang.ctpp.common.machine.multiblock.KineticWorkableMultiblockMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import net.minecraft.world.entity.EntityType;
@@ -13,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fluids.FluidStack;
 
-public class MeadowMachine extends NoEnergyMachine {
+public class MeadowMachine extends KineticWorkableMultiblockMachine {
     public int CowCount = 0;
     public int SheepCount = 0;
     public int ChickenCount = 0;

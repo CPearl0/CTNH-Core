@@ -27,6 +27,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.electric.MultiblockTankMa
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.mo_guang.ctpp.CTPPRegistration;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
+import com.mo_guang.ctpp.common.machine.multiblock.KineticOutputMachine;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
@@ -326,7 +327,7 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
             .register();
 
-    public static final MultiblockMachineDefinition BIG_DAM = REGISTRATE.multiblock("big_dam", WorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition BIG_DAM = REGISTRATE.multiblock("big_dam", KineticOutputMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.BIG_DAM)
             .appearanceBlock(() -> Blocks.STONE_BRICKS)
