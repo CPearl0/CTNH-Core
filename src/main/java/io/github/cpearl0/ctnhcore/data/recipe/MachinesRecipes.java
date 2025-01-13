@@ -6,7 +6,9 @@ import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.simibubi.create.AllBlocks;
+import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHMultiblockMachines;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 
@@ -21,4 +23,5 @@ public class MachinesRecipes {
                 'P', GTBlocks.CASING_BRONZE_PIPE.asStack(),
                 'I', new UnificationEntry(TagPrefix.plate, GTMaterials.Iron));
     }
+
 }

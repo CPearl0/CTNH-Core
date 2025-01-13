@@ -112,7 +112,7 @@ public class CTNHMachines {
                             LangHandler.getFromMultiLang("gtceu.machine.rotor_holder.tooltip", 1),
                             Component.translatable("gtceu.universal.disabled"))
                     .register(),
-            GTValues.tiersBetween(LV, MV));
+            GTValues.tiersBetween(ULV, MV));
 
     public static MachineDefinition[] registerTieredMachines(String name,
                                                              BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,

@@ -280,19 +280,19 @@ public class ChineseLangHandler {
         provider.add("ctnh.alter.tips4","每一个增容符文增加2500LP上限，强化增容符文增加5000,达到LUV后每级额外增加2500/5000LP上限");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
-            provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + " 芯片总线");
+            provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
         for (var tier : GTMachineUtils.ELECTRIC_TIERS) {
-            provider.add(CTNHMachines.PERSONAL_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + " 个人计算机");
+            provider.add(CTNHMachines.PERSONAL_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r个人计算机");
         }
         for (int tier = GTValues.UHV; tier <= GTValues.MAX; tier++){
-            provider.add(CTNHMachines.PARALLEL_HATCH[tier].getBlock(),GTValues.VNF[tier] + " 并行控制仓");
+            provider.add(CTNHMachines.PARALLEL_HATCH[tier].getBlock(),GTValues.VNF[tier] + "§r并行控制仓");
         }
         for (int tier : GTValues.tiersBetween(LV, HV)){
-            provider.add(CTNHMachines.ENERGY_OUTPUT_HATCH_4A_LOWER[tier].getBlock(), GTValues.VNF[tier] + " 4A动力仓");
+            provider.add(CTNHMachines.ENERGY_OUTPUT_HATCH_4A_LOWER[tier].getBlock(), "4安" + GTValues.VNF[tier] + "§r动力仓");
         }
         for (int tier : GTValues.tiersBetween(LV, MV)){
-            provider.add(CTNHMachines.ROTOR_HOLDER_EXTEND[tier].getBlock(), GTValues.VNF[tier] + " 转子支架");
+            provider.add(CTNHMachines.ROTOR_HOLDER_EXTEND[tier].getBlock(), GTValues.VNF[tier] + "§r转子支架");
         }
 
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
@@ -347,7 +347,9 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ELEMENTIUM_NORMAL_FLUID_PIPE,"源质管道方块");
         provider.addBlock(CTNHBlocks.CASING_MANASTEEL_GEARBOX,"魔力钢齿轮箱方块");
         provider.addBlock(CTNHBlocks.RESERVOIR_COMPUTING_CASING,"高能突触机器外壳");
-       // provider.addBlock(CTNHBlocks.COMPUTER_HEAT_VENT_SIDE2,"高能机器散热口");
+        provider.addBlock(CTNHBlocks.CASING_NAQUADAH_GEARBOX, "硅岩齿轮箱机械方块");
+        provider.addBlock(CTNHBlocks.CASING_ULTIMATE_ENGINE_INTAKE, "无尽引擎进气机械方块");
+        // provider.addBlock(CTNHBlocks.COMPUTER_HEAT_VENT_SIDE2,"高能机器散热口");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -412,6 +414,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.SCALABLE_RESERVOIR_COMPUTING.getBlock(), "§j突触凝练机");
         provider.add(CTNHMultiblockMachines.SEASON_REACTER.getBlock(), "§b季节共振器");
         provider.add(CTNHMultiblockMachines.SILICA_ROCK_FUEL_REFINERY.getBlock(),"硅岩燃料精炼厂");
+        provider.add(CTNHMultiblockMachines.ULTIMATE_COMBUSTION_ENGINE.getBlock(), "无尽内燃引擎");
         provider.add(CTNHMultiblockMachines.ALTER.getBlock(), "§b工业血之祭坛");
 
 
