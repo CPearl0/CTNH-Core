@@ -60,14 +60,17 @@ import vazkii.botania.common.block.BotaniaFlowerBlocks;
 import wayoftime.bloodmagic.BloodMagic;
 import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
 
+import java.util.Locale;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static appeng.libs.micromark.Types.definition;
 import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.common.data.GCYMBlocks.HEAT_VENT;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
 import static com.gregtechceu.gtceu.common.data.GTMaterialItems.MATERIAL_ITEMS;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.DrillingFluid;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.registerLargeCombustionEngine;
 import static com.gregtechceu.gtceu.common.entity.GTBoat.BoatType.TREATED_WOOD;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
@@ -393,7 +396,7 @@ public class CTNHMultiblockMachines {
                     .aisle("BDDDB", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "ACCCA")
                     .aisle("ABBBA", "ACCCA", "AC@CA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
                     .where("A", Predicates.frames(GTMaterials.StainlessSteel))
-                    .where("B", Predicates.blocks(GCYMBlocks.HEAT_VENT.get()))
+                    .where("B", Predicates.blocks(HEAT_VENT.get()))
                     .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(130)
                             .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
@@ -1310,7 +1313,7 @@ public class CTNHMultiblockMachines {
                     .where("S", Predicates.controller(Predicates.blocks(definition.getBlock())))
                     .where("F", Predicates.frames(GTMaterials.Tungsten))
                     .where("V", Predicates.blocks(GTBlocks.CASING_EXTREME_ENGINE_INTAKE.get()))
-                    .where("I", Predicates.blocks(GCYMBlocks.HEAT_VENT.get()))
+                    .where("I", Predicates.blocks(HEAT_VENT.get()))
                     .where("X", Predicates.blocks(CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(158)
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(Predicates.autoAbilities(true, false, true)))
@@ -1387,7 +1390,7 @@ public class CTNHMultiblockMachines {
             .recipeTypes(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_PTFE_INERT)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .pattern(definition ->
                     FactoryBlockPattern.start()
                             .aisle("CCCCC", "CCCCC", "CCCCC", "CCCCC", "CCCCC")
@@ -1533,7 +1536,7 @@ public class CTNHMultiblockMachines {
             .where("C", Predicates.blocks(DARK_CONCRETE.get()))
             .where("B", Predicates.blocks(Blocks.DEEPSLATE_TILES))
             .where("A", Predicates.blocks(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING.get()))
-            .where("V", Predicates.blocks(GCYMBlocks.HEAT_VENT.get()))
+            .where("V", Predicates.blocks(HEAT_VENT.get()))
             .where("F", Predicates.frames(GTMaterials.TungstenSteel))
             .where("P", Predicates.blocks(CASING_TUNGSTENSTEEL_PIPE.get()))
             .where("G", Predicates.blocks(CASING_TUNGSTENSTEEL_GEARBOX.get()))
@@ -1735,7 +1738,7 @@ public class CTNHMultiblockMachines {
                     .where("B", Predicates.blocks(CASING_ALUMINIUM_FROSTPROOF.get())
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
-                    .where("C", Predicates.blocks(GCYMBlocks.HEAT_VENT.get()))
+                    .where("C", Predicates.blocks(HEAT_VENT.get()))
                     .where("D", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
                     .where("E", Predicates.blocks(CASING_TUNGSTENSTEEL_PIPE.get()))
                     .where("F", Predicates.frames(GTMaterials.TungstenSteel))
@@ -1827,6 +1830,20 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition ZPM_LARGE_MINER = REGISTRATE.multiblock("zpm_large_miner", holder -> new LargeMinerMachine(holder, GTValues.ZPM, 64/GTValues.ZPM, 2*GTValues.ZPM - 5,7,6))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.MACERATOR_RECIPES)
+            .tooltips(
+                    Component.translatable("ctnh.machine.large_miner.zpm.tooltip"),
+                    Component.translatable("gtceu.machine.miner.multi.description"))
+            .tooltipBuilder((stack, tooltip) -> {
+                int workingAreaChunks = (2 * ZPM - 5);
+                tooltip.add(Component.translatable("gtceu.machine.miner.multi.modes"));
+                tooltip.add(Component.translatable("gtceu.machine.miner.multi.production"));
+                tooltip.add(Component.translatable("gtceu.machine.miner.fluid_usage", 8 - (ZPM - 5),
+                        DrillingFluid.getLocalizedName()));
+                tooltip.add(Component.translatable("gtceu.universal.tooltip.working_area_chunks",
+                        workingAreaChunks, workingAreaChunks));
+                tooltip.add(Component.translatable("gtceu.universal.tooltip.energy_tier_range",
+                        GTValues.VNF[ZPM], GTValues.VNF[ZPM + 1]));
+            })
             .pattern((definition) -> FactoryBlockPattern.start()
                 .aisle("XXX", "#F#", "#F#", "#F#", "###", "###", "###")
                 .aisle("XXX", "FCF", "FCF", "FCF", "#F#", "#F#", "#F#")
@@ -1982,7 +1999,7 @@ public class CTNHMultiblockMachines {
                 .where("A", Predicates.blocks(CASING_HSSE_STURDY.get())
                     .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                 .or(Predicates.autoAbilities(definition.getRecipeTypes())))
-                .where("B", Predicates.blocks(COMPUTER_HEAT_VENT.get()))
+                .where("B", Predicates.blocks(HEAT_VENT.get()))
                 .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                 .where("C", Predicates.blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()))
                 .where("D", Predicates.frames(GTMaterials.Tungsten))
@@ -2082,6 +2099,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.advanced_mana_machine.mana_consume"),
                     Component.translatable("ctnh.perfect_overclock"))
+            .appearanceBlock(MANA_STEEL_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
             .aisle("#EEE#", "#EEE#", "#EEE#", "#EEE#", "#EEE#", "##B##")
             .aisle("EEEEE", "E#A#E", "E###E", "E#A#E", "E###E", "##B##")
@@ -2099,7 +2117,7 @@ public class CTNHMultiblockMachines {
             .where("F", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
             .where("@", Predicates.controller(Predicates.blocks(definition.get())))
             .build())
-            .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .workableCasingRenderer(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
     public final static MultiblockMachineDefinition ZENITH_CIRCUIT_ASSEMBLER = REGISTRATE.multiblock("zenith_circult_assembler",holder -> new ZenithMachine(holder,24,25,60,12))
             .rotationState(RotationState.NON_Y_AXIS)
