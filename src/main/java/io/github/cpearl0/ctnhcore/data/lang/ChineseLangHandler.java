@@ -271,8 +271,14 @@ public class ChineseLangHandler {
         provider.add("ctnh.martial_morality_eye.tooltip.2", "随着电压等级提高能够解锁更多配方");
         provider.add("ctnh.martial_morality_eye.tooltip.3", "在前期比坠星好用");
         provider.add("ctnh.martial_morality_eye.tooltip.4", "结构来源:Twist Space Technology");
+        provider.add("ctnh.lp_now","当前含有lp量:%d");
+        provider.add("ctnh.lp_max","最大lp量:%d");
+        provider.add("ctnh.lp_consumption","消耗/输入的lp量:%.1f");
+        provider.add("ctnh.alter.tips1","§4血魔法，就在你家门口！");
+        provider.add("ctnh.alter.tips2","与血祭坛相同，该结构有输入LP上限，同时你§4必须通过特定配方来增加其lp§r\n详见JEI以查询增加的配方");
+        provider.add("ctnh.alter.tips3","电压每超过HV一级，就增加10000可存储LP上限，达到LUV后每级额外增加20000");
+        provider.add("ctnh.alter.tips4","每一个增容符文增加2500LP上限，强化增容符文增加5000,达到LUV后每级额外增加2500/5000LP上限");
         provider.add("ctnh.machine.large_miner.zpm.tooltip", "听说你很担心矿物的来源？");
-
 
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
@@ -412,6 +418,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.SEASON_REACTER.getBlock(), "§b季节共振器");
         provider.add(CTNHMultiblockMachines.SILICA_ROCK_FUEL_REFINERY.getBlock(),"硅岩燃料精炼厂");
         provider.add(CTNHMultiblockMachines.ULTIMATE_COMBUSTION_ENGINE.getBlock(), "无尽内燃引擎");
+        provider.add(CTNHMultiblockMachines.ALTER.getBlock(), "§b工业血之祭坛");
 
 
     }
