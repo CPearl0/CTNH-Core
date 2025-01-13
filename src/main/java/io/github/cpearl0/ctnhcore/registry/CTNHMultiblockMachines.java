@@ -2257,7 +2257,42 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer((CTNHCore.id("block/casings/nq_casing")), GTCEu.id("block/multiblock/implosion_compressor"), false)
             .register();
+    public static MultiblockMachineDefinition ALTER = REGISTRATE.multiblock("alter", AlterLogic::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.ALTER)
+            // .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
+            .recipeModifiers(ZenithMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.alter.tips1"),
+                    Component.translatable("ctnh.alter.tips2"),
+                    Component.translatable("ctnh.alter.tips3"),
+                    Component.translatable("ctnh.alter.tips4"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAAAA", "B#####B", "B#####B", "B#####B", "C#####C", "OEEEEEO", "#######", "#######", "#######")
+                    .aisle("A#####A", "#ACCCA#", "#######", "#######", "#######", "E#####E", "##EEE##", "#######", "#######")
+                    .aisle("A#####A", "#C###C#", "##CGC##", "#######", "#######", "E#####E", "#E###E#", "###E###", "#######")
+                    .aisle("A#####A", "#C###C#", "##GAG##", "###H###", "###B###", "E##B##E", "#E#B#E#", "##EEE##", "###D###")
+                    .aisle("A#####A", "#C###C#", "##CGC##", "#######", "#######", "E#####E", "#E###E#", "###E###", "#######")
+                    .aisle("A#####A", "#ACCCA#", "#######", "#######", "#######", "E#####E", "##EEE##", "#######", "#######")
+                    .aisle("AAAIAAA", "B#####B", "B#####B", "B#####B", "C#####C", "OEEEEEO", "#######", "#######", "#######")
+                    .where("A", Predicates.blocks(BloodMagicBlocks.BLANK_RUNE.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.blocks(CHAIN))
+                    .where("#", Predicates.any())
+                    .where("C", Predicates.blocks(BloodMagicBlocks.DUNGEON_ORE.get()))
+                    .where("D", Predicates.blocks(LAMPS.get(DyeColor.PURPLE).get()))
+                    .where("O", Predicates.blocks(LAMPS.get(DyeColor.RED).get()))
+                    .where("E", Predicates.blocks(BloodMagicBlocks.DUNGEON_BRICK_1.get()))
+                    .where("F", Predicates.blocks(MYCELIUM))
+                    .where("G", Predicates.blocks(BloodMagicBlocks.OBSIDIAN_PATH.get())
+                            .or(Predicates.blocks(BloodMagicBlocks.CAPACITY_RUNE.get()))
+                            .or(Predicates.blocks(BloodMagicBlocks.CAPACITY_RUNE_2.get()))
+                    )
 
+                    .where("H", Predicates.blocks(SOUL_LANTERN))
+                    .where("I",Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer(BloodMagic.rl("block/blankrune"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
     public static void init() {
 
     }

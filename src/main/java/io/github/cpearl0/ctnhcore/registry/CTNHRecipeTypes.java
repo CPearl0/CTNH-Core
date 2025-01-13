@@ -309,6 +309,18 @@ public static final GTRecipeType RESONANT_MAGICAL_ASSEMBLY = GTRecipeTypes.regis
                         group.getSize().height - 30, false, false));
             })
             .addDataInfo(data -> LocalizationUtils.format("ctpp.stress_output",String.format("%.1f",data.getFloat("stress"))));
+    public static final GTRecipeType ALTER = GTRecipeTypes.register("alter", ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(4, 4, 2, 2)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL)
+            .setUiBuilder((recipe, group) -> {
+                var handler = new CustomItemStackHandler(AllBlocks.SHAFT.asStack());
+                group.addWidget(new com.gregtechceu.gtceu.api.gui.widget.SlotWidget(handler, 0, group.getSize().width - 30,
+                        group.getSize().height - 30, false, false));
+            })
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.lp_consumption",String.format("%.1f",data.getFloat("addlp"))));
     public static void init() {
 
     }
