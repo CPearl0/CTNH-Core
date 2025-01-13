@@ -34,6 +34,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.underfloor_heating_system", "地暖");
         provider.add("gtceu.astronomical_observatory", "天文台");
         provider.add("gtceu.photovoltaic_power", "光伏发电");
+        provider.add("gtceu.wind_power_array", "风力发电阵列");
         provider.add("gtceu.slaughter_house", "屠宰场");
         provider.add("gtceu.big_dam", "三峡大坝");
         provider.add("gtceu.coke_oven", "焦化塔");
@@ -42,8 +43,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.chemical_generator","化学能发电");
         provider.add("gtceu.void_miner","虚空采矿");
         provider.add("gtceu.sintering_kiln","烧结");
-        provider.add("gtceu.chemical_vapor_deposition_machine","化学气相沉积");
-        provider.add("gtceu.martial_morality_eye","真正的虚空采矿!");
+        provider.add("gtceu.chemical_vapor_deposition","化学气相沉积");
+        provider.add("gtceu.martial_morality_eye","武德之眼");
         provider.add("gtceu.advanced_coke_oven","高级焦炉");
         provider.add("gtceu.dimensional_gas_collection_chamber","维度集气");
         provider.add("gtceu.condensing_discrete","冷凝离散");
@@ -54,6 +55,15 @@ public class ChineseLangHandler {
         provider.add("gtceu.water_power", "水力发电");
         provider.add("gtceu.bio_reactor", "生物反应");
         provider.add("gtceu.resonant_assemble","振动共鸣组装");
+        provider.add("gtceu.crystallizer", "结晶反应");
+        provider.add("gtceu.mana_generator", "魔力发电");
+        provider.add("gtceu.season_steam","季节共鸣器");
+        provider.add("gtceu.naq_mk1", "超能燃料");
+        provider.add("gtceu.bedrock_drilling_rigs", "基岩钻机");
+        provider.add("gtceu.plasma_condenser", "等离子冷凝");
+        provider.add("gtceu.vacuum_sintering", "真空烧结");
+
+
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -63,11 +73,7 @@ public class ChineseLangHandler {
         provider.add("block.ctnhcore.luv_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-I");
         provider.add("block.ctnhcore.zpm_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-II");
         provider.add("block.ctnhcore.uv_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-III");
-        provider.add("gtceu.season_steam","季节共鸣器");
 
-        provider.add("gtceu.naq_mk1", "超能燃料");
-        provider.add("gtceu.bedrock_drilling_rigs", "基岩钻机");
-        provider.add("gtceu.plasma_condenser", "等离子冷凝");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
         provider.add("gtceu.silica_rock_fuel_refinery", "硅岩燃料精炼");
         provider.add("ctnh.multiblock.parallelize.tooltip", "自带无损超频且可以使用并行仓");
@@ -158,12 +164,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.large_steel_furnaces.tooltip.1", "最大并行为32");
         provider.add("ctnh.large_steel_furnaces.tooltip.2", "无损超频");
         provider.add("large_steel_alloy_furnace", "钢质合金炉");
-        provider.add("eye_homo", "丐版鸿蒙之眼");
-        provider.add("ctnh.eye_homo.tooltip.0", "原始时代时消耗64000mb的蒸汽和64个原石");
-        provider.add("ctnh.eye_homo.tooltip.1", "产出主世界和暮色森林以及月球的矿");
-        provider.add("ctnh.eye_homo.tooltip.2", "随着电压等级提高能够解锁更多配方");
-        provider.add("ctnh.eye_homo.tooltip.3", "在前期比坠星好用");
-        provider.add("ctnh.eye_homo.tooltip.4", "结构来源:Twist Space Technology");
         provider.add("advanced_blast_furnace", "高级焦炉");
         provider.add("ctnh.advanced_blast_furnace.tooltip.0", "§6§l自带32并行");
         provider.add("ctnh.advanced_blast_furnace.tooltip.1", "只可运行焦炉配方,且运行配方时间固定为15s");
@@ -278,6 +278,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.alter.tips2","与血祭坛相同，该结构有输入LP上限，同时你§4必须通过特定配方来增加其lp§r\n详见JEI以查询增加的配方");
         provider.add("ctnh.alter.tips3","电压每超过HV一级，就增加10000可存储LP上限，达到LUV后每级额外增加20000");
         provider.add("ctnh.alter.tips4","每一个增容符文增加2500LP上限，强化增容符文增加5000,达到LUV后每级额外增加2500/5000LP上限");
+        provider.add("ctnh.machine.large_miner.zpm.tooltip", "听说你很担心矿物的来源？");
+
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -291,7 +293,7 @@ public class ChineseLangHandler {
         for (int tier : GTValues.tiersBetween(LV, HV)){
             provider.add(CTNHMachines.ENERGY_OUTPUT_HATCH_4A_LOWER[tier].getBlock(), "4安" + GTValues.VNF[tier] + "§r动力仓");
         }
-        for (int tier : GTValues.tiersBetween(LV, MV)){
+        for (int tier : GTValues.tiersBetween(ULV, MV)){
             provider.add(CTNHMachines.ROTOR_HOLDER_EXTEND[tier].getBlock(), GTValues.VNF[tier] + "§r转子支架");
         }
 
@@ -347,9 +349,10 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ELEMENTIUM_NORMAL_FLUID_PIPE,"源质管道方块");
         provider.addBlock(CTNHBlocks.CASING_MANASTEEL_GEARBOX,"魔力钢齿轮箱方块");
         provider.addBlock(CTNHBlocks.RESERVOIR_COMPUTING_CASING,"高能突触机器外壳");
-        provider.addBlock(CTNHBlocks.CASING_NAQUADAH_GEARBOX, "硅岩齿轮箱机械方块");
+        provider.addBlock(CTNHBlocks.CASING_NAQUADAH_GEARBOX, "硅岩合金齿轮箱机械方块");
         provider.addBlock(CTNHBlocks.CASING_ULTIMATE_ENGINE_INTAKE, "无尽引擎进气机械方块");
-        // provider.addBlock(CTNHBlocks.COMPUTER_HEAT_VENT_SIDE2,"高能机器散热口");
+        provider.addBlock(CTNHBlocks.ELEMENTIUM_PIPE_CASING, "源质钢管道机械方块");
+       // provider.addBlock(CTNHBlocks.COMPUTER_HEAT_VENT_SIDE2,"高能机器散热口");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
