@@ -110,7 +110,6 @@ public  int Capacity_rune=0;
             return ModifierFunction.builder()
                     .eutModifier(reduce)
                     .durationModifier(reduce2)
-                    .parallels(8)
                     .build();
         }
         return ModifierFunction.NULL;
