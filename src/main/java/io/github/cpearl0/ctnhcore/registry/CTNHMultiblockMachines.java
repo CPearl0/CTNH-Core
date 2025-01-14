@@ -2225,7 +2225,7 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public static MultiblockMachineDefinition SEASON_REACTER = CTPPRegistration.REGISTRATE.multiblock("season_reacter", season_reacter::new)
+    public static MultiblockMachineDefinition SEASON_REACTER = REGISTRATE.multiblock("season_reacter", season_reacter::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.SEASON_STEAM_RECIPES)
             // .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
