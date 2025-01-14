@@ -62,6 +62,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.bedrock_drilling_rigs", "基岩钻机");
         provider.add("gtceu.plasma_condenser", "等离子冷凝");
         provider.add("gtceu.vacuum_sintering", "真空烧结");
+        provider.add("gtceu.dimensional_gas_collection", "维度集气");
+        provider.add("gtceu.silica_rock_fuel_refinery", "硅岩燃料精炼");
 
 
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
@@ -75,7 +77,6 @@ public class ChineseLangHandler {
         provider.add("block.ctnhcore.uv_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-III");
 
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
-        provider.add("gtceu.silica_rock_fuel_refinery", "硅岩燃料精炼");
         provider.add("ctnh.multiblock.parallelize.tooltip", "自带无损超频且可以使用并行仓");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "速率：%s");

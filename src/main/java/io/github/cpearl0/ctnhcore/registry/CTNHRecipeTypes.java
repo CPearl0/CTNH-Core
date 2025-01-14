@@ -174,6 +174,7 @@ public static final GTRecipeType RESONANT_MAGICAL_ASSEMBLY = GTRecipeTypes.regis
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType DIMENSIONAL_GAS_COLLECTION = GTRecipeTypes.register("dimensional_gas_collection", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.IN)
             .setMaxIOSize(2, 2, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
