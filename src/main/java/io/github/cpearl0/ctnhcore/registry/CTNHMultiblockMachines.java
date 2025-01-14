@@ -4,7 +4,6 @@ import appeng.core.definitions.AEBlocks;
 import com.enderio.base.common.init.EIOBlocks;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.block.IMachineBlock;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
@@ -15,8 +14,6 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
-import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
@@ -60,11 +57,9 @@ import vazkii.botania.common.block.BotaniaFlowerBlocks;
 import wayoftime.bloodmagic.BloodMagic;
 import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
 
-import java.util.Locale;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import static appeng.libs.micromark.Types.definition;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.HEAT_VENT;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
@@ -72,7 +67,6 @@ import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS
 import static com.gregtechceu.gtceu.common.data.GTMaterialItems.MATERIAL_ITEMS;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.DrillingFluid;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.registerLargeCombustionEngine;
-import static com.gregtechceu.gtceu.common.entity.GTBoat.BoatType.TREATED_WOOD;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static net.minecraft.world.level.block.Blocks.*;
@@ -2225,14 +2219,14 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public static MultiblockMachineDefinition SEASON_REACTER = REGISTRATE.multiblock("season_reacter", season_reacter::new)
+    public static MultiblockMachineDefinition SEASON_REACTOR = REGISTRATE.multiblock("season_reactor", season_reactor::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.SEASON_STEAM_RECIPES)
             // .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
             .tooltips(Component.translatable("ctnh.season.a1"),
                     Component.translatable("ctnh.season.a2"),
                     Component.translatable("ctnh.season.a3"))
-            .recipeModifier(season_reacter::recipeModifier)
+            .recipeModifier(season_reactor::recipeModifier)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("YXY","XWX","KKK")
                     .aisle("XVX","WUW","KOK")

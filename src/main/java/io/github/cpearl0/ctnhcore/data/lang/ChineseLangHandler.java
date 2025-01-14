@@ -415,7 +415,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.ZENITH_CIRCUIT_ASSEMBLER.getBlock(), "§5天顶电路组装机§r");
         provider.add(CTNHMultiblockMachines.ZENITH_DISTILLATION_TOWER.getBlock(),"§5天顶聚焦蒸馏塔");
         provider.add(CTNHMultiblockMachines.SCALABLE_RESERVOIR_COMPUTING.getBlock(), "§j突触凝练机");
-        provider.add(CTNHMultiblockMachines.SEASON_REACTER.getBlock(), "§b季节共振器");
+        provider.add(CTNHMultiblockMachines.SEASON_REACTOR.getBlock(), "§b季节共振器");
         provider.add(CTNHMultiblockMachines.SILICA_ROCK_FUEL_REFINERY.getBlock(),"硅岩燃料精炼厂");
         provider.add(CTNHMultiblockMachines.ULTIMATE_COMBUSTION_ENGINE.getBlock(), "无尽内燃引擎");
         provider.add(CTNHMultiblockMachines.ALTER.getBlock(), "§b工业血之祭坛");
