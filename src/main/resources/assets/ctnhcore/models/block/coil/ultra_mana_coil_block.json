@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/cube_all",
+    "textures": {
+        "all": "ctnhcore:block/casings/coils/ultra_mana_coil_block"
+    }
+}

@@ -102,14 +102,10 @@ public  int Capacity_rune=0;
 
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        if (machine instanceof season_reactor wmachine) {
+        if (machine instanceof AlterLogic wmachine) {
             int tier=wmachine.getTier();
             int recipe_tier=recipe.ocLevel;
-            var reduce2= new ContentModifier(Math.pow(2,Math.max(recipe_tier,0)),0);
-            var reduce = new ContentModifier(Math.pow(0.5,Math.max(recipe_tier,0)),0);
             return ModifierFunction.builder()
-                    .eutModifier(reduce)
-                    .durationModifier(reduce2)
                     .build();
         }
         return ModifierFunction.NULL;

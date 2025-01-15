@@ -88,6 +88,8 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/pipe/elementium_normal_fluid_pipe"));
     public static final BlockEntry<Block> CASING_MANASTEEL_GEARBOX = createCasingBlock("mana_steel_gearbox_casing",
             CTNHCore.id("block/casings/gearbox/mana_steel_gearbox_casing"));
+    public static final BlockEntry<Block> QUASAR_ENERGY_STABILIZATION_CASING = createCasingBlock("quasar_energy_stabilization_casing",
+            CTNHCore.id("block/casings/quasar_energy_stabilization_casing"));
 
     public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing("reservoir_computing_casing",
             "block/flux/reservoir_computing_casing");
@@ -103,6 +105,7 @@ public class CTNHBlocks {
             "block/flux/annihilate_core_mk4");
     public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKV = createActiveCasing("annihilate_core_mkv",
             "block/flux/annihilate_core_mk5");
+
     public static final BlockEntry<ActiveBlock> PLASMA_COOLED_CORE = createActiveCasing("plasma_cooled_core",
             "block/flux/plasma_cooled_core");
     public static final BlockEntry<ActiveBlock> CASING_ULTIMATE_ENGINE_INTAKE = createActiveCasing(
@@ -113,6 +116,7 @@ public class CTNHBlocks {
     public static final BlockEntry<CoilBlock> COIL_BLACKTITANIUM = createCoilBlock(CoilType.BLACKTITANIUM);
     public static final BlockEntry<CoilBlock> COIL_STARMETAL = createCoilBlock(CoilType.STARMETAL);
     public static final BlockEntry<CoilBlock> COIL_INFINITY = createCoilBlock(CoilType.INFINITYY);
+    public static final BlockEntry<CoilBlock> COIL_ULTRA_MANA= createCoilBlock(CoilType.ULTRA_MANA);
     public static void init() {
 
     }

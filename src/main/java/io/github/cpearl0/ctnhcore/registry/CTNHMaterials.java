@@ -169,6 +169,14 @@ public class CTNHMaterials {
             .flags(GENERATE_FRAME)
             .cableProperties(GTValues.V[GTValues.MAX], 8192, 0, true)
             .buildAndRegister();
+    public static final Material QUASER_MANA = new Material.Builder(GTCEu.id("quaser_mana"))
+            .ingot().liquid()
+            .blastTemp(10800, HIGHER, GTValues.VA[GTValues.UV], 1800)
+            .color(0x0000FF)
+            .iconSet(METALLIC)
+            .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
+            .cableProperties(GTValues.V[GTValues.UHV], 4, 64)
+            .buildAndRegister();
     public static final Material PreciousAlloy = new Material.Builder(GTCEu.id("precious_alloy"))
             .ingot()
             .ore()

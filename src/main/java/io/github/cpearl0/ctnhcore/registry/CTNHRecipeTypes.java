@@ -86,7 +86,7 @@ public class CTNHRecipeTypes {
                 var temp = recipe.data.getInt("ebf_temp");
                 var items = new ArrayList<List<ItemStack>>();
                 items.add(GTCEuAPI.HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
-            widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
+                widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
             });
     public static final GTRecipeType DIGESTING = GTRecipeTypes.register("digesting", MULTIBLOCK)
             .setEUIO(IO.IN)
@@ -108,17 +108,17 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
     public static final GTRecipeType PHASE_INVERSION = GTRecipeTypes.register("phase_inversion", GTRecipeTypes.ELECTRIC)
-        .setEUIO(IO.IN)
-        .setMaxIOSize(6,6,2,2)
-        .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
-        .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-        .setSound(GTSoundEntries.ELECTROLYZER);
-public static final GTRecipeType RESONANT_MAGICAL_ASSEMBLY = GTRecipeTypes.register("resonant_assemble", GTRecipeTypes.ELECTRIC)
-        .setEUIO(IO.IN)
-        .setMaxIOSize(9,9,2,2)
-        .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
-        .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-        .setSound(GTSoundEntries.ELECTROLYZER);
+            .setEUIO(IO.IN)
+            .setMaxIOSize(6,6,2,2)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.ELECTROLYZER);
+    public static final GTRecipeType RESONANT_MAGICAL_ASSEMBLY = GTRecipeTypes.register("resonant_assemble", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(9,9,2,2)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.ELECTROLYZER);
 
     public static final GTRecipeType PLASMA_CONDENSER_RECIPES = GTRecipeTypes.register("plasma_condenser", GTRecipeTypes.ELECTRIC)
             .setEUIO(IO.IN)
@@ -322,6 +322,13 @@ public static final GTRecipeType RESONANT_MAGICAL_ASSEMBLY = GTRecipeTypes.regis
                         group.getSize().height - 30, false, false));
             })
             .addDataInfo(data -> LocalizationUtils.format("ctnh.lp_consumption",String.format("%.1f",data.getFloat("addlp"))));
+    public static final GTRecipeType QUASAR_EYE = GTRecipeTypes.register("quasar_eye", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.OUT)
+            .setMaxIOSize(1, 0, 2, 1)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.TURBINE)
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.eye_consumption",String.format("%.1f",data.getFloat("consumption"))));
     public static void init() {
 
     }

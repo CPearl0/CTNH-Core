@@ -15,5 +15,6 @@ public class KineticGeneratorRecipes {
                 .addData("stress", 8192)
                 .duration(3000)
                 .save(provider);
+
     }
 }
