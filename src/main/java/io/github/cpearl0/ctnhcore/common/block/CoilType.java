@@ -17,7 +17,8 @@ public enum CoilType implements StringRepresentable, ICoilType {
     PIKYONIUM("pikyonium", 16200, 32, 9, CTNHMaterials.Pikyonium, CTNHCore.id("block/casings/coils/pikyonium_coil_block")),
     BLACKTITANIUM("black_titanium", 18900, 64, 9, CTNHMaterials.BlackTitanium, CTNHCore.id("block/casings/coils/black_titanium_coil_block")),
     STARMETAL("starmetal", 21600, 64, 9, CTNHMaterials.Starmetal, CTNHCore.id("block/casings/coils/starmetal_coil_block")),
-    INFINITYY("infinity", 36000, 128, 9, CTNHMaterials.Infinity, CTNHCore.id("block/casings/coils/infinity_coil_block"));
+    INFINITYY("infinity", 36000, 128, 9, CTNHMaterials.Infinity, CTNHCore.id("block/casings/coils/infinity_coil_block")),
+    ULTRA_MANA("ulta_mana",7200,16,6,CTNHMaterials.QUASER_MANA,CTNHCore.id("block/casings/coils/ultra_mana_coil_block"));
 
     @NotNull
     private final String name;

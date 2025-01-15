@@ -38,6 +38,24 @@ public class CTNHItems {
             .item("horizen_rune",Item::new)
             .lang("horizen_rune")
             .register();
+    public static ItemEntry<Item> STARLIGHT_RUNE = REGISTRATE
+            .item("starlight_rune",Item::new)
+            .lang("starlight_rune")
+            .register();
+    public static ItemEntry<Item> TWIST_RUNE = REGISTRATE
+            .item("twist_rune",Item::new)
+            .lang("twist_rune")
+            .register();
+    public static ItemEntry<Item> QUASAR_RUNE = REGISTRATE
+            .item("quasar_rune",Item::new)
+            .lang("quasar_rune")
+            .register();
+    public static ItemEntry<Item> PROLIFERATION_RUNE = REGISTRATE
+            .item("proliferation_rune",Item::new)
+            .lang("proliferation_rune")
+            .register();
+
+
     public static ItemEntry<Item> TUMOR = REGISTRATE
             .item("tumor",Item::new)
             .lang("Tumor")
@@ -45,6 +63,7 @@ public class CTNHItems {
     public static ItemEntry<Item> REFINED_IRON_INGOT = REGISTRATE
             .item("refined_iron_ingot",Item::new)
             .lang("REFINED IRON INGOT")
+
             .register();
     public static ItemEntry<ComponentItem> TESTING_TERMINAL = REGISTRATE
             .item("testing_terminal",ComponentItem::create)
