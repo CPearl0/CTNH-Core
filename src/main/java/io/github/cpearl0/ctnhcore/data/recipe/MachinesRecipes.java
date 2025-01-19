@@ -4,17 +4,25 @@ import com.gregtechceu.gtceu.api.data.chemical.material.stack.UnificationEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.simibubi.create.AllBlocks;
-import io.github.cpearl0.ctnhcore.registry.CTNHItems;
-import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
-import io.github.cpearl0.ctnhcore.registry.CTNHMultiblockMachines;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import io.github.cpearl0.ctnhcore.registry.*;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
 
 import java.util.function.Consumer;
+
+import static com.gregtechceu.gtceu.api.GTValues.VA;
+import static com.gregtechceu.gtceu.api.GTValues.ZPM;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.frameGt;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.gear;
+import static com.gregtechceu.gtceu.common.data.GTItems.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Osmiridium;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
 
 public class MachinesRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -38,6 +46,27 @@ public class MachinesRecipes {
                 .duration(150)
                 .addData("consumption",100000)
                 .save(provider);
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "casing_naquadah_alloy_gearbox",
+                CTNHBlocks.CASING_NAQUADAH_GEARBOX.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PhP", "GFG",
+                "PwP", 'P', new UnificationEntry(TagPrefix.plate, GTMaterials.NaquadahAlloy), 'F',
+                new UnificationEntry(frameGt, GTMaterials.NaquadahAlloy), 'G',
+                new UnificationEntry(gear, GTMaterials.NaquadahAlloy));
+        VanillaRecipeHelper.addShapedRecipe(provider, true, "extreme_engine_intake_casing",
+                CTNHBlocks.CASING_ULTIMATE_ENGINE_INTAKE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PhP",
+                "RFR", "PwP", 'R', new UnificationEntry(TagPrefix.rotor, GTMaterials.NaquadahAlloy), 'F',
+                CTNHBlocks.CASING_NAQUADAH_BLOCK.asStack(), 'P',
+                new UnificationEntry(TagPrefix.pipeNormalFluid, GTMaterials.NaquadahAlloy));
+        ASSEMBLER_RECIPES.recipeBuilder("zpm_large_miner")
+                .inputItems(HULL[ZPM])
+                .inputItems(frameGt, Osmiridium, 4)
+                .inputItems(CustomTags.ZPM_CIRCUITS, 4)
+                .inputItems(ELECTRIC_MOTOR_ZPM, 4)
+                .inputItems(ELECTRIC_PUMP_ZPM, 4)
+                .inputItems(CONVEYOR_MODULE_ZPM, 4)
+                .inputItems(gear, Osmiridium, 4)
+                .circuitMeta(2)
+                .outputItems(CTNHMultiblockMachines.ZPM_LARGE_MINER)
+                .duration(400).EUt(VA[ZPM]).save(provider);
     }
 
 }

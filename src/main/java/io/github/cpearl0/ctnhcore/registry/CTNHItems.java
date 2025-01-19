@@ -62,8 +62,23 @@ public class CTNHItems {
             .register();
     public static ItemEntry<Item> REFINED_IRON_INGOT = REGISTRATE
             .item("refined_iron_ingot",Item::new)
-            .lang("REFINED IRON INGOT")
-
+            .lang("Refined Iron Ingot")
+            .register();
+    public static ItemEntry<Item> CORROSIVE_CORE = REGISTRATE
+            .item("corrosive_core",Item::new)
+            .lang("Corrosive Core")
+            .register();
+    public static ItemEntry<Item> VENGEFUL_CORE = REGISTRATE
+            .item("vengeful_core",Item::new)
+            .lang("Vengeful Core")
+            .register();
+    public static ItemEntry<Item> DESTRUCTIVE_CORE = REGISTRATE
+            .item("destructive_core",Item::new)
+            .lang("Destructive Core")
+            .register();
+    public static ItemEntry<Item> STEADFAST_CORE = REGISTRATE
+            .item("steadfast_core",Item::new)
+            .lang("Steadfast Core")
             .register();
     public static ItemEntry<ComponentItem> TESTING_TERMINAL = REGISTRATE
             .item("testing_terminal",ComponentItem::create)
