@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ctnhcore:block/casings/quasar_energy_stabilization_casing"
+  }
+}
