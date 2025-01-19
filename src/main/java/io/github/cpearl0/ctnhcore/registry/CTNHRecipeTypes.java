@@ -169,6 +169,7 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
     public static final GTRecipeType MARTIAL_MORALITY_EYE = GTRecipeTypes.register("martial_morality_eye", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.IN)
             .setMaxIOSize(2, 27, 1, 3)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
