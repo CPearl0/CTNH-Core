@@ -34,6 +34,7 @@ import dev.arbor.gtnn.data.GTNNCasingBlocks;
 import dev.arbor.gtnn.data.GTNNItems;
 import dev.arbor.gtnn.data.GTNNMachines;
 import dev.arbor.gtnn.data.GTNNMaterials;
+import glitchcore.event.client.RenderGuiEvent;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.coldsweat.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.common.block.CTNHFusionCasingType;
@@ -1170,7 +1171,9 @@ public class CTNHMultiblockMachines {
                             .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setExactLimit(1))
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS)))
 
                     .where("C", Predicates.blocks(BotaniaBlocks.manaGlass))
                     .where("D", Predicates.blocks(CTNHBlocks.ELEMENTIUM_CASING.get()))
@@ -1661,6 +1664,7 @@ public class CTNHMultiblockMachines {
                             .or(Predicates.abilities(PartAbility.STEAM))
                             .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
                             .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(9))
+                            .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
@@ -1736,6 +1740,7 @@ public class CTNHMultiblockMachines {
                     .where("#", Predicates.any())
                     .where("B", Predicates.blocks(CASING_ALUMINIUM_FROSTPROOF.get())
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
                     .where("C", Predicates.blocks(HEAT_VENT.get()))
                     .where("D", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
@@ -1762,6 +1767,7 @@ public class CTNHMultiblockMachines {
                     .where("A", Predicates.blocks(CASING_HSSE_STURDY.get())
                             .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
                     .where("B", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
                     .where("C", Predicates.blocks(CASING_PTFE_INERT.get()))
@@ -2148,10 +2154,12 @@ public class CTNHMultiblockMachines {
                     .where("E",Predicates.blocks(CTNHBlocks.ALF_STEEL_CASING.get()))
                     .where("H",Predicates.blocks(CTNHBlocks.ZENITH_EYE.get()))
                     .where("P",Predicates.blocks(CTNHBlocks.ZENITH_CASING_BLOCK.get())
-
-                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setExactLimit(1))
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
+                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS)))
                     .where("@",Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
             .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
@@ -2321,7 +2329,13 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.quarsar.tips3"),
                     Component.translatable("ctnh.quarsar.tips7"),
                     Component.translatable("ctnh.quarsar.tips4"),
+                    Component.translatable("ctnh.quarsar.tips8"),
+                    Component.translatable("ctnh.quarsar.tips9"),
+                    Component.translatable("ctnh.quarsar.tips10"),
+                    Component.translatable("ctnh.quarsar.tips11"),
                     Component.translatable("ctnh.quarsar.tips5")
+
+
                     )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################")
@@ -2376,6 +2390,42 @@ public class CTNHMultiblockMachines {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
             .workableCasingRenderer((CTNHCore.id("block/casings/depth_force_field_stabilizing_casing")), GTCEu.id("block/multiblock/fusion_reactor"), false)
+            .register();
+    public static MultiblockMachineDefinition NICOLL_DYSON_BEAMS = REGISTRATE.multiblock("nicoll_dyson_beams", Nicoll_Dyson_Beams::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.ALTER)
+            // .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
+            .recipeModifiers(ZenithMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.alter.tips1"),
+                    Component.translatable("ctnh.alter.tips2"),
+                    Component.translatable("ctnh.alter.tips3"),
+                    Component.translatable("ctnh.alter.tips4"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAAAA", "B#####B", "B#####B", "B#####B", "C#####C", "OEEEEEO", "#######", "#######", "#######")
+                    .aisle("A#####A", "#ACCCA#", "#######", "#######", "#######", "E#####E", "##EEE##", "#######", "#######")
+                    .aisle("A#####A", "#C###C#", "##CGC##", "#######", "#######", "E#####E", "#E###E#", "###E###", "#######")
+                    .aisle("A#####A", "#C###C#", "##GAG##", "###H###", "###B###", "E##B##E", "#E#B#E#", "##EEE##", "###D###")
+                    .aisle("A#####A", "#C###C#", "##CGC##", "#######", "#######", "E#####E", "#E###E#", "###E###", "#######")
+                    .aisle("A#####A", "#ACCCA#", "#######", "#######", "#######", "E#####E", "##EEE##", "#######", "#######")
+                    .aisle("AAAIAAA", "B#####B", "B#####B", "B#####B", "C#####C", "OEEEEEO", "#######", "#######", "#######")
+                    .where("A", Predicates.blocks(BloodMagicBlocks.BLANK_RUNE.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.blocks(CHAIN))
+                    .where("#", Predicates.any())
+                    .where("C", Predicates.blocks(BloodMagicBlocks.DUNGEON_ORE.get()))
+                    .where("D", Predicates.blocks(LAMPS.get(DyeColor.PURPLE).get()))
+                    .where("O", Predicates.blocks(LAMPS.get(DyeColor.RED).get()))
+                    .where("E", Predicates.blocks(BloodMagicBlocks.DUNGEON_BRICK_1.get()))
+                    .where("F", Predicates.blocks(MYCELIUM))
+                    .where("G", Predicates.blocks(BloodMagicBlocks.OBSIDIAN_PATH.get())
+                            .or(Predicates.blocks(BloodMagicBlocks.CAPACITY_RUNE.get()))
+                            .or(Predicates.blocks(BloodMagicBlocks.CAPACITY_RUNE_2.get()))
+                    )
+
+                    .where("H", Predicates.blocks(SOUL_LANTERN))
+                    .where("I",Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer(BloodMagic.rl("block/blankrune"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
     public static void init() {
 
