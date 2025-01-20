@@ -42,10 +42,6 @@ public class MachinesRecipes {
                 'S', new ItemStack(AllBlocks.COPPER_SHINGLES.getStandard().get()),
                 'P', GTBlocks.CASING_BRONZE_PIPE.asStack(),
                 'I', new UnificationEntry(TagPrefix.plate, GTMaterials.Iron));
-        CTNHBlocks.CASING_NAQUADAH_GEARBOX.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PhP", "GFG",
-                "PwP", 'P', new UnificationEntry(TagPrefix.plate, GTMaterials.NaquadahAlloy), 'F',
-                new UnificationEntry(TagPrefix.frameGt, GTMaterials.NaquadahAlloy), 'G',
-                new UnificationEntry(TagPrefix.gear, GTMaterials.NaquadahAlloy));
         VanillaRecipeHelper.addShapedRecipe(provider, true, "extreme_engine_intake_casing",
                 CTNHBlocks.CASING_ULTIMATE_ENGINE_INTAKE.asStack(ConfigHolder.INSTANCE.recipes.casingsPerCraft), "PhP",
                 "RFR", "PwP", 'R', new UnificationEntry(TagPrefix.rotor, GTMaterials.NaquadahAlloy), 'F',
