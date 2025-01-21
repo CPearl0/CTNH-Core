@@ -196,10 +196,10 @@ public class ChineseLangHandler {
         provider.add("ctnh.zenith_circut_assember","机器类型：§e电路组装机§r,§5魔力共振电路组装§r");
         provider.add("ctnh.zenith_circut_assember_sp","允许使用§5魔力共振电路组装§r，以更低电压和特殊材料组装共振电路");
         provider.add("ctnh.zenith_machine_tip","在达到LUV电压后，如果§5天顶源质§r足够，每次运行会消耗(60*(当前电压等级-6))的天顶源质，获得2^(当前电压等级-6)的并行数，最大并行数取决于当前电压。但是不输入天顶源质会损失4并行数。");
-        provider.add("ctnh.zenith_waring","注意，源质的消耗与当前你输入的物品数无关，即使没有并行，我也会克扣你的天顶源质，当并行达到上限后仍然会消耗天顶源质");
+        provider.add("ctnh.zenith_waring","注意，源质的消耗与当前你输入的物品数无关，即使没有并行，我也会克扣你的天顶源质，当并行达到上限后仍然会消耗天顶源质，但是消耗量固定为60");
         provider.add("ctnh.basic_mana_machine.mana_consume", "每秒基础消耗4mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.advanced_mana_machine.mana_consume", "每秒基础消耗10mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
-        provider.add("ctnh.super_mana_machine.mana_consume", "每秒基础消耗25mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
+        provider.add("ctnh.super_mana_machine.mana_consume", "每秒基础消耗12mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.mana_macerator", "机器类型：§e研磨机§r");
         provider.add("ctnh.mana_bender", "机器类型：§e卷板机§r");
         provider.add("ctnh.mana_lathe", "机器类型：§e车床§r");
@@ -298,6 +298,25 @@ public class ChineseLangHandler {
         provider.add("ctnh.quasar_parallel","时间并行:%.2f");
         provider.add("ctnh.consumption_parallel","能源消耗率:%.2f");
         provider.add("ctnh.machine.large_miner.zpm.tooltip", "听说你很担心矿物的来源？");
+        provider.add("ctnh.beams_overload","§c警告：机器过载！！！");
+        provider.add("ctnh.beams_crash","§c机器已损坏");
+        provider.add("ctnh.beams_mana","当前魔力量:%.2f");
+        provider.add("ctnh.twist_consumption","扭曲符文消耗概率:%.2f");
+        provider.add("ctnh.starlight_consumption","星光符文消耗概率:%.2f");
+        provider.add("ctnh.beams_overload_1","§c机器过载度:%d/%d");
+        provider.add("ctnh.beams_overload_2","§c！！！警告：能量溢出！！！");
+        provider.add("ctnh.beams_max_mana","魔力上限:%.2f");
+        provider.add("ctnh.beams_mana_required","魔力需求:%.2f");
+        provider.add("ctnh.beams_mana_consumption","消耗魔力:%.2f");
+        provider.add("ctnh.beams_time","运行时间倍率:%.2f");
+        provider.add("ctnh.beams_eut_consumption","消耗能量倍率:%.2f");
+        provider.add("ctnh.beams_stable","魔力稳定值:%.2f");
+        provider.add("ctnh.beams.story1","以往对魔力的研究表明，这种特殊元素有着不同于以往物理体系的机理。魔力与§a硅岩§r一同蕴含极大的能量，但是魔力的能量却很难完全输出，而通过某种效应而消失");
+        provider.add("ctnh.beams.story2","同时，魔力的空间扭曲能力会随着魔力的浓度而增大，§l如果能把大量魔力聚集在一起§r，则可以以极高的能量和特殊的空间扭曲能力来模拟另一种特殊的§c“聚变”§r");
+        provider.add("ctnh.beams.story3","与三体文明战争中的超级武器戴森光束给予了你启发。虽然魔力无法达到§6恒星§r级别的能量，但是对戴森光束的聚焦模拟也可以使魔力的能量达到§6难以想象§r的水平");
+        provider.add("ctnh.beams.story4","末影珍珠的§5量子隧穿效应§r作为该巨构的虫洞，则也许可以绕过三体舰队的§6天枢圣盾§r进行打击，而不需要以往戴森光束的超级能量来过载护盾。");
+        provider.add("ctnh.beams.story5","§9那些愚蠢的精灵还在彩虹桥玩他们的过家家，而真正的大魔导师早已经超越了物理与魔法的浅薄认知。");
+        provider.add("ctnh.beams.story0","配方类型：§9高能魔力扭曲聚变§r，§c跨纬度打击超级武器");
 
 
 
@@ -450,6 +469,8 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.ULTIMATE_COMBUSTION_ENGINE.getBlock(), "无尽内燃引擎");
         provider.add(CTNHMultiblockMachines.ALTER.getBlock(), "§b工业血之祭坛");
         provider.add(CTNHMultiblockMachines.EYE_OF_QUASAR.getBlock(), "§5类星体§r§1之§c眼");
+        provider.add(CTNHMultiblockMachines.NICOLL_DYSON_BEAMS.getBlock(), "§9尼魔尔 戴森光束");
+
 
 
 

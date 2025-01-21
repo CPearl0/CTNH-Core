@@ -1066,7 +1066,7 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public final static MultiblockMachineDefinition ZENITH_LASER = REGISTRATE.multiblock("zenith_laser",holder -> new ZenithMachine(holder,24,25,60,20))
+    public final static MultiblockMachineDefinition ZENITH_LASER = REGISTRATE.multiblock("zenith_laser",holder -> new ZenithMachine(holder,24,12,60,20))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.LASER_ENGRAVER_RECIPES,CTNHRecipeTypes.PHASE_INVERSION)
             .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
@@ -2124,7 +2124,7 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public final static MultiblockMachineDefinition ZENITH_CIRCUIT_ASSEMBLER = REGISTRATE.multiblock("zenith_circult_assembler",holder -> new ZenithMachine(holder,24,25,60,12))
+    public final static MultiblockMachineDefinition ZENITH_CIRCUIT_ASSEMBLER = REGISTRATE.multiblock("zenith_circult_assembler",holder -> new ZenithMachine(holder,24,12,60,12))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES,CTNHRecipeTypes.RESONANT_MAGICAL_ASSEMBLY)
             .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
@@ -2165,7 +2165,7 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
 
-    public final static MultiblockMachineDefinition ZENITH_DISTILLATION_TOWER = REGISTRATE.multiblock("zenith_distillation_tower",holder -> new ZenithMachine(holder,10,25,60,5))
+    public final static MultiblockMachineDefinition ZENITH_DISTILLATION_TOWER = REGISTRATE.multiblock("zenith_distillation_tower",holder -> new ZenithMachine(holder,10,12,60,5))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.DISTILLATION_RECIPES)
             .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
@@ -2393,13 +2393,15 @@ public class CTNHMultiblockMachines {
             .register();
     public static MultiblockMachineDefinition NICOLL_DYSON_BEAMS = REGISTRATE.multiblock("nicoll_dyson_beams", Nicoll_Dyson_Beams::new)
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CTNHRecipeTypes.ALTER)
+            .recipeType(CTNHRecipeTypes.BEAMS)
             // .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
-            .recipeModifiers(ZenithMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.alter.tips1"),
-                    Component.translatable("ctnh.alter.tips2"),
-                    Component.translatable("ctnh.alter.tips3"),
-                    Component.translatable("ctnh.alter.tips4"))
+            .recipeModifiers(Nicoll_Dyson_Beams::recipeModifier)
+            .tooltips(Component.translatable("ctnh.beams.story0"),
+                    Component.translatable("ctnh.beams.story1"),
+                    Component.translatable("ctnh.beams.story2"),
+                    Component.translatable("ctnh.beams.story3"),
+                    Component.translatable("ctnh.beams.story4"),
+                    Component.translatable("ctnh.beams.story5"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAA", "B#####B", "B#####B", "B#####B", "C#####C", "OEEEEEO", "#######", "#######", "#######")
                     .aisle("A#####A", "#ACCCA#", "#######", "#######", "#######", "E#####E", "##EEE##", "#######", "#######")
