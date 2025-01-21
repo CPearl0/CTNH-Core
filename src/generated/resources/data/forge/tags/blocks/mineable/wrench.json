@@ -22,7 +22,6 @@
     "ctnhcore:alfsteel_casing",
     "ctnhcore:zenith_casing_gearbox",
     "ctnhcore:depth_force_field_stabilizing_casing",
-    "ctnhcore:bronze_framed_glass",
     "ctnhcore:naquadah_gearbox",
     "ctnhcore:bio_reactor_casing",
     "ctnhcore:elementium_pipe_casing",
@@ -44,6 +43,7 @@
     "ctnhcore:black_titanium_coil_block",
     "ctnhcore:starmetal_coil_block",
     "ctnhcore:infinity_coil_block",
-    "ctnhcore:ulta_mana_coil_block"
+    "ctnhcore:ulta_mana_coil_block",
+    "ctnhcore:bronze_framed_glass"
   ]
 }
