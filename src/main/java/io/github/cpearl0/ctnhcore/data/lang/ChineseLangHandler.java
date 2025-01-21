@@ -64,6 +64,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.vacuum_sintering", "真空烧结");
         provider.add("gtceu.dimensional_gas_collection", "维度集气");
         provider.add("gtceu.silica_rock_fuel_refinery", "硅岩燃料精炼");
+        provider.add("gtceu.hellforge", "狱火锻炉");
+        provider.add("gtceu.digital_well_of_suffer", "数字化苦难之井");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -294,6 +296,26 @@ public class ChineseLangHandler {
         provider.add("ctnh.quasar_parallel","时间并行:%.2f");
         provider.add("ctnh.consumption_parallel","能源消耗率:%.2f");
         provider.add("ctnh.machine.large_miner.zpm.tooltip", "听说你很担心矿物的来源？");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.0", "机器类型：§e数字化苦难之井§r");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.1", "§8撒旦一觉醒来发现自己掉到榜二了§r");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.2", "享受生灵痛苦的嘶吼吧。§r");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.3", "配方时间始终固定在1s。提高电压等级会提高产出生命源质的产出，等效于无损超频。§r");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.4", "使用残缺的数据模型不会产出任何东西，模型等级越高，产出越多");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.5", "§b灵魂模式：§r");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.6", "灵魂模式下，机器不生产生命源质，而是为下方的§b工业狱火锻炉§r提供意志。");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.7", "两台机器需要共用岩浆池，且控制器必须位于狱火锻炉的正上方。请查阅JEI以获得更多信息。");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.8", "产出生命源质量（mB）/100000的意志。");
+        provider.add("ctnh.gtceu:hellforge.0", "机器类型：§e狱火锻炉§r");
+        provider.add("ctnh.gtceu:hellforge.1", "§8机器也会有灵魂吗？§r");
+        provider.add("ctnh.gtceu:hellforge.2", "运行狱火锻炉的配方，需要满足配方的最小意志条件。§r");
+        provider.add("ctnh.gtceu:hellforge.3", "如何向机器内填充意志：§r");
+        provider.add("ctnh.gtceu:hellforge.4", "1.在控制器附近用§b感知之剑§r杀死一只浸泡于§c生命源质§r的怪物。获得基于怪物最大生命值的意志。");
+        provider.add("ctnh.gtceu:hellforge.5", "§8到控制器的曼哈顿距离小于8即可，不用非得是中间的血杯§r");
+        provider.add("ctnh.gtceu:hellforge.6", "2.在控制器附近丢出一块魂石。机器会自动吸取其中的意志。");
+        provider.add("ctnh.gtceu:hellforge.7", "3.使用§4永恒苦难之井§r。请查阅对应机器的tooltip§r");
+        provider.add("ctnh.gtceu.hellforge.will", "意志：%s");
+        provider.add("ctnh.gtceu.hellforge.drain", "最少：%s意志");
+        provider.add("ctnh.gtceu.hellforge.minimumdrain", "消耗：%s意志");
 
 
 
@@ -312,6 +334,14 @@ public class ChineseLangHandler {
         for (int tier : GTValues.tiersBetween(ULV, MV)){
             provider.add(CTNHMachines.ROTOR_HOLDER_EXTEND[tier].getBlock(), GTValues.VNF[tier] + "§r转子支架");
         }
+        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[LV].getBlock(), "基础数字化苦难之井");
+        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[MV].getBlock(), "§b进阶数字化苦难之井§r");
+        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[HV].getBlock(), "§6进阶数字化苦难之井 II§r");
+        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[EV].getBlock(), "§5进阶数字化苦难之井 III§r");
+        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[IV].getBlock(), "§9精英数字化苦难之井§r");
+        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[LuV].getBlock(), "§d精英数字化苦难之井 II§r");
+        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[ZPM].getBlock(), "§c数字化猩红深渊§r");
+        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[UV].getBlock(), "§3数字化猩红深渊 II§r");
 
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
         provider.add(CTNHCreativeModeTabs.ITEM.get(), "CTNH物品");
@@ -446,7 +476,8 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.ULTIMATE_COMBUSTION_ENGINE.getBlock(), "无尽内燃引擎");
         provider.add(CTNHMultiblockMachines.ALTER.getBlock(), "§b工业血之祭坛");
         provider.add(CTNHMultiblockMachines.EYE_OF_QUASAR.getBlock(), "§5类星体§r§1之§c眼");
-
+        provider.add(CTNHMultiblockMachines.ETERNAL_WELL_OF_SUFFER.getBlock(), "§4永恒苦难之井§r");
+        provider.add(CTNHMultiblockMachines.HELLFORGE.getBlock(), "§b工业狱火锻炉§r");
 
 
     }

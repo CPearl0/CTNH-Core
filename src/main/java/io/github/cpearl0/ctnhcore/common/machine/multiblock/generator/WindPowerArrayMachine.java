@@ -115,7 +115,7 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
         super.addDisplayText(textList);
         if (isFormed) {
             textList.add(Component.translatable("info.ctnhcore.network_machine", NetworkSize));
-            textList.add(Component.translatable("info.ctnhcore.network_machine_efficiency", efficiency));
+            textList.add(Component.translatable("info.ctnhcore.network_machine_efficiency", String.format("%.1f",efficiency)));
         }
     }
 

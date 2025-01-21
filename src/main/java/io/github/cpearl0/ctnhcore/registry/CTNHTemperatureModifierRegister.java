@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import io.github.cpearl0.ctnhcore.coldsweat.UnderfloorHeatingSystemTempModifier;
-import net.minecraftforge.eventbus.api.IEventBus;
+import io.github.cpearl0.ctnhcore.legendary.UnderfloorHeatingSystemTempModifier;
 import net.minecraftforge.registries.RegistryObject;
 import sfiomn.legendarysurvivaloverhaul.api.temperature.ModifierBase;
 

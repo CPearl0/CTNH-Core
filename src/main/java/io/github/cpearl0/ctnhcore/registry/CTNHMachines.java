@@ -14,6 +14,8 @@ import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
 import com.gregtechceu.gtceu.client.renderer.machine.MaintenanceHatchPartRenderer;
@@ -33,9 +35,11 @@ import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
+import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalWosMachine;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,7 +117,17 @@ public class CTNHMachines {
                             Component.translatable("gtceu.universal.disabled"))
                     .register(),
             GTValues.tiersBetween(ULV, MV));
-
+    public static final MachineDefinition[] DIGITAL_WELL_OF_SUFFER = registerTieredMachines("digital_well_of_suffer",
+            (holder, tier) -> new DigitalWosMachine(holder,tier,(tiers) -> tiers * 32000),
+            (tier,builder) -> builder
+                    .langValue("%s Digital Well of Suffer".formatted(VNF[tier]))
+                    .recipeType(CTNHRecipeTypes.DIGITAL_WELL_OF_SUFFER)
+                    .editableUI(SimpleTieredMachine.EDITABLE_UI_CREATOR.apply(GTCEu.id("digital_well_of_suffer"),CTNHRecipeTypes.DIGITAL_WELL_OF_SUFFER))
+                    .rotationState(RotationState.NON_Y_AXIS)
+                    .recipeModifier(DigitalWosMachine::recipeModifier)
+                    .workableTieredHullRenderer(GTCEu.id("block/machines/digital_well_of_suffer"))
+                    .register(),
+            GTValues.tiersBetween(LV,UV));
     public static MachineDefinition[] registerTieredMachines(String name,
                                                              BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,
                                                              BiFunction<Integer, MachineBuilder<MachineDefinition>, MachineDefinition> builder,

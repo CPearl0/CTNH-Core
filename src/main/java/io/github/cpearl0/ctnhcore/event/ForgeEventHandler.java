@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.event;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.coldsweat.UnderfloorHeatingSystemTempModifier;
+import io.github.cpearl0.ctnhcore.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.WindPowerArrayMachine;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;

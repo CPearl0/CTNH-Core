@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.mo_guang.ctpp.common.machine.multiblock.KineticOutputMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -15,7 +16,7 @@ import sereneseasons.season.SeasonSavedData;
 import sereneseasons.season.SeasonTime;
 import vazkii.botania.common.item.BotaniaItems;
 
-public class season_reactor extends WorkableElectricMultiblockMachine {
+public class season_reactor extends KineticOutputMachine {
     public ItemStack autumn_rune = new ItemStack(BotaniaItems.runeAutumn,1);
     public ItemStack summer_rune = new ItemStack(BotaniaItems.runeSummer,1);
     public ItemStack spring_rune = new ItemStack(BotaniaItems.runeSpring,1);
