@@ -165,11 +165,13 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
     public static final GTRecipeType CHEMICAL_VAPOR_DEPOSITION = GTRecipeTypes.register("chemical_vapor_deposition", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.IN)
             .setMaxIOSize(2, 2, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
     public static final GTRecipeType MARTIAL_MORALITY_EYE = GTRecipeTypes.register("martial_morality_eye", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.IN)
             .setMaxIOSize(2, 27, 1, 3)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
@@ -181,11 +183,13 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
     public static final GTRecipeType CONDENSING_DISCRETE = GTRecipeTypes.register("condensing_discrete", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.IN)
             .setMaxIOSize(6, 6, 6, 6)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
     public static final GTRecipeType ION_EXCHANGER = GTRecipeTypes.register("ion_exchanger", GTRecipeTypes.ELECTRIC)
+            .setEUIO(IO.IN)
             .setMaxIOSize(6, 6, 6, 6)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)

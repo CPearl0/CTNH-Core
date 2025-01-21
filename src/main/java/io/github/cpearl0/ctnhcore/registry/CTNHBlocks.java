@@ -18,6 +18,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.GlassBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
@@ -76,8 +77,8 @@ public class CTNHBlocks {
             "zenith_casing_gearbox",CTNHCore.id("block/zenith_casing_gearbox"));
     public static final BlockEntry<Block> DEPTH_FORCE_FIELD_STABILIZING_CASING = createCasingBlock(
             "depth_force_field_stabilizing_casing",CTNHCore.id("block/casings/depth_force_field_stabilizing_casing"));
-    public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createCasingBlock(
-            "bronze_framed_glass",CTNHCore.id("block/casings/bronze_framed_glass"));
+    //public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createCasingBlock(
+            //"bronze_framed_glass",CTNHCore.id("block/casings/bronze_framed_glass"));
     public static final BlockEntry<Block> CASING_NAQUADAH_GEARBOX = createCasingBlock("naquadah_gearbox",
             CTNHCore.id("block/casings/gearbox/machine_casing_gearbox_naquadah"));
     public static final BlockEntry<Block> BIO_REACTOR_CASING = createCasingBlock("bio_reactor_casing",
@@ -117,6 +118,10 @@ public class CTNHBlocks {
     public static final BlockEntry<CoilBlock> COIL_STARMETAL = createCoilBlock(CoilType.STARMETAL);
     public static final BlockEntry<CoilBlock> COIL_INFINITY = createCoilBlock(CoilType.INFINITYY);
     public static final BlockEntry<CoilBlock> COIL_ULTRA_MANA= createCoilBlock(CoilType.ULTRA_MANA);
+
+    public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createGlassCasingBlock(
+            "bronze_framed_glass",CTNHCore.id("block/casings/bronze_framed_glass"), () -> RenderType::cutoutMipped);
+
     public static void init() {
 
     }
@@ -124,6 +129,9 @@ public class CTNHBlocks {
     public static BlockEntry<Block> createCasingBlock(String name, ResourceLocation texture) {
         return createCasingBlock(name, Block::new, texture, () -> Blocks.IRON_BLOCK,
                 () -> RenderType::cutoutMipped);
+    }
+    private static BlockEntry<Block> createGlassCasingBlock(String name, ResourceLocation texture, Supplier<Supplier<RenderType>> type) {
+        return createCasingBlock(name, GlassBlock::new, texture, () -> Blocks.GLASS, type);
     }
     @SuppressWarnings("all")
     public static BlockEntry<Block> createCasingBlock(String name,

@@ -288,11 +288,15 @@ public class ChineseLangHandler {
         provider.add("ctnh.mana_production","当前发电效率:%.2f");
         provider.add("ctnh.quarsar.tips1","§9魔力§r的§c终极奥秘§r，足以制造§5类星体§r的装置掌握在§6你§r的手中");
         provider.add("ctnh.quarsar.tips2","该机器启动需要§r初始魔力燃料消耗§R，查阅JEI以查找消耗量");
-        provider.add("ctnh.quarsar.tips3","§5符文能量§r控制着输出的强度，输入§b五级符文§r来增强符文能量，以加强你的输出,使用§5类星体符文§r产生128符文能量");
+        provider.add("ctnh.quarsar.tips3","§5符文能量§r控制着输出的强度，输入§b五级符文§r来增强符文能量，以加强你的输出,使用§5类星体符文§r产生大量符文能量");
         provider.add("ctnh.quarsar.tips4","§c注意§r：符文能量越高，其消耗速度就§c越快§r，且符文能量低于50时§c效率将会减半！§r");
         provider.add("ctnh.quarsar.tips5","§b好消息§r：这个机器不会爆炸，§c但我不保证未来它不会爆炸！§r");
         provider.add("ctnh.quarsar.tips6","在能量等级高时启动能量等级低的配方§b不需要启动花费§r");
         provider.add("ctnh.quarsar.tips7","该机器能量效率为log((符文能量)/50)+1，最大能量效率为1+1*能量等级");
+        provider.add("ctnh.quarsar.tips8","该机器获取符文能量逻辑为：在§5启动前§r读取并消耗每类可消耗符文§c最多各一个§r");
+        provider.add("ctnh.quarsar.tips9","该机器拥有时间并行，消耗并行量倍数持续并行量时间");
+        provider.add("ctnh.quarsar.tips10","该机器并行量为效率*5");
+        provider.add("ctnh.quarsar.tips11","该机器燃料消耗量为1-0.05*Math.max((rune_energy-50)/50,0.75)");
         provider.add("ctnh.quasar_parallel","时间并行:%.2f");
         provider.add("ctnh.consumption_parallel","能源消耗率:%.2f");
         provider.add("ctnh.machine.large_miner.zpm.tooltip", "听说你很担心矿物的来源？");

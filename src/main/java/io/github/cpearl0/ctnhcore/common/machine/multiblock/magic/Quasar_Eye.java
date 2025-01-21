@@ -64,7 +64,7 @@ private double rune_energy=0;
                     rune_energy+=16;
                 }
                 if (MachineUtils.inputItem(CTNHItems.QUASAR_RUNE.asStack(1),this )){
-                    rune_energy+=128;
+                    rune_energy+=256;
                 }
                 if(active<1)active=1;
                 energy_tier=1;
@@ -86,7 +86,7 @@ private double rune_energy=0;
                     rune_energy+=16;
                 }
                 if (MachineUtils.inputItem(CTNHItems.QUASAR_RUNE.asStack(1),this )){
-                    rune_energy+=128;
+                    rune_energy+=512;
                 }
                 if(active<2)active=2;
                 energy_tier=2;
