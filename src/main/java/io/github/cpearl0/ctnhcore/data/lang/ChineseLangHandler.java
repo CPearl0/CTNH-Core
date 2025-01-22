@@ -340,7 +340,18 @@ public class ChineseLangHandler {
         provider.add("ctnh.beams.story4","末影珍珠的§5量子隧穿效应§r作为该巨构的虫洞，则也许可以绕过三体舰队的§6天枢圣盾§r进行打击，而不需要以往戴森光束的超级能量来过载护盾。");
         provider.add("ctnh.beams.story5","§9那些愚蠢的精灵还在彩虹桥玩他们的过家家，而真正的大魔导师早已经超越了物理与魔法的浅薄认知。");
         provider.add("ctnh.beams.story0","配方类型：§9高能魔力扭曲聚变§r，§c跨纬度打击超级武器");
-        provider.add("ctnh.beams.tips1","插入机器的几种符文决定了该机器的各种能力");
+        provider.add("ctnh.beams.tips1","插入机器的几种§9五级符文§r决定了该机器的各种能力");
+        provider.add("ctnh.beams.tips2","§9星空符文§r的能量降低了能源消耗并增强乐机器稳定性");
+        provider.add("ctnh.beams.tips3","§c扭曲符文§r的能量降低了所用时间，§c但会让机器更加不稳定");
+        provider.add("ctnh.beams.tips4","§d视域符文§r的能量增大了魔力上限和魔力使用效率");
+        provider.add("ctnh.beams.tips5","§5类星体符文§r的能量太过强大，§c会直接让机器爆炸！");
+        provider.add("ctnh.beams.tips6","§c扭曲§r与§9星空§r的对抗决定了机器的稳定性");
+        provider.add("ctnh.beams.tips7","稳定性公式:-((twist_power/3)+((mana/100000)*(Math.max(twist_power/3,1))))+starlight_power*2+10+tier*2),当稳定性低于0时机器会开始过载！");
+        provider.add("ctnh.beams.tips8","§c过载度§r每秒提升1且在机器拥有过载度时下§c配方时间会翻4倍§r，当过载度大于一半时会发生§c机器能量泄漏§r，你只能通入魔力稳定剂来稳定过载");
+        provider.add("ctnh.beams.tips9","在不处于过载状态下每3秒减少1过载度，§c过载度积累满时机器将会爆炸§r");
+        provider.add("ctnh.beams.tips10","§c扭曲符文§r消耗概率公式:每次运行有Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0))概率消耗");
+        provider.add("ctnh.beams.tips11","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
+        provider.add("ctnh.beams.tips12","该机器无法超频");
 
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
@@ -494,7 +505,8 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.EYE_OF_QUASAR.getBlock(), "§5类星体§r§1之§c眼");
         provider.add(CTNHMultiblockMachines.ETERNAL_WELL_OF_SUFFER.getBlock(), "§4永恒苦难之井§r");
         provider.add(CTNHMultiblockMachines.HELLFORGE.getBlock(), "§b工业狱火锻炉§r");
-        provider.add(CTNHMultiblockMachines.NICOLL_DYSON_BEAMS.getBlock(), "§9尼魔尔 戴森光束");
+        provider.add(CTNHMultiblockMachines.NICOLL_DYSON_BEAMS.getBlock(), "§9尼魔尔—戴森光束");
+
 
 
 

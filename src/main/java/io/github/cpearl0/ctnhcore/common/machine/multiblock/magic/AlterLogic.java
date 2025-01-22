@@ -72,6 +72,9 @@ public  int Capacity_rune=0;
         if (consume > 0) {
             add_lp=consume;
         }
+        if (lp==max_lp&&consume>0){
+            return  false;
+        }
         else{
             if(consume+lp<0)
             {

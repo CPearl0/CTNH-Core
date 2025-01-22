@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implements IExplosionMachine {
-    public int SLOT_COUNT =5;
+    public int SLOT_COUNT =4;
     public int twist_power=0;
     public int starlight_power=0;
     public int horizen_power=0;

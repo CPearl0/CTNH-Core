@@ -2397,7 +2397,22 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.beams.story2"),
                     Component.translatable("ctnh.beams.story3"),
                     Component.translatable("ctnh.beams.story4"),
-                    Component.translatable("ctnh.beams.story5"))
+                    Component.translatable("ctnh.beams.story5"),
+                    Component.translatable("ctnh.beams.tips12"),
+                    Component.translatable("ctnh.beams.tips1"),
+                    Component.translatable("ctnh.beams.tips2"),
+                    Component.translatable("ctnh.beams.tips3"),
+                    Component.translatable("ctnh.beams.tips4"),
+                    Component.translatable("ctnh.beams.tips5"),
+                    Component.translatable("ctnh.beams.tips6"),
+                    Component.translatable("ctnh.beams.tips8"),
+                    Component.translatable("ctnh.beams.tips9"),
+                    Component.translatable("ctnh.beams.tips7"),
+                    Component.translatable("ctnh.beams.tips10"),
+                    Component.translatable("ctnh.beams.tips11")
+
+
+            )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAA", "B#####B", "B#####B", "B#####B", "C#####C", "OEEEEEO", "#######", "#######", "#######")
                     .aisle("A#####A", "#ACCCA#", "#######", "#######", "#######", "E#####E", "##EEE##", "#######", "#######")
