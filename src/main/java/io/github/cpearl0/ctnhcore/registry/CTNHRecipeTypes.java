@@ -16,6 +16,7 @@ import com.lowdragmc.lowdraglib.utils.CycleItemStackHandler;
 import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 import com.simibubi.create.AllBlocks;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
@@ -333,6 +334,18 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE)
             .addDataInfo(data -> LocalizationUtils.format("ctnh.eye_consumption",String.format("%.1f",data.getFloat("consumption"))));
+    public static final GTRecipeType DIGITAL_WELL_OF_SUFFER = GTRecipeTypes.register("digital_well_of_suffer", ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(1,0,0,1)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.BATH);
+    public static final GTRecipeType HELLFORGE = GTRecipeTypes.register("hellforge",ELECTRIC)
+            .setMaxIOSize(4, 1, 0, 0)
+            .setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.TURBINE)
+            .addDataInfo(data -> Component.translatable("ctnh.gtceu.hellforge.minimumdrain",data.getInt("minimumDrain")).getString())
+            .addDataInfo(data -> Component.translatable("ctnh.gtceu.hellforge.drain",data.getInt("drain")).getString());
     public static final GTRecipeType BEAMS = GTRecipeTypes.register("beams", GTRecipeTypes.ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(9, 2, 1, 2)

@@ -167,6 +167,27 @@ public class EnglishLangHandler {
         provider.add("ctnh.water_power_station.random", "Power output fluctuates randomly between a multiplier of 0.6 to 1.");
         provider.add("water_power_station", "Eco-Friendly Energy!");
         provider.add("bio_reactor", "A big tank");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.0", "Machine Type: §eEternal Well of Suffering§r");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.1", "§8Satan woke up to find himself demoted to second place.§r");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.2", "Enjoy the anguished screams of the suffering souls.§r");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.3", "Recipe time is always fixed at 1s. Increasing the voltage tier will boost the production of Vital Essence, equivalent to lossless overclocking.§r");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.4", "Using an incomplete Data Model yields no output. Higher model levels result in greater production.");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.5", "§bSoul Mode:§r");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.6", "In Soul Mode, the machine does not produce Vital Essence but provides Will to the §bIndustrial Hellforge§r below.");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.7", "Both machines must share the same lava pool, and the controller must be positioned directly above the Hellforge. Please consult JEI for more details.");
+        provider.add("ctnh.gtceu:eternal_well_of_suffer.8", "Outputs Will equal to the Vital Essence production (mB)/100,000.");
+        provider.add("ctnh.gtceu:hellforge.0", "Machine Type: §eHellforge§r");
+        provider.add("ctnh.gtceu:hellforge.1", "§8Do machines have souls too?§r");
+        provider.add("ctnh.gtceu:hellforge.2", "Running Hellforge recipes requires meeting the minimum Will requirements.§r");
+        provider.add("ctnh.gtceu:hellforge.3", "How to fill the machine with Will:§r");
+        provider.add("ctnh.gtceu:hellforge.4", "1. Kill a mob soaked in §cVital Essence§r near the controller using the §bSword of Perception§r. Will gained is based on the mob's max health.");
+        provider.add("ctnh.gtceu:hellforge.5", "§8The Manhattan distance to the controller must be less than 8; it doesn’t necessarily have to be the central blood chalice.§r");
+        provider.add("ctnh.gtceu:hellforge.6", "2. Throw a Soulstone near the controller. The machine will absorb the Will automatically.");
+        provider.add("ctnh.gtceu:hellforge.7", "3. Use the §4Eternal Well of Suffering§r. Please refer to the tooltip of the respective machine.§r");
+        provider.add("ctnh.gtceu.hellforge.will", "Will: %s");
+        provider.add("ctnh.gtceu.hellforge.drain", "MinimumDrain: %s Will");
+        provider.add("ctnh.gtceu.hellforge.minimumdrain", "Drain: %s Will");
+
 
     }
 }

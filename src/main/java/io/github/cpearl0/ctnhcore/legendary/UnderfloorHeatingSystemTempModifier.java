@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.coldsweat;
+package io.github.cpearl0.ctnhcore.legendary;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;

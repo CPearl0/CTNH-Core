@@ -22,21 +22,17 @@ import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMac
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.MultiblockTankMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
-import com.mo_guang.ctpp.CTPPRegistration;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
+import com.mo_guang.ctpp.common.data.CTPPRecipeModifiers;
 import com.mo_guang.ctpp.common.machine.multiblock.KineticOutputMachine;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import dev.arbor.gtnn.GTNN;
-import dev.arbor.gtnn.data.GTNNCasingBlocks;
-import dev.arbor.gtnn.data.GTNNItems;
-import dev.arbor.gtnn.data.GTNNMachines;
 import dev.arbor.gtnn.data.GTNNMaterials;
 import glitchcore.event.client.RenderGuiEvent;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.coldsweat.UnderfloorHeatingSystemTempModifier;
+import io.github.cpearl0.ctnhcore.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.common.block.CTNHFusionCasingType;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.*;
@@ -61,6 +57,7 @@ import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.block.BotaniaFlowerBlocks;
 import wayoftime.bloodmagic.BloodMagic;
 import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
+import wayoftime.bloodmagic.common.fluid.BloodMagicFluids;
 
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -71,7 +68,6 @@ import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
 import static com.gregtechceu.gtceu.common.data.GTMaterialItems.MATERIAL_ITEMS;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.DrillingFluid;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Neutronium;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.registerLargeCombustionEngine;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
@@ -990,7 +986,7 @@ public class CTNHMultiblockMachines {
     public final static MultiblockMachineDefinition BLAZE_BLAST_FURNACE = REGISTRATE.multiblock("blaze_blast_furnace", BlazeBlastFurnaceMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.BLAST_RECIPES)
-            .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(BlazeBlastFurnaceMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .appearanceBlock(CTNHBlocks.BLAZE_BLAST_FURNACE_CASING)
             .tooltips(Component.translatable("blaze_blast_furnace").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.blaze_blast_furnace.consume"),
@@ -2239,7 +2235,7 @@ public class CTNHMultiblockMachines {
             .tooltips(Component.translatable("ctnh.season.a1"),
                     Component.translatable("ctnh.season.a2"),
                     Component.translatable("ctnh.season.a3"))
-            .recipeModifier(season_reactor::recipeModifier)
+            .recipeModifiers(season_reactor::recipeModifier, CTPPRecipeModifiers.KINETIC_ADJUST)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("YXY","XWX","KKK")
                     .aisle("XVX","WUW","KOK")
@@ -2428,6 +2424,74 @@ public class CTNHMultiblockMachines {
                     .where("I",Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
             .workableCasingRenderer(BloodMagic.rl("block/blankrune"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public static MultiblockMachineDefinition ETERNAL_WELL_OF_SUFFER = REGISTRATE.multiblock("eternal_well_of_suffer",EternalWosMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(CTNHRecipeTypes.DIGITAL_WELL_OF_SUFFER)
+            .recipeModifier(EternalWosMachine::recipeModifier)
+            .tooltips(Component.translatable("ctnh.gtceu:eternal_well_of_suffer.0"),
+                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.1"),
+                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.2"),
+                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.3"),
+                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.4"),
+                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.5"),
+                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.6"),
+                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.7"),
+                    Component.translatable("ctnh.gtceu:eternal_well_of_suffer.8"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("#########", "#########", "#########", "#########", "#########", "####A####", "####A####", "####A####", "####A####", "####A####", "####A####", "####A####", "####A####", "###AAA###", "#########", "#########")
+                    .aisle("#########", "#########", "##B#B#B##", "#ABABABA#", "#ABABABA#", "#A#BBB#A#", "#A#CCC#A#", "#A#DDD#A#", "#A#DDD#A#", "#A#####A#", "#A#####A#", "#A#####A#", "#A#####A#", "#AA###AA#", "###AAA###", "#########")
+                    .aisle("#########", "####A####", "#BAA#AAB#", "#BA###AB#", "#BA###AB#", "##BCCCB##", "##CEEEC##", "##D###D##", "##D###D##", "###DDD###", "#########", "#########", "#########", "#A#####A#", "##AAAAA##", "#########")
+                    .aisle("###AAA###", "###AAA###", "##A###A##", "#A#####A#", "#A#####A#", "#BCFFFCB#", "#CEEEEEC#", "#D#####D#", "#D#####D#", "##DD#DD##", "####D####", "####G####", "#########", "A#######A", "#AAA#AAA#", "###AAA###")
+                    .aisle("###AAA###", "##AAHAA##", "#B#####B#", "#B#####B#", "#B#####B#", "ABCFCFCBA", "ACEEEEECA", "AD#####DA", "AD#####DA", "A#D###D#A", "A##DGD##A", "A##GGG##A", "A###G###A", "A#######A", "#AA###AA#", "###AAA###")
+                    .aisle("###AAA###", "###AAA###", "##A###A##", "#A#####A#", "#A#####A#", "#BCFFFCB#", "#CEEEEEC#", "#D#####D#", "#D#####D#", "##DD#DD##", "####D####", "####G####", "#########", "A#######A", "#AAA#AAA#", "###AAA###")
+                    .aisle("#########", "####A####", "#BAA#AAB#", "#BA###AB#", "#BA###AB#", "##BCCCB##", "##CEEEC##", "##D###D##", "##D###D##", "###DDD###", "#########", "#########", "#########", "#A#####A#", "##AAAAA##", "#########")
+                    .aisle("#########", "#########", "##B#B#B##", "#ABA@ABA#", "#ABABABA#", "#A#BBB#A#", "#A#CCC#A#", "#A#DDD#A#", "#A#DDD#A#", "#A#####A#", "#A#####A#", "#A#####A#", "#A#####A#", "#AA###AA#", "###AAA###", "#########")
+                    .aisle("#########", "#########", "#########", "#########", "#########", "####A####", "####A####", "####A####", "####A####", "####A####", "####A####", "####A####", "####A####", "###AAA###", "#########", "#########")
+                    .where("#", Predicates.any())
+                    .where("A", Predicates.blocks(BloodMagicBlocks.OBSIDIAN_TILE_PATH.get()))
+                    .where("B", Predicates.blocks(BloodMagicBlocks.BLOODSTONE_BRICK.get()).or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("C", Predicates.blocks(BloodMagicBlocks.BLANK_RITUAL_STONE.get()))
+                    .where("D", Predicates.blocks(TINTED_GLASS))
+                    .where("E", Predicates.blocks(BloodMagicFluids.LIFE_ESSENCE_BLOCK.get()))
+                    .where("F", Predicates.blocks(BloodMagicBlocks.SACRIFICE_RUNE.get()))
+                    .where("G", Predicates.blocks(BloodMagicBlocks.HELLFORGED_BLOCK.get()))
+                    .where("H", Predicates.blocks(LAVA))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer(BloodMagic.rl("block/largebloodstonebrick"), GTCEu.id("block/machines/digital_well_of_suffer"), false)
+            .register();
+    public static MultiblockMachineDefinition HELLFORGE = REGISTRATE.multiblock("hellforge",HellForgeMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(CTNHRecipeTypes.HELLFORGE)
+            .tooltips(Component.translatable("ctnh.gtceu:hellforge.0"),
+                    Component.translatable("ctnh.gtceu:hellforge.1"),
+                    Component.translatable("ctnh.gtceu:hellforge.2"),
+                    Component.translatable("ctnh.gtceu:hellforge.3"),
+                    Component.translatable("ctnh.gtceu:hellforge.4"),
+                    Component.translatable("ctnh.gtceu:hellforge.5"),
+                    Component.translatable("ctnh.gtceu:hellforge.6"),
+                    Component.translatable("ctnh.gtceu:hellforge.7"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAAAA", "B#####B", "B#####B", "B#####B", "B#####B", "B#####B", "B#####B", "B#####B", "AAAAAAA", "AAAAAAA", "A#A#A#A")
+                    .aisle("AAAAAAA", "#A###A#", "#A###A#", "#A###A#", "#A###A#", "#A###A#", "#A###A#", "#A###A#", "AAAAAAA", "A#####A", "#######")
+                    .aisle("AAAAAAA", "##CCC##", "##D#D##", "##BCB##", "##BEB##", "##B#B##", "##D#D##", "##D#D##", "AAAAAAA", "A#AAA#A", "A#####A")
+                    .aisle("AAAAAAA", "##CFC##", "###G###", "##CCC##", "##EHE##", "#######", "#######", "#######", "AAAAAAA", "A#AIA#A", "#######")
+                    .aisle("AAAAAAA", "##CCC##", "##D#D##", "##BCB##", "##BEB##", "##B#B##", "##D#D##", "##D#D##", "AAAAAAA", "A#AAA#A", "A#####A")
+                    .aisle("AAAAAAA", "#A###A#", "#A###A#", "#A###A#", "#A###A#", "#A###A#", "#A###A#", "#A###A#", "AAAAAAA", "A#####A", "#######")
+                    .aisle("AAA@AAA", "B#####B", "B#####B", "B#####B", "B#####B", "B#####B", "B#####B", "B#####B", "AAAAAAA", "AAAAAAA", "A#A#A#A")
+                    .where("A", Predicates.blocks(BloodMagicBlocks.OBSIDIAN_TILE_PATH.get()).or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.blocks(CHAIN))
+                    .where("#", Predicates.any())
+                    .where("C", Predicates.blocks(BloodMagicBlocks.DUNGEON_BRICK_SLAB.get()))
+                    .where("D", Predicates.blocks(BloodMagicBlocks.HELLFORGED_BLOCK.get()))
+                    .where("E", Predicates.blocks(BloodMagicBlocks.DUNGEON_BRICK_1.get()))
+                    .where("F", Predicates.blocks(BloodMagicBlocks.DUNGEON_TILE.get()))
+                    .where("G", Predicates.blocks(BloodMagicBlocks.DUNGEON_BRICK_WALL.get()))
+                    .where("H", Predicates.blocks(BloodMagicFluids.LIFE_ESSENCE_BLOCK.get()))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("I", Predicates.blocks(LAVA)).build())
+            .workableCasingRenderer(BloodMagic.rl("block/obsidiantilepath"), GTCEu.id("block/machines/autoclave"), false)
             .register();
     public static void init() {
 
