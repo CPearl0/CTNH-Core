@@ -317,7 +317,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.beams.story4","末影珍珠的§5量子隧穿效应§r作为该巨构的虫洞，则也许可以绕过三体舰队的§6天枢圣盾§r进行打击，而不需要以往戴森光束的超级能量来过载护盾。");
         provider.add("ctnh.beams.story5","§9那些愚蠢的精灵还在彩虹桥玩他们的过家家，而真正的大魔导师早已经超越了物理与魔法的浅薄认知。");
         provider.add("ctnh.beams.story0","配方类型：§9高能魔力扭曲聚变§r，§c跨纬度打击超级武器");
-
+        provider.add("ctnh.beams.tips1","插入机器的几种符文决定了该机器的各种能力")
 
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
