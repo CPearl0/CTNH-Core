@@ -7,7 +7,9 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
 
@@ -18,8 +20,8 @@ public class AlterLogic extends WorkableElectricMultiblockMachine {
     public int max_lp=10000;
     public int lp=0;
     public int add_lp=0;
-public  int Speed_rune=0;
-public  int Capacity_rune=0;
+    public static final String MAX_LP="max_lp";
+    public static final String LP = "lp";
     public BlockPos[] Runes = new BlockPos[]{
             getPos().offset(1,2,-3),
             getPos().offset(-1,2,-3),
@@ -27,9 +29,9 @@ public  int Capacity_rune=0;
             getPos().offset(0,2,-2)
 
     };
-    public void calculateRune() {
-        Speed_rune = 0;
-        Capacity_rune = 0;
+    public int calculateRune() {
+        int Speed_rune = 0;
+        int Capacity_rune = 0;
         for(var rune : Runes){
             var runeBlock = Objects.requireNonNull(getLevel()).getBlockState(rune).getBlock();
             if (runeBlock.equals(BloodMagicBlocks.SPEED_RUNE.get())) {
@@ -45,6 +47,7 @@ public  int Capacity_rune=0;
                 Capacity_rune += 2;
             }
         }
+        return Capacity_rune;
     }
     public void addDisplayText(List<Component> textList) {
         var tier = getTier();
@@ -52,7 +55,6 @@ public  int Capacity_rune=0;
         textList.add(textList.size(), Component.translatable("ctnh.lp_now",String.format("%d",lp)));
          textList.add(textList.size(), Component.translatable("ctnh.lp_max",String.format("%d",max_lp)));
     }
-
     @Override
     public void onStructureFormed() {
 
@@ -60,9 +62,9 @@ public  int Capacity_rune=0;
         var tier = getTier();
         max_lp=10000;
         max_lp+=10000*Math.max((tier-3),0);
-        max_lp+=20000*Math.max((tier-5),0);
-        max_lp+=2500*Capacity_rune;
-        max_lp+=(2500*Capacity_rune*Math.max((tier-5),0));
+        max_lp+=30000*Math.max((tier-5),0);
+        max_lp+=2500*calculateRune();
+        max_lp+=(2500*calculateRune()*Math.max((tier-5),0));
         super.onStructureFormed();
     }
 
@@ -71,6 +73,9 @@ public  int Capacity_rune=0;
         int consume=recipe.data.getInt("addlp");
         if (consume > 0) {
             add_lp=consume;
+        }
+        if (lp==max_lp&&consume>0){
+            return  false;
         }
         else{
             if(consume+lp<0)
@@ -110,4 +115,20 @@ public  int Capacity_rune=0;
         }
         return ModifierFunction.NULL;
     }
+    @Override
+    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
+        super.saveCustomPersistedData(tag, forDrop);
+        if (!forDrop) {
+            tag.putInt(MAX_LP, max_lp);
+            tag.putInt(LP,lp);
+        }
+    }
+
+    @Override
+    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
+        super.loadCustomPersistedData(tag);
+        max_lp = tag.contains(MAX_LP) ? tag.getInt(MAX_LP) : 20000;
+        lp=tag.contains(LP)? tag.getInt(LP):0;
+    }
 }
+

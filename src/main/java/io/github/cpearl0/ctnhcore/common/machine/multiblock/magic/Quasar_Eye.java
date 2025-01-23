@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -21,9 +22,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITieredMachine {
-private double rune_energy=0;
+    private double rune_energy=0;
  private int energy_tier=0;
  private  int active=0;
+ public static final String RUNE_ENERGY = "rune_energy";
+    public static final String ET = "energy_tier";
+    public static final String ACTIVE = "active";
  private static int[] based_output={0,67108864,134217728,268435456};
     public Quasar_Eye(IMachineBlockEntity holder){
         super(holder);
@@ -64,7 +68,7 @@ private double rune_energy=0;
                     rune_energy+=16;
                 }
                 if (MachineUtils.inputItem(CTNHItems.QUASAR_RUNE.asStack(1),this )){
-                    rune_energy+=256;
+                    rune_energy+=512;
                 }
                 if(active<1)active=1;
                 energy_tier=1;
@@ -86,7 +90,7 @@ private double rune_energy=0;
                     rune_energy+=16;
                 }
                 if (MachineUtils.inputItem(CTNHItems.QUASAR_RUNE.asStack(1),this )){
-                    rune_energy+=512;
+                    rune_energy+=1024;
                 }
                 if(active<2)active=2;
                 energy_tier=2;
@@ -124,5 +128,21 @@ private double rune_energy=0;
         }
         return ModifierFunction.NULL;
     }
+    @Override
+    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
+        super.saveCustomPersistedData(tag, forDrop);
+        if (!forDrop) {
+            tag.putInt(ACTIVE, active);
+            tag.putInt(ET,energy_tier);
+            tag.putDouble(RUNE_ENERGY,rune_energy);
+        }
+    }
 
+    @Override
+    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
+        super.loadCustomPersistedData(tag);
+        active = tag.contains(ACTIVE) ? tag.getInt(ACTIVE) : 0;
+        energy_tier=tag.contains(ET)? tag.getInt(ET):0;
+        rune_energy=tag.contains(RUNE_ENERGY)?tag.getDouble(RUNE_ENERGY):0;
+    }
 }

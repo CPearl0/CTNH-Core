@@ -198,10 +198,10 @@ public class ChineseLangHandler {
         provider.add("ctnh.zenith_circut_assember","机器类型：§e电路组装机§r,§5魔力共振电路组装§r");
         provider.add("ctnh.zenith_circut_assember_sp","允许使用§5魔力共振电路组装§r，以更低电压和特殊材料组装共振电路");
         provider.add("ctnh.zenith_machine_tip","在达到LUV电压后，如果§5天顶源质§r足够，每次运行会消耗(60*(当前电压等级-6))的天顶源质，获得2^(当前电压等级-6)的并行数，最大并行数取决于当前电压。但是不输入天顶源质会损失4并行数。");
-        provider.add("ctnh.zenith_waring","注意，源质的消耗与当前你输入的物品数无关，即使没有并行，我也会克扣你的天顶源质，当并行达到上限后仍然会消耗天顶源质");
+        provider.add("ctnh.zenith_waring","注意，源质的消耗与当前你输入的物品数无关，即使没有并行，我也会克扣你的天顶源质，当并行达到上限后仍然会消耗天顶源质，但是消耗量固定为60");
         provider.add("ctnh.basic_mana_machine.mana_consume", "每秒基础消耗4mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.advanced_mana_machine.mana_consume", "每秒基础消耗10mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
-        provider.add("ctnh.super_mana_machine.mana_consume", "每秒基础消耗25mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
+        provider.add("ctnh.super_mana_machine.mana_consume", "每秒基础消耗12mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.mana_macerator", "机器类型：§e研磨机§r");
         provider.add("ctnh.mana_bender", "机器类型：§e卷板机§r");
         provider.add("ctnh.mana_lathe", "机器类型：§e车床§r");
@@ -267,7 +267,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.computer.a7","为了无尽的知识，我们必须§4做出一切必要的牺牲§4");
         provider.add("ctnh.season.a1","§9利用季节共振的力量");
         provider.add("ctnh.season.a2","基础应力效率：8192su/t");
-        provider.add("ctnh.season.a3","只可放入季节符文\n季节符文与季节相同时，效率和持续时间*2,如果与季节互斥，则效率和持续时间*0.5\n§7注意:由于我水平菜菜，没找到按照配方类型改变效率代码，所以必须在运行一次后机器才能调整效率");
+        provider.add("ctnh.season.a3","只可放入季节符文\n季节符文与季节相同时，效率和持续时间*8,如果与季节互斥，则效率和持续时间*0.25\n§7注意:由于我水平菜菜，没找到按照配方类型改变效率代码，所以必须在运行一次后机器才能调整效率");
         provider.add("martial_morality_eye", "丐版鸿蒙之眼");
         provider.add("ctnh.martial_morality_eye.tooltip.0", "原始时代时消耗64000mb的蒸汽和64个原石");
         provider.add("ctnh.martial_morality_eye.tooltip.1", "产出主世界和暮色森林以及月球的矿");
@@ -279,8 +279,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.lp_consumption","消耗/输入的lp量:%.1f");
         provider.add("ctnh.alter.tips1","§4血魔法，就在你家门口！");
         provider.add("ctnh.alter.tips2","与血祭坛相同，该结构有输入LP上限，同时你§4必须通过特定配方来增加其lp§r\n详见JEI以查询增加的配方");
-        provider.add("ctnh.alter.tips3","电压每超过HV一级，就增加10000可存储LP上限，达到LUV后每级额外增加20000");
-        provider.add("ctnh.alter.tips4","每一个增容符文增加2500LP上限，强化增容符文增加5000,达到LUV后每级额外增加2500/5000LP上限");
+        provider.add("ctnh.alter.tips3","电压每超过HV一级，就增加10000可存储LP上限，达到LUV后每级额外增加30000");
+        provider.add("ctnh.alter.tips4","每一个增容符文增加2500LP上限，强化增容符文增加5000,达到LUV后每级额外增加10000/20000LP上限");
         provider.add("ctnh.tier5_rune","五级符文");
         provider.add("ctnh.rune_energy","符文能量：%.2f");
         provider.add("ctnh.rune_consumption","当前消耗符文能量速率:%.2f /100tick");
@@ -321,6 +321,37 @@ public class ChineseLangHandler {
         provider.add("ctnh.gtceu.hellforge.drain", "最少：%s意志");
         provider.add("ctnh.gtceu.hellforge.minimumdrain", "消耗：%s意志");
 
+        provider.add("ctnh.beams_overload","§c警告：机器过载！！！");
+        provider.add("ctnh.beams_crash","§c机器已损坏");
+        provider.add("ctnh.beams_mana","当前魔力量:%.2f");
+        provider.add("ctnh.twist_consumption","扭曲符文消耗概率:%.2f");
+        provider.add("ctnh.starlight_consumption","星光符文消耗概率:%.2f");
+        provider.add("ctnh.beams_overload_1","§c机器过载度:%d/%d");
+        provider.add("ctnh.beams_overload_2","§c！！！警告：能量溢出！！！");
+        provider.add("ctnh.beams_max_mana","魔力上限:%.2f");
+        provider.add("ctnh.beams_mana_required","魔力需求:%.2f");
+        provider.add("ctnh.beams_mana_consumption","消耗魔力:%.2f");
+        provider.add("ctnh.beams_time","运行时间倍率:%.2f");
+        provider.add("ctnh.beams_eut_consumption","消耗能量倍率:%.2f");
+        provider.add("ctnh.beams_stable","魔力稳定值:%.2f");
+        provider.add("ctnh.beams.story1","以往对魔力的研究表明，这种特殊元素有着不同于以往物理体系的机理。魔力与§a硅岩§r一同蕴含极大的能量，但是魔力的能量却很难完全输出，而通过某种效应而消失");
+        provider.add("ctnh.beams.story2","同时，魔力的空间扭曲能力会随着魔力的浓度而增大，§l如果能把大量魔力聚集在一起§r，则可以以极高的能量和特殊的空间扭曲能力来模拟另一种特殊的§c“聚变”§r");
+        provider.add("ctnh.beams.story3","与三体文明战争中的超级武器戴森光束给予了你启发。虽然魔力无法达到§6恒星§r级别的能量，但是对戴森光束的聚焦模拟也可以使魔力的能量达到§6难以想象§r的水平");
+        provider.add("ctnh.beams.story4","末影珍珠的§5量子隧穿效应§r作为该巨构的虫洞，则也许可以绕过三体舰队的§6天枢圣盾§r进行打击，而不需要以往戴森光束的超级能量来过载护盾。");
+        provider.add("ctnh.beams.story5","§9那些愚蠢的精灵还在彩虹桥玩他们的过家家，而真正的大魔导师早已经超越了物理与魔法的浅薄认知。");
+        provider.add("ctnh.beams.story0","配方类型：§9高能魔力扭曲聚变§r，§c跨纬度打击超级武器");
+        provider.add("ctnh.beams.tips1","插入机器的几种§9五级符文§r决定了该机器的各种能力");
+        provider.add("ctnh.beams.tips2","§9星空符文§r的能量降低了能源消耗并增强乐机器稳定性");
+        provider.add("ctnh.beams.tips3","§c扭曲符文§r的能量降低了所用时间，§c但会让机器更加不稳定");
+        provider.add("ctnh.beams.tips4","§d视域符文§r的能量增大了魔力上限和魔力使用效率");
+        provider.add("ctnh.beams.tips5","§5类星体符文§r的能量太过强大，§c会直接让机器爆炸！");
+        provider.add("ctnh.beams.tips6","§c扭曲§r与§9星空§r的对抗决定了机器的稳定性");
+        provider.add("ctnh.beams.tips7","稳定性公式:-((twist_power/3)+((mana/100000)*(Math.max(twist_power/3,1))))+starlight_power*2+10+tier*2),当稳定性低于0时机器会开始过载！");
+        provider.add("ctnh.beams.tips8","§c过载度§r每秒提升1且在机器拥有过载度时下§c配方时间会翻4倍§r，当过载度大于一半时会发生§c机器能量泄漏§r，你只能通入魔力稳定剂来稳定过载");
+        provider.add("ctnh.beams.tips9","在不处于过载状态下每3秒减少1过载度，§c过载度积累满时机器将会爆炸§r");
+        provider.add("ctnh.beams.tips10","§c扭曲符文§r消耗概率公式:每次运行有Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0))概率消耗");
+        provider.add("ctnh.beams.tips11","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
+        provider.add("ctnh.beams.tips12","该机器无法超频");
 
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
@@ -338,14 +369,6 @@ public class ChineseLangHandler {
         for (int tier : GTValues.tiersBetween(ULV, MV)){
             provider.add(CTNHMachines.ROTOR_HOLDER_EXTEND[tier].getBlock(), GTValues.VNF[tier] + "§r转子支架");
         }
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[LV].getBlock(), "基础数字化苦难之井");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[MV].getBlock(), "§b进阶数字化苦难之井§r");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[HV].getBlock(), "§6进阶数字化苦难之井 II§r");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[EV].getBlock(), "§5进阶数字化苦难之井 III§r");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[IV].getBlock(), "§9精英数字化苦难之井§r");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[LuV].getBlock(), "§d精英数字化苦难之井 II§r");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[ZPM].getBlock(), "§c数字化猩红深渊§r");
-        provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[UV].getBlock(), "§3数字化猩红深渊 II§r");
 
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
         provider.add(CTNHCreativeModeTabs.ITEM.get(), "CTNH物品");
@@ -482,6 +505,10 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.EYE_OF_QUASAR.getBlock(), "§5类星体§r§1之§c眼");
         provider.add(CTNHMultiblockMachines.ETERNAL_WELL_OF_SUFFER.getBlock(), "§4永恒苦难之井§r");
         provider.add(CTNHMultiblockMachines.HELLFORGE.getBlock(), "§b工业狱火锻炉§r");
+        provider.add(CTNHMultiblockMachines.NICOLL_DYSON_BEAMS.getBlock(), "§9尼魔尔—戴森光束");
+
+
+
 
 
     }

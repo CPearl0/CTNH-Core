@@ -93,6 +93,14 @@ public class MachinesRecipes {
                 .circuitMeta(2)
                 .outputItems(CTNHMultiblockMachines.ZPM_LARGE_MINER)
                 .duration(400).EUt(VA[ZPM]).save(provider);
+        CTNHRecipeTypes.BEAMS.recipeBuilder("test")
+                .circuitMeta(24)
+                .inputFluids(CTNHMaterials.Zenith_essence.getFluid(10))
+                .EUt(999)
+                .duration(1500)
+                .addData("required_mana",0)
+                .addData("mana",1)
+                .save(provider);
     }
 
 }

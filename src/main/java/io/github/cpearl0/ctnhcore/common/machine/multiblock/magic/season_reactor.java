@@ -50,37 +50,40 @@ public class season_reactor extends KineticOutputMachine {
             }
             if(season.equals("AUTUMN"))
             {
-                time=efficiency=2;
+                time=efficiency=8;
             }
             return super.beforeWorking(recipe);
         }
         else if (MachineUtils.inputItem(summer_rune,this)){
             if(season.equals("SUMMER"))
             {
-                efficiency=2;
-                time=2;
+                efficiency=8;
+                time=8;
+                efficiency=4.0;
             }
             if(season.equals("WINTER")){
-                time=efficiency=0.5;
+                time=efficiency=0.25;
             }
             return super.beforeWorking(recipe);
         }
         else if (MachineUtils.inputItem(spring_rune,this)){
             if(season.equals("SPRING")){
-                time=efficiency=2;
+                time=efficiency=8;
+                efficiency=4.0;
             }
             if(season.equals("AUTUMN")){
-                time=efficiency=0.5;
+                time=efficiency=0.25;
             }
             return super.beforeWorking(recipe);
         }
         else if (MachineUtils.inputItem(winter_rune,this)){
             if(season.equals("SUMMER")){
-                time=efficiency=0.5;
+                time=efficiency=0.25;
             }
             if(season.equals("WINTER"))
             {
-                time=efficiency=2.0;
+                time=efficiency=8.0;
+                efficiency=4.0;
             }
             return super.beforeWorking(recipe);
         }
