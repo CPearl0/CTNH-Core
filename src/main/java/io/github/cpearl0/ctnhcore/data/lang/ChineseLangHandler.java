@@ -267,7 +267,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.computer.a7","为了无尽的知识，我们必须§4做出一切必要的牺牲§4");
         provider.add("ctnh.season.a1","§9利用季节共振的力量");
         provider.add("ctnh.season.a2","基础应力效率：8192su/t");
-        provider.add("ctnh.season.a3","只可放入季节符文\n季节符文与季节相同时，效率和持续时间*2,如果与季节互斥，则效率和持续时间*0.5\n§7注意:由于我水平菜菜，没找到按照配方类型改变效率代码，所以必须在运行一次后机器才能调整效率");
+        provider.add("ctnh.season.a3","只可放入季节符文\n季节符文与季节相同时，效率和持续时间*8,如果与季节互斥，则效率和持续时间*0.25\n§7注意:由于我水平菜菜，没找到按照配方类型改变效率代码，所以必须在运行一次后机器才能调整效率");
         provider.add("martial_morality_eye", "丐版鸿蒙之眼");
         provider.add("ctnh.martial_morality_eye.tooltip.0", "原始时代时消耗64000mb的蒸汽和64个原石");
         provider.add("ctnh.martial_morality_eye.tooltip.1", "产出主世界和暮色森林以及月球的矿");
@@ -279,8 +279,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.lp_consumption","消耗/输入的lp量:%.1f");
         provider.add("ctnh.alter.tips1","§4血魔法，就在你家门口！");
         provider.add("ctnh.alter.tips2","与血祭坛相同，该结构有输入LP上限，同时你§4必须通过特定配方来增加其lp§r\n详见JEI以查询增加的配方");
-        provider.add("ctnh.alter.tips3","电压每超过HV一级，就增加10000可存储LP上限，达到LUV后每级额外增加20000");
-        provider.add("ctnh.alter.tips4","每一个增容符文增加2500LP上限，强化增容符文增加5000,达到LUV后每级额外增加2500/5000LP上限");
+        provider.add("ctnh.alter.tips3","电压每超过HV一级，就增加10000可存储LP上限，达到LUV后每级额外增加30000");
+        provider.add("ctnh.alter.tips4","每一个增容符文增加2500LP上限，强化增容符文增加5000,达到LUV后每级额外增加10000/20000LP上限");
         provider.add("ctnh.tier5_rune","五级符文");
         provider.add("ctnh.rune_energy","符文能量：%.2f");
         provider.add("ctnh.rune_consumption","当前消耗符文能量速率:%.2f /100tick");
