@@ -2448,7 +2448,7 @@ public class CTNHMultiblockMachines {
                     .aisle("#########", "#########", "#########", "#########", "#########", "####A####", "####A####", "####A####", "####A####", "####A####", "####A####", "####A####", "####A####", "###AAA###", "#########", "#########")
                     .where("#", Predicates.any())
                     .where("A", Predicates.blocks(BloodMagicBlocks.OBSIDIAN_TILE_PATH.get()))
-                    .where("B", Predicates.blocks(BloodMagicBlocks.BLOODSTONE_BRICK.get()).or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.blocks(BloodMagicBlocks.BLOODSTONE.get()).or(Predicates.autoAbilities(definition.getRecipeTypes())))
                     .where("C", Predicates.blocks(BloodMagicBlocks.BLANK_RITUAL_STONE.get()))
                     .where("D", Predicates.blocks(TINTED_GLASS))
                     .where("E", Predicates.blocks(BloodMagicFluids.LIFE_ESSENCE_BLOCK.get()))

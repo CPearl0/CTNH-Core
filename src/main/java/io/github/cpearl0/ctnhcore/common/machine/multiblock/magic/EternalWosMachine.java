@@ -7,8 +7,10 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.common.data.GTRecipeCapabilities;
 import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalWosMachine;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.Nullable;
@@ -52,14 +54,16 @@ public class EternalWosMachine extends WorkableElectricMultiblockMachine {
         if(machine instanceof DigitalWosMachine dmachine) {
             var level = dmachine.self().getLevel();
             var pos= dmachine.self().getPos();
-            pos=pos.offset(0,-11,0);
+            pos = pos.offset(0,-11,0);
+            var maxParallel = ParallelLogic.getParallelAmount(dmachine,recipe,2147483647);
+            ModifierFunction parallel = CTNHRecipeModifiers.accurateParallel(machine,recipe,maxParallel);
             if(getMachine(level,pos) instanceof HellForgeMachine hmachine){
                 var outputAmount=((FluidStack)(recipe.getOutputContents(GTRecipeCapabilities.FLUID).get(0).content)).getAmount();
-                hmachine.will = hmachine.will + outputAmount* dmachine.multiplier/100000;
+                hmachine.will = hmachine.will + maxParallel * outputAmount * dmachine.multiplier/100000;
                 dmachine.multiplier=0;
             }
 
-            return ModifierFunction.builder().outputModifier(ContentModifier.multiplier(dmachine.multiplier)).build();
+            return ModifierFunction.builder().outputModifier(ContentModifier.multiplier(dmachine.multiplier)).build().compose(parallel);
         }
         return ModifierFunction.IDENTITY;
     }
