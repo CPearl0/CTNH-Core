@@ -289,7 +289,7 @@
   "ctnh.mana_generator_turbine_tier3.basic_power": "§e基础产能功率：§r1024 EU/t",
   "ctnh.mana_generator_turbine_tier3.restriction": "转子支架等级不能超过§dLuV§r",
   "ctnh.mana_generator_turbine_tier4.basic_power": "§e基础产能功率：§r4096 EU/t",
-  "ctnh.mana_generator_turbine_tier4.restriction": "转子支架等级不能超过§3UV§r",
+  "ctnh.mana_generator_turbine_tier4.restriction": "转子支架等级不能超过§3ZPM§r",
   "ctnh.mana_lathe": "机器类型：§e车床§r",
   "ctnh.mana_macerator": "机器类型：§e研磨机§r",
   "ctnh.mana_mixer": "机器类型：§e搅拌机§r",

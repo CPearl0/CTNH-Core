@@ -1265,7 +1265,7 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(CTNHCore.id("block/casings/terra_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER4 = REGISTRATE.multiblock("mana_generator_turbine_tier4",holder -> new ManaLargeTurbineMachine(holder,8192, GTValues.UV))
+    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER4 = REGISTRATE.multiblock("mana_generator_turbine_tier4",holder -> new ManaLargeTurbineMachine(holder,8192, GTValues.ZPM))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
             .generator(true)

@@ -35,11 +35,12 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
 
     @Override
     public void onStructureFormed() {
+        super.onStructureFormed();
         rune_energy=0;
         energy_tier=0;
         active=0;
 
-        super.onStructureFormed();
+
     }
     public double energy_caculate(double rune){
         if(rune<=50)

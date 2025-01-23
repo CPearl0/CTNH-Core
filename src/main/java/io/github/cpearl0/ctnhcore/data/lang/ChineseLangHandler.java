@@ -220,7 +220,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.mana_generator_turbine_tier3.restriction", "转子支架等级不能超过§dLuV§r");
         provider.add("mana_generator_turbine_tier4", "神奇的能量守恒");
         provider.add("ctnh.mana_generator_turbine_tier4.basic_power", "§e基础产能功率：§r4096 EU/t");
-        provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§3UV§r");
+        provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§3ZPM§r");
         provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，消耗量x0.9\n  二级符文：发电量x2，消耗量x0.75\n  三级符文：发电量x3，消耗量x0.6\n  四级符文：发电量x4，消耗量x0.4");
         provider.add("ctnh.machine.super_ebf.tooltip1", "所有配方耗时减半");
         provider.add("ctnh.mega_lcr.recipe_type","化学反应釜 / 大型化学反应釜");

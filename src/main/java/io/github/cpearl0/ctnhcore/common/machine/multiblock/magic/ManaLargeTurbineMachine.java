@@ -114,7 +114,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
             return ModifierFunction.NULL;
         }
 
-        double holderEfficiency = rotorHolder.getTotalEfficiency() / 500.0;
+        double holderEfficiency = rotorHolder.getTotalEfficiency() / 600.0;
 
         // get the amount of parallel required to match the desired output voltage
         var maxParallel = (int) ((turbineMaxVoltage - turbineMachine.excessVoltage) / (EUt * holderEfficiency));

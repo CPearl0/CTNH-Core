@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
+import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
@@ -27,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implements IExplosionMachine {
+public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implements IExplosionMachine, ITieredMachine {
     public int SLOT_COUNT =4;
     public int twist_power=0;
     public int starlight_power=0;
