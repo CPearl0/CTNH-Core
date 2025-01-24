@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblo
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import net.minecraft.ChatFormatting;
@@ -70,7 +71,7 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
     }
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        int parallel = 8;
+        int parallel = ParallelLogic.getParallelAmount(machine,recipe,8);
         var reduce = new ContentModifier(0.75 * parallel,0);
         return ModifierFunction.builder()
                 .eutModifier(reduce)
