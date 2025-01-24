@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.magic;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
@@ -16,7 +17,7 @@ import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
 import java.util.List;
 import java.util.Objects;
 
-public class AlterLogic extends WorkableElectricMultiblockMachine {
+public class AlterLogic extends WorkableElectricMultiblockMachine implements ITieredMachine {
     public int max_lp=10000;
     public int lp=0;
     public int add_lp=0;
@@ -50,22 +51,22 @@ public class AlterLogic extends WorkableElectricMultiblockMachine {
         return Capacity_rune;
     }
     public void addDisplayText(List<Component> textList) {
-        var tier = getTier();
         super.addDisplayText(textList);
+        var tier = getTier();
+
         textList.add(textList.size(), Component.translatable("ctnh.lp_now",String.format("%d",lp)));
          textList.add(textList.size(), Component.translatable("ctnh.lp_max",String.format("%d",max_lp)));
     }
     @Override
     public void onStructureFormed() {
-
-        calculateRune();
+        super.onStructureFormed();
         var tier = getTier();
         max_lp=10000;
-        max_lp+=10000*Math.max((tier-3),0);
-        max_lp+=30000*Math.max((tier-5),0);
-        max_lp+=2500*calculateRune();
-        max_lp+=(2500*calculateRune()*Math.max((tier-5),0));
-        super.onStructureFormed();
+        max_lp=max_lp+10000*Math.max((tier-3),0);
+        max_lp=max_lp+30000*Math.max((tier-5),0);
+        max_lp=max_lp+2500*calculateRune();
+        max_lp=max_lp+(10000*calculateRune()*Math.max((tier-5),0));
+
     }
 
     @Override

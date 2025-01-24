@@ -13,11 +13,14 @@ public class WindPowerArrayRecipes {
                 .inputFluids(Lubricant.getFluid(1))
                 .duration(20)
                 .EUt(-32)
+                .addData("consume",1)
                 .save(provider);
+
         CTNHRecipeTypes.WIND_POWER_ARRAY.recipeBuilder("wind_power_no_lubricant")
                 .circuitMeta(0)
                 .duration(20)
                 .EUt(-24)
+                .addData("consume",0)
                 .save(provider);
     }
 }

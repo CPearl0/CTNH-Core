@@ -353,6 +353,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.beams.tips10","§c扭曲符文§r消耗概率公式:每次运行有Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0))概率消耗");
         provider.add("ctnh.beams.tips11","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
         provider.add("ctnh.beams.tips12","该机器无法超频");
+        provider.add("ctnh.magic.parrel","当前并行数:%.2f");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.0", "机器类型：§e核聚变反应堆/§5扭曲聚变反应堆§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.1", "§8以不可思议的伟力。§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.2", "§e核聚变反应堆模式：§r");
@@ -362,8 +363,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.gtceu:twisted_fusion_mk1.6", "大于320MEU，小于480MEU：4x并行");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.7", "§5扭曲聚变反应堆模式：§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.8", "遵循字母守恒定律的反应。");
-        provider.add("ctnh.gtceu:twisted_fusion_mk1.9", "或许可以用来生产一些§9奇怪的东西§r...")
-;
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.9", "或许可以用来生产一些§9奇怪的东西§r...");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -447,7 +447,6 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ELEMENTIUM_PIPE_CASING, "源质钢管道机械方块");
         // provider.addBlock(CTNHBlocks.COMPUTER_HEAT_VENT_SIDE2,"高能机器散热口");
         provider.addBlock(CTNHBlocks.QUASAR_ENERGY_STABILIZATION_CASING,"类星体能量稳定机械外壳");
-        provider.addBlock(CTNHBlocks.TWISTED_FUSION_CASING, "扭曲聚变机械方块");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -518,7 +517,6 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.ETERNAL_WELL_OF_SUFFER.getBlock(), "§4永恒苦难之井§r");
         provider.add(CTNHMultiblockMachines.HELLFORGE.getBlock(), "§b工业狱火锻炉§r");
         provider.add(CTNHMultiblockMachines.NICOLL_DYSON_BEAMS.getBlock(), "§9尼魔尔—戴森光束");
-        provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MK1.getBlock(), "§5扭曲聚变反应堆控制电脑 MK-I");
 
 
 

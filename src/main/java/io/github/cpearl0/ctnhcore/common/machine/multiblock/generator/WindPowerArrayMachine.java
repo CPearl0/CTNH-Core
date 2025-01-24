@@ -36,13 +36,15 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
         this.tier = tier;
         Multi = (int) Math.pow(4,tier - 1);
     }
-
+    public double NetConsume(){
+        return Multi*(1+0.5*(NetworkSize));
+    }
     public static ModifierFunction WindPowerArrayRecipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof WindPowerArrayMachine wmachine) {
             int realAltitude = Mth.clamp(wmachine.altitude,64,256);
             return ModifierFunction.builder()
                     .eutMultiplier(wmachine.efficiency * ((double) (realAltitude + 128) / 192) * wmachine.Multi)
-                    .inputModifier(ContentModifier.multiplier(wmachine.Multi))
+                    .inputModifier(ContentModifier.multiplier(wmachine.NetConsume()))
                     .outputModifier(ContentModifier.multiplier(wmachine.Multi))
                     .build();
         }
@@ -87,7 +89,12 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
                 NetworkSize = machineNet.size();
             }
         }
-        efficiency = Math.sqrt(NetworkSize) * 0.2 + 1;
+        if(recipe.data.getInt("consume")==0) {
+            efficiency = Math.sqrt(NetworkSize) * 0.2 + 1;
+        }
+        else{
+            efficiency=NetworkSize*0.1+1;
+        }
         return super.beforeWorking(recipe);
     }
 
