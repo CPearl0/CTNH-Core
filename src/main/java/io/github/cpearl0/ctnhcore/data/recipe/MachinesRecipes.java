@@ -15,8 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluid;
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.frameGt;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.gear;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -32,8 +31,6 @@ import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.gregtechceu.gtceu.api.GTValues.ZPM;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.frameGt;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.gear;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Osmiridium;
@@ -105,6 +102,12 @@ public class MachinesRecipes {
                 .duration(1500)
                 .addData("required_mana",0)
                 .addData("mana",1)
+                .save(provider);
+        CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder("tester")
+                .circuitMeta(24)
+                .inputItems(CTNHItems.HORIZEN_RUNE,1)
+                .EUt(-1)
+                .duration(10)
                 .save(provider);
     }
 

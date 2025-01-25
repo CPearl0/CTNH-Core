@@ -37,7 +37,7 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
         Multi = (int) Math.pow(4,tier - 1);
     }
     public double NetConsume(){
-        return Multi*(1+0.5*(NetworkSize));
+        return Multi*(1+0.25*(NetworkSize));
     }
     public static ModifierFunction WindPowerArrayRecipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof WindPowerArrayMachine wmachine) {

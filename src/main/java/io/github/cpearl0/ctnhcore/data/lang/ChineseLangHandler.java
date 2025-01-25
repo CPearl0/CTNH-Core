@@ -321,6 +321,12 @@ public class ChineseLangHandler {
         provider.add("ctnh.gtceu.hellforge.will", "意志：%s");
         provider.add("ctnh.gtceu.hellforge.drain", "最少：%s意志");
         provider.add("ctnh.gtceu.hellforge.minimumdrain", "消耗：%s意志");
+        provider.add("ctnh.nano.1","利用摩擦热的力量");
+        provider.add("ctnh.nano.2","最大并行数:1024");
+        provider.add("ctnh.nano.3","每有1并行数，总体发电量提升0.2%\n实际运行时间为配方时间*sqrt(并行数)");
+        provider.add("ctnh.nano.4","在机器内塞入特定材料可提升倍率，但也有概率消耗\n无材料：0.4倍率\n橡胶片：0.8倍率,并行数/512几率消耗\n聚乙烯片：1.2倍率，并行数/1024几率消耗\n硅橡胶片：2.0倍率，并行数/4096几率消耗\n丁苯橡胶片：3.2倍率，并行数/65535几率消耗\n聚苯并咪唑片：5倍率，并行数/1048576几率消耗");
+
+
 
         provider.add("ctnh.beams_overload","§c警告：机器过载！！！");
         provider.add("ctnh.beams_crash","§c机器已损坏");
@@ -517,6 +523,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.ETERNAL_WELL_OF_SUFFER.getBlock(), "§4永恒苦难之井§r");
         provider.add(CTNHMultiblockMachines.HELLFORGE.getBlock(), "§b工业狱火锻炉§r");
         provider.add(CTNHMultiblockMachines.NICOLL_DYSON_BEAMS.getBlock(), "§9尼魔尔—戴森光束");
+        provider.add(CTNHMultiblockMachines.NANOGENERATOR.getBlock(), "纳米摩擦发电机");
 
 
 

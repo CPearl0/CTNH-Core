@@ -359,6 +359,11 @@ public class CTNHRecipeTypes {
                 .setEUIO(IO.IN)
                 .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
                 .setSound(GTSoundEntries.TURBINE);
+    public static final GTRecipeType NANO_GENERATOR = GTRecipeTypes.register("nano_generator",GENERATOR)
+            .setMaxIOSize(4, 4, 0, 0)
+            .setEUIO(IO.OUT)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.TURBINE);
     public static void init() {
 
     }

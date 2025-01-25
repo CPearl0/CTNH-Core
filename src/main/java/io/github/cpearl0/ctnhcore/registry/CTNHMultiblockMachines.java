@@ -2558,22 +2558,16 @@ public class CTNHMultiblockMachines {
                 .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                 .build())
             .register();
-    public static MultiblockMachineDefinition NANOGENERATOR = REGISTRATE.multiblock("NanoscaleTriboelectricGenerator", NanoscaleTriboelectricGenerator::new)
+    public static MultiblockMachineDefinition NANOGENERATOR = REGISTRATE.multiblock("nanogenetor", NanoscaleTriboelectricGenerator::new)
             .rotationState(RotationState.ALL)
-            .recipeType(CTNHRecipeTypes.QUASAR_EYE)
+            .recipeType(CTNHRecipeTypes.NANO_GENERATOR)
             .generator(true)
             .recipeModifier(NanoscaleTriboelectricGenerator::recipeModifier,true)
-            .tooltips(Component.translatable("ctnh.quarsar.tips1"),
-                    Component.translatable("ctnh.quarsar.tips2"),
-                    Component.translatable("ctnh.quarsar.tips6"),
-                    Component.translatable("ctnh.quarsar.tips3"),
-                    Component.translatable("ctnh.quarsar.tips7"),
-                    Component.translatable("ctnh.quarsar.tips4"),
-                    Component.translatable("ctnh.quarsar.tips8"),
-                    Component.translatable("ctnh.quarsar.tips9"),
-                    Component.translatable("ctnh.quarsar.tips10"),
-                    Component.translatable("ctnh.quarsar.tips11"),
-                    Component.translatable("ctnh.quarsar.tips5")
+            .tooltips(Component.translatable("ctnh.nano.1"),
+                    Component.translatable("ctnh.nano.2"),
+                    Component.translatable("ctnh.nano.3"),
+                    Component.translatable("ctnh.nano.4")
+
 
 
             )
@@ -2586,7 +2580,9 @@ public class CTNHMultiblockMachines {
                     .aisle("A#####A", "#ACCCA#", "#######", "#######", "#######", "E#####E", "##EEE##", "#######", "#######")
                     .aisle("AAAIAAA", "B#####B", "B#####B", "B#####B", "C#####C", "OEEEEEO", "#######", "#######", "#######")
                     .where("A", Predicates.blocks(BloodMagicBlocks.BLANK_RUNE.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.OUTPUT_ENERGY)))
+
                     .where("B", Predicates.blocks(CHAIN))
                     .where("#", Predicates.any())
                     .where("C", Predicates.blocks(BloodMagicBlocks.DUNGEON_ORE.get()))
