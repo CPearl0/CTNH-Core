@@ -43,6 +43,8 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
 
     public List<String> AvailableRune=List.of("twist_rune","starlight_rune","horizen_rune","quasar_rune");
     public final NotifiableItemStackHandler machineStorage;
+    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
+            FactoryMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public Nicoll_Dyson_Beams(IMachineBlockEntity holder){
         super(holder);
         this.machineStorage = createMachineStorage((byte) 64);
@@ -192,8 +194,7 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
 
 
 
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            FactoryMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
+
 
     @Override
     public boolean keepSubscribing() {
@@ -238,7 +239,7 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
                 super.onContentsChanged(slot);
             }
         }).setFilter(itemStack -> AvailableRune.contains(itemStack.getItem().toString()));
-    }
 
+    }
 
 }

@@ -63,6 +63,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_NONCONDUCTING;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.HEAT_VENT;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
@@ -2095,6 +2096,7 @@ public class CTNHMultiblockMachines {
             .register();
     public static final MultiblockMachineDefinition MANA_MIXER = REGISTRATE.multiblock("mana_mixer", holder -> new ManaMachine(holder,4,2))
             .rotationState(RotationState.NON_Y_AXIS)
+            .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .recipeType(GTRecipeTypes.MIXER_RECIPES)
             .tooltips(Component.translatable("ctnh.mana_mixer"),
                     Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
@@ -2507,6 +2509,52 @@ public class CTNHMultiblockMachines {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("I", Predicates.blocks(LAVA)).build())
             .workableCasingRenderer(BloodMagic.rl("block/obsidiantilepath"), GTCEu.id("block/machines/autoclave"), false)
+            .register();
+    public static MultiblockMachineDefinition NANOGENERATOR = REGISTRATE.multiblock("NanoscaleTriboelectricGenerator", NanoscaleTriboelectricGenerator::new)
+            .rotationState(RotationState.ALL)
+            .recipeType(CTNHRecipeTypes.QUASAR_EYE)
+            .generator(true)
+            .recipeModifier(NanoscaleTriboelectricGenerator::recipeModifier,true)
+            .tooltips(Component.translatable("ctnh.quarsar.tips1"),
+                    Component.translatable("ctnh.quarsar.tips2"),
+                    Component.translatable("ctnh.quarsar.tips6"),
+                    Component.translatable("ctnh.quarsar.tips3"),
+                    Component.translatable("ctnh.quarsar.tips7"),
+                    Component.translatable("ctnh.quarsar.tips4"),
+                    Component.translatable("ctnh.quarsar.tips8"),
+                    Component.translatable("ctnh.quarsar.tips9"),
+                    Component.translatable("ctnh.quarsar.tips10"),
+                    Component.translatable("ctnh.quarsar.tips11"),
+                    Component.translatable("ctnh.quarsar.tips5")
+
+
+            )
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAAAA", "B#####B", "B#####B", "B#####B", "C#####C", "OEEEEEO", "#######", "#######", "#######")
+                    .aisle("A#####A", "#ACCCA#", "#######", "#######", "#######", "E#####E", "##EEE##", "#######", "#######")
+                    .aisle("A#####A", "#C###C#", "##CGC##", "#######", "#######", "E#####E", "#E###E#", "###E###", "#######")
+                    .aisle("A#####A", "#C###C#", "##GAG##", "###H###", "###B###", "E##B##E", "#E#B#E#", "##EEE##", "###D###")
+                    .aisle("A#####A", "#C###C#", "##CGC##", "#######", "#######", "E#####E", "#E###E#", "###E###", "#######")
+                    .aisle("A#####A", "#ACCCA#", "#######", "#######", "#######", "E#####E", "##EEE##", "#######", "#######")
+                    .aisle("AAAIAAA", "B#####B", "B#####B", "B#####B", "C#####C", "OEEEEEO", "#######", "#######", "#######")
+                    .where("A", Predicates.blocks(BloodMagicBlocks.BLANK_RUNE.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("B", Predicates.blocks(CHAIN))
+                    .where("#", Predicates.any())
+                    .where("C", Predicates.blocks(BloodMagicBlocks.DUNGEON_ORE.get()))
+                    .where("D", Predicates.blocks(LAMPS.get(DyeColor.PURPLE).get()))
+                    .where("O", Predicates.blocks(LAMPS.get(DyeColor.RED).get()))
+                    .where("E", Predicates.blocks(BloodMagicBlocks.DUNGEON_BRICK_1.get()))
+                    .where("F", Predicates.blocks(MYCELIUM))
+                    .where("G", Predicates.blocks(BloodMagicBlocks.OBSIDIAN_PATH.get())
+                            .or(Predicates.blocks(BloodMagicBlocks.CAPACITY_RUNE.get()))
+                            .or(Predicates.blocks(BloodMagicBlocks.CAPACITY_RUNE_2.get()))
+                    )
+
+                    .where("H", Predicates.blocks(SOUL_LANTERN))
+                    .where("I",Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer((CTNHCore.id("block/casings/depth_force_field_stabilizing_casing")), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .register();
     public static void init() {
 

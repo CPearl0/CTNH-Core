@@ -84,7 +84,7 @@ public class AlterLogic extends WorkableElectricMultiblockMachine implements ITi
                 return false;
             }
             else{
-                lp+=consume;
+                lp=lp+consume;
             }
         }
         return super.beforeWorking(recipe);
