@@ -6,17 +6,17 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.common.data.GTRecipeCapabilities;
-import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalWosMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 public class EternalWosMachine extends WorkableElectricMultiblockMachine {
-    public double multiplier = 0;
+    public double multiplier = 1;
     public EternalWosMachine(IMachineBlockEntity holder){
         super(holder);
     }
@@ -51,14 +51,14 @@ public class EternalWosMachine extends WorkableElectricMultiblockMachine {
         super.afterWorking();
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe){
-        if(machine instanceof DigitalWosMachine dmachine) {
+        if(machine instanceof EternalWosMachine dmachine) {
             var level = dmachine.self().getLevel();
             var pos= dmachine.self().getPos();
             pos = pos.offset(0,-11,0);
             var maxParallel = ParallelLogic.getParallelAmount(dmachine,recipe,2147483647);
             ModifierFunction parallel = CTNHRecipeModifiers.accurateParallel(machine,recipe,maxParallel);
             if(getMachine(level,pos) instanceof HellForgeMachine hmachine){
-                var outputAmount=((FluidStack)(recipe.getOutputContents(GTRecipeCapabilities.FLUID).get(0).content)).getAmount();
+                var outputAmount=((FluidIngredient)(recipe.getOutputContents(GTRecipeCapabilities.FLUID).get(0).content)).getAmount();
                 hmachine.will = hmachine.will + maxParallel * outputAmount * dmachine.multiplier/100000;
                 dmachine.multiplier=0;
             }

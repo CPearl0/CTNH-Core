@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.registry;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
@@ -17,12 +18,21 @@ import static com.gregtechceu.gtceu.api.recipe.OverclockingLogic.getCoilEUtDisco
 public class CTNHRecipeModifiers {
     public static final ModifierFunction accurateParallel(MetaMachine machine,GTRecipe recipe,int parallel) {
         var maxParallel = ParallelLogic.getParallelAmount(machine,recipe,parallel);
-        return ModifierFunction.builder()
-                .parallels(maxParallel)
-                .inputModifier(ContentModifier.multiplier(maxParallel))
-                .outputModifier(ContentModifier.multiplier(maxParallel))
-                .eutMultiplier(maxParallel)
-                .build();
+        if(recipe.hasTick()) {
+            return ModifierFunction.builder()
+                    .parallels(maxParallel)
+                    .inputModifier(ContentModifier.multiplier(maxParallel))
+                    .outputModifier(ContentModifier.multiplier(maxParallel))
+                    .eutMultiplier(maxParallel)
+                    .build();
+        }
+        else {
+            return ModifierFunction.builder()
+                    .parallels(maxParallel)
+                    .inputModifier(ContentModifier.multiplier(maxParallel))
+                    .outputModifier(ContentModifier.multiplier(maxParallel))
+                    .build();
+        }
     }
 
     public static final RecipeModifier GCYM_REDUCTION = (machine, recipe) -> CTNHRecipeModifiers

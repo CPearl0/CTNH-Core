@@ -32,6 +32,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.arbor.gtnn.data.GTNNMaterials;
 import glitchcore.event.client.RenderGuiEvent;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.NoEnergyMachine;
 import io.github.cpearl0.ctnhcore.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.common.block.CTNHFusionCasingType;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
@@ -2096,7 +2097,6 @@ public class CTNHMultiblockMachines {
             .register();
     public static final MultiblockMachineDefinition MANA_MIXER = REGISTRATE.multiblock("mana_mixer", holder -> new ManaMachine(holder,4,2))
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .recipeType(GTRecipeTypes.MIXER_RECIPES)
             .tooltips(Component.translatable("ctnh.mana_mixer"),
                     Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
@@ -2509,6 +2509,54 @@ public class CTNHMultiblockMachines {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("I", Predicates.blocks(LAVA)).build())
             .workableCasingRenderer(BloodMagic.rl("block/obsidiantilepath"), GTCEu.id("block/machines/autoclave"), false)
+            .register();
+    public static MultiblockMachineDefinition TWISTED_FUSION_MK1 = REGISTRATE.multiblock("twisted_fusion_mk1", TwistedFusionMachine::new)
+            .recipeTypes(GTRecipeTypes.FUSION_RECIPES,CTNHRecipeTypes.TWISTED_FUSION)
+            .workableCasingRenderer(CTNHCore.id("block/casings/twisted_fusion_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
+            .tooltips(Component.translatable("ctnh.gtceu:twisted_fusion_mk1.0"),
+                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.1"),
+                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.2"),
+                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.3"),
+                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.4"),
+                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.5"),
+                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.6"),
+                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.7"),
+                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.8"),
+                    Component.translatable("ctnh.gtceu:twisted_fusion_mk1.9"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("###############", "###############", "###############", "######AAA######", "###############", "###############", "###############")
+                .aisle("###############", "###############", "######AAA######", "####AA###AA####", "######AAA######", "###############", "###############")
+                .aisle("###############", "###############", "####AA###AAA###", "###A##AAA##A###", "###AAA###AA####", "###############", "###############")
+                .aisle("###############", "###########A###", "###A######ABA##", "##ABAA###AABA##", "##ABA######A###", "###A###########", "###############")
+                .aisle("###############", "############A##", "###########A#A#", "##AA#######AA##", "#A#A###########", "##A############", "###############")
+                .aisle("###############", "############A##", "###########A#A#", "##A#########A##", "#A#A###########", "##A############", "###############")
+                .aisle("###############", "#############A#", "############A#A", "#A###########A#", "A#A############", "#A#############", "###############")
+                .aisle("###############", "#############A#", "############A#A", "#A###########A#", "A#A############", "#A#############", "###############")
+                .aisle("###############", "#############A#", "############A#A", "#A###########A#", "A#A############", "#A#############", "###############")
+                .aisle("###############", "############A##", "###########A#A#", "##A#########A##", "#A#A###########", "##A############", "###############")
+                .aisle("###############", "###########AA##", "###########A#A#", "##A#########A##", "#A#A###########", "##AA###########", "###############")
+                .aisle("###########A###", "#########AABA##", "##########ABA##", "###A#######A###", "##ABA##########", "##ABAA#########", "###A###########")
+                .aisle("#########AA####", "######AAA##A###", "#########AAA###", "###############", "###AAA#########", "###A##AAA######", "####AA#########")
+                .aisle("######AAA######", "####AA###AA####", "######CCC######", "######C@C######", "######CCC######", "####AA###AA####", "######AAA######")
+                .aisle("####AA#########", "###A##AAA######", "###AAA#########", "###############", "#########AAA###", "######AAA##A###", "#########AA####")
+                .aisle("###A###########", "##ABAA#########", "##ABA##########", "###A#######A###", "##########ABA##", "#########AABA##", "###########A###")
+                .aisle("###############", "##AA###########", "#A#A###########", "##A#########A##", "###########A#A#", "###########AA##", "###############")
+                .aisle("###############", "##A############", "#A#A###########", "##A#########A##", "###########A#A#", "############A##", "###############")
+                .aisle("###############", "#A#############", "A#A############", "#A###########A#", "############A#A", "#############A#", "###############")
+                .aisle("###############", "#A#############", "A#A############", "#A###########A#", "############A#A", "#############A#", "###############")
+                .aisle("###############", "#A#############", "A#A############", "#A###########A#", "############A#A", "#############A#", "###############")
+                .aisle("###############", "##A############", "#A#A###########", "##A#########A##", "###########A#A#", "############A##", "###############")
+                .aisle("###############", "##A############", "#A#A###########", "##AA#######AA##", "###########A#A#", "############A##", "###############")
+                .aisle("###############", "###A###########", "##ABA######A###", "##ABAA###AABA##", "###A######ABA##", "###########A###", "###############")
+                .aisle("###############", "###############", "###AAA###AA####", "###A##AAA##A###", "####AA###AAA###", "###############", "###############")
+                .aisle("###############", "###############", "######AAA######", "####AA###AA####", "######AAA######", "###############", "###############")
+                .aisle("###############", "###############", "###############", "######AAA######", "###############", "###############", "###############")
+                .where("#", Predicates.any())
+                .where("A", Predicates.blocks(TWISTED_FUSION_CASING.get()))
+                .where("B", Predicates.blocks(FUSION_COIL.get()))
+                .where("C", Predicates.blocks(TWISTED_FUSION_CASING.get()).or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                .build())
             .register();
     public static MultiblockMachineDefinition NANOGENERATOR = REGISTRATE.multiblock("NanoscaleTriboelectricGenerator", NanoscaleTriboelectricGenerator::new)
             .rotationState(RotationState.ALL)

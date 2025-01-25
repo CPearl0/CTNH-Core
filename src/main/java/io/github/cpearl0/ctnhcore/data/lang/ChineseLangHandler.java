@@ -66,6 +66,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.silica_rock_fuel_refinery", "硅岩燃料精炼");
         provider.add("gtceu.hellforge", "狱火锻炉");
         provider.add("gtceu.digital_well_of_suffer", "数字化苦难之井");
+        provider.add("gtceu.twisted_fusion", "扭曲聚变反应堆");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -220,7 +221,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.mana_generator_turbine_tier3.restriction", "转子支架等级不能超过§dLuV§r");
         provider.add("mana_generator_turbine_tier4", "神奇的能量守恒");
         provider.add("ctnh.mana_generator_turbine_tier4.basic_power", "§e基础产能功率：§r4096 EU/t");
-        provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§3ZPM§r");
+        provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§3UV§r");
         provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，消耗量x0.9\n  二级符文：发电量x2，消耗量x0.75\n  三级符文：发电量x3，消耗量x0.6\n  四级符文：发电量x4，消耗量x0.4");
         provider.add("ctnh.machine.super_ebf.tooltip1", "所有配方耗时减半");
         provider.add("ctnh.mega_lcr.recipe_type","化学反应釜 / 大型化学反应釜");
@@ -353,7 +354,16 @@ public class ChineseLangHandler {
         provider.add("ctnh.beams.tips11","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
         provider.add("ctnh.beams.tips12","该机器无法超频");
         provider.add("ctnh.magic.parrel","当前并行数:%.2f");
-
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.0", "机器类型：§e核聚变反应堆/§5扭曲聚变反应堆§r");
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.1", "§8以不可思议的伟力。§r");
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.2", "§e核聚变反应堆模式：§r");
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.3", "不需要启动电量，不限制仓室等级，进行4/2超频。提供取决于配方启动电量的并行：");
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.4", "小于160MEU：64x并行");
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.5", "大于160MEU，小于320MEU：16x并行");
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.6", "大于320MEU，小于480MEU：4x并行");
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.7", "§5扭曲聚变反应堆模式：§r");
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.8", "遵循字母守恒定律的反应。");
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.9", "或许可以用来生产一些§9奇怪的东西§r...");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");

@@ -71,15 +71,13 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
     }
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        int parallel = 8;
-
-        var maxParallel = ParallelLogic.getParallelAmount(machine,recipe,8);
-        var reduce = new ContentModifier(0.75 * maxParallel,0);
+        int parallel = ParallelLogic.getParallelAmount(machine,recipe,8);
+        var reduce = new ContentModifier(0.75 * parallel,0);
         return ModifierFunction.builder()
                 .eutModifier(reduce)
-                .inputModifier(ContentModifier.multiplier(maxParallel))
-                .outputModifier(ContentModifier.multiplier(maxParallel))
-                .parallels(maxParallel)
+                .inputModifier(ContentModifier.multiplier(parallel))
+                .outputModifier(ContentModifier.multiplier(parallel))
+                .parallels(8)
                 .build();
     }
 }

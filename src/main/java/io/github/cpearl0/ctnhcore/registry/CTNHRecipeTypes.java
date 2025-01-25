@@ -354,7 +354,11 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.CHEMICAL)
             .addDataInfo(data -> LocalizationUtils.format("ctnh.beams_mana_required",String.format("%.2f",data.getFloat("required_mana"))))
             .addDataInfo(data -> LocalizationUtils.format("ctnh.beams_mana_consumption",String.format("%.2f",data.getFloat("mana"))));
-
+    public static final GTRecipeType TWISTED_FUSION = GTRecipeTypes.register("twisted_fusion",ELECTRIC)
+                .setMaxIOSize(0, 0, 2, 2)
+                .setEUIO(IO.IN)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.TURBINE);
     public static void init() {
 
     }
