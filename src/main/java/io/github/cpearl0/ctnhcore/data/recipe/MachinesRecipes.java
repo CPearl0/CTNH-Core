@@ -103,12 +103,6 @@ public class MachinesRecipes {
                 .addData("required_mana",0)
                 .addData("mana",1)
                 .save(provider);
-        CTNHRecipeTypes.NANO_GENERATOR.recipeBuilder("tester")
-                .circuitMeta(24)
-                .inputItems(CTNHItems.HORIZEN_RUNE,1)
-                .EUt(-1)
-                .duration(10)
-                .save(provider);
     }
 
 }

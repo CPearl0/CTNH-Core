@@ -67,6 +67,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.hellforge", "狱火锻炉");
         provider.add("gtceu.digital_well_of_suffer", "数字化苦难之井");
         provider.add("gtceu.twisted_fusion", "扭曲聚变反应堆");
+        provider.add("gtceu.nano_generator","摩擦发电");
+        provider.add("gtceu.quasar_eye","类星体之眼");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -364,12 +366,14 @@ public class ChineseLangHandler {
         provider.add("ctnh.gtceu:twisted_fusion_mk1.1", "§8以不可思议的伟力。§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.2", "§e核聚变反应堆模式：§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.3", "不需要启动电量，不限制仓室等级，进行4/2超频。提供取决于配方启动电量的并行：");
-        provider.add("ctnh.gtceu:twisted_fusion_mk1.4", "小于160MEU：64x并行");
-        provider.add("ctnh.gtceu:twisted_fusion_mk1.5", "大于160MEU，小于320MEU：16x并行");
-        provider.add("ctnh.gtceu:twisted_fusion_mk1.6", "大于320MEU，小于480MEU：4x并行");
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.4", "小于160MEU：16+16*反应堆等级并行");
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.5", "大于160MEU，小于320MEU：4+4*聚变反应堆等级并行");
+        provider.add("ctnh.gtceu:twisted_fusion_mk1.6", "大于320MEU，小于480MEU：1+聚变反应堆等级并行");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.7", "§5扭曲聚变反应堆模式：§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.8", "遵循字母守恒定律的反应。");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.9", "或许可以用来生产一些§9奇怪的东西§r...");
+        provider.add("ctnh.gtceu.tfmkinfinity.1","§8无穷无尽的扭曲之力§8");
+        provider.add("ctnh.gtceu.tfmkinfinity.2","对所有配方都有§8无法理喻§8的并行数");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -524,6 +528,10 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.HELLFORGE.getBlock(), "§b工业狱火锻炉§r");
         provider.add(CTNHMultiblockMachines.NICOLL_DYSON_BEAMS.getBlock(), "§9尼魔尔—戴森光束");
         provider.add(CTNHMultiblockMachines.NANOGENERATOR.getBlock(), "纳米摩擦发电机");
+        provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MK1.getBlock(),"扭曲聚变反应堆mk1");
+        provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MK2.getBlock(),"扭曲聚变反应堆mk2");
+        provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MK3.getBlock(),"扭曲聚变反应堆mk3");
+        provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MKINFINITY.getBlock(),"扭曲聚变反应堆mk∞");
 
 
 
