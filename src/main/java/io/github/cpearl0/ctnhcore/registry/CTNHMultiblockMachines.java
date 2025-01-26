@@ -2098,6 +2098,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition MANA_MIXER = REGISTRATE.multiblock("mana_mixer", holder -> new ManaMachine(holder,4,2))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.MIXER_RECIPES)
+            .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.mana_mixer"),
                     Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.advanced_mana_machine.mana_consume"),
