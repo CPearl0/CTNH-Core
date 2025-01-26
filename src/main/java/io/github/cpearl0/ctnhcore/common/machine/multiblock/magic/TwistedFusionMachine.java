@@ -19,25 +19,27 @@ public class TwistedFusionMachine extends WorkableElectricMultiblockMachine {
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         var startEU = recipe.data.getLong("eu_to_start");
-        if(startEU>=160000000&&startEU<320000000&&mks<2)
+        if(startEU>=160000000&&startEU<=320000000&&mks<2)
             return false;
-        if(startEU>=320000000&&mks<3)
+        if(startEU>320000000&&mks<3)
             return false;
         return super.beforeWorking(recipe);
 
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe){
+
         if(machine instanceof TwistedFusionMachine zmachine){
             if (recipe.getType().equals(GTRecipeTypes.FUSION_RECIPES)) {
                 var startEU = recipe.data.getLong("eu_to_start");
                 ModifierFunction modifierFunction = ModifierFunction.IDENTITY;
-                if(zmachine.mks>5)modifierFunction = CTNHRecipeModifiers.accurateParallel(machine, recipe, 1024);
+                if(zmachine.mks>5)
+                    modifierFunction = CTNHRecipeModifiers.accurateParallel(zmachine, recipe, 1024);
                 else if (startEU <= 160000000) {
-                    modifierFunction = CTNHRecipeModifiers.accurateParallel(machine, recipe, zmachine.mks*16+16);
+                    modifierFunction = CTNHRecipeModifiers.accurateParallel(zmachine, recipe, zmachine.mks*16+16);
                 } else if (startEU <= 320000000) {
-                    modifierFunction = CTNHRecipeModifiers.accurateParallel(machine, recipe, zmachine.mks*4+4);
+                    modifierFunction = CTNHRecipeModifiers.accurateParallel(zmachine, recipe, zmachine.mks*4+4);
                 } else if (startEU <= 480000000) {
-                    modifierFunction = CTNHRecipeModifiers.accurateParallel(machine, recipe, zmachine.mks+1);
+                    modifierFunction = CTNHRecipeModifiers.accurateParallel(zmachine, recipe, zmachine.mks+1);
                 }
 
                 return modifierFunction;

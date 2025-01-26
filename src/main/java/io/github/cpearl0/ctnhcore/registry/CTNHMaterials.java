@@ -162,6 +162,7 @@ public class CTNHMaterials {
             .buildAndRegister();
     public static final Material Infinity = new Material.Builder(GTCEu.id("my_infinity"))
             .ingot()
+            .plasma()
             .radioactiveHazard(20)
             .blastTemp(32000, HIGHEST)
             .element(CTNHElements.INFINITY)
@@ -172,10 +173,17 @@ public class CTNHMaterials {
     public static final Material QUASER_MANA = new Material.Builder(GTCEu.id("quaser_mana"))
             .ingot().liquid()
             .blastTemp(10800, HIGHER, GTValues.VA[GTValues.UV], 1800)
-            .color(0x0000FF)
+            .color(0x00007F)
             .iconSet(METALLIC)
             .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
             .cableProperties(GTValues.V[GTValues.UHV], 4, 64)
+            .buildAndRegister();
+    public static final Material EVE = new Material.Builder(GTCEu.id("eve"))
+            .plasma()
+            .color(0x0000FF)
+            .radioactiveHazard(20)
+            .iconSet(METALLIC)
+            .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
             .buildAndRegister();
     public static final Material PreciousAlloy = new Material.Builder(GTCEu.id("precious_alloy"))
             .ingot()

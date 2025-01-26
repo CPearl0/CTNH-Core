@@ -2481,6 +2481,7 @@ public class CTNHMultiblockMachines {
     public static MultiblockMachineDefinition HELLFORGE = REGISTRATE.multiblock("hellforge",HellForgeMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.HELLFORGE)
+
             .tooltips(Component.translatable("ctnh.gtceu:hellforge.0"),
                     Component.translatable("ctnh.gtceu:hellforge.1"),
                     Component.translatable("ctnh.gtceu:hellforge.2"),
@@ -2512,6 +2513,7 @@ public class CTNHMultiblockMachines {
             .register();
     public static MultiblockMachineDefinition TWISTED_FUSION_MK1 = REGISTRATE.multiblock("twisted_fusion_mk1", holder-> new TwistedFusionMachine(holder,1))
             .recipeTypes(GTRecipeTypes.FUSION_RECIPES,CTNHRecipeTypes.TWISTED_FUSION)
+            .recipeModifiers(TwistedFusionMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
             .workableCasingRenderer(CTNHCore.id("block/casings/twisted_fusion_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .tooltips(Component.translatable("ctnh.gtceu:twisted_fusion_mk1.0"),
                     Component.translatable("ctnh.gtceu:twisted_fusion_mk1.1"),
@@ -2560,6 +2562,8 @@ public class CTNHMultiblockMachines {
             .register();
     public static MultiblockMachineDefinition TWISTED_FUSION_MK2 = REGISTRATE.multiblock("twisted_fusion_mk2", holder-> new TwistedFusionMachine(holder,2))
             .recipeTypes(GTRecipeTypes.FUSION_RECIPES,CTNHRecipeTypes.TWISTED_FUSION)
+
+            .recipeModifiers(TwistedFusionMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
             .workableCasingRenderer(CTNHCore.id("block/casings/twisted_fusion_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .tooltips(Component.translatable("ctnh.gtceu:twisted_fusion_mk1.0"),
                     Component.translatable("ctnh.gtceu:twisted_fusion_mk1.1"),
@@ -2608,6 +2612,7 @@ public class CTNHMultiblockMachines {
             .register();
     public static MultiblockMachineDefinition TWISTED_FUSION_MK3 = REGISTRATE.multiblock("twisted_fusion_mk3", holder-> new TwistedFusionMachine(holder,3))
             .recipeTypes(GTRecipeTypes.FUSION_RECIPES,CTNHRecipeTypes.TWISTED_FUSION)
+            .recipeModifiers(TwistedFusionMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
             .workableCasingRenderer(CTNHCore.id("block/casings/twisted_fusion_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .tooltips(Component.translatable("ctnh.gtceu:twisted_fusion_mk1.0"),
                     Component.translatable("ctnh.gtceu:twisted_fusion_mk1.1"),
@@ -2656,6 +2661,7 @@ public class CTNHMultiblockMachines {
             .register();
     public static MultiblockMachineDefinition TWISTED_FUSION_MKINFINITY = REGISTRATE.multiblock("twisted_fusion_mkinfinity", holder-> new TwistedFusionMachine(holder,666))
             .recipeTypes(GTRecipeTypes.FUSION_RECIPES,CTNHRecipeTypes.TWISTED_FUSION)
+            .recipeModifiers(TwistedFusionMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
             .workableCasingRenderer(CTNHCore.id("block/casings/twisted_fusion_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .tooltips(Component.translatable("ctnh.gtceu.tfmkinfinity.1"),
                     Component.translatable("ctnh.gtceu:twisted_fusion_mk1.0"),
@@ -2713,33 +2719,32 @@ public class CTNHMultiblockMachines {
 
             )
             .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAAAAA", "B#####B", "B#####B", "B#####B", "C#####C", "OEEEEEO", "#######", "#######", "#######")
-                    .aisle("A#####A", "#ACCCA#", "#######", "#######", "#######", "E#####E", "##EEE##", "#######", "#######")
-                    .aisle("A#####A", "#C###C#", "##CGC##", "#######", "#######", "E#####E", "#E###E#", "###E###", "#######")
-                    .aisle("A#####A", "#C###C#", "##GAG##", "###H###", "###B###", "E##B##E", "#E#B#E#", "##EEE##", "###D###")
-                    .aisle("A#####A", "#C###C#", "##CGC##", "#######", "#######", "E#####E", "#E###E#", "###E###", "#######")
-                    .aisle("A#####A", "#ACCCA#", "#######", "#######", "#######", "E#####E", "##EEE##", "#######", "#######")
-                    .aisle("AAAIAAA", "B#####B", "B#####B", "B#####B", "C#####C", "OEEEEEO", "#######", "#######", "#######")
-                    .where("A", Predicates.blocks(BloodMagicBlocks.BLANK_RUNE.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.abilities(PartAbility.OUTPUT_ENERGY)))
-
-                    .where("B", Predicates.blocks(CHAIN))
+                    .aisle("###B###", "###C###", "###C###", "###C###", "###C###", "###C###", "###D###", "###D###", "###D###", "###D###", "###E###", "###F###", "###F###", "###D###")
+                    .aisle("##EEE##", "##B#B##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##D#D##", "##D#D##", "##DED##", "##E#E##", "##F#F##", "##F#F##", "##DDD##")
+                    .aisle("#EEEEE#", "#GHHHI#", "#BHHHB#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#DHHHD#", "#DHHHD#", "#E###E#", "#F###F#", "#F###F#", "#DJJJD#")
+                    .aisle("EEEEEEE", "K#HLH#M", "N#HLH#G", "B#HLH#B", "C#HLH#C", "C#HLH#C", "C#HLH#C", "C#HLH#C", "C#HLH#C", "DEHLHEO", "E##P##E", "F#####F", "F#####F", "DDJJJDD")
+                    .aisle("#EEEEE#", "#GHHHI#", "#BHHHB#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#DHHHD#", "#DHHHD#", "#E###E#", "#F###F#", "#F###F#", "#DJJJD#")
+                    .aisle("##EEE##", "##B#B##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##D#D##", "##D#D##", "##DED##", "##E#E##", "##F#F##", "##F#F##", "##DDD##")
+                    .aisle("###B###", "###C###", "###C###", "###C###", "###C###", "###C###", "###D###", "###D###", "###D###", "###D###", "###E###", "###F###", "###F###", "###D###")
                     .where("#", Predicates.any())
-                    .where("C", Predicates.blocks(BloodMagicBlocks.DUNGEON_ORE.get()))
-                    .where("D", Predicates.blocks(LAMPS.get(DyeColor.PURPLE).get()))
-                    .where("O", Predicates.blocks(LAMPS.get(DyeColor.RED).get()))
-                    .where("E", Predicates.blocks(BloodMagicBlocks.DUNGEON_BRICK_1.get()))
-                    .where("F", Predicates.blocks(MYCELIUM))
-                    .where("G", Predicates.blocks(BloodMagicBlocks.OBSIDIAN_PATH.get())
-                            .or(Predicates.blocks(BloodMagicBlocks.CAPACITY_RUNE.get()))
-                            .or(Predicates.blocks(BloodMagicBlocks.CAPACITY_RUNE_2.get()))
-                    )
+                    .where("B", Predicates.blocks(CASING_NONCONDUCTING.get()))
+                    .where("C", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
+                    .where("D", Predicates.blocks(CASING_STEEL_PIPE.get()))
+                    .where("E", Predicates.blocks(CASING_STEEL_GEARBOX.get()))
+                    .where("F", Predicates.blocks(MACHINE_CASING_MV.get()))
+                    .where("G", Predicates.blocks(CASING_NONCONDUCTING.get()))
+                    .where("H", (Predicates.any()))
+                    .where("I", (Predicates.abilities(PartAbility.OUTPUT_ENERGY)))
+                    .where("J", Predicates.blocks(PISTON))
+                    .where("K", Predicates.abilities(PartAbility.IMPORT_ITEMS))
+                    .where("L", (Predicates.any()))
+                    .where("M", Predicates.abilities(PartAbility.MAINTENANCE))
+                    .where("N", Predicates.abilities(PartAbility.EXPORT_ITEMS))
+                    .where("P", Predicates.abilities(CTPPPartAbility.OUTPUT_KINETIC))
+                    .where("O",Predicates.controller(Predicates.blocks(definition.get())))
 
-                    .where("H", Predicates.blocks(SOUL_LANTERN))
-                    .where("I",Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
-            .workableCasingRenderer((CTNHCore.id("block/casings/depth_force_field_stabilizing_casing")), GTCEu.id("block/multiblock/fusion_reactor"), false)
+            .workableCasingRenderer((GTCEu.id("block/casings/solid/machine_casing_solid_steel")), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .register();
     public static void init() {
 

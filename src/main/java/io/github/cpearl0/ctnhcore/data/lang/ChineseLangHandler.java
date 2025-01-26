@@ -29,6 +29,7 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Skyjade.getUnlocalizedName(), "穹玉");
         replace(provider, CTNHMaterials.Stratus.getUnlocalizedName(), "云母钢");
         replace(provider, CTNHMaterials.Zenith_essence.getUnlocalizedName(), "§5天顶源质§r");
+        replace(provider,CTNHMaterials.EVE.getUnlocalizedName(),"EVE高能粒子");
         replace(provider, CTNHMaterials.Ignitium.getUnlocalizedName(), "腾炎");
         provider.add("gtceu.phase_inversion","反相蚀刻");
         provider.add("gtceu.underfloor_heating_system", "地暖");
