@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
@@ -22,5 +23,14 @@ public class CTNHModels {
                         .partialState().with(ActiveBlock.ACTIVE, false).modelForState().modelFile(inactive).addModel()
                         .partialState().with(ActiveBlock.ACTIVE, true).modelForState().modelFile(active).addModel();
             };
+    }
+    public static NonNullBiConsumer<DataGenContext<Block, Block>, RegistrateBlockstateProvider> createMapCasingModel(String name,
+                                                                                                                       String map) {
+        return (ctx, prov) -> {
+            prov.simpleBlock(ctx.getEntry(), prov.models().cubeBottomTop(name,
+                    CTNHCore.id("block/casings/map/%s/side".formatted(map)),
+                    CTNHCore.id("block/casings/map/%s/bottom".formatted(map)),
+                    CTNHCore.id("block/casings/map/%s/top".formatted(map))));
+        };
     }
 }

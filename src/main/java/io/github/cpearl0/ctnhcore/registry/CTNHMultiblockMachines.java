@@ -687,10 +687,10 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/vacuum_freezer"))
             .register();
 
-    public  final  static  MultiblockMachineDefinition PLASMA_CONDENSER = REGISTRATE.multiblock("plasma_condenser", CoilWorkableElectricMultiblockMachine::new)
+    public  final  static  MultiblockMachineDefinition PLASMA_CONDENSER = REGISTRATE.multiblock("plasma_condenser", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.plasma_condenser.tooltips.1").withStyle(ChatFormatting.GRAY),
                     Component.translatable("gtceu.multiblock.laser.tooltip"),
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"))

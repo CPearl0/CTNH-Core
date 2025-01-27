@@ -456,7 +456,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.CASING_ULTIMATE_ENGINE_INTAKE, "无尽引擎进气机械方块");
         provider.addBlock((CTNHBlocks.COIL_ULTRA_MANA),"类星体魔力线圈方块");
         provider.addBlock(CTNHBlocks.ELEMENTIUM_PIPE_CASING, "源质钢管道机械方块");
-        // provider.addBlock(CTNHBlocks.COMPUTER_HEAT_VENT_SIDE2,"高能机器散热口");
+        provider.addBlock(CTNHBlocks.TEST_CASING,"测试方块");
         provider.addBlock(CTNHBlocks.QUASAR_ENERGY_STABILIZATION_CASING,"类星体能量稳定机械外壳");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");

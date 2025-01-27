@@ -1,10 +1,4 @@
 {
-    "ldlib": {
-        "emissive": true
-    },
-    "shimmer": {
-        "bloom": true
-    },
     "animation": {
 		"frametime": 5,
 		"interpolate": true,

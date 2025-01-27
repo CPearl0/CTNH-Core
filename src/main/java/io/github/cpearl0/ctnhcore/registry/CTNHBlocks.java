@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.GTModels;
+import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.block.CoilType;
@@ -93,6 +94,8 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/quasar_energy_stabilization_casing"));
     public static final BlockEntry<Block> TWISTED_FUSION_CASING = createCasingBlock("twisted_fusion_casing",
             CTNHCore.id("block/casings/twisted_fusion_casing"));
+    //public static final BlockEntry<Block> TEST_TWO = createCasingBlock("test_two",
+            //CTNHCore.id("block/casings/testtwo/));
 
     public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing("reservoir_computing_casing",
             "block/flux/reservoir_computing_casing");
@@ -113,6 +116,7 @@ public class CTNHBlocks {
             "block/flux/plasma_cooled_core");
     public static final BlockEntry<ActiveBlock> CASING_ULTIMATE_ENGINE_INTAKE = createActiveCasing(
             "ultimate_engine_intake_casing", "block/variant/ultimate_engine_intake");
+
     public static final BlockEntry<CoilBlock> COIL_ABYSALALLOY = createCoilBlock(CoilType.ABYSSALALLOY);
     public static final BlockEntry<CoilBlock> COIL_TITANSTEEL = createCoilBlock(CoilType.TITANSTEEL);
     public static final BlockEntry<CoilBlock> COIL_PIKYONIUM = createCoilBlock(CoilType.PIKYONIUM);
@@ -123,6 +127,8 @@ public class CTNHBlocks {
 
     public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createGlassCasingBlock(
             "bronze_framed_glass",CTNHCore.id("block/casings/bronze_framed_glass"), () -> RenderType::cutoutMipped);
+
+    public static final BlockEntry<Block> TEST_CASING = createMapCasing("test_machine_casing", "t1");
 
     public static void init() {
 
@@ -178,7 +184,17 @@ public class CTNHBlocks {
                 .model((ctx, prov) -> prov.withExistingParent(prov.name(ctx), CTNHCore.id(baseModelPath)))
                 .build()
                 .register();
-    }//来自GTleisure
-
+    }
+    @SuppressWarnings("all")
+    private static BlockEntry<Block> createMapCasing(String name, String map) {
+        return REGISTRATE.block(name, Block::new)
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(CTNHModels.createMapCasingModel(name, map))
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new)
+                .build()
+                .register();
+    }
 
 }
