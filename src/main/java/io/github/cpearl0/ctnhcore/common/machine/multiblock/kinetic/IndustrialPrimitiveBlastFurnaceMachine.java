@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -41,12 +42,8 @@ public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (machine instanceof IndustrialPrimitiveBlastFurnaceMachine imachine) {
             var parallel = imachine.getParallelCount();
-            return ModifierFunction.builder()
-                    .inputModifier(ContentModifier.multiplier(parallel))
-                    .outputModifier(ContentModifier.multiplier(parallel))
-                    .durationMultiplier((int) (1.25 - (imachine.currentTemperature - imachine.basicTemperature) / (imachine.maxTemperature - imachine.basicTemperature) * 0.75) * parallel)
-                    .parallels(parallel)
-                    .build();
+            var durationModifier = ModifierFunction.builder().durationMultiplier(1.25 - (double) (imachine.currentTemperature - imachine.basicTemperature) / (imachine.maxTemperature - imachine.basicTemperature) * 0.75).build();
+            return CTNHRecipeModifiers.accurateParallel(imachine,recipe,parallel).andThen(durationModifier);
         }
         return ModifierFunction.IDENTITY;
     }
@@ -78,10 +75,10 @@ public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
         super.onLoad();
 
         if (getLevel() instanceof ServerLevel serverLevel) {
-            serverLevel.getServer().tell(new TickTask(0, this::updateSteamSubscription));
+            serverLevel.getServer().tell(new TickTask(0, this::updateTempSubscription));
         }
     }
-    protected void updateSteamSubscription() {
+    protected void updateTempSubscription() {
         if (currentTemperature >= basicTemperature) {
             temperatureSubs = subscribeServerTick(temperatureSubs, this::updateCurrentTemperature);
         } else if (temperatureSubs != null) {

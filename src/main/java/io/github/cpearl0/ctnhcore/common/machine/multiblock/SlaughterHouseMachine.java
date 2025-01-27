@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
@@ -40,7 +41,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
+public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine implements IMachineModifyDrops {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             SlaughterHouseMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public final NotifiableItemStackHandler machineStorage;
@@ -76,6 +77,10 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
                 super.onContentsChanged(slot);
             }
         });
+    }
+    @Override
+    public void onDrops(List<ItemStack> drops) {
+        clearInventory(machineStorage.storage);
     }
 
     @Override
@@ -157,6 +162,11 @@ public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine {
                             .withParameter(LootContextParams.THIS_ENTITY, mobentity)
                             .withParameter(LootContextParams.DAMAGE_SOURCE, new DamageSources(level.getServer().registryAccess()).mobAttack(fakePlayer))
                             .withParameter(LootContextParams.ORIGIN, machine.getPos().getCenter())
+                            .withParameter(LootContextParams.KILLER_ENTITY, fakePlayer)
+                            .withParameter(LootContextParams.BLOCK_STATE, machine.getBlockState())
+                            .withParameter(LootContextParams.BLOCK_ENTITY, machine.getLevel().getBlockEntity(machine.getPos()))
+                            .withParameter(LootContextParams.DIRECT_KILLER_ENTITY, fakePlayer)
+                            .withParameter(LootContextParams.EXPLOSION_RADIUS, 0F)
                             .create(loottable.getParamSet());
                     var loots = loottable.getRandomItems(lootparams);
                     loots.forEach(itemStack -> {
