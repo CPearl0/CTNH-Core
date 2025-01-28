@@ -129,6 +129,7 @@ public class CTNHBlocks {
             "bronze_framed_glass",CTNHCore.id("block/casings/bronze_framed_glass"), () -> RenderType::cutoutMipped);
 
     public static final BlockEntry<Block> TEST_CASING = createMapCasing("test_machine_casing", "t1");
+    public static final BlockEntry<Block> ATOMS_SPLIT_BLOCKS = createMapCasing("atoms_split_blocks", "atomssplit");
 
     public static void init() {
 
