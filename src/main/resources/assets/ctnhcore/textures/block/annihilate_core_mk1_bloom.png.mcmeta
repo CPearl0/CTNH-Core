@@ -4,5 +4,16 @@
     },
     "shimmer": {
         "bloom": true
-    }
+    },
+    "animation": {
+		"frametime": 10,
+		"interpolate": true,
+		"frames": [
+			0,
+			1,
+            2,
+            3,
+            4
+		]
+	}
 }

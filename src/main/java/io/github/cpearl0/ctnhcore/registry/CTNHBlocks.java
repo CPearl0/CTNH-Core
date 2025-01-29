@@ -68,8 +68,9 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> TERRA_STEEL_CASING = createCasingBlock(
             "terra_steel_casing",CTNHCore.id("block/casings/terra_steel_casing"));
     public static final BlockEntry<Block> ZENITH_EYE = createCasingBlock(
-            "zenith_eye",CTNHCore.id("block/zenith_eye")
-                    );
+            "zenith_eye",CTNHCore.id("block/zenith_eye"));
+    public static final BlockEntry<Block> REACTOR_CONDENSATION_BLOCK = createCasingBlock(
+            "reactor_condensation_block",CTNHCore.id("block/reactor_condensation_block"));
     public static final BlockEntry<Block> ELEMENTIUM_CASING = createCasingBlock(
             "elementium_casing",CTNHCore.id("block/casings/elementium_casing"));
     public static final BlockEntry<Block> ALF_STEEL_CASING = createCasingBlock(
@@ -78,8 +79,6 @@ public class CTNHBlocks {
             "zenith_casing_gearbox",CTNHCore.id("block/zenith_casing_gearbox"));
     public static final BlockEntry<Block> DEPTH_FORCE_FIELD_STABILIZING_CASING = createCasingBlock(
             "depth_force_field_stabilizing_casing",CTNHCore.id("block/casings/depth_force_field_stabilizing_casing"));
-    //public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createCasingBlock(
-            //"bronze_framed_glass",CTNHCore.id("block/casings/bronze_framed_glass"));
     public static final BlockEntry<Block> CASING_NAQUADAH_GEARBOX = createCasingBlock("naquadah_gearbox",
             CTNHCore.id("block/casings/gearbox/machine_casing_gearbox_naquadah"));
     public static final BlockEntry<Block> BIO_REACTOR_CASING = createCasingBlock("bio_reactor_casing",
@@ -94,8 +93,6 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/quasar_energy_stabilization_casing"));
     public static final BlockEntry<Block> TWISTED_FUSION_CASING = createCasingBlock("twisted_fusion_casing",
             CTNHCore.id("block/casings/twisted_fusion_casing"));
-    //public static final BlockEntry<Block> TEST_TWO = createCasingBlock("test_two",
-            //CTNHCore.id("block/casings/testtwo/));
 
     public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing("reservoir_computing_casing",
             "block/flux/reservoir_computing_casing");
@@ -103,14 +100,6 @@ public class CTNHBlocks {
             "block/flux/space_elevator_power_core");
     public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKI = createActiveCasing("annihilate_core_mki",
             "block/flux/annihilate_core_mk1");
-    public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKII = createActiveCasing("annihilate_core_mkii",
-            "block/flux/annihilate_core_mk2");
-    public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKIII = createActiveCasing("annihilate_core_mkiii",
-            "block/flux/annihilate_core_mk3");
-    public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKIV = createActiveCasing("annihilate_core_mkiv",
-            "block/flux/annihilate_core_mk4");
-    public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKV = createActiveCasing("annihilate_core_mkv",
-            "block/flux/annihilate_core_mk5");
 
     public static final BlockEntry<ActiveBlock> PLASMA_COOLED_CORE = createActiveCasing("plasma_cooled_core",
             "block/flux/plasma_cooled_core");
@@ -129,6 +118,7 @@ public class CTNHBlocks {
             "bronze_framed_glass",CTNHCore.id("block/casings/bronze_framed_glass"), () -> RenderType::cutoutMipped);
 
     public static final BlockEntry<Block> TEST_CASING = createMapCasing("test_machine_casing", "t1");
+    public static final BlockEntry<Block> ATOMS_SPLIT_BLOCKS = createMapCasing("atoms_split_blocks", "atomssplit");
 
     public static void init() {
 

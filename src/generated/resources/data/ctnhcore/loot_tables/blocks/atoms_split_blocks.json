@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ctnhcore:annihilate_core_mkv"
+          "name": "ctnhcore:atoms_split_blocks"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "ctnhcore:blocks/annihilate_core_mkv"
+  "random_sequence": "ctnhcore:blocks/atoms_split_blocks"
 }

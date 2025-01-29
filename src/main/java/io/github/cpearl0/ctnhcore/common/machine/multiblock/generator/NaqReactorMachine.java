@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
@@ -15,135 +16,110 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
+import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
+import java.util.Objects;
 
 
-
-@ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
+@Setter
+@Getter
 public class NaqReactorMachine extends WorkableElectricMultiblockMachine implements ITieredMachine {
 
-    private static final FluidStack OXYGEN_PLASMA_STACK = GTMaterials.Oxygen.getFluid(FluidStorageKeys.PLASMA,20);
-    private static final FluidStack IRON_PLASMA_STACK = GTMaterials.Iron.getFluid(FluidStorageKeys.PLASMA, 20);
-    private static final FluidStack NICKEL_PLASMA_STACK = GTMaterials.Nickel.getFluid(FluidStorageKeys.PLASMA,20);
+    // 设置当前温度
+    // 获取当前温度
+    // 定义初始温度和最大温度
+    private int currentTemperature = 0;  // 初始温度为0K
+    private static final int MAX_TEMP = 80000;  // 温度最高为80000K
+    private static final int MIN_TEMP = 0;     // 温度最低为0K
+    private static final int HEAT_SPEED = 10;  // 每次运行配方后温度上升1000K
 
-    //依次填入增加效率的等离子体
-    private static final FluidStack[] PLASMA = {OXYGEN_PLASMA_STACK,IRON_PLASMA_STACK,NICKEL_PLASMA_STACK};
-    //依次填入增强发电的倍率
-    private static final int[] MULTIPLE_RATE = {2,4,6} ;
-    @Getter
-    private final int tier;
-    // runtime
-    private boolean isBoosted = false;
+    // 流体消耗量（单位：mB）
+    private static final int FLUID_AMOUNT = 40;  // 每次消耗40mb的镍等离子体
 
-    public NaqReactorMachine(IMachineBlockEntity holder, int tier) {
+    public NaqReactorMachine(IMachineBlockEntity holder) {
         super(holder);
-        this.tier = tier + 9;
-    }
-
-    public boolean isBoostAllowed() {
-        return getMaxVoltage() >= GTValues.V[getTier() + 1];
-    }
-
-    //////////////////////////////////////
-    // ****** Recipe Logic *******//
-    //////////////////////////////////////
-
-    @Override
-    public long getOverclockVoltage() {
-        if (isBoosted)
-            return GTValues.V[tier] * 4;
-        else
-            return GTValues.V[tier];
-    }
-
-    protected GTRecipe getBoostRecipe() {
-        return GTRecipeBuilder.ofRaw().inputFluids(PLASMA[tier - 10]).buildRawRecipe();
-    }
-
-    @Nullable
-    public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
-        if (machine instanceof NaqReactorMachine engineMachine) {
-            var EUt = RecipeHelper.getOutputEUt(recipe);
-            // has lubricant
-            if (EUt > 0) {
-                var maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
-                int actualParallel = ParallelLogic.getParallelAmount(engineMachine, recipe, maxParallel);
-                double eutMultiplier = actualParallel * (engineMachine.isBoosted? MULTIPLE_RATE[engineMachine.tier - 10] : 1);
-                return ModifierFunction.builder()
-                        .inputModifier(ContentModifier.multiplier(actualParallel))
-                        .outputModifier(ContentModifier.multiplier(actualParallel))
-                        .eutMultiplier(eutMultiplier)
-                        .parallels(actualParallel)
-                        .build();
-            }
-        }
-        return ModifierFunction.NULL;
     }
 
     @Override
     public boolean onWorking() {
-        boolean value = super.onWorking();
-        long totalContinuousRunningTime = recipeLogic.getTotalContinuousRunningTime();
-        // check boost fluid
-        if ((totalContinuousRunningTime == 1 || totalContinuousRunningTime % 20 == 0) && isBoostAllowed()) {
-            var boosterRecipe = getBoostRecipe();
-            this.isBoosted = boosterRecipe.matchRecipe(this).isSuccess() &&
-                    boosterRecipe.handleRecipeIO(IO.IN, this, this.recipeLogic.getChanceCaches());
+        if (getOffsetTimer() % 20 == 0) {
+            int temperature = getCurrentTemperature();
+
+            // 正常配方运行逻辑
+            FluidStack nickelPlasmaFluid = new FluidStack(Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:nickel_plasma"))), FLUID_AMOUNT);
+            if (MachineUtils.inputFluid(nickelPlasmaFluid, this)) {
+                increaseTemperature();  // 每次配方运行温度增加10K
+                return true;
+            }
+
+            getRecipeLogic().setProgress(0); // 流体不足时停止
+            return false;
         }
-        return value;
+        return super.onWorking();
     }
 
-    @Override
-    public boolean dampingWhenWaiting() {
-        return false;
+    // 增加温度，每次运行配方后温度增加1000K
+    private void increaseTemperature() {
+        currentTemperature = Math.min(currentTemperature + HEAT_SPEED, MAX_TEMP);
     }
 
-    //////////////////////////////////////
-    // ******* GUI ********//
-    //////////////////////////////////////
+    // 根据温度调整并行数
+    public int getParallelCount() {
+        if (currentTemperature >= 60000) {
+            return 64;  // 温度达到60000时并行数为64
+        } else if (currentTemperature >= 30000) {
+            return 16;  // 温度达到30000时并行数为16
+        } else if (currentTemperature >= 10000) {
+            return 8;   // 温度达到10000时并行数为8
+        } else if (currentTemperature >= 5000) {
+            return 4;   // 温度达到5000时并行数为4
+        } else if (currentTemperature >= 1000) {
+            return 2;   // 温度达到1000时并行数为2
+        } else {
+            return 1;   // 温度小于1000时并行数为1
+        }
+    }
 
+    // recipeModifier 实现，根据温度调整并行数
+    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+        if (machine instanceof NaqReactorMachine reactorMachine) {
+            int parallelCount = reactorMachine.getParallelCount();
+            double eutMultiplier = parallelCount; // 并行数影响Eut输出量
+
+            return ModifierFunction.builder()
+                    .inputModifier(ContentModifier.multiplier(1))  // 输入不变
+                    .outputModifier(ContentModifier.multiplier(1))  // 输出不变
+                    .durationMultiplier(1)  // 使用时间不变
+                    .parallels(parallelCount)  // 根据温度调整并行数
+                    .eutMultiplier(eutMultiplier)  // 根据并行数调整Eut输出
+                    .build();
+        }
+        return ModifierFunction.IDENTITY;
+    }
+
+    // 更新GUI显示文本
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
-        if (isFormed()) {
-            if (isBoostAllowed()) {
-                if (tier == GTValues.UEV) {
-                    if (isBoosted) {
-                        textList.add(Component.translatable("ctnh.multiblock.naq_reactor_machine.oxygen_plasma_boosted"));
-                    } else {
-                        textList.add(Component
-                                .translatable("ctnh.multiblock.naq_reactor_machine.supply_oxygen_plasma_to_boost"));
-                    }
-                } else if(tier == GTValues.UIV) {
-                    if (isBoosted) {
-                        textList.add(Component
-                                .translatable("ctnh.multiblock.naq_reactor_machine.iron_plasma_boosted"));
-                    } else {
-                        textList.add(Component.translatable(
-                                "ctnh.multiblock.naq_reactor_machine.supply_iron_plasma_to_boost"));
-                    }
-                }
-                else {
-                    if (isBoosted) {
-                        textList.add(Component
-                                .translatable("ctnh.multiblock.naq_reactor_machine.nickel_plasma_boosted"));
-                    } else {
-                        textList.add(Component.translatable(
-                                "ctnh.multiblock.naq_reactor_machine.supply_nickel_plasma_to_boost"));
-                    }
-                }
-            } else {
-                textList.add(Component.translatable("ctnh.multiblock.naq_reactor_machine.boost_disallowed"));
-            }
-        }
+        textList.add(Component.translatable("powergenerator.temperature", currentTemperature + "K"));
+        textList.add(Component.translatable("powergenerator.nickel_consumption", FLUID_AMOUNT + "mb"));
+        textList.add(Component.translatable("powergenerator.parallel_count", getParallelCount()));
+    }
+
+    @Override
+    public ManagedFieldHolder getFieldHolder() {
+        return new ManagedFieldHolder(NaqReactorMachine.class, super.getFieldHolder());
     }
 }

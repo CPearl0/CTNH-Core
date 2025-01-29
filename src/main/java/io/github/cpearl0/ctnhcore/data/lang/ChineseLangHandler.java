@@ -258,6 +258,9 @@ public class ChineseLangHandler {
         provider.add("multiblock.ctnh.water_power_station1", "水量：%d");
         provider.add("multiblock.ctnh.water_power_station.efficiency", "线圈效率：%d%%");
         provider.add("multiblock.ctnh.water_power_station2", "产能功率：%d/%d EU/t");
+        provider.add("powergenerator.temperature", "§c内核温度: %d");
+        provider.add("powergenerator.nickel_consumption", "镍等离子体消耗量: %d");
+        provider.add("powergenerator.parallel_count", "发电并行数: %d");
         provider.add("ctnh.water_power_station.mechanism", "发电量和以控制器为中心，机器长度为半径，高为4的范围内的水量成正比");
         provider.add("ctnh.water_power_station.random", "发电量随机在0.6至1的倍率间波动");
         provider.add("ctnh.zenith_max_parallel","最大并行数：%d");
@@ -439,11 +442,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK,"铿铀强化硅岩铕机械方块");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK,"三钛强化中子素硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE,"等离子冷凝机械方块");
-        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKI,"反应堆核心 MKI");
-        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKII,"反应堆核心 MKII");
-        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKIII,"反应堆核心 MKIII");
-        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKIV,"反应堆核心 MKIV");
-        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKV,"反应堆核心 MKV");
+        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKI,"超级硅岩反应堆核心");
         provider.addBlock(CTNHBlocks.CASING_ADVANCED_HYPER,"暗物质强化超能硅岩机械方块");
         provider.addBlock(CTNHBlocks.CASING_HYPER,"黑钚强化硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.COIL_ABYSALALLOY, "渊狱合金线圈");
@@ -460,6 +459,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.TERRA_STEEL_CASING,"泰拉钢机械外壳");
         provider.addBlock(CTNHBlocks.ELEMENTIUM_CASING,"源质钢机械外壳");
         provider.addBlock(CTNHBlocks.ALF_STEEL_CASING,"精灵钢机械外壳");
+        provider.addBlock(CTNHBlocks.REACTOR_CONDENSATION_BLOCK,"反应堆冷凝方块");
         provider.addBlock(CTNHBlocks.DEPTH_FORCE_FIELD_STABILIZING_CASING,"深度力场稳定外壳");
         provider.addBlock(CTNHBlocks.BRONZE_FRAMED_GLASS, "青铜镶边玻璃");
         provider.addBlock(CTNHBlocks.BIO_REACTOR_CASING, "生物反应器外壳");
@@ -471,6 +471,7 @@ public class ChineseLangHandler {
         provider.addBlock((CTNHBlocks.COIL_ULTRA_MANA),"类星体魔力线圈方块");
         provider.addBlock(CTNHBlocks.ELEMENTIUM_PIPE_CASING, "源质钢管道机械方块");
         provider.addBlock(CTNHBlocks.TEST_CASING,"测试方块");
+        provider.addBlock(CTNHBlocks.ATOMS_SPLIT_BLOCKS, "原子裂解方块");
         provider.addBlock(CTNHBlocks.QUASAR_ENERGY_STABILIZATION_CASING,"类星体能量稳定机械外壳");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
@@ -486,9 +487,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.PLASMA_CONDENSER.getBlock(),"等离子冷凝器");
         provider.add(CTNHMultiblockMachines.ZENITH_LASER.getBlock(), "§5天顶激光蚀刻机");
         provider.add(CTNHMultiblockMachines.BEDROCK_DRILLING_RIGS.getBlock(), "基岩钻机");
-        provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK1.getBlock(),"超能反应堆 MKI");
-        provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK2.getBlock(),"超能反应堆 MKII");
-        provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK3.getBlock(),"超能反应堆 MKIII");
+        provider.add(CTNHMultiblockMachines.NAQ_REACTOR_MK3.getBlock(),"超级硅岩反应堆");
         provider.add(CTNHMultiblockMachines.SWEATSHOP.getBlock(),"§4血汗工厂");
         provider.add(CTNHMultiblockMachines.DEMON_WILL_GENERATOR.getBlock(),"§b恶魔意志发电机");
         provider.add(CTNHMultiblockMachines.MEADOW.getBlock(),"§6牧场");
