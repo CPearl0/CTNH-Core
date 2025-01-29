@@ -69,6 +69,8 @@ public class CTNHBlocks {
             "terra_steel_casing",CTNHCore.id("block/casings/terra_steel_casing"));
     public static final BlockEntry<Block> ZENITH_EYE = createCasingBlock(
             "zenith_eye",CTNHCore.id("block/zenith_eye"));
+    public static final BlockEntry<Block> NATURAL_ECOLOGICAL_SHELL_CASING = createCasingBlock("natural_ecological_shell_casing",
+            CTNHCore.id("block/natural_ecological_shell_casing"));
     public static final BlockEntry<Block> REACTOR_CONDENSATION_BLOCK = createCasingBlock(
             "reactor_condensation_block",CTNHCore.id("block/reactor_condensation_block"));
     public static final BlockEntry<Block> ELEMENTIUM_CASING = createCasingBlock(
@@ -93,6 +95,7 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/quasar_energy_stabilization_casing"));
     public static final BlockEntry<Block> TWISTED_FUSION_CASING = createCasingBlock("twisted_fusion_casing",
             CTNHCore.id("block/casings/twisted_fusion_casing"));
+
 
     public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing("reservoir_computing_casing",
             "block/flux/reservoir_computing_casing");
