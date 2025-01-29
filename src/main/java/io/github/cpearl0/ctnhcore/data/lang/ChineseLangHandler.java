@@ -70,6 +70,10 @@ public class ChineseLangHandler {
         provider.add("gtceu.twisted_fusion", "扭曲聚变反应堆");
         provider.add("gtceu.nano_generator","摩擦发电");
         provider.add("gtceu.quasar_eye","类星体之眼");
+        provider.add("gtceu.decay_pools", "衰变罐");
+        provider.add("gtceu.fermenting", "发酵罐");
+        provider.add("gtceu.beams", "戴森光束");
+        provider.add("gtceu.altar", "血之祭坛");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
