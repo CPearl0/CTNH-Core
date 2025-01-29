@@ -1,12 +1,8 @@
-// 1.20.1	2025-01-28T21:44:47.6165952	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
+// 1.20.1	2025-01-29T13:19:23.9901035	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
 71126adb864d9a6630664cb50c2f9136343a4359 assets/ctnhcore/blockstates/alfsteel_casing.json
 8cbfdc96434837058b4a258a0e30cadcd9acd5b9 assets/ctnhcore/blockstates/annihilate_core_mki.json
-c3014a9c3b8318a66929212e5b24093324e380eb assets/ctnhcore/blockstates/annihilate_core_mkii.json
-cb0761ae269cb054686ebc5b8088c1e834e999fd assets/ctnhcore/blockstates/annihilate_core_mkiii.json
-e9372aff5d971452fa72b15f602cc4d1579097d3 assets/ctnhcore/blockstates/annihilate_core_mkiv.json
-0c0b25796a051edc2ca1f5a6c1bc20d196e5a3e9 assets/ctnhcore/blockstates/annihilate_core_mkv.json
 e7604f1c44e89756989fdb0d797ed11319dcd35e assets/ctnhcore/blockstates/antifreeze_heatproof_machine_casing.json
 d5cfae9c2886eb15f41e72652d6e3f3beda35099 assets/ctnhcore/blockstates/atoms_split_blocks.json
 b28836ee7ca3ae6a0e7e9dd6b0f07d0f0a2a0521 assets/ctnhcore/blockstates/bio_reactor_casing.json
@@ -31,6 +27,7 @@ fb4357154c8b009894517f73f1d36665b7e12db9 assets/ctnhcore/blockstates/osmiridium_
 e5a9dca63d257570c5eb5b9da587386ccd145b5c assets/ctnhcore/blockstates/plasma_cooled_core.json
 11005ca40e147b64bcf9f674fb35ade493fdf920 assets/ctnhcore/blockstates/pulsating_photovoltaic_block.json
 541eac58c0faba800ac8db0f7b1048fefc70c66e assets/ctnhcore/blockstates/quasar_energy_stabilization_casing.json
+1ec2559f1618ae59ae43a519ae2ef8aebf6c5b24 assets/ctnhcore/blockstates/reactor_condensation_block.json
 5649585008b897cc69389f89f03ea7123f94a613 assets/ctnhcore/blockstates/reflect_light_casing.json
 8a55ee5785f7b7fa9322906f4880d390ab2e18bf assets/ctnhcore/blockstates/reservoir_computing_casing.json
 ae95a37ecbaa61f39530312db819ffd39abd13b6 assets/ctnhcore/blockstates/space_elevator_mechanical_casing.json
@@ -47,9 +44,9 @@ f37e897ef97cb6a5e0cd1aa2213c2e60d6aa3841 assets/ctnhcore/blockstates/vibrant_pho
 55c3cf0fdf5b9b4e569f1f91f3acdc45deb0c80d assets/ctnhcore/blockstates/zenith_casing.json
 f17c7b2d8495b9535bc4c92a544ea0c2bcc5e595 assets/ctnhcore/blockstates/zenith_casing_gearbox.json
 71fb0f01bd60854473495a9b97cef4eac5c59ac2 assets/ctnhcore/blockstates/zenith_eye.json
-f5334c9ab3254e0e95cbe4a8311625bdbd51e2b7 assets/ctnhcore/lang/en_ud.json
-4f4ab970d33372307ff6bf88a613c95d7153ea16 assets/ctnhcore/lang/en_us.json
-a0ae8146d0900f8ab43c3fe0ed68866797b7534f assets/ctnhcore/lang/zh_cn.json
+07c11494f760ca3380a4445d22216ed3157dc025 assets/ctnhcore/lang/en_ud.json
+5f91f7c34144e628f80f3e62345ad1c18a15d2ce assets/ctnhcore/lang/en_us.json
+43fede070b888f790f65a90dc0cdbe35d822e3e6 assets/ctnhcore/lang/zh_cn.json
 df65321a1742a74b662d28389e11b0a2406960b1 assets/ctnhcore/models/block/abyssalalloy_coil_block.json
 13db5d9c835eeecee9dc13bee7a130e73a4bc89e assets/ctnhcore/models/block/abyssalalloy_coil_block_active.json
 b096394b9e6976c2213b74fa8b04bf8e9c5ebabc assets/ctnhcore/models/block/advanced_hyper_casing.json
@@ -80,6 +77,7 @@ c0e9f2559fffc656362dd3a48f46e0d10f8473e4 assets/ctnhcore/models/block/pikyonium_
 e933dac986f316e6b2339356ba70a6c2f96c8331 assets/ctnhcore/models/block/pikyonium_coil_block_active.json
 edd6656e2b6b941d699fda6deb3d4a79d641d2f6 assets/ctnhcore/models/block/pulsating_photovoltaic_block.json
 500c16469d49e5c0343a493fec6113be53f8bc44 assets/ctnhcore/models/block/quasar_energy_stabilization_casing.json
+09fb88dd6a0cd1d22e5dfbb6d4cb57487438d166 assets/ctnhcore/models/block/reactor_condensation_block.json
 aeccc28c1e7963a6d23d29ee8e92ecfa1592db4e assets/ctnhcore/models/block/reflect_light_casing.json
 4973f3677e2f172d162a9233d65042c8a7828037 assets/ctnhcore/models/block/space_elevator_mechanical_casing.json
 db8b3738f0ca7b1c82be5af9dfdeeb460503debb assets/ctnhcore/models/block/starmetal_coil_block.json
@@ -101,10 +99,6 @@ c5911717788f51b49f8075cb087fb5dbd0ab473f assets/ctnhcore/models/item/advanced_hy
 9795bfe16c823163e4e79c0dfb0fefa252bd0b91 assets/ctnhcore/models/item/alfsteel_casing.json
 33b22b633c147bc55e2a63ed21bcfbd4ca69a70c assets/ctnhcore/models/item/animal_excreta.json
 f58ad7f6dd36f3bb189508111160483c7a412ee7 assets/ctnhcore/models/item/annihilate_core_mki.json
-675acbacf492d9155fd419d79ce48768ec14a09b assets/ctnhcore/models/item/annihilate_core_mkii.json
-e1318ec2c3d2fecb7dabf86867802b25b8a27f71 assets/ctnhcore/models/item/annihilate_core_mkiii.json
-7305aaf32ae1bfd9183289242151ae8073f06c48 assets/ctnhcore/models/item/annihilate_core_mkiv.json
-a5f177163335ae9db4392e6265103e7f8c041f1f assets/ctnhcore/models/item/annihilate_core_mkv.json
 8c1014b26a1ac2c3bfb9ffea2f9acccdb07dca9a assets/ctnhcore/models/item/antifreeze_heatproof_machine_casing.json
 b71a03e50a4e1e99c8e999295ed3bb4b437d89f2 assets/ctnhcore/models/item/astronomy_circuit_1.json
 d3c8f948fbfa25f701e9557cc90abba6dc2e41cd assets/ctnhcore/models/item/atoms_split_blocks.json
@@ -139,6 +133,7 @@ ed8a20bcce0275b71d3512e19f587c5338dfeb54 assets/ctnhcore/models/item/proliferati
 beed7ce0886c4882eda4f6548b541f2345fed104 assets/ctnhcore/models/item/pulsating_photovoltaic_block.json
 b511353bd4bd10559a6b2d4997bc4b3f6045b298 assets/ctnhcore/models/item/quasar_energy_stabilization_casing.json
 5407b5de29c8687e846908457a3d00a4a2828acb assets/ctnhcore/models/item/quasar_rune.json
+0d9b305ff5be8ee0e97fea4e2860ab989460ad7f assets/ctnhcore/models/item/reactor_condensation_block.json
 423db746b7e373e56dc71ac27dacbf6cccec4052 assets/ctnhcore/models/item/refined_iron_ingot.json
 3e493b04ed0091f5aa3f754621d7ced517f284c6 assets/ctnhcore/models/item/reflect_light_casing.json
 c3cd85ba8f6e72b6954ce6fa4514cc27431cdfc4 assets/ctnhcore/models/item/reservoir_computing_casing.json
@@ -167,10 +162,6 @@ eb5e85c37bb9b0af198be42cb33efe9161d4cf86 data/ctnhcore/loot_tables/blocks/abyssa
 f4fe9e76c80f909aaa2b0e45b1ff536bb537bbe7 data/ctnhcore/loot_tables/blocks/advanced_hyper_casing.json
 0cd78f937013412ab87c3beeb0e596977498c706 data/ctnhcore/loot_tables/blocks/alfsteel_casing.json
 02613edd7e17c6ba6157060a1a68fda02564954f data/ctnhcore/loot_tables/blocks/annihilate_core_mki.json
-22dbd21ea8e77773c62312e090ee13d5253f039c data/ctnhcore/loot_tables/blocks/annihilate_core_mkii.json
-6ce3ff2865624b232a427a26f547c698af43a035 data/ctnhcore/loot_tables/blocks/annihilate_core_mkiii.json
-c80e6ee6a3f9a421b1855eade747c02f5b76d5a6 data/ctnhcore/loot_tables/blocks/annihilate_core_mkiv.json
-e29e016b019a00c647f8dd0dac9cbcf9a44294d4 data/ctnhcore/loot_tables/blocks/annihilate_core_mkv.json
 3eb5236e83063a3cc5509fb035962ce3548263c5 data/ctnhcore/loot_tables/blocks/antifreeze_heatproof_machine_casing.json
 6b919ff4bec5ad3ae4962f97d98641d29bea8600 data/ctnhcore/loot_tables/blocks/atoms_split_blocks.json
 bced118d342e7630adcb324ce4e1a4f3967f4370 data/ctnhcore/loot_tables/blocks/bio_reactor_casing.json
@@ -195,6 +186,7 @@ a48679f82e7f46a2799c6cf89a74ac55553ded7e data/ctnhcore/loot_tables/blocks/naquad
 44120cbd6d34392892220ccffb6e5f5e9ff72299 data/ctnhcore/loot_tables/blocks/plasma_cooled_core.json
 dd6f4dff3c3bb397ba3158996dca7aa0f06392b7 data/ctnhcore/loot_tables/blocks/pulsating_photovoltaic_block.json
 53a0e4fc1fd7051ea64dfd41477f863bd09ee85f data/ctnhcore/loot_tables/blocks/quasar_energy_stabilization_casing.json
+126c24083342c8ac094bdc430405a03f8991dbfd data/ctnhcore/loot_tables/blocks/reactor_condensation_block.json
 460b88bf962c88b535d7d52c73acf15066ddbd64 data/ctnhcore/loot_tables/blocks/reflect_light_casing.json
 3e364237e5add4edff99589a2ceffaa744d36e56 data/ctnhcore/loot_tables/blocks/reservoir_computing_casing.json
 d6e3ee839c597b6c4d2a6045a1e9209ef24cdafe data/ctnhcore/loot_tables/blocks/space_elevator_mechanical_casing.json
@@ -213,5 +205,5 @@ c12f469412fb0f269db9f61a23c3137e4ddf1f80 data/ctnhcore/loot_tables/blocks/zenith
 8ba76dee35b7b072011975b2ce5921789146ab2a data/ctnhcore/loot_tables/blocks/zenith_eye.json
 801c0ddbdd107af720ccb4feddaf685d8f514d5c data/forge/tags/blocks/ad_astra_stones.json
 8b23a2ed8bfd251bd2a8952d236a8809502f5444 data/forge/tags/blocks/aether_stones.json
-efa5ce76ad7f9fe769b9fb15413911e3f0a6bb1b data/forge/tags/blocks/mineable/wrench.json
-efa5ce76ad7f9fe769b9fb15413911e3f0a6bb1b data/minecraft/tags/blocks/mineable/pickaxe.json
+18256b7dec1dfb4421561f6b5911447f9313732b data/forge/tags/blocks/mineable/wrench.json
+18256b7dec1dfb4421561f6b5911447f9313732b data/minecraft/tags/blocks/mineable/pickaxe.json

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ctnhcore:annihilate_core_mkiii"
+          "name": "ctnhcore:reactor_condensation_block"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "ctnhcore:blocks/annihilate_core_mkiii"
+  "random_sequence": "ctnhcore:blocks/reactor_condensation_block"
 }

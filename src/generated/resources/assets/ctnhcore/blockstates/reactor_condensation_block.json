@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ctnhcore:block/reactor_condensation_block"
+    }
+  }
+}

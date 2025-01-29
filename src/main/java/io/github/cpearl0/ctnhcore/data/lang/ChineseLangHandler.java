@@ -438,11 +438,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK,"铿铀强化硅岩铕机械方块");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK,"三钛强化中子素硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE,"等离子冷凝机械方块");
-        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKI,"反应堆核心 MKI");
-        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKII,"反应堆核心 MKII");
-        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKIII,"反应堆核心 MKIII");
-        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKIV,"反应堆核心 MKIV");
-        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKV,"反应堆核心 MKV");
+        provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKI,"超级硅岩反应堆核心");
         provider.addBlock(CTNHBlocks.CASING_ADVANCED_HYPER,"暗物质强化超能硅岩机械方块");
         provider.addBlock(CTNHBlocks.CASING_HYPER,"黑钚强化硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.COIL_ABYSALALLOY, "渊狱合金线圈");
@@ -459,6 +455,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.TERRA_STEEL_CASING,"泰拉钢机械外壳");
         provider.addBlock(CTNHBlocks.ELEMENTIUM_CASING,"源质钢机械外壳");
         provider.addBlock(CTNHBlocks.ALF_STEEL_CASING,"精灵钢机械外壳");
+        provider.addBlock(CTNHBlocks.REACTOR_CONDENSATION_BLOCK,"反应堆冷凝方块");
         provider.addBlock(CTNHBlocks.DEPTH_FORCE_FIELD_STABILIZING_CASING,"深度力场稳定外壳");
         provider.addBlock(CTNHBlocks.BRONZE_FRAMED_GLASS, "青铜镶边玻璃");
         provider.addBlock(CTNHBlocks.BIO_REACTOR_CASING, "生物反应器外壳");
