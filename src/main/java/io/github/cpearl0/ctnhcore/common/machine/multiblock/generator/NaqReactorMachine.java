@@ -38,8 +38,6 @@ import java.util.Objects;
 public class NaqReactorMachine extends WorkableElectricMultiblockMachine implements ITieredMachine {
 
     // 设置当前温度
-    // 获取当前温度
-    // 定义初始温度和最大温度
     private int currentTemperature = 0;  // 初始温度为0K
     private static final int MAX_TEMP = 80000;  // 温度最高为80000K
     private static final int MIN_TEMP = 0;     // 温度最低为0K
@@ -47,6 +45,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
 
     // 流体消耗量（单位：mB）
     private static final int FLUID_AMOUNT = 40;  // 每次消耗40mb的镍等离子体
+    private int inactiveTimer = 0;  // 记录停止工作时的计时器
 
     public NaqReactorMachine(IMachineBlockEntity holder) {
         super(holder);
@@ -54,23 +53,45 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
 
     @Override
     public boolean onWorking() {
-        if (getOffsetTimer() % 20 == 0) {
-            int temperature = getCurrentTemperature();
+        if (getOffsetTimer() % 20 == 0) { // 每秒执行一次
+            int parallelCount = getParallelCount();  // 获取当前并行数
+            int fluidConsumption = FLUID_AMOUNT * parallelCount;  // 计算消耗量
 
-            // 正常配方运行逻辑
-            FluidStack nickelPlasmaFluid = new FluidStack(Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:nickel_plasma"))), FLUID_AMOUNT);
-            if (MachineUtils.inputFluid(nickelPlasmaFluid, this)) {
-                increaseTemperature();  // 每次配方运行温度增加10K
-                return true;
+            FluidStack nickelPlasmaFluid = new FluidStack(
+                    Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(
+                            new ResourceLocation("gtceu:nickel_plasma"))),
+                    fluidConsumption  // 动态调整流体消耗量
+            );
+
+            boolean isFluidSufficient = MachineUtils.inputFluid(nickelPlasmaFluid, this);  // 检查是否有足够流体
+
+            if (isFluidSufficient) {
+                increaseTemperature();  // 机器工作时升温
+                inactiveTimer = 0;  // 重置停止工作计时器
+                return super.onWorking();  // 如果有足够流体，继续执行配方
             }
 
-            getRecipeLogic().setProgress(0); // 流体不足时停止
-            return false;
+            // 如果流体不足，停止配方进度
+            getRecipeLogic().setProgress(0);  // 重置配方进度
+            inactiveTimer++;  // 记录停止工作时的时间
+
+            if (inactiveTimer >= 20) {  // 每1秒降低一次温度
+                decreaseTemperature();
+                inactiveTimer = 0;  // 重置计时器
+            }
+
+            return false;  // 流体不足时完全停止工作，不启动配方
         }
-        return super.onWorking();
+
+        return super.onWorking();  // 调用父类的 onWorking 方法
     }
 
-    // 增加温度，每次运行配方后温度增加1000K
+    // 降低温度的方法（每秒减少 1000K）
+    private void decreaseTemperature() {
+        currentTemperature = Math.max(currentTemperature - 1000, MIN_TEMP);
+    }
+
+    // 增加温度，每次运行配方后温度增加10K
     private void increaseTemperature() {
         currentTemperature = Math.min(currentTemperature + HEAT_SPEED, MAX_TEMP);
     }
@@ -99,8 +120,8 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
             double eutMultiplier = parallelCount; // 并行数影响Eut输出量
 
             return ModifierFunction.builder()
-                    .inputModifier(ContentModifier.multiplier(1))  // 输入不变
-                    .outputModifier(ContentModifier.multiplier(1))  // 输出不变
+                    .inputModifier(ContentModifier.multiplier(parallelCount))  // 输入不变
+                    .outputModifier(ContentModifier.multiplier(parallelCount))  // 输出不变
                     .durationMultiplier(1)  // 使用时间不变
                     .parallels(parallelCount)  // 根据温度调整并行数
                     .eutMultiplier(eutMultiplier)  // 根据并行数调整Eut输出
@@ -113,8 +134,10 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
+        int parallelCount = getParallelCount();  // 获取当前并行数
+        int fluidConsumption = FLUID_AMOUNT * parallelCount;  // 计算实际消耗量
         textList.add(Component.translatable("powergenerator.temperature", currentTemperature + "K"));
-        textList.add(Component.translatable("powergenerator.nickel_consumption", FLUID_AMOUNT + "mb"));
+        textList.add(Component.translatable("powergenerator.nickel_consumption", fluidConsumption + "mb"));
         textList.add(Component.translatable("powergenerator.parallel_count", getParallelCount()));
     }
 

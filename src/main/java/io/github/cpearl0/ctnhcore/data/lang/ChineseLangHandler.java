@@ -152,6 +152,10 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.demon_generator.info.destructive","专精强化：破坏");
         provider.add("ctnh.multiblock.demon_generator.info.1","浓度差异：%s");
         provider.add("ctnh.multiblock.demon_generator.info.boosted","§b生命源质强化中");
+        provider.add("ctnh.multiblock.naq_reactor_mk3.tooltip.1", "浩瀚能量，天地震动");
+        provider.add("ctnh.multiblock.naq_reactor_mk3.tooltip.2", "利用超能燃料进行发电,无镍等离子体时无法完全消耗燃料");
+        provider.add("ctnh.multiblock.naq_reactor_mk3.tooltip.3", "机器构型中必须有一个动力仓");
+        provider.add("ctnh.multiblock.naq_reactor_mk3.parallelizable.tooltip", "随着内核温度上升,发电效率增大");
         provider.add("meadow", "自动化放牧");
         provider.add("ctnh.meadow.basic", "只能养鸡牛羊猪，牛会产生皮革，羊会产生羊毛，鸡会产生鸡蛋，猪会产生猪肉");
         provider.add("ctnh.meadow.mechanism", "牧场里每多一只动物，产生的排泄物数量就会提升，养的动物越多，产物越多");
