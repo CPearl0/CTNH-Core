@@ -1603,7 +1603,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition ADVANCED_COKE_OVEN = REGISTRATE.multiblock("advanced_coke_oven", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.COKE_OVEN_RECIPES)
-            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,32).andThen(ModifierFunction.builder().eutMultiplier((double) 300 /recipe.duration).build()))
+            .recipeModifiers((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,32).andThen(ModifierFunction.builder().durationMultiplier((double) 300 /recipe.duration).build()))
             .appearanceBlock(HIGH_GRADE_COKE_OVEN_BRICKS)
             .tooltips(Component.translatable("advanced_blast_furnace").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.advanced_blast_furnace.tooltip.0"),
