@@ -70,7 +70,7 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> ZENITH_EYE = createCasingBlock(
             "zenith_eye",CTNHCore.id("block/zenith_eye"));
     public static final BlockEntry<Block> NATURAL_ECOLOGICAL_SHELL_CASING = createCasingBlock("natural_ecological_shell_casing",
-            CTNHCore.id("block/natural_ecological_shell_casing"));
+            CTNHCore.id("block/casings/natural_ecological_shell_casing"));
     public static final BlockEntry<Block> REACTOR_CONDENSATION_BLOCK = createCasingBlock(
             "reactor_condensation_block",CTNHCore.id("block/reactor_condensation_block"));
     public static final BlockEntry<Block> ELEMENTIUM_CASING = createCasingBlock(
