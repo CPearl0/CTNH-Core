@@ -493,10 +493,6 @@ public class CTNHMultiblockMachines {
                     .where("I", Predicates.blocks(ATOMS_SPLIT_BLOCKS.get()))
                     .build()
             )
-            .tooltips(
-                    Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UXV]),
-                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk3",GTValues.V[GTValues.UXV] * 24),
-                    Component.translatable("gtceu.multiblock.laser.tooltip"))
 
             .workableCasingRenderer(CTNHCore.id("block/casings/nq_alloy_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .register();

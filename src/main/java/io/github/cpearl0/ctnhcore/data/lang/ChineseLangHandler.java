@@ -116,9 +116,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_iron_plasma_to_boost","提供铁等离子体以加速");
         provider.add("ctnh.multiblock.naq_reactor_machine.nickel_plasma_boosted","§b镍等离子体加速中");
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_nickel_plasma_to_boost","提供镍等离子体以加速");
-        provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1","提供§f20 mB/s§7的氧等离子体，并消耗§f四倍§7燃料以产生高达§f%s§7EU/t的功率。");
-        provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2","提供§f20 mB/s§7的铁等离子体，并消耗§f四倍§7燃料以产生高达§f%s§7EU/t的功率。");
-        provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk3","提供§f20 mB/s§7的镍等离子体，并消耗§f四倍§7燃料以产生高达§f%s§7EU/t的功率。");
         provider.add("ctnh.test_terminal.lack_error","在%s处缺少");
         provider.add("ctnh.test_terminal.wrong_error","在%s处应为");
         provider.add("ctnh.test_terminal.position","(%s,%s,%s)");
