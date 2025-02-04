@@ -69,7 +69,7 @@ public class MachinesRecipes {
                 .save(provider);
         CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator2")
                 .circuitMeta(1)
-                .inputFluids(CTNHMaterials.Zenith_essence.getFluid(5000))
+                .inputFluids(CTNHMaterials.Zenith_essence.getFluid(50000))
                 .EUt(-134217728)
                 .duration(150)
                 .addData("consumption",100000)

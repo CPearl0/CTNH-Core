@@ -21,6 +21,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.FactoryMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -40,7 +41,9 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
     public int broken=0;
     public int twist_seat=0;
     public int starlight_seat=0;
-
+    public static final String MAX_MANA = "max_mana";
+    public static final String MANA = "mana";
+    public static final String OVERLOAD = "overload";
     public List<String> AvailableRune=List.of("twist_rune","starlight_rune","horizen_rune","quasar_rune");
     public final NotifiableItemStackHandler machineStorage;
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
@@ -241,5 +244,23 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
         }).setFilter(itemStack -> AvailableRune.contains(itemStack.getItem().toString()));
 
     }
+    @Override
+    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
+        super.saveCustomPersistedData(tag, forDrop);
+        if (!forDrop) {
+            tag.putDouble(MAX_MANA,max_mana);
+            tag.putDouble(MANA,mana);
+            tag.putInt(OVERLOAD,overload);
+        }
+    }
 
+    @Override
+    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
+        super.loadCustomPersistedData(tag);
+        max_mana = tag.contains(MAX_MANA) ? tag.getDouble(MAX_MANA) : 0;
+        mana=tag.contains(MANA)? tag.getDouble(MANA):0;
+        overload=tag.contains(OVERLOAD)?tag.getInt(OVERLOAD):0;
+    }
 }
+
+

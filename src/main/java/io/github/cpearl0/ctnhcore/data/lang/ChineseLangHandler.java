@@ -305,7 +305,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.quarsar.tips5","§b好消息§r：这个机器不会爆炸，§c但我不保证未来它不会爆炸！§r");
         provider.add("ctnh.quarsar.tips6","在能量等级高时启动能量等级低的配方§b不需要启动花费§r");
         provider.add("ctnh.quarsar.tips7","该机器能量效率为log((符文能量)/50)+1，最大能量效率为1+1*能量等级");
-        provider.add("ctnh.quarsar.tips8","该机器获取符文能量逻辑为：在§5启动前§r读取并消耗每类可消耗符文§c最多各一个§r");
+        provider.add("ctnh.quarsar.tips8","该机器获取符文能量逻辑为：在§5每次配方运行前前§r读取并消耗每类可消耗符文§c最多各一个§r");
         provider.add("ctnh.quarsar.tips9","该机器拥有时间并行，消耗并行量倍数持续并行量时间");
         provider.add("ctnh.quarsar.tips10","该机器并行量为效率*5");
         provider.add("ctnh.quarsar.tips11","该机器燃料消耗量为1-0.05*Math.max((rune_energy-50)/50,0.75)");
