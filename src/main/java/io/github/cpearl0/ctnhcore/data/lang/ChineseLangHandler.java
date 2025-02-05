@@ -369,7 +369,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.beams.tips9","在不处于过载状态下每3秒减少1过载度，§c过载度积累满时机器将会爆炸§r");
         provider.add("ctnh.beams.tips10","§c扭曲符文§r消耗概率公式:每次运行有Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0))概率消耗");
         provider.add("ctnh.beams.tips11","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
-        provider.add("ctnh.beams.tips12","该机器无法超频");
+        provider.add("ctnh.beams.tips12","该机器无法超频，§c该机器也没有做完，我不对bug负责（笑）§r");
         provider.add("ctnh.magic.parrel","当前并行数:%.2f");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.0", "机器类型：§e核聚变反应堆/§5扭曲聚变反应堆§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.1", "§8以不可思议的伟力。§r");
