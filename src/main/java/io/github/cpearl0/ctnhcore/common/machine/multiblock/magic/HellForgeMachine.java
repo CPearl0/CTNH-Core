@@ -12,6 +12,7 @@ import java.util.List;
 
 public class HellForgeMachine extends WorkableElectricMultiblockMachine {
     public double will = 0;
+    public static final String WILL = "will";
     public HellForgeMachine(IMachineBlockEntity holder){
         super(holder);
     }

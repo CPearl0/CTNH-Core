@@ -97,7 +97,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         }
         else if(turbineMachine.Tier4_rune.contains(turbineMachine.getMachineStorageItem().getItem().toString())){
             turbineMachine.efficiency = 4;
-            turbineMachine.consumpution_rate = 0.5;
+            turbineMachine.consumpution_rate = 0.4;
         }
         else {
             turbineMachine.efficiency = 1;
@@ -114,14 +114,14 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
             return ModifierFunction.NULL;
         }
 
-        double holderEfficiency = rotorHolder.getTotalEfficiency() / 600.0;
+        double holderEfficiency = rotorHolder.getTotalEfficiency() / 100.0;
 
         // get the amount of parallel required to match the desired output voltage
         var maxParallel = (int) ((turbineMaxVoltage - turbineMachine.excessVoltage) / (EUt * holderEfficiency));
 
         // this is necessary to prevent over-consumption of fuel
         turbineMachine.excessVoltage += (int) (maxParallel * EUt * holderEfficiency - turbineMaxVoltage);
-        int actualParallel = ParallelLogic.getParallelAmountFast(turbineMachine, recipe, maxParallel);
+        int actualParallel = (int)ParallelLogic.getParallelAmountFast(turbineMachine, recipe, maxParallel);
         turbineMachine.parrel=actualParallel;
         return ModifierFunction.builder()
                 .inputModifier(ContentModifier.multiplier(actualParallel))

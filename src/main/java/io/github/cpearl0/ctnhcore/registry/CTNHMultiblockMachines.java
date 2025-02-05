@@ -448,6 +448,11 @@ public class CTNHMultiblockMachines {
             .recipeTypes(CTNHRecipeTypes.NAQ_MK1)
             .generator(true)
             .recipeModifier(NaqReactorMachine::recipeModifier,true)
+            .tooltips(Component.translatable("ctnh.multiblock.naq_reactor_mk3.tooltip.1"))
+            .tooltips(Component.translatable("ctnh.multiblock.naq_reactor_mk3.tooltip.2"))
+            .tooltips(Component.translatable("ctnh.multiblock.naq_reactor_mk3.tooltip.3"))
+            .tooltips(Component.translatable("ctnh.multiblock.naq_reactor_mk3.parallelizable.tooltip"))
+            .tooltips(Component.translatable("gtceu.multiblock.laser.tooltip"))
             .appearanceBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("        BBBBBBB        ", "          CDC          ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "          CDC          ", "        BBBBBBB        ")
@@ -488,10 +493,6 @@ public class CTNHMultiblockMachines {
                     .where("I", Predicates.blocks(ATOMS_SPLIT_BLOCKS.get()))
                     .build()
             )
-            .tooltips(
-                    Component.translatable("gtceu.universal.tooltip.base_production_eut", GTValues.V[GTValues.UXV]),
-                    Component.translatable("ctnh.machine.naq_reactor_machine.tooltip.boost_mk3",GTValues.V[GTValues.UXV] * 24),
-                    Component.translatable("gtceu.multiblock.laser.tooltip"))
 
             .workableCasingRenderer(CTNHCore.id("block/casings/nq_alloy_casing"), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .register();
@@ -1598,7 +1599,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition ADVANCED_COKE_OVEN = REGISTRATE.multiblock("advanced_coke_oven", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.COKE_OVEN_RECIPES)
-            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,32).andThen(ModifierFunction.builder().eutMultiplier((double) 300 /recipe.duration).build()))
+            .recipeModifiers((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,32).andThen(ModifierFunction.builder().durationMultiplier((double) 300 /recipe.duration).build()))
             .appearanceBlock(HIGH_GRADE_COKE_OVEN_BRICKS)
             .tooltips(Component.translatable("advanced_blast_furnace").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.advanced_blast_furnace.tooltip.0"),

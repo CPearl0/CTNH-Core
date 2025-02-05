@@ -98,6 +98,28 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
                 return super.beforeWorking(recipe);
             }
         }
+        if(recipe.data.getInt("consumption")==2000000){
+            if (MachineUtils.inputFluid(CTNHMaterials.EVE.getFluid(2000000), this)||active>=3) {
+                if (MachineUtils.inputItem(CTNHItems.TWIST_RUNE.asStack(1),this )){
+                    rune_energy+=32;
+                }
+                if (MachineUtils.inputItem(CTNHItems.HORIZEN_RUNE.asStack(1),this )){
+                    rune_energy+=32;
+                }
+                if (MachineUtils.inputItem(CTNHItems.STARLIGHT_RUNE.asStack(1),this )){
+                    rune_energy+=32;
+                }
+                if (MachineUtils.inputItem(CTNHItems.PROLIFERATION_RUNE.asStack(1),this )){
+                    rune_energy+=16;
+                }
+                if (MachineUtils.inputItem(CTNHItems.QUASAR_RUNE.asStack(1),this )){
+                    rune_energy+=1024;
+                }
+                if(active<3)active=3;
+                energy_tier=3;
+                return super.beforeWorking(recipe);
+            }
+        }
         return false;
     }
     @Override

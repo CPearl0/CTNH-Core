@@ -116,9 +116,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_iron_plasma_to_boost","提供铁等离子体以加速");
         provider.add("ctnh.multiblock.naq_reactor_machine.nickel_plasma_boosted","§b镍等离子体加速中");
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_nickel_plasma_to_boost","提供镍等离子体以加速");
-        provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk1","提供§f20 mB/s§7的氧等离子体，并消耗§f四倍§7燃料以产生高达§f%s§7EU/t的功率。");
-        provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk2","提供§f20 mB/s§7的铁等离子体，并消耗§f四倍§7燃料以产生高达§f%s§7EU/t的功率。");
-        provider.add("ctnh.machine.naq_reactor_machine.tooltip.boost_mk3","提供§f20 mB/s§7的镍等离子体，并消耗§f四倍§7燃料以产生高达§f%s§7EU/t的功率。");
         provider.add("ctnh.test_terminal.lack_error","在%s处缺少");
         provider.add("ctnh.test_terminal.wrong_error","在%s处应为");
         provider.add("ctnh.test_terminal.position","(%s,%s,%s)");
@@ -152,6 +149,10 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.demon_generator.info.destructive","专精强化：破坏");
         provider.add("ctnh.multiblock.demon_generator.info.1","浓度差异：%s");
         provider.add("ctnh.multiblock.demon_generator.info.boosted","§b生命源质强化中");
+        provider.add("ctnh.multiblock.naq_reactor_mk3.tooltip.1", "浩瀚能量，天地震动");
+        provider.add("ctnh.multiblock.naq_reactor_mk3.tooltip.2", "利用超能燃料进行发电,无镍等离子体时无法完全消耗燃料");
+        provider.add("ctnh.multiblock.naq_reactor_mk3.tooltip.3", "机器构型中必须有一个动力仓");
+        provider.add("ctnh.multiblock.naq_reactor_mk3.parallelizable.tooltip", "随着内核温度上升,发电效率增大");
         provider.add("meadow", "自动化放牧");
         provider.add("ctnh.meadow.basic", "只能养鸡牛羊猪，牛会产生皮革，羊会产生羊毛，鸡会产生鸡蛋，猪会产生猪肉");
         provider.add("ctnh.meadow.mechanism", "牧场里每多一只动物，产生的排泄物数量就会提升，养的动物越多，产物越多");
@@ -304,7 +305,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.quarsar.tips5","§b好消息§r：这个机器不会爆炸，§c但我不保证未来它不会爆炸！§r");
         provider.add("ctnh.quarsar.tips6","在能量等级高时启动能量等级低的配方§b不需要启动花费§r");
         provider.add("ctnh.quarsar.tips7","该机器能量效率为log((符文能量)/50)+1，最大能量效率为1+1*能量等级");
-        provider.add("ctnh.quarsar.tips8","该机器获取符文能量逻辑为：在§5启动前§r读取并消耗每类可消耗符文§c最多各一个§r");
+        provider.add("ctnh.quarsar.tips8","该机器获取符文能量逻辑为：在§5每次配方运行前前§r读取并消耗每类可消耗符文§c最多各一个§r");
         provider.add("ctnh.quarsar.tips9","该机器拥有时间并行，消耗并行量倍数持续并行量时间");
         provider.add("ctnh.quarsar.tips10","该机器并行量为效率*5");
         provider.add("ctnh.quarsar.tips11","该机器燃料消耗量为1-0.05*Math.max((rune_energy-50)/50,0.75)");
@@ -368,7 +369,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.beams.tips9","在不处于过载状态下每3秒减少1过载度，§c过载度积累满时机器将会爆炸§r");
         provider.add("ctnh.beams.tips10","§c扭曲符文§r消耗概率公式:每次运行有Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0))概率消耗");
         provider.add("ctnh.beams.tips11","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
-        provider.add("ctnh.beams.tips12","该机器无法超频");
+        provider.add("ctnh.beams.tips12","该机器无法超频，§c该机器也没有做完，我不对bug负责（笑）§r");
         provider.add("ctnh.magic.parrel","当前并行数:%.2f");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.0", "机器类型：§e核聚变反应堆/§5扭曲聚变反应堆§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.1", "§8以不可思议的伟力。§r");
@@ -442,6 +443,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK,"铿铀强化硅岩铕机械方块");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK,"三钛强化中子素硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE,"等离子冷凝机械方块");
+        provider.addBlock(CTNHBlocks.NATURAL_ECOLOGICAL_SHELL_CASING, "环保机械外壳");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKI,"超级硅岩反应堆核心");
         provider.addBlock(CTNHBlocks.CASING_ADVANCED_HYPER,"暗物质强化超能硅岩机械方块");
         provider.addBlock(CTNHBlocks.CASING_HYPER,"黑钚强化硅岩合金机械方块");
