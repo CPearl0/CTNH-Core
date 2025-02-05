@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
@@ -146,7 +147,7 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         var willChunk1 = WorldDemonWillHandler.getWillChunk(Objects.requireNonNull(getLevel()),pos1);
         var willChunk2 = WorldDemonWillHandler.getWillChunk(Objects.requireNonNull(getLevel()),pos2);
         var difference = getWillDifference(pos1,pos2,type1);
-        if (difference <= 0) {
+        if (willChunk1.getCurrentWill().getWill(type1) < willChunk2.getCurrentWill().getWill(type1)) {
             willChunk1.getCurrentWill().addWill(type1,Math.abs(difference) * 0.04 ,MAX_WILL);
             willChunk2.getCurrentWill().drainWill(type1, Math.abs(difference) * 0.08);
         }
@@ -167,10 +168,20 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
             total2 += WorldDemonWillHandler.getCurrentWill(Objects.requireNonNull(getLevel()),pos2,type1);
         }
         for (EnumDemonWillType type1 : EnumDemonWillType.values()) {
-            var will = WorldDemonWillHandler.getCurrentWill(Objects.requireNonNull(getLevel()),pos1,type1);
-            diversity1 -= Math.pow(will/total1,2);
-            will = WorldDemonWillHandler.getCurrentWill(Objects.requireNonNull(getLevel()),pos2,type1);
-            diversity2 -= Math.pow(will/total2,2);
+            if(total1 == 0){
+                diversity1 = 0.2;
+            }
+            else {
+                var will = WorldDemonWillHandler.getCurrentWill(Objects.requireNonNull(getLevel()), pos1, type1);
+                diversity1 -= Math.pow(will / total1, 2);
+            }
+            if(total2 == 0){
+                diversity2 = 0.2;
+            }
+            else {
+                var will = WorldDemonWillHandler.getCurrentWill(Objects.requireNonNull(getLevel()), pos2, type1);
+                diversity2 -= Math.pow(will / total2, 2);
+            }
         }
         diversity = diversity1 * diversity2;
     }
@@ -224,7 +235,7 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
         return 2 + 0.5 * Sacrifice_rune;
     }
     public GTRecipe getBloodRecipe() {
-        return GTRecipeBuilder.ofRaw().inputFluids(new FluidStack(BloodMagicFluids.LIFE_ESSENCE_FLUID_FLOWING.get(),100)).buildRawRecipe();
+        return GTRecipeBuilder.ofRaw().inputFluids(FluidIngredient.of(100,BloodMagicFluids.LIFE_ESSENCE_FLUID_FLOWING.get())).buildRawRecipe();
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (machine instanceof DemonWillMachine dmachine) {
