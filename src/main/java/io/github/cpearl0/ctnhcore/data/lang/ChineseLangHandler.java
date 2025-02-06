@@ -74,6 +74,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.fermenting", "发酵罐");
         provider.add("gtceu.beams", "戴森光束");
         provider.add("gtceu.altar", "血之祭坛");
+        provider.add("gtceu.wood_bionics", "§e林海树场");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -262,6 +263,8 @@ public class ChineseLangHandler {
         provider.add("powergenerator.temperature", "§c内核温度: %d");
         provider.add("powergenerator.nickel_consumption", "镍等离子体消耗量: %d");
         provider.add("powergenerator.parallel_count", "发电并行数: %d");
+        provider.add("forestmachine.humidity", "湿度值：%d");
+        provider.add("forestmachine.parallel_count", "并行数：%d");
         provider.add("ctnh.water_power_station.mechanism", "发电量和以控制器为中心，机器长度为半径，高为4的范围内的水量成正比");
         provider.add("ctnh.water_power_station.random", "发电量随机在0.6至1的倍率间波动");
         provider.add("ctnh.zenith_max_parallel","最大并行数：%d");
@@ -548,6 +551,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MK2.getBlock(),"扭曲聚变反应堆mk2");
         provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MK3.getBlock(),"扭曲聚变反应堆mk3");
         provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MKINFINITY.getBlock(),"扭曲聚变反应堆mk∞");
+        provider.add(CTNHMultiblockMachines.FOREST_SEA_TREE_FARM.getBlock(), "林海树场");
 
 
 

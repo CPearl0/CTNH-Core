@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.data.lang;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHMultiblockMachines;
 import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
 
 public class EnglishLangHandler {

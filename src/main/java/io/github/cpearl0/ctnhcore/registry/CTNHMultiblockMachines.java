@@ -14,6 +14,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
+import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
@@ -448,7 +449,7 @@ public class CTNHMultiblockMachines {
             .recipeTypes(CTNHRecipeTypes.NAQ_MK1)
             .generator(true)
             .recipeModifier(NaqReactorMachine::recipeModifier,true)
-            .tooltips(Component.translatable("ctnh.multiblock.naq_reactor_mk3.tooltip.1"))
+            .tooltips(Component.translatable("ctnh.multiblock.naq_reactor_mk3.tooltip.1").withStyle(ChatFormatting.GRAY))
             .tooltips(Component.translatable("ctnh.multiblock.naq_reactor_mk3.tooltip.2"))
             .tooltips(Component.translatable("ctnh.multiblock.naq_reactor_mk3.tooltip.3"))
             .tooltips(Component.translatable("ctnh.multiblock.naq_reactor_mk3.parallelizable.tooltip"))
@@ -2642,9 +2643,6 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.nano.2"),
                     Component.translatable("ctnh.nano.3"),
                     Component.translatable("ctnh.nano.4")
-
-
-
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###B###", "###C###", "###C###", "###C###", "###C###", "###C###", "###D###", "###D###", "###D###", "###D###", "###E###", "###F###", "###F###", "###D###")
@@ -2674,6 +2672,26 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer((GTCEu.id("block/casings/solid/machine_casing_solid_steel")), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .register();
+
+    public final static MultiblockMachineDefinition FOREST_SEA_TREE_FARM = REGISTRATE.multiblock("forest_sea_tree_farm", ForestMachine::new)
+            .rotationState(RotationState.ALL)
+            .recipeTypes(CTNHRecipeTypes.WOOD_BIONICS, GTRecipeTypes.ALLOY_SMELTER_RECIPES)
+            .appearanceBlock(CTNHBlocks.NATURAL_ECOLOGICAL_SHELL_CASING)
+            .recipeModifiers(ForestMachine::recipeModifier)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAA", "AAA", "AAA")
+                    .aisle("AAA", "A#A", "AAA")
+                    .aisle("AAA", "A@A", "AAA")
+                    .where("A", Predicates.blocks(NATURAL_ECOLOGICAL_SHELL_CASING.get())
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("#", Predicates.any())
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build())
+            .workableCasingRenderer((CTNHCore.id("block/casings/natural_ecological_shell_casing")), CTNHCore.id("block/overlay/forest_sea_tree_farm"), false)
+            .register();
+                                                                                                                             //Machine Image from GTlite ----UP
+
     public static void init() {
 
     }
