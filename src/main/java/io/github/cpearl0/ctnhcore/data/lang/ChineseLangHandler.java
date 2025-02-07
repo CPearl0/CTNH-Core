@@ -126,6 +126,13 @@ public class ChineseLangHandler {
         provider.add("ctnh.testing_terminal.tooltip.2","右键多方块的主方块以显示错误信息");
         provider.add("ctnh.simple_nutritious_meal.tooltip.1","能维持机体基本的生理功能");
         provider.add("ctnh.plasma_condenser.tooltips.1", "氤氲之气，凝为霜露");
+        provider.add("ctnh.forest.1", "手植千木，绿荫千秋");
+        provider.add("ctnh.forest.2", "林海树场是一个只消耗水来产出大量木材的大机器");
+        provider.add("ctnh.forest.3", "每5s进行一次水储量的判定");
+        provider.add("ctnh.forest.4", "水充足时，增加1%的湿度值");
+        provider.add("ctnh.forest.5", "水不足时，减少10%的湿度值");
+        provider.add("ctnh.forest.6", "配方运行时间不变，但并行值会随湿度值与电压等级上升");
+        provider.add("ctnh.forest.7", "比温室好！");
         provider.add("ctnh.sweat_shop.tooltips.1","生产资料与剩余价值");
         provider.add("ctnh.sweat_shop.tooltips.2","工厂内的村民数量决定了工作效率，配方耗时x(1/村民数量)");
         provider.add("ctnh.sweat_shop.tooltips.3","工厂内的有效员工数量受限于工厂大小，初始上限为4，工厂长度每增加4格上限+1");

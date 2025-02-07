@@ -2675,9 +2675,16 @@ public class CTNHMultiblockMachines {
 
     public final static MultiblockMachineDefinition FOREST_SEA_TREE_FARM = REGISTRATE.multiblock("forest_sea_tree_farm", ForestMachine::new)
             .rotationState(RotationState.ALL)
-            .recipeTypes(CTNHRecipeTypes.WOOD_BIONICS, GTRecipeTypes.ALLOY_SMELTER_RECIPES)
+            .recipeTypes(CTNHRecipeTypes.WOOD_BIONICS)
             .appearanceBlock(CTNHBlocks.NATURAL_ECOLOGICAL_SHELL_CASING)
             .recipeModifiers(ForestMachine::recipeModifier)
+            .tooltips(Component.translatable("ctnh.forest.1").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.forest.2"),
+                    Component.translatable("ctnh.forest.3"),
+                    Component.translatable("ctnh.forest.4"),
+                    Component.translatable("ctnh.forest.5"),
+                    Component.translatable("ctnh.forest.6"),
+                    Component.translatable("ctnh.forest.7"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAA", "AAA", "AAA")
                     .aisle("AAA", "A#A", "AAA")
@@ -2690,7 +2697,7 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer((CTNHCore.id("block/casings/natural_ecological_shell_casing")), CTNHCore.id("block/overlay/forest_sea_tree_farm"), false)
             .register();
-                                                                                                                             //Machine Image from GTlite ----UP
+                                                                                                                             //Machine Image from GTlite and GTNH ----UP
 
     public static void init() {
 

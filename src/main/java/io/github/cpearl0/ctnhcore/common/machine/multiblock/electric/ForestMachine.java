@@ -32,7 +32,7 @@ public class ForestMachine extends WorkableElectricMultiblockMachine {
     // 处理工作状态
     @Override
     public boolean onWorking() {
-        if (getOffsetTimer() % 200 == 0) { // 每200tick执行一次
+        if (getOffsetTimer() % 100 == 0) { // 每100tick执行一次
 
             // 检查输入仓是否有水
             FluidStack waterFluid = new FluidStack(
@@ -54,26 +54,7 @@ public class ForestMachine extends WorkableElectricMultiblockMachine {
             return super.onWorking();
         }
 
-        // 在空闲时也检查是否有流体并增加湿度
-        checkAndIncreaseHumidity();
         return super.onWorking();  // 调用父类的 onWorking 方法
-    }
-
-    // 检查流体并增加湿度
-    private void checkAndIncreaseHumidity() {
-        // 检查流体是否足够
-        FluidStack waterFluid = new FluidStack(
-                Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(
-                        new ResourceLocation("minecraft:water"))),
-                FLUID_AMOUNT
-        );
-
-        boolean isFluidSufficient = MachineUtils.inputFluid(waterFluid, this);  // 检查是否有足够流体
-
-        // 如果流体充足，增加湿度
-        if (isFluidSufficient) {
-            increaseHumidity();
-        }
     }
 
     // 增加湿度
