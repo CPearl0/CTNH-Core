@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -24,10 +25,10 @@ public class AlterLogic extends WorkableElectricMultiblockMachine implements ITi
     public static final String MAX_LP="max_lp";
     public static final String LP = "lp";
     public BlockPos[] Runes = new BlockPos[]{
-            getPos().offset(1,2,-3),
-            getPos().offset(-1,2,-3),
-            getPos().offset(0,2,-4),
-            getPos().offset(0,2,-2)
+            MachineUtils.getOffset(this,1,2,3),
+            MachineUtils.getOffset(this,-1,2,3),
+            MachineUtils.getOffset(this,0,2,4),
+            MachineUtils.getOffset(this,0,2,2)
 
     };
     public int calculateRune() {

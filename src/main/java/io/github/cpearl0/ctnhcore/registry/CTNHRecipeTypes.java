@@ -370,6 +370,11 @@ public class CTNHRecipeTypes {
             .setEUIO(IO.OUT)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
+    public static final GTRecipeType SINOPE = GTRecipeTypes.register("sinope", GTRecipeTypes.ELECTRIC)
+            .setMaxIOSize(4, 4, 4, 4)
+            .setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.TURBINE);
     public static void init() {
 
     }

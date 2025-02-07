@@ -392,10 +392,23 @@ public class ChineseLangHandler {
         provider.add("ctnh.gtceu:twisted_fusion_mk1.7", "§5扭曲聚变反应堆模式：§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.8", "遵循字母守恒定律的反应。");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.9", "或许可以用来生产一些§9奇怪的东西§r...");
-        provider.add("ctnh.gtceu.tfmkinfinity.1","§8无穷无尽的扭曲之力§8");
-        provider.add("ctnh.gtceu.tfmkinfinity.2","对所有配方都有§8无法理喻§8的并行数");
+        provider.add("ctnh.gtceu.tfmkinfinity.1","§8无穷无尽的扭曲之力§r");
+        provider.add("ctnh.gtceu.tfmkinfinity.1.1","可以使用激光仓");
+        provider.add("ctnh.gtceu.tfmkinfinity.2","对所有配方都有§8无法理喻§r的并行数,所有配方能耗和运行时间减少75%");
+        provider.add("ctnh.gtceu.tfmkinfinity.3","§5想制作这台机器的你疯的不轻，当然这台机器也同样疯狂至极§rs");
         provider.add("condensing_discrete","冷凝离散");
         provider.add("ion_exchanger","离子交换");
+        provider.add("sinope","规模化化工");
+        provider.add("ctnh.sinope.1","来自§b某个神秘东方大国§r的工业力量");
+        provider.add("ctnh.sinope.2","格雷员工不骗格雷员工，并行是真实的");
+        provider.add("ctnh.sinope.3","没有外壳等级要求，配方不需要催化剂");
+        provider.add("ctnh.sinope.4","并行数与中心的方块有关");
+        provider.add("ctnh.sinope.4.1","硅岩块:8并行");
+        provider.add("ctnh.sinope.4.2","富集硅岩块:32并行");
+        provider.add("ctnh.sinope.4.3","超能硅岩块:128并行");
+        provider.add("ctnh.sinope.5","每一点实际的并行数减少0.5%的能耗和运行时间，至多减少25%(独立乘区)");
+        provider.add("ctnh.sinope.5.1","线圈每提供1800K，运行速度+50%");
+        provider.add("ctnh.sinope.6","§c任何虚假的并行都将绳之以法!§r");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -561,6 +574,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MK3.getBlock(),"扭曲聚变反应堆mk3");
         provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MKINFINITY.getBlock(),"扭曲聚变反应堆mk∞");
         provider.add(CTNHMultiblockMachines.FOREST_SEA_TREE_FARM.getBlock(), "林海树场");
+        provider.add(CTNHMultiblockMachines.SINOPE_CHEMICAL.getBlock(), "SINOPE化工厂");
 
 
 
