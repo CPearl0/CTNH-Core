@@ -125,6 +125,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.testing_terminal.tooltip.1","用于检测多方块搭建时产生的错误");
         provider.add("ctnh.testing_terminal.tooltip.2","右键多方块的主方块以显示错误信息");
         provider.add("ctnh.simple_nutritious_meal.tooltip.1","能维持机体基本的生理功能");
+        provider.add("item.ctnh.ecological_star.desc", "蕴含生态圈的所有精华");
         provider.add("ctnh.plasma_condenser.tooltips.1", "氤氲之气，凝为霜露");
         provider.add("ctnh.forest.1", "手植千木，绿荫千秋");
         provider.add("ctnh.forest.2", "林海树场是一个只消耗水来产出大量木材的大机器");
@@ -428,6 +429,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.ASTRONOMY_CIRCUIT_1, "一阶航天数据芯片");
         provider.addItem(CTNHItems.TESTING_TERMINAL, "检测终端");
         provider.addItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL, "简易营养餐");
+        provider.addItem(CTNHItems.ECOLOGICAL_STAR, "生态之星");
         provider.addItem(CTNHItems.ANIMAL_EXCRETA, "动物排泄物");
         provider.addItem(CTNHItems.TUMOR, "肿瘤");
         provider.addItem(CTNHItems.HORIZEN_RUNE, "视域符文");

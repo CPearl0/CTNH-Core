@@ -1,7 +1,9 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import com.google.common.collect.ImmutableList;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
+import com.simibubi.create.foundation.item.ItemDescription;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
 import io.github.cpearl0.ctnhcore.common.item.ProgramItem;
@@ -28,6 +30,13 @@ public class CTNHItems {
             .lang("Simple Nutritious meal")
             .onRegister(attach(new TooltipBehavior(list -> {
                 list.add(Component.translatable("ctnh.simple_nutritious_meal.tooltip.1").withStyle(ChatFormatting.GRAY));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> ECOLOGICAL_STAR = REGISTRATE
+            .item("ecological_star", ComponentItem::create)
+            .lang("Ecological Star")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("item.ctnh.ecological_star.desc").withStyle(ChatFormatting.GREEN));
             })))
             .register();
     public static ItemEntry<Item> ANIMAL_EXCRETA = REGISTRATE
