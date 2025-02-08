@@ -82,7 +82,6 @@ public class ForestMachine extends WorkableElectricMultiblockMachine {
             return ModifierFunction.builder()
                     .inputModifier(ContentModifier.multiplier(parallelCount))  // 动态调整输入量
                     .outputModifier(ContentModifier.multiplier(parallelCount))  // 动态调整输出量
-                    .durationMultiplier(1)  // 使用时间不变
                     .parallels(parallelCount)  // 根据湿度调整并行数
                     .build();
         }

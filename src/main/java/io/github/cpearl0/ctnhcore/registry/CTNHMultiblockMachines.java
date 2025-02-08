@@ -2678,7 +2678,7 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.WOOD_BIONICS)
             .appearanceBlock(CTNHBlocks.NATURAL_ECOLOGICAL_SHELL_CASING)
-            .recipeModifiers(ForestMachine::recipeModifier)
+            .recipeModifiers(ForestMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.forest.1").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.forest.2"),
                     Component.translatable("ctnh.forest.3"),
