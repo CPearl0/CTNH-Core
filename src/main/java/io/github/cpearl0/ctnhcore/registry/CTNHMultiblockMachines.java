@@ -1453,7 +1453,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.void_miner.tooltip.5").withStyle(ChatFormatting.GOLD),
                     Component.translatable("ctnh.void_miner.tooltip.6").withStyle(ChatFormatting.AQUA),
                     Component.translatable("ctnh.void_miner.tooltip.7"))
-            .recipeModifier(VoidMinerProcessingMachine::recipeModifier)
+            .recipeModifiers(VoidMinerProcessingMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("CCCCCCC", "XF   FX", "XF   FX", "XXXXXXX", "XF   FX", "XF   FX", "XF   FX", " F   F ", "       ", "       ", "       ", "       ")
                     .aisle("CCCCCCC", "F     F", "F     F", "X     X", "F     F", "F     F", "FX   XF", "FX   XF", " FFFFF ", "       ", "       ", "       ")
