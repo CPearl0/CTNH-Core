@@ -55,7 +55,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
     }
 
 
-    public boolean onWorking(@Nullable GTRecipe recipe) {
+    public boolean onWorking() {
         if (getOffsetTimer() % 20 == 0) {
 
             int fluidPerSecond = 100000000;
@@ -75,9 +75,6 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
                 // 执行配方其他的工作（例如温度变化等）
                 super.onWorking();
-            } else {
-                // 流体不足，停止配方执行（可以清空输出等）
-                recipe.outputs.clear();  // 清空产出物品
             }
 
 
@@ -297,9 +294,9 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         super.loadCustomPersistedData(tag);
         currentTemperature= tag.contains(CURRENTTEMPERATURE_STRING) ? tag.getInt(CURRENTTEMPERATURE_STRING) : 0;
         isOverheated=tag.contains(ISOVERHEATED_STRING)? tag.getBoolean(ISOVERHEATED_STRING):false;
-        nextCryotheumAmount=tag.contains(NEXTCRYOTHEUMAMOUNT_STRING)?tag.getInt(NEXTCRYOTHEUMAMOUNT_STRING):0;
-        nextPyrotheumAmount=tag.contains(NEXTCRYOTHEUMAMOUNT_STRING)?tag.getInt(NEXTCRYOTHEUMAMOUNT_STRING):0;
-        fluidCycle=tag.contains(FLUIDCYCLE_STRING)?tag.getInt(FLUIDCYCLE_STRING):0;
+        nextCryotheumAmount=tag.contains(NEXTCRYOTHEUMAMOUNT_STRING)?tag.getInt(NEXTCRYOTHEUMAMOUNT_STRING):100;
+        nextPyrotheumAmount=tag.contains(NEXTCRYOTHEUMAMOUNT_STRING)?tag.getInt(NEXTCRYOTHEUMAMOUNT_STRING):100;
+        fluidCycle=tag.contains(FLUIDCYCLE_STRING)?tag.getInt(FLUIDCYCLE_STRING):1;
     }
 
 }
