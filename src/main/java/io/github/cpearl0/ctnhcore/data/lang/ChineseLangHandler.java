@@ -174,12 +174,12 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.blast_furnace.overheat", "过热!!!");
         provider.add("void_miner", "取天材，掘地精");
         provider.add("ctnh.void_miner.tooltip.0", "虚空采矿场自动生成并提取矿石");
-        provider.add("ctnh.void_miner.tooltip.1", "如果你对矿物的需求很大，请使用它");
-        provider.add("ctnh.void_miner.tooltip.2", "需要充足的能量和流体来维持运行");
-        provider.add("ctnh.void_miner.tooltip.3", "温度到达25000K时进入强制降温模式,建议控制流量交替输入烈焰之炽焱或者极寒之凛冰");
-        provider.add("ctnh.void_miner.tooltip.4", "降温到 300K 时可以恢复工作");
-        provider.add("ctnh.void_miner.tooltip.5", "每消耗 10mB 的烈焰之炽焱或者极寒之凛冰，温度增加10K或降低6K");
-        provider.add("ctnh.void_miner.tooltip.6", "当进入强制降温模式时，只能消耗极寒之凛冰，且消耗量为每降温3K/10mb");
+        provider.add("ctnh.void_miner.tooltip.1", "如果你对矿物需求极大，虚空采矿机是必不可少的帮手");
+        provider.add("ctnh.void_miner.tooltip.2", "一次性输入100,000,000mB的钻井液，极寒之凛冰和烈焰之炽焱会在升降温度时消耗");
+        provider.add("ctnh.void_miner.tooltip.3", "当温度达到25000K时，虚空采矿机将进入强制降温模式，请交替输入烈焰之炽焱和极寒之凛冰来控制温度");
+        provider.add("ctnh.void_miner.tooltip.4", "当温度降至0K时，虚空采矿机将恢复正常工作模式");
+        provider.add("ctnh.void_miner.tooltip.5", "初始烈焰之炽焱消耗量为100mb,若成功消耗,则\uD835\uDC47 将会增加 ⌊(\uD835\uDC49 ÷ 100)⌋,接着\uD835\uDC49 将会自乘以 1.02");
+        provider.add("ctnh.void_miner.tooltip.6", "初始极寒之凛冰消耗量为100mb,若成功消耗,则 \uD835\uDC47 将会降低 ⌊(\uD835\uDC49 ÷ 100)⌋,接着\uD835\uDC49 将会自乘以 1.02");
         provider.add("ctnh.void_miner.tooltip.7", "温度越高，虚空采矿场的工作效率越高");
         provider.add("large_steel_furnaces", "钢质熔炉");
         provider.add("ctnh.large_steel_furnaces.tooltip.0", "只能使用HV级能源仓及以下等级");

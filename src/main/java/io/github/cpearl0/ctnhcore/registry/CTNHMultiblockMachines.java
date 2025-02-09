@@ -1450,8 +1450,8 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.void_miner.tooltip.2"),
                     Component.translatable("ctnh.void_miner.tooltip.3"),
                     Component.translatable("ctnh.void_miner.tooltip.4"),
-                    Component.translatable("ctnh.void_miner.tooltip.5"),
-                    Component.translatable("ctnh.void_miner.tooltip.6"),
+                    Component.translatable("ctnh.void_miner.tooltip.5").withStyle(ChatFormatting.GOLD),
+                    Component.translatable("ctnh.void_miner.tooltip.6").withStyle(ChatFormatting.AQUA),
                     Component.translatable("ctnh.void_miner.tooltip.7"))
             .recipeModifier(VoidMinerProcessingMachine::recipeModifier)
             .pattern(definition -> FactoryBlockPattern.start()
