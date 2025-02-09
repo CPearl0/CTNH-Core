@@ -1,0 +1,8 @@
+{
+	"parent": "gtceu:block/overlay/front_emissive",
+	"textures": {
+		"particle": "ctnhcore:block/overlay/maintain/sterile_cleanroom_maintenance_chamber",
+		"overlay": "ctnhcore:block/overlay/maintain/sterile_cleanroom_maintenance_chamber",
+		"overlay_emissive": "ctnhcore:block/overlay/maintain/sterile_cleanroom_maintenance_chamber_emissive"
+	}
+}

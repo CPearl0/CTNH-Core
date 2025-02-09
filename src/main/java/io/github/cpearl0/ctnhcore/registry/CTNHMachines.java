@@ -236,6 +236,21 @@ public class CTNHMachines {
         }
     };
 
+    public static final MachineDefinition STERILE_CLEANROOM_MAINTENANCE_HATCH = GTRegistration.REGISTRATE
+            .machine("sterile_cleanroom_maintenance_hatch",
+                    holder -> new CleaningMaintenanceHatchPartMachine(holder, CleanroomType.STERILE_CLEANROOM))
+            .rotationState(RotationState.ALL)
+            .abilities(PartAbility.MAINTENANCE)
+            .tooltips(Component.translatable("gtceu.universal.disabled"),
+                    Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.0"),
+                    Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.1"))
+            .tooltipBuilder((stack, tooltips) -> {
+                tooltips.add(Component.literal("  ").append(Component
+                        .translatable(CleanroomType.STERILE_CLEANROOM.getTranslationKey()).withStyle(ChatFormatting.LIGHT_PURPLE)));
+            })
+            .renderer(() -> new MaintenanceHatchPartRenderer(6, CTNHCore.id("block/machine/part/maintenance.sterilecleaning")))
+            .register();
+
     public static void init() {
 
     }
