@@ -12,6 +12,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -29,7 +30,6 @@ import java.util.*;
 @Setter
 @Getter
 public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachine {
-
     private int currentTemperature = 0;  // 初始温度为0K
     private static final int MAX_TEMP = 25000;
     private static final int MIN_TEMP = 0;
@@ -41,7 +41,15 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
     private int nextCryotheumAmount = 100;  // 初始为 100mb
     private static final Random random = new Random();
     private int fluidCycle = 1;
-
+    private String CURRENTTEMPERATURE_STRING = "currentTemperature";
+    private String MAX_TEMP_STRING = "maxTemperature";
+    private String MIN_TEMP_STRING = "minTemperature";
+    private String ISOVERHEATED_STRING = "isOverheated"; // 过热状态标志的字符串表示
+    private String FLUIDAMOUNT_STRING = "fluidAmount"; // 流体量的字符串表示
+    private String FLUID_AMOUNT_CONSTANT_STRING = "FLUID_AMOUNT";  // 每次消耗的流体量的字符串表示（可调整）
+    private String NEXTPYROTHEUMAMOUNT_STRING = "nextPyrotheumAmount";  // 初始为 100mb 的字符串表示
+    private String NEXTCRYOTHEUMAMOUNT_STRING = "nextCryotheumAmount";  // 初始为 100mb 的字符串表示
+    private String FLUIDCYCLE_STRING = "fluidCycle";  // 流体循环次数的字符串表示
     public VoidMinerProcessingMachine(IMachineBlockEntity holder) {
         super(holder);
     }
@@ -272,7 +280,27 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
         return rawOreItems;
     }
+    @Override
+    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
+        super.saveCustomPersistedData(tag, forDrop);
+        if (!forDrop) {
+            tag.putInt(CURRENTTEMPERATURE_STRING, currentTemperature);
+            tag.putBoolean(ISOVERHEATED_STRING,isOverheated);
+            tag.putInt(NEXTCRYOTHEUMAMOUNT_STRING,nextCryotheumAmount);
+            tag.putInt(NEXTPYROTHEUMAMOUNT_STRING,nextPyrotheumAmount);
+            tag.putInt(FLUIDCYCLE_STRING,fluidCycle);
+        }
+    }
 
+    @Override
+    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
+        super.loadCustomPersistedData(tag);
+        currentTemperature= tag.contains(CURRENTTEMPERATURE_STRING) ? tag.getInt(CURRENTTEMPERATURE_STRING) : 0;
+        isOverheated=tag.contains(ISOVERHEATED_STRING)? tag.getBoolean(ISOVERHEATED_STRING):false;
+        nextCryotheumAmount=tag.contains(NEXTCRYOTHEUMAMOUNT_STRING)?tag.getInt(NEXTCRYOTHEUMAMOUNT_STRING):0;
+        nextPyrotheumAmount=tag.contains(NEXTCRYOTHEUMAMOUNT_STRING)?tag.getInt(NEXTCRYOTHEUMAMOUNT_STRING):0;
+        fluidCycle=tag.contains(FLUIDCYCLE_STRING)?tag.getInt(FLUIDCYCLE_STRING):0;
+    }
 
 }
 
