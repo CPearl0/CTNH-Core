@@ -4,7 +4,9 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NanoscaleTriboelectricGenerator;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
@@ -32,8 +34,17 @@ public class TwistedFusionMachine extends WorkableElectricMultiblockMachine {
             if (recipe.getType().equals(GTRecipeTypes.FUSION_RECIPES)) {
                 var startEU = recipe.data.getLong("eu_to_start");
                 ModifierFunction modifierFunction = ModifierFunction.IDENTITY;
-                if(zmachine.mks>5)
+                if(zmachine.mks>5) {
                     modifierFunction = CTNHRecipeModifiers.accurateParallel(zmachine, recipe, 1024);
+                    int pa= ParallelLogic.getParallelAmount(machine,recipe,1024);
+
+                    return  ModifierFunction.builder()
+                            .durationMultiplier(0.25*pa)
+                            .eutMultiplier(0.25*pa)
+                            .inputModifier(ContentModifier.multiplier(pa))
+                            .outputModifier(ContentModifier.multiplier(pa))
+                            .build();
+                }
                 else if (startEU <= 160000000) {
                     modifierFunction = CTNHRecipeModifiers.accurateParallel(zmachine, recipe, zmachine.mks*16+16);
                 } else if (startEU <= 320000000) {

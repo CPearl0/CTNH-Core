@@ -155,7 +155,7 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.COMBUSTION);
     public static final GTRecipeType VOID_MINER = GTRecipeTypes.register("void_miner",GENERATOR)
             .setEUIO(IO.IN)
-            .setMaxIOSize(2,36,2,0)
+            .setMaxIOSize(3,42,3,3)
             .setSlotOverlay(false, false, GuiTextures.BOX_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COMBUSTION);
@@ -211,6 +211,12 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType WOOD_BIONICS = GTRecipeTypes.register("wood_bionics", ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(1, 4, 1, 0)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CUT);
     public static final GTRecipeType FUEL_REFINING = GTRecipeTypes.register("fuel_refining", GTRecipeTypes.ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(3, 3, 3, 3)
@@ -362,6 +368,11 @@ public class CTNHRecipeTypes {
     public static final GTRecipeType NANO_GENERATOR = GTRecipeTypes.register("nano_generator",GENERATOR)
             .setMaxIOSize(4, 4, 0, 0)
             .setEUIO(IO.OUT)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.TURBINE);
+    public static final GTRecipeType SINOPE = GTRecipeTypes.register("sinope", GTRecipeTypes.ELECTRIC)
+            .setMaxIOSize(4, 4, 4, 4)
+            .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
     public static void init() {

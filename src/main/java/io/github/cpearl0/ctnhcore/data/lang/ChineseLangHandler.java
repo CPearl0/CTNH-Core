@@ -74,6 +74,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.fermenting", "发酵罐");
         provider.add("gtceu.beams", "戴森光束");
         provider.add("gtceu.altar", "血之祭坛");
+        provider.add("gtceu.wood_bionics", "§e林海树场");
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -124,7 +125,15 @@ public class ChineseLangHandler {
         provider.add("ctnh.testing_terminal.tooltip.1","用于检测多方块搭建时产生的错误");
         provider.add("ctnh.testing_terminal.tooltip.2","右键多方块的主方块以显示错误信息");
         provider.add("ctnh.simple_nutritious_meal.tooltip.1","能维持机体基本的生理功能");
+        provider.add("item.ctnh.ecological_star.desc", "蕴含生态圈的所有精华");
         provider.add("ctnh.plasma_condenser.tooltips.1", "氤氲之气，凝为霜露");
+        provider.add("ctnh.forest.1", "手植千木，绿荫千秋");
+        provider.add("ctnh.forest.2", "林海树场是一个只消耗水来产出大量木材的大机器");
+        provider.add("ctnh.forest.3", "每5s进行一次水储量的判定");
+        provider.add("ctnh.forest.4", "水充足时，增加1%的湿度值");
+        provider.add("ctnh.forest.5", "水不足时，减少10%的湿度值");
+        provider.add("ctnh.forest.6", "配方运行时间不变，但并行值会随湿度值与电压等级上升");
+        provider.add("ctnh.forest.7", "比温室好！");
         provider.add("ctnh.sweat_shop.tooltips.1","生产资料与剩余价值");
         provider.add("ctnh.sweat_shop.tooltips.2","工厂内的村民数量决定了工作效率，配方耗时x(1/村民数量)");
         provider.add("ctnh.sweat_shop.tooltips.3","工厂内的有效员工数量受限于工厂大小，初始上限为4，工厂长度每增加4格上限+1");
@@ -160,17 +169,18 @@ public class ChineseLangHandler {
         provider.add("ctnh.fermenting_tank.bio_growth_temperature", "当发酵罐温度处于§236§r至§238§r度之间时为最适生长温度，配方获得1.2倍效率，越偏离最适生长温度，配方效率越低，最低为三分之一");
         provider.add("ctnh.fermenting_tank.bio_growth", "微生物的生长符合逻辑斯蒂方程，当输入仓内液体体积为容量的一半时，§2生长效率达到两倍§r，而满仓和空仓时生长效率最低，保底为20%");
         provider.add("subtick_overclock", "当配方运行时间小于1t时,会自动计算并行");
+        provider.add("ctnh.void_miner.cryotheum", "极寒之凛冰消耗：%d ");
+        provider.add("ctnh.void_miner.pyrotheum", "烈焰之炽焱消耗：%d ");
+        provider.add("ctnh.multiblock.blast_furnace.overheat", "过热!!!");
         provider.add("void_miner", "取天材，掘地精");
         provider.add("ctnh.void_miner.tooltip.0", "虚空采矿场自动生成并提取矿石");
-        provider.add("ctnh.void_miner.tooltip.1", "生成各种矿石，无需依赖周围区块");
-        provider.add("ctnh.void_miner.tooltip.2", "需要充足的能量和流体来维持运行");
-        provider.add("ctnh.void_miner.tooltip.3", "温度过高时进入强制降温模式,建议控制流量交替输入烈焰之炽焱或者极寒之凛冰");
-        provider.add("ctnh.void_miner.tooltip.4", "最大温度为 25000K，降温到 300K 方可恢复工作");
-        provider.add("ctnh.void_miner.tooltip.5", "每消耗 10mB 的烈焰之炽焱或者极寒之凛冰，温度增加10K或降低6K");
-        provider.add("ctnh.void_miner.tooltip.6", "当进入强制降温模式时，只能消耗极寒之凛冰，且消耗量为每降温3K/10mb");
+        provider.add("ctnh.void_miner.tooltip.1", "如果你对矿物需求极大，虚空采矿机是必不可少的帮手");
+        provider.add("ctnh.void_miner.tooltip.2", "一次性输入100,000,000mB的钻井液，极寒之凛冰和烈焰之炽焱会在升降温度时消耗");
+        provider.add("ctnh.void_miner.tooltip.3", "当温度达到25000K时，虚空采矿机将进入强制降温模式，请交替输入烈焰之炽焱和极寒之凛冰来控制温度");
+        provider.add("ctnh.void_miner.tooltip.4", "当温度降至0K时，虚空采矿机将恢复正常工作模式");
+        provider.add("ctnh.void_miner.tooltip.5", "初始烈焰之炽焱消耗量为100mb,若成功消耗,则\uD835\uDC47 将会增加 ⌊(\uD835\uDC49 ÷ 100)⌋,接着\uD835\uDC49 将会自乘以 1.02");
+        provider.add("ctnh.void_miner.tooltip.6", "初始极寒之凛冰消耗量为100mb,若成功消耗,则 \uD835\uDC47 将会降低 ⌊(\uD835\uDC49 ÷ 100)⌋,接着\uD835\uDC49 将会自乘以 1.02");
         provider.add("ctnh.void_miner.tooltip.7", "温度越高，虚空采矿场的工作效率越高");
-        provider.add("ctnh.void_miner.tooltip.8", "矿石生成随机，生成速率可调节");
-        provider.add("ctnh.void_miner.tooltip.9", "矿石生成可通过配置文件控制，支持自定义矿石种类");
         provider.add("large_steel_furnaces", "钢质熔炉");
         provider.add("ctnh.large_steel_furnaces.tooltip.0", "只能使用HV级能源仓及以下等级");
         provider.add("ctnh.large_steel_furnaces.tooltip.1", "最大并行为32");
@@ -195,7 +205,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.digestion_tank.bio_growth_mechanism", "化粪池堆肥机制：");
         provider.add("ctnh.digestion_tank.bio_growth_temperature", "当化粪池温度处于§236§r至§238§r度之间时为最适生长温度，配方获得1.2倍效率，越偏离最适生长温度，配方效率越低，最低为三分之一");
         provider.add("ctnh.blaze_blast_furnace.pyrotheum", "烈焰之炽焱：%d mB");
-        provider.add("ctnh.void_miner.cryotheum", "极寒之凛冰：%d mB");
         provider.add("ctnh.blaze_blast_furnace.consume", "每秒基础消耗§a10mB§r烈焰之炽焱，电压每超过§6HV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.blaze_blast_furnace.energy", "运行耗能x0.75");
         provider.add("ctnh.blaze_blast_furnace.parallel", "允许一次性处理8个配方");
@@ -262,6 +271,8 @@ public class ChineseLangHandler {
         provider.add("powergenerator.temperature", "§c内核温度: %d");
         provider.add("powergenerator.nickel_consumption", "镍等离子体消耗量: %d");
         provider.add("powergenerator.parallel_count", "发电并行数: %d");
+        provider.add("forestmachine.humidity", "湿度值：%d");
+        provider.add("forestmachine.parallel_count", "并行数：%d");
         provider.add("ctnh.water_power_station.mechanism", "发电量和以控制器为中心，机器长度为半径，高为4的范围内的水量成正比");
         provider.add("ctnh.water_power_station.random", "发电量随机在0.6至1的倍率间波动");
         provider.add("ctnh.zenith_max_parallel","最大并行数：%d");
@@ -381,10 +392,23 @@ public class ChineseLangHandler {
         provider.add("ctnh.gtceu:twisted_fusion_mk1.7", "§5扭曲聚变反应堆模式：§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.8", "遵循字母守恒定律的反应。");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.9", "或许可以用来生产一些§9奇怪的东西§r...");
-        provider.add("ctnh.gtceu.tfmkinfinity.1","§8无穷无尽的扭曲之力§8");
-        provider.add("ctnh.gtceu.tfmkinfinity.2","对所有配方都有§8无法理喻§8的并行数");
+        provider.add("ctnh.gtceu.tfmkinfinity.1","§8无穷无尽的扭曲之力§r");
+        provider.add("ctnh.gtceu.tfmkinfinity.1.1","可以使用激光仓");
+        provider.add("ctnh.gtceu.tfmkinfinity.2","对所有配方都有§8无法理喻§r的并行数,所有配方能耗和运行时间减少75%");
+        provider.add("ctnh.gtceu.tfmkinfinity.3","§5想制作这台机器的你疯的不轻，当然这台机器也同样疯狂至极§rs");
         provider.add("condensing_discrete","冷凝离散");
         provider.add("ion_exchanger","离子交换");
+        provider.add("sinope","规模化化工");
+        provider.add("ctnh.sinope.1","来自§b某个神秘东方大国§r的工业力量");
+        provider.add("ctnh.sinope.2","格雷员工不骗格雷员工，并行是真实的");
+        provider.add("ctnh.sinope.3","没有外壳等级要求，配方不需要催化剂");
+        provider.add("ctnh.sinope.4","并行数与中心的方块有关");
+        provider.add("ctnh.sinope.4.1","硅岩块:8并行");
+        provider.add("ctnh.sinope.4.2","富集硅岩块:32并行");
+        provider.add("ctnh.sinope.4.3","超能硅岩块:128并行");
+        provider.add("ctnh.sinope.5","每一点实际的并行数减少0.5%的能耗和运行时间，至多减少25%(独立乘区)");
+        provider.add("ctnh.sinope.5.1","线圈每提供1800K，运行速度+50%");
+        provider.add("ctnh.sinope.6","§c任何虚假的并行都将绳之以法!§r");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -401,6 +425,9 @@ public class ChineseLangHandler {
         for (int tier : GTValues.tiersBetween(ULV, MV)){
             provider.add(CTNHMachines.ROTOR_HOLDER_EXTEND[tier].getBlock(), GTValues.VNF[tier] + "§r转子支架");
         }
+
+        provider.add(CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH.getBlock(), "无菌超净间维护仓");
+
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[LV].getBlock(), "基础数字化苦难之井");
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[MV].getBlock(), "§b进阶数字化苦难之井§r");
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[HV].getBlock(), "§6进阶数字化苦难之井 II§r");
@@ -418,6 +445,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.ASTRONOMY_CIRCUIT_1, "一阶航天数据芯片");
         provider.addItem(CTNHItems.TESTING_TERMINAL, "检测终端");
         provider.addItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL, "简易营养餐");
+        provider.addItem(CTNHItems.ECOLOGICAL_STAR, "生态之星");
         provider.addItem(CTNHItems.ANIMAL_EXCRETA, "动物排泄物");
         provider.addItem(CTNHItems.TUMOR, "肿瘤");
         provider.addItem(CTNHItems.HORIZEN_RUNE, "视域符文");
@@ -548,6 +576,8 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MK2.getBlock(),"扭曲聚变反应堆mk2");
         provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MK3.getBlock(),"扭曲聚变反应堆mk3");
         provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MKINFINITY.getBlock(),"扭曲聚变反应堆mk∞");
+        provider.add(CTNHMultiblockMachines.FOREST_SEA_TREE_FARM.getBlock(), "林海树场");
+        provider.add(CTNHMultiblockMachines.SINOPE_CHEMICAL.getBlock(), "SINOPE化工厂");
 
 
 
