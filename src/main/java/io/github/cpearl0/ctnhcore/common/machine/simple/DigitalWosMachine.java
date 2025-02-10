@@ -18,21 +18,25 @@ public class DigitalWosMachine extends SimpleTieredMachine {
 
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        ItemStack stack = (ItemStack) importItems.getContents().get(0);
-        var count = stack.getTag().getCompound("data_model").getInt("data");
-        if (count < 6) multiplier = 0;
-        else if (count < 48) multiplier = 1;
-        else if (count < 300) multiplier = 1.5;
-        else if (count < 900) multiplier = 2;
-        else multiplier = 3;
+        if(!importItems.isEmpty()) {
+            ItemStack stack = (ItemStack) importItems.getContents().get(0);
+            var count = stack.getTag().getCompound("data_model").getInt("data");
+            if (count < 6) multiplier = 0;
+            else if (count < 48) multiplier = 1;
+            else if (count < 300) multiplier = 1.5;
+            else if (count < 900) multiplier = 2;
+            else multiplier = 3;
+        }
         return super.beforeWorking(recipe);
     }
 
     @Override
     public void afterWorking() {
-        ItemStack stack = (ItemStack) importItems.getContents().get(0);
-        var count = stack.getTag().getCompound("data_model").getInt("data");
-        if(count < 900) stack.getTag().getCompound("data_model").putInt("data",count + 1);
+        if(!importItems.isEmpty()){
+            ItemStack stack = (ItemStack) importItems.getContents().get(0);
+            var count = stack.getTag().getCompound("data_model").getInt("data");
+            if(count < 900) stack.getTag().getCompound("data_model").putInt("data",count + 1);
+        }
         super.afterWorking();
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe){
