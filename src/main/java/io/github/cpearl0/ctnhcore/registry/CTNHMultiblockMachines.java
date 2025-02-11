@@ -433,6 +433,7 @@ public class CTNHMultiblockMachines {
                     .where("B", Predicates.frames(GTMaterials.TungstenCarbide))
                     .where("C", Predicates.blocks(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
                             .or(Predicates.abilities(PartAbility.INPUT_LASER).setPreviewCount(2)))
                     .where("D", Predicates.blocks(CASING_TUNGSTENSTEEL_PIPE.get()))
                     .where("E", Predicates.blocks(Blocks.BEDROCK))
