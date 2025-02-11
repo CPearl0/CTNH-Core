@@ -79,6 +79,7 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
                 .eutModifier(reduce)
                 .inputModifier(ContentModifier.multiplier(parallel))
                 .outputModifier(ContentModifier.multiplier(parallel))
+                .parallels(parallel)
                 .build();
     }
 }

@@ -90,7 +90,7 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
             }
         }
         if(recipe.data.getInt("consume")==0) {
-            efficiency = Math.sqrt(NetworkSize) * 0.2 + 1;
+            efficiency = Math.sqrt(NetworkSize) * 0.4 + 1;
         }
         else{
             efficiency=NetworkSize*0.1+1;

@@ -29,8 +29,10 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Skyjade.getUnlocalizedName(), "穹玉");
         replace(provider, CTNHMaterials.Stratus.getUnlocalizedName(), "云母钢");
         replace(provider, CTNHMaterials.Zenith_essence.getUnlocalizedName(), "§5天顶源质§r");
-        replace(provider,CTNHMaterials.EVE.getUnlocalizedName(),"EVE高能粒子");
+        replace(provider, CTNHMaterials.EVE.getUnlocalizedName(),"EVE高能粒子");
         replace(provider, CTNHMaterials.Ignitium.getUnlocalizedName(), "腾炎");
+        replace(provider, CTNHMaterials.QUASER_MANA.getUnlocalizedName(), "类星体魔力");
+        //Recipe Type
         provider.add("gtceu.phase_inversion","反相蚀刻");
         provider.add("gtceu.underfloor_heating_system", "地暖");
         provider.add("gtceu.astronomical_observatory", "天文台");
@@ -75,6 +77,9 @@ public class ChineseLangHandler {
         provider.add("gtceu.beams", "戴森光束");
         provider.add("gtceu.altar", "血之祭坛");
         provider.add("gtceu.wood_bionics", "§e林海树场");
+        provider.add("gtceu.sinope", "规模化化工");
+        provider.add("gtceu:quasar_eye","类星体发电");
+        //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
         provider.add("gtceu.machine.parallel_hatch_mk11.tooltip", "允许同时处理至多16384个配方。");
@@ -86,7 +91,6 @@ public class ChineseLangHandler {
         provider.add("block.ctnhcore.uv_compressed_fusion_reactor", "压缩核聚变反应堆控制电脑 MK-III");
         provider.add("gtceu.eye_of_quasar","§5类星体§r§1之§c眼");
         provider.add("ctnh.eye_consumption","启动消耗:%.1f");
-        provider.add("gtceu:quasar_eye","类星体发电");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
         provider.add("ctnh.multiblock.parallelize.tooltip", "自带无损超频且可以使用并行仓");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
@@ -396,9 +400,6 @@ public class ChineseLangHandler {
         provider.add("ctnh.gtceu.tfmkinfinity.1.1","可以使用激光仓");
         provider.add("ctnh.gtceu.tfmkinfinity.2","对所有配方都有§8无法理喻§r的并行数,所有配方能耗和运行时间减少75%");
         provider.add("ctnh.gtceu.tfmkinfinity.3","§5想制作这台机器的你疯的不轻，当然这台机器也同样疯狂至极§rs");
-        provider.add("condensing_discrete","冷凝离散");
-        provider.add("ion_exchanger","离子交换");
-        provider.add("sinope","规模化化工");
         provider.add("ctnh.sinope.1","来自§b某个神秘东方大国§r的工业力量");
         provider.add("ctnh.sinope.2","格雷员工不骗格雷员工，并行是真实的");
         provider.add("ctnh.sinope.3","没有外壳等级要求，配方不需要催化剂");
@@ -409,6 +410,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.sinope.5","每一点实际的并行数减少0.5%的能耗和运行时间，至多减少25%(独立乘区)");
         provider.add("ctnh.sinope.5.1","线圈每提供1800K，运行速度+50%");
         provider.add("ctnh.sinope.6","§c任何虚假的并行都将绳之以法!§r");
+        provider.add("ion_exchanger", "离子交换");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");

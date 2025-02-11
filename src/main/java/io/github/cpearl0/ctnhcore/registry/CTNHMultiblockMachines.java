@@ -14,7 +14,6 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
@@ -31,10 +30,7 @@ import com.simibubi.create.Create;
 import com.simibubi.create.foundation.block.CopperBlockSet;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.arbor.gtnn.data.GTNNMaterials;
-import dev.arbor.gtnn.data.GTNNRecipeTypes;
-import glitchcore.event.client.RenderGuiEvent;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.NoEnergyMachine;
 import io.github.cpearl0.ctnhcore.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.common.block.CTNHFusionCasingType;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
@@ -205,7 +201,7 @@ public class CTNHMultiblockMachines {
             })
             .afterWorking(machine -> {
                 ((MultiblockControllerMachine) machine.self()).getParts().stream()
-                        .filter(part -> part instanceof CircuitBusPartMachine)
+                        .filter(CircuitBusPartMachine.class::isInstance)
                         .findFirst()
                         .ifPresent(bus -> {
                             var circuitBus = (CircuitBusPartMachine) bus;
@@ -619,7 +615,7 @@ public class CTNHMultiblockMachines {
     public  final  static  MultiblockMachineDefinition PLASMA_CONDENSER = REGISTRATE.multiblock("plasma_condenser", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK),GTRecipeModifiers.PARALLEL_HATCH)
             .tooltips(Component.translatable("ctnh.plasma_condenser.tooltips.1").withStyle(ChatFormatting.GRAY),
                     Component.translatable("gtceu.multiblock.laser.tooltip"),
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
@@ -860,7 +856,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.fermenting_tank.bio_growth_temperature"),
                     Component.translatable("ctnh.fermenting_tank.bio_growth"),
                     Component.translatable("ctnh.large_fermenting_tank.bio_growth"))
-            .recipeModifier((machine,recipe) -> FermentingTankMachine.recipeModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,8)))
+            .recipeModifier((machine,recipe) -> FermentingTankMachine.recipeModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,8).andThen(GTRecipeModifiers.ebfOverclock(machine,recipe))))
             .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("##########AAAAAAAAAAA", "##########ABBBBBBBBBA", "##########ABBBBBBBBBA", "##########AAAAAAAAAAA", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "############AAAAAAA##", "############AABBBAA##", "############AABBBAA##", "############AABBBAA##", "############AAAAAAA##")
@@ -1683,6 +1679,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition ION_EXCHANGER = REGISTRATE.multiblock("ion_exchanger", CoilWorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ION_EXCHANGER)
+            .tooltips(Component.translatable("ion_exchanger").withStyle(ChatFormatting.GRAY))
             .appearanceBlock(CASING_HSSE_STURDY)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#AAAAA#", "AABBBAA", "ABBBBBA", "AABBBAA", "#AAAAA#", "#######")
@@ -1712,7 +1709,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition LARGE_STEEL_FURNACE = REGISTRATE.multiblock("large_steel_furnace", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.FURNACE_RECIPES)
-            .recipeModifier((machine,recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,32)))
+            .recipeModifier((machine,recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine,recipe).compose(CTNHRecipeModifiers.accurateParallel(machine,recipe,32)))
             .appearanceBlock(CASING_PRIMITIVE_BRICKS)
             .tooltips(
                     Component.translatable("large_steel_alloy_furnace").withStyle(ChatFormatting.GRAY),
@@ -1737,7 +1734,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition LARGE_STEEL_ALLOY_FURNACE = REGISTRATE.multiblock("large_steel_alloy_furnace", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
-            .recipeModifier((machine,recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,32)))
+            .recipeModifier((machine,recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine,recipe).compose(CTNHRecipeModifiers.accurateParallel(machine,recipe,32)))
             .appearanceBlock(CASING_PRIMITIVE_BRICKS)
             .tooltips(
                     Component.translatable("large_steel_alloy_furnace").withStyle(ChatFormatting.GRAY),
@@ -1876,7 +1873,7 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.VACUUM_SINTERING)
             .tooltips(Component.translatable("vacuum_sintering_tower").withStyle(ChatFormatting.GRAY))
-            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,16).compose(GTRecipeModifiers.ebfOverclock(machine,recipe)))
+            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,16).andThen(GTRecipeModifiers.ebfOverclock(machine,recipe)))
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "AAAAA", "A###A", "#####", "#####", "#####")
@@ -1915,7 +1912,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.crystallizer.coolant"),
                     Component.translatable("ctnh.crystallizer.overclock"),
                     Component.translatable("ctnh.crystallizer.safe"))
-            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,16).compose(GTRecipeModifiers.ebfOverclock(machine,recipe)))
+            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,16).andThen(GTRecipeModifiers.ebfOverclock(machine,recipe)))
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("##AAAAA##", "###BCB###", "###BBB###", "#########", "#########", "#########", "#########", "#########", "#########")
