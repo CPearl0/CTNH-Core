@@ -11,16 +11,20 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 public class ForestMachine extends WorkableElectricMultiblockMachine {
     // 湿度值
     private int humidity = 0;  // 初始湿度为0%
     private static final int MAX_HUMIDITY = 100;  // 最大湿度为100%
     private static final int MIN_HUMIDITY = 0;    // 最低湿度为0%
+
+    private String HUMIDITY = "humidity";
 
     // 流体消耗量（单位：mB）
     private static final int FLUID_AMOUNT = 10000;  // 每次消耗10000mb的水
@@ -100,4 +104,19 @@ public class ForestMachine extends WorkableElectricMultiblockMachine {
     public ManagedFieldHolder getFieldHolder() {
         return new ManagedFieldHolder(ForestMachine.class, super.getFieldHolder());
     }
+
+    @Override
+    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
+        super.saveCustomPersistedData(tag, forDrop);
+        if (!forDrop) {
+            tag.putInt(HUMIDITY, humidity);
+        }
+    }
+
+    @Override
+    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
+        super.loadCustomPersistedData(tag);
+        humidity= tag.contains(HUMIDITY) ? tag.getInt(HUMIDITY) : 0;
+    }
+
 }

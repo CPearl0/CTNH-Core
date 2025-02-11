@@ -257,25 +257,42 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         return ModifierFunction.IDENTITY;  // 返回默认修改器
     }
 
-    // 获取所有带有 '#c:raw_ores' 标签的物品
+    // 获取所有带有 '#c:raw_ores' 标签的物品，排除黑名单物品
     private static List<ItemStack> getRawOreItems() {
         List<ItemStack> rawOreItems = new ArrayList<>();
 
         // 创建 '#c:raw_ores' 标签的 TagKey
         TagKey<Item> rawOresTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation("c", "raw_ores"));
 
+        // 黑名单物品列表（需要排除的物品）
+        Set<Item> blacklist = getBlacklistedItems();
+
         // 遍历所有注册的物品
         for (Item item : ForgeRegistries.ITEMS) {
             // 获取物品的默认实例
             ItemStack itemStack = item.getDefaultInstance();
 
-            // 检查物品是否属于 '#c:raw_ores' 标签
-            if (itemStack.is(rawOresTag)) {
+            // 检查物品是否属于 '#c:raw_ores' 标签，并且不在黑名单中
+            if (itemStack.is(rawOresTag) && !blacklist.contains(item)) {
                 rawOreItems.add(itemStack);
             }
         }
 
         return rawOreItems;
+    }
+
+    // 获取黑名单中的物品（返回黑名单列表）
+    private static Set<Item> getBlacklistedItems() {
+        Set<Item> blacklist = new HashSet<>();
+
+        // 黑名单物品添加
+        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_space_neutronium")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_infinity")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_infinity_catalyst")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_starmetal")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_jasper")));
+
+        return blacklist;
     }
     @Override
     public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {

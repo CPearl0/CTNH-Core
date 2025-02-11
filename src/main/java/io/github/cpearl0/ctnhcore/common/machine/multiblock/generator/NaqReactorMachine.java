@@ -1,34 +1,22 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
-import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.capability.recipe.IO;
-import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
-import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
-import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,6 +31,7 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
     private static final int MIN_TEMP = 0;     // 温度最低为0K
     private static final int HEAT_SPEED = 10;  // 每次运行配方后温度上升1000K
 
+    private String CURRENTTEMPERATURE_STRING = "currentTemperature";
     // 流体消耗量（单位：mB）
     private static final int FLUID_AMOUNT = 40;  // 每次消耗40mb的镍等离子体
     private int inactiveTimer = 0;  // 记录停止工作时的计时器
@@ -145,4 +134,19 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
     public ManagedFieldHolder getFieldHolder() {
         return new ManagedFieldHolder(NaqReactorMachine.class, super.getFieldHolder());
     }
+
+    @Override
+    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
+        super.saveCustomPersistedData(tag, forDrop);
+        if (!forDrop) {
+            tag.putInt(CURRENTTEMPERATURE_STRING, currentTemperature);
+        }
+    }
+
+    @Override
+    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
+        super.loadCustomPersistedData(tag);
+        currentTemperature= tag.contains(CURRENTTEMPERATURE_STRING) ? tag.getInt(CURRENTTEMPERATURE_STRING) : 0;
+    }
+
 }
