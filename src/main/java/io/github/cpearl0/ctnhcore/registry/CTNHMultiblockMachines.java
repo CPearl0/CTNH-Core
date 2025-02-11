@@ -387,7 +387,7 @@ public class CTNHMultiblockMachines {
             .tooltips(Component.translatable("ctnh.multiblock.parallelize.tooltip"))
             .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
                     Component.translatable("gtceu.pyrolyse_oven")))
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::multiSmelterParallel)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABBBA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
@@ -1290,7 +1290,7 @@ public class CTNHMultiblockMachines {
                     .where("H", Predicates.blocks(CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(12)
                             .or(Predicates.autoAbilities(definition.getRecipeTypes(), true, false, true, false, false, false))
                             .or(Predicates.autoAbilities(true, false, true)))
-                    .where("#", Predicates.air())
+                    .where("#", Predicates.any())
                     .where("C", Predicates.heatingCoils())
                     .where("G", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
                     .where("I", Predicates.abilities(PartAbility.IMPORT_FLUIDS))

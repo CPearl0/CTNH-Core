@@ -103,11 +103,6 @@ public class MachinesRecipes {
                 .addData("required_mana",0)
                 .addData("mana",1)
                 .save(provider);
-        CTNHRecipeTypes.VOID_MINER.recipeBuilder("test")
-                .circuitMeta(0)
-                .EUt(1966000)
-                .duration(3000)
-                .save(provider);
     }
 
 }
