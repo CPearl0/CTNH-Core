@@ -21,6 +21,7 @@ import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import com.mojang.authlib.GameProfile;
 import io.github.cpearl0.ctnhcore.api.gui.CTNHGuiTextures;
@@ -44,6 +45,7 @@ import java.util.*;
 public class SlaughterHouseMachine extends WorkableElectricMultiblockMachine implements IMachineModifyDrops {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             SlaughterHouseMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
+    @Persisted
     public final NotifiableItemStackHandler machineStorage;
     public UUID uuid = UUID.randomUUID();
     public List<String> mobList = new ArrayList<>();

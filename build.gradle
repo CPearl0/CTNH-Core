@@ -232,7 +232,7 @@ dependencies {
     implementation fg.deobf("org.moddingx:LibX:${minecraft_version}-${libx_version}")
 
     // CTPP
-    implementation fg.deobf("curse.maven:ctpp-1163715:6079236")
+    implementation fg.deobf("curse.maven:ctpp-1163715:6181529")
 }
 
 mixin {

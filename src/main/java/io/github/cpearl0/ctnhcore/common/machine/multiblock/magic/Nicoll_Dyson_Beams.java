@@ -16,6 +16,7 @@ import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.FactoryMachine;
@@ -45,6 +46,7 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
     public static final String MANA = "mana";
     public static final String OVERLOAD = "overload";
     public List<String> AvailableRune=List.of("twist_rune","starlight_rune","horizen_rune","quasar_rune");
+    @Persisted
     public final NotifiableItemStackHandler machineStorage;
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             FactoryMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);

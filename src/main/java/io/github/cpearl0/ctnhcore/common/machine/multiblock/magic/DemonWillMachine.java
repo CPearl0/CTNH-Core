@@ -19,6 +19,7 @@ import com.gregtechceu.gtceu.utils.GTUtil;
 import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import net.minecraft.core.BlockPos;
@@ -36,6 +37,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class DemonWillMachine extends WorkableElectricMultiblockMachine {
+    @Persisted
     public final NotifiableItemStackHandler machineStorage;
     public boolean isBoosted = false;
     public double diversity = 1;

@@ -23,16 +23,15 @@ import com.gregtechceu.gtceu.common.data.GTMaterialItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ManaLargeTurbineMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.ZenithMachine;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockMachine implements ITieredMachine {
+    @Persisted
     public final NotifiableItemStackHandler machineStorage;
     public int parallel=1024;
     public double effencicy=1.0;

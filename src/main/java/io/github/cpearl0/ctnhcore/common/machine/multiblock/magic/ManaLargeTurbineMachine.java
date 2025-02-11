@@ -29,6 +29,7 @@ import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
@@ -45,6 +46,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             ManaLargeTurbineMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public static final int MIN_DURABILITY_TO_WARN = 10;
+    @Persisted
     public final NotifiableItemStackHandler machineStorage;
     private final int BASE_EU_OUTPUT;
     @Getter
