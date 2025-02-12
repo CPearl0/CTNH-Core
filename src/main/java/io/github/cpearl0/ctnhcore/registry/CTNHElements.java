@@ -16,4 +16,6 @@ public class CTNHElements {
     public static final Element MANA_DEMON_MIXED = new Element(169, 169, -1, null, "mana_demon_mixed", "?Ma?LP++", false);
     public static final Element MANA_PLUS2 = new Element(300, 300, -1, null, "mana_plus2", "Ma+", false);
     public static final Element MANA_PLUS3 = new Element(300, 300, -1, null, "mana_plus3", "Ma++++", false);
+    public static final Element H_bar= new Element(1,1,-1,null,"h_bar","H-",false);
+    public static final Element O_bar= new Element(8,8,-1,null,"o_bar","O-",false);
 }
