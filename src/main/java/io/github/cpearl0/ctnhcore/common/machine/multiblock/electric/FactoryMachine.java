@@ -20,6 +20,7 @@ import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import com.simibubi.create.AllBlocks;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.item.ItemStack;
@@ -121,7 +122,7 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
 
     public List<ItemStack> getMachineStorageItem() {
         var ItemList = new ArrayList<ItemStack>();
-        for(int i = 0; i < 9; i++){
+        for(int i = 0; i < 10; i++){
             ItemList.add(machineStorage.getStackInSlot(i));
         }
         return ItemList;
@@ -211,23 +212,23 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
         }
         modifierFunction.durationModifier(ContentModifier.multiplier(1/fmachine.basicRate));
             if (recipeType.equals(GTRecipeTypes.CENTRIFUGE_RECIPES)) {
-                return modifierFunction.parallels((int) Math.sqrt(fmachine.CENTRIFUGE_COUNT)).build();
+                return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,(int) Math.sqrt(fmachine.CENTRIFUGE_COUNT)));
             } else if (recipeType.equals(GTRecipeTypes.LATHE_RECIPES)) {
-                return modifierFunction.parallels((int) Math.sqrt(fmachine.LATHE_COUNT)).build();
+                return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,(int) Math.sqrt(fmachine.LATHE_COUNT)));
             } else if (recipeType.equals(GTRecipeTypes.MACERATOR_RECIPES)) {
-                return modifierFunction.parallels((int) Math.sqrt(fmachine.CRUSHING_COUNT)).build();
+                return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,(int) Math.sqrt(fmachine.CRUSHING_COUNT)));
             } else if (recipeType.equals(GTRecipeTypes.EXTRACTOR_RECIPES)) {
-                return modifierFunction.parallels((int) Math.sqrt(fmachine.BURNER_COUNT)).build();
+                return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,(int) Math.sqrt(fmachine.BURNER_COUNT)));
             } else if (recipeType.equals(GTRecipeTypes.BENDER_RECIPES)) {
-                return modifierFunction.parallels((int) Math.sqrt(fmachine.PRESSOR_COUNT)).build();
+                return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,(int) Math.sqrt(fmachine.PRESSOR_COUNT)));
             } else if (recipeType.equals(GTRecipeTypes.MIXER_RECIPES)) {
-                return modifierFunction.parallels((int) Math.sqrt(fmachine.MIXER_COUNT)).build();
+                return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,(int) Math.sqrt(fmachine.MIXER_COUNT)));
             } else if (recipeType.equals(GTRecipeTypes.WIREMILL_RECIPES)) {
-                return modifierFunction.parallels((int) Math.sqrt(fmachine.SAW_COUNT)).build();
+                return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,(int) Math.sqrt(fmachine.SAW_COUNT)));
             } else if (recipeType.equals(GTRecipeTypes.LASER_ENGRAVER_RECIPES)) {
-                return modifierFunction.parallels((int) Math.sqrt(fmachine.LASER_COUNT)).build();
+                return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,(int) Math.sqrt(fmachine.LASER_COUNT)));
             } else if (recipeType.equals(GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES)) {
-                return modifierFunction.parallels((int) Math.sqrt(fmachine.BASIN_COUNT)).build();
+                return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,(int) Math.sqrt(fmachine.BASIN_COUNT)));
             }
             throw new IllegalStateException("Unexpected value: " + recipeType);
         }
@@ -267,7 +268,7 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
     }
     public void updateBasicRate() {
         updateMachineCount(getMachineStorageItem());
-        basicRate = Math.min(VILLAGER_COUNT,(length - 2)/4 + 4) * calculateDiversity() * (1 + Math.sqrt(DEPLOYER_COUNT) / 4);
+        basicRate = (double) Math.min(VILLAGER_COUNT, (length - 2) / 2 + 4) / 2 * calculateDiversity() * (1 + Math.sqrt(DEPLOYER_COUNT) / 4);
     }
     @Override
     public ManagedFieldHolder getFieldHolder() {
