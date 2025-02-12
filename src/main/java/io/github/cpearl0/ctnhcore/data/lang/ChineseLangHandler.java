@@ -347,6 +347,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.gtceu.hellforge.will", "意志：%s");
         provider.add("ctnh.gtceu.hellforge.drain", "最少：%s意志");
         provider.add("ctnh.gtceu.hellforge.minimumdrain", "消耗：%s意志");
+        provider.add("ctnh.sinope.level","线圈加速倍率:%d");
+        provider.add("ctnh.sinope.parrel","并行数:%d");
         provider.add("ctnh.nano.1","利用摩擦热的力量");
         provider.add("ctnh.nano.2","最大并行数:1024");
         provider.add("ctnh.nano.3","每有1并行数，总体发电量提升0.2%\n实际运行时间为配方时间*sqrt(并行数)");
@@ -408,7 +410,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.sinope.4.2","富集硅岩块:32并行");
         provider.add("ctnh.sinope.4.3","超能硅岩块:128并行");
         provider.add("ctnh.sinope.5","每一点实际的并行数减少0.5%的能耗和运行时间，至多减少25%(独立乘区)");
-        provider.add("ctnh.sinope.5.1","线圈每提供1800K，运行速度+50%");
+        provider.add("ctnh.sinope.5.1","线圈每提供1800K，运行速度+100%");
         provider.add("ctnh.sinope.6","§c任何虚假的并行都将绳之以法!§r");
         provider.add("ion_exchanger", "离子交换");
 

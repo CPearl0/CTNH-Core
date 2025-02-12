@@ -16,7 +16,9 @@ import dev.arbor.gtnn.data.GTNNRecipeTypes;
 import dev.arbor.gtnn.data.GTNNRecipes;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.NanoscaleTriboelectricGenerator;
+import net.minecraft.network.chat.Component;
 
+import java.util.List;
 import java.util.Objects;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -58,7 +60,7 @@ public  int machine_tier=0;
             if(maxparrel==0)
                 return ModifierFunction.NULL;
             var reduce=maxparrel*Math.max(1-0.005*maxparrel,0.75);
-            var speed_up=zmachine.machine_tier*0.5;
+            var speed_up=zmachine.machine_tier;
             return ModifierFunction.builder()
                     .eutModifier(ContentModifier.multiplier((reduce)))
                     .inputModifier(ContentModifier.multiplier(maxparrel))
@@ -68,6 +70,13 @@ public  int machine_tier=0;
         }
         return ModifierFunction.NULL;
 
+    }
+    public void addDisplayText(List<Component> textList) {
+        super.addDisplayText(textList);
+        var tier = getTier();
+
+        textList.add(textList.size(), Component.translatable("ctnh.sinope.level",String.format("%d",machine_tier)));
+        textList.add(textList.size(), Component.translatable("ctnh.sinope.parrel",String.format("%d",parrel)));
     }
 
 }

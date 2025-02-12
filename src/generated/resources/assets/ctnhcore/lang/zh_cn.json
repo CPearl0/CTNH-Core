@@ -405,6 +405,8 @@
   "ctnh.sinope.5": "每一点实际的并行数减少0.5%的能耗和运行时间，至多减少25%(独立乘区)",
   "ctnh.sinope.5.1": "线圈每提供1800K，运行速度+50%",
   "ctnh.sinope.6": "§c任何虚假的并行都将绳之以法!§r",
+  "ctnh.sinope.level": "线圈加速倍率:%d",
+  "ctnh.sinope.parrel": "并行数:%d",
   "ctnh.slaughter_house.health": "§a怪物血量和护甲值越高，配方运行所需时间越长§r",
   "ctnh.slaughter_house.mechanism": "输入总线放入电动刷怪笼后，机器会自动输出对应怪物的战利品，可放入多个电动刷怪笼",
   "ctnh.slaughter_house.parallel": "电压每升高1级，虚拟刷怪量会增加4（HV为4）",
