@@ -144,7 +144,6 @@ public class PhotovoltaicPowerStationMachine extends WorkableElectricMultiblockM
 
     @Override
     public void addDisplayText(@NotNull List<Component> textList) {
-        super.addDisplayText(textList);
         if (isFormed()) {
             var valid = isValidPhotovoltaicPower();
             var outputEnergy = getHolder().self().getPersistentData().getDouble("energy");
@@ -156,7 +155,8 @@ public class PhotovoltaicPowerStationMachine extends WorkableElectricMultiblockM
             } else {
                 textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station1", String.format("%.1f", (outputEnergy / (BASIC_RATE * 512) * 100))));
                 textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station2", FormattingUtil.formatNumbers(outputEnergy), voltageName));
-            }
+                super.addDisplayText(textList);
+         }
         }
     }
 }

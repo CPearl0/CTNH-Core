@@ -79,6 +79,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.wood_bionics", "§e林海树场");
         provider.add("gtceu.sinope", "规模化化工");
         provider.add("gtceu:quasar_eye","类星体发电");
+        provider.add("gtceu.personal_computer", "个人电脑");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -348,7 +349,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.gtceu.hellforge.drain", "最少：%s意志");
         provider.add("ctnh.gtceu.hellforge.minimumdrain", "消耗：%s意志");
         provider.add("ctnh.sinope.level","线圈加速倍率:%d");
-        provider.add("ctnh.sinope.parrel","并行数:%d");
+        provider.add("ctnh.sinope.parallel","并行数:%d");
         provider.add("ctnh.nano.1","利用摩擦热的力量");
         provider.add("ctnh.nano.2","最大并行数:1024");
         provider.add("ctnh.nano.3","每有1并行数，总体发电量提升0.2%\n实际运行时间为配方时间*sqrt(并行数)");
@@ -387,7 +388,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.beams.tips10","§c扭曲符文§r消耗概率公式:每次运行有Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0))概率消耗");
         provider.add("ctnh.beams.tips11","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
         provider.add("ctnh.beams.tips12","该机器无法超频，§c该机器也没有做完，我不对bug负责（笑）§r");
-        provider.add("ctnh.magic.parrel","当前并行数:%.2f");
+        provider.add("ctnh.magic.parallel","当前并行数:%.2f");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.0", "机器类型：§e核聚变反应堆/§5扭曲聚变反应堆§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.1", "§8以不可思议的伟力。§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.2", "§e核聚变反应堆模式：§r");
@@ -413,6 +414,9 @@ public class ChineseLangHandler {
         provider.add("ctnh.sinope.5.1","线圈每提供1800K，运行速度+100%");
         provider.add("ctnh.sinope.6","§c任何虚假的并行都将绳之以法!§r");
         provider.add("ion_exchanger", "离子交换");
+        provider.add("ctnh.multiblock.astronomical.invalid", "只能在夜晚使用");
+        provider.add("ctnh.astronomical.intro", "知天易，逆天难");
+        provider.add("ctnh.astronomical.mechanism", "无法在阳光直射下工作，工作时会自动为芯片总线中的芯片收集数据");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -447,6 +451,9 @@ public class ChineseLangHandler {
 
         provider.addItem(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1, "完善的一阶航天数据芯片");
         provider.addItem(CTNHItems.ASTRONOMY_CIRCUIT_1, "一阶航天数据芯片");
+        provider.addItem(CTNHItems.PROGRAM_EMPTY, "空白程序");
+        provider.addItem(CTNHItems.PROGRAM_ROCKET_CORE_1, "一阶火箭核心代码");
+        provider.addItem(CTNHItems.PROGRAM_ROCKET_1, "一阶火箭控制代码");
         provider.addItem(CTNHItems.TESTING_TERMINAL, "检测终端");
         provider.addItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL, "简易营养餐");
         provider.addItem(CTNHItems.ECOLOGICAL_STAR, "生态之星");

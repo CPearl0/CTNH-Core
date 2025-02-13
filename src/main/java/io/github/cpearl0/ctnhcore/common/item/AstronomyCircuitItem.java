@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.item;
 
+import io.github.cpearl0.ctnhcore.registry.CTNHWorlds;
 import lombok.Getter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -11,8 +12,8 @@ import java.util.function.Supplier;
 
 public class AstronomyCircuitItem extends Item {
     public static final ResourceLocation[][] DIMENSIONS = new ResourceLocation[][] {
-            { Level.OVERWORLD.location() },
-            { Level.OVERWORLD.location() , new ResourceLocation("ad_astra:moon") },
+            { CTNHWorlds.THE_AETHER },
+            { CTNHWorlds.THE_AETHER , new ResourceLocation("ad_astra:moon") },
     };
 
     private final int tier;

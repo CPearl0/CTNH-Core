@@ -158,9 +158,11 @@ public class CTNHMultiblockMachines {
             .register();
 
 
-    public static final MultiblockMachineDefinition ASTRONOMICAL_OBSERVATORY = REGISTRATE.multiblock("astronomical_observatory", WorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition ASTRONOMICAL_OBSERVATORY = REGISTRATE.multiblock("astronomical_observatory", AstronomicalMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ASTRONOMICAL_OBSERVATORY)
+            .tooltips(Component.translatable("ctnh.astronomical.intro").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.astronomical.mechanism"))
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("   BBB   ", "   BBB   ", "   CCC   ", "   BBB   ", "   BBB   ", "   RDR   ", "         ", "         ", "         ")
@@ -185,34 +187,6 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     GTCEu.id("block/multiblock/assembly_line"))
-            .beforeWorking((machine, recipe) -> {
-                final boolean[] begin = {false};
-                ((MultiblockControllerMachine) machine.self()).getParts().stream()
-                        .filter(part -> part instanceof CircuitBusPartMachine)
-                        .findFirst()
-                        .ifPresent(bus -> {
-                            var circuitBus = (CircuitBusPartMachine) bus;
-                            if (!circuitBus.getInventory().isEmpty()) {
-                                var circuit = circuitBus.getInventory().getStackInSlot(0);
-                                begin[0] = AstronomyCircuitItem.workInLevel(circuit, machine.self().getLevel());
-                            }
-                        });
-                return begin[0];
-            })
-            .afterWorking(machine -> {
-                ((MultiblockControllerMachine) machine.self()).getParts().stream()
-                        .filter(CircuitBusPartMachine.class::isInstance)
-                        .findFirst()
-                        .ifPresent(bus -> {
-                            var circuitBus = (CircuitBusPartMachine) bus;
-                            if (!circuitBus.getInventory().isEmpty()) {
-                                var circuit = circuitBus.getInventory().getStackInSlot(0);
-                                if (!AstronomyCircuitItem.gainData(circuit, machine.self().getLevel()))
-                                    return;
-                                circuitBus.getInventory().setStackInSlot(0, new ItemStack(((AstronomyCircuitItem) circuit.getItem()).getFinishedItem().get()));
-                            }
-                        });
-            })
             .register();
 
     public static final MultiblockMachineDefinition PHOTOVOLTAIC_POWER_STATION_ENERGETIC =

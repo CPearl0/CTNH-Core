@@ -55,7 +55,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     private final int tier = GTValues.ULV;
     private int excessVoltage;
     public double efficiency = 1;
-    public int parrel=0;
+    public int parallel=0;
     public double consumpution_rate = 1;
 
     private List<String> Tier4_rune = List.of("asgard_rune","vanaheim_rune","alfheim_rune","midgard_rune", "joetunheim_rune","muspelheim_rune","nifheim_rune","nidavellir_rune","helheim_rune");
@@ -124,7 +124,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         // this is necessary to prevent over-consumption of fuel
         turbineMachine.excessVoltage += (int) (maxParallel * EUt * holderEfficiency - turbineMaxVoltage);
         int actualParallel = (int)ParallelLogic.getParallelAmountFast(turbineMachine, recipe, maxParallel);
-        turbineMachine.parrel=actualParallel;
+        turbineMachine.parallel=actualParallel;
         return ModifierFunction.builder()
                 .inputModifier(ContentModifier.multiplier(actualParallel))
                 .outputModifier(ContentModifier.multiplier(actualParallel))
@@ -270,7 +270,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
             if (rotorHolder != null && rotorHolder.getRotorEfficiency() > 0) {
                 textList.add(Component.translatable("gtceu.multiblock.turbine.rotor_speed", FormattingUtil.formatNumbers(rotorHolder.getRotorSpeed()), FormattingUtil.formatNumbers(rotorHolder.getMaxRotorHolderSpeed())));
                 textList.add(Component.translatable("gtceu.multiblock.turbine.efficiency", rotorHolder.getTotalEfficiency()));
-                textList.add(Component.translatable("ctnh.magic.parrel",parrel));
+                textList.add(Component.translatable("ctnh.magic.parallel",parallel));
                 long maxProduction = getOverclockVoltage();
                 long currentProduction = isActive() && recipeLogic.getLastRecipe() != null ?
                         RecipeHelper.getOutputEUt(recipeLogic.getLastRecipe()) : 0;

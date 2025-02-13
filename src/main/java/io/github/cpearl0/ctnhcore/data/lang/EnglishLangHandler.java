@@ -270,7 +270,7 @@ public class EnglishLangHandler {
         provider.add("ctnh.beams.tips10", "§cTwisted rune§r consumption probability formula: Each operation has a Math.max((twist_power-3)/3,1)*0.01 + (Math.max(starlight_power-twist_power,0)*0.01) + (Math.max((100-mana/100000)*0.0005,0)) chance of consumption.");
         provider.add("ctnh.beams.tips11", "§9Starlight rune§r consumption probability formula: Each operation has a Math.max((starlight_power-3)/3,1)*0.01 + (Math.max(twist_power-starlight_power,0)*0.01) + (mana/100000*0.005) chance of consumption.");
         provider.add("ctnh.beams.tips12", "This machine cannot be overclocked, §cThis machine is unfinished, I am not responsible for bugs (lol)§r.");
-        provider.add("ctnh.magic.parrel", "Current parallel count: %.2f");
+        provider.add("ctnh.magic.parallel", "Current parallel count: %.2f");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.0", "Machine type: §eNuclear Fusion Reactor / §5Twisted Fusion Reactor§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.1", "§8With unbelievable power.§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.2", "§eNuclear Fusion Reactor Mode:§r");
@@ -285,6 +285,8 @@ public class EnglishLangHandler {
         provider.add("ctnh.gtceu.tfmkinfinity.1.1", "Can use laser warehouse.");
         provider.add("ctnh.gtceu.tfmkinfinity.2", "Applies §8incomprehensible§r parallel to all recipes, reducing energy consumption and operation time by 75%");
         provider.add("ctnh.gtceu.tfmkinfinity.3", "§5You must be crazy to make this machine, and indeed this machine is equally crazy§r.");
+        provider.add("ctnh.sinope.level","Coil Accelerating Rate: %d");
+        provider.add("ctnh.sinope.parallel","Parallel Count: %d");
         provider.add("ctnh.sinope.1", "From §bA certain mysterious eastern country§r's industrial power.");
         provider.add("ctnh.sinope.2", "Gray employees don’t deceive gray employees, parallel is real.");
         provider.add("ctnh.sinope.3", "No shell level requirements, recipes don't need catalysts.");
@@ -337,6 +339,9 @@ public class EnglishLangHandler {
         provider.add("ctnh.industrial_primitive_blast_furnace.parallel", "The higher the temperature, the higher the parallelism of the industrial primitive blast furnace, up to a maximum of 8 parallelism");
         provider.add("ctnh.industrial_primitive_blast_furnace.efficiency", "The higher the temperature, the higher the efficiency of the industrial primitive blast furnace, up to a maximum of double efficiency");
         provider.add("ctnh.machine.large_miner.zpm.tooltip", "Heard you're worried about the source of minerals?");
+        provider.add("ctnh.multiblock.astronomical.invalid", "Can only be used at night");
+        provider.add("ctnh.astronomical.intro", "Knowing the heavens is easy, but defying them is difficult");
+        provider.add("ctnh.astronomical.mechanism", "Cannot work under direct sunlight, but will automatically collect data for the chips in the chip bus while working");
 
     }
 }

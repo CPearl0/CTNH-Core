@@ -24,7 +24,7 @@ import java.util.Objects;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class Sinope_Chemical extends CoilWorkableElectricMultiblockMachine implements ITieredMachine {
-public int parrel=0;
+public int parallel=0;
 public  int machine_tier=0;
     public Sinope_Chemical(IMachineBlockEntity holder){
         super(holder);
@@ -43,28 +43,29 @@ public  int machine_tier=0;
         var coreblock = Objects.requireNonNull(getLevel()).getBlockState(blockpos).getBlock();
         if(coreblock.equals(GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block,Naquadah).get()))
         {
-            parrel=8;
+            parallel=8;
         }
         if(coreblock.equals(GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block,NaquadahEnriched).get()))
         {
-            parrel=32;
+            parallel=32;
         }
         if(coreblock.equals(GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block,Naquadria).get()))
         {
-            parrel=128;
+            parallel=128;
         }
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof Sinope_Chemical zmachine){
-            var maxparrel= ParallelLogic.getParallelAmount(machine,recipe,zmachine.parrel);
-            if(maxparrel==0)
+            var maxparallel= ParallelLogic.getParallelAmount(machine,recipe,zmachine.parallel);
+            if(maxparallel==0)
                 return ModifierFunction.NULL;
-            var reduce=maxparrel*Math.max(1-0.005*maxparrel,0.75);
+            var reduce=maxparallel*Math.max(1-0.005*maxparallel,0.75);
             var speed_up=zmachine.machine_tier;
             return ModifierFunction.builder()
                     .eutModifier(ContentModifier.multiplier((reduce)))
-                    .inputModifier(ContentModifier.multiplier(maxparrel))
-                    .outputModifier(ContentModifier.multiplier(maxparrel))
+                    .inputModifier(ContentModifier.multiplier(maxparallel))
+                    .outputModifier(ContentModifier.multiplier(maxparallel))
+                    .parallels(maxparallel)
                     .durationMultiplier(reduce/speed_up)
                     .build();
         }
@@ -76,7 +77,7 @@ public  int machine_tier=0;
         var tier = getTier();
 
         textList.add(textList.size(), Component.translatable("ctnh.sinope.level",String.format("%d",machine_tier)));
-        textList.add(textList.size(), Component.translatable("ctnh.sinope.parrel",String.format("%d",parrel)));
+        textList.add(textList.size(), Component.translatable("ctnh.sinope.parallel",String.format("%d",parallel)));
     }
 
 }
