@@ -133,7 +133,7 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
             if(MachineUtils.inputFluid(CTNHMaterials.Mana.getFluid(100000),this))
             {
                 if(mana+100000<max_mana)
-                    mana+=100000*(1+0.005*horizen_power);
+                    mana+=100000*(1+0.05*horizen_power);
 
             }
         }
@@ -145,7 +145,7 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
         if(broken==2) doExplosion(3f);
         if(mana>=recipe.data.getInt("required_mana"))
         {
-            max_mana=max_mana*(1+0.05*horizen_power);
+            max_mana=max_mana*(1+0.125*horizen_power);
             rune_consume();
             mana-=recipe.data.getInt("mana");
             return super.beforeWorking(recipe);

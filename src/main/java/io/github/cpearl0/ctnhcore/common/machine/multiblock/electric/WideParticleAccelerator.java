@@ -1,0 +1,156 @@
+package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
+
+import com.gregtechceu.gtceu.api.capability.*;
+import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.*;
+import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+import com.gregtechceu.gtceu.utils.GTUtil;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import lombok.Getter;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
+import com.gregtechceu.gtceu.api.capability.IOpticalComputationReceiver;
+import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.CWURecipeCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
+import com.gregtechceu.gtceu.api.capability.recipe.IRecipeCapabilityHolder;
+import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
+import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.common.blockentity.OpticalPipeBlockEntity;
+import com.gregtechceu.gtceu.utils.GTUtil;
+import com.gregtechceu.gtceu.api.recipe.content.Content;
+import org.apache.commons.lang3.ObjectUtils;
+import org.checkerframework.checker.units.qual.C;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+
+public class WideParticleAccelerator extends WorkableElectricMultiblockMachine implements ITieredMachine {
+
+    public double nu_speed=0;
+    public double proton_speed=0;
+    public double element_speed=0;
+    public int max_speed = 5000;
+    public int add_parallel_nu=0;
+    public int add_parallel_proton=0;
+    public  int add_parallel_element=0;
+    public WideParticleAccelerator(IMachineBlockEntity holder)
+    {
+        super(holder);
+    }
+    @Override
+    public void onStructureFormed() {
+        super.onStructureFormed();
+    }
+    @Override
+    public boolean beforeWorking(@Nullable GTRecipe recipe) {
+
+
+        if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN))
+        {
+            if(recipe.data.getString("type").equals("nu"))
+            {
+                add_parallel_nu=-(int) (Math.sqrt(recipe.data.getDouble("speed")));
+            }
+            if(recipe.data.getString("type").equals("proton"))
+            {
+                add_parallel_proton=-(int) (Math.sqrt(recipe.data.getDouble("speed")));
+            }
+            if(recipe.data.getString("type").equals("element"))
+            {
+                add_parallel_element=-(int) (Math.sqrt(recipe.data.getDouble("speed")));
+            }
+        }
+        return super.beforeWorking(recipe);
+    }
+    @Override
+    public void afterWorking() {
+        nu_speed+=add_parallel_nu;
+        proton_speed+=add_parallel_proton;
+        element_speed+=add_parallel_element;
+
+        add_parallel_element=add_parallel_proton=add_parallel_nu=0;
+        nu_speed=Math.min(nu_speed,50000);
+        proton_speed=Math.min(proton_speed,50000);
+        element_speed=Math.min(element_speed,50000);
+        nu_speed=Math.max(nu_speed,0);
+        proton_speed=Math.max(proton_speed,0);
+        element_speed=Math.max(element_speed,0);
+        super.afterWorking();
+        }
+
+    public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
+
+        if(machine instanceof WideParticleAccelerator wmachine){
+            List<Content> itemList = new ArrayList<>();
+            if(recipe.data.getString("type").equals("nu") && recipe.data.getDouble("speed")<=wmachine.nu_speed)
+            {
+                recipe.outputs.put(ItemRecipeCapability.CAP,null);
+            }
+            if(recipe.data.getString("type").equals("element") && recipe.data.getDouble("speed")<=wmachine.element_speed)
+            {
+                recipe.outputs.put(ItemRecipeCapability.CAP,null);
+            }
+            if(recipe.data.getString("type").equals("proton") && recipe.data.getDouble("speed")<=wmachine.proton_speed)
+            {
+                recipe.outputs.put(ItemRecipeCapability.CAP,null);
+            }
+            int parallel = ParallelLogic.getParallelAmount(machine,recipe,16);
+double total_eut= (wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/2000;
+            if(recipe.data.getString("type").equals("addnu")||recipe.data.getString("type").equals("addproton")||recipe.data.getString("type").equals("addelement"))
+            {
+                if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN))
+                    parallel=-1;
+                else {
+                    parallel = ParallelLogic.getParallelAmount(machine, recipe, 1000);
+                }
+                if(recipe.data.getString("type").equals("addnu"))
+                    wmachine.add_parallel_nu=parallel;
+                if(recipe.data.getString("type").equals("addproton"))
+                    wmachine.add_parallel_proton=parallel;
+                if(recipe.data.getString("type").equals("addelement"))
+                    wmachine.add_parallel_element=parallel;
+                return ModifierFunction.builder()
+                        .parallels(parallel)
+                        .eutMultiplier((parallel))
+                        .build();
+            }
+
+            return ModifierFunction.builder()
+                    .parallels(parallel)
+                    .inputModifier(ContentModifier.multiplier(parallel))
+                    .outputModifier(ContentModifier.multiplier(parallel))
+                    .eutMultiplier(parallel*(1+total_eut))
+                    .durationMultiplier(Math.max(0.2,1-(recipe.data.getDouble("speed")-(wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/2000)))
+                    .build();
+        }
+        return ModifierFunction.NULL;
+    }
+    @Override
+    public void addDisplayText(List<Component> textList) {
+        super.addDisplayText(textList);
+        textList.add(textList.size(),Component.translatable("ctnh.accelerator.nu_speed",String.format("%.2f",nu_speed)));
+        textList.add(textList.size(),Component.translatable("ctnh.accelerator.proton_speed",String.format("%.2f",proton_speed)));
+        textList.add(textList.size(),Component.translatable("ctnh.accelerator.element_speed",String.format("%.2f",element_speed)));
+        textList.add(textList.size(),Component.translatable("ctnh.accelerator.consume",String.format("%.2f",(nu_speed+proton_speed+element_speed)/2000+1)));
+    }
+
+}

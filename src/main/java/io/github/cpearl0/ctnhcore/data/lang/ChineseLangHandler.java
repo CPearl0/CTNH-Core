@@ -80,6 +80,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.sinope", "规模化化工");
         provider.add("gtceu:quasar_eye","类星体发电");
         provider.add("gtceu.personal_computer", "个人电脑");
+        provider.add("gtceu.accelerator_upmode","粒子加速：加速模式");
+        provider.add("gtcey.accelerator_downmode","粒子加速：减速模式");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -243,7 +245,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.mana_generator_turbine_tier3.restriction", "转子支架等级不能超过§dLuV§r");
         provider.add("mana_generator_turbine_tier4", "神奇的能量守恒");
         provider.add("ctnh.mana_generator_turbine_tier4.basic_power", "§e基础产能功率：§r4096 EU/t");
-        provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§3UV§r");
+        provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§3ZPM§r");
         provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，消耗量x0.9\n  二级符文：发电量x2，消耗量x0.75\n  三级符文：发电量x3，消耗量x0.6\n  四级符文：发电量x4，消耗量x0.4");
         provider.add("ctnh.machine.super_ebf.tooltip1", "所有配方耗时减半");
         provider.add("ctnh.mega_lcr.recipe_type","化学反应釜 / 大型化学反应釜");
@@ -417,7 +419,21 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.astronomical.invalid", "只能在夜晚使用");
         provider.add("ctnh.astronomical.intro", "知天易，逆天难");
         provider.add("ctnh.astronomical.mechanism", "无法在阳光直射下工作，工作时会自动为芯片总线中的芯片收集数据");
-
+        provider.add("ctnh.wideaccelerator.1","粒子加速集成者");
+        provider.add("ctnh.wideaccelerator.2","运行使用激光仓和变电仓");
+        provider.add("ctnh.wideaccelerator.3","通过三个轨道加速三种粒子");
+        provider.add("ctnh.wideaccelerator.pa","所有配方都有16并行");
+        provider.add("ctnh.wideaccelerator.4","本机器只要求粒子速度大于配方需求，粒子速度不得大于50Gev");
+        provider.add("ctnh.wideaccelerator.5","如果粒子速度过慢，则什么都不会产生");
+        provider.add("ctnh.wideaccelerator.6","本机器在运行时根据运行配方模式来决定之后逻辑");
+        provider.add("ctnh.wideaccelerator.7","加速模式:使用加速配方时将试图以最大并行数来运行，运行配方时需要大量能源来维持。运行配方时三种粒子速度之和每有200Mev，能源消耗提升10%，此状态下粒子速度§9不会§r减少");
+        provider.add("ctnh.wideaccelerator.8","减速模式:使用加速配方将固定不会并行并改为减少粒子速度，运行配方时需要少量能源来维持。运行配方时三种粒子速度之和每有200Mev，能源消耗提升2.5%。此状态下粒子速度在运行完配方后减少sqrt(配方所需速度)的对应粒子速度");
+        provider.add("ctnh.wideaccelerator.9","注意:本机器用电量极高，使用低电压可能导致§c配方无法运行§r或者§c跳电§r,建议搭配§9激光仓§r使用");
+        provider.add("ctnh.wideaccelerator.10","可以与约束器链接传递部分粒子。§c警告：如果没有链接约束器，不要随意尝试某些危险的配方§r (目前还是饼)");
+        provider.add("ctnh.accelerator.nu_speed","中子速度:%.2fMev");
+        provider.add("ctnh.accelerator.proton_speed","质子速度:%.2fMev");
+        provider.add("ctnh.accelerator.element_speed","电子速度:%.2fMev");
+        provider.add("ctnh.accelerator.consume","电量消耗倍率:%.2f");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -514,6 +530,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.TEST_CASING,"测试方块");
         provider.addBlock(CTNHBlocks.ATOMS_SPLIT_BLOCKS, "原子裂解方块");
         provider.addBlock(CTNHBlocks.QUASAR_ENERGY_STABILIZATION_CASING,"类星体能量稳定机械外壳");
+        provider.addBlock(CTNHBlocks.WIDESPEEDINGPIPE,"广粒子加速器通道");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -589,6 +606,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MKINFINITY.getBlock(),"扭曲聚变反应堆mk∞");
         provider.add(CTNHMultiblockMachines.FOREST_SEA_TREE_FARM.getBlock(), "林海树场");
         provider.add(CTNHMultiblockMachines.SINOPE_CHEMICAL.getBlock(), "SINOPE化工厂");
+        provider.add(CTNHMultiblockMachines.WIDEPARTICLEACCELERATOR.getBlock(), "广粒子加速器");
 
 
 
