@@ -11,7 +11,9 @@ public class MeadowRecipes {
     public static void init(Consumer<FinishedRecipe> provider){
         CTPPRecipeBuilder.of(CTNHCore.id("meadow"),CTNHRecipeTypes.MEADOW)
                 .inputStress(2048)
+                .addData("ctnh.stress",2048)
                 .duration(200)
+                .circuitMeta(0)
                 .save(provider);
     }
 }

@@ -50,13 +50,21 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
             if(mmachine.CowCount == 0 && mmachine.SheepCount == 0 && mmachine.ChickenCount == 0 && mmachine.PigCount == 0){
                 return ModifierFunction.IDENTITY;
             }
-            var newrecipe = GTRecipeBuilder.ofRaw()
-                    .outputItems(new ItemStack(Items.LEATHER,mmachine.CowCount))
-                    .outputItems(new ItemStack(Items.WHITE_WOOL,mmachine.SheepCount))
-                    .outputItems(new ItemStack(Items.EGG,mmachine.ChickenCount))
-                    .outputItems(new ItemStack(Items.PORKCHOP, mmachine.PigCount))
-                    .outputItems(new ItemStack(CTNHItems.ANIMAL_EXCRETA,mmachine.CowCount + mmachine.SheepCount + mmachine.ChickenCount + mmachine.PigCount))
-                    .outputFluids(new FluidStack(GTMaterials.Milk.getFluid(),250 * mmachine.CowCount))
+            var newrecipeBuilder = GTRecipeBuilder.ofRaw();
+            if(mmachine.CowCount != 0){
+                newrecipeBuilder.outputItems(new ItemStack(Items.LEATHER,mmachine.CowCount))
+                        .outputFluids(new FluidStack(GTMaterials.Milk.getFluid(),250 * mmachine.CowCount));
+            }
+            if(mmachine.PigCount != 0){
+                newrecipeBuilder.outputItems(new ItemStack(Items.PORKCHOP, mmachine.PigCount));
+            }
+            if(mmachine.SheepCount != 0){
+                newrecipeBuilder.outputItems(new ItemStack(Items.WHITE_WOOL,mmachine.SheepCount));
+            }
+            if(mmachine.ChickenCount != 0){
+                newrecipeBuilder.outputItems(new ItemStack(Items.EGG,mmachine.ChickenCount));
+            }
+            var newrecipe = newrecipeBuilder.outputItems(new ItemStack(CTNHItems.ANIMAL_EXCRETA,mmachine.CowCount + mmachine.SheepCount + mmachine.ChickenCount + mmachine.PigCount))
                     .buildRawRecipe();
             if (newrecipe.matchRecipe(mmachine).isSuccess()) {
                 return recipe1 -> newrecipe;
