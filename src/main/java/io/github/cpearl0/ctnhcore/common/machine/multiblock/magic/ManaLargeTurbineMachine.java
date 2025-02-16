@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
@@ -31,6 +32,7 @@ import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -42,7 +44,7 @@ import vazkii.botania.common.item.BotaniaItems;
 
 import java.util.List;
 
-public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine implements ITieredMachine, IMachineModifyDrops {
+public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine implements ITieredMachine, IMachineModifyDrops, IExplosionMachine {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             ManaLargeTurbineMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public static final int MIN_DURABILITY_TO_WARN = 10;
@@ -78,14 +80,14 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeWater) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeFire)){
             turbineMachine.efficiency = 1.5;
-            turbineMachine.consumpution_rate = 0.9;
+            turbineMachine.consumpution_rate = 0.8;
         }
         else if(turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeSpring) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeSummer) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeAutumn) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeWinter)){
             turbineMachine.efficiency = 2;
-            turbineMachine.consumpution_rate = 0.75;
+            turbineMachine.consumpution_rate = 0.6;
         }
         else if(turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeEnvy) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeGluttony) ||
@@ -95,11 +97,16 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeSloth) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeWrath)){
             turbineMachine.efficiency = 3;
-            turbineMachine.consumpution_rate = 0.6;
+            turbineMachine.consumpution_rate = 1.2;
         }
         else if(turbineMachine.Tier4_rune.contains(turbineMachine.getMachineStorageItem().getItem().toString())){
             turbineMachine.efficiency = 4;
-            turbineMachine.consumpution_rate = 0.4;
+            turbineMachine.consumpution_rate = 1.8;
+        }
+        else if(turbineMachine.getMachineStorageItem().getItem().equals(CTNHItems.HORIZEN_RUNE)||turbineMachine.getMachineStorageItem().getItem().equals(CTNHItems.STARLIGHT_RUNE)||turbineMachine.getMachineStorageItem().getItem().equals(CTNHItems.TWIST_RUNE)||turbineMachine.getMachineStorageItem().getItem().equals(CTNHItems.PROLIFERATION_RUNE))
+        {
+            turbineMachine.efficiency = 4;
+            turbineMachine.consumpution_rate = 0.9;
         }
         else {
             turbineMachine.efficiency = 1;
@@ -128,7 +135,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         return ModifierFunction.builder()
                 .inputModifier(ContentModifier.multiplier(actualParallel))
                 .outputModifier(ContentModifier.multiplier(actualParallel))
-                .eutMultiplier(turbineMachine.productionBoost() * actualParallel)
+                .eutMultiplier(turbineMachine.productionBoost() * actualParallel/2)
                 .durationMultiplier(holderEfficiency/turbineMachine.consumpution_rate)
                 .build();
     }
@@ -174,6 +181,16 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                 {
                     consumeItem();
                 }
+            }
+            else if(getMachineStorageItem().getItem().equals(CTNHItems.HORIZEN_RUNE)||getMachineStorageItem().getItem().equals(CTNHItems.STARLIGHT_RUNE)||getMachineStorageItem().getItem().equals(CTNHItems.TWIST_RUNE)||getMachineStorageItem().getItem().equals(CTNHItems.PROLIFERATION_RUNE)) {
+                if(random<=0.02)
+                {
+                    consumeItem();
+                }
+            }
+            else if(getMachineStorageItem().getItem().equals(CTNHItems.QUASAR_RUNE))
+            {
+                doExplosion(3f);
             }
         }
         return super.onWorking();
@@ -287,7 +304,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                     textList.add(Component.translatable("gtceu.multiblock.turbine.rotor_durability", rotorDurability).setStyle(Style.EMPTY.withColor(ChatFormatting.RED)));
                 }
                 textList.add(Component.translatable("ctnh.manaturbine.efficiency",efficiency*100));
-                textList.add(Component.translatable("ctnh.manaturbine.consumption_rate",consumpution_rate));
+                textList.add(Component.translatable("ctnh.manaturbine.consumption_rate",consumpution_rate*4));
             }
         }
     }

@@ -12,7 +12,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class CommonProxy {
     public CommonProxy() {
         init();
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus modEventBus = FMLJavaModLoadingContext
+                .get().getModEventBus();
         modEventBus.addListener(this::addMaterialFlag);
     }
 

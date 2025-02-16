@@ -27,6 +27,7 @@ public class ManaMachine extends WorkableElectricMultiblockMachine {
             if (MachineUtils.inputFluid(CTNHMaterials.Mana.getFluid((int) (Math.pow(2, tier) * basicConsumption)),this)) {
                 return super.onWorking();
             }
+
             getRecipeLogic().setProgress(0);
         }
         return super.onWorking();

@@ -66,7 +66,7 @@ public class MachinesRecipes {
                 .duration(400).EUt(VA[ZPM]).save(provider);
         CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator1")
                 .circuitMeta(0)
-                .inputFluids(CTNHMaterials.Mana.getFluid(500000))
+                .inputFluids(CTNHMaterials.Mana.getFluid(1000000))
                 .EUt(-67108864)
                 .duration(100)
                 .addData("consumption",1000000)
@@ -78,7 +78,15 @@ public class MachinesRecipes {
                 .duration(150)
                 .addData("consumption",100000)
                 .save(provider);
+        CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator3")
+                .inputFluids(CTNHMaterials.EVE.getFluid(100000))
+                .circuitMeta(2)
+                .EUt(-268435456)
+                .duration(200)
+                .addData("consumption",2000000)
+                .save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")
+
                 .inputItems(plate, NaquadahAlloy, 4)
                 .inputItems(gear, NaquadahAlloy, 2)
                 .inputItems(frameGt, NaquadahAlloy)
@@ -108,11 +116,11 @@ public class MachinesRecipes {
                 .duration(400).EUt(VA[ZPM]).save(provider);
         CTNHRecipeTypes.BEAMS.recipeBuilder("test")
                 .circuitMeta(24)
-                .inputFluids(CTNHMaterials.Zenith_essence.getFluid(10))
-                .EUt(999)
-                .duration(1500)
+                .inputFluids(PCBCoolant.getFluid(100))
+                .EUt(1)
+                .duration(20)
                 .addData("required_mana",0)
-                .addData("mana",1)
+                .addData("mana",0)
                 .save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("empty_program")
                 .inputItems(wireFine,RedAlloy,8)

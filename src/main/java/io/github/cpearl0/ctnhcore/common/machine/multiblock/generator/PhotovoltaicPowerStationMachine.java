@@ -25,7 +25,7 @@ public class PhotovoltaicPowerStationMachine extends WorkableElectricMultiblockM
     public static final int START_TIME = 23000;
     public static final int END_TIME = 13000;
     public final int BASIC_RATE;
-
+    public long StartTime=0;
     public PhotovoltaicPowerStationMachine(IMachineBlockEntity holder, int basicRate, Object... args) {
         super(holder, args);
         BASIC_RATE = basicRate;
@@ -139,7 +139,17 @@ public class PhotovoltaicPowerStationMachine extends WorkableElectricMultiblockM
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         if (isValidPhotovoltaicPower() != VALID)
             return false;
+        StartTime=getOffsetTimer();
         return super.beforeWorking(recipe);
+    }
+    @Override
+    public boolean onWorking() {
+        var recipetime=getRecipeLogic().getDuration();
+        if(getOffsetTimer()-StartTime>recipetime*5)
+        {
+            return false; //如果配方运行时间过长，强行结束配方运行
+        }
+    return super.onWorking();
     }
 
     @Override

@@ -115,8 +115,8 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
                 if (MachineUtils.inputItem(CTNHItems.QUASAR_RUNE.asStack(1),this )){
                     rune_energy+=1024;
                 }
-                if(active<3)active=3;
-                energy_tier=3;
+                if(active<3)active=4;
+                energy_tier=4;
                 return super.beforeWorking(recipe);
             }
         }

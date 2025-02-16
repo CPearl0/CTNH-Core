@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import net.minecraft.core.BlockPos;
@@ -9,6 +10,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.fluids.FluidStack;
+
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.FUSION_REACTOR;
 
 public class MachineUtils {
     public static boolean inputItem(ItemStack itemStack, WorkableMultiblockMachine machine) {
@@ -23,6 +27,15 @@ public class MachineUtils {
         var Recipe = GTRecipeBuilder.ofRaw().inputFluids(fluidStack).buildRawRecipe();
         if (Recipe.matchRecipe(machine).isSuccess()) {
             Recipe.handleRecipeIO(IO.IN, machine, machine.getRecipeLogic().getChanceCaches());
+            return true;
+        }
+        return false;
+    }
+    public static  boolean inputCWUT(int CWU,WorkableMultiblockMachine machine){
+        var Recipe = GTRecipeBuilder.ofRaw().inputCWU(CWU).buildRawRecipe();
+        if(Recipe.matchRecipe(machine).isSuccess())
+        {
+            Recipe.handleRecipeIO(IO.IN,machine,machine.getRecipeLogic().getChanceCaches());
             return true;
         }
         return false;
