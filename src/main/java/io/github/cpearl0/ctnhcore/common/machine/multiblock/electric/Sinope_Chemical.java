@@ -60,7 +60,7 @@ public  int machine_tier=0;
             if(maxparallel==0)
                 return ModifierFunction.NULL;
             var reduce=maxparallel*Math.max(1-0.005*maxparallel,0.75);
-            var speed_up=zmachine.machine_tier;
+            var speed_up=zmachine.machine_tier*2;
             return ModifierFunction.builder()
                     .eutModifier(ContentModifier.multiplier((reduce)))
                     .inputModifier(ContentModifier.multiplier(maxparallel))
@@ -76,7 +76,7 @@ public  int machine_tier=0;
         super.addDisplayText(textList);
         var tier = getTier();
 
-        textList.add(textList.size(), Component.translatable("ctnh.sinope.level",String.format("%d",machine_tier)));
+        textList.add(textList.size(), Component.translatable("ctnh.sinope.level",String.format("%d",machine_tier*2)));
         textList.add(textList.size(), Component.translatable("ctnh.sinope.parallel",String.format("%d",parallel)));
     }
 

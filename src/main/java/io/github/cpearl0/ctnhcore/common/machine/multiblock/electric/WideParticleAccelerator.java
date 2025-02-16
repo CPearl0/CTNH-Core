@@ -15,6 +15,7 @@ import com.gregtechceu.gtceu.utils.GTUtil;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import lombok.Getter;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import com.gregtechceu.gtceu.GTCEu;
@@ -52,6 +53,11 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
     public int add_parallel_nu=0;
     public int add_parallel_proton=0;
     public  int add_parallel_element=0;
+    public  int parallel_running=16;
+    public  int getParallel_accelerate=1024;
+    public String NU_SPEED="nu_speed";
+    public String PROTON_SPEED="proton_speed";
+    public String ELEMENT_SPEED="element_speed";
     public WideParticleAccelerator(IMachineBlockEntity holder)
     {
         super(holder);
@@ -98,6 +104,16 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
         }
 
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
+        var hatchs=0;
+        if (machine instanceof IMultiController controller) {
+            if (controller.isFormed()) {
+                int parallels = (Integer)controller.getParallelHatch().map((hatch) -> ParallelLogic.getParallelAmount(machine, recipe, hatch.getCurrentParallel())).orElse(0);
+                if (parallels > 0) {
+                    hatchs=parallels;
+                }
+
+            }
+        }
 
         if(machine instanceof WideParticleAccelerator wmachine){
             List<Content> itemList = new ArrayList<>();
@@ -113,14 +129,20 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
             {
                 recipe.outputs.put(ItemRecipeCapability.CAP,null);
             }
+
             int parallel = ParallelLogic.getParallelAmount(machine,recipe,16);
-double total_eut= (wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/2000;
+            if(hatchs>0)parallel=hatchs;
+            double total_eut= (wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/1000;
+            if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN))total_eut=(wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/250;
             if(recipe.data.getString("type").equals("addnu")||recipe.data.getString("type").equals("addproton")||recipe.data.getString("type").equals("addelement"))
             {
-                if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN))
-                    parallel=-1;
+                if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN)) {
+                    parallel = -1;
+                    if(hatchs>0)parallel=-hatchs;
+                }
                 else {
-                    parallel = ParallelLogic.getParallelAmount(machine, recipe, 1000);
+                    parallel = ParallelLogic.getParallelAmount(machine, recipe, 1024);
+                    if(hatchs>0)parallel=hatchs;
                 }
                 if(recipe.data.getString("type").equals("addnu"))
                     wmachine.add_parallel_nu=parallel;
@@ -130,7 +152,7 @@ double total_eut= (wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_sp
                     wmachine.add_parallel_element=parallel;
                 return ModifierFunction.builder()
                         .parallels(parallel)
-                        .eutMultiplier((parallel))
+                        .eutMultiplier(Math.abs(parallel))
                         .build();
             }
 
@@ -151,6 +173,23 @@ double total_eut= (wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_sp
         textList.add(textList.size(),Component.translatable("ctnh.accelerator.proton_speed",String.format("%.2f",proton_speed)));
         textList.add(textList.size(),Component.translatable("ctnh.accelerator.element_speed",String.format("%.2f",element_speed)));
         textList.add(textList.size(),Component.translatable("ctnh.accelerator.consume",String.format("%.2f",(nu_speed+proton_speed+element_speed)/2000+1)));
+    }
+    @Override
+    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
+        super.saveCustomPersistedData(tag, forDrop);
+        if (!forDrop) {
+        tag.putDouble(NU_SPEED,nu_speed);
+        tag.putDouble(PROTON_SPEED,proton_speed);
+        tag.putDouble(ELEMENT_SPEED,element_speed);
+        }
+    }
+
+    @Override
+    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
+        super.loadCustomPersistedData(tag);
+        nu_speed=tag.contains(NU_SPEED)?tag.getDouble(NU_SPEED):0;
+        proton_speed=tag.contains(PROTON_SPEED)?tag.getDouble(PROTON_SPEED):0;
+        element_speed=tag.contains(ELEMENT_SPEED)?tag.getDouble(ELEMENT_SPEED):0;
     }
 
 }

@@ -128,7 +128,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         return ModifierFunction.builder()
                 .inputModifier(ContentModifier.multiplier(actualParallel))
                 .outputModifier(ContentModifier.multiplier(actualParallel))
-                .eutMultiplier(turbineMachine.productionBoost() * actualParallel)
+                .eutMultiplier(turbineMachine.productionBoost() * actualParallel/2)
                 .durationMultiplier(holderEfficiency/turbineMachine.consumpution_rate)
                 .build();
     }

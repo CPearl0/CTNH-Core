@@ -379,12 +379,106 @@ public class CTNHRecipeTypes {
             .setMaxIOSize(9,9,3,3)
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION,ProgressTexture.FillDirection.DOWN_TO_UP)
-            .setSound(GTSoundEntries.FIRE);
+            .setSound(GTSoundEntries.FIRE)
+            .addDataInfo(data->
+            {
+                if(data.getString("type").equals("addnu"))
+                {
+                    return LocalizationUtils.format("ctnh.accelerator.mode.nu");
+                }
+                else if(data.getString("type").equals("addproton"))
+                {
+                    return LocalizationUtils.format("ctnh.accelerator.mode.proton");
+                }
+                else if(data.getString("type").equals("addelement"))
+                {
+                    return LocalizationUtils.format("ctnh.accelerator.mode.element");
+                }
+                else if(data.getString("type").equals("element"))
+                {
+                    return LocalizationUtils.format("ctnh.accelerator.mode.element.consume");
+                }
+                else if(data.getString("type").equals("nu"))
+                {
+                    return LocalizationUtils.format("ctnh.accelerator.mode.nu.consume");
+                }
+                else if(data.getString("type").equals("proton"))
+                {
+                    return LocalizationUtils.format("ctnh.accelerator.mode.element.consume");
+                }
+                return "";
+            })
+            .addDataInfo(data->{
+
+                if(data.getString("type").equals("element")||data.getString("type").equals("nu")||data.getString("type").equals("proton"))
+                {
+                    var speed=data.getDouble("speed");
+                    if(data.getDouble("speed")<1000)
+                    {
+                        return LocalizationUtils.format("ctnh.accelerator.mode.speed.m",String.format("%.2f"),speed);
+                    }
+                    if(speed>=1000)
+                    {
+                        return LocalizationUtils.format("ctnh.accelerator.mode.speed.g",String.format("%.2f"),speed/1000);
+                    }
+
+
+                }
+                return "";
+            });
+
     public static final GTRecipeType ACCELERATOR_DOWN =GTRecipeTypes.register("accelerator_downmode", ELECTRIC)
             .setMaxIOSize(9,9,3,3)
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION,ProgressTexture.FillDirection.DOWN_TO_UP)
-            .setSound(GTSoundEntries.FIRE);
+            .setSound(GTSoundEntries.FIRE)
+            .addDataInfo(data->
+            {
+                if(data.getString("type").equals("addnu"))
+                {
+                    return LocalizationUtils.format("ctnh.accelerator.mode.nu");
+                }
+                else if(data.getString("type").equals("addproton"))
+                {
+                    return LocalizationUtils.format("ctnh.accelerator.mode.proton");
+                }
+                else if(data.getString("type").equals("addelement"))
+                {
+                    return LocalizationUtils.format("ctnh.accelerator.mode.element");
+                }
+                else if(data.getString("type").equals("element"))
+                {
+                    return LocalizationUtils.format("ctnh.accelerator.mode.element.consume");
+                }
+                else if(data.getString("type").equals("nu"))
+                {
+                    return LocalizationUtils.format("ctnh.accelerator.mode.nu.consume");
+                }
+                else if(data.getString("type").equals("proton"))
+                {
+                    return LocalizationUtils.format("ctnh.accelerator.mode.element.consume");
+                }
+                return "";
+            })
+            .addDataInfo(data->{
+
+                if(data.getString("type").equals("element")||data.getString("type").equals("nu")||data.getString("type").equals("proton"))
+                {
+                    var speed=data.getDouble("speed");
+                    if(data.getDouble("speed")<1000)
+                    {
+                        return LocalizationUtils.format("ctnh.accelerator.mode.speed.m",String.format("%.2f"),speed);
+                    }
+                    if(speed>=1000)
+                    {
+                        return LocalizationUtils.format("ctnh.accelerator.mode.speed.g",String.format("%.2f"),speed/1000);
+                    }
+
+
+                }
+                return "";
+            });
+
     public static void init() {
 
     }

@@ -81,7 +81,7 @@ public class ChineseLangHandler {
         provider.add("gtceu:quasar_eye","类星体发电");
         provider.add("gtceu.personal_computer", "个人电脑");
         provider.add("gtceu.accelerator_upmode","粒子加速：加速模式");
-        provider.add("gtcey.accelerator_downmode","粒子加速：减速模式");
+        provider.add("gtceu.accelerator_downmode","粒子加速：减速模式");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -246,6 +246,7 @@ public class ChineseLangHandler {
         provider.add("mana_generator_turbine_tier4", "神奇的能量守恒");
         provider.add("ctnh.mana_generator_turbine_tier4.basic_power", "§e基础产能功率：§r4096 EU/t");
         provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§3ZPM§r");
+        
         provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，消耗量x0.9\n  二级符文：发电量x2，消耗量x0.75\n  三级符文：发电量x3，消耗量x0.6\n  四级符文：发电量x4，消耗量x0.4");
         provider.add("ctnh.machine.super_ebf.tooltip1", "所有配方耗时减半");
         provider.add("ctnh.mega_lcr.recipe_type","化学反应釜 / 大型化学反应釜");
@@ -377,19 +378,19 @@ public class ChineseLangHandler {
         provider.add("ctnh.beams.story3","与三体文明战争中的超级武器戴森光束给予了你启发。虽然魔力无法达到§6恒星§r级别的能量，但是对戴森光束的聚焦模拟也可以使魔力的能量达到§6难以想象§r的水平");
         provider.add("ctnh.beams.story4","末影珍珠的§5量子隧穿效应§r作为该巨构的虫洞，则也许可以绕过三体舰队的§6天枢圣盾§r进行打击，而不需要以往戴森光束的超级能量来过载护盾。");
         provider.add("ctnh.beams.story5","§9那些愚蠢的精灵还在彩虹桥玩他们的过家家，而真正的大魔导师早已经超越了物理与魔法的浅薄认知。");
-        provider.add("ctnh.beams.story0","配方类型：§9高能魔力扭曲聚变§r，§c跨纬度打击超级武器");
+        provider.add("ctnh.beams.story0","配方类型：§9高能魔力扭曲聚变§r");
         provider.add("ctnh.beams.tips1","插入机器的几种§9五级符文§r决定了该机器的各种能力");
         provider.add("ctnh.beams.tips2","§9星空符文§r的能量降低了能源消耗并增强乐机器稳定性");
         provider.add("ctnh.beams.tips3","§c扭曲符文§r的能量降低了所用时间，§c但会让机器更加不稳定");
-        provider.add("ctnh.beams.tips4","§d视域符文§r的能量增大了魔力上限和魔力使用效率");
+        provider.add("ctnh.beams.tips4","§d视域符文§r的能量极大增大了魔力上限和魔力使用效率");
         provider.add("ctnh.beams.tips5","§5类星体符文§r的能量太过强大，§c会直接让机器爆炸！");
         provider.add("ctnh.beams.tips6","§c扭曲§r与§9星空§r的对抗决定了机器的稳定性");
         provider.add("ctnh.beams.tips7","稳定性公式:-((twist_power/3)+((mana/100000)*(Math.max(twist_power/3,1))))+starlight_power*2+10+tier*2),当稳定性低于0时机器会开始过载！");
-        provider.add("ctnh.beams.tips8","§c过载度§r每秒提升1且在机器拥有过载度时下§c配方时间会翻4倍§r，当过载度大于一半时会发生§c机器能量泄漏§r，你只能通入魔力稳定剂来稳定过载");
+        provider.add("ctnh.beams.tips8","§c过载度§r每秒提升1且在机器拥有过载度时下§c配方时间会翻4倍§r");
         provider.add("ctnh.beams.tips9","在不处于过载状态下每3秒减少1过载度，§c过载度积累满时机器将会爆炸§r");
         provider.add("ctnh.beams.tips10","§c扭曲符文§r消耗概率公式:每次运行有Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0))概率消耗");
         provider.add("ctnh.beams.tips11","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
-        provider.add("ctnh.beams.tips12","该机器无法超频，§c该机器也没有做完，我不对bug负责（笑）§r");
+        provider.add("ctnh.beams.tips12","该机器无法超频");
         provider.add("ctnh.magic.parallel","当前并行数:%.2f");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.0", "机器类型：§e核聚变反应堆/§5扭曲聚变反应堆§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.1", "§8以不可思议的伟力。§r");
@@ -413,27 +414,38 @@ public class ChineseLangHandler {
         provider.add("ctnh.sinope.4.2","富集硅岩块:32并行");
         provider.add("ctnh.sinope.4.3","超能硅岩块:128并行");
         provider.add("ctnh.sinope.5","每一点实际的并行数减少0.5%的能耗和运行时间，至多减少25%(独立乘区)");
-        provider.add("ctnh.sinope.5.1","线圈每提供1800K，运行速度+100%");
+        provider.add("ctnh.sinope.5.1","线圈每提供1800K，运行速度+200%");
         provider.add("ctnh.sinope.6","§c任何虚假的并行都将绳之以法!§r");
         provider.add("ion_exchanger", "离子交换");
         provider.add("ctnh.multiblock.astronomical.invalid", "只能在夜晚使用");
         provider.add("ctnh.astronomical.intro", "知天易，逆天难");
         provider.add("ctnh.astronomical.mechanism", "无法在阳光直射下工作，工作时会自动为芯片总线中的芯片收集数据");
         provider.add("ctnh.wideaccelerator.1","粒子加速集成者");
-        provider.add("ctnh.wideaccelerator.2","运行使用激光仓和变电仓");
+        provider.add("ctnh.wideaccelerator.2","允许§9使用激光仓§r和§a变电仓§r");
         provider.add("ctnh.wideaccelerator.3","通过三个轨道加速三种粒子");
-        provider.add("ctnh.wideaccelerator.pa","所有配方都有16并行");
+        provider.add("ctnh.wideaccelerator.control","允许使用§b并行控制仓§r，使用§b并行控制仓§r可以自由控制配方并行和粒子加速减速并行，否则使用默认值");
+        provider.add("ctnh.wideaccelerator.pa","在运行一般配方时如无§b并行控制仓§r,默认使用16并行");
         provider.add("ctnh.wideaccelerator.4","本机器只要求粒子速度大于配方需求，粒子速度不得大于50Gev");
         provider.add("ctnh.wideaccelerator.5","如果粒子速度过慢，则什么都不会产生");
         provider.add("ctnh.wideaccelerator.6","本机器在运行时根据运行配方模式来决定之后逻辑");
-        provider.add("ctnh.wideaccelerator.7","加速模式:使用加速配方时将试图以最大并行数来运行，运行配方时需要大量能源来维持。运行配方时三种粒子速度之和每有200Mev，能源消耗提升10%，此状态下粒子速度§9不会§r减少");
-        provider.add("ctnh.wideaccelerator.8","减速模式:使用加速配方将固定不会并行并改为减少粒子速度，运行配方时需要少量能源来维持。运行配方时三种粒子速度之和每有200Mev，能源消耗提升2.5%。此状态下粒子速度在运行完配方后减少sqrt(配方所需速度)的对应粒子速度");
+        provider.add("ctnh.wideaccelerator.7","加速模式:使用加速配方时如无§b并行控制仓§r将试图以1024并行来运行，运行配方时需要大量能源来维持。运行配方时三种粒子速度之和每有100Mev，能源消耗提升10%，此状态下粒子速度§9不会§r减少");
+        provider.add("ctnh.wideaccelerator.8","减速模式:使用加速配方时如无§b并行控制仓§r将试图以1并行来减少粒子速度，运行配方时需要少量能源来维持。运行配方时三种粒子速度之和每有100Mev，能源消耗提升2.5%。此状态下粒子速度在运行完配方后减少sqrt(配方所需速度)的对应粒子速度");
         provider.add("ctnh.wideaccelerator.9","注意:本机器用电量极高，使用低电压可能导致§c配方无法运行§r或者§c跳电§r,建议搭配§9激光仓§r使用");
         provider.add("ctnh.wideaccelerator.10","可以与约束器链接传递部分粒子。§c警告：如果没有链接约束器，不要随意尝试某些危险的配方§r (目前还是饼)");
         provider.add("ctnh.accelerator.nu_speed","中子速度:%.2fMev");
         provider.add("ctnh.accelerator.proton_speed","质子速度:%.2fMev");
         provider.add("ctnh.accelerator.element_speed","电子速度:%.2fMev");
         provider.add("ctnh.accelerator.consume","电量消耗倍率:%.2f");
+        provider.add("ctnh.accelerator.mode.nu","模式：加速中子");
+        provider.add("ctnh.accelerator.mode.proton","模式：加速质子");
+        provider.add("ctnh.accelerator.mode.element","模式：加速电子");
+        provider.add("ctnh.accelerator.mode.element.consume","加速类型：电子");
+        provider.add("ctnh.accelerator.mode.proton.consume","加速类型：质子");
+        provider.add("ctnh.accelerator.mode.nu.consume","加速类型：中子");
+        provider.add("ctnh.accelerator.mode.speed.m","需求速度：%.2fMev");
+        provider.add("ctnh.accelerator.mode.speed.g","需求速度:%.2fGev");
+        provider.add("ctnh.mk4.waring","只能使用激光仓");
+
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
