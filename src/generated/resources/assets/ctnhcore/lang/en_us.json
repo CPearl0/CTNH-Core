@@ -342,6 +342,7 @@
   "ctnh.multiblock.demon_generator.info.destructive": "Specialization Boost: Destructive",
   "ctnh.multiblock.demon_generator.info.steadfast": "Specialization Boost: Steadfast",
   "ctnh.multiblock.demon_generator.info.vengeful": "Specialization Boost: Vengeful",
+  "ctnh.multiblock.lcr.duration_reduction": "Can reduce the duration as pyrolyse oven",
   "ctnh.multiblock.naq_reactor_machine.boost_disallowed": "§bUpgrade the Dynamo Hatch to enable Plasma Boosting.",
   "ctnh.multiblock.naq_reactor_machine.iron_plasma_boosted": "§bIron Plasma boosted.",
   "ctnh.multiblock.naq_reactor_machine.nickel_plasma_boosted": "§bNickel Plasma boosted.",

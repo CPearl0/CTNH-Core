@@ -1286,11 +1286,11 @@ public class CTNHMultiblockMachines {
             .register();
     //Come from GTCA
     public static final MultiblockMachineDefinition MEGA_LCR = REGISTRATE
-            .multiblock("mega_lcr", WorkableElectricMultiblockMachine::new)
+            .multiblock("mega_lcr", CoilWorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_PTFE_INERT)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,GTRecipeModifiers::pyrolyseOvenOverclock,
                     GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .pattern(definition ->
                     FactoryBlockPattern.start()
@@ -1304,7 +1304,7 @@ public class CTNHMultiblockMachines {
                             .aisle("CCCCC", "G#N#G", "G#P#G", "G#N#G", "CCCCC")
                             .aisle("CCCCC", "CGCGC", "CGEGC", "CGCGC", "CCCCC")
                             .where("E", Predicates.controller(Predicates.blocks(definition.get())))
-                            .where("N", Predicates.blocks(COIL_CUPRONICKEL.get()))
+                            .where("N", Predicates.heatingCoils())
                             .where("G", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
                             .where("P", Predicates.blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
                             .where("#", Predicates.air())
@@ -1320,6 +1320,7 @@ public class CTNHMultiblockMachines {
             )
             .tooltips(
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"),
+                    Component.translatable("ctnh.multiblock.lcr.duration_reduction"),
                     Component.translatable("gtceu.machine.available_recipe_map_1.tooltip", Component.translatable("ctnh.mega_lcr.recipe_type"))
             )
             .register();
