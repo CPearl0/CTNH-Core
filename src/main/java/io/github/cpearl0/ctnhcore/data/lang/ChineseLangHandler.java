@@ -446,6 +446,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.accelerator.mode.speed.m","需求速度：%.2fMev");
         provider.add("ctnh.accelerator.mode.speed.g","需求速度:%.2fGev");
         provider.add("ctnh.mk4.waring","只能使用激光仓");
+        provider.add("ctnh.multiblock.lcr.duration_reduction", "和热解炉一样根据线圈等级减免配方时间");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");

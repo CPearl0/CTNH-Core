@@ -365,6 +365,7 @@
   "ctnh.multiblock.demon_generator.info.destructive": "专精强化：破坏",
   "ctnh.multiblock.demon_generator.info.steadfast": "专精强化：坚韧",
   "ctnh.multiblock.demon_generator.info.vengeful": "专精强化：复仇",
+  "ctnh.multiblock.lcr.duration_reduction": "和热解炉一样根据线圈等级减免配方时间",
   "ctnh.multiblock.naq_reactor_machine.boost_disallowed": "§b升级你的动力仓以激活等离子体加速",
   "ctnh.multiblock.naq_reactor_machine.iron_plasma_boosted": "§b铁等离子体加速中",
   "ctnh.multiblock.naq_reactor_machine.nickel_plasma_boosted": "§b镍等离子体加速中",

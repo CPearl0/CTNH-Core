@@ -49,7 +49,7 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            FactoryMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
+            Nicoll_Dyson_Beams.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public Nicoll_Dyson_Beams(IMachineBlockEntity holder){
         super(holder);
         this.machineStorage = createMachineStorage((byte) 64);

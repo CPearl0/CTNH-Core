@@ -342,6 +342,6 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.astronomical.invalid", "Can only be used at night");
         provider.add("ctnh.astronomical.intro", "Knowing the heavens is easy, but defying them is difficult");
         provider.add("ctnh.astronomical.mechanism", "Cannot work under direct sunlight, but will automatically collect data for the chips in the chip bus while working");
-
+        provider.add("ctnh.multiblock.lcr.duration_reduction", "Can reduce the duration as pyrolyse oven");
     }
 }
