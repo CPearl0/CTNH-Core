@@ -94,7 +94,7 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
                     rune_energy+=1024;
                 }
                 if(active<2)active=2;
-                energy_tier=2;
+                energy_tier=3;
                 return super.beforeWorking(recipe);
             }
         }
@@ -116,7 +116,7 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
                     rune_energy+=1024;
                 }
                 if(active<3)active=4;
-                energy_tier=4;
+                energy_tier=5;
                 return super.beforeWorking(recipe);
             }
         }

@@ -66,23 +66,23 @@ public class MachinesRecipes {
                 .duration(400).EUt(VA[ZPM]).save(provider);
         CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator1")
                 .circuitMeta(0)
-                .inputFluids(CTNHMaterials.Mana.getFluid(1000000))
+                .inputFluids(CTNHMaterials.Mana.getFluid(100000))
                 .EUt(-67108864)
                 .duration(100)
                 .addData("consumption",1000000)
                 .save(provider);
         CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator2")
                 .circuitMeta(1)
-                .inputFluids(CTNHMaterials.Zenith_essence.getFluid(50000))
+                .inputFluids(CTNHMaterials.Zenith_essence.getFluid(5000))
                 .EUt(-134217728)
-                .duration(150)
+                .duration(200)
                 .addData("consumption",100000)
                 .save(provider);
         CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator3")
                 .inputFluids(CTNHMaterials.EVE.getFluid(100000))
                 .circuitMeta(2)
                 .EUt(-268435456)
-                .duration(200)
+                .duration(250)
                 .addData("consumption",2000000)
                 .save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")

@@ -82,6 +82,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.personal_computer", "个人电脑");
         provider.add("gtceu.accelerator_upmode","粒子加速：加速模式");
         provider.add("gtceu.accelerator_downmode","粒子加速：减速模式");
+        provider.add("gtceu.mana_reactor","魔力反应");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -447,6 +448,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.accelerator.mode.speed.g","需求速度:%.2fGev");
         provider.add("ctnh.mk4.waring","只能使用激光仓");
         provider.add("ctnh.multiblock.lcr.duration_reduction", "和热解炉一样根据线圈等级减免配方时间");
+        provider.add("ctnh.manareactor.1","工业魔力奠基者");
+        provider.add("ctnh.manareactor.2","允许使用并行控制仓");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -621,6 +624,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.FOREST_SEA_TREE_FARM.getBlock(), "林海树场");
         provider.add(CTNHMultiblockMachines.SINOPE_CHEMICAL.getBlock(), "SINOPE化工厂");
         provider.add(CTNHMultiblockMachines.WIDEPARTICLEACCELERATOR.getBlock(), "广粒子加速器");
+        provider.add(CTNHMultiblockMachines.MANA_REACTOR.getBlock(),"魔力反应器");
 
 
 

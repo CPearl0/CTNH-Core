@@ -375,12 +375,17 @@ public class CTNHRecipeTypes {
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
+    public static final GTRecipeType MANAREACTOR = GTRecipeTypes.register("mana_reactor",ELECTRIC)
+            .setMaxIOSize(6, 6, 3, 3)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType ACCELERATOR_UP =GTRecipeTypes.register("accelerator_upmode", ELECTRIC)
             .setMaxIOSize(9,9,3,3)
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION,ProgressTexture.FillDirection.DOWN_TO_UP)
             .setSound(GTSoundEntries.FIRE)
-
             .addDataInfo(data->
             {
                 if(data.getString("type").equals("addnu"))
