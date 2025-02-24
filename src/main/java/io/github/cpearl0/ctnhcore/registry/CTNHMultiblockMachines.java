@@ -830,7 +830,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.fermenting_tank.bio_growth_temperature"),
                     Component.translatable("ctnh.fermenting_tank.bio_growth"),
                     Component.translatable("ctnh.large_fermenting_tank.bio_growth"))
-            .recipeModifier((machine,recipe) -> FermentingTankMachine.recipeModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,8).andThen(GTRecipeModifiers.ebfOverclock(machine,recipe))))
+            .recipeModifiers((machine,recipe) -> FermentingTankMachine.recipeModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,8)),GTRecipeModifiers::ebfOverclock)
             .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("##########AAAAAAAAAAA", "##########ABBBBBBBBBA", "##########ABBBBBBBBBA", "##########AAAAAAAAAAA", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "############AAAAAAA##", "############AABBBAA##", "############AABBBAA##", "############AABBBAA##", "############AAAAAAA##")
@@ -1849,7 +1849,7 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.VACUUM_SINTERING)
             .tooltips(Component.translatable("vacuum_sintering_tower").withStyle(ChatFormatting.GRAY))
-            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,16).andThen(GTRecipeModifiers.ebfOverclock(machine,recipe)))
+            .recipeModifiers((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,16),GTRecipeModifiers::ebfOverclock)
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "AAAAA", "A###A", "#####", "#####", "#####")
@@ -1888,7 +1888,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.crystallizer.coolant"),
                     Component.translatable("ctnh.crystallizer.overclock"),
                     Component.translatable("ctnh.crystallizer.safe"))
-            .recipeModifier((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,16).andThen(GTRecipeModifiers.ebfOverclock(machine,recipe)))
+            .recipeModifiers((machine,recipe) -> CTNHRecipeModifiers.accurateParallel(machine,recipe,16),GTRecipeModifiers::ebfOverclock)
             .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("##AAAAA##", "###BCB###", "###BBB###", "#########", "#########", "#########", "#########", "#########", "#########")
