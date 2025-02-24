@@ -42,7 +42,7 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
 
 
     }
-    public double energy_caculate(double rune){
+    public double energy_caculate(double rune,int energy_tier){
         if(rune<=50)
         {
             return 0.5;
@@ -52,101 +52,56 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
 
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
+        if(!MachineUtils.inputFluid(CTNHMaterials.Mana.getFluid(recipe.data.getInt("consumption")),this))
+        {
+            if(recipe.data.getInt("active")>active) return false;
+        }
 
+        if (MachineUtils.inputItem(CTNHItems.TWIST_RUNE.asStack(1),this )){
+            rune_energy+=32;
+        }
+        if (MachineUtils.inputItem(CTNHItems.HORIZEN_RUNE.asStack(1),this )){
+            rune_energy+=32;
+        }
+        if (MachineUtils.inputItem(CTNHItems.STARLIGHT_RUNE.asStack(1),this )){
+            rune_energy+=32;
+        }
+        if (MachineUtils.inputItem(CTNHItems.PROLIFERATION_RUNE.asStack(1),this )){
+            rune_energy+=16;
+        }
+        if (MachineUtils.inputItem(CTNHItems.QUASAR_RUNE.asStack(1),this )){
+            rune_energy+=512;
+        }
+        if(active<recipe.data.getInt("active"))active=recipe.data.getInt("active");
+        energy_tier=recipe.data.getInt("tier");
+        return super.beforeWorking(recipe);
 
-        if (recipe.data.getInt(("consumption")) == 1000000) {
-            if (MachineUtils.inputFluid(CTNHMaterials.Mana.getFluid(1000000), this)||active>=1) {
-                if (MachineUtils.inputItem(CTNHItems.TWIST_RUNE.asStack(1),this )){
-                    rune_energy+=32;
-                }
-                if (MachineUtils.inputItem(CTNHItems.HORIZEN_RUNE.asStack(1),this )){
-                    rune_energy+=32;
-                }
-                if (MachineUtils.inputItem(CTNHItems.STARLIGHT_RUNE.asStack(1),this )){
-                    rune_energy+=32;
-                }
-                if (MachineUtils.inputItem(CTNHItems.PROLIFERATION_RUNE.asStack(1),this )){
-                    rune_energy+=16;
-                }
-                if (MachineUtils.inputItem(CTNHItems.QUASAR_RUNE.asStack(1),this )){
-                    rune_energy+=512;
-                }
-                if(active<1)active=1;
-                energy_tier=1;
-                return super.beforeWorking(recipe);
-            }
-        }
-        if(recipe.data.getInt("consumption")==100000){
-            if (MachineUtils.inputFluid(CTNHMaterials.Zenith_essence.getFluid(100000), this)||active>=2) {
-                if (MachineUtils.inputItem(CTNHItems.TWIST_RUNE.asStack(1),this )){
-                    rune_energy+=32;
-                }
-                if (MachineUtils.inputItem(CTNHItems.HORIZEN_RUNE.asStack(1),this )){
-                    rune_energy+=32;
-                }
-                if (MachineUtils.inputItem(CTNHItems.STARLIGHT_RUNE.asStack(1),this )){
-                    rune_energy+=32;
-                }
-                if (MachineUtils.inputItem(CTNHItems.PROLIFERATION_RUNE.asStack(1),this )){
-                    rune_energy+=16;
-                }
-                if (MachineUtils.inputItem(CTNHItems.QUASAR_RUNE.asStack(1),this )){
-                    rune_energy+=1024;
-                }
-                if(active<2)active=2;
-                energy_tier=3;
-                return super.beforeWorking(recipe);
-            }
-        }
-        if(recipe.data.getInt("consumption")==2000000){
-            if (MachineUtils.inputFluid(CTNHMaterials.EVE.getFluid(2000000), this)||active>=3) {
-                if (MachineUtils.inputItem(CTNHItems.TWIST_RUNE.asStack(1),this )){
-                    rune_energy+=32;
-                }
-                if (MachineUtils.inputItem(CTNHItems.HORIZEN_RUNE.asStack(1),this )){
-                    rune_energy+=32;
-                }
-                if (MachineUtils.inputItem(CTNHItems.STARLIGHT_RUNE.asStack(1),this )){
-                    rune_energy+=32;
-                }
-                if (MachineUtils.inputItem(CTNHItems.PROLIFERATION_RUNE.asStack(1),this )){
-                    rune_energy+=16;
-                }
-                if (MachineUtils.inputItem(CTNHItems.QUASAR_RUNE.asStack(1),this )){
-                    rune_energy+=1024;
-                }
-                if(active<3)active=4;
-                energy_tier=5;
-                return super.beforeWorking(recipe);
-            }
-        }
-        return false;
     }
     @Override
     public boolean onWorking() {
         if (getOffsetTimer() % 100 == 0) {
             var tier = getTier();
-            if(rune_energy>0)rune_energy-=Math.max((rune_energy/50)*Math.log((rune_energy/50)+1)*energy_tier,0);
+            if(rune_energy>0)rune_energy-=Math.max((rune_energy/50)*Math.log((rune_energy/50)+1),0);
         }
         return super.onWorking();
     }
     public void addDisplayText(List<Component> textList) {
-        var tier = getTier();
         super.addDisplayText(textList);
         textList.add(textList.size(),Component.translatable("ctnh.mana_model",String.format("%d",energy_tier)));
         textList.add(textList.size(), Component.translatable("ctnh.rune_energy",String.format("%.2f",rune_energy)));
-        textList.add(textList.size(), Component.translatable("ctnh.mana_production",String.format("%.2f",energy_caculate(rune_energy))));
-        textList.add(textList.size(), Component.translatable("ctnh.rune_consumption",String.format("%.2f",(rune_energy/50)*Math.log(rune_energy/50+1)*energy_tier)));
-        textList.add(textList.size(), Component.translatable("ctnh.quasar_parallel",String.format("%.2f",energy_caculate(rune_energy)*5)));
+        textList.add(textList.size(), Component.translatable("ctnh.mana_production",String.format("%.2f",energy_caculate(rune_energy,energy_tier))));
+        textList.add(textList.size(), Component.translatable("ctnh.rune_consumption",String.format("%.2f",(rune_energy/50)*Math.log(rune_energy/50+1))));
+        textList.add(textList.size(), Component.translatable("ctnh.quasar_parallel",String.format("%.2f",energy_caculate(rune_energy,energy_tier)*5)));
         textList.add(textList.size(), Component.translatable("ctnh.consumption_parallel",String.format("%.2f",1-0.05*Math.max((rune_energy-50)/50,0.75))));
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if(machine instanceof Quasar_Eye qmachine){
             var EUt = RecipeHelper.getOutputEUt(recipe);
+            var tier=recipe.data.getInt("tier");
             return ModifierFunction.builder()
-                    .eutMultiplier(qmachine.energy_caculate(qmachine.rune_energy))
-                    .durationMultiplier(qmachine.energy_caculate(qmachine.rune_energy)*5)
-                    .inputModifier(ContentModifier.multiplier(qmachine.energy_caculate(qmachine.rune_energy)*5*(1-0.05*Math.max((qmachine.rune_energy-50)/50,0))))
+                    .eutMultiplier(qmachine.energy_caculate(qmachine.rune_energy,tier))
+                    .durationMultiplier(qmachine.energy_caculate(qmachine.rune_energy,tier)*5)
+                    .inputModifier(ContentModifier.multiplier(qmachine.energy_caculate(qmachine.rune_energy,tier)*5*(1-0.05*Math.max((qmachine.rune_energy-50)/50,0))))
                     .build();
         }
         return ModifierFunction.NULL;

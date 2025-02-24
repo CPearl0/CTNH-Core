@@ -339,7 +339,9 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE)
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.eye_consumption",String.format("%.1f",data.getFloat("consumption"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.eye_consumption",String.format("%.1f",data.getFloat("consumption"))))
+      .addDataInfo(data -> LocalizationUtils.format("ctnh.quasar.tip.1",String.format("%d",data.getInt("tier"))))
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.quasar.tip.2",String.format("%d",data.getInt("active"))));
     public static final GTRecipeType DIGITAL_WELL_OF_SUFFER = GTRecipeTypes.register("digital_well_of_suffer", ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(1,0,0,1)
@@ -484,6 +486,20 @@ public class CTNHRecipeTypes {
                 }
                 return "";
             });
+    public static final GTRecipeType ARC_GENERATOR = GTRecipeTypes.register("arc_generator",GENERATOR)
+            .setMaxIOSize(6, 6, 3, 3)
+            .setEUIO(IO.OUT)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.arc.require",String.format("%d",data.getInt("requirearc"))))
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.arc.max",String.format("%d",data.getInt("maxarc"))))
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType ARC_REACTOR = GTRecipeTypes.register("arc_reactor",ELECTRIC)
+            .setMaxIOSize(6, 6, 3, 3)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
 
 
 

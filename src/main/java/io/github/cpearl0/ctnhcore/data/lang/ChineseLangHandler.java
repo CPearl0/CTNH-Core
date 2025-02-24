@@ -83,6 +83,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.accelerator_upmode","粒子加速：加速模式");
         provider.add("gtceu.accelerator_downmode","粒子加速：减速模式");
         provider.add("gtceu.mana_reactor","魔力反应");
+        provider.add("gtceu.arc_generator","物质撕裂湮灭");
+        provider.add("gtceu.arc_reactor","电弧发生");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -450,7 +452,28 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.lcr.duration_reduction", "和热解炉一样根据线圈等级减免配方时间");
         provider.add("ctnh.manareactor.1","工业魔力奠基者");
         provider.add("ctnh.manareactor.2","允许使用并行控制仓");
+        provider.add("ctnh.arcgenerator.arc.1","电弧最大强度:%d");
+        provider.add("ctnh.arcgenerator.arc.2","电弧强度:%d");
+        provider.add("ctnh.arcgenerator.arc.3","支持最大效率:%.2f%%");
+        provider.add("ctnh.arcgenerator.arc.4","当前效率:%.2f%%");
+        provider.add("ctnh.arc.require","需求电弧强度:%d");
+        provider.add("ctnh.arc.max","满功率需求电弧强度:%d");
+        provider.add("ctnh.arc.r.arc","可输出的电弧强度:%d");
+        provider.add("ctnh.arc.r.connect","§b桥接已启用§r");
+        provider.add("ctnh.arcgenerator.1","物质撕裂器");
 
+        provider.add("ctnh.arcgenerator.arc.t1.1","§b最大支持电弧强度:1000");
+        provider.add("ctnh.arcgenerator.arc.t1.2","§c最大发电效率:75%");
+        provider.add("ctnh.arcgenerator.2","该机器必须配合电弧生成器使用，要求电弧生成器必须在该机器主方块上方5格，当完成链接时，电弧生成器会显示桥接已启用");
+        provider.add("ctnh.arcgenerator.3","当电弧强度小于配方最小电弧强度时，配方将无法运行");
+        provider.add("ctnh.arcgenerator.4","当电弧强度大于配方最大电弧强度时，配方将以(机器电弧强度-佩戴需求电弧强度)/(满功率需求电弧强度-需求电弧强度)的效率运行。效率允许超过100%，但不能超过机器最大发电效率");
+        provider.add("ctnh.arcgenerator.5","当效率未达100%时，因为湮灭的不完全，将产生少量额外产出");
+        provider.add("ctnh.arcreactor","电弧发生者");
+        provider.add("ctnh.arcreactor.1","该机器必须配合电弧撕裂者使用，要求电弧生成器必须在电弧撕裂者主方块上方5格，当完成链接时，电弧生成器会显示桥接已启用");
+        provider.add("ctnh.arcreactor.2","机器基础每次运行配方产生10电弧强度，无法超频，高等级机器具有更高并行数");
+        provider.add("ctnh.arcreactor.t1","该机器并行数:1");
+        provider.add("ctnh.quasar.tip.1","能量等级: %d");
+        provider.add("ctnh.quasar.tip.2","启动等级: %d");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -548,6 +571,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ATOMS_SPLIT_BLOCKS, "原子裂解方块");
         provider.addBlock(CTNHBlocks.QUASAR_ENERGY_STABILIZATION_CASING,"类星体能量稳定机械外壳");
         provider.addBlock(CTNHBlocks.WIDESPEEDINGPIPE,"广粒子加速器通道");
+        provider.addBlock(CTNHBlocks.ARC_CELL,"电弧发生器");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -625,6 +649,8 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.SINOPE_CHEMICAL.getBlock(), "SINOPE化工厂");
         provider.add(CTNHMultiblockMachines.WIDEPARTICLEACCELERATOR.getBlock(), "广粒子加速器");
         provider.add(CTNHMultiblockMachines.MANA_REACTOR.getBlock(),"魔力反应器");
+        provider.add(CTNHMultiblockMachines.ARC_GENERATOR.getBlock(),"电弧撕裂者");
+        provider.add(CTNHMultiblockMachines.ARC_REACTOR.getBlock(),"电弧发生器");
 
 
 

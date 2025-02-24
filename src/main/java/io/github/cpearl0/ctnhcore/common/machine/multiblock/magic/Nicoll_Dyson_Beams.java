@@ -70,13 +70,14 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
     {
         if(starlight_power<=3)return 0;
         else{
-            return Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005);
+            return Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.0005);
         }
     }
     public boolean check_overload()
     {
         var tier=getTier();
-        if((twist_power/3)+((mana/100000)*(Math.max(twist_power/3,1)))>=starlight_power*2+5+tier*1)
+        var crash_power=-((twist_power /3)+((mana/100000)*(Math.max(twist_power/3,1))))+starlight_power*4+5+tier;
+        if(crash_power<0)
         {
             return true;
         }
@@ -102,7 +103,7 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
             }
             else if(machineStorage.getStackInSlot(i).getItem().equals(CTNHItems.HORIZEN_RUNE.get()))
             {
-                if(random<=0.025*(horizen_power))consumeItem(i);
+                if(random<=0.0025*(horizen_power))consumeItem(i);
             }
         }
     }
@@ -110,12 +111,11 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
     public boolean onWorking() {
         if (getOffsetTimer() % 20 == 0) {
             var tier = getTier();
-            if(check_overload())
-            {
-            overload+=1;
-            if (overload>=overload_crash/2)
-            {
-                broken=1;
+            if(check_overload()) {
+                overload += 1;
+                if (overload >= overload_crash / 2) {
+                    broken = 1;
+                }
             }
             else {
                 if(broken<=overload_crash/2) {
@@ -124,7 +124,7 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
                 }
             }
 
-            }
+
             if(overload>=overload_crash)
             {
                 doExplosion(3f);
@@ -145,7 +145,7 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
         if(broken==2) doExplosion(3f);
         if(mana>=recipe.data.getInt("required_mana"))
         {
-            max_mana=max_mana*(1+0.125*horizen_power);
+            max_mana=1000000*(1+0.125*horizen_power);
             rune_consume();
             mana-=recipe.data.getInt("mana");
             return super.beforeWorking(recipe);
@@ -157,7 +157,7 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
         if (!(machine instanceof Nicoll_Dyson_Beams xmachine)) return ModifierFunction.NULL;
         var tier=xmachine.getTier();
         return  ModifierFunction.builder()
-                .durationMultiplier(1-Math.min(0.00125* xmachine.twist_power,0.5+(tier-6)*0.025)-(tier-6)*0.025)
+                .durationMultiplier(1-Math.min(0.0025* xmachine.twist_power,0.5+(tier-6)*0.025)-(tier-6)*0.025)
                 .eutMultiplier(1-0.01* xmachine.starlight_power)
                 .build();
     }
@@ -191,9 +191,9 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
         textList.add(Component.translatable("ctnh.beams_max_mana",String.format("%.2f",max_mana)));
         textList.add(Component.translatable("ctnh.beams_mana",String.format("%.2f",mana)));
         textList.add(Component.translatable("ctnh.twist_consumption",String.format("%.2f",consume_twist())));
-        textList.add(Component.translatable("ctnh.beams_stable",String.format("%.2f",-((twist_power/3)+((mana/100000)*(Math.max(twist_power/3,1))))+starlight_power*2+10+tier*2)));
+        textList.add(Component.translatable("ctnh.beams_stable",String.format("%.2f",-((twist_power/3)+((mana/100000)*(Math.max(twist_power/3,1))))+starlight_power*4+5+tier)));
         textList.add(Component.translatable("ctnh.starlight_consumption",String.format("%.2f",consume_starlight())));
-        textList.add(Component.translatable("ctnh.beams_time",String.format("%.2f",1-Math.min(0.00125* twist_power,0.5+(tier-6)*0.025)-(tier-6)*0.025)));
+        textList.add(Component.translatable("ctnh.beams_time",String.format("%.2f",1-Math.min(0.0025* twist_power,0.5+(tier-6)*0.025)-(tier-6)*0.025)));
         textList.add(Component.translatable("ctnh.beams_eut_consumption",String.format("%.2f",1-0.01* starlight_power)));
     }
 

@@ -67,23 +67,16 @@ public class MachinesRecipes {
         CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator1")
                 .circuitMeta(0)
                 .inputFluids(CTNHMaterials.Mana.getFluid(100000))
-                .EUt(-67108864)
-                .duration(100)
-                .addData("consumption",1000000)
-                .save(provider);
-        CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator2")
-                .circuitMeta(1)
-                .inputFluids(CTNHMaterials.Zenith_essence.getFluid(5000))
-                .EUt(-134217728)
+                .EUt(-33554432)
                 .duration(200)
-                .addData("consumption",100000)
+                .addData("consumption",1000000)
+                .addData("tier",1)
+                .addData("active",1)
                 .save(provider);
-        CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator3")
-                .inputFluids(CTNHMaterials.EVE.getFluid(100000))
-                .circuitMeta(2)
-                .EUt(-268435456)
-                .duration(250)
-                .addData("consumption",2000000)
+        CTNHRecipeTypes.ARC_REACTOR.recipeBuilder("test")
+                .EUt(8192)
+                .duration(20)
+                .circuitMeta(1)
                 .save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")
 
@@ -118,7 +111,7 @@ public class MachinesRecipes {
                 .circuitMeta(24)
                 .inputFluids(PCBCoolant.getFluid(100))
                 .EUt(1)
-                .duration(20)
+                .duration(100)
                 .addData("required_mana",0)
                 .addData("mana",0)
                 .save(provider);
@@ -144,6 +137,7 @@ public class MachinesRecipes {
                 .solderMultiplier(2)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .duration(400).EUt(90).save(provider);
+
     }
 
 }

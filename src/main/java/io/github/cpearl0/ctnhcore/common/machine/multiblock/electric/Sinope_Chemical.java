@@ -59,14 +59,15 @@ public  int machine_tier=0;
             var maxparallel= ParallelLogic.getParallelAmount(machine,recipe,zmachine.parallel);
             if(maxparallel==0)
                 return ModifierFunction.NULL;
-            var reduce=maxparallel*Math.max(1-0.005*maxparallel,0.75);
-            var speed_up=zmachine.machine_tier*2;
+            var reduce=Math.max(1-0.005*maxparallel,0.75);
+            var speed_up=reduce/(zmachine.machine_tier*2);
             return ModifierFunction.builder()
+                    .parallels(maxparallel)
                     .eutModifier(ContentModifier.multiplier((reduce)))
                     .inputModifier(ContentModifier.multiplier(maxparallel))
                     .outputModifier(ContentModifier.multiplier(maxparallel))
-                    .parallels(maxparallel)
-                    .durationMultiplier(reduce/speed_up)
+
+                    .durationMultiplier(speed_up)
                     .build();
         }
         return ModifierFunction.NULL;
