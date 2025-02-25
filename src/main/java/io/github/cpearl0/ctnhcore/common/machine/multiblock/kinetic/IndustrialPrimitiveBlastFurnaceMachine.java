@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class IndustrialPrimitiveBlastFurnaceMachine extends NoEnergyMachine {
             WorkableMultiblockMachine.MANAGED_FIELD_HOLDER);
     @Nullable
     protected TickableSubscription temperatureSubs;
+    @Persisted
     public int currentTemperature = 0;
     @Getter
     public int maxTemperature = 2400;
