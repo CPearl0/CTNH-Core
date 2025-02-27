@@ -195,6 +195,7 @@
   "ctnh.accelerator.mode.speed.m": "需求速度：%.2fMev",
   "ctnh.accelerator.nu_speed": "中子速度:%.2fMev",
   "ctnh.accelerator.proton_speed": "质子速度:%.2fMev",
+  "ctnh.advanceassemblyline.1": "更好的装配线,但是有序输入",
   "ctnh.advanced_blast_furnace.tooltip.0": "§6§l自带32并行",
   "ctnh.advanced_blast_furnace.tooltip.1": "只可运行焦炉配方,且运行配方时间固定为15s",
   "ctnh.advanced_blast_furnace.tooltip.2": "产生大量的焦化产物与杂酚油",

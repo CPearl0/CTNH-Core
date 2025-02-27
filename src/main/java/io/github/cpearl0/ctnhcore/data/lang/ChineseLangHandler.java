@@ -474,6 +474,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.arcreactor.t1","该机器并行数:1");
         provider.add("ctnh.quasar.tip.1","能量等级: %d");
         provider.add("ctnh.quasar.tip.2","启动等级: %d");
+        provider.add("ctnh.advanceassemblyline.1", "更好的装配线,但是有序输入");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -527,6 +528,7 @@ public class ChineseLangHandler {
         provider.add(CTNHItems.PROLIFERATION_RUNE.get(), "增殖符文");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL, "进阶线程控制外壳");
+        provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_LINE, "进阶装配核心");
         provider.addBlock(CTNHBlocks.CASING_OSMIRIDIUM, "铱锇合金机械方块");
         provider.addBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING, "W-Cu覆膜金刚石机械方块");
         provider.addBlock(CTNHBlocks.ENERGETIC_PHOTOVOLTAIC_BLOCK, "充能光伏方块");
@@ -542,6 +544,8 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.NATURAL_ECOLOGICAL_SHELL_CASING, "环保机械外壳");
         provider.addBlock(CTNHBlocks.ANNIHILATE_CORE_MKI,"超级硅岩反应堆核心");
         provider.addBlock(CTNHBlocks.CASING_ADVANCED_HYPER,"暗物质强化超能硅岩机械方块");
+        provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_SOLID_STEEL, "特种钢质外壳");
+        provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_GRATE, "进阶装配线格栅方块");
         provider.addBlock(CTNHBlocks.CASING_HYPER,"黑钚强化硅岩合金机械方块");
         provider.addBlock(CTNHBlocks.COIL_ABYSALALLOY, "渊狱合金线圈");
         provider.addBlock(CTNHBlocks.COIL_TITANSTEEL, "泰坦钢线圈");

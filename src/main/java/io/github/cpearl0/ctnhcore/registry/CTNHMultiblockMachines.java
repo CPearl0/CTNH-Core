@@ -596,7 +596,7 @@ public class CTNHMultiblockMachines {
     public  final  static  MultiblockMachineDefinition PLASMA_CONDENSER = REGISTRATE.multiblock("plasma_condenser", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK),GTRecipeModifiers.PARALLEL_HATCH)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
             .tooltips(Component.translatable("ctnh.plasma_condenser.tooltips.1").withStyle(ChatFormatting.GRAY),
                     Component.translatable("gtceu.multiblock.laser.tooltip"),
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
@@ -1432,7 +1432,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.void_miner.tooltip.5").withStyle(ChatFormatting.GOLD),
                     Component.translatable("ctnh.void_miner.tooltip.6").withStyle(ChatFormatting.AQUA),
                     Component.translatable("ctnh.void_miner.tooltip.7"))
-            .recipeModifiers(VoidMinerProcessingMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(VoidMinerProcessingMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("CCCCCCC", "XF   FX", "XF   FX", "XXXXXXX", "XF   FX", "XF   FX", "XF   FX", " F   F ", "       ", "       ", "       ", "       ")
                     .aisle("CCCCCCC", "F     F", "F     F", "X     X", "F     F", "F     F", "FX   XF", "FX   XF", " FFFFF ", "       ", "       ", "       ")
@@ -3010,6 +3010,9 @@ public class CTNHMultiblockMachines {
             .alwaysTryModifyRecipe(true)
             .recipeModifiers(GTRecipeModifiers::hatchParallel,GTRecipeModifiers.DEFAULT_ENVIRONMENT_REQUIREMENT,
                     GTRecipeModifiers.OC_NON_PERFECT_SUBTICK)
+            .tooltips(Component.translatable("ctnh.advanceassemblyline.1"),
+                      Component.translatable("gtceu.multiblock.laser.tooltip"),
+                    Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
             .appearanceBlock(ADVANCE_MACHINE_CASING_SOLID_STEEL)
             .pattern(definition -> FactoryBlockPattern.start(BACK, UP, RIGHT)
                     .aisle("FIF", "RTR", "SAG", "#Y#")
