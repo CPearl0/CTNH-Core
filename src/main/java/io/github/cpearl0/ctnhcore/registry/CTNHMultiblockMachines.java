@@ -2933,8 +2933,8 @@ public class CTNHMultiblockMachines {
             .register();
     public final static MultiblockMachineDefinition ARC_REACTOR= REGISTRATE.multiblock("arc_reactor",  holder -> new Arc_Reactor(holder,10))
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CTNHRecipeTypes.MAGIC_FUEL_GENERATOR)
-            .recipeModifier(ManaMachine::recipeModifier)
+            .recipeType(CTNHRecipeTypes.ARC_REACTOR)
+            .recipeModifier(Arc_Reactor::recipeModifier)
             .tooltips(Component.translatable("ctnh.arcreactor.1"),
                     Component.translatable("ctnh.arcreactor.2"),
                     Component.translatable("ctnh.arcreactor.t1")
