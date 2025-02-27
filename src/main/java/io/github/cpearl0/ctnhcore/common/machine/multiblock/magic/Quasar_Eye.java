@@ -34,13 +34,11 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
     }
 
     @Override
-    public void onStructureFormed() {
-        super.onStructureFormed();
+    public void onStructureInvalid() {
+        super.onStructureInvalid();
         rune_energy=0;
         energy_tier=0;
         active=0;
-
-
     }
     public double energy_caculate(double rune,int energy_tier){
         if(rune<=50)
@@ -72,7 +70,9 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
         if (MachineUtils.inputItem(CTNHItems.QUASAR_RUNE.asStack(1),this )){
             rune_energy+=512;
         }
-        if(active<recipe.data.getInt("active"))active=recipe.data.getInt("active");
+        if(active<recipe.data.getInt("active"))
+        {active=recipe.data.getInt("active");
+            }
         energy_tier=recipe.data.getInt("tier");
         return super.beforeWorking(recipe);
 
@@ -80,7 +80,6 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
     @Override
     public boolean onWorking() {
         if (getOffsetTimer() % 100 == 0) {
-            var tier = getTier();
             if(rune_energy>0)rune_energy-=Math.max((rune_energy/50)*Math.log((rune_energy/50)+1),0);
         }
         return super.onWorking();

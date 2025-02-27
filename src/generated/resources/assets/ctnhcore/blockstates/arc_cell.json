@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "ctnhcore:block/flux/arc_cell"
+    },
+    "active=true": {
+      "model": "ctnhcore:block/flux/arc_cell_active"
+    }
+  }
+}
