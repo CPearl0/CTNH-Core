@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "ctnhcore:block/flux/advance_machine_casing_assembly_line"
+    },
+    "active=true": {
+      "model": "ctnhcore:block/flux/advance_machine_casing_assembly_line_active"
+    }
+  }
+}

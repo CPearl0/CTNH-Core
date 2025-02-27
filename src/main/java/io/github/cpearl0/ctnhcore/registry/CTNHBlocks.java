@@ -35,6 +35,8 @@ public class CTNHBlocks {
 
     public static final BlockEntry<Block> CASING_REFLECT_LIGHT = createCasingBlock("reflect_light_casing",
             CTNHCore.id("block/casings/reflect_light_casing"));
+    public static final BlockEntry<Block> ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL = createCasingBlock("advance_machine_casing_assembly_control",
+            CTNHCore.id("block/advance_machine_casing_assembly_control"));
     public static final BlockEntry<Block> CASING_OSMIRIDIUM = createCasingBlock("osmiridium_casing",
             CTNHCore.id("block/casings/osmiridium_casing"));
     public static final BlockEntry<Block> CASING_TUNGSTENCU_DIAMOND_PLATING = createCasingBlock("tungstencu_diamond_plating_casing",
@@ -61,6 +63,8 @@ public class CTNHBlocks {
             "space_elevator_mechanical_casing", CTNHCore.id("block/space_elevator_mechanical_casing"));
     public static final BlockEntry<Block> HIGH_GRADE_COKE_OVEN_BRICKS = createCasingBlock(
             "high_strength_concrete", CTNHCore.id("block/high_grade_coke_oven_bricks"));
+    public static final BlockEntry<Block> ADVANCE_MACHINE_CASING_GRATE = createCasingBlock(
+            "advance_machine_casing_grate", CTNHCore.id("block/advance_machine_casing_grate"));
     public static final BlockEntry<Block> BLAZE_BLAST_FURNACE_CASING = createCasingBlock(
             "blaze_blast_furnace_casing",CTNHCore.id("block/casings/blaze_blast_furnace_casing"));
     public static final BlockEntry<Block> MANA_STEEL_CASING = createCasingBlock(
@@ -95,6 +99,8 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/quasar_energy_stabilization_casing"));
     public static final BlockEntry<Block> TWISTED_FUSION_CASING = createCasingBlock("twisted_fusion_casing",
             CTNHCore.id("block/casings/twisted_fusion_casing"));
+    public static final BlockEntry<Block> ADVANCE_MACHINE_CASING_SOLID_STEEL = createCasingBlock("advance_machine_casing_solid_steel",
+            CTNHCore.id("block/casings/advance_machine_casing_solid_steel"));
     public static final BlockEntry<Block> WIDESPEEDINGPIPE =createCasingBlock("widespeedingpipe",CTNHCore.id("block/widespeedingpipe"));
 
 
@@ -104,6 +110,8 @@ public class CTNHBlocks {
             "block/flux/space_elevator_power_core");
     public static final BlockEntry<ActiveBlock> ANNIHILATE_CORE_MKI = createActiveCasing("annihilate_core_mki",
             "block/flux/annihilate_core_mk1");
+    public static final BlockEntry<ActiveBlock> ADVANCE_MACHINE_CASING_ASSEMBLY_LINE = createActiveCasing("advance_machine_casing_assembly_line",
+            "block/flux/advance_machine_casing_assembly_line");
 
     public static  final BlockEntry<ActiveBlock> ARC_CELL =createActiveCasing("arc_cell","block/flux/arc_cell");
     public static final BlockEntry<ActiveBlock> PLASMA_COOLED_CORE = createActiveCasing("plasma_cooled_core",

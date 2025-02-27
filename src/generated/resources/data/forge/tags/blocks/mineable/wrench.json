@@ -1,6 +1,7 @@
 {
   "values": [
     "ctnhcore:reflect_light_casing",
+    "ctnhcore:advance_machine_casing_assembly_control",
     "ctnhcore:osmiridium_casing",
     "ctnhcore:tungstencu_diamond_plating_casing",
     "ctnhcore:energetic_photovoltaic_block",
@@ -14,6 +15,7 @@
     "ctnhcore:hyper_casing",
     "ctnhcore:space_elevator_mechanical_casing",
     "ctnhcore:high_strength_concrete",
+    "ctnhcore:advance_machine_casing_grate",
     "ctnhcore:blaze_blast_furnace_casing",
     "ctnhcore:mana_steel_casing",
     "ctnhcore:terra_steel_casing",
@@ -31,10 +33,12 @@
     "ctnhcore:mana_steel_gearbox_casing",
     "ctnhcore:quasar_energy_stabilization_casing",
     "ctnhcore:twisted_fusion_casing",
+    "ctnhcore:advance_machine_casing_solid_steel",
     "ctnhcore:widespeedingpipe",
     "ctnhcore:reservoir_computing_casing",
     "ctnhcore:space_elevator_power_core",
     "ctnhcore:annihilate_core_mki",
+    "ctnhcore:advance_machine_casing_assembly_line",
     "ctnhcore:arc_cell",
     "ctnhcore:plasma_cooled_core",
     "ctnhcore:ultimate_engine_intake_casing",

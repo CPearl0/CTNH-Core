@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ctnhcore:block/advance_machine_casing_assembly_line"
+  }
+}
