@@ -596,7 +596,7 @@ public class CTNHMultiblockMachines {
     public  final  static  MultiblockMachineDefinition PLASMA_CONDENSER = REGISTRATE.multiblock("plasma_condenser", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
             .tooltips(Component.translatable("ctnh.plasma_condenser.tooltips.1").withStyle(ChatFormatting.GRAY),
                     Component.translatable("gtceu.multiblock.laser.tooltip"),
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
@@ -1570,8 +1570,7 @@ public class CTNHMultiblockMachines {
                             .or(abilities(PartAbility.STEAM))
                             .or(abilities(PartAbility.EXPORT_ITEMS))
                             .or(abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(9))
-                            .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                            .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2)))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/multiblock/fusion_reactor"), false)
@@ -1605,7 +1604,7 @@ public class CTNHMultiblockMachines {
     public static final MultiblockMachineDefinition DIMENSIONAL_GAS_COLLECTION_CHAMBER = REGISTRATE.multiblock("dimensional_gas_collection_chamber", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION)
-            .recipeModifier((machine,recipe) -> GTRecipeModifiers.OC_PERFECT_SUBTICK.getModifier(machine,recipe).andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,1)))
+            .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
             .appearanceBlock(PLASTCRETE)
             .tooltips(
                     Component.translatable("large_gas_collection_chamber").withStyle(ChatFormatting.GRAY),
