@@ -85,6 +85,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.mana_reactor","魔力反应");
         provider.add("gtceu.arc_generator","物质撕裂湮灭");
         provider.add("gtceu.arc_reactor","电弧发生");
+        provider.add("gtceu.magic_fuel_generator","魔导燃料精炼");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -459,7 +460,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.arc.require","需求电弧强度:%d");
         provider.add("ctnh.arc.max","满功率需求电弧强度:%d");
         provider.add("ctnh.arc.r.arc","可输出的电弧强度:%d");
-        provider.add("ctnh.arc.r.connect","§b桥接已启用§r");
+        provider.add("ctnh.arc.r.connect","§b电弧撕裂者已链接§r");
         provider.add("ctnh.arcgenerator.1","物质撕裂器");
 
         provider.add("ctnh.arcgenerator.arc.t1.1","§b最大支持电弧强度:1000");
@@ -474,6 +475,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.arcreactor.t1","该机器并行数:1");
         provider.add("ctnh.quasar.tip.1","能量等级: %d");
         provider.add("ctnh.quasar.tip.2","启动等级: %d");
+        provider.add("ctnh.magic.generator","§b精炼天地之魔精");
+        provider.add("ctnh.magic.generator.1","自带8并行，运行时每秒消耗25mb液态魔力");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -651,7 +654,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.MANA_REACTOR.getBlock(),"魔力反应器");
         provider.add(CTNHMultiblockMachines.ARC_GENERATOR.getBlock(),"电弧撕裂者");
         provider.add(CTNHMultiblockMachines.ARC_REACTOR.getBlock(),"电弧发生器");
-
+        provider.add(CTNHMultiblockMachines.MAGIC_FUEL_GENERATOR.getBlock(), "魔导燃料精炼场");
 
 
 

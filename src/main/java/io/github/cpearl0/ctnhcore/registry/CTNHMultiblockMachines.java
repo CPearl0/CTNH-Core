@@ -2933,8 +2933,8 @@ public class CTNHMultiblockMachines {
             .register();
     public final static MultiblockMachineDefinition ARC_REACTOR= REGISTRATE.multiblock("arc_reactor",  holder -> new Arc_Reactor(holder,10))
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CTNHRecipeTypes.ARC_REACTOR)
-            .recipeModifier(Arc_Reactor::recipeModifier)
+            .recipeType(CTNHRecipeTypes.MAGIC_FUEL_GENERATOR)
+            .recipeModifier(ManaMachine::recipeModifier)
             .tooltips(Component.translatable("ctnh.arcreactor.1"),
                     Component.translatable("ctnh.arcreactor.2"),
                     Component.translatable("ctnh.arcreactor.t1")
@@ -2965,6 +2965,35 @@ public class CTNHMultiblockMachines {
                     .where("D", Predicates.blocks(ARC_CELL.get()))
                     .build())
             .workableCasingRenderer(GTCEu.id("block/casings/gcym/nonconducting_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public final static MultiblockMachineDefinition MAGIC_FUEL_GENERATOR= REGISTRATE.multiblock("magic_fuel_generator",  holder -> new ManaMachine(holder,8,25))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.ARC_REACTOR)
+            .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.magic.generator"),
+                    Component.translatable("ctnh.magic.generator.1"),
+                    Component.translatable("ctnh.perfect_overclock")
+            )
+            .pattern(definition -> FactoryBlockPattern.start()
+                            .aisle("##BBB##", "##BBB##", "##BBB##", "###D###", "###D###", "###B###")
+                            .aisle("##BEB##", "##FGF##", "##FHF##", "##FHF##", "##FGF##", "##BIB##")
+                            .aisle("BBJEJBB", "BFJGJFB", "BFJHJFB", "#FJ#JF#", "#FJGJF#", "#BJIJB#")
+                            .aisle("BEEEEEB", "GGGGGGG", "BHHHHHB", "DH#H#HD", "DGGGGGD", "BIIIIIB")
+                            .aisle("BBJEJBB", "BFJGJFB", "BFJHJFB", "#FJ#JF#", "#FJGJF#", "#BJIJB#")
+                            .aisle("##BEB##", "##FGF##", "##FHF##", "##FHF##", "##FGF##", "##BIB##")
+                            .aisle("##BBB##", "##BCB##", "##BBB##", "###D###", "###D###", "###B###")
+                            .where("#", Predicates.any())
+                            .where("B", Predicates.blocks(CASING_OSMIRIDIUM.get()))
+                            .where("C", Predicates.controller(Predicates.blocks(definition.get())))
+                            .where("D", Predicates.frames(Titanium))
+                            .where("E", Predicates.blocks(ZENITH_CASING_GEARBOX.get()))
+                            .where("F", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
+                            .where("G", Predicates.blocks(COIL_ULTRA_MANA.get()))
+                            .where("H", Predicates.blocks(ELEMENTIUM_PIPE_CASING.get()))
+                            .where("I", Predicates.blocks(ELEMENTIUM_CASING.get()))
+                            .where("J", Predicates.blocks(HERMETIC_CASING_LuV.get()))
+                    .build())
+            .workableCasingRenderer(CTNHCore.id("block/casings/osmiridium_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
     public static void init() {
 
