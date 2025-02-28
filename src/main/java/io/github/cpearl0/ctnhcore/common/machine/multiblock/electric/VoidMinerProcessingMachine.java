@@ -8,7 +8,9 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.ChatFormatting;
@@ -37,8 +39,8 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
     private int fluidAmount = FLUID_AMOUNT; // 定义为类的成员变量
     // 流体消耗量（单位：mB）
     private static final int FLUID_AMOUNT = 100;  // 每次消耗的流体量（可调整）
-    private int nextPyrotheumAmount = 100;  // 初始为 100mb
-    private int nextCryotheumAmount = 100;  // 初始为 100mb
+    private int nextPyrotheumAmount = 1000;  // 初始为 1000mb
+    private int nextCryotheumAmount = 1000;  // 初始为 1000mb
     private static final Random random = new Random();
     private int fluidCycle = 1;
     private String CURRENTTEMPERATURE_STRING = "currentTemperature";
@@ -57,27 +59,6 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
     public boolean onWorking() {
         if (getOffsetTimer() % 20 == 0) {
-
-            int fluidPerSecond = 100000000;
-
-            // 创建流体对象
-            FluidStack drillingFluid = new FluidStack(
-                    Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:drilling_fluid"))),
-                    fluidPerSecond
-            );
-
-            // 检查流体是否足够
-            boolean hasEnoughFluid = MachineUtils.canInputFluid(drillingFluid, this);
-
-            if (hasEnoughFluid) {
-                // 流体足够，消耗流体
-                MachineUtils.inputFluid(drillingFluid, this);
-
-                // 执行配方其他的工作（例如温度变化等）
-                super.onWorking();
-            }
-
-
             int temperature = getCurrentTemperature();
 
             if (isOverheated) {
@@ -98,57 +79,7 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
 
 
-            if (fluidCycle == 1) {  // 偶数次使用 Pyrotheum
-                int currentFluidAmount = nextPyrotheumAmount;  // 使用更新后的流体量
 
-                // 创建 Pyrotheum 流体
-                FluidStack pyrotheumFluid = new FluidStack(
-                        Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:pyrotheum"))),
-                        currentFluidAmount
-                );
-
-                // 检查输入仓是否有足够流体
-                boolean isFluidSufficient = MachineUtils.inputFluid(pyrotheumFluid, this);
-
-                if (isFluidSufficient) {
-                    // 流体足够，执行温度变化
-                    int temperatureIncrease = currentFluidAmount / 100;
-                    temperature = Math.min(MAX_TEMP, temperature + temperatureIncrease);
-                    setCurrentTemperature(temperature);
-
-                    // 更新流体消耗量
-                    nextPyrotheumAmount = (int) Math.floor(currentFluidAmount * 1.02);  // 更新流体量
-                }
-                // 如果流体不足，什么也不做，机器继续工作，温度不变
-
-                // 切换到下一轮流体
-                fluidCycle = 2;  // 下一次使用 Cryotheum
-            } else if (fluidCycle == 2) {  // 奇数次使用 Cryotheum
-                int currentFluidAmount = nextCryotheumAmount;  // 使用更新后的流体量
-
-                // 创建 Cryotheum 流体
-                FluidStack cryotheumFluid = new FluidStack(
-                        Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:cryotheum"))),
-                        currentFluidAmount
-                );
-
-                // 检查输入仓是否有足够流体
-                boolean isFluidSufficient = MachineUtils.inputFluid(cryotheumFluid, this);
-
-                if (isFluidSufficient) {
-                    // 流体足够，执行温度变化
-                    int temperatureDecrease = currentFluidAmount / 100;
-                    temperature = Math.max(MIN_TEMP, temperature - temperatureDecrease);
-                    setCurrentTemperature(temperature);
-
-                    // 更新流体消耗量
-                    nextCryotheumAmount = (int) Math.floor(currentFluidAmount * 1.02);  // 更新流体量
-                }
-                // 如果流体不足，什么也不做，机器继续工作，温度不变
-
-                // 切换到下一轮流体
-                fluidCycle = 1;  // 下一次使用 Pyrotheum
-            }
         }
         return super.onWorking();
     }
@@ -156,21 +87,58 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         // 设定所需的流体量（100,000,000 mb）
         int requiredAmount = 100000000;
+        int temperature = getCurrentTemperature();
+        if (fluidCycle == 1) {  // 偶数次使用 Pyrotheum
+            int currentFluidAmount = nextPyrotheumAmount;  // 使用更新后的流体量
 
-        // 创建流体对象
-        FluidStack drillingFluid = new FluidStack(
-                Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:drilling_fluid"))),
-                requiredAmount
-        );
+            // 创建 Pyrotheum 流体
+            FluidStack pyrotheumFluid = new FluidStack(
+                    Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:pyrotheum"))),
+                    currentFluidAmount
+            );
 
-        // 检测流体是否足够
-        boolean hasEnoughFluid = MachineUtils.canInputFluid(drillingFluid, this);
+            // 检查输入仓是否有足够流体
+            boolean isFluidSufficient = MachineUtils.inputFluid(pyrotheumFluid, this);
 
-        // 如果流体不足，阻止配方运行
-        if (!hasEnoughFluid) {
-            return false;
+            if (isFluidSufficient) {
+                // 流体足够，执行温度变化
+                int temperatureIncrease = currentFluidAmount / 100;
+                temperature = Math.min(MAX_TEMP, temperature + temperatureIncrease);
+                setCurrentTemperature(temperature);
+
+                // 更新流体消耗量
+                nextPyrotheumAmount = (int) Math.floor(currentFluidAmount * 1.02);  // 更新流体量
+            }
+            // 如果流体不足，什么也不做，机器继续工作，温度不变
+
+            // 切换到下一轮流体
+            fluidCycle = 2;  // 下一次使用 Cryotheum
+        } else if (fluidCycle == 2) {  // 奇数次使用 Cryotheum
+            int currentFluidAmount = nextCryotheumAmount;  // 使用更新后的流体量
+
+            // 创建 Cryotheum 流体
+            FluidStack cryotheumFluid = new FluidStack(
+                    Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:cryotheum"))),
+                    currentFluidAmount
+            );
+
+            // 检查输入仓是否有足够流体
+            boolean isFluidSufficient = MachineUtils.inputFluid(cryotheumFluid, this);
+
+            if (isFluidSufficient) {
+                // 流体足够，执行温度变化
+                int temperatureDecrease = currentFluidAmount / 100;
+                temperature = Math.max(MIN_TEMP, temperature - temperatureDecrease);
+                setCurrentTemperature(temperature);
+
+                // 更新流体消耗量
+                nextCryotheumAmount = (int) Math.floor(currentFluidAmount * 1.02);  // 更新流体量
+            }
+            // 如果流体不足，什么也不做，机器继续工作，温度不变
+
+            // 切换到下一轮流体
+            fluidCycle = 1;  // 下一次使用 Pyrotheum
         }
-
         // 流体充足，允许配方运行
         return super.beforeWorking(recipe);
     }
@@ -208,6 +176,10 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof VoidMinerProcessingMachine reactorMachine) {
+            if(!MachineUtils.inputFluid(GTMaterials.DrillingFluid.getFluid(100000000),reactorMachine))
+            {
+                return ModifierFunction.NULL;
+            }
             int parallelCount = reactorMachine.getParallelCount();
 
             // 每种物品的基础数量

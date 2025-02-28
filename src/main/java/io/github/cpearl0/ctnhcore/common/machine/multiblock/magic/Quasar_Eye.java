@@ -101,6 +101,7 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
                     .eutMultiplier(qmachine.energy_caculate(qmachine.rune_energy,tier))
                     .durationMultiplier(qmachine.energy_caculate(qmachine.rune_energy,tier)*5)
                     .inputModifier(ContentModifier.multiplier(qmachine.energy_caculate(qmachine.rune_energy,tier)*5*(1-0.05*Math.max((qmachine.rune_energy-50)/50,0))))
+                    .outputModifier(ContentModifier.multiplier(qmachine.energy_caculate(qmachine.rune_energy,tier)*5*(1-0.05*Math.max((qmachine.rune_energy-50)/50,0))))
                     .build();
         }
         return ModifierFunction.NULL;

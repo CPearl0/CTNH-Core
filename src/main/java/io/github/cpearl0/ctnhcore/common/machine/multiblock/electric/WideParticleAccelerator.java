@@ -119,15 +119,15 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
             List<Content> itemList = new ArrayList<>();
             if(recipe.data.getString("type").equals("nu") && recipe.data.getDouble("speed")<=wmachine.nu_speed)
             {
-                recipe.outputs.put(ItemRecipeCapability.CAP,null);
+                return ModifierFunction.NULL;
             }
             if(recipe.data.getString("type").equals("element") && recipe.data.getDouble("speed")<=wmachine.element_speed)
             {
-                recipe.outputs.put(ItemRecipeCapability.CAP,null);
+                return ModifierFunction.NULL;
             }
             if(recipe.data.getString("type").equals("proton") && recipe.data.getDouble("speed")<=wmachine.proton_speed)
             {
-                recipe.outputs.put(ItemRecipeCapability.CAP,null);
+                return ModifierFunction.NULL;
             }
 
             int parallel = ParallelLogic.getParallelAmount(machine,recipe,16);

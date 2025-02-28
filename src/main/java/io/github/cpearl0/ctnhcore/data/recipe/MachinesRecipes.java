@@ -78,6 +78,11 @@ public class MachinesRecipes {
                 .duration(20)
                 .circuitMeta(1)
                 .save(provider);
+        CTNHRecipeTypes.VOID_MINER.recipeBuilder("test")
+                .EUt(1)
+                .duration(2000)
+                .circuitMeta((3))
+                .save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")
 
                 .inputItems(plate, NaquadahAlloy, 4)

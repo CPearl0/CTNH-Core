@@ -188,8 +188,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.void_miner.tooltip.2", "一次性输入100,000,000mB的钻井液，极寒之凛冰和烈焰之炽焱会在升降温度时消耗");
         provider.add("ctnh.void_miner.tooltip.3", "当温度达到25000K时，虚空采矿机将进入强制降温模式，请交替输入烈焰之炽焱和极寒之凛冰来控制温度");
         provider.add("ctnh.void_miner.tooltip.4", "当温度降至0K时，虚空采矿机将恢复正常工作模式");
-        provider.add("ctnh.void_miner.tooltip.5", "初始烈焰之炽焱消耗量为100mb,若成功消耗,则\uD835\uDC47 将会增加 ⌊(\uD835\uDC49 ÷ 100)⌋,接着\uD835\uDC49 将会自乘以 1.02");
-        provider.add("ctnh.void_miner.tooltip.6", "初始极寒之凛冰消耗量为100mb,若成功消耗,则 \uD835\uDC47 将会降低 ⌊(\uD835\uDC49 ÷ 100)⌋,接着\uD835\uDC49 将会自乘以 1.02");
+        provider.add("ctnh.void_miner.tooltip.5", "在奇数次运行前，机器会试图消耗烈焰之炽焱来升温。初始烈焰之炽焱消耗量为1000mb,若成功消耗,则\uD835\uDC47 将会增加 ⌊(\uD835\uDC49 ÷ 100)⌋,接着\uD835\uDC49 将会自乘以 1.02");
+        provider.add("ctnh.void_miner.tooltip.6", "在偶数次运行前，机器会试图消耗极寒之凛冰来见降温。初始极寒之凛冰消耗量为1000mb,若成功消耗,则 \uD835\uDC47 将会降低 ⌊(\uD835\uDC49 ÷ 100)⌋,接着\uD835\uDC49 将会自乘以 1.02");
         provider.add("ctnh.void_miner.tooltip.7", "温度越高，虚空采矿场的工作效率越高");
         provider.add("large_steel_furnaces", "钢质熔炉");
         provider.add("ctnh.large_steel_furnaces.tooltip.0", "只能使用HV级能源仓及以下等级");
@@ -475,6 +475,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.quasar.tip.1","能量等级: %d");
         provider.add("ctnh.quasar.tip.2","启动等级: %d");
         provider.add("ctnh.advanceassemblyline.1", "更好的装配线,但是有序输入");
+        provider.add("ctnh.magic.generator","精炼天地之魔精");
+        provider.add("ctnh.magic.generator.1","具有8并行，每秒基础消耗12mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
