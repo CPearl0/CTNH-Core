@@ -233,6 +233,11 @@ dependencies {
 
     // CTPP
     implementation fg.deobf("curse.maven:ctpp-1163715:6181529")
+
+    // Apotheosis
+    implementation fg.deobf("curse.maven:apotheosis-313970:6147871")
+    implementation fg.deobf("curse.maven:attributelib-898963:5634071")
+    implementation fg.deobf("curse.maven:placebo-283644:5414631")
 }
 
 mixin {

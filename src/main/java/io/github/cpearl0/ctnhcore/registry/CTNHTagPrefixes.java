@@ -26,13 +26,41 @@ public class CTNHTagPrefixes {
                     () -> CTNHMaterials.Holystone,
                     BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(3.0F, 3.0F),
                     new ResourceLocation(Aether.MODID, "block/mossy_holystone"), true, false, true);
-    public static final TagPrefix nuclear = new TagPrefix("nuclear")
-            //.idPattern("%s")
-            .materialAmount(GTValues.M)
-            .materialIconType(MaterialIconType.ingot)
-            .unificationEnabled(true)
-            .generateItem(true)
-            .generationCondition(material -> material instanceof NuclearMaterial);
+//    public static final TagPrefix carbide_nuclear = new TagPrefix("carbide_nuclear")
+//            //.idPattern("%s")
+//            .materialAmount(GTValues.M)
+//            .materialIconType(new MaterialIconType("carbide_nuclear"))
+//            .unificationEnabled(true)
+//            .generateItem(true)
+//            .generationCondition(material -> material instanceof NuclearMaterial);
+//    public static final TagPrefix nitride_nuclear = new TagPrefix("nitride_nuclear")
+//            //.idPattern("%s")
+//            .materialAmount(GTValues.M)
+//            .materialIconType(new MaterialIconType("nitride_nuclear"))
+//            .unificationEnabled(true)
+//            .generateItem(true)
+//            .generationCondition(material -> material instanceof NuclearMaterial);
+//    public static final TagPrefix oxide_nuclear = new TagPrefix("oxide_nuclear")
+//            //.idPattern("%s")
+//            .materialAmount(GTValues.M)
+//            .materialIconType(new MaterialIconType("oxide_nuclear"))
+//            .unificationEnabled(true)
+//            .generateItem(true)
+//            .generationCondition(material -> material instanceof NuclearMaterial);
+//    public static final TagPrefix zirconium_alloy_nuclear = new TagPrefix("oxide_nuclear")
+//            //.idPattern("%s")
+//            .materialAmount(GTValues.M)
+//            .materialIconType(new MaterialIconType("oxide_nuclear"))
+//            .unificationEnabled(true)
+//            .generateItem(true)
+//            .generationCondition(material -> material instanceof NuclearMaterial);
+//    public static final TagPrefix waste = new TagPrefix("waste")
+//            //.idPattern("%s")
+//            .materialAmount(GTValues.M)
+//            .materialIconType(new MaterialIconType(""))
+//            .unificationEnabled(true)
+//            .generateItem(true)
+//            .generationCondition(material -> material instanceof NuclearMaterial);
 
     public static void init() {
         oreHolystone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Holystone, TagPrefix.dust.materialAmount()));

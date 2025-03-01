@@ -14,7 +14,9 @@
     "gtceu.GTMaterialMixin",
     "gtceu.GTUtilMixin",
     "gtceu.TagPrefixMixin",
-    "gtceu.WorkableElectricMultiblockMachineMixin"
+    "gtceu.WorkableElectricMultiblockMachineMixin",
+    "mc.MobMixin",
+    "mc.MonsterMixin"
   ],
   "client": [],
   "minVersion": "0.8"
