@@ -162,57 +162,58 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
             if(hatchs>0)parallel=hatchs;
             double total_eut= (wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/1000;
             if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN))total_eut=(wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/250;
-            if(recipe.data.getString("darkmatter").equals("nu"))
-            {
-                if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
-                {
-                    if(wmachine.isconnect&&gmachine.isconnect)
-                    {
-                        gmachine.anti_nu+=1000;
-                    }
-                    else{
-                        wmachine.warring=true;
-                    }
-                }
 
-            }
-            if(recipe.data.getString("darkmatter").equals("proton"))
-            {
-                if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
-                {
-                    if(wmachine.isconnect&&gmachine.isconnect)
-                    {
-                        gmachine.anti_proton+=1000;
-                    }
-                    else{
-                        wmachine.warring=true;
-                    }
-                }
-
-            }
-            if(recipe.data.getString("darkmatter").equals("electric"))
-            {
-                if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
-                {
-                    if(wmachine.isconnect&&gmachine.isconnect)
-                    {
-                        gmachine.anti_electron+=1000;
-                    }
-                    else{
-                        wmachine.warring=true;
-                    }
-                }
-
-            }
             if(recipe.data.getString("type").equals("addnu")||recipe.data.getString("type").equals("addproton")||recipe.data.getString("type").equals("addelement"))
             {
                 if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN)) {
                     parallel = -1;
-                    if(hatchs>0)parallel=-hatchs;
+                    if(hatchs>0)parallel=-hatchs*10;
                 }
                 else {
                     parallel = ParallelLogic.getParallelAmount(machine, recipe, 1024);
-                    if(hatchs>0)parallel=hatchs;
+                    if(hatchs>0)parallel=hatchs*10;
+                }
+                if(recipe.data.getString("darkmatter").equals("nu"))
+                {
+                    if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
+                    {
+                        if(wmachine.isconnect&&gmachine.isconnect)
+                        {
+                            gmachine.anti_nu+=1000*parallel;
+                        }
+                        else{
+                            wmachine.warring=true;
+                        }
+                    }
+
+                }
+                if(recipe.data.getString("darkmatter").equals("proton"))
+                {
+                    if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
+                    {
+                        if(wmachine.isconnect&&gmachine.isconnect)
+                        {
+                            gmachine.anti_proton+=1000*parallel;
+                        }
+                        else{
+                            wmachine.warring=true;
+                        }
+                    }
+
+                }
+                if(recipe.data.getString("darkmatter").equals("electric"))
+                {
+                    if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
+                    {
+                        if(wmachine.isconnect&&gmachine.isconnect)
+                        {
+                            gmachine.anti_electron+=1000*parallel;
+                        }
+                        else{
+                            wmachine.warring=true;
+                        }
+                    }
+
                 }
                 if(recipe.data.getString("type").equals("addnu"))
                     wmachine.add_parallel_nu=parallel;
@@ -225,13 +226,20 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
                         .eutMultiplier(Math.abs(parallel))
                         .build();
             }
-
+            var muti=1.0;
+            if(wmachine.nu_speed+wmachine.element_speed+ wmachine.proton_speed>10000) {
+                 muti = 0.1;
+            }
+            else
+            {
+                 muti=1-(recipe.data.getDouble("speed")-(wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/2000);
+            }
             return ModifierFunction.builder()
                     .parallels(parallel)
                     .inputModifier(ContentModifier.multiplier(parallel))
                     .outputModifier(ContentModifier.multiplier(parallel))
                     .eutMultiplier(parallel*(1+total_eut))
-                    .durationMultiplier(Math.max(0.2,1-(recipe.data.getDouble("speed")-(wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/2000)))
+                    .durationMultiplier(Math.max(0.1,muti))
                     .build();
         }
         return ModifierFunction.NULL;

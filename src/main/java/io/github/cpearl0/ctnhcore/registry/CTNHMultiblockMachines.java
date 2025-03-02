@@ -2780,7 +2780,7 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.ACCELERATOR_UP,CTNHRecipeTypes.ACCELERATOR_DOWN)
 
-            .recipeModifiers(WideParticleAccelerator::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(WideParticleAccelerator::recipeModifier)
             .tooltips(Component.translatable("ctnh.wideaccelerator.1"),
                     Component.translatable("ctnh.wideaccelerator.2"),
                     Component.translatable("ctnh.wideaccelerator.3"),
@@ -3003,8 +3003,8 @@ public class CTNHMultiblockMachines {
             .register();
     public final static MultiblockMachineDefinition SUPERCONDUCTING_PENNING_TRAP= REGISTRATE.multiblock("superconducting_penning_trap",  Superconducting_Penning_Trap::new)
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CTNHRecipeTypes.MAGIC_FUEL_GENERATOR)
-            .recipeModifiers(Superconducting_Penning_Trap::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            //.recipeType(CTNHRecipeTypes.TRAP_ENERGY)
+//            .recipeModifiers(Superconducting_Penning_Trap::recipeModifier)
             .tooltips(Component.translatable("ctnh.magic.generator"),
                     Component.translatable("ctnh.magic.generator.1"),
                     Component.translatable("ctnh.perfect_overclock")

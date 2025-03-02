@@ -501,6 +501,12 @@ public class CTNHRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType MAGIC_FUEL_GENERATOR = GTRecipeTypes.register("magic_fuel_generator",ELECTRIC)
+            .setMaxIOSize(6, 6, 6, 6)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType TRAP_ENERGY = GTRecipeTypes.register("trap_energy",ELECTRIC)
             .setMaxIOSize(6, 6, 3, 3)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)

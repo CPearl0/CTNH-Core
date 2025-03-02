@@ -1,23 +1,33 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.TickableSubscription;
+import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
+import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.config.ConfigHolder;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Generator;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Reactor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.TickTask;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMachine implements ITieredMachine {
+public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMachine implements ITieredMachine, IExplosionMachine {
 
     public BlockPos pos;
     public Level level;
@@ -29,28 +39,100 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
     public String AL ="anti_electron";
     public String AP ="anti_proton";
     public String AN ="anti_nu";
+    public int tickwarring=0;
+    private IEnergyContainer energyContainer;
+    @Nullable
+    protected TickableSubscription tickSubs;
+
     public Superconducting_Penning_Trap(IMachineBlockEntity holder)
     {
         super(holder);
     }
-    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        if (machine instanceof Superconducting_Penning_Trap dmachine) {
-            var level = dmachine.self().getLevel();
-            var pos = dmachine.self().getPos();
-
-            pos = MachineUtils.getOffset(dmachine,0, 20, 6);
-            if (getMachine(level, pos) instanceof WideParticleAccelerator gmachine) {
-                dmachine.pos = pos;
-                dmachine.level = level;
-                dmachine.isconnect = true;
-            }
-            int muti=(int)((dmachine.anti_electron+ dmachine.anti_nu+ dmachine.anti_proton)/1000);
-            return ModifierFunction.builder()
-                    .eutMultiplier(Math.max(muti,1))
-                    .build();
-        }
-        return ModifierFunction.NULL;
+    @Override
+    public void onStructureFormed() {
+        super.onStructureFormed();
+        List<IEnergyContainer> energyContainers = new ArrayList<>();
+        this.energyContainer=getEnergyContainer();
     }
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if (getLevel() instanceof ServerLevel serverLevel) {
+            serverLevel.getServer().tell(new TickTask(0, this::updateTickSubscription));
+        }
+    }
+    protected void updateTickSubscription() {
+        if (isFormed) {
+            tickSubs = subscribeServerTick(tickSubs, this::tick);
+        } else if (tickSubs != null) {
+            tickSubs.unsubscribe();
+            tickSubs = null;
+        }
+    }
+    public boolean danger()
+    {
+        if(anti_nu>0||anti_proton>0||anti_electron>0)
+        {
+            return true;
+        }
+        return false;
+    }
+    private void consumeEnergy() {
+        int energyToConsume=8192;
+        if(isconnect){
+            energyToConsume+=32768;
+        }
+        energyToConsume+=(anti_electron+anti_proton+anti_nu)/10;
+        this.energyContainer=getEnergyContainer();
+        if (this.energyContainer.getEnergyStored() >= energyToConsume) {
+                long consumed = this.energyContainer.removeEnergy(energyToConsume);
+                if (consumed == energyToConsume) {
+                    getRecipeLogic().setStatus(RecipeLogic.Status.WORKING);
+                } else {
+                    getRecipeLogic().setStatus(RecipeLogic.Status.WAITING);
+                }
+        }
+        else {
+            getRecipeLogic().setStatus(RecipeLogic.Status.WAITING);
+        }
+    }
+    public void tick() {
+        if (isWorkingEnabled()) consumeEnergy();
+        var level=getLevel();
+        var pos=MachineUtils.getOffset(this,0,20,6);
+        if (isActive()) {
+            tickwarring=0;
+            if (getMachine(level, pos) instanceof WideParticleAccelerator gmachine) {
+                isconnect = true;
+            }
+        } else {
+            if(danger()) {
+                tickwarring += 1;
+            }
+            if(tickwarring>200&&danger())
+            {
+                doExplosion(3f);
+            }
+        }
+    }
+//    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+//        if (machine instanceof Superconducting_Penning_Trap dmachine) {
+//            var level = dmachine.self().getLevel();
+//            var pos = dmachine.self().getPos();
+//
+//            pos = MachineUtils.getOffset(dmachine,0, 20, 6);
+//            if (getMachine(level, pos) instanceof WideParticleAccelerator gmachine) {
+//                dmachine.pos = pos;
+//                dmachine.level = level;
+//                dmachine.isconnect = true;
+//            }
+//            int muti=(int)((dmachine.anti_electron+ dmachine.anti_nu+ dmachine.anti_proton)/1000);
+//            return ModifierFunction.builder()
+//                    .eutMultiplier(Math.max(muti,1))
+//                    .build();
+//        }
+//        return ModifierFunction.NULL;
+//    }
     @Override
     public void addDisplayText(List<Component> textList) {
         if(isconnect) {
