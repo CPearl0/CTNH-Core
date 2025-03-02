@@ -360,8 +360,8 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_CRYSTALLIZATION, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL)
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.beams_mana_required",String.format("%.2f",data.getFloat("required_mana"))))
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.beams_mana_consumption",String.format("%.2f",data.getFloat("mana"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.beams_mana_required",String.format("%.2f",data.getFloat("required_mana")/1000000)))
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.beams_mana_consumption",String.format("%.2f",data.getFloat("mana")/1000000)));
     public static final GTRecipeType TWISTED_FUSION = GTRecipeTypes.register("twisted_fusion",ELECTRIC)
                 .setMaxIOSize(0, 0, 2, 2)
                 .setEUIO(IO.IN)

@@ -7,11 +7,13 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
@@ -45,6 +47,8 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
     public static final String MAX_MANA = "max_mana";
     public static final String MANA = "mana";
     public static final String OVERLOAD = "overload";
+    public int quasar_power=0;
+    public int mana_parallel=1;
     public List<String> AvailableRune=List.of("twist_rune","starlight_rune","horizen_rune","quasar_rune");
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
@@ -81,6 +85,10 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
         {
             return true;
         }
+        if(quasar_power>0)
+        {
+            return  true;
+        }
         return false;
     }
     public void consumeItem(int i) { machineStorage.extractItem(i, 1,false); }
@@ -99,7 +107,7 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
             }
             else if(machineStorage.getStackInSlot(i).getItem().equals(CTNHItems.QUASAR_RUNE.get()))
             {
-                overload=overload_crash;
+                if(random<=0.1)consumeItem(i);
             }
             else if(machineStorage.getStackInSlot(i).getItem().equals(CTNHItems.HORIZEN_RUNE.get()))
             {
@@ -133,7 +141,7 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
             if(MachineUtils.inputFluid(CTNHMaterials.Mana.getFluid(100000),this))
             {
                 if(mana+100000<max_mana)
-                    mana+=100000*(1+0.05*horizen_power);
+                    mana+=100000*(1+0.05*horizen_power)*mana_parallel;
 
             }
         }
@@ -153,13 +161,33 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
         return false;
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
+        int pa=1;
+        if (machine instanceof IMultiController controller) {
+            if (controller.isFormed()) {
+                int parallels = (Integer)controller.getParallelHatch().map((hatch) -> ParallelLogic.getParallelAmount(machine, recipe, hatch.getCurrentParallel())).orElse(0);
+                if (parallels > 0) {
+                    pa=parallels;
+                }
 
-        if (!(machine instanceof Nicoll_Dyson_Beams xmachine)) return ModifierFunction.NULL;
-        var tier=xmachine.getTier();
-        return  ModifierFunction.builder()
-                .durationMultiplier(1-Math.min(0.0025* xmachine.twist_power,0.5+(tier-6)*0.025)-(tier-6)*0.025)
-                .eutMultiplier(1-0.01* xmachine.starlight_power)
-                .build();
+            }
+        }
+        if(machine instanceof Nicoll_Dyson_Beams xmachine) {
+            var tier = xmachine.getTier();
+            xmachine.mana_parallel=pa;
+            if (xmachine.quasar_power > 0) {
+                return ModifierFunction.builder()
+                        .durationMultiplier((1 - Math.max(0.005 * xmachine.twist_power, 0.1 + (tier - 6) * 0.025) - (tier - 6) * 0.025))
+                        .inputModifier(ContentModifier.multiplier(10))
+                        .outputModifier(ContentModifier.multiplier(10))
+                        .eutMultiplier((1 - 0.01 * xmachine.starlight_power) * 10)
+                        .build();
+            }
+            return ModifierFunction.builder()
+                    .durationMultiplier(1 - Math.max(0.005 * xmachine.twist_power, 0.1 + (tier - 6) * 0.025) - (tier - 6) * 0.025)
+                    .eutMultiplier(1 - 0.01 * xmachine.starlight_power)
+                    .build();
+        }
+        return ModifierFunction.NULL;
     }
 
     @Override
@@ -188,12 +216,12 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
             textList.add(Component.translatable("ctnh.beams_overload_1", FormattingUtil.formatNumbers(overload), overload_crash));
         }
         if(broken>0)textList.add(Component.translatable("ctnh.beams_crash"));
-        textList.add(Component.translatable("ctnh.beams_max_mana",String.format("%.2f",max_mana)));
-        textList.add(Component.translatable("ctnh.beams_mana",String.format("%.2f",mana)));
+        textList.add(Component.translatable("ctnh.beams_max_mana",String.format("%.4f",max_mana/1000000)));
+        textList.add(Component.translatable("ctnh.beams_mana",String.format("%.4f",mana/1000000)));
         textList.add(Component.translatable("ctnh.twist_consumption",String.format("%.2f",consume_twist())));
         textList.add(Component.translatable("ctnh.beams_stable",String.format("%.2f",-((twist_power/3)+((mana/100000)*(Math.max(twist_power/3,1))))+starlight_power*4+5+tier)));
         textList.add(Component.translatable("ctnh.starlight_consumption",String.format("%.2f",consume_starlight())));
-        textList.add(Component.translatable("ctnh.beams_time",String.format("%.2f",1-Math.min(0.0025* twist_power,0.5+(tier-6)*0.025)-(tier-6)*0.025)));
+        textList.add(Component.translatable("ctnh.beams_time",String.format("%.2f",1-Math.max(0.005* twist_power,0.1))));
         textList.add(Component.translatable("ctnh.beams_eut_consumption",String.format("%.2f",1-0.01* starlight_power)));
     }
 
@@ -219,11 +247,13 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
         twist_power=0;
         starlight_power=0;
         horizen_power=0;
+        quasar_power=0;
         for (ItemStack itemStack : itemlist) {
             switch (itemStack.getItem().toString()) {
                 case "twist_rune"-> twist_power=twist_power+itemStack.getCount();
                 case "starlight_rune"-> starlight_power=starlight_power+itemStack.getCount();
                 case "horizen_rune"-> horizen_power=horizen_power+itemStack.getCount();
+                case "quasar_rune"-> quasar_power=itemStack.getCount();
             }
             }
 

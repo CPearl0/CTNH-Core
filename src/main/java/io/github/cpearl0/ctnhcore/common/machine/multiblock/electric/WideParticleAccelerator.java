@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.capability.*;
 import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.*;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
@@ -12,11 +13,14 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.utils.GTUtil;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.Arc_Generator;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import lombok.Getter;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
@@ -44,7 +48,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class WideParticleAccelerator extends WorkableElectricMultiblockMachine implements ITieredMachine {
+public class WideParticleAccelerator extends WorkableElectricMultiblockMachine implements ITieredMachine, IExplosionMachine {
 
     public double nu_speed=0;
     public double proton_speed=0;
@@ -58,6 +62,13 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
     public String NU_SPEED="nu_speed";
     public String PROTON_SPEED="proton_speed";
     public String ELEMENT_SPEED="element_speed";
+    public boolean isconnect=false;
+    public boolean warring=false;
+    public BlockPos pos;
+    public Level level;
+    public int anti_nu=0;
+    public int anti_proton=0;
+    public int anti_electirc=0;
     public WideParticleAccelerator(IMachineBlockEntity holder)
     {
         super(holder);
@@ -100,6 +111,10 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
         nu_speed=Math.max(nu_speed,0);
         proton_speed=Math.max(proton_speed,0);
         element_speed=Math.max(element_speed,0);
+        if(warring)
+        {
+            doExplosion(3f);
+        }
         super.afterWorking();
         }
 
@@ -117,15 +132,28 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
 
         if(machine instanceof WideParticleAccelerator wmachine){
             List<Content> itemList = new ArrayList<>();
-            if(recipe.data.getString("type").equals("nu") && recipe.data.getDouble("speed")<=wmachine.nu_speed)
+            var level = wmachine.self().getLevel();
+            var pos = wmachine.self().getPos();
+
+            pos = MachineUtils.getOffset(wmachine,0, -20, -6);
+            if (getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine) {
+                wmachine.pos = pos;
+                wmachine.level = level;
+                wmachine.isconnect = true;
+            }
+            else
+            {
+                wmachine.isconnect=false;
+            }
+            if(recipe.data.getString("type").equals("nu") && recipe.data.getDouble("speed")>=wmachine.nu_speed)
             {
                 return ModifierFunction.NULL;
             }
-            if(recipe.data.getString("type").equals("element") && recipe.data.getDouble("speed")<=wmachine.element_speed)
+            if(recipe.data.getString("type").equals("element") && recipe.data.getDouble("speed")>=wmachine.element_speed)
             {
                 return ModifierFunction.NULL;
             }
-            if(recipe.data.getString("type").equals("proton") && recipe.data.getDouble("speed")<=wmachine.proton_speed)
+            if(recipe.data.getString("type").equals("proton") && recipe.data.getDouble("speed")>=wmachine.proton_speed)
             {
                 return ModifierFunction.NULL;
             }
@@ -134,6 +162,48 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
             if(hatchs>0)parallel=hatchs;
             double total_eut= (wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/1000;
             if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN))total_eut=(wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/250;
+            if(recipe.data.getString("darkmatter").equals("nu"))
+            {
+                if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
+                {
+                    if(wmachine.isconnect&&gmachine.isconnect)
+                    {
+                        gmachine.anti_nu+=1000;
+                    }
+                    else{
+                        wmachine.warring=true;
+                    }
+                }
+
+            }
+            if(recipe.data.getString("darkmatter").equals("proton"))
+            {
+                if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
+                {
+                    if(wmachine.isconnect&&gmachine.isconnect)
+                    {
+                        gmachine.anti_proton+=1000;
+                    }
+                    else{
+                        wmachine.warring=true;
+                    }
+                }
+
+            }
+            if(recipe.data.getString("darkmatter").equals("electric"))
+            {
+                if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
+                {
+                    if(wmachine.isconnect&&gmachine.isconnect)
+                    {
+                        gmachine.anti_electron+=1000;
+                    }
+                    else{
+                        wmachine.warring=true;
+                    }
+                }
+
+            }
             if(recipe.data.getString("type").equals("addnu")||recipe.data.getString("type").equals("addproton")||recipe.data.getString("type").equals("addelement"))
             {
                 if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN)) {
@@ -169,6 +239,10 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
+        if(isconnect)
+        {
+            textList.add(textList.size(),Component.translatable("ctnh.connect"));
+        }
         textList.add(textList.size(),Component.translatable("ctnh.accelerator.nu_speed",String.format("%.2f",nu_speed)));
         textList.add(textList.size(),Component.translatable("ctnh.accelerator.proton_speed",String.format("%.2f",proton_speed)));
         textList.add(textList.size(),Component.translatable("ctnh.accelerator.element_speed",String.format("%.2f",element_speed)));
