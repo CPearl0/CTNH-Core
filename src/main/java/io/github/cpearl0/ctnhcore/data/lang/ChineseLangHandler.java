@@ -23,12 +23,16 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Mercurystone.getUnlocalizedName(), "水星石");
         replace(provider, CTNHMaterials.Glaciostone.getUnlocalizedName(), "霜原石");
 
+        replace(provider, CTNHMaterials.FlowingAmberGold.getUnlocalizedName(), "通流琥珀金");
+        replace(provider, CTNHMaterials.SpecialCompositeSteelM77.getUnlocalizedName(), "特种复合钢-M77");
+        replace(provider, CTNHMaterials.HiddenAlloy.getUnlocalizedName(), "幽匿合金");
         replace(provider, CTNHMaterials.Holystone.getUnlocalizedName(), "圣石");
         replace(provider, CTNHMaterials.Zanite.getUnlocalizedName(), "紫晶石");
         replace(provider, CTNHMaterials.Ambrosium.getUnlocalizedName(), "神能晶");
         replace(provider, CTNHMaterials.Skyjade.getUnlocalizedName(), "穹玉");
         replace(provider, CTNHMaterials.Stratus.getUnlocalizedName(), "云母钢");
         replace(provider, CTNHMaterials.Zenith_essence.getUnlocalizedName(), "§5天顶源质§r");
+        replace(provider, CTNHMaterials.BiologicalCultureMediumStockSolution.getUnlocalizedName(), "生物培养基原液");
         replace(provider, CTNHMaterials.EVE.getUnlocalizedName(),"EVE高能粒子");
         replace(provider, CTNHMaterials.Ignitium.getUnlocalizedName(), "腾炎");
         replace(provider, CTNHMaterials.QUASER_MANA.getUnlocalizedName(), "类星体魔力");
@@ -137,6 +141,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.testing_terminal.tooltip.2","右键多方块的主方块以显示错误信息");
         provider.add("ctnh.simple_nutritious_meal.tooltip.1","能维持机体基本的生理功能");
         provider.add("item.ctnh.ecological_star.desc", "蕴含生态圈的所有精华");
+        provider.add("item.sculk_cell.desc", "分化....");
         provider.add("ctnh.plasma_condenser.tooltips.1", "氤氲之气，凝为霜露");
         provider.add("ctnh.forest.1", "手植千木，绿荫千秋");
         provider.add("ctnh.forest.2", "林海树场是一个只消耗水来产出大量木材的大机器");
@@ -520,6 +525,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL, "简易营养餐");
         provider.addItem(CTNHItems.ECOLOGICAL_STAR, "生态之星");
         provider.addItem(CTNHItems.ANIMAL_EXCRETA, "动物排泄物");
+        provider.addItem(CTNHItems.SCULK_CELL, "幽匿干细胞");
         provider.addItem(CTNHItems.TUMOR, "肿瘤");
         provider.addItem(CTNHItems.HORIZEN_RUNE, "视域符文");
         provider.addItem(CTNHItems.REFINED_IRON_INGOT, "精炼铁方坯");
