@@ -23,12 +23,16 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Mercurystone.getUnlocalizedName(), "水星石");
         replace(provider, CTNHMaterials.Glaciostone.getUnlocalizedName(), "霜原石");
 
+        replace(provider, CTNHMaterials.FlowingAmberGold.getUnlocalizedName(), "通流琥珀金");
+        replace(provider, CTNHMaterials.SpecialCompositeSteelM77.getUnlocalizedName(), "特种复合钢-M77");
+        replace(provider, CTNHMaterials.HiddenAlloy.getUnlocalizedName(), "幽匿合金");
         replace(provider, CTNHMaterials.Holystone.getUnlocalizedName(), "圣石");
         replace(provider, CTNHMaterials.Zanite.getUnlocalizedName(), "紫晶石");
         replace(provider, CTNHMaterials.Ambrosium.getUnlocalizedName(), "神能晶");
         replace(provider, CTNHMaterials.Skyjade.getUnlocalizedName(), "穹玉");
         replace(provider, CTNHMaterials.Stratus.getUnlocalizedName(), "云母钢");
         replace(provider, CTNHMaterials.Zenith_essence.getUnlocalizedName(), "§5天顶源质§r");
+        replace(provider, CTNHMaterials.BiologicalCultureMediumStockSolution.getUnlocalizedName(), "生物培养基原液");
         replace(provider, CTNHMaterials.EVE.getUnlocalizedName(),"EVE高能粒子");
         replace(provider, CTNHMaterials.Ignitium.getUnlocalizedName(), "腾炎");
         replace(provider, CTNHMaterials.QUASER_MANA.getUnlocalizedName(), "类星体魔力");
@@ -85,6 +89,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.mana_reactor","魔力反应");
         provider.add("gtceu.arc_generator","物质撕裂湮灭");
         provider.add("gtceu.arc_reactor","电弧发生");
+        provider.add("gtceu.magic_fuel_generator","魔力燃料精炼");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -136,6 +141,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.testing_terminal.tooltip.2","右键多方块的主方块以显示错误信息");
         provider.add("ctnh.simple_nutritious_meal.tooltip.1","能维持机体基本的生理功能");
         provider.add("item.ctnh.ecological_star.desc", "蕴含生态圈的所有精华");
+        provider.add("item.sculk_cell.desc", "分化....");
         provider.add("ctnh.plasma_condenser.tooltips.1", "氤氲之气，凝为霜露");
         provider.add("ctnh.forest.1", "手植千木，绿荫千秋");
         provider.add("ctnh.forest.2", "林海树场是一个只消耗水来产出大量木材的大机器");
@@ -360,33 +366,34 @@ public class ChineseLangHandler {
         provider.add("ctnh.nano.2","最大并行数:1024");
         provider.add("ctnh.nano.3","每有1并行数，总体发电量提升0.2%\n实际运行时间为配方时间*sqrt(并行数)");
         provider.add("ctnh.nano.4","在机器内塞入特定材料可提升倍率，但也有概率消耗\n无材料：0.4倍率\n橡胶片：0.8倍率,并行数/512几率消耗\n聚乙烯片：1.2倍率，并行数/1024几率消耗\n硅橡胶片：2.0倍率，并行数/4096几率消耗\n丁苯橡胶片：3.2倍率，并行数/65535几率消耗\n聚苯并咪唑片：5倍率，并行数/1048576几率消耗");
-
-
+        provider.add("ctnh.connect","连接已搭建");
+        provider.add("ctnh.anti_nu","反中子量:%d");
+        provider.add("ctnh.anti_proton","反质子量:%d");
+        provider.add("ctnh.anti_electric","反电子量:%d");
+        provider.add("ctnh.trap_electric","当前存储电量:%deu");
+        provider.add("ctnh.trap_electric_max","允许存储电量上限:%deu");
 
         provider.add("ctnh.beams_overload","§c警告：机器过载！！！");
         provider.add("ctnh.beams_crash","§c机器已损坏");
-        provider.add("ctnh.beams_mana","当前魔力量:%.2f");
+        provider.add("ctnh.beams_mana","当前魔力量:%.4fM");
         provider.add("ctnh.twist_consumption","扭曲符文消耗概率:%.2f");
         provider.add("ctnh.starlight_consumption","星光符文消耗概率:%.2f");
         provider.add("ctnh.beams_overload_1","§c机器过载度:%d/%d");
         provider.add("ctnh.beams_overload_2","§c！！！警告：能量溢出！！！");
-        provider.add("ctnh.beams_max_mana","魔力上限:%.2f");
-        provider.add("ctnh.beams_mana_required","魔力需求:%.2f");
-        provider.add("ctnh.beams_mana_consumption","消耗魔力:%.2f");
+        provider.add("ctnh.beams_max_mana","魔力上限:%.4fM");
+        provider.add("ctnh.beams_mana_required","魔力需求:%.2fM");
+        provider.add("ctnh.beams_mana_consumption","消耗魔力:%.2fM");
         provider.add("ctnh.beams_time","运行时间倍率:%.2f");
         provider.add("ctnh.beams_eut_consumption","消耗能量倍率:%.2f");
         provider.add("ctnh.beams_stable","魔力稳定值:%.2f");
-        provider.add("ctnh.beams.story1","以往对魔力的研究表明，这种特殊元素有着不同于以往物理体系的机理。魔力与§a硅岩§r一同蕴含极大的能量，但是魔力的能量却很难完全输出，而通过某种效应而消失");
-        provider.add("ctnh.beams.story2","同时，魔力的空间扭曲能力会随着魔力的浓度而增大，§l如果能把大量魔力聚集在一起§r，则可以以极高的能量和特殊的空间扭曲能力来模拟另一种特殊的§c“聚变”§r");
-        provider.add("ctnh.beams.story3","与三体文明战争中的超级武器戴森光束给予了你启发。虽然魔力无法达到§6恒星§r级别的能量，但是对戴森光束的聚焦模拟也可以使魔力的能量达到§6难以想象§r的水平");
-        provider.add("ctnh.beams.story4","末影珍珠的§5量子隧穿效应§r作为该巨构的虫洞，则也许可以绕过三体舰队的§6天枢圣盾§r进行打击，而不需要以往戴森光束的超级能量来过载护盾。");
-        provider.add("ctnh.beams.story5","§9那些愚蠢的精灵还在彩虹桥玩他们的过家家，而真正的大魔导师早已经超越了物理与魔法的浅薄认知。");
+        provider.add("ctnh.beams.story1","§9魔枢巨星，重构万物尺度");
         provider.add("ctnh.beams.story0","配方类型：§9高能魔力扭曲聚变§r");
+        provider.add("ctnh.beams.story2","运行使用并行控制仓，§c其不会为配方提供并行§r，只修改每秒输入魔力量");
         provider.add("ctnh.beams.tips1","插入机器的几种§9五级符文§r决定了该机器的各种能力");
-        provider.add("ctnh.beams.tips2","§9星空符文§r的能量降低了能源消耗并增强乐机器稳定性");
+        provider.add("ctnh.beams.tips2","§9星空符文§r的能量降低了能源消耗并增强了机器稳定性");
         provider.add("ctnh.beams.tips3","§c扭曲符文§r的能量降低了所用时间，§c但会让机器更加不稳定");
         provider.add("ctnh.beams.tips4","§d视域符文§r的能量极大增大了魔力上限和魔力使用效率");
-        provider.add("ctnh.beams.tips5","§5类星体符文§r的能量太过强大，§c会直接让机器爆炸！");
+        provider.add("ctnh.beams.tips5","§5类星体符文§r的能量太过强大，它会直接让机器进入§c不稳定状态，但是同样使配方的消耗，产出，电压需求翻10倍");
         provider.add("ctnh.beams.tips6","§c扭曲§r与§9星空§r的对抗决定了机器的稳定性");
         provider.add("ctnh.beams.tips7","稳定性公式:-((twist_power/3)+((mana/100000)*(Math.max(twist_power/3,1))))+starlight_power*2+10+tier*2),当稳定性低于0时机器会开始过载！");
         provider.add("ctnh.beams.tips8","§c过载度§r每秒提升1且在机器拥有过载度时下§c配方时间会翻4倍§r");
@@ -394,7 +401,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.beams.tips10","§c扭曲符文§r消耗概率公式:每次运行有Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0))概率消耗");
         provider.add("ctnh.beams.tips11","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
         provider.add("ctnh.beams.tips12","该机器无法超频");
-        provider.add("ctnh.beams.tips13","运行时每运行1秒，固定消耗10WL液态魔力来为光束注能，可以使用只消耗冷却液的非需求魔力配方来为机器注能");
+        provider.add("ctnh.beams.tips13","运行时每运行1秒，固定消耗10*并行WL液态魔力来为光束注能，可以使用只消耗冷却液的非需求魔力配方来为机器注能");
         provider.add("ctnh.magic.parallel","当前并行数:%.2f");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.0", "机器类型：§e核聚变反应堆/§5扭曲聚变反应堆§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.1", "§8以不可思议的伟力。§r");
@@ -461,6 +468,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.arc.r.arc","可输出的电弧强度:%d");
         provider.add("ctnh.arc.r.connect","§b桥接已启用§r");
         provider.add("ctnh.arcgenerator.1","物质撕裂器");
+        provider.add("magic_fuel_generator","魔导精炼厂");
 
         provider.add("ctnh.arcgenerator.arc.t1.1","§b最大支持电弧强度:1000");
         provider.add("ctnh.arcgenerator.arc.t1.2","§c最大发电效率:75%");
@@ -517,6 +525,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL, "简易营养餐");
         provider.addItem(CTNHItems.ECOLOGICAL_STAR, "生态之星");
         provider.addItem(CTNHItems.ANIMAL_EXCRETA, "动物排泄物");
+        provider.addItem(CTNHItems.SCULK_CELL, "幽匿干细胞");
         provider.addItem(CTNHItems.TUMOR, "肿瘤");
         provider.addItem(CTNHItems.HORIZEN_RUNE, "视域符文");
         provider.addItem(CTNHItems.REFINED_IRON_INGOT, "精炼铁方坯");

@@ -39,6 +39,13 @@ public class CTNHItems {
                 list.add(Component.translatable("item.ctnh.ecological_star.desc").withStyle(ChatFormatting.GREEN));
             })))
             .register();
+    public static ItemEntry<ComponentItem> SCULK_CELL = REGISTRATE
+            .item("sculk_cell", ComponentItem::create)
+            .lang("Sculk Cell")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("item.sculk_cell.desc").withStyle(ChatFormatting.DARK_GRAY));
+            })))
+            .register();
     public static ItemEntry<Item> ANIMAL_EXCRETA = REGISTRATE
             .item("animal_excreta",Item::new)
             .lang("Animal Excreta")

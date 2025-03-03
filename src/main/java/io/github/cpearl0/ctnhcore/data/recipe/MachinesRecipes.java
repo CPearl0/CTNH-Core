@@ -83,6 +83,11 @@ public class MachinesRecipes {
                 .duration(2000)
                 .circuitMeta((3))
                 .save(provider);
+        CTNHRecipeTypes.TRAP_ENERGY.recipeBuilder("test")
+                .EUt(1)
+                .duration(10)
+                .circuitMeta(1)
+                .save(provider);
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")
 
                 .inputItems(plate, NaquadahAlloy, 4)

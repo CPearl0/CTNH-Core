@@ -45,6 +45,14 @@ public class AcceleratorRecipes {
                 .addData("type","addelement")
                 .EUt(32678)
                 .save(provider);
+        CTNHRecipeTypes.ACCELERATOR_UP.recipeBuilder("testanti1")
+                .duration(1000)
+                .circuitMeta(12)
+                .EUt(100)
+                .addData("type","nu")
+                .addData("speed",1000)
+                .addData("darkmatter","nu")
+                .save(provider);
 
     }
 }

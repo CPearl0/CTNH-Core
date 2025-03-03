@@ -5,6 +5,7 @@ import com.aetherteam.aether.item.AetherItems;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -14,6 +15,7 @@ import net.minecraft.server.commands.PublishCommand;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
 
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty.GasTier.*;
@@ -135,7 +137,7 @@ public class CTNHMaterials {
             .color(0x67abff)
             .iconSet(METALLIC)
             .flags(GENERATE_FINE_WIRE)
-            .cableProperties(GTValues.V[GTValues.UIV], 4, 128)
+            .cableProperties(GTValues.V[UIV], 4, 128)
             .buildAndRegister();
     public static final Material BlackTitanium = new Material.Builder(GTCEu.id("black_titanium"))
             .ingot()
@@ -231,6 +233,63 @@ public class CTNHMaterials {
             .addOreByproducts(GTMaterials.Phosphate, GTMaterials.Salt)
             .components(Sodium,3, Phosphate,1)
             .buildAndRegister();
+    public static final Material FlowingAmberGold = new Material.Builder(GTCEu.id("flowing_amber_gold"))
+            .dust()
+            .ingot(5)
+            .liquid(new FluidBuilder().temperature(13100))
+            .color(0xFFD700)
+            .secondaryColor(0xFFDF66)
+            .iconSet(METALLIC)
+            .appendFlags(EXT2_METAL, MORTAR_GRINDABLE, GENERATE_ROTOR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
+                    GENERATE_SPRING_SMALL, GENERATE_FRAME, DISABLE_DECOMPOSITION, GENERATE_FINE_WIRE, GENERATE_GEAR,
+                    GENERATE_DENSE)
+            .ore()
+            .fluidPipeProperties(13100, 50000, true)
+            .cableProperties(V[UIV], 128, 8)
+            .blast(b -> b.temp(12800, BlastProperty.GasTier.HIGH)
+                    .blastStats(VA[GTValues.UV], 6000)
+                    .vacuumStats(VA[LuV]))
+            .addOreByproducts(GTMaterials.HSSS, GTMaterials.Trinium)
+            .components(Redstone,9, BlueSteel,4, HSSS,12, Trinium,5, Indium,3, Electrum,16)
+            .buildAndRegister();
+    public static final Material SpecialCompositeSteelM77 = new Material.Builder(GTCEu.id("special_composite_steel_m77"))
+            .dust()
+            .ingot(5)
+            .liquid(new FluidBuilder().temperature(7788))
+            .color(0xC0B380)
+            .secondaryColor(0xD2C8A0)
+            .iconSet(METALLIC)
+            .appendFlags(EXT2_METAL, MORTAR_GRINDABLE, GENERATE_ROTOR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
+                    GENERATE_SPRING_SMALL, GENERATE_FRAME, DISABLE_DECOMPOSITION, GENERATE_FINE_WIRE, GENERATE_GEAR,
+                    GENERATE_DENSE)
+            .ore()
+            .fluidPipeProperties(7788, 12000, true)
+            .cableProperties(V[UV], 32, 4)
+            .blast(b -> b.temp(7200, BlastProperty.GasTier.HIGH)
+                    .blastStats(VA[GTValues.ZPM], 4000)
+                    .vacuumStats(VA[LuV]))
+            .addOreByproducts(GTMaterials.Vanadium, GTMaterials.TungstenSteel)
+            .components(HSLASteel,18, TungstenSteel,12, Vanadium,5, Ultimet,7, Naquadria,4)
+            .buildAndRegister();
+    public static final Material HiddenAlloy = new Material.Builder(GTCEu.id("hidden_alloy"))
+            .dust()
+            .ingot(4)
+            .liquid(new FluidBuilder().temperature(9500))
+            .color(0x204060)
+            .secondaryColor(0x306080)
+            .iconSet(METALLIC)
+            .appendFlags(EXT2_METAL, MORTAR_GRINDABLE, GENERATE_ROTOR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
+                    GENERATE_SPRING_SMALL, GENERATE_FRAME, DISABLE_DECOMPOSITION, GENERATE_FINE_WIRE, GENERATE_GEAR,
+                    GENERATE_DENSE)
+            .ore()
+            .fluidPipeProperties(9500, 20000, true)
+            .cableProperties(V[ZPM], 64, 2)
+            .blast(b -> b.temp(9001, BlastProperty.GasTier.HIGH)
+                    .blastStats(VA[GTValues.LuV], 2000)
+                    .vacuumStats(VA[IV]))
+            .addOreByproducts(GTMaterials.EchoShard, GTMaterials.Sculk)
+            .components(EchoShard,10, Sculk,6, RedAlloy,4, BlueAlloy,4, Apatite,4)
+            .buildAndRegister();
     public static final Material Alumina = new Material.Builder(GTCEu.id("alumina"))
             .dust()
             .color(0x09474A)
@@ -255,6 +314,13 @@ public class CTNHMaterials {
                     .temperature(20)
                     .customStill())
             .color(0x34daf7)
+            .buildAndRegister();
+    public static final Material BiologicalCultureMediumStockSolution = new Material.Builder(GTCEu.id("biologicalculturemediumstocksolution"))
+            .dust()
+            .liquid(new FluidBuilder()
+                    .temperature(303)
+                    .customStill())
+            .color(0x228B22)
             .buildAndRegister();
     public static final Material Mana = new Material.Builder(GTCEu.id("mana"))
             .liquid()
