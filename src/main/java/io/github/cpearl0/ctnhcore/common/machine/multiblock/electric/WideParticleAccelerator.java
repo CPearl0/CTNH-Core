@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.capability.recipe.*;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
@@ -173,48 +174,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
                     parallel = ParallelLogic.getParallelAmount(machine, recipe, 1024);
                     if(hatchs>0)parallel=hatchs*10;
                 }
-                if(recipe.data.getString("darkmatter").equals("nu"))
-                {
-                    if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
-                    {
-                        if(wmachine.isconnect&&gmachine.isconnect)
-                        {
-                            gmachine.anti_nu+=1000*parallel;
-                        }
-                        else{
-                            wmachine.warring=true;
-                        }
-                    }
 
-                }
-                if(recipe.data.getString("darkmatter").equals("proton"))
-                {
-                    if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
-                    {
-                        if(wmachine.isconnect&&gmachine.isconnect)
-                        {
-                            gmachine.anti_proton+=1000*parallel;
-                        }
-                        else{
-                            wmachine.warring=true;
-                        }
-                    }
-
-                }
-                if(recipe.data.getString("darkmatter").equals("electric"))
-                {
-                    if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
-                    {
-                        if(wmachine.isconnect&&gmachine.isconnect)
-                        {
-                            gmachine.anti_electron+=1000*parallel;
-                        }
-                        else{
-                            wmachine.warring=true;
-                        }
-                    }
-
-                }
                 if(recipe.data.getString("type").equals("addnu"))
                     wmachine.add_parallel_nu=parallel;
                 if(recipe.data.getString("type").equals("addproton"))
@@ -225,6 +185,57 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
                         .parallels(parallel)
                         .eutMultiplier(Math.abs(parallel))
                         .build();
+            }
+            if(recipe.data.getString("darkmatter").equals("nu"))
+            {
+                if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
+                {
+                    if(wmachine.isconnect&&gmachine.isconnect)
+                    {
+                        gmachine.anti_nu+=1000*parallel;
+                    }
+                    else{
+                        wmachine.warring=true;
+                    }
+                }
+                else{
+                    wmachine.warring=true;
+                }
+
+            }
+            if(recipe.data.getString("darkmatter").equals("proton"))
+            {
+                if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
+                {
+                    if(wmachine.isconnect&&gmachine.isconnect)
+                    {
+                        gmachine.anti_proton+=1000*parallel;
+                    }
+                    else{
+                        wmachine.warring=true;
+                    }
+                }
+                else{
+                    wmachine.warring=true;
+                }
+
+            }
+            if(recipe.data.getString("darkmatter").equals("electric"))
+            {
+                if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
+                {
+                    if(wmachine.isconnect&&gmachine.isconnect)
+                    {
+                        gmachine.anti_electron+=1000*parallel;
+                    }
+                else{
+                        wmachine.warring=true;
+                    }
+                }
+                else{
+                    wmachine.warring=true;
+                }
+
             }
             var muti=1.0;
             if(wmachine.nu_speed+wmachine.element_speed+ wmachine.proton_speed>10000) {
@@ -251,6 +262,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
         {
             textList.add(textList.size(),Component.translatable("ctnh.connect"));
         }
+
         textList.add(textList.size(),Component.translatable("ctnh.accelerator.nu_speed",String.format("%.2f",nu_speed)));
         textList.add(textList.size(),Component.translatable("ctnh.accelerator.proton_speed",String.format("%.2f",proton_speed)));
         textList.add(textList.size(),Component.translatable("ctnh.accelerator.element_speed",String.format("%.2f",element_speed)));

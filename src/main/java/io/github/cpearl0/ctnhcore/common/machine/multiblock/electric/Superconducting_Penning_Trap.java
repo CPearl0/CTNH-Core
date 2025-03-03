@@ -1,11 +1,13 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
+import com.gregtechceu.gtceu.api.capability.IControllable;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
@@ -27,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMachine implements ITieredMachine, IExplosionMachine {
+public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMachine implements ITieredMachine, IExplosionMachine, IControllable {
 
     public BlockPos pos;
     public Level level;
@@ -41,6 +43,8 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
     public String AN ="anti_nu";
     public int tickwarring=0;
     private IEnergyContainer energyContainer;
+    private int energy=0;
+    public boolean no_energy_waring=false;
     @Nullable
     protected TickableSubscription tickSubs;
 
@@ -53,6 +57,23 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
         super.onStructureFormed();
         List<IEnergyContainer> energyContainers = new ArrayList<>();
         this.energyContainer=getEnergyContainer();
+        if (getLevel() instanceof ServerLevel serverLevel) {
+            serverLevel.getServer().tell(new TickTask(0, this::updateTickSubscription));
+        }
+    }
+    @Override
+    public void onStructureInvalid() {
+        super.onStructureInvalid();
+        this.energyContainer = new EnergyContainerList(new ArrayList<>());
+
+    }
+    @Override
+    public void onUnload() {
+        super.onUnload();
+        if (tickSubs != null) {
+            tickSubs.unsubscribe();
+            tickSubs = null;
+        }
     }
     @Override
     public void onLoad() {
@@ -83,17 +104,31 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
             energyToConsume+=32768;
         }
         energyToConsume+=(anti_electron+anti_proton+anti_nu)/10;
+        energy=energyToConsume;
         this.energyContainer=getEnergyContainer();
         if (this.energyContainer.getEnergyStored() >= energyToConsume) {
                 long consumed = this.energyContainer.removeEnergy(energyToConsume);
                 if (consumed == energyToConsume) {
                     getRecipeLogic().setStatus(RecipeLogic.Status.WORKING);
+                    no_energy_waring=false;
+                    tickwarring =0;
                 } else {
-                    getRecipeLogic().setStatus(RecipeLogic.Status.WAITING);
+                    no_energy_waring=true;
+                    tickwarring += 1;
+                    {
+                        doExplosion(3f);
+                    }
+                    getRecipeLogic().setWaiting(Component.translatable("gtceu.recipe_logic.insufficient_in"));
                 }
         }
         else {
-            getRecipeLogic().setStatus(RecipeLogic.Status.WAITING);
+            no_energy_waring=true;
+            tickwarring += 1;
+            if(tickwarring>200&&danger())
+            {
+                doExplosion(3f);
+            }
+            getRecipeLogic().setWaiting(Component.translatable("gtceu.recipe_logic.insufficient_in"));
         }
     }
     public void tick() {
@@ -101,7 +136,6 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
         var level=getLevel();
         var pos=MachineUtils.getOffset(this,0,20,6);
         if (isActive()) {
-            tickwarring=0;
             if (getMachine(level, pos) instanceof WideParticleAccelerator gmachine) {
                 isconnect = true;
             }
@@ -109,10 +143,7 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
             if(danger()) {
                 tickwarring += 1;
             }
-            if(tickwarring>200&&danger())
-            {
-                doExplosion(3f);
-            }
+
         }
     }
 //    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
@@ -138,13 +169,23 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
         if(isconnect) {
             textList.add(textList.size(), Component.translatable("ctnh.connect"));
         }
+        if(no_energy_waring)
+        {
+            textList.add(textList.size(), Component.translatable("ctnh.no_energy_waring"));
+        }
+        MultiblockDisplayText.builder(textList, isFormed())
+                .setWorkingStatus(true, isActive() && isWorkingEnabled()) // transform into two-state system for display
+                .setWorkingStatusKeys(
+                        "gtceu.multiblock.idling",
+                        "gtceu.multiblock.idling",
+                        "ctnh.restore_danger")
+                .addEnergyUsageExactLine(energy)
+                .addWorkingStatusLine();
             textList.add(textList.size(),Component.translatable("ctnh.trap_electric_max",String.format("%d",max_eu)));
             textList.add(textList.size(),Component.translatable("ctnh.anti_electric",String.format("%d",anti_electron)));
             textList.add(textList.size(),Component.translatable("ctnh.anti_nu",String.format("%d",anti_nu)));
             textList.add(textList.size(),Component.translatable("ctnh.anti_proton",String.format("%d",anti_proton)));
             textList.add(textList.size(),Component.translatable("ctnh.anti_electric",String.format("%d",anti_electron)));
-
-        super.addDisplayText(textList);
     }
     @Override
     public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {

@@ -372,6 +372,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.anti_electric","反电子量:%d");
         provider.add("ctnh.trap_electric","当前存储电量:%deu");
         provider.add("ctnh.trap_electric_max","允许存储电量上限:%deu");
+        provider.add("ctnh.restore_danger","约束危险物质");
+        provider.add("ctnh.no_energy_waring","§c警告：供电不足，约束场即将失效！");
 
         provider.add("ctnh.beams_overload","§c警告：机器过载！！！");
         provider.add("ctnh.beams_crash","§c机器已损坏");

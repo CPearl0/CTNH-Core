@@ -73,6 +73,7 @@ import static com.gregtechceu.gtceu.common.data.GTMachines.ITEM_IMPORT_BUS;
 import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
 import static com.gregtechceu.gtceu.common.data.GTMaterialItems.MATERIAL_ITEMS;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
 import static com.gregtechceu.gtceu.common.data.machines.GTAEMachines.ITEM_IMPORT_BUS_ME;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.registerLargeCombustionEngine;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
@@ -760,7 +761,7 @@ public class CTNHMultiblockMachines {
 
     public final static MultiblockMachineDefinition LARGE_BOTTLE = REGISTRATE.multiblock("large_bottle",holder -> new MultiblockTankMachine(holder,10000*1000,null))
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(GTRecipeTypes.DUMMY_RECIPES)
+            .recipeType(DUMMY_RECIPES)
             .tooltips(Component.translatable("large_bottle").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.large_bottle.basic"),
                     Component.translatable("ctnh.large_bottle.consume"))
@@ -3003,7 +3004,7 @@ public class CTNHMultiblockMachines {
             .register();
     public final static MultiblockMachineDefinition SUPERCONDUCTING_PENNING_TRAP= REGISTRATE.multiblock("superconducting_penning_trap",  Superconducting_Penning_Trap::new)
             .rotationState(RotationState.NON_Y_AXIS)
-            //.recipeType(CTNHRecipeTypes.TRAP_ENERGY)
+            .recipeType(DUMMY_RECIPES)
 //            .recipeModifiers(Superconducting_Penning_Trap::recipeModifier)
             .tooltips(Component.translatable("ctnh.magic.generator"),
                     Component.translatable("ctnh.magic.generator.1"),
@@ -3052,7 +3053,7 @@ public class CTNHMultiblockMachines {
                     .where("B", Predicates.blocks(HIGH_POWER_CASING.get()))
                     .where("C", Predicates.blocks(WIDESPEEDINGPIPE.get()))
                     .where("D", Predicates.blocks(CASING_NAQUADAH_ALLOY_BLOCK.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                            .or(Predicates.abilities(PartAbility.INPUT_ENERGY)))
                     .where("E", Predicates.blocks(DEPTH_FORCE_FIELD_STABILIZING_CASING.get()))
                     .where("F", Predicates.blocks(MACHINE_CASING_ZPM.get()))
                     .where("G", Predicates.blocks(MATERIAL_BLOCKS.get(TagPrefix.block,Neutronium).get()))
