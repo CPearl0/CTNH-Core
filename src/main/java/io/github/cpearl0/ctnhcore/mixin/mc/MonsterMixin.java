@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.mixin.mc;
 
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -14,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.List;
 import java.util.UUID;
 
 @Mixin(Monster.class)
@@ -64,6 +68,10 @@ public abstract class MonsterMixin extends LivingEntity {
         AttributeInstance armor = this.getAttribute(Attributes.ARMOR);
         if(armor != null){
             armor.addPermanentModifier(new AttributeModifier(uuid3, "armor addition",armorAddition, AttributeModifier.Operation.ADDITION));
+        }
+        List<MobEffect> effects = List.of(MobEffects.MOVEMENT_SPEED,MobEffects.DAMAGE_RESISTANCE,MobEffects.REGENERATION,MobEffects.DAMAGE_BOOST,MobEffects.INVISIBILITY);
+        if(difficulty == 3) {
+            if(Math.random() <= 0.2) this.addEffect(new MobEffectInstance(effects.get((int) (Math.random() * 5)),-1));
         }
         this.setHealth(this.getMaxHealth());
     }
