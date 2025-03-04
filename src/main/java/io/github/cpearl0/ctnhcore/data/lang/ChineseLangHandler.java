@@ -33,6 +33,7 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Stratus.getUnlocalizedName(), "云母钢");
         replace(provider, CTNHMaterials.Zenith_essence.getUnlocalizedName(), "§5天顶源质§r");
         replace(provider, CTNHMaterials.BiologicalCultureMediumStockSolution.getUnlocalizedName(), "生物培养基原液");
+        replace(provider, CTNHMaterials.SterileBiologicalCultureMediumStockSolution.getUnlocalizedName(), "无菌生物培养基原液");
         replace(provider, CTNHMaterials.EVE.getUnlocalizedName(),"EVE高能粒子");
         replace(provider, CTNHMaterials.Ignitium.getUnlocalizedName(), "腾炎");
         replace(provider, CTNHMaterials.QUASER_MANA.getUnlocalizedName(), "类星体魔力");

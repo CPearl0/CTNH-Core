@@ -316,9 +316,14 @@ public class CTNHMaterials {
             .color(0x34daf7)
             .buildAndRegister();
     public static final Material BiologicalCultureMediumStockSolution = new Material.Builder(GTCEu.id("biologicalculturemediumstocksolution"))
-            .dust()
             .liquid(new FluidBuilder()
                     .temperature(303)
+                    .customStill())
+            .color(0x228B22)
+            .buildAndRegister();
+    public static final Material SterileBiologicalCultureMediumStockSolution = new Material.Builder(GTCEu.id("sterilebiologicalculturemediumstocksolution"))
+            .liquid(new FluidBuilder()
+                    .temperature(403)
                     .customStill())
             .color(0x228B22)
             .buildAndRegister();
