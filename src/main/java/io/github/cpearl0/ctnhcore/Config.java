@@ -1,24 +1,22 @@
 package io.github.cpearl0.ctnhcore;
 
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
+import dev.toma.configuration.Configuration;
+import dev.toma.configuration.config.Configurable;
+import dev.toma.configuration.config.format.ConfigFormats;
 
-@Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@dev.toma.configuration.config.Config(id = CTNHCore.MODID)
 public class Config {
-    private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+    public static Config INSTANCE;
+    private static final Object LOCK = new Object();
 
-    private static final ForgeConfigSpec.BooleanValue DISABLE_FTBULTIMINE_ON_GT_ORES = BUILDER
-            .comment("Disable FTBUltimine on GregTech Ores")
-            .define("disableFTBUltimineOnGTOres", true);
-
-    public static final ForgeConfigSpec SPEC = BUILDER.build();
-
-    public static boolean disableFTBUltimineOnGTOres;
-
-    @SubscribeEvent
-    public static void onLoad(ModConfigEvent event) {
-        disableFTBUltimineOnGTOres = DISABLE_FTBULTIMINE_ON_GT_ORES.get();
+    public static void init() {
+        synchronized (LOCK) {
+            if (INSTANCE == null) {
+                INSTANCE = Configuration.registerConfig(Config.class, ConfigFormats.yaml()).getConfigInstance();
+            }
+        }
     }
+    @Configurable
+    @Configurable.Comment({"Disable FTBUltimine on GregTech Ores", "Default: true"})
+    public static boolean disableFTBUltimineOnGTOres = true;
 }

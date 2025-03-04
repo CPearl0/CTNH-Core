@@ -5,8 +5,6 @@ import io.github.cpearl0.ctnhcore.Config;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.registry.*;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class CommonProxy {
@@ -27,7 +25,7 @@ public class CommonProxy {
         CTNHRecipes.init(modEventBus);
         CTNHTemperatureModifierRegister.init();
         CTNHCoreDatagen.init();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        Config.init();
     }
 
     public void addMaterialFlag(MaterialEvent event) {

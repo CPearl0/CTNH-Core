@@ -72,10 +72,10 @@ public class CTNHRecipeModifiers {
         }
         return ModifierFunction.IDENTITY;
     }
-    private static ModifierFunction reduction(MetaMachine machine, @NotNull GTRecipe recipe, double v, double v1) {
+    private static ModifierFunction reduction(MetaMachine machine, @NotNull GTRecipe recipe, double duration, double eut) {
         return ModifierFunction.builder()
-                .durationMultiplier(v)
-                .eutMultiplier(v1)
+                .durationMultiplier(duration)
+                .eutMultiplier(eut)
                 .build();
     }
 

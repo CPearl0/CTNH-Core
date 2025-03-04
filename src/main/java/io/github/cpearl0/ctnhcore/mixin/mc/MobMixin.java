@@ -17,7 +17,7 @@ public abstract class MobMixin extends LivingEntity {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void tick(CallbackInfo ci) {
-        if (this.tickCount % 80 == 0 && this.level().isClientSide) {
+        if (this.tickCount % 120 == 0 && this.level().isClientSide) {
             double healValue = Math.max(1,Math.min(Math.sqrt(this.getMaxHealth()/10),20));
             this.heal((float)(healValue * 0.5 * this.level().getDifficulty().getId()));
         }

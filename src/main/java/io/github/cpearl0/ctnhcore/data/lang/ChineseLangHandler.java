@@ -488,6 +488,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.advanceassemblyline.1", "更好的装配线,但是有序输入");
         provider.add("ctnh.magic.generator","精炼天地之魔精");
         provider.add("ctnh.magic.generator.1","具有8并行，每秒基础消耗12mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
+        provider.add("ctnh.gcym.reduction","配方耗时x0.8，配方耗能x0.6");
+        provider.add("ctnh.boss_summoner.use", "右键方块在其上方生成一只神化boss");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }

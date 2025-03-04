@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.mixin.mc;
 
+import dev.shadowsoffire.attributeslib.api.ALObjects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -28,6 +29,8 @@ public abstract class MonsterMixin extends LivingEntity {
     private static final UUID uuid2 = UUID.fromString("9bee1025-a569-499b-8716-d7af1cfd0c17");
     @Unique
     private static final UUID uuid3 = UUID.fromString("23c17fea-f0ef-438a-a9ee-9654b71f0703");
+    @Unique
+    private static final UUID uuid4 = UUID.fromString("e3fadcc3-1cc6-43b1-9ab9-9df2f59c7cd1");
 
     protected MonsterMixin(EntityType<? extends LivingEntity> p_20966_, Level p_20967_) {
         super(p_20966_, p_20967_);
@@ -57,6 +60,13 @@ public abstract class MonsterMixin extends LivingEntity {
             case 2 -> armorAddition = 2 + (int)(Math.random() * 2.5);
             case 3 -> armorAddition = 4 + (int)(Math.random() * 3.5);
         }
+        int armorPierceAddition = 0;
+        switch (difficulty){
+            case 0 -> armorPierceAddition = 0;
+            case 1 -> armorPierceAddition = 0;
+            case 2 -> armorPierceAddition = 1 + (int)(Math.random() * 2);
+            case 3 -> armorPierceAddition = 2 + (int)(Math.random() * 3);
+        }
         AttributeInstance maxHealth = this.getAttribute(Attributes.MAX_HEALTH);
         if(maxHealth != null){
             maxHealth.addPermanentModifier(new AttributeModifier(uuid1,"health multiply",healthMultiplier - 1, AttributeModifier.Operation.MULTIPLY_TOTAL));
@@ -68,6 +78,10 @@ public abstract class MonsterMixin extends LivingEntity {
         AttributeInstance armor = this.getAttribute(Attributes.ARMOR);
         if(armor != null){
             armor.addPermanentModifier(new AttributeModifier(uuid3, "armor addition",armorAddition, AttributeModifier.Operation.ADDITION));
+        }
+        AttributeInstance armorPierce = this.getAttribute(ALObjects.Attributes.ARMOR_PIERCE.get());
+        if(armorPierce != null) {
+            armorPierce.addPermanentModifier(new AttributeModifier(uuid4, "armor pierce addition", armorPierceAddition, AttributeModifier.Operation.ADDITION));
         }
         List<MobEffect> effects = List.of(MobEffects.MOVEMENT_SPEED,MobEffects.DAMAGE_RESISTANCE,MobEffects.REGENERATION,MobEffects.DAMAGE_BOOST,MobEffects.INVISIBILITY);
         if(difficulty == 3) {

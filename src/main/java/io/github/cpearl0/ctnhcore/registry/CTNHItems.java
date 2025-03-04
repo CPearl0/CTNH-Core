@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
+import io.github.cpearl0.ctnhcore.common.item.BossSummonerBehavior;
 import io.github.cpearl0.ctnhcore.common.item.ProgramItem;
 import io.github.cpearl0.ctnhcore.common.item.TestingTerminalBehavior;
 import net.minecraft.ChatFormatting;
@@ -109,6 +110,22 @@ public class CTNHItems {
     public static ItemEntry<AstronomyCircuitItem> ASTRONOMY_CIRCUIT_1 = REGISTRATE
             .item("astronomy_circuit_1", properties -> new AstronomyCircuitItem(properties, 1, GREAT_ASTRONOMY_CIRCUIT_1))
             .lang("Astronomy Circuit I")
+            .register();
+    public static ItemEntry<ComponentItem> BOSS_SUMMONER = REGISTRATE
+            .item("boss_summoner", ComponentItem::create)
+            .lang("Boss Summoner")
+            .onRegister(attach(new BossSummonerBehavior(1)))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.RED));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> ADVANCED_BOSS_SUMMONER = REGISTRATE
+            .item("advanced_boss_summoner", ComponentItem::create)
+            .lang("Advanced Boss Summoner")
+            .onRegister(attach(new BossSummonerBehavior(2)))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.RED));
+            })))
             .register();
 
     public static ItemEntry<ProgramItem> PROGRAM_EMPTY = registerProgramItem("empty");

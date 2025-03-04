@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
@@ -207,10 +208,11 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
         if (machine instanceof FactoryMachine fmachine) {
             var modifierFunction = ModifierFunction.builder();
             var recipeType = fmachine.getRecipeType();
-        if(fmachine.basicRate == 0) {
-            return ModifierFunction.NULL;
-        }
-        modifierFunction.durationModifier(ContentModifier.multiplier(1/fmachine.basicRate));
+            var recipeTier = RecipeHelper.getRecipeEUtTier(recipe);
+            if(fmachine.basicRate == 0) {
+                return ModifierFunction.NULL;
+            }
+            modifierFunction.durationModifier(ContentModifier.multiplier(1/fmachine.basicRate * Math.pow(recipeTier,2)));
             if (recipeType.equals(GTRecipeTypes.CENTRIFUGE_RECIPES)) {
                 return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,(int) Math.sqrt(fmachine.CENTRIFUGE_COUNT)));
             } else if (recipeType.equals(GTRecipeTypes.LATHE_RECIPES)) {
