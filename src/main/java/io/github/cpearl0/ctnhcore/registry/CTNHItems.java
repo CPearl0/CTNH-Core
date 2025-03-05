@@ -1,14 +1,9 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.google.common.collect.ImmutableList;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
-import com.simibubi.create.foundation.item.ItemDescription;
 import com.tterrag.registrate.util.entry.ItemEntry;
-import io.github.cpearl0.ctnhcore.common.item.AstronomyCircuitItem;
-import io.github.cpearl0.ctnhcore.common.item.BossSummonerBehavior;
-import io.github.cpearl0.ctnhcore.common.item.ProgramItem;
-import io.github.cpearl0.ctnhcore.common.item.TestingTerminalBehavior;
+import io.github.cpearl0.ctnhcore.common.item.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -111,16 +106,16 @@ public class CTNHItems {
             .item("astronomy_circuit_1", properties -> new AstronomyCircuitItem(properties, 1, GREAT_ASTRONOMY_CIRCUIT_1))
             .lang("Astronomy Circuit I")
             .register();
-    public static ItemEntry<ComponentItem> BOSS_SUMMONER = REGISTRATE
-            .item("boss_summoner", ComponentItem::create)
+    public static ItemEntry<ThrowItem> BOSS_SUMMONER = REGISTRATE
+            .item("boss_summoner", ThrowItem::new)
             .lang("Boss Summoner")
             .onRegister(attach(new BossSummonerBehavior(1)))
             .onRegister(attach(new TooltipBehavior(list -> {
                 list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.RED));
             })))
             .register();
-    public static ItemEntry<ComponentItem> ADVANCED_BOSS_SUMMONER = REGISTRATE
-            .item("advanced_boss_summoner", ComponentItem::create)
+    public static ItemEntry<ThrowItem> ADVANCED_BOSS_SUMMONER = REGISTRATE
+            .item("advanced_boss_summoner", ThrowItem::new)
             .lang("Advanced Boss Summoner")
             .onRegister(attach(new BossSummonerBehavior(2)))
             .onRegister(attach(new TooltipBehavior(list -> {

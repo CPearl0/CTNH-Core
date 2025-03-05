@@ -489,7 +489,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.magic.generator","精炼天地之魔精");
         provider.add("ctnh.magic.generator.1","具有8并行，每秒基础消耗12mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.gcym.reduction","配方耗时x0.8，配方耗能x0.6");
-        provider.add("ctnh.boss_summoner.use", "右键方块在其上方生成一只神化boss");
+        provider.add("ctnh.boss_summoner.use", "右键长按蓄力掷出，在落点处召唤一只神化boss，每次使用有五分之一的概率消耗");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -542,6 +542,8 @@ public class ChineseLangHandler {
         provider.add(CTNHItems.STARLIGHT_RUNE.get(), "星光符文");
         provider.add(CTNHItems.QUASAR_RUNE.get(), "§5类星体§r符文");
         provider.add(CTNHItems.PROLIFERATION_RUNE.get(), "增殖符文");
+        provider.addItem(CTNHItems.BOSS_SUMMONER, "boss召唤器");
+        provider.addItem(CTNHItems.ADVANCED_BOSS_SUMMONER, "进阶boss召唤器");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL, "进阶线程控制外壳");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_LINE, "进阶装配核心");

@@ -10,6 +10,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
@@ -85,7 +86,12 @@ public abstract class MonsterMixin extends LivingEntity {
         }
         List<MobEffect> effects = List.of(MobEffects.MOVEMENT_SPEED,MobEffects.DAMAGE_RESISTANCE,MobEffects.REGENERATION,MobEffects.DAMAGE_BOOST,MobEffects.INVISIBILITY);
         if(difficulty == 3) {
-            if(Math.random() <= 0.2) this.addEffect(new MobEffectInstance(effects.get((int) (Math.random() * 5)),-1));
+            if(Math.random() <= 0.2) {
+                if(this.getType().equals(EntityType.CREEPER)){
+                    this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, -1,3));
+                }
+                this.addEffect(new MobEffectInstance(effects.get((int) (Math.random() * 5)), -1));
+            }
         }
         this.setHealth(this.getMaxHealth());
     }
