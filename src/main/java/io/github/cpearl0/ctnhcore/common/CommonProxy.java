@@ -1,7 +1,7 @@
 package io.github.cpearl0.ctnhcore.common;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
-import io.github.cpearl0.ctnhcore.Config;
+import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.data.CTNHCoreDatagen;
 import io.github.cpearl0.ctnhcore.registry.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -25,7 +25,7 @@ public class CommonProxy {
         CTNHRecipes.init(modEventBus);
         CTNHTemperatureModifierRegister.init();
         CTNHCoreDatagen.init();
-        Config.init();
+        CTNHConfig.init();
     }
 
     public void addMaterialFlag(MaterialEvent event) {

@@ -1,10 +1,9 @@
 package io.github.cpearl0.ctnhcore.mixin;
 
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
 import dev.ftb.mods.ftbultimine.FTBUltimine;
+import io.github.cpearl0.ctnhcore.CTNHConfig;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.Config;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.TagEntry;
@@ -24,7 +23,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS
 public class TagLoaderMixin {
     @Inject(method = "load", at = @At("RETURN"))
     public void CTNH$loadTags(ResourceManager manager, CallbackInfoReturnable<Map<ResourceLocation, List<TagLoader.EntryWithSource>>> cir) {
-        if (Config.disableFTBUltimineOnGTOres) {
+        if (CTNHConfig.INSTANCE.ftbPlugin.disableFTBUltimineOnGTOres) {
             List<TagLoader.EntryWithSource> tags = new ArrayList<>();
             MATERIAL_BLOCKS.rowMap().forEach((prefix, map) -> {
                 if (TagPrefix.ORES.containsKey(prefix)) {
