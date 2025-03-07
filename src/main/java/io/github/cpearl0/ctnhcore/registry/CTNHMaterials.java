@@ -278,7 +278,7 @@ public class CTNHMaterials {
             .liquid(new FluidBuilder().temperature(9500))
             .color(0x204060)
             .secondaryColor(0x306080)
-            .iconSet(GTNNMaterials.MaterialIcons.InfinityIcon)
+            .iconSet(METALLIC)
             .appendFlags(EXT2_METAL, MORTAR_GRINDABLE, GENERATE_ROTOR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
                     GENERATE_SPRING_SMALL, GENERATE_FRAME, DISABLE_DECOMPOSITION, GENERATE_FINE_WIRE, GENERATE_GEAR,
                     GENERATE_DENSE)
