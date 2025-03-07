@@ -363,8 +363,8 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.PYROLYSE_RECIPES)
             .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip"),
-                    Component.translatable("ctnh.pyrolyse_oven.1"),
-                    Component.translatable("gtceu.pyrolyse_oven"))
+                    Component.translatable("gtceu.pyrolyse_oven"),
+                    Component.translatable("ctnh.pyrolyse_oven.1"))
             .recipeModifiers(GTRecipeModifiers::multiSmelterParallel)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()

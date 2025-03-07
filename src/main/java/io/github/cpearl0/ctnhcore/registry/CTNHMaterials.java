@@ -247,7 +247,7 @@ public class CTNHMaterials {
             .ore()
             .fluidPipeProperties(13100, 50000, true)
             .cableProperties(V[UIV], 128, 8)
-            .blast(b -> b.temp(12800, BlastProperty.GasTier.HIGH)
+            .blast(b -> b.temp(12500, BlastProperty.GasTier.HIGH)
                     .blastStats(VA[GTValues.UV], 6000)
                     .vacuumStats(VA[LuV]))
             .addOreByproducts(GTMaterials.HSSS, GTMaterials.Trinium)
