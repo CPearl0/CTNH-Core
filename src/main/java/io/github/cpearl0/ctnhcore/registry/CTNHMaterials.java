@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import dev.arbor.gtnn.data.GTNNMaterials;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import net.minecraft.server.commands.PublishCommand;
@@ -277,7 +278,7 @@ public class CTNHMaterials {
             .liquid(new FluidBuilder().temperature(9500))
             .color(0x204060)
             .secondaryColor(0x306080)
-            .iconSet(METALLIC)
+            .iconSet(GTNNMaterials.MaterialIcons.InfinityIcon)
             .appendFlags(EXT2_METAL, MORTAR_GRINDABLE, GENERATE_ROTOR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
                     GENERATE_SPRING_SMALL, GENERATE_FRAME, DISABLE_DECOMPOSITION, GENERATE_FINE_WIRE, GENERATE_GEAR,
                     GENERATE_DENSE)

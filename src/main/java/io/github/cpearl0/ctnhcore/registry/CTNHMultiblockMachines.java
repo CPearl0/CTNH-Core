@@ -66,6 +66,7 @@ import java.util.stream.Stream;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.abilities;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
@@ -361,10 +362,10 @@ public class CTNHMultiblockMachines {
     public final static MultiblockMachineDefinition COKE_OVEN = REGISTRATE.multiblock("coke_oven", CoilWorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.PYROLYSE_RECIPES)
-            .tooltips(Component.translatable("ctnh.multiblock.parallelize.tooltip"))
-            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
-                    Component.translatable("gtceu.pyrolyse_oven")))
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::multiSmelterParallel)
+            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip"),
+                    Component.translatable("ctnh.pyrolyse_oven.1"),
+                    Component.translatable("gtceu.pyrolyse_oven"))
+            .recipeModifiers(GTRecipeModifiers::multiSmelterParallel)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABBBA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
@@ -375,7 +376,6 @@ public class CTNHMultiblockMachines {
                     .where("A", Predicates.frames(GTMaterials.StainlessSteel))
                     .where("B", Predicates.blocks(HEAT_VENT.get()))
                     .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(130)
-                            .or(abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
                     .where("#", Predicates.any())
@@ -3109,6 +3109,37 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer(CTNHCore.id("block/casings/advance_machine_casing_solid_steel"),
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
+
+    public final static MultiblockMachineDefinition CultivationRoom= REGISTRATE.multiblock("cultivationroom",  WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.CULTIVATION_ROOM)
+            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
+                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .tooltips(Component.translatable("ctnh.cultivationroom.1").withStyle(ChatFormatting.GREEN),
+                    Component.translatable("ctnh.cultivationroom.2"),
+                    Component.translatable("ctnh.multiblock.parallelize.tooltip")
+            )
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAA", "ABBBA", "ACCCA", "ADDDA", "ADDDA", "ADDDA", "AAAAA", "ABBBA", "AAAAA")
+                    .aisle("AAAAA", "BBBBB", "CDDDC", "DEEED", "DEEED", "DEEED", "ADDDA", "BBBBB", "AAAAA")
+                    .aisle("AAAAA", "BBBBB", "CDDDC", "DEEED", "DEEED", "DEEED", "ADDDA", "BBBBB", "AAAAA")
+                    .aisle("AAAAA", "BBBBB", "CDDDC", "DEEED", "DEEED", "DEEED", "ADDDA", "BBBBB", "AAAAA")
+                    .aisle("AAAAA", "ABBBA", "AC@CA", "ADDDA", "ADDDA", "ADDDA", "AAAAA", "ABBBA", "AAAAA")
+                    .where("A", blocks(CASING_STAINLESS_CLEAN.get()))
+                    .where("B", blocks(FILTER_CASING_STERILE.get()))
+                    .where("C", Predicates.autoAbilities(definition.getRecipeTypes())
+                            .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
+                            .or(abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
+                            .or(blocks(CASING_STAINLESS_CLEAN.get())))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("D", Predicates.blocks(CLEANROOM_GLASS.get()))
+                    .where("E", Predicates.blocks(WATER))
+                    .build()
+            )
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .register();
+
 
     public static void init() {
 
