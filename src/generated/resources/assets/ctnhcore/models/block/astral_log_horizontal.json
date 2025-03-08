@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "ctnhcore:block/astral_log_top",
+    "side": "ctnhcore:block/astral_log"
+  }
+}

@@ -1,8 +1,7 @@
 {
-  "parent": "minecraft:block/cube_bottom_top",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "bottom": "ctnhcore:block/casings/map/atomssplit/bottom",
-    "side": "ctnhcore:block/casings/map/atomssplit/side",
-    "top": "ctnhcore:block/casings/map/atomssplit/top"
+    "end": "ctnhcore:block/casings/map/atomssplit/top",
+    "side": "ctnhcore:block/casings/map/atomssplit/side"
   }
 }

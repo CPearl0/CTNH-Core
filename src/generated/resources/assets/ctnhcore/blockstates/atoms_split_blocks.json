@@ -1,7 +1,16 @@
 {
   "variants": {
-    "": {
+    "axis=x": {
+      "model": "ctnhcore:block/atoms_split_blocks_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
       "model": "ctnhcore:block/atoms_split_blocks"
+    },
+    "axis=z": {
+      "model": "ctnhcore:block/atoms_split_blocks_horizontal",
+      "x": 90
     }
   }
 }

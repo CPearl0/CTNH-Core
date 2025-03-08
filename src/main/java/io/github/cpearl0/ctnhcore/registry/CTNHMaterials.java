@@ -350,6 +350,9 @@ public class CTNHMaterials {
             .color(0xffd919)
             .iconSet(METALLIC)
             .buildAndRegister();
+    public static final Material starlight = new Material.Builder(GTCEu.id("starlight"))
+            .liquid(new FluidBuilder().temperature(50).textures(true,true).block())
+            .buildAndRegister();
     public static void init() {
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);

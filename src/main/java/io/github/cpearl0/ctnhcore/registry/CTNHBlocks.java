@@ -17,9 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.GlassBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
@@ -129,9 +127,12 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createGlassCasingBlock(
             "bronze_framed_glass",CTNHCore.id("block/casings/bronze_framed_glass"), () -> RenderType::cutoutMipped);
 
-    public static final BlockEntry<Block> TEST_CASING = createMapCasing("test_machine_casing", "t1");
-    public static final BlockEntry<Block> ATOMS_SPLIT_BLOCKS = createMapCasing("atoms_split_blocks", "atomssplit");
+    public static final BlockEntry<RotatedPillarBlock> TEST_CASING = createRotateCasing("test_machine_casing", "t1");
+    public static final BlockEntry<RotatedPillarBlock> ATOMS_SPLIT_BLOCKS = createRotateCasing("atoms_split_blocks", "atomssplit");
 
+    public static final BlockEntry<RotatedPillarBlock> ASTRAL_LOG = createLogLikeBlock("astral_log");
+    public static final BlockEntry<Block> ASTRAL_STONE = createStoneLikeBlock("astral_stone", CTNHCore.id("block/stones/astral_stone"));
+    public static final BlockEntry<FallingBlock> ASTRAL_SAND = createSandLikeBlock("astral_sand", CTNHCore.id("block/sands/astral_sand"));
     public static void init() {
 
     }
@@ -188,8 +189,8 @@ public class CTNHBlocks {
                 .register();
     }
     @SuppressWarnings("all")
-    private static BlockEntry<Block> createMapCasing(String name, String map) {
-        return REGISTRATE.block(name, Block::new)
+    private static BlockEntry<RotatedPillarBlock> createRotateCasing(String name, String map) {
+        return REGISTRATE.block(name, RotatedPillarBlock::new)
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .addLayer(() -> RenderType::cutoutMipped)
                 .blockstate(CTNHModels.createMapCasingModel(name, map))
@@ -198,5 +199,38 @@ public class CTNHBlocks {
                 .build()
                 .register();
     }
-
+    public static BlockEntry<Block> createStoneLikeBlock(String name, ResourceLocation texture) {
+        return REGISTRATE.block(name, Block::new)
+                .initialProperties(() -> Blocks.STONE)
+                .blockstate((ctx, prov) -> {
+                    prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
+                })
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
+                .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new)
+                .build()
+                .register();
+    }
+    private static BlockEntry<RotatedPillarBlock> createLogLikeBlock(String name) {
+        return REGISTRATE.block(name, RotatedPillarBlock::new)
+                .initialProperties(() -> Blocks.OAK_WOOD)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate((ctx,prov)->prov.logBlock(ctx.getEntry()))
+                .tag(BlockTags.MINEABLE_WITH_AXE)
+                .item(BlockItem::new)
+                .build()
+                .register();
+    }
+    public static BlockEntry<FallingBlock> createSandLikeBlock(String name, ResourceLocation texture) {
+        return REGISTRATE.block(name, FallingBlock::new)
+                .initialProperties(() -> Blocks.SAND)
+                .blockstate((ctx, prov) -> {
+                    prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
+                })
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
+                .tag(BlockTags.MINEABLE_WITH_SHOVEL)
+                .item(BlockItem::new)
+                .build()
+                .register();
+    }
 }

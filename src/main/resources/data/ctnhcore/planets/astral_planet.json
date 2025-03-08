@@ -1,0 +1,11 @@
+{
+  "dimension": "ctnhcore:astral_planet",
+  "gravity": 7.134,
+  "orbit": "ctnhcore:astral_orbit",
+  "oxygen": false,
+  "solar_power": 64,
+  "solar_system": "ad_astra:proxima_centauri",
+  "temperature": -80,
+  "tier": 6,
+  "additional_launch_dimensions": []
+}

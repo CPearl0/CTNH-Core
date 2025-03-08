@@ -1,0 +1,52 @@
+{
+  "temperature_modifier": "frozen",
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
+  },
+  "downfall": 0,
+  "effects": {
+    "fog_color": 0,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "sky_color": 1447444,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "music": {
+      "sound": "ctnhcore:plague_wasteland.bgm",
+      "min_delay": 0,
+      "max_delay": 10,
+      "replace_current_music": true
+    }
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.7
+}

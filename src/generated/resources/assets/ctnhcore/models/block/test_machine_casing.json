@@ -1,8 +1,7 @@
 {
-  "parent": "minecraft:block/cube_bottom_top",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "bottom": "ctnhcore:block/casings/map/t1/bottom",
-    "side": "ctnhcore:block/casings/map/t1/side",
-    "top": "ctnhcore:block/casings/map/t1/top"
+    "end": "ctnhcore:block/casings/map/t1/top",
+    "side": "ctnhcore:block/casings/map/t1/side"
   }
 }

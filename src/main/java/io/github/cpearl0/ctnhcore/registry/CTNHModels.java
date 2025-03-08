@@ -9,6 +9,7 @@ import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraftforge.client.model.generators.ModelFile;
 
 public class CTNHModels {
@@ -24,13 +25,10 @@ public class CTNHModels {
                         .partialState().with(ActiveBlock.ACTIVE, true).modelForState().modelFile(active).addModel();
             };
     }
-    public static NonNullBiConsumer<DataGenContext<Block, Block>, RegistrateBlockstateProvider> createMapCasingModel(String name,
-                                                                                                                       String map) {
+    public static NonNullBiConsumer<DataGenContext<Block, RotatedPillarBlock>, RegistrateBlockstateProvider> createMapCasingModel(String name,
+                                                                                                                                  String map) {
         return (ctx, prov) -> {
-            prov.simpleBlock(ctx.getEntry(), prov.models().cubeBottomTop(name,
-                    CTNHCore.id("block/casings/map/%s/side".formatted(map)),
-                    CTNHCore.id("block/casings/map/%s/bottom".formatted(map)),
-                    CTNHCore.id("block/casings/map/%s/top".formatted(map))));
+            prov.axisBlock(ctx.getEntry(),  CTNHCore.id("block/casings/map/%s/side".formatted(map)),CTNHCore.id("block/casings/map/%s/top".formatted(map)));
         };
     }
 }

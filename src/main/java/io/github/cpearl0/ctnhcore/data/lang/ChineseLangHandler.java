@@ -37,6 +37,7 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.EVE.getUnlocalizedName(),"EVE高能粒子");
         replace(provider, CTNHMaterials.Ignitium.getUnlocalizedName(), "腾炎");
         replace(provider, CTNHMaterials.QUASER_MANA.getUnlocalizedName(), "类星体魔力");
+        replace(provider, CTNHMaterials.starlight.getUnlocalizedName(), "星能液");
         //Recipe Type
         provider.add("gtceu.phase_inversion","反相蚀刻");
         provider.add("gtceu.underfloor_heating_system", "地暖");
@@ -595,6 +596,9 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.QUASAR_ENERGY_STABILIZATION_CASING,"类星体能量稳定机械外壳");
         provider.addBlock(CTNHBlocks.WIDESPEEDINGPIPE,"广粒子加速器通道");
         provider.addBlock(CTNHBlocks.ARC_CELL,"电弧发生器");
+        provider.addBlock(CTNHBlocks.ASTRAL_LOG, "星辉木");
+        provider.addBlock(CTNHBlocks.ASTRAL_STONE, "星辉石");
+        provider.addBlock(CTNHBlocks.ASTRAL_SAND, "星辉沙");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");

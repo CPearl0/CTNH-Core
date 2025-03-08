@@ -1,0 +1,14 @@
+{
+  "plague_wasteland.bgm": {
+    "sounds": [
+      "astral_infection"
+    ],
+    "subtitle": "subtitle.ctnhcore.bgm.plague_wasteland"
+  },
+  "plague_desert.bgm": {
+    "sounds": [
+      "astral_deus"
+    ],
+    "subtitle": "subtitle.ctnhcore.bgm.plague_desert"
+  }
+}
