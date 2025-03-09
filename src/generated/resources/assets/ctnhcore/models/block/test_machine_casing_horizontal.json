@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "ctnhcore:block/casings/map/t1/top",
+    "side": "ctnhcore:block/casings/map/t1/side"
+  }
+}

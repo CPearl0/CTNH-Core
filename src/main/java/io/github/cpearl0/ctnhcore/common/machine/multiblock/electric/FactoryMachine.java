@@ -212,7 +212,7 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
             if(fmachine.basicRate == 0) {
                 return ModifierFunction.NULL;
             }
-            modifierFunction.durationModifier(ContentModifier.multiplier(1/fmachine.basicRate * Math.pow(recipeTier,2)));
+            modifierFunction.durationModifier(ContentModifier.multiplier(2/fmachine.basicRate * Math.pow(recipeTier,2)));
             if (recipeType.equals(GTRecipeTypes.CENTRIFUGE_RECIPES)) {
                 return modifierFunction.build().andThen(CTNHRecipeModifiers.accurateParallel(machine,recipe,(int) Math.sqrt(fmachine.CENTRIFUGE_COUNT)));
             } else if (recipeType.equals(GTRecipeTypes.LATHE_RECIPES)) {
@@ -283,6 +283,6 @@ public class FactoryMachine extends WorkableElectricMultiblockMachine implements
         updateBasicRate();
         super.addDisplayText(textList);
         textList.add(Component.translatable("ctnh.multiblock.sweat_shop.villager_count",VILLAGER_COUNT));
-        textList.add(Component.translatable("ctnh.multiblock.sweat_shop.basic_rate",String.format("%.1f",basicRate)));
+        textList.add(Component.translatable("ctnh.multiblock.sweat_shop.basic_rate",String.format("%.2f",basicRate)));
     }
 }

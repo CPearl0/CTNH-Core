@@ -577,6 +577,7 @@ public class CTNHMultiblockMachines {
             .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.6"))
             .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.7"))
             .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.8"))
+            .tooltips(Component.translatable("ctnh.sweat_shop.tooltips.9"))
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("aaaaa", "aaaaa", "aaaaa", "aaaaa")

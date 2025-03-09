@@ -162,7 +162,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.sweat_shop.tooltips.5","放入的生产资料(机器)数量决定了对应工作配方的并行数：并行数 = sqrt(机器数)");
         provider.add("ctnh.sweat_shop.tooltips.6","放入机械手可以提高整体配方运行速度，配方耗时x (1/1 + 0.25 * sqrt(机械手数))");
         provider.add("ctnh.sweat_shop.tooltips.7","放入机器的多样性会提高配方运行速度");
-        provider.add("ctnh.sweat_shop.tooltips.8","每5秒机器会消耗(员工数量)份简易员工餐");
+        provider.add("ctnh.sweat_shop.tooltips.8","基础配方耗时为2倍，配方所需的电压等级越高，基础耗时x(配方等级的平方)");
+        provider.add("ctnh.sweat_shop.tooltips.9","每5秒机器会消耗(员工数量)份简易员工餐");
         provider.add("ctnh.demon_will_generator.tooltips.1","借用恶魔之力");
         provider.add("ctnh.demon_will_generator.tooltips.2","利用机器两侧的区块内的恶魔意志浓度差发电，浓度差与发电量呈指数关系");
         provider.add("ctnh.demon_will_generator.tooltips.3","以机器两侧的恶魔合金方块处的意志浓度为基准进行计算");
