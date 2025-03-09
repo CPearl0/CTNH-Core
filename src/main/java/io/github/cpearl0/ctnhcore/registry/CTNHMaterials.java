@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import dev.arbor.gtnn.data.GTNNMaterials;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import net.minecraft.server.commands.PublishCommand;
@@ -246,7 +247,7 @@ public class CTNHMaterials {
             .ore()
             .fluidPipeProperties(13100, 50000, true)
             .cableProperties(V[UIV], 128, 8)
-            .blast(b -> b.temp(12800, BlastProperty.GasTier.HIGH)
+            .blast(b -> b.temp(12500, BlastProperty.GasTier.HIGH)
                     .blastStats(VA[GTValues.UV], 6000)
                     .vacuumStats(VA[LuV]))
             .addOreByproducts(GTMaterials.HSSS, GTMaterials.Trinium)

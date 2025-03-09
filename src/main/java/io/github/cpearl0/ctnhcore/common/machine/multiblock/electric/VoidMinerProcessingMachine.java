@@ -263,6 +263,11 @@ public class VoidMinerProcessingMachine extends WorkableElectricMultiblockMachin
         blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_infinity_catalyst")));
         blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_starmetal")));
         blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_jasper")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_flowing_amber_gold")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_special_composite_steel_m77")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_hidden_alloy")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_iridium")));
+        blacklist.add(ForgeRegistries.ITEMS.getValue(new ResourceLocation("gtceu:raw_osmium")));
 
         return blacklist;
     }

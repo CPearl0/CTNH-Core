@@ -50,6 +50,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.meadow","牧场养殖");
         provider.add("gtceu.chemical_generator","化学能发电");
         provider.add("gtceu.void_miner","虚空采矿");
+        provider.add("gtceu.cultivation_room", "培养");
         provider.add("gtceu.sintering_kiln","烧结");
         provider.add("gtceu.chemical_vapor_deposition","化学气相沉积");
         provider.add("gtceu.martial_morality_eye","武德之眼");
@@ -105,7 +106,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.eye_of_quasar","§5类星体§r§1之§c眼");
         provider.add("ctnh.eye_consumption","启动消耗:%.1f");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
-        provider.add("ctnh.multiblock.parallelize.tooltip", "自带无损超频且可以使用并行仓");
+        provider.add("ctnh.multiblock.parallelize.tooltip", "允许使用并行仓");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "速率：%s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "减少蒸汽的消耗来降低地暖的发热功率");
@@ -152,6 +153,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.forest.5", "水不足时，减少10%的湿度值");
         provider.add("ctnh.forest.6", "配方运行时间不变，但并行值会随湿度值与电压等级上升");
         provider.add("ctnh.forest.7", "比温室好！");
+        provider.add("ctnh.cultivationroom.1", "菌群孕育，菌种滋长");
+        provider.add("ctnh.cultivationroom.2", "运用好这台机器来繁殖那些难以获取的真菌和细菌");
         provider.add("ctnh.sweat_shop.tooltips.1","生产资料与剩余价值");
         provider.add("ctnh.sweat_shop.tooltips.2","工厂内的村民数量决定了工作效率，配方耗时x(2/村民数量)");
         provider.add("ctnh.sweat_shop.tooltips.3","工厂内的有效员工数量受限于工厂大小，初始上限为4，工厂长度每增加4格上限+1");
@@ -376,7 +379,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.trap_electric_max","允许存储电量上限:%deu");
         provider.add("ctnh.restore_danger","约束危险物质");
         provider.add("ctnh.no_energy_waring","§c警告：供电不足，约束场即将失效！");
-
+        provider.add("ctnh.pyrolyse_oven.1","拥有强大的焦化产能来支撑你的木化产线！");
         provider.add("ctnh.beams_overload","§c警告：机器过载！！！");
         provider.add("ctnh.beams_crash","§c机器已损坏");
         provider.add("ctnh.beams_mana","当前魔力量:%.4fM");
@@ -679,6 +682,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.ARC_GENERATOR.getBlock(),"电弧撕裂者");
         provider.add(CTNHMultiblockMachines.ARC_REACTOR.getBlock(),"电弧发生器");
         provider.add(CTNHMultiblockMachines.ADVANCED_ASSEMBLY_LINE.getBlock(), "进阶装配线");
+        provider.add(CTNHMultiblockMachines.CultivationRoom.getBlock(), "培养室");
 
 
 
