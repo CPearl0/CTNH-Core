@@ -140,6 +140,15 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
 
             if(MachineUtils.inputFluid(CTNHMaterials.Mana.getFluid(100000),this))
             {
+                if(MachineUtils.inputFluid(CTNHMaterials.Mana.getFluid((int) ((int)100000*(1+0.05*horizen_power)*mana_parallel)),this))
+                    if(mana+100000*(1+0.05*horizen_power)*mana_parallel<max_mana)
+                    {
+                        mana+=100000*(1+0.05*horizen_power)*mana_parallel;
+                    }
+                    else if(mana<max_mana&&mana+100000*(1+0.05*horizen_power)*mana_parallel>max_mana)
+                    {
+                        mana=max_mana;
+                    }
                 if(mana+100000<max_mana)
                     mana+=100000*(1+0.05*horizen_power)*mana_parallel;
 
@@ -221,8 +230,8 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
         textList.add(Component.translatable("ctnh.twist_consumption",String.format("%.2f",consume_twist())));
         textList.add(Component.translatable("ctnh.beams_stable",String.format("%.2f",-((twist_power/3)+((mana/100000)*(Math.max(twist_power/3,1))))+starlight_power*4+5+tier)));
         textList.add(Component.translatable("ctnh.starlight_consumption",String.format("%.2f",consume_starlight())));
-        textList.add(Component.translatable("ctnh.beams_time",String.format("%.2f",1-Math.max(0.005* twist_power,0.1))));
-        textList.add(Component.translatable("ctnh.beams_eut_consumption",String.format("%.2f",1-0.01* starlight_power)));
+        textList.add(Component.translatable("ctnh.beams_time",String.format("%.2f",1-Math.max(0.01* twist_power,0.1))));
+        textList.add(Component.translatable("ctnh.beams_eut_consumption",String.format("%.2f",Math.max(1-0.003* starlight_power,0.25))));
     }
 
 
