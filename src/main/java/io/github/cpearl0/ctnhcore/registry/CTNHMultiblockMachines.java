@@ -2323,7 +2323,10 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.beams.tips9"),
                     Component.translatable("ctnh.beams.tips7"),
                     Component.translatable("ctnh.beams.tips10"),
-                    Component.translatable("ctnh.beams.tips11")
+                    Component.translatable("ctnh.beams.tips11"),
+                    Component.translatable("ctnh.beams.tips12"),
+                    Component.translatable("ctnh.beams.tips13"),
+                    Component.translatable("ctnh.beams.tips14")
 
 
             )
@@ -3007,9 +3010,11 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
 //            .recipeModifiers(Superconducting_Penning_Trap::recipeModifier)
-            .tooltips(Component.translatable("ctnh.magic.generator"),
-                    Component.translatable("ctnh.magic.generator.1"),
-                    Component.translatable("ctnh.perfect_overclock")
+            .tooltips(Component.translatable("ctnh.trap.1"),
+                    Component.translatable("ctnh.trap.2"),
+                    Component.translatable("ctnh.trap.3"),
+                    Component.translatable("ctnh.trap.4"),
+                    Component.translatable("ctnh.trap.5")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#############BBBCCCCCCCBBB#############", "############DDD#########DDD############", "############DDD#########DDD############", "############DDD#########DDD############", "#############BBBCCCCCCCBBB#############", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################")
@@ -3067,7 +3072,7 @@ public class CTNHMultiblockMachines {
                     .where("N", Predicates.abilities(PartAbility.COMPUTATION_DATA_RECEPTION))
                     .where("O", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
-            .workableCasingRenderer((CTNHCore.id("block/casings/nq_casing")), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .workableCasingRenderer((CTNHCore.id("block/casings/nq_alloy_casing")), GTCEu.id("block/multiblock/implosion_compressor"), false)
             .register();
 
     public static final MultiblockMachineDefinition ADVANCED_ASSEMBLY_LINE = GTRegistration.REGISTRATE
