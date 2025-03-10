@@ -392,7 +392,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.beams_mana_required","魔力需求:%.2fM");
         provider.add("ctnh.beams_mana_consumption","消耗魔力:%.2fM");
         provider.add("ctnh.beams_time","运行时间倍率:%.2f");
-        provider.add("ctnh.beams_eut_consumption","消耗能量倍率:%.2f");
+        provider.add("ctnh.beams_eut_consumption","消耗能源倍率:%.2f");
         provider.add("ctnh.beams_stable","魔力稳定值:%.2f");
         provider.add("ctnh.beams.story1","§9魔枢巨星，重构万物尺度");
         provider.add("ctnh.beams.story0","配方类型：§9高能魔力扭曲聚变§r");
@@ -404,12 +404,13 @@ public class ChineseLangHandler {
         provider.add("ctnh.beams.tips5","§5类星体符文§r的能量太过强大，它会直接让机器进入§c不稳定状态，但是同样使配方的消耗，产出，电压需求翻10倍");
         provider.add("ctnh.beams.tips6","§c扭曲§r与§9星空§r的对抗决定了机器的稳定性");
         provider.add("ctnh.beams.tips7","稳定性公式:-((twist_power/3)+((mana/100000)*(Math.max(twist_power/3,1))))+starlight_power*2+10+tier*2),当稳定性低于0时机器会开始过载！");
-        provider.add("ctnh.beams.tips8","§c过载度§r每秒提升1且在机器拥有过载度时下§c配方时间会翻4倍§r");
+        provider.add("ctnh.beams.tips8","§c过载度§r每秒提升1且在机器拥有过载度时下§c配方时间会翻1倍§r");
         provider.add("ctnh.beams.tips9","在不处于过载状态下每3秒减少1过载度，§c过载度积累满时机器将会爆炸§r");
         provider.add("ctnh.beams.tips10","§c扭曲符文§r消耗概率公式:每次运行有Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0))概率消耗");
         provider.add("ctnh.beams.tips11","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
         provider.add("ctnh.beams.tips12","该机器无法超频");
         provider.add("ctnh.beams.tips13","运行时每运行1秒，固定消耗10*并行WL液态魔力来为光束注能，可以使用只消耗冷却液的非需求魔力配方来为机器注能");
+        provider.add("ctnh.beams.tips14","注意：如果你在输入魔力时超过了魔力上限，则超过上限的魔力不会被返还。如果你的魔力量超过了上限，则运行时不会减少多出于魔力上限的魔力");
         provider.add("ctnh.magic.parallel","当前并行数:%.2f");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.0", "机器类型：§e核聚变反应堆/§5扭曲聚变反应堆§r");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.1", "§8以不可思议的伟力。§r");
@@ -424,7 +425,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.gtceu.tfmkinfinity.1","§8无穷无尽的扭曲之力§r");
         provider.add("ctnh.gtceu.tfmkinfinity.1.1","可以使用激光仓");
         provider.add("ctnh.gtceu.tfmkinfinity.2","对所有配方都有§8无法理喻§r的并行数,所有配方能耗和运行时间减少75%");
-        provider.add("ctnh.gtceu.tfmkinfinity.3","§5想制作这台机器的你疯的不轻，当然这台机器也同样疯狂至极§rs");
+        provider.add("ctnh.gtceu.tfmkinfinity.3","§5想制作这台机器的你疯的不轻，当然这台机器也同样疯狂至极§r");
         provider.add("ctnh.sinope.1","来自§b某个神秘东方大国§r的工业力量");
         provider.add("ctnh.sinope.2","格雷员工不骗格雷员工，并行是真实的");
         provider.add("ctnh.sinope.3","没有外壳等级要求，配方不需要催化剂");
@@ -480,7 +481,7 @@ public class ChineseLangHandler {
 
         provider.add("ctnh.arcgenerator.arc.t1.1","§b最大支持电弧强度:1000");
         provider.add("ctnh.arcgenerator.arc.t1.2","§c最大发电效率:75%");
-        provider.add("ctnh.arcgenerator.2","该机器必须配合电弧生成器使用，要求电弧生成器必须在该机器主方块上方5格，当完成链接时，电弧生成器会显示桥接已启用");
+        provider.add("ctnh.arcgenerator.2","该机器必须配合电弧生成器使用，要求电弧生成器必须在该机器主方块上方5格，当完成链接时，电弧生成器会显示已完成连接");
         provider.add("ctnh.arcgenerator.3","当电弧强度小于配方最小电弧强度时，配方将无法运行");
         provider.add("ctnh.arcgenerator.4","当电弧强度大于配方最大电弧强度时，配方将以(机器电弧强度-佩戴需求电弧强度)/(满功率需求电弧强度-需求电弧强度)的效率运行。效率允许超过100%，但不能超过机器最大发电效率");
         provider.add("ctnh.arcgenerator.5","当效率未达100%时，因为湮灭的不完全，将产生少量额外产出");
