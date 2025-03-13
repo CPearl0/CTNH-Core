@@ -146,4 +146,8 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
     public ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;
     }
+    @Override
+    public boolean dampingWhenWaiting() {
+        return false;
+    }
 }

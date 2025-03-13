@@ -245,10 +245,10 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
             var diversity = dmachine.diversity;
             var modifierFunction = ModifierFunction.builder().durationMultiplier(1 + dmachine.Speed_rune * 0.2);
             if (dmachine.isBoosted) {
-                modifierFunction.eutMultiplier(diversity*Math.pow(difference,1.5)* dmachine.getBoostRate());
+                modifierFunction.eutMultiplier(diversity*Math.pow(difference,2)* dmachine.getBoostRate());
             }
             else {
-                modifierFunction.eutMultiplier(diversity*Math.pow(difference,1.5));
+                modifierFunction.eutMultiplier(diversity*Math.pow(difference,2));
             }
             return modifierFunction.build();
         }
@@ -289,7 +289,7 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
-        var outputEnergy = (isBoosted? getBoostRate() : 1) * diversity * Math.pow(difference,1.5) * 32;
+        var outputEnergy = (isBoosted? getBoostRate() : 1) * diversity * Math.pow(difference,2) * 32;
         var voltageName = GTValues.VNF[GTUtil.getTierByVoltage((long) outputEnergy)];
         textList.add(Component.translatable("ctnh.multiblock.photovoltaic_power_station2", FormattingUtil.formatNumbers(outputEnergy), voltageName));
         switch (type) {
@@ -307,5 +307,9 @@ public class DemonWillMachine extends WorkableElectricMultiblockMachine {
     @Override
     public ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;
+    }
+    @Override
+    public boolean dampingWhenWaiting() {
+        return false;
     }
 }

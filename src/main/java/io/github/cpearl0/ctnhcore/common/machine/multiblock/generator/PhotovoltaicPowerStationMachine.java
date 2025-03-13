@@ -169,4 +169,8 @@ public class PhotovoltaicPowerStationMachine extends WorkableElectricMultiblockM
          }
         }
     }
+    @Override
+    public boolean dampingWhenWaiting() {
+        return false;
+    }
 }

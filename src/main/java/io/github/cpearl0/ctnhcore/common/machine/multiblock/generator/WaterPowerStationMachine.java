@@ -64,5 +64,9 @@ public class WaterPowerStationMachine extends CoilWorkableElectricMultiblockMach
             }
         super.addDisplayText(textList);
     }
+    @Override
+    public boolean dampingWhenWaiting() {
+        return false;
+    }
 }
 //本多方块的创意来源于GTQT整合包，对其中的部分内容做了修改
