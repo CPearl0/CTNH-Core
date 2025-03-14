@@ -132,8 +132,20 @@ public class CTNHBlocks {
     public static final BlockEntry<RotatedPillarBlock> ATOMS_SPLIT_BLOCKS = createRotateCasing("atoms_split_blocks", "atomssplit");
 
     public static final BlockEntry<RotatedPillarBlock> ASTRAL_LOG = createLogLikeBlock("astral_log");
+    public static final BlockEntry<RotatedPillarBlock> PEPPER_CRATE = createLogLikeBlock("pepper_crate");
+    public static final BlockEntry<RotatedPillarBlock> GARLIC_CRATE = createLogLikeBlock("garlic_crate");
+    public static final BlockEntry<RotatedPillarBlock> CASSAVA_CRATE = createLogLikeBlock("cassava_crate");
+    public static final BlockEntry<RotatedPillarBlock> FRUIT_CAFE_CRATE = createLogLikeBlock("fruit_cafe_crate");
     public static final BlockEntry<Block> ASTRAL_STONE = createStoneLikeBlock("astral_stone", CTNHCore.id("block/stones/astral_stone"));
     public static final BlockEntry<FallingBlock> ASTRAL_SAND = createSandLikeBlock("astral_sand", CTNHCore.id("block/sands/astral_sand"));
+    public static final BlockEntry<Block> EYE_RENDER = REGISTRATE.block("eye_render", Block::new)
+            .blockstate((ctx, prov) -> {
+                prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll("eye_render", CTNHCore.id("block/casings/eye_render")));
+            })
+            .properties(properties -> properties.strength(-1,3600000))
+            .item(BlockItem::new)
+            .build()
+            .register();
     public static void init() {
 
     }

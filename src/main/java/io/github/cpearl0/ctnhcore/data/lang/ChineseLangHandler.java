@@ -319,7 +319,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.martial_morality_eye.tooltip.1", "产出主世界和暮色森林以及月球的矿");
         provider.add("ctnh.martial_morality_eye.tooltip.2", "随着电压等级提高能够解锁更多配方");
         provider.add("ctnh.martial_morality_eye.tooltip.3", "在前期比坠星好用");
-        provider.add("ctnh.martial_morality_eye.tooltip.4", "结构来源:Twist Space Technology");
+        provider.add("ctnh.martial_morality_eye.tooltip.4", "结构中心似乎存在着神秘力量，充满危险的气息，请远离！");
+        provider.add("ctnh.martial_morality_eye.tooltip.5", "结构来源:Twist Space Technology");
         provider.add("ctnh.lp_now","当前含有lp量:%d");
         provider.add("ctnh.lp_max","最大lp量:%d");
         provider.add("ctnh.lp_consumption","消耗/输入的lp量:%.1f");
@@ -604,6 +605,10 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ASTRAL_LOG, "星辉木");
         provider.addBlock(CTNHBlocks.ASTRAL_STONE, "星辉石");
         provider.addBlock(CTNHBlocks.ASTRAL_SAND, "星辉沙");
+        provider.addBlock(CTNHBlocks.PEPPER_CRATE, "箱装辣椒");
+        provider.addBlock(CTNHBlocks.GARLIC_CRATE, "箱装大蒜");
+        provider.addBlock(CTNHBlocks.CASSAVA_CRATE, "箱装木薯");
+        provider.addBlock(CTNHBlocks.FRUIT_CAFE_CRATE, "箱装水果");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");

@@ -188,7 +188,8 @@ public class EnglishLangHandler {
         provider.add("ctnh.martial_morality_eye.tooltip.1", "Produces ores from the Overworld, Twilight Forest, and the Moon");
         provider.add("ctnh.martial_morality_eye.tooltip.2", "Unlocks more recipes as the voltage level increases");
         provider.add("ctnh.martial_morality_eye.tooltip.3", "More useful than falling stars in the early stages");
-        provider.add("ctnh.martial_morality_eye.tooltip.4", "Structure source: Twist Space Technology");
+        provider.add("ctnh.martial_morality_eye.tooltip.4","The center of the structure seems to emanate a mysterious force, filled with an aura of danger. Stay away!");
+        provider.add("ctnh.martial_morality_eye.tooltip.5", "Structure source: Twist Space Technology");
         provider.add("ctnh.lp_now", "Current LP amount: %d");
         provider.add("ctnh.lp_max", "Max LP amount: %d");
         provider.add("ctnh.lp_consumption", "LP consumption/input: %.1f");
