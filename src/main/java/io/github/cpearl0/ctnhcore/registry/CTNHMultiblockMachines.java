@@ -1094,13 +1094,15 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer(ResourceLocation.tryParse("botania:block/polished_livingrock"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
 
-    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER1 = REGISTRATE.multiblock("mana_generator_turbine_tier1",holder -> new ManaLargeTurbineMachine(holder,256, MV))
+    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER1 = REGISTRATE.multiblock("mana_generator_turbine_tier1",holder -> new ManaLargeTurbineMachine(holder, MV,1,1))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
             .generator(true)
             .tooltips(Component.translatable("mana_generator_turbine_tier1").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.mana_generator_turbine_tier1.basic_power"),
                     Component.translatable("ctnh.mana_generator_turbine_tier1.restriction"),
+                    Component.translatable("ctnh.mana_generator.0"),
+                    Component.translatable("ctnh.mana_generator.1"),
+                    Component.translatable("ctnh.mana_generator.2"),
                     Component.translatable("ctnh.mana_generator_turbine_rune"))
             .recipeModifier(ManaLargeTurbineMachine::recipeModifier)
             .appearanceBlock(CTNHBlocks.MANA_STEEL_CASING)
@@ -1121,13 +1123,16 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(CTNHCore.id("block/casings/mana_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER2 = REGISTRATE.multiblock("mana_generator_turbine_tier2",holder -> new ManaLargeTurbineMachine(holder,512, GTValues.EV))
+    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER2 = REGISTRATE.multiblock("mana_generator_turbine_tier2",holder -> new ManaLargeTurbineMachine(holder, GTValues.EV,2.25,4))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
             .generator(true)
             .tooltips(Component.translatable("mana_generator_turbine_tier2").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.mana_generator_turbine_tier2.basic_power"),
+                    Component.translatable("mana_generator.consumer.2"),
                     Component.translatable("ctnh.mana_generator_turbine_tier2.restriction"),
+                    Component.translatable("ctnh.mana_generator.0"),
+                    Component.translatable("ctnh.mana_generator.1"),
+                    Component.translatable("ctnh.mana_generator.2"),
                     Component.translatable("ctnh.mana_generator_turbine_rune"))
             .recipeModifier(ManaLargeTurbineMachine::recipeModifier)
             .appearanceBlock(CTNHBlocks.ELEMENTIUM_CASING)
@@ -1148,13 +1153,16 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(CTNHCore.id("block/casings/elementium_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER3 = REGISTRATE.multiblock("mana_generator_turbine_tier3",holder -> new ManaLargeTurbineMachine(holder,2048, GTValues.LuV))
+    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER3 = REGISTRATE.multiblock("mana_generator_turbine_tier3",holder -> new ManaLargeTurbineMachine(holder, GTValues.LuV,3,12))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
             .generator(true)
             .tooltips(Component.translatable("mana_generator_turbine_tier3").withStyle(ChatFormatting.GRAY),
-                    Component.translatable("ctnh.mana_generator_turbine_tier3.basic_power"),
+                    Component.translatable("mana_generator.consumer.3"),
                     Component.translatable("ctnh.mana_generator_turbine_tier3.restriction"),
+                    Component.translatable("ctnh.mana_generator.0"),
+                    Component.translatable("ctnh.mana_generator.1"),
+                    Component.translatable("ctnh.mana_generator.2"),
                     Component.translatable("ctnh.mana_generator_turbine_rune"))
             .recipeModifier(ManaLargeTurbineMachine::recipeModifier)
             .appearanceBlock(CTNHBlocks.TERRA_STEEL_CASING)
@@ -1175,14 +1183,18 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(CTNHCore.id("block/casings/terra_steel_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER4 = REGISTRATE.multiblock("mana_generator_turbine_tier4",holder -> new ManaLargeTurbineMachine(holder,8192, GTValues.ZPM))
+    public static final MultiblockMachineDefinition MANA_GENERATOR_TIER4 = REGISTRATE.multiblock("mana_generator_turbine_tier4",holder -> new ManaLargeTurbineMachine(holder,GTValues.ZPM,4,24))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_GENERATOR)
             .generator(true)
-            .tooltips(Component.translatable("mana_generator_turbine_tier4").withStyle(ChatFormatting.GRAY),
+            .tooltips(Component.translatable(
+                    "mana_generator_turbine_tier4").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.mk4.waring"),
-                    Component.translatable("ctnh.mana_generator_turbine_tier4.basic_power"),
+                    Component.translatable("mana_generator.consumer.4"),
                     Component.translatable("ctnh.mana_generator_turbine_tier4.restriction"),
+                    Component.translatable("ctnh.mana_generator.0"),
+                    Component.translatable("ctnh.mana_generator.1"),
+                    Component.translatable("ctnh.mana_generator.2"),
                     Component.translatable("ctnh.mana_generator_turbine_rune"))
             .recipeModifier(ManaLargeTurbineMachine::recipeModifier)
             .appearanceBlock(CTNHBlocks.ALF_STEEL_CASING)
