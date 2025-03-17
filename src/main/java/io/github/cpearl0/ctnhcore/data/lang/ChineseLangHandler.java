@@ -269,7 +269,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.mana_generator_turbine_tier4.basic_power", "§e基础产能功率：§r4096 EU/t");
         provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§cZPM§r");
         
-        provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，消耗量x0.9，每5秒符文消耗概率：0.2\n  二级符文：发电量x2，消耗量x0.6,，每5秒符文消耗概率：0.1\n  三级符文：发电量x3，消耗量x1.2,，每5秒符文消耗概率：0.05\n 四级符文：发电量x4， 消耗量x1.8,，每5秒符文消耗概率：0.025\n  五级符文： 发电量x4, 消耗量x1.0， 每5秒符文消耗概率：0.02\n  §5类星体符文§r: 发电量*999, 消耗量*999，§c在被吞噬的星辰中绽放最终的光芒§r");
+        provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，消耗量x0.9，每5秒符文消耗概率：0.2\n  二级符文：发电量x2，消耗量x0.6，每5秒符文消耗概率：0.1\n  三级符文：发电量x3，消耗量x1.2，每5秒符文消耗概率：0.05\n  四级符文：发电量x4， 消耗量x1.8，每5秒符文消耗概率：0.025\n  五级符文： 发电量x4, 消耗量x1.0， 每5秒符文消耗概率：0.02\n  §5类星体符文§r: 发电量*999, 消耗量*999，§c在被吞噬的星辰中绽放最终的光芒§r");
         provider.add("ctnh.machine.super_ebf.tooltip1", "所有配方耗时减半");
         provider.add("ctnh.mega_lcr.recipe_type","化学反应釜 / 大型化学反应釜");
         provider.add("ctnh.mega_oil_cracker.recipe_type", "裂化机");
@@ -404,7 +404,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.beams_stable","魔力稳定值:%.2f");
         provider.add("ctnh.beams.story1","§9魔枢巨星，重构万物尺度");
         provider.add("ctnh.beams.story0","配方类型：§9高能魔力扭曲聚变§r");
-        provider.add("ctnh.beams.story2","运行使用并行控制仓，§c其不会为配方提供并行§r，只修改每秒输入魔力量");
+        provider.add("ctnh.beams.story2","允许使用并行控制仓，§c其不会为配方提供并行§r，只修改每秒输入魔力量");
         provider.add("ctnh.beams.tips1","插入机器的几种§9五级符文§r决定了该机器的各种能力");
         provider.add("ctnh.beams.tips2","§9星空符文§r的能量降低了能源消耗并增强了机器稳定性");
         provider.add("ctnh.beams.tips3","§c扭曲符文§r的能量降低了所用时间，§c但会让机器更加不稳定");
@@ -486,7 +486,12 @@ public class ChineseLangHandler {
         provider.add("ctnh.arc.r.connect","§b桥接已启用§r");
         provider.add("ctnh.arcgenerator.1","物质撕裂器");
         provider.add("magic_fuel_generator","魔导精炼厂");
-
+        provider.add("mana_generator.consumer.2","运行时消耗2.25倍燃料，获得4倍的发电量");
+        provider.add("mana_generator.consumer.3","运行时消耗3倍燃料，获得12倍的发电量");
+        provider.add("mana_generator.consumer.4","运行时消耗4倍燃料，获得24倍的发电量");
+        provider.add("ctnh.mana_generator.0","机器的最大发电量为(配方发电量)*符文提供倍率*转子最大转速*转子发电效率/100*机器自身提供发电量倍率");
+        provider.add("ctnh.mana_generator.1","机器的实际发电量为(机器当前转子转速/转子最大转子)^2*机器最大发电量");
+        provider.add("ctnh.mana_generator.2","§c注意：运行时需要额外消耗液态魔力，如果消耗液态魔力不足，则本次发电配方发电量将会除以5，通过机器UI可以获得魔力消耗量");
         provider.add("ctnh.arcgenerator.arc.t1.1","§b最大支持电弧强度:1000");
         provider.add("ctnh.arcgenerator.arc.t1.2","§c最大发电效率:75%");
         provider.add("ctnh.arcgenerator.2","该机器必须配合电弧生成器使用，要求电弧生成器必须在该机器主方块上方5格，当完成链接时，电弧生成器会显示已完成连接");

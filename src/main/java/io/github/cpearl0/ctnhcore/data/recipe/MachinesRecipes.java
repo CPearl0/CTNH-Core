@@ -84,6 +84,13 @@ public class MachinesRecipes {
                 .duration(10)
                 .circuitMeta(1)
                 .save(provider);
+        CTNHRecipeTypes.MANA_GENERATOR.recipeBuilder("mana1")
+                .EUt(-24)
+                .duration(20)
+                .circuitMeta(1)
+                .inputFluids(CTNHMaterials.Mana.getFluid(1000))
+                .save(provider);
+
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")
 
                 .inputItems(plate, NaquadahAlloy, 4)
