@@ -15,6 +15,7 @@ import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
 import com.lowdragmc.lowdraglib.utils.CycleItemStackHandler;
 import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 import com.simibubi.create.AllBlocks;
+import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -520,6 +521,6 @@ public class CTNHRecipeTypes {
             .setSound(GTSoundEntries.MIXER);
 
     public static void init() {
-
+        CreateRecipeTypes.init();
     }
 }
