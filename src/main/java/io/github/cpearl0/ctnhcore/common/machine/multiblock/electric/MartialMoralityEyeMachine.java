@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import io.github.cpearl0.ctnhcore.registry.CTNHBlockEntities;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Blocks;

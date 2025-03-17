@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import org.moddingx.libx.base.tile.BlockEntityBase;
 
 import java.util.function.Supplier;
 
@@ -136,6 +137,7 @@ public class CTNHBlocks {
     public static final BlockEntry<RotatedPillarBlock> GARLIC_CRATE = createLogLikeBlock("garlic_crate");
     public static final BlockEntry<RotatedPillarBlock> CASSAVA_CRATE = createLogLikeBlock("cassava_crate");
     public static final BlockEntry<RotatedPillarBlock> FRUIT_CAFE_CRATE = createLogLikeBlock("fruit_cafe_crate");
+    public static final BlockEntry<RotatedPillarBlock> ASPARAGUS_CRATE = createLogLikeBlock("asparagus_crate");
     public static final BlockEntry<Block> ASTRAL_STONE = createStoneLikeBlock("astral_stone", CTNHCore.id("block/stones/astral_stone"));
     public static final BlockEntry<FallingBlock> ASTRAL_SAND = createSandLikeBlock("astral_sand", CTNHCore.id("block/sands/astral_sand"));
     public static final BlockEntry<Block> EYE_RENDER = REGISTRATE.block("eye_render", Block::new)
@@ -143,6 +145,7 @@ public class CTNHBlocks {
                 prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll("eye_render", CTNHCore.id("block/casings/eye_render")));
             })
             .properties(properties -> properties.strength(-1,3600000))
+            .simpleBlockEntity(BlockEntityBase::new)
             .item(BlockItem::new)
             .build()
             .register();

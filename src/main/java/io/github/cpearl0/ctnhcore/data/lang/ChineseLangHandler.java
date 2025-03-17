@@ -93,6 +93,13 @@ public class ChineseLangHandler {
         provider.add("gtceu.arc_generator","物质撕裂湮灭");
         provider.add("gtceu.arc_reactor","电弧发生");
         provider.add("gtceu.magic_fuel_generator","魔力燃料精炼");
+        provider.add("gtceu.mechanical_pressor_recipes", "机械辊压");
+        provider.add("gtceu.mechanical_mixer_recipes", "机械搅拌");
+        provider.add("gtceu.mechanical_lathe_recipes", "机械车床");
+        provider.add("gtceu.mechanical_laser_recipes", "机械激光");
+        provider.add("gtceu.mechanical_extractor_recipes", "机械提取");
+        provider.add("gtceu.mechanical_sifter_recipes", "机械筛选");
+        provider.add("gtceu.mechanical_centrifuge_recipes", "机械离心");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -502,6 +509,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.magic.generator.1","具有8并行，每秒基础消耗12mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
         provider.add("ctnh.gcym.reduction","配方耗时x0.8，配方耗能x0.6");
         provider.add("ctnh.boss_summoner.use", "右键长按蓄力掷出，在落点处召唤一只神化boss，每次使用有五分之一的概率消耗");
+        provider.add("ctnh.mechanical_lathe.structure", "结构须知：车床必须放满6个，且动力侧朝外，移动侧朝中心");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -600,7 +608,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.RESERVOIR_COMPUTING_CASING,"高能突触机器外壳");
         provider.addBlock(CTNHBlocks.CASING_NAQUADAH_GEARBOX, "硅岩合金齿轮箱机械方块");
         provider.addBlock(CTNHBlocks.CASING_ULTIMATE_ENGINE_INTAKE, "无尽引擎进气机械方块");
-        provider.addBlock((CTNHBlocks.COIL_ULTRA_MANA),"类星体魔力线圈方块");
+        provider.addBlock(CTNHBlocks.COIL_ULTRA_MANA,"类星体魔力线圈方块");
         provider.addBlock(CTNHBlocks.ELEMENTIUM_PIPE_CASING, "源质钢管道机械方块");
         provider.addBlock(CTNHBlocks.TEST_CASING,"测试方块");
         provider.addBlock(CTNHBlocks.ATOMS_SPLIT_BLOCKS, "原子裂解方块");
@@ -614,6 +622,8 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.GARLIC_CRATE, "箱装大蒜");
         provider.addBlock(CTNHBlocks.CASSAVA_CRATE, "箱装木薯");
         provider.addBlock(CTNHBlocks.FRUIT_CAFE_CRATE, "箱装水果");
+        provider.addBlock(CTNHBlocks.ASPARAGUS_CRATE, "箱装芦荟");
+        provider.addBlock(CTNHBlocks.EYE_RENDER, "武德之眼核心");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -695,6 +705,13 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.ARC_REACTOR.getBlock(),"电弧发生器");
         provider.add(CTNHMultiblockMachines.ADVANCED_ASSEMBLY_LINE.getBlock(), "进阶装配线");
         provider.add(CTNHMultiblockMachines.CultivationRoom.getBlock(), "培养室");
+        provider.add(CTNHMultiblockMachines.MECHANICAL_LATHE.getBlock(), "机械车床厂");
+        provider.add(CTNHMultiblockMachines.MECHANICAL_CENTRIFUGE.getBlock(), "机械离心厂");
+        provider.add(CTNHMultiblockMachines.MECHANICAL_EXTRACTOR.getBlock(), "机械熔炼厂");
+        provider.add(CTNHMultiblockMachines.MECHANICAL_LASER.getBlock(), "机械激光厂");
+        provider.add(CTNHMultiblockMachines.MECHANICAL_MIXER.getBlock(), "机械搅拌厂");
+        provider.add(CTNHMultiblockMachines.MECHANICAL_SIFTER.getBlock(), "机械筛选厂");
+        provider.add(CTNHMultiblockMachines.MECHANICAL_PRESSOR.getBlock(), "机械辊压厂");
 
 
 
