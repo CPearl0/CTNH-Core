@@ -1541,7 +1541,7 @@ public class CTNHMultiblockMachines {
             .register();
 
     public static final MultiblockMachineDefinition MARTIAL_MORALITY_EYE = REGISTRATE.multiblock("martial_morality_eye", MartialMoralityEyeMachine::new)
-            .rotationState(RotationState.NON_Y_AXIS)
+            .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.MARTIAL_MORALITY_EYE)
             .appearanceBlock(CASING_BRONZE_BRICKS)
             .tooltips(Component.translatable("martial_morality_eye").withStyle(ChatFormatting.GRAY),
@@ -1593,10 +1593,13 @@ public class CTNHMultiblockMachines {
                     .where("E", Predicates.blocks(Blocks.CHISELED_STONE_BRICKS))
                     .where("F", Predicates.blocks(CASING_BRONZE_BRICKS.get())
                             .or(abilities(PartAbility.STEAM))
-                            .or(abilities(PartAbility.EXPORT_ITEMS).setPreviewCount(9))
-                            .or(abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(9))
-                            .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(3)))
+                            .or(abilities(PartAbility.IMPORT_ITEMS))
+                            .or(abilities(PartAbility.EXPORT_ITEMS))
+                            .or(abilities(PartAbility.STEAM_EXPORT_ITEMS))
+                            .or(abilities(PartAbility.STEAM_IMPORT_ITEMS))
+                            .or(abilities(PartAbility.INPUT_ENERGY))
+                            .or(abilities(PartAbility.EXPORT_FLUIDS))
+                            .or(abilities(PartAbility.IMPORT_FLUIDS)))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/multiblock/fusion_reactor"), false)
