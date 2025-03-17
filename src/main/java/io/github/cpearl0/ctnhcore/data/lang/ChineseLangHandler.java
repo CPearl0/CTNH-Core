@@ -262,7 +262,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.mana_generator_turbine_tier4.basic_power", "§e基础产能功率：§r4096 EU/t");
         provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§cZPM§r");
         
-        provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，消耗量x0.9，每5秒符文消耗概率：0.2\n  二级符文：发电量x2，消耗量x0.6，每5秒符文消耗概率：0.1\n  三级符文：发电量x3，消耗量x1.2，每5秒符文消耗概率：0.05\n  四级符文：发电量x4， 消耗量x1.8，每5秒符文消耗概率：0.025\n  五级符文： 发电量x4, 消耗量x1.0， 每5秒符文消耗概率：0.02\n  §5类星体符文§r: 发电量*999, 消耗量*999，§c在被吞噬的星辰中绽放最终的光芒§r");
+        provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，魔力消耗量x0.8，每5秒符文消耗概率：0.2\n  二级符文：发电量x2。4，魔力消耗量x1.2，每5秒符文消耗概率：0.1\n  三级符文：发电量x3，魔力消耗量x0.8，每5秒符文消耗概率：0.05\n   四级符文：发电量x4， 魔力消耗量x0.6，每5秒符文消耗概率：0.025\n  五级符文： 发电量x5, 魔力消耗量x0.3， 每5秒符文消耗概率：0.02\n  §5类星体符文§r: 发电量*999, 消耗量*999，§c在被吞噬的星辰中绽放最终的光芒§r");
         provider.add("ctnh.machine.super_ebf.tooltip1", "所有配方耗时减半");
         provider.add("ctnh.mega_lcr.recipe_type","化学反应釜 / 大型化学反应釜");
         provider.add("ctnh.mega_oil_cracker.recipe_type", "裂化机");
@@ -478,7 +478,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.arc.r.arc","可输出的电弧强度:%d");
         provider.add("ctnh.arc.r.connect","§b桥接已启用§r");
         provider.add("ctnh.arcgenerator.1","物质撕裂器");
-        provider.add("magic_fuel_generator","魔导精炼厂");
+        provider.add("ctnh.magic_fuel_generator","魔导精炼厂");
         provider.add("mana_generator.consumer.2","运行时消耗2.25倍燃料，获得4倍的发电量");
         provider.add("mana_generator.consumer.3","运行时消耗3倍燃料，获得12倍的发电量");
         provider.add("mana_generator.consumer.4","运行时消耗4倍燃料，获得24倍的发电量");

@@ -143,7 +143,7 @@ public class CTNHRecipeTypes {
             .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_input", String.format("%.1f",data.getFloat("input_stress"))));
     public static final GTRecipeType MANA_GENERATOR = GTRecipeTypes.register("mana_generator",GENERATOR)
             .setEUIO(IO.OUT)
-            .setMaxIOSize(2, 0, 1, 1)
+            .setMaxIOSize(2, 1, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
