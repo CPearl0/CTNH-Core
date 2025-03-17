@@ -132,14 +132,14 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         // get the amount of parallel required to match the desired output voltage
         var maxParallel = (int) ((turbineMaxVoltage - turbineMachine.excessVoltage) / (EUt));
         int lose_mana=1;
-        turbineMachine.mana_consumption=maxParallel*(turbineMachine.consumputionrate)*turbineMachine.consumpution_rate;
+        turbineMachine.mana_consumption=maxParallel*(turbineMachine.consumputionrate)*turbineMachine.consumpution_rate*turbineMachine.productionBoost()/2;
         if(!MachineUtils.inputFluid(CTNHMaterials.Mana.getFluid(maxParallel),turbineMachine))
         {
             lose_mana=5;
         }
         // this is necessary to prevent over-consumption of fuel
         turbineMachine.excessVoltage += (int) (maxParallel * EUt - turbineMaxVoltage);
-        int actualParallel = (int)ParallelLogic.getParallelAmountFast(turbineMachine, recipe, maxParallel);
+        int actualParallel = maxParallel;
         turbineMachine.parallel=actualParallel;
         return ModifierFunction.builder()
                 .inputModifier(ContentModifier.multiplier(turbineMachine.consumputionrate))
@@ -301,7 +301,6 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
             if (rotorHolder != null && rotorHolder.getRotorEfficiency() > 0) {
                 textList.add(Component.translatable("gtceu.multiblock.turbine.rotor_speed", FormattingUtil.formatNumbers(rotorHolder.getRotorSpeed()), FormattingUtil.formatNumbers(rotorHolder.getMaxRotorHolderSpeed())));
                 textList.add(Component.translatable("gtceu.multiblock.turbine.efficiency", rotorHolder.getTotalEfficiency()));
-                textList.add(Component.translatable("ctnh.magic.parallel",parallel));
                 long maxProduction = getOverclockVoltage();
                 long currentProduction = isActive() && recipeLogic.getLastRecipe() != null ?
                         RecipeHelper.getOutputEUt(recipeLogic.getLastRecipe()) : 0;

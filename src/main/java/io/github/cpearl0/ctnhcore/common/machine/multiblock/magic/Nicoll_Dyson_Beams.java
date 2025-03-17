@@ -150,7 +150,7 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
                         mana=max_mana;
                     }
                 if(mana+100000<max_mana)
-                    mana+=100000*(1+0.05*horizen_power)*mana_parallel;
+                    mana+=100000*(1+0.05*horizen_power);
 
             }
         }
