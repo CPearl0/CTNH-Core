@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.mojang.logging.LogUtils;
 import io.github.cpearl0.ctnhcore.client.ClientProxy;
 import io.github.cpearl0.ctnhcore.common.CommonProxy;
@@ -27,6 +28,7 @@ public class CTNHCore
         modEventBus.addGenericListener(MachineDefinition.class, EventHandler::registerMachines);
         modEventBus.addGenericListener(GTRecipeType.class, EventHandler::registerRecipeTypes);
         modEventBus.addGenericListener(DimensionMarker.class, EventHandler::registerDimensionMarkers);
+        modEventBus.addGenericListener(ChanceLogic.class,EventHandler::registerChanceLogic);
         DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
     }
 
