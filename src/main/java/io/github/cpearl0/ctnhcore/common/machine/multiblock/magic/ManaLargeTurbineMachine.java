@@ -101,7 +101,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeSloth) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeWrath)){
             turbineMachine.efficiency = 2.5;
-            turbineMachine.consumpution_rate = 1.0;
+            turbineMachine.consumpution_rate = 0.8;
         }
         else if(turbineMachine.Tier4_rune.contains(turbineMachine.getMachineStorageItem().getItem().toString())){
             turbineMachine.efficiency = 4;
