@@ -155,14 +155,14 @@ repositories {
         url = "https://maven.theillusivec4.top/"
     }
     maven {
+        maven {
+            name = 'ModdingX Maven'
+            url = 'https://maven.moddingx.org/'
+        }
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
     }
-    maven {
-        name = 'ModdingX Maven'
-        url = 'https://maven.moddingx.org/'
-    }
-}
+ }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
