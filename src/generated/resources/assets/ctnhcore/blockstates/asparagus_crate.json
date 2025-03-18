@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "ctnhcore:block/asparagus_crate_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "ctnhcore:block/asparagus_crate"
+    },
+    "axis=z": {
+      "model": "ctnhcore:block/asparagus_crate_horizontal",
+      "x": 90
+    }
+  }
+}

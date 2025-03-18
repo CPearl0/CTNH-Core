@@ -268,8 +268,8 @@ public class ChineseLangHandler {
         provider.add("mana_generator_turbine_tier4", "神奇的能量守恒");
         provider.add("ctnh.mana_generator_turbine_tier4.basic_power", "§e基础产能功率：§r4096 EU/t");
         provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§cZPM§r");
-        
-        provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，消耗量x0.9，每5秒符文消耗概率：0.2\n  二级符文：发电量x2，消耗量x0.6，每5秒符文消耗概率：0.1\n  三级符文：发电量x3，消耗量x1.2，每5秒符文消耗概率：0.05\n  四级符文：发电量x4， 消耗量x1.8，每5秒符文消耗概率：0.025\n  五级符文： 发电量x4, 消耗量x1.0， 每5秒符文消耗概率：0.02\n  §5类星体符文§r: 发电量*999, 消耗量*999，§c在被吞噬的星辰中绽放最终的光芒§r");
+
+        provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，魔力消耗量x0.8，每5秒符文消耗概率：0.2\n  二级符文：发电量x2。4，魔力消耗量x1.2，每5秒符文消耗概率：0.1\n  三级符文：发电量x3，魔力消耗量x0.8，每5秒符文消耗概率：0.05\n   四级符文：发电量x4， 魔力消耗量x0.6，每5秒符文消耗概率：0.025\n  五级符文： 发电量x5, 魔力消耗量x0.3， 每5秒符文消耗概率：0.02\n  §5类星体符文§r: 发电量*999, 消耗量*999，§c在被吞噬的星辰中绽放最终的光芒§r");
         provider.add("ctnh.machine.super_ebf.tooltip1", "所有配方耗时减半");
         provider.add("ctnh.mega_lcr.recipe_type","化学反应釜 / 大型化学反应釜");
         provider.add("ctnh.mega_oil_cracker.recipe_type", "裂化机");
@@ -407,17 +407,18 @@ public class ChineseLangHandler {
         provider.add("ctnh.beams.story2","允许使用并行控制仓，§c其不会为配方提供并行§r，只修改每秒输入魔力量");
         provider.add("ctnh.beams.tips1","插入机器的几种§9五级符文§r决定了该机器的各种能力");
         provider.add("ctnh.beams.tips2","§9星空符文§r的能量降低了能源消耗并增强了机器稳定性");
-        provider.add("ctnh.beams.tips3","§c扭曲符文§r的能量降低了所用时间，§c但会让机器更加不稳定");
+        provider.add("ctnh.beams.tips3","§c扭曲符文§r的能量降低了所用时间并增大了机器魔力注入频率，§c但会让机器更加不稳定");
         provider.add("ctnh.beams.tips4","§d视域符文§r的能量极大增大了魔力上限和魔力使用效率");
         provider.add("ctnh.beams.tips5","§5类星体符文§r的能量太过强大，它会直接让机器进入§c不稳定状态，但是同样使配方的消耗，产出，电压需求翻10倍");
         provider.add("ctnh.beams.tips6","§c扭曲§r与§9星空§r的对抗决定了机器的稳定性");
-        provider.add("ctnh.beams.tips7","稳定性公式:-((twist_power/3)+((mana/100000)*(Math.max(twist_power/3,1))))+starlight_power*2+10+tier*2),当稳定性低于0时机器会开始过载！");
+        provider.add("ctnh.beams.tips7","稳定性公式:-((twist_power /3)+((mana/100000)*(Math.max(twist_power/9,1))))+starlight_power*4+5+tier,当稳定性低于0时机器会开始过载！");
         provider.add("ctnh.beams.tips8","§c过载度§r每秒提升1且在机器拥有过载度时下§c配方时间会翻1倍§r");
         provider.add("ctnh.beams.tips9","在不处于过载状态下每3秒减少1过载度，§c过载度积累满时机器将会爆炸§r");
         provider.add("ctnh.beams.tips10","§c扭曲符文§r消耗概率公式:每次运行有Math.max((twist_power-3)/3,1)*0.01+(Math.max(starlight_power-twist_power,0)*0.01)+(Math.max((100-mana/100000)*0.0005,0))概率消耗");
         provider.add("ctnh.beams.tips11","§9星空符文§r消耗概率公式:每次运行有Math.max((starlight_power-3)/3,1)*0.01+(Math.max(twist_power-starlight_power,0)*0.01)+(mana/100000*0.005)概率消耗");
+        provider.add("ctnh.beams.tips11.1","§d视域符文§r消耗概率公式：每次运行有0.0025*(horizen_power)概率消耗");
         provider.add("ctnh.beams.tips12","该机器无法超频");
-        provider.add("ctnh.beams.tips13","运行时每运行1秒，固定消耗10*并行WL液态魔力来为光束注能，可以使用只消耗冷却液的非需求魔力配方来为机器注能");
+        provider.add("ctnh.beams.tips13","运行时每运行1秒，固定消耗100*并行Kmb(B)液态魔力来为光束注能，可以使用只消耗冷却液的非需求魔力配方来为机器注能");
         provider.add("ctnh.beams.tips14","注意：如果你在输入魔力时超过了魔力上限，则超过上限的魔力不会被返还。如果你的魔力量超过了上限，则运行时不会减少多出于魔力上限的魔力");
         provider.add("ctnh.magic.parallel","当前并行数:%.2f");
         provider.add("ctnh.gtceu:twisted_fusion_mk1.0", "机器类型：§e核聚变反应堆/§5扭曲聚变反应堆§r");
@@ -485,7 +486,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.arc.r.arc","可输出的电弧强度:%d");
         provider.add("ctnh.arc.r.connect","§b桥接已启用§r");
         provider.add("ctnh.arcgenerator.1","物质撕裂器");
-        provider.add("magic_fuel_generator","魔导精炼厂");
+        provider.add("ctnh.magic_fuel_generator","魔导精炼厂");
         provider.add("mana_generator.consumer.2","运行时消耗2.25倍燃料，获得4倍的发电量");
         provider.add("mana_generator.consumer.3","运行时消耗3倍燃料，获得12倍的发电量");
         provider.add("mana_generator.consumer.4","运行时消耗4倍燃料，获得24倍的发电量");

@@ -2350,7 +2350,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.beams.tips7"),
                     Component.translatable("ctnh.beams.tips10"),
                     Component.translatable("ctnh.beams.tips11"),
-                    Component.translatable("ctnh.beams.tips12"),
+                    Component.translatable("ctnh.beams.tips11.1"),
                     Component.translatable("ctnh.beams.tips13"),
                     Component.translatable("ctnh.beams.tips14")
 
