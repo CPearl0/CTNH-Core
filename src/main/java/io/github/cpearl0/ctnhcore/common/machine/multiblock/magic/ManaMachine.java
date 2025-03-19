@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.magic;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
@@ -12,7 +13,7 @@ import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import org.jetbrains.annotations.Nullable;
 
-public class ManaMachine extends WorkableElectricMultiblockMachine {
+public class ManaMachine extends WorkableElectricMultiblockMachine implements ITieredMachine {
     public int parallel;
     public int basicConsumption;
     public ManaMachine(IMachineBlockEntity holder, int Parallel, int consumption) {
