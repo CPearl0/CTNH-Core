@@ -1,4 +1,4 @@
-// 1.20.1	2025-03-19T16:52:14.184658	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
+// 1.20.1	2025-03-19T19:47:48.0287679	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
 3597cbfb4ff7f993d25a40b74740d0cc8e7fcf88 assets/ctnhcore/blockstates/advance_machine_casing_assembly_control.json
@@ -61,9 +61,9 @@ f37e897ef97cb6a5e0cd1aa2213c2e60d6aa3841 assets/ctnhcore/blockstates/vibrant_pho
 55c3cf0fdf5b9b4e569f1f91f3acdc45deb0c80d assets/ctnhcore/blockstates/zenith_casing.json
 f17c7b2d8495b9535bc4c92a544ea0c2bcc5e595 assets/ctnhcore/blockstates/zenith_casing_gearbox.json
 71fb0f01bd60854473495a9b97cef4eac5c59ac2 assets/ctnhcore/blockstates/zenith_eye.json
-b0f82ad7764f449736de5d6643b4068bd356b3b0 assets/ctnhcore/lang/en_ud.json
-57663fac94c274bca0872b3cd105e399810ae159 assets/ctnhcore/lang/en_us.json
-73681e54487e4d39d1c279bc4a5a8ea804a19800 assets/ctnhcore/lang/zh_cn.json
+c7c7ea1d6a95a98a099a03b2f57c83a88f2a6a56 assets/ctnhcore/lang/en_ud.json
+00f84adf441933f6eb2aac7b57e4099a6c32f48a assets/ctnhcore/lang/en_us.json
+68e38eb8561c87c17b092477d58eff44e6d90f5e assets/ctnhcore/lang/zh_cn.json
 df65321a1742a74b662d28389e11b0a2406960b1 assets/ctnhcore/models/block/abyssalalloy_coil_block.json
 13db5d9c835eeecee9dc13bee7a130e73a4bc89e assets/ctnhcore/models/block/abyssalalloy_coil_block_active.json
 b096394b9e6976c2213b74fa8b04bf8e9c5ebabc assets/ctnhcore/models/block/advanced_hyper_casing.json

@@ -515,6 +515,10 @@ public class ChineseLangHandler {
         provider.add("ctnh.gtceu.tfmkalephzero.2","§c你到底是无聊到什么地步能凑到这么多材料和算力，只为了这点并行和速度？§r");
         provider.add("ctnh.gtceu.tfmkalephzero.3","§8好吧，我不管你是开创还是怎么回事的，你确实和你的AE征服我了§r");
         provider.add("ctnh.gtceu.tfmkalephzero.4","§7并行数为2147483637，配方时间乘以0.0001，无损超频，满意了吧？§r");
+        provider.add("ctnh.eternalgarden.1","§b万物在这世间绽放的永恒的一瞥§r");
+        provider.add("ctnh.eternalgarden.2","无法超频，但是机器自身电压每比配方电压高一级就使最终产出乘以1.1");
+        provider.add("ctnh.eternalgarden.3","每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制");
+        provider.add("ctnh.eternalgarden.unknown","§5......等待着永恒的紫罗兰如今在何方？");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -720,6 +724,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.MECHANICAL_MIXER.getBlock(), "机械搅拌厂");
         provider.add(CTNHMultiblockMachines.MECHANICAL_SIFTER.getBlock(), "机械筛选厂");
         provider.add(CTNHMultiblockMachines.MECHANICAL_PRESSOR.getBlock(), "机械辊压厂");
+        provider.add(CTNHMultiblockMachines.ETERNAL_GARDEN.getBlock(), "芙蕾雅的永恒花园");
 
 
 

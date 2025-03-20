@@ -3417,13 +3417,14 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(CTPP.id("block/create/railway_casing"), GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
-    public final static MultiblockMachineDefinition ETERNAL_GARDEN= REGISTRATE.multiblock("eternal_garden",  holder -> new EternalGarden(holder))
+    public final static MultiblockMachineDefinition ETERNAL_GARDEN= REGISTRATE.multiblock("eternal_garden",EternalGarden::new)
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CTNHRecipeTypes.MAGIC_FUEL_GENERATOR)
+            .recipeType(CTNHRecipeTypes.ETERNAL_GARDEN)
             .recipeModifiers(EternalGarden::recipeModifier)
-            .tooltips(Component.translatable("ctnh.magic.generator"),
-                    Component.translatable("ctnh.magic.generator.1"),
-                    Component.translatable("ctnh.perfect_overclock")
+            .tooltips(Component.translatable("ctnh.eternalgarden.1"),
+                    Component.translatable("ctnh.eternalgarden.2"),
+                    Component.translatable("ctnh.eternalgarden.3"),
+                    Component.translatable("ctnh.eternalgarden.unknown")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A###################BBBBBBB###################A", "####################BBBBBBB####################", "####################BBBBBBB####################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "###############################################", "A#############################################A")
