@@ -53,10 +53,10 @@ public class MachineUtils {
         var facing = machine.getFrontFacing();
         switch (facing) {
             case NORTH -> {
-                return pos.offset(-leftoff,upoff,backoff);
+                return pos.offset(leftoff,upoff,backoff);
             }
             case SOUTH -> {
-                return pos.offset(leftoff,upoff,-backoff);
+                return pos.offset(-leftoff,upoff,-backoff);
             }
             case WEST -> {
                 return pos.offset(backoff,upoff,-leftoff);
@@ -72,10 +72,10 @@ public class MachineUtils {
         var facing = machine.getFrontFacing();
         switch (facing) {
             case NORTH -> {
-                return AABB.of(BoundingBox.fromCorners(pos.offset(-left1,up1,back1),pos.offset(-left2,up2,back2)));
+                return AABB.of(BoundingBox.fromCorners(pos.offset(left1,up1,back1),pos.offset(left2,up2,back2)));
             }
             case SOUTH -> {
-                return AABB.of(BoundingBox.fromCorners(pos.offset(left1,up1,-back1),pos.offset(left2,up2,-back2)));
+                return AABB.of(BoundingBox.fromCorners(pos.offset(-left1,up1,-back1),pos.offset(-left2,up2,-back2)));
             }
             case WEST -> {
                 return AABB.of(BoundingBox.fromCorners(pos.offset(back1,up1,-left1),pos.offset(back2,up2,-left2)));
