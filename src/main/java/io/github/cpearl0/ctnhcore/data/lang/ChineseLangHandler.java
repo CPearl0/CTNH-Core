@@ -511,6 +511,14 @@ public class ChineseLangHandler {
         provider.add("ctnh.gcym.reduction","配方耗时x0.8，配方耗能x0.6");
         provider.add("ctnh.boss_summoner.use", "右键长按蓄力掷出，在落点处召唤一只神化boss，每次使用有五分之一的概率消耗");
         provider.add("ctnh.mechanical_lathe.structure", "结构须知：车床必须放满6个，且动力侧朝外，移动侧朝中心");
+        provider.add("ctnh.gtceu.tfmkalephzero.1","§4不，这不可能，你到底是怎么做出来这个东西的？§r");
+        provider.add("ctnh.gtceu.tfmkalephzero.2","§c你到底是无聊到什么地步能凑到这么多材料和算力，只为了这点并行和速度？§r");
+        provider.add("ctnh.gtceu.tfmkalephzero.3","§8好吧，我不管你是开创还是怎么回事的，你确实和你的AE征服我了§r");
+        provider.add("ctnh.gtceu.tfmkalephzero.4","§7并行数为2147483637，配方时间乘以0.0001，无损超频，满意了吧？§r");
+        provider.add("ctnh.eternalgarden.1","§b万物在这世间绽放的永恒的一瞥§r");
+        provider.add("ctnh.eternalgarden.2","无法超频，但是机器自身电压每比配方电压高一级就使最终产出乘以1.1");
+        provider.add("ctnh.eternalgarden.3","每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制");
+        provider.add("ctnh.eternalgarden.unknown","§5......等待着永恒的紫罗兰如今在何方？");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -625,6 +633,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.FRUIT_CAFE_CRATE, "箱装水果");
         provider.addBlock(CTNHBlocks.ASPARAGUS_CRATE, "箱装芦荟");
         provider.addBlock(CTNHBlocks.EYE_RENDER, "武德之眼核心");
+        provider.addBlock(CTNHBlocks.CASING_NEUTRONIUM_ALLOY_BLOCK,"以太强化超能中子基岩合金钅达智能机械方块");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -698,6 +707,8 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MK2.getBlock(),"扭曲聚变反应堆mk2");
         provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MK3.getBlock(),"扭曲聚变反应堆mk3");
         provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MKINFINITY.getBlock(),"扭曲聚变反应堆mk∞");
+        provider.add(CTNHMultiblockMachines.TWISTED_FUSION_MKALEPHNULL.getBlock(), "扭曲聚变反应恒星ℵ₀");
+        provider.add(CTNHMultiblockMachines.MAGIC_FUEL_GENERATOR.getBlock(),"魔导燃料精炼场");
         provider.add(CTNHMultiblockMachines.FOREST_SEA_TREE_FARM.getBlock(), "林海树场");
         provider.add(CTNHMultiblockMachines.SINOPE_CHEMICAL.getBlock(), "SINOPE化工厂");
         provider.add(CTNHMultiblockMachines.WIDEPARTICLEACCELERATOR.getBlock(), "广粒子加速器");
@@ -713,6 +724,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.MECHANICAL_MIXER.getBlock(), "机械搅拌厂");
         provider.add(CTNHMultiblockMachines.MECHANICAL_SIFTER.getBlock(), "机械筛选厂");
         provider.add(CTNHMultiblockMachines.MECHANICAL_PRESSOR.getBlock(), "机械辊压厂");
+        provider.add(CTNHMultiblockMachines.ETERNAL_GARDEN.getBlock(), "芙蕾雅的永恒花园");
 
 
 

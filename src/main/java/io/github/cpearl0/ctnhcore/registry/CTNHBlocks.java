@@ -53,6 +53,8 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/nq_casing"));
     public static final BlockEntry<Block> CASING_NAQUADAH_ALLOY_BLOCK = createCasingBlock("naquadah_alloy_casing_block",
             CTNHCore.id("block/casings/nq_alloy_casing"));
+    public static final BlockEntry<Block> CASING_NEUTRONIUM_ALLOY_BLOCK = createCasingBlock("neutronium_alloy_casing_block",
+            CTNHCore.id("block/casings/nq_neutronium_casing"));
     public static final BlockEntry<Block> CASING_ANTIFREEZE_HEATPROOF_MACHINE = createCasingBlock("antifreeze_heatproof_machine_casing",
             CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
     public static final BlockEntry<Block> CASING_ADVANCED_HYPER = createCasingBlock("advanced_hyper_casing",

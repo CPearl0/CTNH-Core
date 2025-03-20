@@ -1,0 +1,224 @@
+package io.github.cpearl0.ctnhcore.common.machine.multiblock.magic;
+
+import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.teamresourceful.resourcefulconfig.web.annotations.Link;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.phys.AABB;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.common.MinecraftForge;
+import java.util.LinkedList;
+import java.util.Objects;
+
+public class EternalGarden extends WorkableElectricMultiblockMachine implements ITieredMachine {
+    public EternalGarden(IMachineBlockEntity holder){
+        super(holder);
+    }
+
+    @Persisted private LinkedList<String> foodlist;
+    @Persisted private int foodlist_length=0;
+    @Persisted private int nutrition_length=0;
+    @Persisted private LinkedList<Double> nutritionlist=new LinkedList<>();
+    @Persisted private int Temperature=0;
+    private boolean wither=false;
+    public void queuer(Double food)
+    {
+        if(nutrition_length==5)
+        {
+            nutritionlist.removeFirst();
+        }
+        else
+            nutrition_length+=1;
+        nutritionlist.add(food);
+    }
+
+    @Override
+    public boolean onWorking() {
+        if(getOffsetTimer() %10==0) {
+            if (wither) {
+                var level = getLevel();
+                var pos = getPos();
+                Holder<DamageType> type =
+                        level
+                                .registryAccess()
+                                .registryOrThrow(Registries.DAMAGE_TYPE)
+                                .getHolderOrThrow(DamageTypes.WITHER);
+                //forge文档真不如Fabric一根吧
+                DamageSource damageSource = new DamageSource(type);
+                var area = AABB.of(BoundingBox.fromCorners(pos.offset(-20, -10, -20), pos.offset(10, 10, 10)));
+                if (level != null) {
+                    var entities = level.getEntities(null, area);
+                    for (Entity i : entities) {
+                        if (!(i instanceof LivingEntity)) {
+                            continue;
+                        }
+                        i.hurt(damageSource, 8);
+                    }
+                }
+            }
+        }
+        return super.onWorking();
+    }
+    public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+
+        if(machine instanceof EternalGarden mmachine)
+        {
+            int tier=mmachine.getTier();
+            int recipe_tier= RecipeHelper.getRecipeEUtTier(recipe);
+            double overclock=Math.pow(1.2,tier-recipe_tier);
+            if(recipe.data.getString("type").equals("water"))
+            {
+                mmachine.wither=false;
+                mmachine.nutrition_length=0;
+                mmachine.nutritionlist.clear();
+                mmachine.Temperature=0;
+                int maxparallel=8+Math.max((tier-3),0)*4;
+                int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
+                return  ModifierFunction.builder()
+                        .parallels(parallel)
+                        .eutMultiplier(parallel)
+                        .inputModifier(ContentModifier.multiplier(parallel))
+                        .outputModifier(ContentModifier.multiplier(parallel*overclock))
+                        .build();
+            }
+            if(recipe.data.getString("type").equals("eat"))
+            {
+                mmachine.wither=false;
+                mmachine.Temperature=0;
+                int maxparallel=8;
+                int bad_food=0;
+                int target_nutrition=64;
+                double nutrition=1;
+
+                var food=recipe.data.getDouble("nutrition");
+                if(mmachine.nutrition_length==0)
+                {
+
+                }
+                else {
+                    for (int i = 0; i <= 4; i++) {
+                        if (mmachine.foodlist_length < i) break;
+
+                        if (mmachine.nutritionlist.get(i)==(food)) {
+                            bad_food += 1;
+                        }
+                        if (i < 4)
+                            nutrition += mmachine.nutritionlist.get(i);
+
+                    }
+                }
+                mmachine.queuer(food);
+                nutrition+=food;
+                double base_output=1;
+                double base_duration=1;
+                if(nutrition>target_nutrition) {
+                    base_output = 8;
+                    base_duration = 1 + 0.1 * (nutrition - target_nutrition);
+                }
+                else {
+                    base_output=1+7*((double) nutrition /target_nutrition);
+                }
+                if(target_nutrition==nutrition)
+                {
+                    base_duration=0.5;
+                }
+
+
+                int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
+                return  ModifierFunction.builder()
+                        .parallels(parallel)
+                        .eutMultiplier(parallel)
+                        .inputModifier(ContentModifier.multiplier(parallel))
+                        .outputModifier(ContentModifier.multiplier(parallel*base_output*(1-0.05*Math.pow(bad_food,2)*(1+0.1*Math.max(tier-recipe_tier,0)))))
+                        .durationMultiplier(base_duration)
+                        .build();
+            }
+            if(recipe.data.getString("type").equals("fire"))
+            {
+                mmachine.wither=false;
+                mmachine.nutrition_length=0;
+                mmachine.nutritionlist.clear();
+                mmachine.Temperature=0;
+                int maxparallel = 8;
+                int temp=recipe.data.getInt("temp");
+                mmachine.Temperature+=temp;
+                FluidStack pyrotheumFluid = new FluidStack(
+                        Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:pyrotheum"))),
+                        10
+                );
+                // 检查输入仓是否有足够流体
+                boolean isFluidSufficient = MachineUtils.inputFluid(pyrotheumFluid, mmachine);
+                if(isFluidSufficient)temp-=1000;
+                double rate=-Math.pow((12500-temp),2)+156250001;
+                double tare2=Math.sqrt(rate)/100;
+                int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
+                return  ModifierFunction.builder()
+                        .parallels(parallel)
+                        .eutMultiplier(parallel)
+                        .inputModifier(ContentModifier.multiplier(parallel))
+                        .outputModifier(ContentModifier.multiplier(parallel*overclock*rate))
+                        .build();
+            }
+            if(recipe.data.getString("type").equals("boom"))
+            {
+                mmachine.wither=false;
+                mmachine.nutrition_length=0;
+                mmachine.nutritionlist.clear();
+                mmachine.Temperature=0;
+                int maxparallel=64;
+                int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
+                return  ModifierFunction.builder()
+                        .parallels(parallel)
+                        .eutMultiplier(Math.sqrt(parallel))
+                        .inputModifier(ContentModifier.multiplier(parallel))
+                        .outputModifier(ContentModifier.multiplier(parallel*overclock))
+                        .build();
+            }
+            if(recipe.data.getString("type").equals("wither"))
+            {
+                mmachine.wither=true;
+                mmachine.nutrition_length=0;
+                mmachine.nutritionlist.clear();
+                mmachine.Temperature=0;
+                int maxparallel=4;
+                int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
+                return  ModifierFunction.builder()
+                        .parallels(parallel)
+                        .eutMultiplier((parallel))
+                        .inputModifier(ContentModifier.multiplier(parallel))
+                        .outputModifier(ContentModifier.multiplier(parallel*overclock))
+                        .build();
+            }
+
+        }
+    return ModifierFunction.NULL;
+    }
+}

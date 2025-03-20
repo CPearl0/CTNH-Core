@@ -85,10 +85,20 @@ public class MachinesRecipes {
                 .circuitMeta(1)
                 .save(provider);
         CTNHRecipeTypes.MANA_GENERATOR.recipeBuilder("mana1")
-                .EUt(-24)
+                .EUt(-28)
                 .duration(20)
                 .circuitMeta(1)
                 .inputFluids(CTNHMaterials.Mana.getFluid(1000))
+                .save(provider);
+        CTNHRecipeTypes.ETERNAL_GARDEN.recipeBuilder("foodtest1")
+                .duration(200)
+                .EUt(100)
+                .circuitMeta(1)
+                .inputItems(CTNHItems.HORIZEN_RUNE)
+                .inputItems(CTNHItems.QUASAR_RUNE)
+                .outputFluids(CTNHMaterials.Mana.getFluid(1000))
+                .addData("type","wither")
+                .addData("nutrition",1000)
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")

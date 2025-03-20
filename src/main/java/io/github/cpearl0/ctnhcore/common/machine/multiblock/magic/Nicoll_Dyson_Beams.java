@@ -37,8 +37,8 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
     public int twist_power=0;
     public int starlight_power=0;
     public int horizen_power=0;
-    public double max_mana=1000000;
-    public double mana=0;
+    @Persisted public double max_mana=1000000;
+    @Persisted public double mana=0;
     public int overload=0;
     public int overload_crash=20;
     public int broken=0;
@@ -50,9 +50,9 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
     public int quasar_power=0;
     public int mana_parallel=1;
     public List<String> AvailableRune=List.of("twist_rune","starlight_rune","horizen_rune","quasar_rune");
-    @Persisted
-    public final NotifiableItemStackHandler machineStorage;
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
+
+    @Persisted public final NotifiableItemStackHandler machineStorage;
+    @Persisted protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             Nicoll_Dyson_Beams.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public Nicoll_Dyson_Beams(IMachineBlockEntity holder){
         super(holder);
