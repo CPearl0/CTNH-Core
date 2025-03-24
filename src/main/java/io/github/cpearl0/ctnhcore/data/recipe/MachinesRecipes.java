@@ -74,11 +74,6 @@ public class MachinesRecipes {
                 .duration(20)
                 .circuitMeta(1)
                 .save(provider);
-        CTNHRecipeTypes.VOID_MINER.recipeBuilder("test")
-                .EUt(1)
-                .duration(2000)
-                .circuitMeta((3))
-                .save(provider);
         CTNHRecipeTypes.TRAP_ENERGY.recipeBuilder("test")
                 .EUt(1)
                 .duration(10)
@@ -99,6 +94,15 @@ public class MachinesRecipes {
                 .outputFluids(CTNHMaterials.Mana.getFluid(1000))
                 .addData("type","wither")
                 .addData("nutrition",1000)
+                .save(provider);
+        CTNHRecipeTypes.ETERNAL_GARDEN.recipeBuilder("foodtest1")
+                .duration(25)
+                .EUt(100)
+                .circuitMeta(4)
+                .inputItems(CTNHItems.QUASAR_RUNE)
+                .outputFluids(CTNHMaterials.Mana.getFluid(1))
+                .addData("type","lighting")
+                .addData("light",true)
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")

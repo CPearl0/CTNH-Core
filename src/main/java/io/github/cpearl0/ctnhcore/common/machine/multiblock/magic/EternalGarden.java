@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+import com.hollingsworth.arsnouveau.common.entity.LightningEntity;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.teamresourceful.resourcefulconfig.web.annotations.Link;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
@@ -16,12 +17,12 @@ import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -48,7 +49,8 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
     @Persisted private int nutrition_length=0;
     @Persisted private LinkedList<Double> nutritionlist=new LinkedList<>();
     @Persisted private int Temperature=0;
-    private boolean wither=false;
+    @Persisted private boolean wither=false;
+    @Persisted private boolean thunder=false;
     public void queuer(Double food)
     {
         if(nutrition_length==5)
@@ -62,10 +64,29 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
 
     @Override
     public boolean onWorking() {
+        var level = getLevel();
+        var pos = getPos();
+        if(getOffsetTimer()%5==0)
+        {
+            if(thunder)
+            if (level != null) {
+                var area = AABB.of(BoundingBox.fromCorners(pos.offset(-20, -10, -20), pos.offset(10, 10, 10)));
+                var entities = level.getEntities(null, area);
+                for (Entity i : entities) {
+                    if (!(i instanceof LivingEntity)) {
+                        continue;
+                    }
+                    var poser=i.blockPosition();
+                    EntityType.LIGHTNING_BOLT.spawn((ServerLevel) level,poser,MobSpawnType.TRIGGERED);
+
+                }
+            }
+        }
         if(getOffsetTimer() %10==0) {
+
             if (wither) {
-                var level = getLevel();
-                var pos = getPos();
+                level = getLevel();
+                pos = getPos();
                 Holder<DamageType> type =
                         level
                                 .registryAccess()
@@ -97,6 +118,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             if(recipe.data.getString("type").equals("water"))
             {
                 mmachine.wither=false;
+                mmachine.thunder=false;
                 mmachine.nutrition_length=0;
                 mmachine.nutritionlist.clear();
                 mmachine.Temperature=0;
@@ -113,6 +135,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             {
                 mmachine.wither=false;
                 mmachine.Temperature=0;
+                mmachine.thunder=false;
                 int maxparallel=8;
                 int bad_food=0;
                 int target_nutrition=64;
@@ -164,6 +187,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             if(recipe.data.getString("type").equals("fire"))
             {
                 mmachine.wither=false;
+                mmachine.thunder=false;
                 mmachine.nutrition_length=0;
                 mmachine.nutritionlist.clear();
                 mmachine.Temperature=0;
@@ -190,6 +214,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             if(recipe.data.getString("type").equals("boom"))
             {
                 mmachine.wither=false;
+                mmachine.thunder=false;
                 mmachine.nutrition_length=0;
                 mmachine.nutritionlist.clear();
                 mmachine.Temperature=0;
@@ -205,6 +230,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             if(recipe.data.getString("type").equals("wither"))
             {
                 mmachine.wither=true;
+                mmachine.thunder=false;
                 mmachine.nutrition_length=0;
                 mmachine.nutritionlist.clear();
                 mmachine.Temperature=0;
@@ -217,6 +243,38 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                         .outputModifier(ContentModifier.multiplier(parallel*overclock))
                         .build();
             }
+            if(recipe.data.getString("type").equals("lighting"))
+            {
+                mmachine.wither=false;
+                mmachine.thunder=false;
+                mmachine.nutrition_length=0;
+                mmachine.nutritionlist.clear();
+                mmachine.Temperature=0;
+                var level = mmachine.getLevel();
+                var pos = mmachine.getPos();
+                if(level.isThundering())
+                {
+                    if(recipe.data.getBoolean("light"))
+                    {
+                        EntityType.LIGHTNING_BOLT.spawn((ServerLevel) level,pos,MobSpawnType.TRIGGERED);
+
+                        return  ModifierFunction.builder()
+                                .outputModifier(ContentModifier.multiplier(100000*overclock))
+                                .build();
+                    }
+                    return  ModifierFunction.builder()
+                            .outputModifier(ContentModifier.multiplier(300*overclock))
+                            .build();
+                }
+                if(level.isRaining())
+                {
+                    return  ModifierFunction.builder()
+                            .outputModifier(ContentModifier.multiplier(300*overclock))
+                            .build();
+                }
+
+            }
+            
 
         }
     return ModifierFunction.NULL;
