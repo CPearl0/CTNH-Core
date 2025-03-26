@@ -95,7 +95,7 @@ public class MachinesRecipes {
                 .addData("type","wither")
                 .addData("nutrition",1000)
                 .save(provider);
-        CTNHRecipeTypes.ETERNAL_GARDEN.recipeBuilder("foodtest1")
+        CTNHRecipeTypes.ETERNAL_GARDEN.recipeBuilder("light1")
                 .duration(25)
                 .EUt(100)
                 .circuitMeta(4)
@@ -104,6 +104,16 @@ public class MachinesRecipes {
                 .addData("type","lighting")
                 .addData("light",true)
                 .save(provider);
+        CTNHRecipeTypes.ETERNAL_GARDEN.recipeBuilder("firetest1")
+                .duration(25)
+                .EUt(100)
+                .circuitMeta(7)
+                .inputItems(CTNHItems.QUASAR_RUNE)
+                .outputFluids(CTNHMaterials.Mana.getFluid(1))
+                .addData("type","blame")
+                .addData("light",true)
+                .save(provider);
+
 
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")
 

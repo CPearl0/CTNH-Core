@@ -10,7 +10,9 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.hollingsworth.arsnouveau.common.entity.LightningEntity;
+import com.hollingsworth.arsnouveau.common.spell.effect.EffectBurst;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.mojang.blaze3d.shaders.Effect;
 import com.teamresourceful.resourcefulconfig.web.annotations.Link;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
@@ -18,12 +20,17 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
@@ -36,6 +43,8 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.common.MinecraftForge;
+import vazkii.botania.common.handler.BotaniaSounds;
+
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -51,6 +60,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
     @Persisted private int Temperature=0;
     @Persisted private boolean wither=false;
     @Persisted private boolean thunder=false;
+    @Persisted private boolean burn=false;
     public void queuer(Double food)
     {
         if(nutrition_length==5)
@@ -68,17 +78,18 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
         var pos = getPos();
         if(getOffsetTimer()%5==0)
         {
-            if(thunder)
-            if (level != null) {
-                var area = AABB.of(BoundingBox.fromCorners(pos.offset(-20, -10, -20), pos.offset(10, 10, 10)));
-                var entities = level.getEntities(null, area);
-                for (Entity i : entities) {
-                    if (!(i instanceof LivingEntity)) {
-                        continue;
-                    }
-                    var poser=i.blockPosition();
-                    EntityType.LIGHTNING_BOLT.spawn((ServerLevel) level,poser,MobSpawnType.TRIGGERED);
+            if(thunder) {
+                if (level != null) {
+                    var area = AABB.of(BoundingBox.fromCorners(pos.offset(-20, -10, -20), pos.offset(10, 10, 10)));
+                    var entities = level.getEntities(null, area);
+                    for (Entity i : entities) {
+                        if (!(i instanceof LivingEntity)) {
+                            continue;
+                        }
+                        var poser = i.blockPosition();
+                        EntityType.LIGHTNING_BOLT.spawn((ServerLevel) level, poser, MobSpawnType.TRIGGERED);
 
+                    }
                 }
             }
         }
@@ -105,6 +116,29 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                     }
                 }
             }
+            if(burn)
+            {
+                level = getLevel();
+                pos = getPos();
+                Holder<DamageType> type =
+                        level
+                                .registryAccess()
+                                .registryOrThrow(Registries.DAMAGE_TYPE)
+                                .getHolderOrThrow(DamageTypes.WITHER);
+                //forge文档真不如Fabric一根吧
+                DamageSource damageSource = new DamageSource(type);
+                var area = AABB.of(BoundingBox.fromCorners(pos.offset(-20, -10, -20), pos.offset(10, 10, 10)));
+                if (level != null) {
+                    var entities = level.getEntities(null, area);
+                    for (Entity i : entities) {
+                        if (!(i instanceof LivingEntity)) {
+                            i.setSecondsOnFire(10);
+
+                            }
+     
+                    }
+                }
+            }
         }
         return super.onWorking();
     }
@@ -122,6 +156,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 mmachine.nutrition_length=0;
                 mmachine.nutritionlist.clear();
                 mmachine.Temperature=0;
+                mmachine.burn=false;
                 int maxparallel=8+Math.max((tier-3),0)*4;
                 int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
                 return  ModifierFunction.builder()
@@ -191,6 +226,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 mmachine.nutrition_length=0;
                 mmachine.nutritionlist.clear();
                 mmachine.Temperature=0;
+                mmachine.burn=false;
                 int maxparallel = 8;
                 int temp=recipe.data.getInt("temp");
                 mmachine.Temperature+=temp;
@@ -218,6 +254,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 mmachine.nutrition_length=0;
                 mmachine.nutritionlist.clear();
                 mmachine.Temperature=0;
+                mmachine.burn=false;
                 int maxparallel=64;
                 int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
                 return  ModifierFunction.builder()
@@ -234,6 +271,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 mmachine.nutrition_length=0;
                 mmachine.nutritionlist.clear();
                 mmachine.Temperature=0;
+                mmachine.burn=false;
                 int maxparallel=4;
                 int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
                 return  ModifierFunction.builder()
@@ -250,6 +288,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 mmachine.nutrition_length=0;
                 mmachine.nutritionlist.clear();
                 mmachine.Temperature=0;
+                mmachine.burn=false;
                 var level = mmachine.getLevel();
                 var pos = mmachine.getPos();
                 if(level.isThundering())
@@ -273,6 +312,63 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                             .build();
                 }
 
+            }
+            if(recipe.data.getString("type").equals("blame"))
+            {
+                mmachine.wither=false;
+                mmachine.thunder=false;
+                mmachine.nutrition_length=0;
+                mmachine.nutritionlist.clear();
+                mmachine.Temperature=0;
+                mmachine.burn=true;
+                int maxparallel=8+Math.max((tier-3),0)*4;
+                int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
+                return  ModifierFunction.builder()
+                        .parallels(parallel)
+                        .eutMultiplier(parallel)
+                        .inputModifier(ContentModifier.multiplier(parallel))
+                        .outputModifier(ContentModifier.multiplier(parallel*overclock))
+                        .build();
+            }
+            if(recipe.data.getString("type").equals("fly"))
+            {
+                mmachine.wither=false;
+                mmachine.thunder=false;
+                mmachine.nutrition_length=0;
+                mmachine.nutritionlist.clear();
+                mmachine.Temperature=0;
+                mmachine.burn=false;
+                var pos = mmachine.getPos();
+                var level=mmachine.getLevel();
+                //forge文档真不如Fabric一根吧
+                int muti=0;
+                var area = AABB.of(BoundingBox.fromCorners(pos.offset(-20, -10, -20), pos.offset(10, 10, 10)));
+                if (level != null) {
+                    var entities = level.getEntities(null, area);
+                    muti=1;
+                    for (Entity i : entities) {
+                        if (!(i instanceof LivingEntity)) {
+                            continue;
+                        }
+                        if(((LivingEntity) i).hasEffect(MobEffects.LEVITATION))
+                        {
+                            muti+=1;
+                            Holder<DamageType> type =
+                                    level
+                                            .registryAccess()
+                                            .registryOrThrow(Registries.DAMAGE_TYPE)
+                                            .getHolderOrThrow(DamageTypes.MAGIC);
+                            //forge文档真不如Fabric一根吧
+                            DamageSource damageSource = new DamageSource(type);
+                            i.hurt(damageSource,200);
+                        }
+                        level.playSound((Player)null, (double)pos.getX() + (double)0.5F, (double)pos.getY() + (double)0.5F, (double)pos.getZ() + (double)0.5F, BotaniaSounds.shulkMeNot, SoundSource.BLOCKS, 10.0F, 1.0F);
+                    }
+                }
+                return  ModifierFunction.builder()
+                        .eutMultiplier(muti)
+                        .outputModifier(ContentModifier.multiplier(Math.pow(2,Math.min(17,muti*0.5))*overclock))
+                        .build();
             }
             
 
