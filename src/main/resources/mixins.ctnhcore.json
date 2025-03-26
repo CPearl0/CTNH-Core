@@ -10,7 +10,6 @@
     "GTNNAddonMixin",
     "ManaPoolBlockEntityMixin",
     "TagLoaderMixin",
-    "appeng.CraftingCpuLogicMixin",
     "gtceu.GTConfiguredFeaturesMixin",
     "gtceu.GTMaterialMixin",
     "gtceu.GTUtilMixin",

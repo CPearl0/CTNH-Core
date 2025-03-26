@@ -627,6 +627,8 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.ASTRAL_LOG, "星辉木");
         provider.addBlock(CTNHBlocks.ASTRAL_STONE, "星辉石");
         provider.addBlock(CTNHBlocks.ASTRAL_SAND, "星辉沙");
+        provider.addBlock(CTNHBlocks.ASTRAL_DIRT, "星辉泥土");
+        provider.addBlock(CTNHBlocks.ASTRAL_SAPLING, "星辉树苗");
         provider.addBlock(CTNHBlocks.PEPPER_CRATE, "箱装辣椒");
         provider.addBlock(CTNHBlocks.GARLIC_CRATE, "箱装大蒜");
         provider.addBlock(CTNHBlocks.CASSAVA_CRATE, "箱装木薯");

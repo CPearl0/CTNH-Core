@@ -23,6 +23,7 @@ public class CTNHCore
 
     public static final String CUSTOM_TAG_SOURCE = "CTNH Custom Tags";
 
+    @SuppressWarnings("removal")
     public CTNHCore() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addGenericListener(MachineDefinition.class, EventHandler::registerMachines);
