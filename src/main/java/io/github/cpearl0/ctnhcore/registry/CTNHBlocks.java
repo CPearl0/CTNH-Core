@@ -30,6 +30,7 @@ import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.moddingx.libx.base.tile.BlockEntityBase;
 
 import java.util.function.Supplier;
@@ -148,7 +149,8 @@ public class CTNHBlocks {
     public static final BlockEntry<RotatedPillarBlock> CASSAVA_CRATE = createLogLikeBlock("cassava_crate");
     public static final BlockEntry<RotatedPillarBlock> FRUIT_CAFE_CRATE = createLogLikeBlock("fruit_cafe_crate");
     public static final BlockEntry<RotatedPillarBlock> ASPARAGUS_CRATE = createLogLikeBlock("asparagus_crate");
-    public static final BlockEntry<Block> ASTRAL_STONE = createStoneLikeBlock("astral_stone", CTNHCore.id("block/stones/astral_stone"));
+    public static final BlockEntry<Block> ASTRAL_COBBLESTONE = createStoneLikeBlock("astral_cobblestone", CTNHCore.id("block/stones/astral_cobblestone"), null);
+    public static final BlockEntry<Block> ASTRAL_STONE = createStoneLikeBlock("astral_stone", CTNHCore.id("block/stones/astral_stone"), null);
     public static final BlockEntry<FallingBlock> ASTRAL_SAND = createSandLikeBlock("astral_sand", CTNHCore.id("block/sands/astral_sand"));
     @SuppressWarnings("removal")
     public static final BlockEntry<Block> ASTRAL_DIRT = REGISTRATE.block("astral_dirt", Block::new)
@@ -187,6 +189,10 @@ public class CTNHBlocks {
             })
             .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
             .tag(BlockTags.MINEABLE_WITH_SHOVEL)
+            .loot((loottable,block) -> {
+                loottable.dropSelf(CTNHBlocks.ASTRAL_DIRT.get());
+                loottable.dropWhenSilkTouch(block);
+            })
             .item(BlockItem::new)
             .build()
             .register();
@@ -266,15 +272,24 @@ public class CTNHBlocks {
                 .register();
     }
     @SuppressWarnings("removal")
-    public static BlockEntry<Block> createStoneLikeBlock(String name, ResourceLocation texture) {
-        return REGISTRATE.block(name, Block::new)
+    public static BlockEntry<Block> createStoneLikeBlock(String name, ResourceLocation texture, @Nullable Block drop) {
+        var builder = REGISTRATE.block(name, Block::new)
                 .initialProperties(() -> Blocks.STONE)
                 .blockstate((ctx, prov) -> {
                     prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
                 })
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
-                .tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .item(BlockItem::new)
+                .tag(BlockTags.MINEABLE_WITH_PICKAXE);
+        if(drop != null){
+            return builder.loot((registrateBlockLootTables, block) -> {
+                        registrateBlockLootTables.dropSelf(drop);
+                        registrateBlockLootTables.dropWhenSilkTouch(block);
+                    })
+                    .item(BlockItem::new)
+                    .build()
+                    .register();
+        }
+        return builder.item(BlockItem::new)
                 .build()
                 .register();
     }

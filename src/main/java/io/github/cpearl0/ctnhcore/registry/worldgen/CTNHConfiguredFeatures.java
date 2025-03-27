@@ -9,6 +9,7 @@ import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -24,11 +25,12 @@ public class CTNHConfiguredFeatures {
                 BlockStateProvider
                         .simple(CTNHBlocks.ASTRAL_LOG.get()),
                 new ForkingTrunkPlacer(8, 0, 4),
-                BlockStateProvider.simple(GTBlocks.RUBBER_LEAVES.get()),
+                BlockStateProvider.simple(Blocks.AIR),
                 new MegaJungleFoliagePlacer(ConstantInt.of(1), UniformInt.of(0, 1), 1),
                 new TwoLayersFeatureSize(1, 0, 2))
                 .ignoreVines()
-                .dirt(BlockStateProvider.simple(CTNHBlocks.ASTRAL_DIRT.get()))
+                //.dirt(BlockStateProvider.simple(CTNHBlocks.ASTRAL_DIRT.get()))
+                //.dirt(BlockStateProvider.simple(CTNHBlocks.ASTRAL_GRASS.get()))
                 .build());
     }
 }
