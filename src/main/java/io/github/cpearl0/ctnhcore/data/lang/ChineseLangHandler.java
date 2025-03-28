@@ -519,6 +519,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.eternalgarden.2","无法超频，但是机器自身电压每比配方电压高一级就使最终产出乘以1.1");
         provider.add("ctnh.eternalgarden.3","每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制");
         provider.add("ctnh.eternalgarden.unknown","§5......等待着永恒的紫罗兰如今在何方？");
+        provider.add("ctnh.manamachine.parallel","运行中的每一并行提供1%时间和耗能减免，至多减少75%");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }

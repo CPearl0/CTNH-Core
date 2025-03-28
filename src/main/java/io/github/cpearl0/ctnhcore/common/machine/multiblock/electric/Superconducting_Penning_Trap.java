@@ -115,6 +115,7 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
                 } else {
                     no_energy_waring=true;
                     tickwarring += 1;
+                    if(tickwarring>=100)
                     {
                         doExplosion(3f);
                     }
