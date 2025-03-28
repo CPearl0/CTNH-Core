@@ -151,6 +151,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             double overclock=Math.pow(1.2,tier-recipe_tier);
             if(recipe.data.getString("type").equals("water"))
             {
+                //水绣球
                 mmachine.wither=false;
                 mmachine.thunder=false;
                 mmachine.nutrition_length=0;
@@ -168,6 +169,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             }
             if(recipe.data.getString("type").equals("eat"))
             {
+                //彼方兰
                 mmachine.wither=false;
                 mmachine.Temperature=0;
                 mmachine.thunder=false;
@@ -221,6 +223,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             }
             if(recipe.data.getString("type").equals("fire"))
             {
+                //烧煤草
                 mmachine.wither=false;
                 mmachine.thunder=false;
                 mmachine.nutrition_length=0;
@@ -249,6 +252,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             }
             if(recipe.data.getString("type").equals("boom"))
             {
+                //热爆花
                 mmachine.wither=false;
                 mmachine.thunder=false;
                 mmachine.nutrition_length=0;
@@ -266,6 +270,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             }
             if(recipe.data.getString("type").equals("wither"))
             {
+               // 凋零兔葵
                 mmachine.wither=true;
                 mmachine.thunder=false;
                 mmachine.nutrition_length=0;
@@ -283,6 +288,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             }
             if(recipe.data.getString("type").equals("lighting"))
             {
+                //雷德花
                 mmachine.wither=false;
                 mmachine.thunder=false;
                 mmachine.nutrition_length=0;
@@ -315,6 +321,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             }
             if(recipe.data.getString("type").equals("blame"))
             {
+                //热绣球
                 mmachine.wither=false;
                 mmachine.thunder=false;
                 mmachine.nutrition_length=0;
@@ -332,6 +339,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             }
             if(recipe.data.getString("type").equals("fly"))
             {
+                //勿落草
                 mmachine.wither=false;
                 mmachine.thunder=false;
                 mmachine.nutrition_length=0;

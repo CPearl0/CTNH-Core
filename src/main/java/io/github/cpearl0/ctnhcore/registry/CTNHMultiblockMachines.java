@@ -936,7 +936,11 @@ public class CTNHMultiblockMachines {
             .tooltips(Component.translatable("ctnh.mana_macerator"),
                     Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.basic_mana_machine.mana_consume"),
-                    Component.translatable("ctnh.perfect_overclock"))
+                    Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.manamachine.parallel")
+            )
+
+
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABBA", "AAAA", "ABBA")
                     .aisle("ABBA", "ACCA", "ABBA")
@@ -959,7 +963,8 @@ public class CTNHMultiblockMachines {
             .tooltips(Component.translatable("ctnh.mana_bender"),
                     Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.basic_mana_machine.mana_consume"),
-                    Component.translatable("ctnh.perfect_overclock"))
+                    Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.manamachine.parallel"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("EEEEE", "ABBBA", "ABBBA", "ACCCA")
                     .aisle("EDDDE", "B###B", "B###B", "CDDDC")
@@ -991,7 +996,8 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.zenith_laser_sp"),
                     Component.translatable("ctnh.zenith_machine_tip"),
                     Component.translatable("ctnh.zenith_waring"),
-                    Component.translatable("ctnh.perfect_overclock"))
+                    Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.manamachine.parallel"))
 
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("EEEEE", "EAAAE", "EAAAE", "EEEEE")
@@ -1023,7 +1029,8 @@ public class CTNHMultiblockMachines {
             .tooltips(Component.translatable("ctnh.mana_wiremill"),
                     Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.basic_mana_machine.mana_consume"),
-                    Component.translatable("ctnh.perfect_overclock"))
+                    Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.manamachine.parallel"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAA", "BBB", "CCC")
                     .aisle("AAA", "BBB", "CCC")
@@ -1045,7 +1052,8 @@ public class CTNHMultiblockMachines {
             .tooltips(Component.translatable("ctnh.mana_lathe"),
                     Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.basic_mana_machine.mana_consume"),
-                    Component.translatable("ctnh.perfect_overclock"))
+                    Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.manamachine.parallel"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABA", "AAA", "AAA", "CAC")
                     .aisle("ABA", "D#D", "D#D", "CAC")
@@ -1071,7 +1079,8 @@ public class CTNHMultiblockMachines {
             .tooltips(Component.translatable("ctnh.mana_assembler"),
                     Component.translatable("mana_machine").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.advanced_mana_machine.mana_consume"),
-                    Component.translatable("ctnh.perfect_overclock"))
+                    Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.manamachine.parallel"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABBBBBA", "ABBBBBA", "ABBBBBA", "ACCCCCA", "AAAAAAA")
                     .aisle("BDEEEDB", "B#####B", "B#####B", "C#####C", "ABBBBBA")
@@ -2074,7 +2083,8 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.zenith_circut_assember_sp"),
                     Component.translatable("ctnh.zenith_machine_tip"),
                     Component.translatable("ctnh.zenith_waring"),
-                    Component.translatable("ctnh.perfect_overclock"))
+                    Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.manamachine.parallel"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("####PPP####", "####PHP####", "####PPP####", "###########")
                     .aisle("###B#C#B###", "###D###D###", "###D###D###", "####BEB####")
@@ -2114,7 +2124,8 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.super_mana_machine.mana_consume"),
                     Component.translatable("ctnh.zenith_machine_tip"),
                     Component.translatable("ctnh.zenith_waring"),
-                    Component.translatable("ctnh.perfect_overclock"))
+                    Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.manamachine.parallel"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "BBBBB", "BBEBB", "BEEEB", "BEEEB", "BEEEB", "BDDDB")
                     .aisle("#PPP#", "#PPP#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "#BBB#", "BDDDB", "B###B", "E###E", "E###E", "E###E", "DEEED")
@@ -3056,7 +3067,8 @@ public class CTNHMultiblockMachines {
             .recipeModifiers(ManaMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.magic.generator"),
                     Component.translatable("ctnh.magic.generator.1"),
-                    Component.translatable("ctnh.perfect_overclock")
+                    Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.manamachine.parallel")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("##BBB##", "##BBB##", "##BBB##", "###D###", "###D###", "###B###")

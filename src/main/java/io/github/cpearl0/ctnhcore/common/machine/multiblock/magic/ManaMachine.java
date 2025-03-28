@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
@@ -45,7 +46,14 @@ public class ManaMachine extends WorkableElectricMultiblockMachine implements IT
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof ManaMachine mmachine) {
-            return CTNHRecipeModifiers.accurateParallel(mmachine,recipe,mmachine.parallel);
+            int parallel= ParallelLogic.getParallelAmount(machine,recipe,mmachine.parallel);
+            return  ModifierFunction.builder()
+                    .parallels(parallel)
+                    .eutMultiplier(parallel*(1-Math.min(0.75,0.01*parallel)))
+                    .inputModifier(ContentModifier.multiplier(parallel))
+                    .outputModifier(ContentModifier.multiplier(parallel))
+                    .durationMultiplier(1-Math.min(0.75,0.01*parallel))
+                    .build();
         }
         return ModifierFunction.IDENTITY;
     }

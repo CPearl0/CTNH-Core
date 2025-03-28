@@ -418,6 +418,7 @@
   "ctnh.mana_model": "当前魔力燃料等级:%d",
   "ctnh.mana_production": "当前发电效率:%.2f",
   "ctnh.mana_wiremill": "机器类型：§e线材轧机§r",
+  "ctnh.manamachine.parallel": "运行中的每一并行提供1%时间和耗能减免，至多减少75%",
   "ctnh.manareactor.1": "工业魔力奠基者",
   "ctnh.manareactor.2": "允许使用并行控制仓",
   "ctnh.manaturbine.consumption_rate": "运行魔力消耗量：%d mb",
