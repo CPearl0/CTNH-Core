@@ -15,6 +15,7 @@
     "gtceu.GTUtilMixin",
     "gtceu.TagPrefixMixin",
     "gtceu.WorkableElectricMultiblockMachineMixin",
+    "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
     "mc.MonsterMixin"
   ],
