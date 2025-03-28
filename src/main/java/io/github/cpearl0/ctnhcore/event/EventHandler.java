@@ -6,12 +6,23 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
-import com.gregtechceu.gtceu.common.data.GTElements;
+import com.gregtechceu.gtceu.data.tags.BiomeTagsLoader;
+import com.gregtechceu.gtceu.data.tags.DamageTagsLoader;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.registry.worldgen.*;
+import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EventHandler {
@@ -37,5 +48,30 @@ public class EventHandler {
     @SubscribeEvent
     public static void registerMaterials(MaterialEvent event) {
         CTNHMaterials.init();
+    }
+
+    @SubscribeEvent
+    public static void gatherData(GatherDataEvent event) {
+        DataGenerator generator = event.getGenerator();
+        PackOutput packOutput = generator.getPackOutput();
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+        var registries = event.getLookupProvider();
+        if (event.includeClient()) {
+            // generator.addProvider(true, new SoundEntryBuilder.SoundEntryProvider(packOutput, GTCEu.MOD_ID));
+        }
+        if (event.includeServer()) {
+            var set = Set.of(CTNHCore.MODID);
+            generator.addProvider(true, new BiomeTagsLoader(packOutput, registries, existingFileHelper));
+                DatapackBuiltinEntriesProvider provider = generator.addProvider(true, new DatapackBuiltinEntriesProvider(
+                        packOutput, registries, new RegistrySetBuilder()
+                        .add(Registries.BIOME, CTNHBiomes::bootstrap)
+                        .add(Registries.CONFIGURED_FEATURE, CTNHConfiguredFeatures::bootstrap)
+                        .add(Registries.PLACED_FEATURE, CTNHPlacements::bootstrap)
+                        .add(Registries.DIMENSION_TYPE, CTNHDimensionTypes::bootstrap)
+                        .add(Registries.LEVEL_STEM, CTNHDimensions::bootstrap)
+                        .add(Registries.NOISE_SETTINGS, CTNHNoiseGenerationSettings::bootstrap)
+                        .add(Registries.DENSITY_FUNCTION, CTNHDensityFunctions::bootstrap),
+                        set));
+        }
     }
 }

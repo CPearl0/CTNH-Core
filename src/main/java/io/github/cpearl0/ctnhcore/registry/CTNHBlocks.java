@@ -6,22 +6,31 @@ import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
+import com.gregtechceu.gtceu.common.data.GTConfiguredFeatures;
 import com.gregtechceu.gtceu.common.data.GTModels;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.block.CoilType;
+import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHConfiguredFeatures;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.moddingx.libx.base.tile.BlockEntityBase;
 
 import java.util.function.Supplier;
@@ -140,8 +149,53 @@ public class CTNHBlocks {
     public static final BlockEntry<RotatedPillarBlock> CASSAVA_CRATE = createLogLikeBlock("cassava_crate");
     public static final BlockEntry<RotatedPillarBlock> FRUIT_CAFE_CRATE = createLogLikeBlock("fruit_cafe_crate");
     public static final BlockEntry<RotatedPillarBlock> ASPARAGUS_CRATE = createLogLikeBlock("asparagus_crate");
-    public static final BlockEntry<Block> ASTRAL_STONE = createStoneLikeBlock("astral_stone", CTNHCore.id("block/stones/astral_stone"));
+    public static final BlockEntry<Block> ASTRAL_COBBLESTONE = createStoneLikeBlock("astral_cobblestone", CTNHCore.id("block/stones/astral_cobblestone"), null);
+    public static final BlockEntry<Block> ASTRAL_STONE = createStoneLikeBlock("astral_stone", CTNHCore.id("block/stones/astral_stone"), null);
     public static final BlockEntry<FallingBlock> ASTRAL_SAND = createSandLikeBlock("astral_sand", CTNHCore.id("block/sands/astral_sand"));
+    @SuppressWarnings("removal")
+    public static final BlockEntry<Block> ASTRAL_DIRT = REGISTRATE.block("astral_dirt", Block::new)
+            .initialProperties(() -> Blocks.DIRT)
+            .blockstate((ctx, prov) -> {
+                prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll("astral_dirt", CTNHCore.id("block/dirts/astral_dirt")));
+            })
+            .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
+            .tag(BlockTags.MINEABLE_WITH_SHOVEL)
+            .item(BlockItem::new)
+            .build()
+            .register();
+    @SuppressWarnings("removal")
+    public static final BlockEntry<SaplingBlock> ASTRAL_SAPLING = REGISTRATE
+            .block("astral_sapling", properties -> new SaplingBlock(new AbstractTreeGrower() {
+
+                protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull RandomSource random,
+                                                                                    boolean largeHive) {
+                    return CTNHConfiguredFeatures.ASTRAL_TREE;
+                }
+            }, properties))
+            .initialProperties(() -> Blocks.OAK_SAPLING)
+            .lang("Astral Sapling")
+            .blockstate(GTModels::createCrossBlockState)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .tag(BlockTags.SAPLINGS)
+            .item()
+            .model(GTModels::rubberTreeSaplingModel)
+            .tag(ItemTags.SAPLINGS)
+            .build()
+            .register();
+    public static final BlockEntry<GrassBlock> ASTRAL_GRASS = REGISTRATE.block("astral_grass", GrassBlock::new)
+            .initialProperties(() -> Blocks.GRASS_BLOCK)
+            .blockstate((ctx, prov) -> {
+                prov.simpleBlock(ctx.getEntry(), prov.models().cubeBottomTop("astral_grass", CTNHCore.id("block/dirts/astral_grass_side"), CTNHCore.id("block/dirts/astral_dirt"), CTNHCore.id("block/dirts/astral_grass_top")));
+            })
+            .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
+            .tag(BlockTags.MINEABLE_WITH_SHOVEL)
+            .loot((loottable,block) -> {
+                loottable.dropSelf(CTNHBlocks.ASTRAL_DIRT.get());
+                loottable.dropWhenSilkTouch(block);
+            })
+            .item(BlockItem::new)
+            .build()
+            .register();
     public static final BlockEntry<Block> EYE_RENDER = REGISTRATE.block("eye_render", Block::new)
             .blockstate((ctx, prov) -> {
                 prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll("eye_render", CTNHCore.id("block/casings/eye_render")));
@@ -217,18 +271,29 @@ public class CTNHBlocks {
                 .build()
                 .register();
     }
-    public static BlockEntry<Block> createStoneLikeBlock(String name, ResourceLocation texture) {
-        return REGISTRATE.block(name, Block::new)
+    @SuppressWarnings("removal")
+    public static BlockEntry<Block> createStoneLikeBlock(String name, ResourceLocation texture, @Nullable Block drop) {
+        var builder = REGISTRATE.block(name, Block::new)
                 .initialProperties(() -> Blocks.STONE)
                 .blockstate((ctx, prov) -> {
                     prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
                 })
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
-                .tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .item(BlockItem::new)
+                .tag(BlockTags.MINEABLE_WITH_PICKAXE);
+        if(drop != null){
+            return builder.loot((registrateBlockLootTables, block) -> {
+                        registrateBlockLootTables.dropSelf(drop);
+                        registrateBlockLootTables.dropWhenSilkTouch(block);
+                    })
+                    .item(BlockItem::new)
+                    .build()
+                    .register();
+        }
+        return builder.item(BlockItem::new)
                 .build()
                 .register();
     }
+    @SuppressWarnings("removal")
     private static BlockEntry<RotatedPillarBlock> createLogLikeBlock(String name) {
         return REGISTRATE.block(name, RotatedPillarBlock::new)
                 .initialProperties(() -> Blocks.OAK_WOOD)
@@ -239,6 +304,7 @@ public class CTNHBlocks {
                 .build()
                 .register();
     }
+    @SuppressWarnings("removal")
     public static BlockEntry<FallingBlock> createSandLikeBlock(String name, ResourceLocation texture) {
         return REGISTRATE.block(name, FallingBlock::new)
                 .initialProperties(() -> Blocks.SAND)
