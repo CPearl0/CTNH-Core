@@ -66,7 +66,14 @@ public class CTNHItems {
             .item("proliferation_rune",Item::new)
             .lang("proliferation_rune")
             .register();
-
+    public static ItemEntry<ComponentItem> ANTI_INF_MATTER =REGISTRATE
+            .item("anti_inf_matter",ComponentItem::create)
+            .lang("anti_inf_matter")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.anti_inf_matter.1").withStyle(ChatFormatting.BLACK));
+                list.add(Component.translatable("ctnh.anti_inf_matter.2").withStyle(ChatFormatting.DARK_GRAY));
+            })))
+            .register();
 
     public static ItemEntry<Item> TUMOR = REGISTRATE
             .item("tumor",Item::new)

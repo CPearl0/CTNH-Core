@@ -486,6 +486,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.arc.r.arc","可输出的电弧强度:%d");
         provider.add("ctnh.arc.r.connect","§b桥接已启用§r");
         provider.add("ctnh.arcgenerator.1","物质撕裂器");
+        provider.add("ctnh.arcgenerator.t2.1","分子撕裂器");
+        provider.add("ctnh.arcgenerator.t3.1","原子撕裂器");
         provider.add("ctnh.magic_fuel_generator","魔导精炼厂");
         provider.add("mana_generator.consumer.2","运行时消耗2.25倍燃料，获得4倍的发电量");
         provider.add("mana_generator.consumer.3","运行时消耗3倍燃料，获得12倍的发电量");
@@ -495,9 +497,13 @@ public class ChineseLangHandler {
         provider.add("ctnh.mana_generator.2","§c注意：运行时需要额外消耗液态魔力，如果消耗液态魔力不足，则本次发电配方发电量将会除以5，通过机器UI可以获得魔力消耗量");
         provider.add("ctnh.arcgenerator.arc.t1.1","§b最大支持电弧强度:1000");
         provider.add("ctnh.arcgenerator.arc.t1.2","§c最大发电效率:75%");
+        provider.add("ctnh.arcgenerator.arc.t2.1","§b最大支持电弧强度:10000");
+        provider.add("ctnh.arcgenerator.arc.t2.2","§c最大发电效率:125%");
+        provider.add("ctnh.arcgenerator.arc.t3.1","§b最大支持电弧强度:50000");
+        provider.add("ctnh.arcgenerator.arc.t3.2","§c最大发电效率:225%");
         provider.add("ctnh.arcgenerator.2","该机器必须配合电弧生成器使用，要求电弧生成器必须在该机器主方块上方5格，当完成链接时，电弧生成器会显示已完成连接");
         provider.add("ctnh.arcgenerator.3","当电弧强度小于配方最小电弧强度时，配方将无法运行");
-        provider.add("ctnh.arcgenerator.4","当电弧强度大于配方最大电弧强度时，配方将以(机器电弧强度-佩戴需求电弧强度)/(满功率需求电弧强度-需求电弧强度)的效率运行。效率允许超过100%，但不能超过机器最大发电效率");
+        provider.add("ctnh.arcgenerator.4","当电弧强度大于配方最大电弧强度时，配方将以(机器电弧强度-配方需求电弧强度)/(满功率需求电弧强度-需求电弧强度)的效率运行。效率允许超过100%，但不能超过机器最大发电效率");
         provider.add("ctnh.arcgenerator.5","当效率未达100%时，因为湮灭的不完全，将产生少量额外产出");
         provider.add("ctnh.arcreactor","电弧发生者");
         provider.add("ctnh.arcreactor.1","该机器必须配合电弧撕裂者使用，要求电弧生成器必须在电弧撕裂者主方块上方5格，当完成链接时，电弧生成器会显示桥接已启用");
@@ -520,6 +526,18 @@ public class ChineseLangHandler {
         provider.add("ctnh.eternalgarden.3","每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制");
         provider.add("ctnh.eternalgarden.unknown","§5......等待着永恒的紫罗兰如今在何方？");
         provider.add("ctnh.manamachine.parallel","运行中的每一并行提供1%时间和耗能减免，至多减少75%");
+        provider.add("ctnh.anti_inf_matter.1","-∞");
+        provider.add("ctnh.anti_inf_matter.2","它到底是怎么在现实世界存在的......");
+        provider.add("ctnh.plasma_alloy.1","§4转底炉的复仇");
+        provider.add("ctnh.plasma_alloy.2","线圈温度每有1800K，获得4点并行，线圈温度超过10000K时，获得(线圈温度-10000)/10000的额外加速");
+        provider.add("ctnh.plasma_alloy.3","运行前消耗(并行数*对应等离子体消耗)的等离子体，获得额外加速");
+        provider.add("ctnh.plasma_alloy.4","氦等离子体：消耗500*并行的等离子体，速度+100%");
+        provider.add("ctnh.plasma_alloy.5","氧，氮等离子体：消耗300*并行的等离子体，速度+200%");
+        provider.add("ctnh.plasma_alloy.6","镍，铁等离子体：消耗200*并行的等离子体，速度+300%");
+        provider.add("ctnh.plasma_alloy.7","消耗特殊的冶炼等离子体可以获得额外的速度加成，§c但是同样会将增加你冶炼的风险");
+        provider.add("ctnh.plasma_alloy.8","压缩精金等离子：消耗固定100等离子体，使速度+1000%,使消耗电压翻倍（§c这可能导致配方不运行，请使用多安能源仓）");
+        provider.add("ctnh.plasma_alloy.9","精炼超能以太等离子体：消耗50*并行等离子体，使速度+2000%,§c使最终产物在80%-100%中浮动");
+        provider.add("ctnh.plasma_alloy.10","§c速度增幅超过5000%时，最终产物量将会在0%-50%中浮动！");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -572,6 +590,7 @@ public class ChineseLangHandler {
         provider.add(CTNHItems.STARLIGHT_RUNE.get(), "星光符文");
         provider.add(CTNHItems.QUASAR_RUNE.get(), "§5类星体§r符文");
         provider.add(CTNHItems.PROLIFERATION_RUNE.get(), "增殖符文");
+        provider.add(CTNHItems.ANTI_INF_MATTER.get(),"§0反无穷聚合体");
         provider.addItem(CTNHItems.BOSS_SUMMONER, "boss召唤器");
         provider.addItem(CTNHItems.ADVANCED_BOSS_SUMMONER, "进阶boss召唤器");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
@@ -728,6 +747,10 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.MECHANICAL_SIFTER.getBlock(), "机械筛选厂");
         provider.add(CTNHMultiblockMachines.MECHANICAL_PRESSOR.getBlock(), "机械辊压厂");
         provider.add(CTNHMultiblockMachines.ETERNAL_GARDEN.getBlock(), "芙蕾雅的永恒花园");
+        provider.add(CTNHMultiblockMachines.SUPERCONDUCTING_PENNING_TRAP.getBlock(), "超导潘宁势阱");
+        provider.add(CTNHMultiblockMachines.ARC_GENERATOR_MK1.getBlock(),"超压电弧撕裂者MK1");
+        provider.add(CTNHMultiblockMachines.ARC_GENERATOR_MK2.getBlock(),"过载电弧撕裂者MK1");
+        provider.add(CTNHMultiblockMachines.PLASMA_ALLOY_BLAST_SMELTER.getBlock(),"等离子合金冶炼转底炉");
 
 
 
