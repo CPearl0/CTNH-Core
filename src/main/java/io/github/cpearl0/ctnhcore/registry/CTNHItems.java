@@ -74,7 +74,6 @@ public class CTNHItems {
                 list.add(Component.translatable("ctnh.anti_inf_matter.2").withStyle(ChatFormatting.DARK_GRAY));
             })))
             .register();
-
     public static ItemEntry<Item> TUMOR = REGISTRATE
             .item("tumor",Item::new)
             .lang("Tumor")
@@ -126,7 +125,7 @@ public class CTNHItems {
             .lang("Advanced Boss Summoner")
             .onRegister(attach(new BossSummonerBehavior(2)))
             .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.RED));
+                list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.DARK_RED));
             })))
             .register();
 

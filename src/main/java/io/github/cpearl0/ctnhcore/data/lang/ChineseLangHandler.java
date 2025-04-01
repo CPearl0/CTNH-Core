@@ -538,6 +538,18 @@ public class ChineseLangHandler {
         provider.add("ctnh.plasma_alloy.8","压缩精金等离子：消耗固定100等离子体，使速度+1000%,使消耗电压翻倍（§c这可能导致配方不运行，请使用多安能源仓）");
         provider.add("ctnh.plasma_alloy.9","精炼超能以太等离子体：消耗50*并行等离子体，使速度+2000%,§c使最终产物在80%-100%中浮动");
         provider.add("ctnh.plasma_alloy.10","§c速度增幅超过5000%时，最终产物量将会在0%-50%中浮动！");
+        provider.add("ctnh.u_sinope.story.1","在战争没有开始前，人们曾团结在一起，一齐建造这工业的巴别巨塔");
+        provider.add("ctnh.u_sinope.story.2","直到那场永恒的战争，这座真空巨塔化为永恒的残骸，随着战争的双方破碎在真空中");
+        provider.add("ctnh.u_sinope.story.3","你已无法再知晓那场战争的双方是否已经相互毁灭，但你直到，这座巨型结构将宣告着人类的复兴");
+        provider.add("ctnh.u_sinope.1","配方类型：蒸馏塔/蒸馏室/裂化机/流体加热机/流体固化机/真空石化处理/???");
+        provider.add("ctnh.u_sinope.2","§c它那究极的结构已然无法让你的JEI承受，你需要寻求蓝图的帮忙，同时在修改结构时最好直接破坏主方块以避免检测卡死游戏");
+        provider.add("ctnh.u_sinope.3","巨型的结构只能在真空建立，否则巨大的结构将会使周围坍缩（效率减少99.99%）");
+        provider.add("ctnh.u_sinope.4","除非你使用四维工程学材料，否则它无法再承受UIV即以上的线圈，效率将减少99.99%");
+        provider.add("ctnh.u_sinope.5","线圈等级决定了最大的配方等级，你最大只能使用线圈电压等级+1的配方等级，否则效率减少99%");
+        provider.add("ctnh.u_sinope.6","允许使用激光仓，但你的配方电压等级必须达到OPV，否则效率将减少99%");
+        provider.add("ctnh.u_sinope.7","对于常规配方，该巨构拥有8^（电压等级）的并行，最高不超过2^32，在能源仓等级达到OPV时解锁无损超频，配方等级每超过UHV一级，处理速度+555%,每100点并行使处理速度增加333%,如果使用了四维工程学材料，则速度额外增加5000%");
+        provider.add("ctnh.u_sinope.8","对于该巨构特有的配方类型具有特殊机制：时间固定为100秒，并行固定为10，电压每超过UHV一级，则时间减少10秒，并行增加10,如果使用了四维工程学材料且线圈等级大于等于UIV，则时间固定为1秒");
+
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -751,6 +763,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.ARC_GENERATOR_MK1.getBlock(),"超压电弧撕裂者MK1");
         provider.add(CTNHMultiblockMachines.ARC_GENERATOR_MK2.getBlock(),"过载电弧撕裂者MK1");
         provider.add(CTNHMultiblockMachines.PLASMA_ALLOY_BLAST_SMELTER.getBlock(),"等离子合金冶炼转底炉");
+        provider.add(CTNHMultiblockMachines.UNIVERSE_SINOPE.getBlock(), "中石化宇宙处理中心");
 
 
 
