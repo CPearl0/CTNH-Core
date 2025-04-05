@@ -181,6 +181,12 @@ public class CTNHMaterials {
             .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
             .cableProperties(GTValues.V[GTValues.UHV], 4, 64)
             .buildAndRegister();
+    public static  final Material COMPRESSED_ADAMANTITE= new Material.Builder(GTCEu.id("compressed_adamantite"))
+            .plasma()
+            .buildAndRegister();
+    public static  final Material COMPRESSED_AETHER = new Material.Builder(GTCEu.id("compressed_aether"))
+            .plasma()
+            .buildAndRegister();
     public static final Material EVE = new Material.Builder(GTCEu.id("eve"))
             .plasma()
             .color(0x0000FF)

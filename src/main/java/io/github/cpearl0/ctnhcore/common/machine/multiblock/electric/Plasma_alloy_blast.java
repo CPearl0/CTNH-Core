@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 
 import static com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys.PLASMA;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -27,6 +28,8 @@ public class Plasma_alloy_blast extends CoilWorkableElectricMultiblockMachine {
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof Plasma_alloy_blast pmachine){
             var speed=1.0;
+            var output=1.0;
+            var eut=1.0;
             int parallel= ParallelLogic.getParallelAmount(machine,recipe,pmachine.machine_level*4);
             if(MachineUtils.inputFluid(Iron.getFluid(PLASMA,200*parallel),pmachine))
             {
@@ -56,10 +59,25 @@ public class Plasma_alloy_blast extends CoilWorkableElectricMultiblockMachine {
             {
                 speed+=((double) (pmachine.getCoilType().getCoilTemperature() - 10000) /1000);
             }
+            if(MachineUtils.inputFluid(CTNHMaterials.COMPRESSED_ADAMANTITE.getFluid(PLASMA,100),pmachine))
+            {
+                speed*=5;
+                eut=2.0;
+            }
+            if(MachineUtils.inputFluid(CTNHMaterials.COMPRESSED_AETHER.getFluid(PLASMA,50*parallel),pmachine))
+            {
+                speed*=10;
+                output=1-0.2*(Math.random());
+            }
+            if(speed>50)
+            {
+                output=0.5*(Math.random());
+            }
             return ModifierFunction.builder()
                     .parallels(parallel)
                     .inputModifier(ContentModifier.multiplier(parallel))
-                    .outputModifier(ContentModifier.multiplier(parallel))
+                    .outputModifier(ContentModifier.multiplier(parallel*output))
+                    .eutMultiplier(eut)
                     .durationMultiplier(1/speed)
                     .build();
         }

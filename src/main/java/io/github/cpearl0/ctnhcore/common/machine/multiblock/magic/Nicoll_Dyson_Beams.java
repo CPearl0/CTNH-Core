@@ -136,7 +136,8 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
 
             if(overload>=overload_crash)
             {
-                doExplosion(3f);
+                doExplosion(100f);
+                return false;
             }
 
             if(MachineUtils.inputFluid(CTNHMaterials.Mana.getFluid(100000),this))
@@ -162,7 +163,11 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
 
-        if(broken==2) doExplosion(3f);
+        if(broken==2)
+        {
+            doExplosion(100f);
+            return false;
+        }
         if(mana>=recipe.data.getInt("required_mana"))
         {
             max_mana=1000000*(1+0.125*horizen_power);

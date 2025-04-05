@@ -1321,11 +1321,12 @@ public class CTNHMultiblockMachines {
             .register();
     //Come from GTCA
     public static final MultiblockMachineDefinition MEGA_LCR = REGISTRATE
-            .multiblock("mega_lcr", CoilWorkableElectricMultiblockMachine::new)
+            .multiblock("mega_lcr", OverclockParallelMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_PTFE_INERT)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,GTRecipeModifiers::pyrolyseOvenOverclock,
+
+            .recipeModifiers(OverclockParallelMachine::recipeModifier,
                     GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .pattern(definition ->
                     FactoryBlockPattern.start()
@@ -1355,8 +1356,11 @@ public class CTNHMultiblockMachines {
             )
             .tooltips(
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"),
-                    Component.translatable("ctnh.multiblock.lcr.duration_reduction"),
-                    Component.translatable("gtceu.machine.available_recipe_map_1.tooltip", Component.translatable("ctnh.mega_lcr.recipe_type"))
+                    Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.overclock_parallel_machine"),
+                    Component.translatable("ctnh.coil_speed"),
+                    Component.translatable("gtceu.machine.available_recipe_map_1.tooltip", Component.translatable("ctnh.mega_lcr.recipe_type")
+                    )
             )
             .register();
     public static final MultiblockMachineDefinition IV_CHEMICAL_GENERATOR = registerChemicalGenerator(
@@ -3632,11 +3636,12 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
             .register();
-    public final static MultiblockMachineDefinition PLASMA_ALLOY_BLAST_SMELTER= REGISTRATE.multiblock("plasma_alloy_blast_smelter",  holder -> new Arc_Reactor(holder,10))
+    public final static MultiblockMachineDefinition PLASMA_ALLOY_BLAST_SMELTER= REGISTRATE.multiblock("plasma_alloy_blast_smelter",  Plasma_alloy_blast::new)
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(CTNHRecipeTypes.ARC_REACTOR)
+            .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
             .recipeModifiers(Plasma_alloy_blast::recipeModifier,GTRecipeModifiers::ebfOverclock)
             .tooltips(Component.translatable("ctnh.plasma_alloy.1"),
+                    Component.translatable("ctnh.pab"),
                     Component.translatable("ctnh.plasma_alloy.2"),
                     Component.translatable("ctnh.plasma_alloy.3"),
                     Component.translatable("ctnh.plasma_alloy.4"),
@@ -3688,7 +3693,7 @@ public class CTNHMultiblockMachines {
                     .where("Q", Predicates.blocks(WIDESPEEDINGPIPE.get()))
 
                     .build())
-            .workableCasingRenderer(GTCEu.id("block/casings/gcym/nonconducting_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .workableCasingRenderer(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"), CTNHCore.id("block/overlay/super_ebf/"), false)
             .register();
     public final static MultiblockMachineDefinition UNIVERSE_SINOPE= REGISTRATE.multiblock("universe_sinope",  holder -> new Arc_Reactor(holder,10))
             .rotationState(RotationState.NON_Y_AXIS)

@@ -200,6 +200,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
             else if(getMachineStorageItem().getItem().equals(CTNHItems.QUASAR_RUNE.get()))
             {
                 doExplosion(3f);
+                return false;
             }
         }
         return super.onWorking();

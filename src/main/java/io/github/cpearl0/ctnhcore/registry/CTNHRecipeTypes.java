@@ -165,7 +165,7 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
-    public static final GTRecipeType CHEMICAL_VAPOR_DEPOSITION = GTRecipeTypes.register("chemical_vapor_deposition", GTRecipeTypes.ELECTRIC)
+    public static final GTRecipeType CHEMICAL_VAPOR_DEPOSITION = GTRecipeTypes.register("chemical_vapor_deposition", ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(2, 2, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)

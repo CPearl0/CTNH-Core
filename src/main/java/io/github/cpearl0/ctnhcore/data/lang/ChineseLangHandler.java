@@ -38,6 +38,8 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Ignitium.getUnlocalizedName(), "腾炎");
         replace(provider, CTNHMaterials.QUASER_MANA.getUnlocalizedName(), "类星体魔力");
         replace(provider, CTNHMaterials.starlight.getUnlocalizedName(), "星能液");
+        replace(provider,CTNHMaterials.COMPRESSED_ADAMANTITE.getUnlocalizedName(),"压缩精金");
+        replace(provider,CTNHMaterials.COMPRESSED_AETHER.getUnlocalizedName(),"精炼超能以太");
         //Recipe Type
         provider.add("gtceu.phase_inversion","反相蚀刻");
         provider.add("gtceu.underfloor_heating_system", "地暖");
@@ -113,7 +115,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.eye_of_quasar","§5类星体§r§1之§c眼");
         provider.add("ctnh.eye_consumption","启动消耗:%.1f");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
-        provider.add("ctnh.multiblock.parallelize.tooltip", "允许使用并行仓");
+        provider.add("ctnh.multiblock.parallelize.tooltip", "允许使用并行控制仓");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "速率：%s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "减少蒸汽的消耗来降低地暖的发热功率");
@@ -443,7 +445,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.sinope.4.2","富集硅岩块:32并行");
         provider.add("ctnh.sinope.4.3","超能硅岩块:128并行");
         provider.add("ctnh.sinope.5","每一点实际的并行数减少0.5%的能耗和运行时间，至多减少25%(独立乘区)");
-        provider.add("ctnh.sinope.5.1","线圈每提供1800K，运行速度+200%");
+        provider.add("ctnh.sinope.5.1","线圈每提供1800K，运行速度+100%");
         provider.add("ctnh.sinope.6","§c任何虚假的并行都将绳之以法!§r");
         provider.add("ion_exchanger", "离子交换");
         provider.add("ctnh.multiblock.astronomical.invalid", "只能在夜晚使用");
@@ -549,6 +551,9 @@ public class ChineseLangHandler {
         provider.add("ctnh.u_sinope.6","允许使用激光仓，但你的配方电压等级必须达到OPV，否则效率将减少99%");
         provider.add("ctnh.u_sinope.7","对于常规配方，该巨构拥有8^（电压等级）的并行，最高不超过2^32，在能源仓等级达到OPV时解锁无损超频，配方等级每超过UHV一级，处理速度+555%,每100点并行使处理速度增加333%,如果使用了四维工程学材料，则速度额外增加5000%");
         provider.add("ctnh.u_sinope.8","对于该巨构特有的配方类型具有特殊机制：时间固定为100秒，并行固定为10，电压每超过UHV一级，则时间减少10秒，并行增加10,如果使用了四维工程学材料且线圈等级大于等于UIV，则时间固定为1秒");
+        provider.add("ctnh.overclock_parallel_machine","机器运行时每有一实际并行，能源消耗减少1%（至多75%）。运行时间减少1%(至多50%)");
+        provider.add("ctnh.coil_speed","线圈温度大于1800K时，每额外的1800K温度额外提供50%的速度加成");
+        provider.add("ctnh.pab","配方类型：“合金冶炼炉“");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
