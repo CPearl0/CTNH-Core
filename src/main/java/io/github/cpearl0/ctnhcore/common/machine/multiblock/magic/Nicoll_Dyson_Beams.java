@@ -310,6 +310,10 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
         mana=tag.contains(MANA)? tag.getDouble(MANA):0;
         overload=tag.contains(OVERLOAD)?tag.getInt(OVERLOAD):0;
     }
+    @Override
+    public ManagedFieldHolder getFieldHolder() {
+        return MANAGED_FIELD_HOLDER;
+    }
 }
 
 

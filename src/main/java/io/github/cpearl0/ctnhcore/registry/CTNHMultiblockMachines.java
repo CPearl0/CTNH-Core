@@ -3638,7 +3638,7 @@ public class CTNHMultiblockMachines {
             .register();
     public final static MultiblockMachineDefinition PLASMA_ALLOY_BLAST_SMELTER= REGISTRATE.multiblock("plasma_alloy_blast_smelter",  Plasma_alloy_blast::new)
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
+            .recipeType(GTRecipeTypes.BLAST_RECIPES)
             .recipeModifiers(Plasma_alloy_blast::recipeModifier,GTRecipeModifiers::ebfOverclock)
             .tooltips(Component.translatable("ctnh.plasma_alloy.1"),
                     Component.translatable("ctnh.pab"),

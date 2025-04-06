@@ -79,6 +79,11 @@ public class MachinesRecipes {
                 .duration(10)
                 .circuitMeta(1)
                 .save(provider);
+        CTNHRecipeTypes.VOID_MINER.recipeBuilder("void")
+                .EUt(32678*64)
+                .duration(20*100)
+                .circuitMeta(1)
+                .save(provider);
         CTNHRecipeTypes.MANA_GENERATOR.recipeBuilder("mana1")
                 .EUt(-28)
                 .duration(20)
