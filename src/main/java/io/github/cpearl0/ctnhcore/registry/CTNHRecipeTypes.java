@@ -415,7 +415,7 @@ public class CTNHRecipeTypes {
                 {
                     return LocalizationUtils.format("ctnh.accelerator.mode.proton.consume");
                 }
-                return "";
+                return  "";
             })
             .addDataInfo(data->{
 
@@ -431,10 +431,19 @@ public class CTNHRecipeTypes {
                         return LocalizationUtils.format("ctnh.accelerator.mode.speed.g",String.format("%.2f",speed/1000));
                     }
 
-
                 }
                 return "";
-            });
+            }
+            )
+            .addDataInfo(data->{
+                if(data.contains("darkmatter"))
+                {
+                    return LocalizationUtils.format("ctnh.acc.danger");
+                }
+                return "";
+
+            })
+            ;
 
     public static final GTRecipeType ACCELERATOR_DOWN =GTRecipeTypes.register("accelerator_downmode", ELECTRIC)
             .setMaxIOSize(9,9,3,3)
@@ -467,6 +476,7 @@ public class CTNHRecipeTypes {
                 {
                     return LocalizationUtils.format("ctnh.accelerator.mode.proton.consume");
                 }
+
                 return "";
             })
             .addDataInfo(data->{
@@ -486,7 +496,16 @@ public class CTNHRecipeTypes {
 
                 }
                 return "";
-            });
+            })
+            .addDataInfo(data->{
+                if(data.contains("darkmatter"))
+                {
+                    return LocalizationUtils.format("ctnh.acc.danger");
+                }
+                return "";
+
+            })
+            ;
     public static final GTRecipeType ARC_GENERATOR = GTRecipeTypes.register("arc_generator",GENERATOR)
             .setMaxIOSize(6, 6, 3, 3)
             .setEUIO(IO.OUT)

@@ -492,7 +492,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.arcgenerator.t3.1","原子撕裂器");
         provider.add("ctnh.magic_fuel_generator","魔导精炼厂");
         provider.add("mana_generator.consumer.2","运行时消耗2.25倍燃料，获得4倍的发电量");
-        provider.add("mana_generator.consumer.3","运行时消耗3倍燃料，获得12倍的发电量");
+        provider.add("mana_generator.consumer.3","运行时消耗3倍燃料，获得16倍的发电量");
         provider.add("mana_generator.consumer.4","运行时消耗4倍燃料，获得24倍的发电量");
         provider.add("ctnh.mana_generator.0","机器的最大发电量为(配方发电量)*符文提供倍率*转子最大转速*转子发电效率/100*机器自身提供发电量倍率");
         provider.add("ctnh.mana_generator.1","机器的实际发电量为(机器当前转子转速/转子最大转子)^2*机器最大发电量");
@@ -554,7 +554,9 @@ public class ChineseLangHandler {
         provider.add("ctnh.overclock_parallel_machine","机器运行时每有一实际并行，能源消耗减少1%（至多75%）。运行时间减少1%(至多50%)");
         provider.add("ctnh.coil_speed","线圈温度大于1800K时，每额外的1800K温度额外提供50%的速度加成");
         provider.add("ctnh.pab","配方类型：“合金冶炼炉“");
-
+        provider.add("ctnh.acc.danger","§c危险粒子实验");
+        provider.add("ctnh.garden.fire","当前烧煤花温度:%.1f");
+        provider.add("ctnh.garden.eat","当前彼方兰营养值:%d");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }

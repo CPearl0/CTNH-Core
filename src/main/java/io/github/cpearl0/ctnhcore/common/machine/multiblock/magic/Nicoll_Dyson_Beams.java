@@ -33,15 +33,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implements IExplosionMachine, ITieredMachine {
-    public int SLOT_COUNT =4;
-    public int twist_power=0;
-    public int starlight_power=0;
-    public int horizen_power=0;
+    @Persisted public int SLOT_COUNT =4;
+    @Persisted public int twist_power=0;
+    @Persisted  public int starlight_power=0;
+    @Persisted public int horizen_power=0;
     @Persisted public double max_mana=1000000;
     @Persisted public double mana=0;
-    public int overload=0;
-    public int overload_crash=20;
-    public int broken=0;
+    @Persisted  public int overload=0;
+    @Persisted  public int overload_crash=20;
+    @Persisted public int broken=0;
     public int twist_seat=0;
     public int starlight_seat=0;
     public static final String MAX_MANA = "max_mana";

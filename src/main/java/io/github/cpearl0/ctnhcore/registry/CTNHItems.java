@@ -74,6 +74,20 @@ public class CTNHItems {
                 list.add(Component.translatable("ctnh.anti_inf_matter.2").withStyle(ChatFormatting.DARK_GRAY));
             })))
             .register();
+    public static ItemEntry<ComponentItem> ANTIHYDROGEN_CONTAINS =REGISTRATE
+            .item("anti_h_contains",ComponentItem::create)
+            .lang("anti_h_contains")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.anti_matter_contains").withStyle(ChatFormatting.DARK_RED));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> ANTIOXYGEN_CONTAINS =REGISTRATE
+            .item("anti_o_contains",ComponentItem::create)
+            .lang("anti_o_contains")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.anti_matter_contains").withStyle(ChatFormatting.DARK_RED));
+            })))
+            .register();
     public static ItemEntry<Item> TUMOR = REGISTRATE
             .item("tumor",Item::new)
             .lang("Tumor")
