@@ -1232,11 +1232,10 @@ public class CTNHMultiblockMachines {
             .register();
     // Come from GTCA
     public static final MultiblockMachineDefinition SUPER_EBF = REGISTRATE
-            .multiblock("super_ebf", CoilWorkableElectricMultiblockMachine::new)
+            .multiblock("super_ebf", SuperEBF::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.BLAST_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK), CTNHRecipeModifiers::superEbfOverclock)
+            .recipeModifiers(SuperEBF::recipeModifier,GTRecipeModifiers::ebfOverclock)
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("XXXXXXX", "FFXXXFF", "F#####F", "F#####F", "F#####F", "FFXXXFF", "XXXVXXX", "##XXX##", "#######")

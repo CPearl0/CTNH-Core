@@ -151,7 +151,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
         {
             int tier=mmachine.getTier();
             int recipe_tier= RecipeHelper.getRecipeEUtTier(recipe);
-            double overclock=Math.pow(1.2,tier-recipe_tier);
+            double overclock=Math.pow(1.5,tier-recipe_tier);
             if(recipe.data.getString("type").equals("water"))
             {
                 //水绣球
@@ -177,7 +177,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 mmachine.Temperature=0;
                 int maxparallel=8;
                 int bad_food=0;
-                int target_nutrition=64;
+                int target_nutrition=96;
 
 
                 var food=recipe.data.getDouble("nutrition");
@@ -202,11 +202,11 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 double base_output=1;
                 double base_duration=1;
                 if(mmachine.nutrition>target_nutrition) {
-                    base_output = 8;
+                    base_output = 64;
                     base_duration = 1 + 0.1 * (mmachine.nutrition - target_nutrition);
                 }
                 else {
-                    base_output=1+7*((double) mmachine.nutrition /target_nutrition);
+                    base_output=1+63*((double) mmachine.nutrition /target_nutrition);
                 }
                 if(target_nutrition==mmachine.nutrition)
                 {
@@ -240,7 +240,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 boolean isFluidSufficient = MachineUtils.inputFluid(pyrotheumFluid, mmachine);
                 if(isFluidSufficient)mmachine.Temperature-=1000;
                 double rate=-Math.pow((12500- mmachine.Temperature),2)+156250001;
-                double rate2=Math.sqrt(rate)/200;
+                double rate2=Math.sqrt(rate)/5000;
                 int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
                 return  ModifierFunction.builder()
                         .parallels(parallel)
@@ -262,7 +262,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                         .parallels(parallel)
                         .eutMultiplier(Math.sqrt(parallel))
                         .inputModifier(ContentModifier.multiplier(parallel))
-                        .outputModifier(ContentModifier.multiplier(parallel*overclock))
+                        .outputModifier(ContentModifier.multiplier(parallel*overclock*(overclock*parallel/16)))
                         .build();
             }
             if(recipe.data.getString("type").equals("wither"))
