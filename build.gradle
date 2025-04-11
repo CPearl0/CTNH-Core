@@ -247,6 +247,9 @@ dependencies {
     // Create Metallurgy & Create Vintage
     implementation fg.deobf("curse.maven:createmetallurgy-1007404:5794774")
     implementation fg.deobf("curse.maven:createvintage-946579:5661407")
+
+    // Twilight forest
+    implementation fg.deobf("curse.maven:twilight_forest-227639:5468648")
 }
 
 mixin {
