@@ -18,6 +18,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -46,6 +47,7 @@ import net.minecraftforge.common.MinecraftForge;
 import vazkii.botania.common.handler.BotaniaSounds;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class EternalGarden extends WorkableElectricMultiblockMachine implements ITieredMachine {
@@ -61,6 +63,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
     @Persisted private boolean wither=false;
     @Persisted private boolean thunder=false;
     @Persisted private boolean burn=false;
+    @Persisted private  double nutrition=1;
     public void queuer(Double food)
     {
         if(nutrition_length==5)
@@ -148,16 +151,14 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
         {
             int tier=mmachine.getTier();
             int recipe_tier= RecipeHelper.getRecipeEUtTier(recipe);
-            double overclock=Math.pow(1.2,tier-recipe_tier);
+            double overclock=Math.pow(1.5,tier-recipe_tier);
             if(recipe.data.getString("type").equals("water"))
             {
                 //水绣球
                 mmachine.wither=false;
                 mmachine.thunder=false;
-                mmachine.nutrition_length=0;
-                mmachine.nutritionlist.clear();
-                mmachine.Temperature=0;
                 mmachine.burn=false;
+                mmachine.Temperature=0;
                 int maxparallel=8+Math.max((tier-3),0)*4;
                 int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
                 return  ModifierFunction.builder()
@@ -171,12 +172,13 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             {
                 //彼方兰
                 mmachine.wither=false;
-                mmachine.Temperature=0;
                 mmachine.thunder=false;
+                mmachine.burn=false;
+                mmachine.Temperature=0;
                 int maxparallel=8;
                 int bad_food=0;
-                int target_nutrition=64;
-                double nutrition=1;
+                int target_nutrition=96;
+
 
                 var food=recipe.data.getDouble("nutrition");
                 if(mmachine.nutrition_length==0)
@@ -191,22 +193,22 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                             bad_food += 1;
                         }
                         if (i < 4)
-                            nutrition += mmachine.nutritionlist.get(i);
+                            mmachine.nutrition += mmachine.nutritionlist.get(i);
 
                     }
                 }
                 mmachine.queuer(food);
-                nutrition+=food;
+                mmachine.nutrition+=food;
                 double base_output=1;
                 double base_duration=1;
-                if(nutrition>target_nutrition) {
-                    base_output = 8;
-                    base_duration = 1 + 0.1 * (nutrition - target_nutrition);
+                if(mmachine.nutrition>target_nutrition) {
+                    base_output = 64;
+                    base_duration = 1 + 0.1 * (mmachine.nutrition - target_nutrition);
                 }
                 else {
-                    base_output=1+7*((double) nutrition /target_nutrition);
+                    base_output=1+63*((double) mmachine.nutrition /target_nutrition);
                 }
-                if(target_nutrition==nutrition)
+                if(target_nutrition==mmachine.nutrition)
                 {
                     base_duration=0.5;
                 }
@@ -226,28 +228,25 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 //烧煤草
                 mmachine.wither=false;
                 mmachine.thunder=false;
-                mmachine.nutrition_length=0;
-                mmachine.nutritionlist.clear();
-                mmachine.Temperature=0;
                 mmachine.burn=false;
                 int maxparallel = 8;
                 int temp=recipe.data.getInt("temp");
                 mmachine.Temperature+=temp;
                 FluidStack pyrotheumFluid = new FluidStack(
                         Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:pyrotheum"))),
-                        10
+                        100
                 );
                 // 检查输入仓是否有足够流体
                 boolean isFluidSufficient = MachineUtils.inputFluid(pyrotheumFluid, mmachine);
-                if(isFluidSufficient)temp-=1000;
-                double rate=-Math.pow((12500-temp),2)+156250001;
-                double tare2=Math.sqrt(rate)/100;
+                if(isFluidSufficient)mmachine.Temperature-=1000;
+                double rate=-Math.pow((12500- mmachine.Temperature),2)+156250001;
+                double rate2=Math.sqrt(rate)/5000;
                 int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
                 return  ModifierFunction.builder()
                         .parallels(parallel)
                         .eutMultiplier(parallel)
                         .inputModifier(ContentModifier.multiplier(parallel))
-                        .outputModifier(ContentModifier.multiplier(parallel*overclock*rate))
+                        .outputModifier(ContentModifier.multiplier(parallel*overclock*rate2))
                         .build();
             }
             if(recipe.data.getString("type").equals("boom"))
@@ -255,17 +254,15 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 //热爆花
                 mmachine.wither=false;
                 mmachine.thunder=false;
-                mmachine.nutrition_length=0;
-                mmachine.nutritionlist.clear();
-                mmachine.Temperature=0;
                 mmachine.burn=false;
+                mmachine.Temperature=0;
                 int maxparallel=64;
                 int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
                 return  ModifierFunction.builder()
                         .parallels(parallel)
                         .eutMultiplier(Math.sqrt(parallel))
                         .inputModifier(ContentModifier.multiplier(parallel))
-                        .outputModifier(ContentModifier.multiplier(parallel*overclock))
+                        .outputModifier(ContentModifier.multiplier(parallel*overclock*(overclock*parallel/16)))
                         .build();
             }
             if(recipe.data.getString("type").equals("wither"))
@@ -273,10 +270,8 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                // 凋零兔葵
                 mmachine.wither=true;
                 mmachine.thunder=false;
-                mmachine.nutrition_length=0;
-                mmachine.nutritionlist.clear();
-                mmachine.Temperature=0;
                 mmachine.burn=false;
+                mmachine.Temperature=0;
                 int maxparallel=4;
                 int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
                 return  ModifierFunction.builder()
@@ -290,11 +285,9 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
             {
                 //雷德花
                 mmachine.wither=false;
-                mmachine.thunder=false;
-                mmachine.nutrition_length=0;
-                mmachine.nutritionlist.clear();
-                mmachine.Temperature=0;
+                mmachine.thunder=true;
                 mmachine.burn=false;
+                mmachine.Temperature=0;
                 var level = mmachine.getLevel();
                 var pos = mmachine.getPos();
                 if(level.isThundering())
@@ -324,10 +317,8 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 //热绣球
                 mmachine.wither=false;
                 mmachine.thunder=false;
-                mmachine.nutrition_length=0;
-                mmachine.nutritionlist.clear();
-                mmachine.Temperature=0;
                 mmachine.burn=true;
+                mmachine.Temperature=0;
                 int maxparallel=8+Math.max((tier-3),0)*4;
                 int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
                 return  ModifierFunction.builder()
@@ -342,10 +333,8 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 //勿落草
                 mmachine.wither=false;
                 mmachine.thunder=false;
-                mmachine.nutrition_length=0;
-                mmachine.nutritionlist.clear();
-                mmachine.Temperature=0;
                 mmachine.burn=false;
+                mmachine.Temperature=0;
                 var pos = mmachine.getPos();
                 var level=mmachine.getLevel();
                 //forge文档真不如Fabric一根吧
@@ -382,5 +371,17 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
 
         }
     return ModifierFunction.NULL;
+    }
+    public void addDisplayText(List<Component> textList) {
+        super.addDisplayText(textList);
+        var tier = getTier();
+        if(nutrition>1)
+        {
+            textList.add(textList.size(),Component.translatable("ctnh.garden.eat",String.format("%.1f",nutrition)));
+        }
+        if(Temperature>0)
+        {
+            textList.add(textList.size(),Component.translatable("ctnh.garden.fire",String.format("%d",Temperature)));
+        }
     }
 }

@@ -165,7 +165,7 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
-    public static final GTRecipeType CHEMICAL_VAPOR_DEPOSITION = GTRecipeTypes.register("chemical_vapor_deposition", GTRecipeTypes.ELECTRIC)
+    public static final GTRecipeType CHEMICAL_VAPOR_DEPOSITION = GTRecipeTypes.register("chemical_vapor_deposition", ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(2, 2, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
@@ -415,7 +415,7 @@ public class CTNHRecipeTypes {
                 {
                     return LocalizationUtils.format("ctnh.accelerator.mode.proton.consume");
                 }
-                return "";
+                return  "";
             })
             .addDataInfo(data->{
 
@@ -431,10 +431,19 @@ public class CTNHRecipeTypes {
                         return LocalizationUtils.format("ctnh.accelerator.mode.speed.g",String.format("%.2f",speed/1000));
                     }
 
-
                 }
                 return "";
-            });
+            }
+            )
+            .addDataInfo(data->{
+                if(data.contains("darkmatter"))
+                {
+                    return LocalizationUtils.format("ctnh.acc.danger");
+                }
+                return "";
+
+            })
+            ;
 
     public static final GTRecipeType ACCELERATOR_DOWN =GTRecipeTypes.register("accelerator_downmode", ELECTRIC)
             .setMaxIOSize(9,9,3,3)
@@ -467,6 +476,7 @@ public class CTNHRecipeTypes {
                 {
                     return LocalizationUtils.format("ctnh.accelerator.mode.proton.consume");
                 }
+
                 return "";
             })
             .addDataInfo(data->{
@@ -486,7 +496,16 @@ public class CTNHRecipeTypes {
 
                 }
                 return "";
-            });
+            })
+            .addDataInfo(data->{
+                if(data.contains("darkmatter"))
+                {
+                    return LocalizationUtils.format("ctnh.acc.danger");
+                }
+                return "";
+
+            })
+            ;
     public static final GTRecipeType ARC_GENERATOR = GTRecipeTypes.register("arc_generator",GENERATOR)
             .setMaxIOSize(6, 6, 3, 3)
             .setEUIO(IO.OUT)

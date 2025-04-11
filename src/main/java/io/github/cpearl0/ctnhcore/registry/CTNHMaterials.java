@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import dev.arbor.gtnn.data.GTNNMaterials;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import lombok.Generated;
 import net.minecraft.server.commands.PublishCommand;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
@@ -180,6 +181,12 @@ public class CTNHMaterials {
             .iconSet(METALLIC)
             .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
             .cableProperties(GTValues.V[GTValues.UHV], 4, 64)
+            .buildAndRegister();
+    public static  final Material COMPRESSED_ADAMANTITE= new Material.Builder(GTCEu.id("compressed_adamantite"))
+            .plasma()
+            .buildAndRegister();
+    public static  final Material COMPRESSED_AETHER = new Material.Builder(GTCEu.id("compressed_aether"))
+            .plasma()
             .buildAndRegister();
     public static final Material EVE = new Material.Builder(GTCEu.id("eve"))
             .plasma()
@@ -351,9 +358,22 @@ public class CTNHMaterials {
             .color(0xffd919)
             .iconSet(METALLIC)
             .buildAndRegister();
+    public static final Material O_bar = new Material.Builder((GTCEu.id("o_bar")))
+            .liquid(new FluidBuilder()
+                    .temperature(0)
+                    .customStill())
+            .color(0X522719)
+            .buildAndRegister();
+    public static final Material H_bar = new Material.Builder((GTCEu.id("h_bar")))
+            .liquid(new FluidBuilder()
+                    .temperature(0)
+                    .customStill())
+            .color(0XFFFF00)
+            .buildAndRegister();
     public static final Material starlight = new Material.Builder(GTCEu.id("starlight"))
             .liquid(new FluidBuilder().temperature(50).textures(true,true).block())
             .buildAndRegister();
+
     public static void init() {
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);

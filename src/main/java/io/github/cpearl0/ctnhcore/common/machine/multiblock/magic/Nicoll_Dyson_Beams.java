@@ -33,15 +33,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implements IExplosionMachine, ITieredMachine {
-    public int SLOT_COUNT =4;
-    public int twist_power=0;
-    public int starlight_power=0;
-    public int horizen_power=0;
+    @Persisted public int SLOT_COUNT =4;
+    @Persisted public int twist_power=0;
+    @Persisted  public int starlight_power=0;
+    @Persisted public int horizen_power=0;
     @Persisted public double max_mana=1000000;
     @Persisted public double mana=0;
-    public int overload=0;
-    public int overload_crash=20;
-    public int broken=0;
+    @Persisted  public int overload=0;
+    @Persisted  public int overload_crash=20;
+    @Persisted public int broken=0;
     public int twist_seat=0;
     public int starlight_seat=0;
     public static final String MAX_MANA = "max_mana";
@@ -136,7 +136,8 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
 
             if(overload>=overload_crash)
             {
-                doExplosion(3f);
+                doExplosion(100f);
+                return false;
             }
 
             if(MachineUtils.inputFluid(CTNHMaterials.Mana.getFluid(100000),this))
@@ -162,7 +163,11 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
 
-        if(broken==2) doExplosion(3f);
+        if(broken==2)
+        {
+            doExplosion(100f);
+            return false;
+        }
         if(mana>=recipe.data.getInt("required_mana"))
         {
             max_mana=1000000*(1+0.125*horizen_power);
@@ -304,6 +309,10 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
         max_mana = tag.contains(MAX_MANA) ? tag.getDouble(MAX_MANA) : 0;
         mana=tag.contains(MANA)? tag.getDouble(MANA):0;
         overload=tag.contains(OVERLOAD)?tag.getInt(OVERLOAD):0;
+    }
+    @Override
+    public ManagedFieldHolder getFieldHolder() {
+        return MANAGED_FIELD_HOLDER;
     }
 }
 

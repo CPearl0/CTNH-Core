@@ -38,6 +38,8 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Ignitium.getUnlocalizedName(), "腾炎");
         replace(provider, CTNHMaterials.QUASER_MANA.getUnlocalizedName(), "类星体魔力");
         replace(provider, CTNHMaterials.starlight.getUnlocalizedName(), "星能液");
+        replace(provider,CTNHMaterials.COMPRESSED_ADAMANTITE.getUnlocalizedName(),"压缩精金");
+        replace(provider,CTNHMaterials.COMPRESSED_AETHER.getUnlocalizedName(),"精炼超能以太");
         //Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
         provider.add("config.ctnhcore.option.kinetic", "应力相关");
@@ -138,7 +140,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.eye_of_quasar","§5类星体§r§1之§c眼");
         provider.add("ctnh.eye_consumption","启动消耗:%.1f");
         provider.add("gtceu.multiblock.laser.tooltip", "允许使用激光仓");
-        provider.add("ctnh.multiblock.parallelize.tooltip", "允许使用并行仓");
+        provider.add("ctnh.multiblock.parallelize.tooltip", "允许使用并行控制仓");
         provider.add("ctnh.multiblock.underfloor_heating_system.efficiency", "效率：%d");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate", "速率：%s");
         provider.add("ctnh.multiblock.underfloor_heating_system.rate.tooltip", "减少蒸汽的消耗来降低地暖的发热功率");
@@ -468,7 +470,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.sinope.4.2","富集硅岩块:32并行");
         provider.add("ctnh.sinope.4.3","超能硅岩块:128并行");
         provider.add("ctnh.sinope.5","每一点实际的并行数减少0.5%的能耗和运行时间，至多减少25%(独立乘区)");
-        provider.add("ctnh.sinope.5.1","线圈每提供1800K，运行速度+200%");
+        provider.add("ctnh.sinope.5.1","线圈每提供1800K，运行速度+100%");
         provider.add("ctnh.sinope.6","§c任何虚假的并行都将绳之以法!§r");
         provider.add("ion_exchanger", "离子交换");
         provider.add("ctnh.multiblock.astronomical.invalid", "只能在夜晚使用");
@@ -511,18 +513,24 @@ public class ChineseLangHandler {
         provider.add("ctnh.arc.r.arc","可输出的电弧强度:%d");
         provider.add("ctnh.arc.r.connect","§b桥接已启用§r");
         provider.add("ctnh.arcgenerator.1","物质撕裂器");
+        provider.add("ctnh.arcgenerator.t2.1","分子撕裂器");
+        provider.add("ctnh.arcgenerator.t3.1","原子撕裂器");
         provider.add("ctnh.magic_fuel_generator","魔导精炼厂");
         provider.add("mana_generator.consumer.2","运行时消耗2.25倍燃料，获得4倍的发电量");
-        provider.add("mana_generator.consumer.3","运行时消耗3倍燃料，获得12倍的发电量");
+        provider.add("mana_generator.consumer.3","运行时消耗3倍燃料，获得16倍的发电量");
         provider.add("mana_generator.consumer.4","运行时消耗4倍燃料，获得24倍的发电量");
         provider.add("ctnh.mana_generator.0","机器的最大发电量为(配方发电量)*符文提供倍率*转子最大转速*转子发电效率/100*机器自身提供发电量倍率");
         provider.add("ctnh.mana_generator.1","机器的实际发电量为(机器当前转子转速/转子最大转子)^2*机器最大发电量");
         provider.add("ctnh.mana_generator.2","§c注意：运行时需要额外消耗液态魔力，如果消耗液态魔力不足，则本次发电配方发电量将会除以5，通过机器UI可以获得魔力消耗量");
         provider.add("ctnh.arcgenerator.arc.t1.1","§b最大支持电弧强度:1000");
         provider.add("ctnh.arcgenerator.arc.t1.2","§c最大发电效率:75%");
+        provider.add("ctnh.arcgenerator.arc.t2.1","§b最大支持电弧强度:10000");
+        provider.add("ctnh.arcgenerator.arc.t2.2","§c最大发电效率:125%");
+        provider.add("ctnh.arcgenerator.arc.t3.1","§b最大支持电弧强度:50000");
+        provider.add("ctnh.arcgenerator.arc.t3.2","§c最大发电效率:225%");
         provider.add("ctnh.arcgenerator.2","该机器必须配合电弧生成器使用，要求电弧生成器必须在该机器主方块上方5格，当完成链接时，电弧生成器会显示已完成连接");
         provider.add("ctnh.arcgenerator.3","当电弧强度小于配方最小电弧强度时，配方将无法运行");
-        provider.add("ctnh.arcgenerator.4","当电弧强度大于配方最大电弧强度时，配方将以(机器电弧强度-佩戴需求电弧强度)/(满功率需求电弧强度-需求电弧强度)的效率运行。效率允许超过100%，但不能超过机器最大发电效率");
+        provider.add("ctnh.arcgenerator.4","当电弧强度大于配方最大电弧强度时，配方将以(机器电弧强度-配方需求电弧强度)/(满功率需求电弧强度-需求电弧强度)的效率运行。效率允许超过100%，但不能超过机器最大发电效率");
         provider.add("ctnh.arcgenerator.5","当效率未达100%时，因为湮灭的不完全，将产生少量额外产出");
         provider.add("ctnh.arcreactor","电弧发生者");
         provider.add("ctnh.arcreactor.1","该机器必须配合电弧撕裂者使用，要求电弧生成器必须在电弧撕裂者主方块上方5格，当完成链接时，电弧生成器会显示桥接已启用");
@@ -545,6 +553,35 @@ public class ChineseLangHandler {
         provider.add("ctnh.eternalgarden.3","每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制");
         provider.add("ctnh.eternalgarden.unknown","§5......等待着永恒的紫罗兰如今在何方？");
         provider.add("ctnh.manamachine.parallel","运行中的每一并行提供1%时间和耗能减免，至多减少75%");
+        provider.add("ctnh.anti_inf_matter.1","-∞");
+        provider.add("ctnh.anti_inf_matter.2","它到底是怎么在现实世界存在的......");
+        provider.add("ctnh.plasma_alloy.1","§4转底炉的复仇");
+        provider.add("ctnh.plasma_alloy.2","线圈温度每有1800K，获得4点并行，线圈温度超过10000K时，获得(线圈温度-10000)/10000的额外加速");
+        provider.add("ctnh.plasma_alloy.3","运行前消耗(并行数*对应等离子体消耗)的等离子体，获得额外加速");
+        provider.add("ctnh.plasma_alloy.4","氦等离子体：消耗500*并行的等离子体，速度+100%");
+        provider.add("ctnh.plasma_alloy.5","氧，氮等离子体：消耗300*并行的等离子体，速度+200%");
+        provider.add("ctnh.plasma_alloy.6","镍，铁等离子体：消耗200*并行的等离子体，速度+300%");
+        provider.add("ctnh.plasma_alloy.7","消耗特殊的冶炼等离子体可以获得额外的速度加成，§c但是同样会将增加你冶炼的风险");
+        provider.add("ctnh.plasma_alloy.8","压缩精金等离子：消耗固定100等离子体，使速度+1000%,使消耗电压翻倍（§c这可能导致配方不运行，请使用多安能源仓）");
+        provider.add("ctnh.plasma_alloy.9","精炼超能以太等离子体：消耗50*并行等离子体，使速度+2000%,§c使最终产物在80%-100%中浮动");
+        provider.add("ctnh.plasma_alloy.10","§c速度增幅超过5000%时，最终产物量将会在0%-50%中浮动！");
+        provider.add("ctnh.u_sinope.story.1","在战争没有开始前，人们曾团结在一起，一齐建造这工业的巴别巨塔");
+        provider.add("ctnh.u_sinope.story.2","直到那场永恒的战争，这座真空巨塔化为永恒的残骸，随着战争的双方破碎在真空中");
+        provider.add("ctnh.u_sinope.story.3","你已无法再知晓那场战争的双方是否已经相互毁灭，但你直到，这座巨型结构将宣告着人类的复兴");
+        provider.add("ctnh.u_sinope.1","配方类型：蒸馏塔/蒸馏室/裂化机/流体加热机/流体固化机/真空石化处理/???");
+        provider.add("ctnh.u_sinope.2","§c它那究极的结构已然无法让你的JEI承受，你需要寻求蓝图的帮忙，同时在修改结构时最好直接破坏主方块以避免检测卡死游戏");
+        provider.add("ctnh.u_sinope.3","巨型的结构只能在真空建立，否则巨大的结构将会使周围坍缩（效率减少99.99%）");
+        provider.add("ctnh.u_sinope.4","除非你使用四维工程学材料，否则它无法再承受UIV即以上的线圈，效率将减少99.99%");
+        provider.add("ctnh.u_sinope.5","线圈等级决定了最大的配方等级，你最大只能使用线圈电压等级+1的配方等级，否则效率减少99%");
+        provider.add("ctnh.u_sinope.6","允许使用激光仓，但你的配方电压等级必须达到OPV，否则效率将减少99%");
+        provider.add("ctnh.u_sinope.7","对于常规配方，该巨构拥有8^（电压等级）的并行，最高不超过2^32，在能源仓等级达到OPV时解锁无损超频，配方等级每超过UHV一级，处理速度+555%,每100点并行使处理速度增加333%,如果使用了四维工程学材料，则速度额外增加5000%");
+        provider.add("ctnh.u_sinope.8","对于该巨构特有的配方类型具有特殊机制：时间固定为100秒，并行固定为10，电压每超过UHV一级，则时间减少10秒，并行增加10,如果使用了四维工程学材料且线圈等级大于等于UIV，则时间固定为1秒");
+        provider.add("ctnh.overclock_parallel_machine","机器运行时每有一实际并行，能源消耗减少1%（至多75%）。运行时间减少1%(至多50%)");
+        provider.add("ctnh.coil_speed","线圈温度大于1800K时，每额外的1800K温度额外提供50%的速度加成");
+        provider.add("ctnh.pab","配方类型：“合金冶炼炉“");
+        provider.add("ctnh.acc.danger","§c危险粒子实验");
+        provider.add("ctnh.garden.fire","当前烧煤花温度:%.1f");
+        provider.add("ctnh.garden.eat","当前彼方兰营养值:%d");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -597,6 +634,7 @@ public class ChineseLangHandler {
         provider.add(CTNHItems.STARLIGHT_RUNE.get(), "星光符文");
         provider.add(CTNHItems.QUASAR_RUNE.get(), "§5类星体§r符文");
         provider.add(CTNHItems.PROLIFERATION_RUNE.get(), "增殖符文");
+        provider.add(CTNHItems.ANTI_INF_MATTER.get(),"§0反无穷聚合体");
         provider.addItem(CTNHItems.BOSS_SUMMONER, "boss召唤器");
         provider.addItem(CTNHItems.ADVANCED_BOSS_SUMMONER, "进阶boss召唤器");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
@@ -752,6 +790,11 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.MECHANICAL_SIFTER.getBlock(), "机械筛选厂");
         provider.add(CTNHMultiblockMachines.MECHANICAL_PRESSOR.getBlock(), "机械辊压厂");
         provider.add(CTNHMultiblockMachines.ETERNAL_GARDEN.getBlock(), "芙蕾雅的永恒花园");
+        provider.add(CTNHMultiblockMachines.SUPERCONDUCTING_PENNING_TRAP.getBlock(), "超导潘宁势阱");
+        provider.add(CTNHMultiblockMachines.ARC_GENERATOR_MK1.getBlock(),"超压电弧撕裂者MK1");
+        provider.add(CTNHMultiblockMachines.ARC_GENERATOR_MK2.getBlock(),"过载电弧撕裂者MK1");
+        provider.add(CTNHMultiblockMachines.PLASMA_ALLOY_BLAST_SMELTER.getBlock(),"等离子合金冶炼转底炉");
+        provider.add(CTNHMultiblockMachines.UNIVERSE_SINOPE.getBlock(), "中石化宇宙处理中心");
 
 
 

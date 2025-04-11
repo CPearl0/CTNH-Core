@@ -39,8 +39,8 @@ public class TwistedFusionMachine extends WorkableElectricMultiblockMachine {
 
                     return  ModifierFunction.builder()
                             .parallels(pa)
-                            .durationMultiplier(0.25*pa)
-                            .eutMultiplier(0.25*pa)
+                            .durationMultiplier(0.25*pa*Math.pow(0.99,pa))
+                            .eutMultiplier(0.25*pa*Math.pow(0.99,pa))
                             .inputModifier(ContentModifier.multiplier(pa))
                             .outputModifier(ContentModifier.multiplier(pa))
                             .build();
@@ -50,8 +50,8 @@ public class TwistedFusionMachine extends WorkableElectricMultiblockMachine {
                     int pa= ParallelLogic.getParallelAmount(machine,recipe,Integer.MAX_VALUE-10);
                     return  ModifierFunction.builder()
                             .parallels(pa)
-                            .durationMultiplier(0.0001*pa)
-                            .eutMultiplier(0.0001*pa)
+                            .durationMultiplier(0.0001*pa*Math.pow(0.9,pa))
+                            .eutMultiplier(0.0001*pa*Math.pow(0.9,pa))
                             .inputModifier(ContentModifier.multiplier(pa))
                             .outputModifier(ContentModifier.multiplier(pa))
                             .build();

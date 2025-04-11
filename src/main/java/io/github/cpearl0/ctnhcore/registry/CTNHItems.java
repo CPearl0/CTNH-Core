@@ -66,8 +66,28 @@ public class CTNHItems {
             .item("proliferation_rune",Item::new)
             .lang("proliferation_rune")
             .register();
-
-
+    public static ItemEntry<ComponentItem> ANTI_INF_MATTER =REGISTRATE
+            .item("anti_inf_matter",ComponentItem::create)
+            .lang("anti_inf_matter")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.anti_inf_matter.1").withStyle(ChatFormatting.BLACK));
+                list.add(Component.translatable("ctnh.anti_inf_matter.2").withStyle(ChatFormatting.DARK_GRAY));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> ANTIHYDROGEN_CONTAINS =REGISTRATE
+            .item("anti_h_contains",ComponentItem::create)
+            .lang("anti_h_contains")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.anti_matter_contains").withStyle(ChatFormatting.DARK_RED));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> ANTIOXYGEN_CONTAINS =REGISTRATE
+            .item("anti_o_contains",ComponentItem::create)
+            .lang("anti_o_contains")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.anti_matter_contains").withStyle(ChatFormatting.DARK_RED));
+            })))
+            .register();
     public static ItemEntry<Item> TUMOR = REGISTRATE
             .item("tumor",Item::new)
             .lang("Tumor")
@@ -119,7 +139,7 @@ public class CTNHItems {
             .lang("Advanced Boss Summoner")
             .onRegister(attach(new BossSummonerBehavior(2)))
             .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.RED));
+                list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.DARK_RED));
             })))
             .register();
 
