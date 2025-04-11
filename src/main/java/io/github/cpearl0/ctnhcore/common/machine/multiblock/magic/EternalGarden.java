@@ -15,6 +15,7 @@ import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.mojang.blaze3d.shaders.Effect;
 import com.teamresourceful.resourcefulconfig.web.annotations.Link;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -22,6 +23,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.damagesource.DamageType;
@@ -30,6 +32,8 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
@@ -46,9 +50,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.common.MinecraftForge;
 import vazkii.botania.common.handler.BotaniaSounds;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+
 
 public class EternalGarden extends WorkableElectricMultiblockMachine implements ITieredMachine {
     public EternalGarden(IMachineBlockEntity holder){
@@ -64,6 +70,8 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
     @Persisted private boolean thunder=false;
     @Persisted private boolean burn=false;
     @Persisted private  double nutrition=1;
+    @Persisted private List<ItemStack> flower;
+    @Persisted private List<ItemStack> rune;
     public void queuer(Double food)
     {
         if(nutrition_length==5)
@@ -73,6 +81,47 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
         else
             nutrition_length+=1;
         nutritionlist.add(food);
+    }
+    public static List<ItemStack> getallrunes()
+    {
+        List<ItemStack> ItemsRune = new ArrayList<>();
+        List<ItemStack> ItemsFlower = new ArrayList<>();
+        TagKey<Item> RuneTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation("botania", "runes"));
+        TagKey<Item> FlowerTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation("botania", "generating_special_flowers"));
+        for (Item item : ForgeRegistries.ITEMS) {
+            ItemStack itemStack = item.getDefaultInstance();
+
+            if (itemStack.is(RuneTag)) {
+                ItemsRune.add(itemStack);
+            }
+            if (itemStack.is(FlowerTag)) {
+                ItemsFlower.add(itemStack);
+            }
+        }
+        return ItemsRune;
+    }
+    public static List<ItemStack> getallflowers()
+    {
+        List<ItemStack> ItemsRune = new ArrayList<>();
+        List<ItemStack> ItemsFlower = new ArrayList<>();
+        TagKey<Item> RuneTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation("botania", "runes"));
+        TagKey<Item> FlowerTag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation("botania", "generating_special_flowers"));
+        for (Item item : ForgeRegistries.ITEMS) {
+            ItemStack itemStack = item.getDefaultInstance();
+
+            if (itemStack.is(RuneTag)) {
+                ItemsRune.add(itemStack);
+            }
+            if (itemStack.is(FlowerTag)) {
+                ItemsFlower.add(itemStack);
+            }
+        }
+        return ItemsFlower;
+    }
+    public void onStructureFormed() {
+        super.onStructureFormed();
+        flower=getallflowers();
+        rune=getallrunes();
     }
 
     @Override
@@ -151,7 +200,43 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
         {
             int tier=mmachine.getTier();
             int recipe_tier= RecipeHelper.getRecipeEUtTier(recipe);
-            double overclock=Math.pow(1.5,tier-recipe_tier);
+            var base_overclock=1.25;
+            for(int i=0;i<=mmachine.flower.size();i++)
+            {
+                if(MachineUtils.canInputItem(mmachine.flower.get(i),mmachine))
+                {
+                    base_overclock+=0.0002;
+                }
+            }
+            for(int i=0;i<=mmachine.rune.size();i++)
+            {
+                if(MachineUtils.canInputItem(mmachine.rune.get(i),mmachine))
+                {
+                    base_overclock+=0.0001;
+                }
+            }
+            if(MachineUtils.canInputItem(new ItemStack(CTNHItems.TWIST_RUNE),mmachine))
+            {
+                base_overclock+=0.05;
+            }
+            if(MachineUtils.canInputItem(new ItemStack(CTNHItems.HORIZEN_RUNE),mmachine))
+            {
+                base_overclock+=0.05;
+            }
+            if(MachineUtils.canInputItem(new ItemStack(CTNHItems.PROLIFERATION_RUNE),mmachine))
+            {
+                base_overclock+=0.1;
+            }
+            if(MachineUtils.canInputItem(new ItemStack(CTNHItems.STARLIGHT_RUNE),mmachine))
+            {
+                base_overclock+=0.05;
+            }
+            if(MachineUtils.canInputItem(new ItemStack(CTNHItems.QUASAR_RUNE),mmachine))
+            {
+                base_overclock+=0.5;
+            }
+
+            double overclock=Math.pow(base_overclock,tier-recipe_tier);
             if(recipe.data.getString("type").equals("water"))
             {
                 //水绣球
@@ -177,10 +262,10 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 mmachine.Temperature=0;
                 int maxparallel=8;
                 int bad_food=0;
-                int target_nutrition=96;
+                int target_nutrition=64;
 
 
-                var food=recipe.data.getDouble("nutrition");
+                var food=recipe.data.getDouble("nutrition")/2;
                 if(mmachine.nutrition_length==0)
                 {
 
@@ -202,11 +287,11 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 double base_output=1;
                 double base_duration=1;
                 if(mmachine.nutrition>target_nutrition) {
-                    base_output = 64;
+                    base_output = 36;
                     base_duration = 1 + 0.1 * (mmachine.nutrition - target_nutrition);
                 }
                 else {
-                    base_output=1+63*((double) mmachine.nutrition /target_nutrition);
+                    base_output=1+35*((double) mmachine.nutrition /target_nutrition);
                 }
                 if(target_nutrition==mmachine.nutrition)
                 {
@@ -230,7 +315,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 mmachine.thunder=false;
                 mmachine.burn=false;
                 int maxparallel = 8;
-                int temp=recipe.data.getInt("temp");
+                int temp=recipe.data.getInt("temp")/2;
                 mmachine.Temperature+=temp;
                 FluidStack pyrotheumFluid = new FluidStack(
                         Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:pyrotheum"))),
@@ -240,7 +325,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 boolean isFluidSufficient = MachineUtils.inputFluid(pyrotheumFluid, mmachine);
                 if(isFluidSufficient)mmachine.Temperature-=1000;
                 double rate=-Math.pow((12500- mmachine.Temperature),2)+156250001;
-                double rate2=Math.sqrt(rate)/5000;
+                double rate2=Math.sqrt(rate)/500;
                 int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
                 return  ModifierFunction.builder()
                         .parallels(parallel)
@@ -262,7 +347,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                         .parallels(parallel)
                         .eutMultiplier(Math.sqrt(parallel))
                         .inputModifier(ContentModifier.multiplier(parallel))
-                        .outputModifier(ContentModifier.multiplier(parallel*overclock*(overclock*parallel/16)))
+                        .outputModifier(ContentModifier.multiplier(parallel*overclock*overclock))
                         .build();
             }
             if(recipe.data.getString("type").equals("wither"))

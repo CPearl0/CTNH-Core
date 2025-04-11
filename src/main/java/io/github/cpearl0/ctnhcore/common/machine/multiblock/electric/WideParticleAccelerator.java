@@ -160,8 +160,10 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
             }
 
             int parallel = ParallelLogic.getParallelAmount(machine,recipe,16);
+            var random = Math.random()*0.25;
             if(hatchs>0)parallel=hatchs;
             double total_eut= (wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/1000;
+
             if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN))total_eut=(wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/250;
 
             if(recipe.data.getString("type").equals("addnu")||recipe.data.getString("type").equals("addproton")||recipe.data.getString("type").equals("addelement"))
@@ -192,7 +194,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
                 {
                     if(wmachine.isconnect&&gmachine.isconnect)
                     {
-                        gmachine.anti_nu+=1000*parallel;
+                        gmachine.anti_nu+= (int) (1000*parallel*(1-random*Math.sqrt(0.05*parallel)));
                     }
                     else{
                         wmachine.warring=true;
@@ -209,7 +211,8 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
                 {
                     if(wmachine.isconnect&&gmachine.isconnect)
                     {
-                        gmachine.anti_proton+=1000*parallel;
+                        gmachine.anti_proton+= (int) (1000*parallel*(1-random*Math.sqrt(0.05*parallel)));
+                        gmachine.anti_nu+=(int)(1000*parallel*(random*random));
                     }
                     else{
                         wmachine.warring=true;
@@ -226,7 +229,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
                 {
                     if(wmachine.isconnect&&gmachine.isconnect)
                     {
-                        gmachine.anti_electron+=1000*parallel;
+                        gmachine.anti_electron+= (int) (1000*parallel*(1-random*Math.sqrt(0.05*parallel)));
                     }
                 else{
                         wmachine.warring=true;

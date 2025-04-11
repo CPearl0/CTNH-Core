@@ -123,11 +123,12 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
                 }
         }
         else {
+            this.energyContainer.removeEnergy(this.energyContainer.getEnergyStored());
             no_energy_waring=true;
             tickwarring += 1;
             if(tickwarring>200&&danger())
             {
-                doExplosion(3f);
+                doExplosion(9f);
             }
             getRecipeLogic().setWaiting(Component.translatable("gtceu.recipe_logic.insufficient_in"));
         }
@@ -136,6 +137,7 @@ public class Superconducting_Penning_Trap  extends WorkableElectricMultiblockMac
         if (isWorkingEnabled()) consumeEnergy();
         var level=getLevel();
         var pos=MachineUtils.getOffset(this,0,20,6);
+
         if (isActive()) {
             if (getMachine(level, pos) instanceof WideParticleAccelerator gmachine) {
                 isconnect = true;

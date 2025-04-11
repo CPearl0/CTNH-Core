@@ -452,7 +452,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.astronomical.intro", "知天易，逆天难");
         provider.add("ctnh.astronomical.mechanism", "无法在阳光直射下工作，工作时会自动为芯片总线中的芯片收集数据");
         provider.add("ctnh.wideaccelerator.1","粒子加速集成者");
-        provider.add("ctnh.wideaccelerator.2","允许§9使用激光仓§r和§a变电仓§r");
+        provider.add("ctnh.wideaccelerator.2","允许§9使用激光仓§r和§a变电仓§r，无法超频");
         provider.add("ctnh.wideaccelerator.3","通过三个轨道加速三种粒子");
         provider.add("ctnh.wideaccelerator.control","允许使用§b并行控制仓§r，使用§b并行控制仓§r可以自由控制配方并行和粒子加速减速并行，否则使用默认值");
         provider.add("ctnh.wideaccelerator.pa","在运行一般配方时如无§b并行控制仓§r,默认使用16并行");
@@ -461,7 +461,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.wideaccelerator.6","本机器在运行时根据运行配方模式来决定之后逻辑");
         provider.add("ctnh.wideaccelerator.7","加速模式:使用加速配方时如无§b并行控制仓§r将试图以1024并行来运行，运行配方时需要大量能源来维持。运行配方时三种粒子速度之和每有100Mev，能源消耗提升10%，此状态下粒子速度§9不会§r减少");
         provider.add("ctnh.wideaccelerator.8","减速模式:使用加速配方时如无§b并行控制仓§r将试图以1并行来减少粒子速度，运行配方时需要少量能源来维持。运行配方时三种粒子速度之和每有100Mev，能源消耗提升2.5%。此状态下粒子速度在运行完配方后减少sqrt(配方所需速度)的对应粒子速度");
-        provider.add("ctnh.wideaccelerator.9","注意:本机器用电量极高，使用低电压可能导致§c配方无法运行§r或者§c跳电§r,建议搭配§9激光仓§r使用");
+        provider.add("ctnh.wideaccelerator.9","注意:本机器用电量极高，且暂时无法做到只能计算正确并行，使用低电压可能导致§c配方无法运行§r或者§c跳电§r,建议搭配§9激光仓§r使用，如遇配方不工作，请降低该机器并行");
         provider.add("ctnh.wideaccelerator.10","可以与约束器链接传递部分粒子。§c警告：如果没有链接约束器，不要随意尝试某些危险的配方§r (目前还是饼)");
         provider.add("ctnh.accelerator.nu_speed","中子速度:%.2fMev");
         provider.add("ctnh.accelerator.proton_speed","质子速度:%.2fMev");
@@ -524,10 +524,12 @@ public class ChineseLangHandler {
         provider.add("ctnh.gtceu.tfmkalephzero.3","§8好吧，我不管你是开创还是怎么回事的，你确实和你的AE征服我了§r");
         provider.add("ctnh.gtceu.tfmkalephzero.4","§7并行数为2147483637，配方时间乘以0.0001，无损超频，满意了吧？§r");
         provider.add("ctnh.eternalgarden.1","§b万物在这世间绽放的永恒的一瞥§r");
-        provider.add("ctnh.eternalgarden.2","无法超频，但是机器自身电压每比配方电压高一级就使最终产出乘以1.1");
+        provider.add("ctnh.eternalgarden.2","无法超频，但是机器自身电压每比配方电压高一级就使最终产出乘以1.25,通过在输入总线内加入五级符文来增大这个系数");
         provider.add("ctnh.eternalgarden.3","每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制");
         provider.add("ctnh.eternalgarden.unknown","§5......等待着永恒的紫罗兰如今在何方？");
         provider.add("ctnh.manamachine.parallel","运行中的每一并行提供1%时间和耗能减免，至多减少75%");
+        provider.add("ctnh.manamachine.debuff","§4当电压低于LUV且配方电压等级等于当前配方电压时，使配方时间增加33%（魔力组装只增加1%)");
+        provider.add("ctnh.quasar_mode","放入§5类星体符文§r以在100次配方内启用§5星体之眼模式§r：并行变为无限，并行不再提供额外的时间与电压减少。启动此模式不消耗类星体符文");
         provider.add("ctnh.anti_inf_matter.1","-∞");
         provider.add("ctnh.anti_inf_matter.2","它到底是怎么在现实世界存在的......");
         provider.add("ctnh.plasma_alloy.1","§4转底炉的复仇");
