@@ -38,6 +38,31 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Ignitium.getUnlocalizedName(), "腾炎");
         replace(provider, CTNHMaterials.QUASER_MANA.getUnlocalizedName(), "类星体魔力");
         replace(provider, CTNHMaterials.starlight.getUnlocalizedName(), "星能液");
+        //Config
+        provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
+        provider.add("config.ctnhcore.option.kinetic", "应力相关");
+        provider.add("config.ctnhcore.option.enableFTBUltimineOnGTOres", "开启GT矿物连锁");
+        provider.add("config.ctnhcore.option.pressorRpmRequirement", "机械辊压厂最低转速需求");
+        provider.add("config.ctnhcore.option.pressorSpeedMultiplier", "机械辊压厂加速倍率");
+        provider.add("config.ctnhcore.option.pressorStressRequirement", "机械辊压厂应力消耗");
+        provider.add("config.ctnhcore.option.mixerRpmRequirement", "机械搅拌厂最低转速需求");
+        provider.add("config.ctnhcore.option.mixerSpeedMultiplier", "机械搅拌厂加速倍率");
+        provider.add("config.ctnhcore.option.mixerStressRequirement", "机械搅拌厂应力消耗");
+        provider.add("config.ctnhcore.option.centrifugeRpmRequirement", "机械离心厂最低转速需求");
+        provider.add("config.ctnhcore.option.centrifugeSpeedMultiplier", "机械离心厂加速倍率");
+        provider.add("config.ctnhcore.option.centrifugeStressRequirement", "机械离心厂应力消耗");
+        provider.add("config.ctnhcore.option.sifterRpmRequirement", "机械筛选厂最低转速需求");
+        provider.add("config.ctnhcore.option.sifterSpeedMultiplier", "机械筛选厂加速倍率");
+        provider.add("config.ctnhcore.option.sifterStressRequirement", "机械筛选厂应力消耗");
+        provider.add("config.ctnhcore.option.extractorRpmRequirement", "机械提取厂最低转速需求");
+        provider.add("config.ctnhcore.option.extractorSpeedMultiplier", "机械提取厂加速倍率");
+        provider.add("config.ctnhcore.option.extractorStressRequirement", "机械提取厂应力消耗");
+        provider.add("config.ctnhcore.option.latheRpmRequirement", "机械车床厂最低转速需求");
+        provider.add("config.ctnhcore.option.latheSpeedMultiplier", "机械车床厂加速倍率");
+        provider.add("config.ctnhcore.option.latheStressRequirement", "机械车床厂应力消耗");
+        provider.add("config.ctnhcore.option.laserRpmRequirement", "机械激光厂最低转速需求");
+        provider.add("config.ctnhcore.option.laserSpeedMultiplier", "机械激光厂加速倍率");
+        provider.add("config.ctnhcore.option.laserStressRequirement", "机械激光厂应力消耗");
         //Recipe Type
         provider.add("gtceu.phase_inversion","反相蚀刻");
         provider.add("gtceu.underfloor_heating_system", "地暖");
@@ -635,7 +660,6 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.CASSAVA_CRATE, "箱装木薯");
         provider.addBlock(CTNHBlocks.FRUIT_CAFE_CRATE, "箱装水果");
         provider.addBlock(CTNHBlocks.ASPARAGUS_CRATE, "箱装芦荟");
-        provider.addBlock(CTNHBlocks.EYE_RENDER, "武德之眼核心");
         provider.addBlock(CTNHBlocks.CASING_NEUTRONIUM_ALLOY_BLOCK,"以太强化超能中子基岩合金钅达智能机械方块");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");

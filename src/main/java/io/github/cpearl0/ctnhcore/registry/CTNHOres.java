@@ -5,9 +5,11 @@ import com.gregtechceu.gtceu.api.data.worldgen.BiomeWeightModifier;
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
 import com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import dev.arbor.gtnn.data.GTNNWorld;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.level.block.Blocks;
 import org.checkerframework.checker.units.qual.A;
 
 import static com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers.*;
@@ -61,6 +63,27 @@ public class CTNHOres {
                 .density(0.4F)
                 .radius(5)
             ));
+    public static GTOreDefinition ANCIENT_DEBRIS_VEIN = create(CTNHCore.id("ancient_debris_vein"), vein ->
+            vein.weight(5).clusterSize(35)
+            .density(0.4F)
+            .discardChanceOnAirExposure(0)
+            .layer(WorldGenLayers.NETHERRACK)
+            .dimensions(ResourceLocation.tryParse("minecraft:the_nether"))
+            .heightRangeUniform(0, 25)
+            .layeredVeinGenerator(generator -> generator
+                    .buildLayerPattern(pattern -> pattern
+                    .layer(l -> l.weight(3).mat(CTNHMaterials.PreciousAlloy).size(2, 4))
+                    .layer(l -> l.weight(2).mat(GTMaterials.Sulfur).size(2, 2))
+                    .layer(l -> l.weight(1).block(() -> Blocks.ANCIENT_DEBRIS).size(1, 1))
+                    .layer(l -> l.weight(1).mat(GTMaterials.NetherQuartz).size(1, 1))
+                )
+            )
+            .surfaceIndicatorGenerator(indicator -> indicator
+                    .surfaceRock(CTNHMaterials.PreciousAlloy)
+                    .placement(ABOVE)
+                    .density(0.4F)
+                    .radius(5)
+            ));
 
     public static GTOreDefinition CHROMITE_VEIN = create(CTNHCore.id("chromite_vein"), vein ->
         vein.weight(60)
@@ -89,7 +112,7 @@ public class CTNHOres {
         .clusterSize(40)
         .density(0.25F)
         .discardChanceOnAirExposure(0)
-        .layer(CTNHWorldgenLayers.TWILIGHT)
+        .layer(GTNNWorld.GTNNWorldGenLayers.TF)
         .dimensions(TWILIGHT_FOREST)
         .heightRangeUniform(-30, 0)
         .layeredVeinGenerator(generator -> generator
@@ -195,7 +218,7 @@ public class CTNHOres {
         vein.clusterSize(40)
         .density(0.3F)
         .weight(40)
-        .layer(CTNHWorldgenLayers.ADASTRA)
+        .layer(GTNNWorld.GTNNWorldGenLayers.AD)
         .heightRangeUniform(5, 50)
         .dimensions(MOON)
         .layeredVeinGenerator(generator -> generator
@@ -238,7 +261,7 @@ public class CTNHOres {
         .clusterSize(40)
         .density(0.35F)
         .discardChanceOnAirExposure(0)
-        .layer(CTNHWorldgenLayers.TWILIGHT)
+        .layer(GTNNWorld.GTNNWorldGenLayers.TF)
         .dimensions(TWILIGHT_FOREST)
         .heightRangeUniform(-30, 0)
         .layeredVeinGenerator(generator -> generator
@@ -326,7 +349,7 @@ public class CTNHOres {
         .clusterSize(40)
         .density(0.25F)
         .discardChanceOnAirExposure(0)
-        .layer(CTNHWorldgenLayers.TWILIGHT)
+        .layer(GTNNWorld.GTNNWorldGenLayers.TF)
         .dimensions(TWILIGHT_FOREST)
         .heightRangeUniform(-30, 0)
         .layeredVeinGenerator(generator -> generator
@@ -348,7 +371,7 @@ public class CTNHOres {
         .clusterSize(30)
         .density(0.30F)
         .discardChanceOnAirExposure(0)
-        .layer(CTNHWorldgenLayers.ADASTRA)
+        .layer(GTNNWorld.GTNNWorldGenLayers.AD)
         .dimensions(MOON)
         .heightRangeUniform(-20, 50)
         .layeredVeinGenerator(generator -> generator
@@ -364,4 +387,26 @@ public class CTNHOres {
                 .density(0.4F)
                 .radius(5)
         ));
+    public static GTOreDefinition ZIRKELITE_VEIN = create(CTNHCore.id("zirkelite_vein"), vein ->
+            vein.weight(60)
+        .clusterSize(50)
+        .density(0.25F)
+            .discardChanceOnAirExposure(0)
+        .layer(GTNNWorld.GTNNWorldGenLayers.AD)
+        .dimensions(MARS, VENUS, MERCURY)
+        .heightRangeUniform(30, 80)
+        .layeredVeinGenerator(generator -> generator
+            .buildLayerPattern(pattern -> pattern
+            .layer(l -> l.weight(3).mat(CTNHMaterials.Zirkelite).size(2, 4))
+            .layer(l -> l.weight(2).mat(GTMaterials.Thorium).size(1, 1))
+            .layer(l -> l.weight(2).mat(CTNHMaterials.Zircon).size(1, 1))
+            .layer(l -> l.weight(1).mat(GTMaterials.Ilmenite).size(1, 1))
+        )
+    )
+    .surfaceIndicatorGenerator(indicator -> indicator
+            .surfaceRock(CTNHMaterials.Zirkelite)
+            .placement(ABOVE)
+            .density(0.4F)
+            .radius(5)
+    ));
 }

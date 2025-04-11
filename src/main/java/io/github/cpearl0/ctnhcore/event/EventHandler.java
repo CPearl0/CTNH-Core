@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
 import com.gregtechceu.gtceu.data.tags.BiomeTagsLoader;
 import com.gregtechceu.gtceu.data.tags.DamageTagsLoader;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.data.CTNHBlockInfo;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.worldgen.*;
 import net.minecraft.core.RegistrySetBuilder;
@@ -32,6 +33,7 @@ public class EventHandler {
         CTNHBlocks.init();
         CTNHMultiblockMachines.init();
         GTMachineModify.init();
+        CTNHBlockInfo.init();
     }
 
     public static void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
