@@ -15,9 +15,9 @@ import java.util.Set;
 import static io.github.cpearl0.ctnhcore.registry.CTNHWorlds.*;
 
 public enum CTNHWorldgenLayers implements IWorldGenLayer, StringRepresentable {
-    ADASTRA("ad_astra", new TagMatchTest(CTNHTags.AD_ASTRA_STONES), Set.of(MOON, MARS, MERCURY, VENUS, GLACIO)),
+    //ADASTRA("ad_astra", new TagMatchTest(CTNHTags.AD_ASTRA_STONES), Set.of(MOON, MARS, MERCURY, VENUS, GLACIO)),
 
-    TWILIGHT("twilight_forest", new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Set.of(TWILIGHT_FOREST)),
+    //TWILIGHT("twilight_forest", new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Set.of(TWILIGHT_FOREST)),
 
     AETHER("aether", new TagMatchTest(CTNHTags.AETHER_STONES), Set.of(THE_AETHER));
     public static void init() {}

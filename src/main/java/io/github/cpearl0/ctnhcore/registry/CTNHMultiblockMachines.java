@@ -39,6 +39,7 @@ import fr.lucreeper74.createmetallurgy.registries.CMBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
 import io.github.cpearl0.ctnhcore.legendary.UnderfloorHeatingSystemTempModifier;
+import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
 import io.github.cpearl0.ctnhcore.common.block.CTNHFusionCasingType;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.*;
@@ -1621,7 +1622,9 @@ public class CTNHMultiblockMachines {
                             .or(abilities(PartAbility.IMPORT_FLUIDS)))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build())
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/multiblock/fusion_reactor"), false)
+            .renderer(MartialMoralityEyeRender::new)
+            .hasTESR(true)
+            //.workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), GTCEu.id("block/multiblock/fusion_reactor"), false)
             .register();
 
     public static final MultiblockMachineDefinition ADVANCED_COKE_OVEN = REGISTRATE.multiblock("advanced_coke_oven", WorkableElectricMultiblockMachine::new)

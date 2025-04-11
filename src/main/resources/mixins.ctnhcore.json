@@ -10,6 +10,7 @@
     "GTNNAddonMixin",
     "ManaPoolBlockEntityMixin",
     "TagLoaderMixin",
+    "apotheosis.EarthsBoonEnchantMixin",
     "gtceu.GTConfiguredFeaturesMixin",
     "gtceu.GTMaterialMixin",
     "gtceu.GTUtilMixin",
