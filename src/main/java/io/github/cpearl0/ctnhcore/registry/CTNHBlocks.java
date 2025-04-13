@@ -302,7 +302,7 @@ public class CTNHBlocks {
                 .properties(p -> BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY))
                 .blockstate(GTModels::createCrossBlockState)
                 .addLayer(() -> RenderType::cutoutMipped)
-                .item()
+                .item(BlockItem::new)
                 .build()
                 .register();
     }
@@ -311,7 +311,7 @@ public class CTNHBlocks {
                 .initialProperties(() -> Blocks.GRASS)
                 .blockstate(GTModels::createCrossBlockState)
                 .addLayer(() -> RenderType::cutoutMipped)
-                .item()
+                .item(BlockItem::new)
                 .build()
                 .register();
     }
@@ -320,7 +320,7 @@ public class CTNHBlocks {
                 .initialProperties(() -> Blocks.TALL_GRASS)
                 .blockstate(GTModels::createCrossBlockState)
                 .addLayer(() -> RenderType::cutoutMipped)
-                .item()
+                .item(BlockItem::new)
                 .build()
                 .register();
     }
