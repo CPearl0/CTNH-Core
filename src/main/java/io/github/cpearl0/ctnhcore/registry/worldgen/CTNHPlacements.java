@@ -21,6 +21,8 @@ import java.util.List;
 
 public class CTNHPlacements {
     public static final ResourceKey<PlacedFeature> ASTRAL_TREE = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("astral_tree"));
+    public static final ResourceKey<PlacedFeature> ASTRAL_FLOWER = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("astral_flower"));
+    public static final ResourceKey<PlacedFeature> ASTRAL_GRASS = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("astral_grass"));
     public static void bootstrap(BootstapContext<PlacedFeature> ctx) {
         HolderGetter<ConfiguredFeature<?, ?>> featureLookup = ctx.lookup(Registries.CONFIGURED_FEATURE);
         HolderGetter<Biome> biomeLookup = ctx.lookup(Registries.BIOME);
@@ -28,11 +30,29 @@ public class CTNHPlacements {
         PlacementUtils.register(ctx, ASTRAL_TREE, featureLookup.getOrThrow(CTNHConfiguredFeatures.ASTRAL_TREE),
                 new BiomePlacement(List.of(
                         new BiomeWeightModifier(() -> HolderSet.direct(biomeLookup.getOrThrow(CTNHBiomes.PLAGUE_WASTELAND)), 50))),
-                CountPlacement.of(50),
+                CountPlacement.of(12),
                 InSquarePlacement.spread(),
                 SurfaceWaterDepthFilter.forMaxDepth(0),
                 PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                 BiomeFilter.biome(),
                 PlacementUtils.filteredByBlockSurvival(CTNHBlocks.ASTRAL_SAPLING.get()));
+        PlacementUtils.register(ctx, ASTRAL_FLOWER, featureLookup.getOrThrow(CTNHConfiguredFeatures.ASTRAL_FLOWER),
+                new BiomePlacement(List.of(
+                        new BiomeWeightModifier(() -> HolderSet.direct(biomeLookup.getOrThrow(CTNHBiomes.PLAGUE_WASTELAND)), 50))),
+                CountPlacement.of(2),
+                InSquarePlacement.spread(),
+                SurfaceWaterDepthFilter.forMaxDepth(0),
+                PlacementUtils.HEIGHTMAP,
+                BiomeFilter.biome(),
+                PlacementUtils.filteredByBlockSurvival(CTNHBlocks.BLUE_FLOWER.get()));
+        PlacementUtils.register(ctx, ASTRAL_GRASS, featureLookup.getOrThrow(CTNHConfiguredFeatures.ASTRAL_GRASS),
+                new BiomePlacement(List.of(
+                        new BiomeWeightModifier(() -> HolderSet.direct(biomeLookup.getOrThrow(CTNHBiomes.PLAGUE_WASTELAND)), 50))),
+                CountPlacement.of(8),
+                InSquarePlacement.spread(),
+                SurfaceWaterDepthFilter.forMaxDepth(0),
+                PlacementUtils.HEIGHTMAP,
+                BiomeFilter.biome(),
+                PlacementUtils.filteredByBlockSurvival(CTNHBlocks.ASTRAL_GRASS.get()));
     }
 }

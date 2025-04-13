@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ctnhcore:space_layer"
+          "name": "ctnhcore:astral_tall_grass"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "ctnhcore:blocks/space_layer"
+  "random_sequence": "ctnhcore:blocks/astral_tall_grass"
 }

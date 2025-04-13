@@ -43,7 +43,9 @@ public class AstralBiomes {
     }
     public static Biome plague_wasteland(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter2) {
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter,holderGetter2);
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CTNHPlacements.ASTRAL_TREE);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CTNHPlacements.ASTRAL_TREE)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CTNHPlacements.ASTRAL_GRASS)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CTNHPlacements.ASTRAL_FLOWER);
         return baseAstralSetting(biomeBuilder);
     }
     public static Biome plague_desert(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter2) {

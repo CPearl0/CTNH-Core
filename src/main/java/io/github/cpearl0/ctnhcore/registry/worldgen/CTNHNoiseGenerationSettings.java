@@ -24,7 +24,7 @@ public class CTNHNoiseGenerationSettings {
     public static final ResourceKey<NoiseGeneratorSettings> ORBIT = ResourceKey.create(Registries.NOISE_SETTINGS, CTNHCore.id("orbit"));
     public static final ResourceKey<NoiseGeneratorSettings> ASTRAL_PLANET = ResourceKey.create(Registries.NOISE_SETTINGS, CTNHCore.id("astral_planet"));
     public static final ResourceKey<NoiseGeneratorSettings> ABYSS = ResourceKey.create(Registries.NOISE_SETTINGS, CTNHCore.id("abyss"));
-    public static final SurfaceRules.RuleSource ASTRAL_GRASS_BLOCK = SurfaceRules.state(CTNHBlocks.ASTRAL_GRASS.getDefaultState());
+    public static final SurfaceRules.RuleSource ASTRAL_GRASS_BLOCK = SurfaceRules.state(CTNHBlocks.ASTRAL_GRASS_BLOCK.getDefaultState());
     public static final SurfaceRules.RuleSource ASTRAL_DIRT = SurfaceRules.state(CTNHBlocks.ASTRAL_DIRT.getDefaultState());
     public static final SurfaceRules.RuleSource ASTRAL_STONE = SurfaceRules.state(CTNHBlocks.ASTRAL_STONE.getDefaultState());
     public static final SurfaceRules.RuleSource ASTRAL_SAND = SurfaceRules.state(CTNHBlocks.ASTRAL_SAND.getDefaultState());

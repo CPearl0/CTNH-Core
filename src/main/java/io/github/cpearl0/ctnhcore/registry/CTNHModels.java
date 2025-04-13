@@ -11,6 +11,7 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class CTNHModels {
     public static NonNullBiConsumer<DataGenContext<Block, CoilBlock>, RegistrateBlockstateProvider> createCoilModel(String name, ICoilType coilType) {

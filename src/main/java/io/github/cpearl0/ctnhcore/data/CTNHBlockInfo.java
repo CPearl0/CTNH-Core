@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.data;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.loot.LootBuilder;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.tags.BlockTags;
@@ -29,32 +30,20 @@ public class CTNHBlockInfo {
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
                 .tag(BlockTags.MINEABLE_WITH_PICKAXE)
 //                .loot((registrateBlockLootTables, block) -> {
-//                    try {
-//                        registrateBlockLootTables.add((Block) block, (LootTable.Builder) method.invoke((Block)block, ASTRAL_COBBLESTONE.get()));
-//                    } catch (IllegalAccessException e) {
-//                        throw new RuntimeException(e);
-//                    } catch (InvocationTargetException e) {
-//                        throw new RuntimeException(e);
-//                    }
+//                    LootBuilder.createSingleItemTableWithSilkTouch(block, ASTRAL_COBBLESTONE.asItem());
 //                })
                 .item(BlockItem::new)
                 .build()
                 .register();
-        ASTRAL_GRASS = REGISTRATE.block("astral_grass", GrassBlock::new)
+        ASTRAL_GRASS_BLOCK = REGISTRATE.block("astral_grass_block", GrassBlock::new)
                 .initialProperties(() -> Blocks.GRASS_BLOCK)
                 .blockstate((ctx, prov) -> {
-                    prov.simpleBlock(ctx.getEntry(), prov.models().cubeBottomTop("astral_grass", CTNHCore.id("block/dirts/astral_grass_side"), CTNHCore.id("block/dirts/astral_dirt"), CTNHCore.id("block/dirts/astral_grass_top")));
+                    prov.simpleBlock(ctx.getEntry(), prov.models().cubeBottomTop("astral_grass_block", CTNHCore.id("block/dirts/astral_grass_block_side"), CTNHCore.id("block/dirts/astral_dirt"), CTNHCore.id("block/dirts/astral_grass_block_top")));
                 })
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
                 .tag(BlockTags.MINEABLE_WITH_SHOVEL)
 //                .loot((loottable,block) -> {
-//                    try {
-//                        loottable.add((Block) block, (LootTable.Builder) method.invoke((Block)block, ASTRAL_DIRT.get()));
-//                    } catch (IllegalAccessException e) {
-//                        throw new RuntimeException(e);
-//                    } catch (InvocationTargetException e) {
-//                        throw new RuntimeException(e);
-//                    }
+//                    LootBuilder.createSingleItemTableWithSilkTouch(block, ASTRAL_DIRT.asItem());
 //                })
                 .item(BlockItem::new)
                 .build()
