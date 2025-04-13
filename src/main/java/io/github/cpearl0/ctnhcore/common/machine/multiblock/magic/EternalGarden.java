@@ -200,19 +200,19 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
         {
             int tier=mmachine.getTier();
             int recipe_tier= RecipeHelper.getRecipeEUtTier(recipe);
-            var base_overclock=1.25;
-            for(int i=0;i<=mmachine.flower.size();i++)
+            var base_overclock=1.1;
+            for(int i=0;i<=mmachine.flower.size()-1;i++)
             {
                 if(MachineUtils.canInputItem(mmachine.flower.get(i),mmachine))
                 {
-                    base_overclock+=0.0002;
+                    base_overclock+=0.0005;
                 }
             }
-            for(int i=0;i<=mmachine.rune.size();i++)
+            for(int i=0;i<=mmachine.rune.size()-1;i++)
             {
                 if(MachineUtils.canInputItem(mmachine.rune.get(i),mmachine))
                 {
-                    base_overclock+=0.0001;
+                    base_overclock+=0.0002;
                 }
             }
             if(MachineUtils.canInputItem(new ItemStack(CTNHItems.TWIST_RUNE),mmachine))
@@ -331,7 +331,7 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                         .parallels(parallel)
                         .eutMultiplier(parallel)
                         .inputModifier(ContentModifier.multiplier(parallel))
-                        .outputModifier(ContentModifier.multiplier(parallel*overclock*rate2))
+                        .outputModifier(ContentModifier.multiplier(parallel*overclock*Math.max(rate2,0.5)))
                         .build();
             }
             if(recipe.data.getString("type").equals("boom"))
