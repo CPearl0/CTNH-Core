@@ -9,10 +9,10 @@ import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.GTConfiguredFeatures;
 import com.gregtechceu.gtceu.common.data.GTModels;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
+import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.common.block.AstralSaplingBlock;
-import io.github.cpearl0.ctnhcore.common.block.CoilType;
+import io.github.cpearl0.ctnhcore.common.block.*;
 import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHConfiguredFeatures;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -22,6 +22,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -30,6 +32,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.moddingx.libx.base.tile.BlockEntityBase;
@@ -159,6 +163,7 @@ public class CTNHBlocks {
             .blockstate((ctx, prov) -> {
                 prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll("astral_dirt", CTNHCore.id("block/dirts/astral_dirt")));
             })
+            .loot(RegistrateBlockLootTables::dropSelf)
             .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
             .tag(BlockTags.MINEABLE_WITH_SHOVEL)
             .item(BlockItem::new)
@@ -183,7 +188,11 @@ public class CTNHBlocks {
             .tag(ItemTags.SAPLINGS)
             .build()
             .register();
-    public static BlockEntry<GrassBlock> ASTRAL_GRASS;
+    public static BlockEntry<GrassBlock> ASTRAL_GRASS_BLOCK;
+    public static BlockEntry<AstralFlowerBlock> BLUE_FLOWER = createFlowerBlock("blue_flower", MobEffects.ABSORPTION);
+    public static BlockEntry<AstralFlowerBlock> PINK_FLOWER = createFlowerBlock("pink_flower", MobEffects.DAMAGE_BOOST);
+    public static BlockEntry<AstralGrassBlock> ASTRAL_GRASS = createTallGrassBlock("astral_grass");
+    public static BlockEntry<AstralTallGrassBlock> ASTRAL_TALL_GRASS = createDoublePlantBlock("astral_tall_grass");
     public static void init() {
 
     }
@@ -257,6 +266,7 @@ public class CTNHBlocks {
                 .blockstate((ctx, prov) -> {
                     prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
                 })
+                .loot(RegistrateBlockLootTables::dropSelf)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
                 .tag(BlockTags.MINEABLE_WITH_PICKAXE);
         return builder.item(BlockItem::new)
@@ -283,6 +293,33 @@ public class CTNHBlocks {
                 })
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
                 .tag(BlockTags.MINEABLE_WITH_SHOVEL)
+                .item(BlockItem::new)
+                .build()
+                .register();
+    }
+    public static BlockEntry<AstralFlowerBlock> createFlowerBlock(String name, MobEffect effect) {
+        return REGISTRATE.block(name, (properties) -> new AstralFlowerBlock(() -> effect, 5, properties))
+                .properties(p -> BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY))
+                .blockstate(GTModels::createCrossBlockState)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .item(BlockItem::new)
+                .build()
+                .register();
+    }
+    public static BlockEntry<AstralGrassBlock> createTallGrassBlock(String name) {
+        return REGISTRATE.block(name, AstralGrassBlock::new)
+                .initialProperties(() -> Blocks.GRASS)
+                .blockstate(GTModels::createCrossBlockState)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .item(BlockItem::new)
+                .build()
+                .register();
+    }
+    public static BlockEntry<AstralTallGrassBlock> createDoublePlantBlock(String name) {
+        return REGISTRATE.block(name, AstralTallGrassBlock::new)
+                .initialProperties(() -> Blocks.TALL_GRASS)
+                .blockstate(GTModels::createCrossBlockState)
+                .addLayer(() -> RenderType::cutoutMipped)
                 .item(BlockItem::new)
                 .build()
                 .register();

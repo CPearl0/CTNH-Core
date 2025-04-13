@@ -1,5 +1,5 @@
 {
-  "feature": "ctnhcore:astral_tree",
+  "feature": "ctnhcore:astral_flower",
   "placement": [
     {
       "type": "gtceu:biome_placement",
@@ -12,7 +12,7 @@
     },
     {
       "type": "minecraft:count",
-      "count": 15
+      "count": 5
     },
     {
       "type": "minecraft:in_square"
@@ -23,7 +23,7 @@
     },
     {
       "type": "minecraft:heightmap",
-      "heightmap": "WORLD_SURFACE_WG"
+      "heightmap": "MOTION_BLOCKING"
     },
     {
       "type": "minecraft:biome"
@@ -33,10 +33,7 @@
       "predicate": {
         "type": "minecraft:would_survive",
         "state": {
-          "Name": "ctnhcore:astral_sapling",
-          "Properties": {
-            "stage": "0"
-          }
+          "Name": "ctnhcore:blue_flower"
         }
       }
     }

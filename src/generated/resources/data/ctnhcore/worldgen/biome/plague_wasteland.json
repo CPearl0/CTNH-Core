@@ -32,7 +32,9 @@
     [],
     [],
     [
-      "ctnhcore:astral_tree"
+      "ctnhcore:astral_tree",
+      "ctnhcore:astral_grass",
+      "ctnhcore:astral_flower"
     ]
   ],
   "has_precipitation": false,

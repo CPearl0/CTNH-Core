@@ -195,7 +195,7 @@
                             "then_run": {
                               "type": "minecraft:block",
                               "result_state": {
-                                "Name": "ctnhcore:astral_grass",
+                                "Name": "ctnhcore:astral_grass_block",
                                 "Properties": {
                                   "snowy": "false"
                                 }

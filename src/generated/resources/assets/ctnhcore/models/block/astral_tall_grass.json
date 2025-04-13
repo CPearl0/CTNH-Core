@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "ctnhcore:block/astral_grass"
+    "cross": "ctnhcore:block/astral_tall_grass"
   }
 }
