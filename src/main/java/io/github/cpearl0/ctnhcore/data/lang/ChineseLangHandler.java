@@ -26,6 +26,13 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.FlowingAmberGold.getUnlocalizedName(), "通流琥珀金");
         replace(provider, CTNHMaterials.SpecialCompositeSteelM77.getUnlocalizedName(), "特种复合钢-M77");
         replace(provider, CTNHMaterials.HiddenAlloy.getUnlocalizedName(), "幽匿合金");
+        replace(provider, CTNHMaterials.SpiritAsh.getUnlocalizedName(), "巫师之骨");
+        replace(provider, CTNHMaterials.SteelLeaf.getUnlocalizedName(), "钢叶");
+        replace(provider, CTNHMaterials.EclipseShadow.getUnlocalizedName(), "幽影");
+        replace(provider, CTNHMaterials.Dragonflame.getUnlocalizedName(), "龙炎");
+        replace(provider, CTNHMaterials.PolarIceCore.getUnlocalizedName(), "极寒晶核");
+        replace(provider, CTNHMaterials.IllusionIron.getUnlocalizedName(), "幻铁");
+        replace(provider, CTNHMaterials.ToxicSwampAmber.getUnlocalizedName(), "毒沼琥珀");
         replace(provider, CTNHMaterials.Holystone.getUnlocalizedName(), "圣石");
         replace(provider, CTNHMaterials.Zanite.getUnlocalizedName(), "紫晶石");
         replace(provider, CTNHMaterials.Ambrosium.getUnlocalizedName(), "神能晶");
