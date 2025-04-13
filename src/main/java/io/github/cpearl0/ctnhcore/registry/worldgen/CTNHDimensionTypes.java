@@ -34,7 +34,7 @@ public class CTNHDimensionTypes {
                         384,
                         384,
                         BlockTags.INFINIBURN_OVERWORLD,
-                        Planet.MOON.location(),
+                        CTNHCore.id("astral_planet"),
                         0.0f,
                         createMonsterSettings(
                                 false,
@@ -56,7 +56,7 @@ public class CTNHDimensionTypes {
                         384,
                         384,
                         BlockTags.INFINIBURN_OVERWORLD,
-                        Planet.EARTH_ORBIT.location(),
+                        CTNHCore.id("astral_orbit"),
                         0.0f,
                         createMonsterSettings(
                                 false,

@@ -19,7 +19,7 @@ public class AstralBiomes {
                         .waterColor(0x3f76e4)
                         .waterFogColor(0x50533)
                         .fogColor(0)
-                        .skyColor(1447444)
+                        .skyColor(0x8464b3)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .backgroundMusic(CTNHMusics.ASTRAL_BGM).build())
                 .mobSpawnSettings(spawnBuilder.build())

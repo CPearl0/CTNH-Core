@@ -2,7 +2,7 @@
   "ambient_light": 0.0,
   "bed_works": true,
   "coordinate_scale": 1.0,
-  "effects": "ad_astra:moon",
+  "effects": "ctnhcore:astral_planet",
   "has_ceiling": false,
   "has_raids": false,
   "has_skylight": true,
