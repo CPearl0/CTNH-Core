@@ -4,10 +4,7 @@
     "Name": "ctnhcore:astral_stone"
   },
   "default_fluid": {
-    "Name": "gtceu:starlight",
-    "Properties": {
-      "level": "0"
-    }
+    "Name": "minecraft:air"
   },
   "disable_mob_generation": false,
   "legacy_random_source": false,

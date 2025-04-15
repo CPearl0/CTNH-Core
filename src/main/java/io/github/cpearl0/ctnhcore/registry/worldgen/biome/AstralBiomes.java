@@ -45,11 +45,15 @@ public class AstralBiomes {
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter,holderGetter2);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CTNHPlacements.ASTRAL_TREE)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CTNHPlacements.ASTRAL_GRASS)
-                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CTNHPlacements.ASTRAL_FLOWER);
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CTNHPlacements.ASTRAL_FLOWER)
+                .addFeature(GenerationStep.Decoration.LAKES, CTNHPlacements.ASTRAL_LAKE)
+                .addFeature(GenerationStep.Decoration.LAKES, CTNHPlacements.ASTRAL_LAKE_UNDERGROUND);
         return baseAstralSetting(biomeBuilder);
     }
     public static Biome plague_desert(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter2) {
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter,holderGetter2);
+        biomeBuilder.addFeature(GenerationStep.Decoration.LAKES, CTNHPlacements.ASTRAL_LAKE)
+                .addFeature(GenerationStep.Decoration.LAKES, CTNHPlacements.ASTRAL_LAKE_UNDERGROUND);
         return baseAstralSetting(biomeBuilder);
     }
     public static Biome astral_orbit(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter2) {

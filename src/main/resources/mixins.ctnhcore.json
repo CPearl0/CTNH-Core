@@ -10,6 +10,8 @@
     "GTNNAddonMixin",
     "ManaPoolBlockEntityMixin",
     "TagLoaderMixin",
+    "adastra.OxygenApilmplMixin",
+    "adastra.TemperatureApilmplMixin",
     "apotheosis.EarthsBoonEnchantMixin",
     "gtceu.GTConfiguredFeaturesMixin",
     "gtceu.GTMaterialMixin",

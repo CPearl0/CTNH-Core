@@ -5,7 +5,6 @@ import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import io.github.cpearl0.ctnhcore.data.recipe.*;
 import io.github.cpearl0.ctnhcore.registry.*;
-import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEntries;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
@@ -49,7 +48,6 @@ public class CTNHCoreGTAddon implements IGTAddon {
 
     @Override
     public void registerSounds() {
-        CTNHSoundEntries.init();
     }
 
     @Override

@@ -60,7 +60,7 @@ public class CTNHNoiseGenerationSettings {
                 false));
         ctx.register(ASTRAL_PLANET, new NoiseGeneratorSettings(NoiseSettings.create(-64, 384, 1, 2),
                 CTNHBlocks.ASTRAL_STONE.getDefaultState(),
-                CTNHMaterials.starlight.getFluid().defaultFluidState().createLegacyBlock(),
+                Blocks.AIR.defaultBlockState(),
                 new NoiseRouter(DensityFunctions.noise(holderGetter2.getOrThrow(Noises.AQUIFER_BARRIER), 0.5),
                         DensityFunctions.noise(holderGetter2.getOrThrow(Noises.AQUIFER_FLUID_LEVEL_FLOODEDNESS), 0.67),
                         DensityFunctions.noise(holderGetter2.getOrThrow(Noises.AQUIFER_FLUID_LEVEL_SPREAD), 0.7142857142857143),

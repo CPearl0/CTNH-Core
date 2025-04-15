@@ -4,6 +4,7 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
 import io.github.cpearl0.ctnhcore.registry.*;
+import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.jetbrains.annotations.NotNull;
 
@@ -621,6 +622,10 @@ public class ChineseLangHandler {
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
         provider.add(CTNHCreativeModeTabs.ITEM.get(), "CTNH物品");
         provider.add(CTNHCreativeModeTabs.BLOCK.get(), "CTNH方块");
+
+        provider.addEnchantment(CTNHEnchantments.VACUUM_SEAL, "真空密封");
+        provider.addEnchantment(CTNHEnchantments.WARMING, "御寒");
+        provider.addEnchantment(CTNHEnchantments.COOLING, "御暑");
 
         provider.addItem(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1, "完善的一阶航天数据芯片");
         provider.addItem(CTNHItems.ASTRONOMY_CIRCUIT_1, "一阶航天数据芯片");

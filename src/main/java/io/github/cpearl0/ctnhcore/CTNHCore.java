@@ -8,6 +8,8 @@ import com.mojang.logging.LogUtils;
 import io.github.cpearl0.ctnhcore.client.ClientProxy;
 import io.github.cpearl0.ctnhcore.common.CommonProxy;
 import io.github.cpearl0.ctnhcore.event.EventHandler;
+import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
+import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -31,6 +33,8 @@ public class CTNHCore
         modEventBus.addGenericListener(DimensionMarker.class, EventHandler::registerDimensionMarkers);
         modEventBus.addGenericListener(ChanceLogic.class,EventHandler::registerChanceLogic);
         DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+        CTNHSoundEvents.SOUND_EVENTS.register(modEventBus);
+        CTNHEnchantments.Enchantments.register(modEventBus);
     }
 
     public static ResourceLocation id(String name) {

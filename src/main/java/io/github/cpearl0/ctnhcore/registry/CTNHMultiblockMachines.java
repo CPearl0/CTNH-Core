@@ -37,6 +37,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.arbor.gtnn.data.GTNNMaterials;
 import fr.lucreeper74.createmetallurgy.registries.CMBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.client.renderer.LargeBottleRender;
 import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
 import io.github.cpearl0.ctnhcore.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
@@ -762,7 +763,7 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer(new ResourceLocation("block/dirt"), GTCEu.id("block/multiblock/implosion_compressor"), false)
             .register();
 
-    public final static MultiblockMachineDefinition LARGE_BOTTLE = REGISTRATE.multiblock("large_bottle",holder -> new MultiblockTankMachine(holder,10000*1000,null))
+    public final static MultiblockMachineDefinition LARGE_BOTTLE = REGISTRATE.multiblock("large_bottle",holder -> new LargeBottleMachine(holder,10000*1000,null))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
             .tooltips(Component.translatable("large_bottle").withStyle(ChatFormatting.GRAY),
@@ -788,7 +789,7 @@ public class CTNHMultiblockMachines {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .renderer(() -> new LargeBottleRender(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor")))
             .register();
     public final static MultiblockMachineDefinition FERMENTING_TANK = REGISTRATE.multiblock("fermenting_tank",FermentingTankMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)

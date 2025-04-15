@@ -14,7 +14,7 @@
       "min_delay": 12000,
       "replace_current_music": false,
       "sound": {
-        "sound_id": "ctnhcore:ambient.astral"
+        "sound_id": "ctnhcore:ambient_astral"
       }
     },
     "sky_color": 0,

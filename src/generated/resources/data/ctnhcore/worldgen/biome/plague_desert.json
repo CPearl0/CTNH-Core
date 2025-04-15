@@ -14,14 +14,20 @@
       "min_delay": 12000,
       "replace_current_music": false,
       "sound": {
-        "sound_id": "ctnhcore:ambient.astral"
+        "sound_id": "ctnhcore:ambient_astral"
       }
     },
     "sky_color": 8676531,
     "water_color": 4159204,
     "water_fog_color": 329011
   },
-  "features": [],
+  "features": [
+    [],
+    [
+      "ctnhcore:astral_lake",
+      "ctnhcore:astral_lake_underground"
+    ]
+  ],
   "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
