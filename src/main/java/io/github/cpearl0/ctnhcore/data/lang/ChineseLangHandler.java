@@ -34,6 +34,7 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.PolarIceCore.getUnlocalizedName(), "极寒晶核");
         replace(provider, CTNHMaterials.IllusionIron.getUnlocalizedName(), "幻铁");
         replace(provider, CTNHMaterials.ToxicSwampAmber.getUnlocalizedName(), "毒沼琥珀");
+        replace(provider, CTNHMaterials.LightningPattern.getUnlocalizedName(), "雷纹");
         replace(provider, CTNHMaterials.Holystone.getUnlocalizedName(), "圣石");
         replace(provider, CTNHMaterials.Zanite.getUnlocalizedName(), "紫晶石");
         replace(provider, CTNHMaterials.Ambrosium.getUnlocalizedName(), "神能晶");

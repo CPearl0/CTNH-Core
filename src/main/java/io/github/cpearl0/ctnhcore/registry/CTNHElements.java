@@ -19,4 +19,10 @@ public class CTNHElements {
     public static final Element Antihydrogen= new Element(-1,1,-1,null,"h_bar","H-",false);
     public static final Element Antioxygen= new Element(-1,-1,-1,null,"o_bar","O-",false);
     public static final Element Inf_bar= new Element(-32678,-32678,-1,null,"inf_bar","-∞",false);
+    public static final Element SHADOWSTEEL = new Element(121, 140, -1, null, "shadowsteel", "Sd", false);
+    public static final Element PYROSCALE = new Element(122, 145, -1, null, "pyroscale", "Pr", false);
+    public static final Element GLACIAL_CORE = new Element(123, 142, -1, null, "glacial_core", "Gc", false);
+    public static final Element PHANTOM_IRON = new Element(124, 148, -1, null, "phantom_iron", "Pn", false);
+    public static final Element BOG_AMBER = new Element(125, 138, -1, null, "bog_amber", "Bm", false);
+    public static final Element STORMVEIN = new Element(128, 150, -1, null, "stormvein", "Sv", false);
 }

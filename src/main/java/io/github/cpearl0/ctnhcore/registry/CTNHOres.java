@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.block.Blocks;
 import org.checkerframework.checker.units.qual.A;
+import twilightforest.data.tags.BiomeTagGenerator;
 
 import static com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers.*;
 import static com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndicatorGenerator.IndicatorPlacement.*;
@@ -129,6 +130,190 @@ public class CTNHOres {
                 .density(0.4F)
                 .radius(5)
         ));
+    public static GTOreDefinition STEEL_LEAF_VEINN = create(CTNHCore.id("steel_leaf_vein"), vein ->
+            vein.weight(20)
+                    .clusterSize(40)
+                    .density(0.35F)
+                    .discardChanceOnAirExposure(0)
+                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .dimensions(TWILIGHT_FOREST)
+                    .biomes(BiomeTagGenerator.VALID_NAGA_COURTYARD_BIOMES)
+                    .heightRangeUniform(-33, 20)
+                    .layeredVeinGenerator(generator -> generator
+                            .buildLayerPattern(pattern -> pattern
+                                    .layer(l -> l.weight(3).mat(CTNHMaterials.SteelLeaf).size(2, 4))
+                                    .layer(l -> l.weight(2).mat(GTMaterials.Apatite).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Galena).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Pyrochlore).size(1, 1))
+                            )
+                    )
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(CTNHMaterials.SteelLeaf)
+                            .placement(ABOVE)
+                            .density(0.4F)
+                            .radius(5)
+                    ));
+    public static GTOreDefinition LICH_BONE_VEIN = create(CTNHCore.id("lich_bone_vein"), vein ->
+            vein.weight(20)
+                    .clusterSize(45)
+                    .density(0.35F)
+                    .discardChanceOnAirExposure(0)
+                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .dimensions(TWILIGHT_FOREST)
+                    .biomes(BiomeTagGenerator.VALID_LICH_TOWER_BIOMES)
+                    .heightRangeUniform(-33, 20)
+                    .layeredVeinGenerator(generator -> generator
+                            .buildLayerPattern(pattern -> pattern
+                                    .layer(l -> l.weight(3).mat(GTMaterials.TricalciumPhosphate).size(2, 4))
+                                    .layer(l -> l.weight(2).mat(GTMaterials.Coal).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Graphite).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.SpiritAsh).size(1, 1))
+                            )
+                    )
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(CTNHMaterials.SpiritAsh)
+                            .placement(ABOVE)
+                            .density(0.4F)
+                            .radius(5)
+                    ));
+    public static GTOreDefinition TOXIC_SWAMP_AMBER_VEIN = create(CTNHCore.id("toxic_swamp_amber_vein"), vein ->
+            vein.weight(50)
+                    .clusterSize(35)
+                    .density(0.45F)
+                    .discardChanceOnAirExposure(0)
+                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .dimensions(TWILIGHT_FOREST)
+                    .biomes(BiomeTagGenerator.VALID_LABYRINTH_BIOMES)
+                    .heightRangeUniform(-33, 20)
+                    .layeredVeinGenerator(generator -> generator
+                            .buildLayerPattern(pattern -> pattern
+                                    .layer(l -> l.weight(3).mat(GTMaterials.Cinnabar).size(2, 4))
+                                    .layer(l -> l.weight(2).mat(GTMaterials.Galena).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Saltpeter).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.ToxicSwampAmber).size(1, 1))
+                            )
+                    )
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(CTNHMaterials.ToxicSwampAmber)
+                            .placement(ABOVE)
+                            .density(0.4F)
+                            .radius(5)
+                    ));
+    public static GTOreDefinition ILLUSION_IRON_VEIN = create(CTNHCore.id("illusion_iron_vein"), vein ->
+            vein.weight(50)
+                    .clusterSize(25)
+                    .density(0.45F)
+                    .discardChanceOnAirExposure(0)
+                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .dimensions(TWILIGHT_FOREST)
+                    .biomes(BiomeTagGenerator.VALID_KNIGHT_STRONGHOLD_BIOMES)
+                    .heightRangeUniform(-33, 20)
+                    .layeredVeinGenerator(generator -> generator
+                            .buildLayerPattern(pattern -> pattern
+                                    .layer(l -> l.weight(3).mat(GTMaterials.Pyrite).size(2, 4))
+                                    .layer(l -> l.weight(2).mat(GTMaterials.VanadiumMagnetite).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Tantalite).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.IllusionIron).size(1, 1))
+                            )
+                    )
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(CTNHMaterials.IllusionIron)
+                            .placement(ABOVE)
+                            .density(0.4F)
+                            .radius(5)
+                    ));
+    public static GTOreDefinition ARCTIC_CRYSTAL_CORE_VEIN = create(CTNHCore.id("arctic_crystal_core_vein"), vein ->
+            vein.weight(50)
+                    .clusterSize(25)
+                    .density(0.45F)
+                    .discardChanceOnAirExposure(0)
+                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .dimensions(TWILIGHT_FOREST)
+                    .biomes(BiomeTagGenerator.VALID_AURORA_PALACE_BIOMES)
+                    .heightRangeUniform(-33, 20)
+                    .layeredVeinGenerator(generator -> generator
+                            .buildLayerPattern(pattern -> pattern
+                                    .layer(l -> l.weight(3).mat(GTMaterials.Electrotine).size(2, 4))
+                                    .layer(l -> l.weight(2).mat(GTMaterials.Kyanite).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Lapis).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.PolarIceCore).size(1, 1))
+                            )
+                    )
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(CTNHMaterials.PolarIceCore)
+                            .placement(ABOVE)
+                            .density(0.4F)
+                            .radius(5)
+                    ));
+    public static GTOreDefinition DRAGONFLAME_VEIN = create(CTNHCore.id("dragonflame_vein"), vein ->
+            vein.weight(50)
+                    .clusterSize(35)
+                    .density(0.55F)
+                    .discardChanceOnAirExposure(0)
+                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .dimensions(TWILIGHT_FOREST)
+                    .biomes(BiomeTagGenerator.VALID_HYDRA_LAIR_BIOMES)
+                    .heightRangeUniform(-33, 20)
+                    .layeredVeinGenerator(generator -> generator
+                            .buildLayerPattern(pattern -> pattern
+                                    .layer(l -> l.weight(3).mat(GTMaterials.Hematite).size(2, 4))
+                                    .layer(l -> l.weight(2).mat(GTMaterials.Ruby).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Pyrochlore).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.Dragonflame).size(1, 1))
+                            )
+                    )
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(CTNHMaterials.Dragonflame)
+                            .placement(ABOVE)
+                            .density(0.4F)
+                            .radius(5)
+                    ));
+    public static GTOreDefinition ECLIPSE_SHADOW_VEIN = create(CTNHCore.id("eclipse_shadow_vein"), vein ->
+            vein.weight(50)
+                    .clusterSize(45)
+                    .density(0.25F)
+                    .discardChanceOnAirExposure(0)
+                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .dimensions(TWILIGHT_FOREST)
+                    .biomes(BiomeTagGenerator.VALID_DARK_TOWER_BIOMES)
+                    .heightRangeUniform(-33, 20)
+                    .layeredVeinGenerator(generator -> generator
+                            .buildLayerPattern(pattern -> pattern
+                                    .layer(l -> l.weight(3).mat(GTMaterials.Stibnite).size(2, 4))
+                                    .layer(l -> l.weight(2).mat(GTMaterials.Antimony).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(GTMaterials.Silver).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.EclipseShadow).size(1, 1))
+                            )
+                    )
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(CTNHMaterials.EclipseShadow)
+                            .placement(ABOVE)
+                            .density(0.4F)
+                            .radius(5)
+                    ));
+    public static GTOreDefinition LIGHTNING_VEIN_VEIN = create(CTNHCore.id("thunderstrike_vein"), vein ->
+            vein.weight(50)
+                    .clusterSize(65)
+                    .density(0.65F)
+                    .discardChanceOnAirExposure(0)
+                    .layer(GTNNWorld.GTNNWorldGenLayers.TF)
+                    .dimensions(TWILIGHT_FOREST)
+                    .biomes(BiomeTagGenerator.VALID_TROLL_CAVE_BIOMES)
+                    .heightRangeUniform(-33, 20)
+                    .layeredVeinGenerator(generator -> generator
+                            .buildLayerPattern(pattern -> pattern
+                                    .layer(l -> l.weight(3).mat(GTMaterials.Gold).size(2, 4))
+                                    .layer(l -> l.weight(2).mat(GTMaterials.Diamond).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.EclipseShadow).size(1, 1))
+                                    .layer(l -> l.weight(1).mat(CTNHMaterials.LightningPattern).size(1, 1))
+                            )
+                    )
+                    .surfaceIndicatorGenerator(indicator -> indicator
+                            .surfaceRock(CTNHMaterials.LightningPattern)
+                            .placement(ABOVE)
+                            .density(0.4F)
+                            .radius(5)
+                    ));
     public static GTOreDefinition CRYOLITE_VEIN_AETHER = create(CTNHCore.id("cryolite_vein_aether"), vein ->
         vein.weight(40)
         .clusterSize(40)
