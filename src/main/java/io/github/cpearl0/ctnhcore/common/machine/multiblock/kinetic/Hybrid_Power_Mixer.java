@@ -4,12 +4,9 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
-import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.utils.GTUtil;
-import io.github.cpearl0.ctnhcore.common.machine.KineticElectricMutiblockMachine;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.Sinope_Chemical;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.KineticElectricMutiblockMachine;
 
 public class Hybrid_Power_Mixer extends KineticElectricMutiblockMachine implements ITieredMachine {
     public Hybrid_Power_Mixer(IMachineBlockEntity holder) {
