@@ -593,6 +593,11 @@ public class ChineseLangHandler {
         provider.add("ctnh.acc.danger","§c危险粒子实验");
         provider.add("ctnh.garden.fire","当前烧煤花温度:%.1f");
         provider.add("ctnh.garden.eat","当前彼方兰营养值:%d");
+        provider.add("ctnh.hybrid_mixer.0","动力学的电力复兴");
+        provider.add("ctnh.hybrid_mixer.1","执行特殊的电压-应力驱动机制");
+        provider.add("ctnh.hybrid_mixer.2","机器真实电压等级为配方电压等级和应力等级的较小值。应力输入仓要求转速至少为64，应力输入仓转速为256时，应力等级+1");
+        provider.add("ctnh.hybrid_mixer.3","混合动力超频：应力等级和配方电压等级每同时提升一级，运行速度*4");
+        provider.add("ctnh.hybrid_mixer.4","当转速超过64时，使配方时间*0.8。转速超过128时配方时间和电压速度将随着转速提升进一步减少");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
