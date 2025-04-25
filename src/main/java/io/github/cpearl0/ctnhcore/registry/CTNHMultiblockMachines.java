@@ -20,7 +20,6 @@ import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.AssemblyLineMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.MultiblockTankMachine;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -38,6 +37,8 @@ import dev.arbor.gtnn.data.GTNNMaterials;
 import fr.lucreeper74.createmetallurgy.registries.CMBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.renderer.LargeBottleRender;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.KineticElectricMutiblockMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.Hybrid_Power_Mixer;
 import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
 import io.github.cpearl0.ctnhcore.legendary.UnderfloorHeatingSystemTempModifier;
 import io.github.cpearl0.ctnhcore.client.renderer.MartialMoralityEyeRender;
@@ -899,7 +900,7 @@ public class CTNHMultiblockMachines {
     public final static MultiblockMachineDefinition BLAZE_BLAST_FURNACE = REGISTRATE.multiblock("blaze_blast_furnace", BlazeBlastFurnaceMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.BLAST_RECIPES)
-            .recipeModifiers(BlazeBlastFurnaceMachine::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(BlazeBlastFurnaceMachine::recipeModifier,GTRecipeModifiers::ebfOverclock)
             .appearanceBlock(CTNHBlocks.BLAZE_BLAST_FURNACE_CASING)
             .tooltips(Component.translatable("blaze_blast_furnace").withStyle(ChatFormatting.GRAY),
                     Component.translatable("ctnh.blaze_blast_furnace.consume"),
@@ -3518,7 +3519,7 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(CTPP.id("block/create/railway_casing"), GTCEu.id("block/multiblock/large_chemical_reactor"))
             .register();
-    public final static MultiblockMachineDefinition MECHANICAL_LASER = REGISTRATE.multiblock("mechanical_laser", KineticWorkableMultiblockMachine::new)
+    public final static MultiblockMachineDefinition MECHANICAL_LASER = REGISTRATE.multiblock("mechanical_laser", KineticElectricMutiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_LASER_RECIPES)
             .appearanceBlock(() -> AllBlocks.RAILWAY_CASING.get())
@@ -3795,7 +3796,40 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer(GTCEu.id("block/casings/gcym/nonconducting_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
+    public final static MultiblockMachineDefinition HYBRID_POWER_MIXER= REGISTRATE.multiblock("hybrid_power_mixer", Hybrid_Power_Mixer::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.BLAST_RECIPES)
+            .recipeModifiers(Hybrid_Power_Mixer::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.hybrid_mixer.0"),
+                    Component.translatable("ctnh.hybrid_mixer.1"),
+                    Component.translatable("ctnh.hybrid_mixer.2"),
+                    Component.translatable("ctnh.hybrid_mixer.3"),
+                    Component.translatable("ctnh.hybrid_mixer.4")
+            )
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("##BBB##", "##BBB##", "##BBB##", "###D###", "###D###", "###B###")
+                    .aisle("##BEB##", "##FGF##", "##FHF##", "##FHF##", "##FGF##", "##BIB##")
+                    .aisle("BBJEJBB", "BFJGJFB", "BFJHJFB", "#FJ#JF#", "#FJGJF#", "#BJIJB#")
+                    .aisle("BEEEEEB", "GGGGGGG", "BHHHHHB", "DH#H#HD", "DGGGGGD", "BIIIIIB")
+                    .aisle("BBJEJBB", "BFJGJFB", "BFJHJFB", "#FJ#JF#", "#FJGJF#", "#BJIJB#")
+                    .aisle("##BEB##", "##FGF##", "##FHF##", "##FHF##", "##FGF##", "##BIB##")
+                    .aisle("##BBB##", "##BCB##", "##BBB##", "###D###", "###D###", "###B###")
+                    .where("#", Predicates.any())
+                    .where("B", Predicates.blocks(CASING_OSMIRIDIUM.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(CTPPPartAbility.INPUT_KINETIC)))
 
+                    .where("C", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("D", Predicates.frames(Titanium))
+                    .where("E", Predicates.blocks(ZENITH_CASING_GEARBOX.get()))
+                    .where("F", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
+                    .where("G", Predicates.blocks(COIL_ULTRA_MANA.get()))
+                    .where("H", Predicates.blocks(ELEMENTIUM_PIPE_CASING.get()))
+                    .where("I", Predicates.blocks(ELEMENTIUM_CASING.get()))
+                    .where("J", Predicates.blocks(HERMETIC_CASING_LuV.get()))
+                    .build())
+            .workableCasingRenderer(CTNHCore.id("block/casings/osmiridium_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
     public static void init() {
 
     }
