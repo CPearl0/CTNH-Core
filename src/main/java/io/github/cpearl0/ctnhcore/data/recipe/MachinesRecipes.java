@@ -19,10 +19,12 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
+
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.Fluids;
+import twilightforest.enums.TwilightArmorMaterial;
+
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -30,10 +32,11 @@ import java.util.stream.Stream;
 import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.gregtechceu.gtceu.api.GTValues.ZPM;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Osmiridium;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.*;
 import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.MARTIAL_MORALITY_EYE;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.TWISTED_FUSION;
 
 public class MachinesRecipes {
     public static Component MONITOR = new Component(Stream.of(new Object[][] {
@@ -93,9 +96,7 @@ public class MachinesRecipes {
                 .inputFluids(CTNHMaterials.Mana.getFluid(1000))
                 .save(provider);
 
-
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")
-
                 .inputItems(plate, NaquadahAlloy, 4)
                 .inputItems(gear, NaquadahAlloy, 2)
                 .inputItems(frameGt, NaquadahAlloy)

@@ -5,6 +5,7 @@ import com.aetherteam.aether.item.AetherItems;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
@@ -159,9 +160,11 @@ public class CTNHMaterials {
             .radioactiveHazard(6)
             .blastTemp(21800, HIGHEST)
             .element(CTNHElements.STARMETAL)
-            .color(0x0000e6)
-            .iconSet(METALLIC)
-            .flags(GENERATE_FINE_WIRE)
+            .color(0xf4f4f4)
+            .iconSet(MaterialIcons.StarsteelIcon)
+            .flags(MORTAR_GRINDABLE, GENERATE_ROTOR, GENERATE_SMALL_GEAR,
+                     DISABLE_DECOMPOSITION, GENERATE_GEAR,
+                    GENERATE_DENSE)
             .cableProperties(GTValues.V[GTValues.OpV], 4, 256)
             .buildAndRegister();
     public static final Material Infinity = new Material.Builder(GTCEu.id("my_infinity"))
@@ -473,4 +476,9 @@ public class CTNHMaterials {
         TagPrefix.ingot.setIgnored(Stratus, DAItems.STRATUS_INGOT);
         TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
     }
+
+    public static class MaterialIcons {
+        public static MaterialIconSet StarsteelIcon = new MaterialIconSet("starsteel", SHINY);
+    }
+
 }
