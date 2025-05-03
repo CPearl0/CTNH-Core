@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.simibubi.create.AllBlocks;
 import io.github.cpearl0.ctnhcore.registry.*;
+import net.minecraft.client.resources.model.Material;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -22,8 +23,16 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.MinecartItem;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
+import twilightforest.TwilightForestMod;
 import twilightforest.enums.TwilightArmorMaterial;
+import twilightforest.item.SteeleafArmorItem;
+import twilightforest.item.TwilightBoatItem;
+import twilightforest.item.TwilightWandItem;
+import twilightforest.util.TwilightItemTier;
+import twilightforest.world.components.structures.TwilightTemplateStructurePiece;
 
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -35,8 +44,9 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.Osmiridium;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.*;
 import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.*;
-import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.MARTIAL_MORALITY_EYE;
-import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.TWISTED_FUSION;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.*;
+import static net.minecraft.world.item.Items.BONE_MEAL;
+import static twilightforest.init.TFItems.STEELEAF_INGOT;
 
 public class MachinesRecipes {
     public static Component MONITOR = new Component(Stream.of(new Object[][] {
@@ -65,6 +75,19 @@ public class MachinesRecipes {
                 .circuitMeta(2)
                 .outputItems(CTNHMultiblockMachines.ZPM_LARGE_MINER)
                 .duration(400).EUt(VA[ZPM]).save(provider);
+        COMPRESSOR_RECIPES.recipeBuilder("steelleaf")
+                .duration(300)
+                .EUt(2)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .outputItems(STEELEAF_INGOT,1)
+                .save(provider);
+        MIXER_RECIPES.recipeBuilder("plantfood")
+                .duration(500)
+                .EUt(28)
+                .inputItems(dust, CTNHMaterials.SpiritAsh, 4)
+                .inputItems(dust, Apatite, 4)
+                .outputItems(FERTILIZER,16)
+                .save(provider);
         CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator1")
                 .circuitMeta(0)
                 .inputFluids(CTNHMaterials.Mana.getFluid(100000))
