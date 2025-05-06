@@ -451,6 +451,27 @@ public class CTNHMaterials {
                     .customStill())
             .color(0XFFFF00)
             .buildAndRegister();
+    public static final Material SUNNARIUM = new Material.Builder((GTCEu.id("sunnarium")))
+            .liquid()
+            .dust()
+            .ingot()
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .plasma()
+            .element(CTNHElements.SUNNARIUM)
+            .color(0XFFFF01)
+            .buildAndRegister();
+    public static final Material HIKARIUM = new Material.Builder((GTCEu.id("hikarium")))
+            .liquid(new FluidBuilder()
+                    .temperature(1000000)
+                    .color(0XFFAA00)
+                    .customStill())
+            .dust()
+            .ingot()
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .plasma()
+            .element(CTNHElements.HIKARIUM)
+            .color(0XFFAA00)
+            .buildAndRegister();
     public static final Material starlight = new Material.Builder(GTCEu.id("starlight"))
             .liquid(new FluidBuilder().temperature(50).textures(true,true).block())
             .buildAndRegister();

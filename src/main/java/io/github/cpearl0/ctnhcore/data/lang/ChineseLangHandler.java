@@ -49,6 +49,8 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.starlight.getUnlocalizedName(), "星能液");
         replace(provider,CTNHMaterials.COMPRESSED_ADAMANTITE.getUnlocalizedName(),"压缩精金");
         replace(provider,CTNHMaterials.COMPRESSED_AETHER.getUnlocalizedName(),"精炼超能以太");
+        replace(provider,CTNHMaterials.SUNNARIUM.getUnlocalizedName(),"阳光化合物");
+        replace(provider,CTNHMaterials.HIKARIUM.getUnlocalizedName(),"§6光素");
         //Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
         provider.add("config.ctnhcore.option.kinetic", "应力相关");
@@ -89,6 +91,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.cultivation_room", "培养");
         provider.add("gtceu.sintering_kiln","烧结");
         provider.add("gtceu.chemical_vapor_deposition","化学气相沉积");
+        provider.add("gtceu.pvb_recipe","物理气相沉积");
         provider.add("gtceu.martial_morality_eye","武德之眼");
         provider.add("gtceu.advanced_coke_oven","高级焦炉");
         provider.add("gtceu.dimensional_gas_collection_chamber","维度集气");
@@ -815,6 +818,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.ARC_GENERATOR_MK2.getBlock(),"过载电弧撕裂者MK1");
         provider.add(CTNHMultiblockMachines.PLASMA_ALLOY_BLAST_SMELTER.getBlock(),"等离子合金冶炼转底炉");
         provider.add(CTNHMultiblockMachines.UNIVERSE_SINOPE.getBlock(), "中石化宇宙处理中心");
+        provider.add(CTNHMultiblockMachines.COMBINED_VAPOR_DEPOSITION_FACILITY.getBlock(), "集成沉积工厂");
 
 
 

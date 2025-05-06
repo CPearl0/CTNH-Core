@@ -556,6 +556,12 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType PVB_RECIPE = GTRecipeTypes.register("pvb_recipe",ELECTRIC)
+            .setMaxIOSize(6, 6, 3, 3)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
 
 
     public static void init() {
