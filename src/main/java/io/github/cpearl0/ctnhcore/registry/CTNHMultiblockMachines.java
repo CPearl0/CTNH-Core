@@ -3833,7 +3833,7 @@ public class CTNHMultiblockMachines {
             .register();
     public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE_CT = REGISTRATE.multiblock("component_assembly_line_ct", Hybrid_Power_Mixer::new)
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(CTNHRecipeTypes.CT_ASSEMBLY_LINE, CTNHRecipeTypes.CT_ASSEMBLY_LINE_MAKER)
+            .recipeTypes(CTNHRecipeTypes.PVB_RECIPE)
             .recipeModifiers(Hybrid_Power_Mixer::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.hybrid_mixer.0"),
                     Component.translatable("ctnh.hybrid_mixer.1"),
@@ -3858,7 +3858,7 @@ public class CTNHMultiblockMachines {
 
             .workableCasingRenderer(CTPP.id("block/create/railway_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public final static MultiblockMachineDefinition COMBINED_VAPOR_DEPOSITION_FACILITY = REGISTRATE.multiblock("combined_vapor_deposition_facility", Hybrid_Power_Mixer::new)
+    public final static MultiblockMachineDefinition COMBINED_VAPOR_DEPOSITION_FACILITY = REGISTRATE.multiblock("combined_vapor_deposition_facility", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.PVB_RECIPE, CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION)
             .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
@@ -3869,9 +3869,10 @@ public class CTNHMultiblockMachines {
                     .aisle("BDDDB", "AEFEA", "AGHGA", "AEFEA", "BDDDB")
                     .aisle("BDDDB", "AFFFA", "AIFIA", "AFFFA", "BDDDB")
                     .aisle("BDDDB", "AEFEA", "AGHGA", "AEFEA", "BDDDB")
-                    .aisle("ABBBA", "BACAB", "BCbCB", "BACAB", "ABBBA")
+                    .aisle("ABBBA", "BACAB", "BC@CB", "BACAB", "ABBBA")
                     .where("A", Predicates.blocks(MACHINE_CASING_LuV.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.COMPUTATION_DATA_RECEPTION)))
                     .where("B", Predicates.blocks(HERMETIC_CASING_LuV.get()))
                     .where("C", Predicates.blocks(CASING_LAMINATED_GLASS.get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
@@ -3881,6 +3882,32 @@ public class CTNHMultiblockMachines {
                     .where("G", Predicates.blocks(CASING_TUNGSTENSTEEL_GEARBOX.get()))
                     .where("H", Predicates.blocks(MOLYBDENUM_DISILICIDE_COIL_BLOCK.get()))
                     .where("I", Predicates.blocks(MOLYBDENUM_DISILICIDE_COIL_BLOCK.get()))
+                    .build())
+
+            .workableCasingRenderer(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public final static MultiblockMachineDefinition LaserSorder = REGISTRATE.multiblock("lasersorder", LaserSorter::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(CTNHRecipeTypes.PVB_RECIPE, CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION,GTRecipeTypes.MIXER_RECIPES)
+            .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.perfect_overclock")
+            )
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAAAA", "AABBBAA", "AAB@BAA", "AABBBAA", "AAAAAAA")
+                    .aisle("ACCCCCA", "AC###CA", "AC###CA", "AC###CA", "ACCCCCA")
+                    .aisle("ACCCCCA", "B#####B", "B#####B", "B#####B", "ACCDCCA")
+                    .aisle("ACCCCCA", "B#####B", "B#####B", "B#####B", "ACDDDCA")
+                    .aisle("ACCCCCA", "B#####B", "B#####B", "B#####B", "ACCDCCA")
+                    .aisle("ACCCCCA", "AC###CA", "AC###CA", "AC###CA", "ACCCCCA")
+                    .aisle("AAAAAAA", "AABBBAA", "AABBBAA", "AABBBAA", "AAAAAAA")
+                    .where("A", Predicates.blocks(COMPUTER_HEAT_VENT.get()))
+                    .where("B", Predicates.blocks(HIGH_POWER_CASING.get())
+                                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.COMPUTATION_DATA_RECEPTION)))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("C", Predicates.blocks(ADVANCED_COMPUTER_CASING.get()))
+                    .where("#", Predicates.any())
+                    .where("D", Predicates.blocks(FUSION_GLASS.get()))
                     .build())
 
             .workableCasingRenderer(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
