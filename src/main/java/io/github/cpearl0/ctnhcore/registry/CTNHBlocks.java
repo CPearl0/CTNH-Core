@@ -5,13 +5,17 @@ import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
+import com.gregtechceu.gtceu.api.machine.multiblock.IBatteryData;
+import com.gregtechceu.gtceu.common.block.BatteryBlock;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.GTConfiguredFeatures;
 import com.gregtechceu.gtceu.common.data.GTModels;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.CTNHAPI;
 import io.github.cpearl0.ctnhcore.common.block.*;
 import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHConfiguredFeatures;
 import net.minecraft.client.renderer.RenderType;
@@ -55,12 +59,12 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/osmiridium_casing"));
     public static final BlockEntry<Block> CASING_TUNGSTENCU_DIAMOND_PLATING = createCasingBlock("tungstencu_diamond_plating_casing",
             CTNHCore.id("block/casings/tungstencu_diamond_plating_casing"));
-    public static final BlockEntry<Block> ENERGETIC_PHOTOVOLTAIC_BLOCK = createCasingBlock("energetic_photovoltaic_block",
-            CTNHCore.id("block/energetic_photovoltaic_block"));
-    public static final BlockEntry<Block> PULSATING_PHOTOVOLTAIC_BLOCK = createCasingBlock("pulsating_photovoltaic_block",
-            CTNHCore.id("block/pulsating_photovoltaic_block"));
-    public static final BlockEntry<Block> VIBRANT_PHOTOVOLTAIC_BLOCK = createCasingBlock("vibrant_photovoltaic_block",
-            CTNHCore.id("block/vibrant_photovoltaic_block"));
+//    public static final BlockEntry<Block> ENERGETIC_PHOTOVOLTAIC_BLOCK = createCasingBlock("energetic_photovoltaic_block",
+//            CTNHCore.id("block/energetic_photovoltaic_block"));
+//    public static final BlockEntry<Block> PULSATING_PHOTOVOLTAIC_BLOCK = createCasingBlock("pulsating_photovoltaic_block",
+//            CTNHCore.id("block/pulsating_photovoltaic_block"));
+//    public static final BlockEntry<Block> VIBRANT_PHOTOVOLTAIC_BLOCK = createCasingBlock("vibrant_photovoltaic_block",
+//            CTNHCore.id("block/vibrant_photovoltaic_block"));
     public static final BlockEntry<Block> ZENITH_CASING_BLOCK = createCasingBlock("zenith_casing",
             CTNHCore.id("block/casings/zenith_casing"));
     public static final BlockEntry<Block> CASING_NAQUADAH_BLOCK = createCasingBlock("naquadah_casing_block",
@@ -157,6 +161,12 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> ASTRAL_COBBLESTONE = createStoneLikeBlock("astral_cobblestone", CTNHCore.id("block/stones/astral_cobblestone"));
     public static BlockEntry<Block> ASTRAL_STONE;
     public static final BlockEntry<FallingBlock> ASTRAL_SAND = createSandLikeBlock("astral_sand", CTNHCore.id("block/sands/astral_sand"));
+    public static final BlockEntry<PhotovoltaicBlock> VIBRANT_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.VIBRANT_PHOTOVOLTAIC_BLOCK,
+            ("block/vibrant_photovoltaic_block"));
+    public static final BlockEntry<PhotovoltaicBlock> ENERGETIC_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.ENERGETIC_PHOTOVOLTAIC_BLOCK,
+            ("block/energetic_photovoltaic_block"));
+    public static final BlockEntry<PhotovoltaicBlock> PULSATING_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PULSATING_PHOTOVOLTAIC_BLOCK,
+            ("block/pulsating_photovoltaic_block"));
     @SuppressWarnings("removal")
     public static final BlockEntry<Block> ASTRAL_DIRT = REGISTRATE.block("astral_dirt", Block::new)
             .initialProperties(() -> Blocks.DIRT)
@@ -235,6 +245,23 @@ public class CTNHBlocks {
         GTCEuAPI.HEATING_COILS.put(coilType, coilBlock);
         return coilBlock;
     }
+    @SuppressWarnings("all")
+    private static BlockEntry<PhotovoltaicBlock> createPhotovoltaicBlock(IPBData pbdata,String location) {
+        var photovoltaicblock = REGISTRATE.block("%s".formatted(pbdata.getPhotovoltaicName()),
+                        p -> new PhotovoltaicBlock(p, pbdata))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(CTNHModels.createpvModel(pbdata.getPhotovoltaicName(),location))
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new)
+                .build()
+                .register();
+
+        CTNHAPI.PhotovoltaicBlock.put(pbdata, photovoltaicblock);
+        return photovoltaicblock;
+    }
+
 
     @SuppressWarnings("all")
     public static BlockEntry<ActiveBlock> createActiveCasing(String name, String baseModelPath) {

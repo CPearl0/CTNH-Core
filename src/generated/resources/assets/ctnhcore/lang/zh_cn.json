@@ -356,6 +356,7 @@
   "ctnh.demon_will_generator.tooltips.7": "输入§4生命源质§r开启强化模式，发电量翻倍，每秒消耗§a100mb§r的生命源质",
   "ctnh.digestion_tank.bio_growth_mechanism": "化粪池堆肥机制：",
   "ctnh.digestion_tank.bio_growth_temperature": "当化粪池温度处于§236§r至§238§r度之间时为最适生长温度，配方获得1.2倍效率，越偏离最适生长温度，配方效率越低，最低为三分之一",
+  "ctnh.error.pv": "§c必须使用同种光伏方块",
   "ctnh.eternalgarden.1": "§b万物在这世间绽放的永恒的一瞥§r",
   "ctnh.eternalgarden.2": "无法超频，但是机器自身电压每比配方电压高一级就使最终产出乘以1.25,通过在输入总线内加入五级符文来增大这个系数",
   "ctnh.eternalgarden.3": "每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制",

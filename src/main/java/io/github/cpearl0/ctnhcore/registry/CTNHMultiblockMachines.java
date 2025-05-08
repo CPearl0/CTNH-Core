@@ -36,6 +36,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.arbor.gtnn.data.GTNNMaterials;
 import fr.lucreeper74.createmetallurgy.registries.CMBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.Pattern.CTNHPredicates;
 import io.github.cpearl0.ctnhcore.client.renderer.LargeBottleRender;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.KineticElectricMutiblockMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.Hybrid_Power_Mixer;
@@ -3903,7 +3904,8 @@ public class CTNHMultiblockMachines {
                     .where("A", Predicates.blocks(COMPUTER_HEAT_VENT.get()))
                     .where("B", Predicates.blocks(HIGH_POWER_CASING.get())
                                     .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.abilities(PartAbility.COMPUTATION_DATA_RECEPTION)))
+                            .or(Predicates.abilities(PartAbility.COMPUTATION_DATA_RECEPTION))
+                            .or(CTNHPredicates.PhotovoltaicBlock()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("C", Predicates.blocks(ADVANCED_COMPUTER_CASING.get()))
                     .where("#", Predicates.any())
