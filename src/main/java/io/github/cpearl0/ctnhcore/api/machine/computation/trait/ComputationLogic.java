@@ -58,7 +58,7 @@ public class ComputationLogic extends RecipeLogic {
         return requestedCWUt>=CWUtToRequest;
     }
     /*在checkCWUt里调用，如果要修改机器需要的算力，重写这个方法就行*/
-    private int getCWUtToRequest(GTRecipe recipe) {
+    public int getCWUtToRequest(GTRecipe recipe) {
         /*这是默认的算力计算方式，初始算力为1，每超过HV一级就翻倍一次*/
         int ret=1;
         int tier= GTUtil.getTierByVoltage(RecipeHelper.getInputEUt(recipe));

@@ -29,7 +29,8 @@ import java.util.List;
 public class MultiblockComputationMachine extends WorkableElectricMultiblockMachine implements ITieredMachine, IOpticalComputationReceiver {
 
 
-    private IOpticalComputationProvider computationProvider;
+    private IOpticalComputationProvider computationContainer;
+//    private IOpticalComputationProvider computationProvider;
 
     public MultiblockComputationMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -43,26 +44,26 @@ public class MultiblockComputationMachine extends WorkableElectricMultiblockMach
 
             part.self().holder.self()
                     .getCapability(GTCapability.CAPABILITY_COMPUTATION_PROVIDER)
-                    .ifPresent(provider -> this.computationProvider = provider);
+                    .ifPresent(provider -> this.computationContainer = provider);
         }
-        if (computationProvider == null) {
+        if (computationContainer == null) {
             onStructureInvalid();
         }
     }
     @Override
     public void onStructureInvalid() {
-        computationProvider = null;
+        computationContainer = null;
         super.onStructureInvalid();
     }
 
     @Override
     public IOpticalComputationProvider getComputationProvider()
     {
-        if ( computationProvider instanceof NotifiableComputationContainer notifiableContainer)
+        if ( computationContainer instanceof NotifiableComputationContainer notifiableContainer)
         {
             return notifiableContainer.getComputationProvider();
         }
-        else if(computationProvider instanceof MachineTrait trait)
+        else if(computationContainer instanceof MachineTrait trait)
         {
             /*代码来自 NotifiableComputationContainer::getComputationProvider()*/
             for (Direction direction : GTUtil.DIRECTIONS) {
