@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.event;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.DimensionMarker;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.MaterialProperties;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
@@ -10,6 +11,7 @@ import com.gregtechceu.gtceu.api.registry.registrate.SoundEntryBuilder;
 import com.gregtechceu.gtceu.data.tags.BiomeTagsLoader;
 import com.gregtechceu.gtceu.data.tags.DamageTagsLoader;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.data.CTNHBlockInfo;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundDefinitionsProvider;
@@ -52,6 +54,7 @@ public class EventHandler {
 
     @SubscribeEvent
     public static void registerMaterials(MaterialEvent event) {
+        MaterialProperties.addBaseType(CTNHPropertyKeys.NUCLEAR);
         CTNHMaterials.init();
     }
 

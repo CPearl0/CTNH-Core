@@ -10,12 +10,17 @@ import io.github.cpearl0.ctnhcore.common.CommonProxy;
 import io.github.cpearl0.ctnhcore.event.EventHandler;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.sound.CTNHSoundEvents;
+import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHOverworldRegion;
+import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHSurfaceRuleData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import terrablender.api.Regions;
+import terrablender.api.SurfaceRuleManager;
 
 @Mod(CTNHCore.MODID)
 public class CTNHCore
@@ -32,11 +37,20 @@ public class CTNHCore
         modEventBus.addGenericListener(GTRecipeType.class, EventHandler::registerRecipeTypes);
         modEventBus.addGenericListener(DimensionMarker.class, EventHandler::registerDimensionMarkers);
         modEventBus.addGenericListener(ChanceLogic.class,EventHandler::registerChanceLogic);
+        modEventBus.addListener(this::commonSetup);
         DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
         CTNHSoundEvents.SOUND_EVENTS.register(modEventBus);
         CTNHEnchantments.Enchantments.register(modEventBus);
     }
 
+    private void commonSetup(final FMLCommonSetupEvent event)
+    {
+        event.enqueueWork(() ->
+        {
+            Regions.register(new CTNHOverworldRegion(10));
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, CTNHCore.MODID, CTNHSurfaceRuleData.customSurface());
+        });
+    }
     public static ResourceLocation id(String name) {
         return new ResourceLocation(MODID, name);
     }

@@ -74,6 +74,9 @@ public class ChineseLangHandler {
         provider.add("config.ctnhcore.option.laserRpmRequirement", "机械激光厂最低转速需求");
         provider.add("config.ctnhcore.option.laserSpeedMultiplier", "机械激光厂加速倍率");
         provider.add("config.ctnhcore.option.laserStressRequirement", "机械激光厂应力消耗");
+        //Tagprefix
+        provider.add("tagprefix.nuclear", "%s");
+        provider.add("tagprefix.fuel", "%s燃料");
         //Recipe Type
         provider.add("gtceu.phase_inversion","反相蚀刻");
         provider.add("gtceu.underfloor_heating_system", "地暖");
