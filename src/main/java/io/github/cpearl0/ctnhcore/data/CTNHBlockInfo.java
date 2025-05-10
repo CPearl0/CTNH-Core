@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data;
 
+import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.loot.LootBuilder;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
@@ -29,9 +30,19 @@ public class CTNHBlockInfo {
                 })
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
                 .tag(BlockTags.MINEABLE_WITH_PICKAXE)
-//                .loot((registrateBlockLootTables, block) -> {
-//                    LootBuilder.createSingleItemTableWithSilkTouch(block, ASTRAL_COBBLESTONE.asItem());
-//                })
+                .loot((registrateBlockLootTables, block) -> {
+                    registrateBlockLootTables.add(block, LootBuilder.createSingleItemTableWithSilkTouch(block, ASTRAL_COBBLESTONE.asItem()));
+                })
+                .item(BlockItem::new)
+                .build()
+                .register();
+        ASTRAL_DIRT = REGISTRATE.block("astral_dirt", Block::new)
+                .initialProperties(() -> Blocks.DIRT)
+                .blockstate((ctx, prov) -> {
+                    prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll("astral_dirt", CTNHCore.id("block/dirts/astral_dirt")));
+                })
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
+                .tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .item(BlockItem::new)
                 .build()
                 .register();
@@ -42,9 +53,9 @@ public class CTNHBlockInfo {
                 })
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
                 .tag(BlockTags.MINEABLE_WITH_SHOVEL)
-//                .loot((loottable,block) -> {
-//                    LootBuilder.createSingleItemTableWithSilkTouch(block, ASTRAL_DIRT.asItem());
-//                })
+                .loot((loottable, block) -> {
+                    loottable.add(block, LootBuilder.createSingleItemTableWithSilkTouch(ASTRAL_GRASS_BLOCK.get(), ASTRAL_DIRT.asItem()));
+                })
                 .item(BlockItem::new)
                 .build()
                 .register();

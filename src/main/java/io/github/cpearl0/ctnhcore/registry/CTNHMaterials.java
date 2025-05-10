@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import dev.arbor.gtnn.data.GTNNMaterials;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import lombok.Generated;
 import net.minecraft.server.commands.PublishCommand;
 import teamrazor.deepaether.init.DABlocks;
@@ -477,6 +478,7 @@ public class CTNHMaterials {
             .buildAndRegister();
 
     public static void init() {
+        NuclearMaterials.init();
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);
         TagPrefix.block.setIgnored(Venusstone, ModBlocks.VENUS_STONE);

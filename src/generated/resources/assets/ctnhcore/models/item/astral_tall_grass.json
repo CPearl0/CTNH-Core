@@ -1,3 +1,6 @@
 {
-  "parent": "ctnhcore:block/astral_tall_grass"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ctnhcore:block/astral_tall_grass"
+  }
 }

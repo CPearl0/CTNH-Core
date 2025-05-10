@@ -1,14 +1,13 @@
 package io.github.cpearl0.ctnhcore.api.Pattern;
 
-import com.gregtechceu.gtceu.api.GTCEuAPI;
-import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.error.PatternStringError;
-import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
 import io.github.cpearl0.ctnhcore.api.CTNHAPI;
-import io.github.cpearl0.ctnhcore.common.block.IPBData;
+import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
+import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
+import io.github.cpearl0.ctnhcore.common.block.blockdata.IPSFData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -37,5 +36,25 @@ public class CTNHPredicates {
 
             return false;
         }, () -> (BlockInfo[])CTNHAPI.PhotovoltaicBlock.entrySet().stream().sorted(Comparator.comparingInt((value) -> ((IPBData)value.getKey()).getTier())).map((pb) -> BlockInfo.fromBlockState(((PhotovoltaicBlock)((Supplier)pb.getValue()).get()).defaultBlockState())).toArray((x$0) -> new BlockInfo[x$0]))).addTooltips(new Component[]{Component.translatable("ctnh.error.pv")});
+    }
+    public static TraceabilityPredicate SpaceStructuralFrameworkBlock() {
+        return (new TraceabilityPredicate((blockWorldState) -> {
+            BlockState blockState = blockWorldState.getBlockState();
+
+            for(Map.Entry<IPSFData, Supplier<SpaceStructuralFramework>> entry : CTNHAPI.SpaceStructuralFramework.entrySet()) {
+                if (blockState.is((Block)((Supplier)entry.getValue()).get())) {
+                    IPSFData stats = (IPSFData)entry.getKey();
+                    Object currentCoil = blockWorldState.getMatchContext().getOrPut("IPSFData", stats);
+                    if (!currentCoil.equals(stats)) {
+                        blockWorldState.setError(new PatternStringError("ctnh.error.pv"));
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
+
+            return false;
+        }, () -> (BlockInfo[])CTNHAPI.SpaceStructuralFramework.entrySet().stream().sorted(Comparator.comparingInt((value) -> ((IPSFData)value.getKey()).getTier())).map((pb) -> BlockInfo.fromBlockState(((SpaceStructuralFramework)((Supplier)pb.getValue()).get()).defaultBlockState())).toArray((x$0) -> new BlockInfo[x$0]))).addTooltips(new Component[]{Component.translatable("ctnh.error.pv")});
     }
 }

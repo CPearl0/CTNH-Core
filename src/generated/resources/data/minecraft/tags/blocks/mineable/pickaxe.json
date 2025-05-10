@@ -33,6 +33,7 @@
     "ctnhcore:twisted_fusion_casing",
     "ctnhcore:advance_machine_casing_solid_steel",
     "ctnhcore:widespeedingpipe",
+    "ctnhcore:stellar_radiation_router_casing",
     "ctnhcore:reservoir_computing_casing",
     "ctnhcore:space_elevator_power_core",
     "ctnhcore:annihilate_core_mki",
@@ -54,6 +55,7 @@
     "ctnhcore:vibrant_photovoltaic_block",
     "ctnhcore:energetic_photovoltaic_block",
     "ctnhcore:pulsating_photovoltaic_block",
+    "ctnhcore:photon_press_cond_block",
     "ctnhcore:astral_stone"
   ]
 }

@@ -82,7 +82,11 @@ public class CTNHNoiseGenerationSettings {
                         DensityFunctions.zero()),
                 SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("ctnhcore:astral_bedrock", VerticalAnchor.aboveBottom(0), VerticalAnchor.aboveBottom(5)), SurfaceRules.state(Blocks.BEDROCK.defaultBlockState())),
                         SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(),SurfaceRules.sequence(
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(CTNHBiomes.PLAGUE_WASTELAND), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0 ,false, CaveSurface.FLOOR), SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0,0), ASTRAL_GRASS_BLOCK), ASTRAL_DIRT))), ASTRAL_STONE)),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(CTNHBiomes.PLAGUE_WASTELAND), SurfaceRules.sequence(
+                                SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(0 ,false, 4, CaveSurface.FLOOR), SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0), SurfaceRules.sequence(
+                                        SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(0,0), ASTRAL_GRASS_BLOCK),
+                                        ASTRAL_DIRT))),
+                                ASTRAL_STONE)),
                                 SurfaceRules.ifTrue(SurfaceRules.isBiome(CTNHBiomes.PLAGUE_DESERT), SurfaceRules.ifTrue(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(58), 2),SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(4, false, CaveSurface.FLOOR), ASTRAL_SAND)))))),
                 List.of(),
                 64,

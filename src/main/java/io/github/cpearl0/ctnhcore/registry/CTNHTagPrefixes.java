@@ -8,6 +8,8 @@ import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconType;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import io.github.cpearl0.ctnhcore.api.NuclearMaterial;
+import io.github.cpearl0.ctnhcore.api.data.material.CTNHMaterialIconType;
+import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -26,34 +28,20 @@ public class CTNHTagPrefixes {
                     () -> CTNHMaterials.Holystone,
                     BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(3.0F, 3.0F),
                     new ResourceLocation(Aether.MODID, "block/mossy_holystone"), true, false, true);
-//    public static final TagPrefix carbide_nuclear = new TagPrefix("carbide_nuclear")
-//            //.idPattern("%s")
-//            .materialAmount(GTValues.M)
-//            .materialIconType(new MaterialIconType("carbide_nuclear"))
-//            .unificationEnabled(true)
-//            .generateItem(true)
-//            .generationCondition(material -> material instanceof NuclearMaterial);
-//    public static final TagPrefix nitride_nuclear = new TagPrefix("nitride_nuclear")
-//            //.idPattern("%s")
-//            .materialAmount(GTValues.M)
-//            .materialIconType(new MaterialIconType("nitride_nuclear"))
-//            .unificationEnabled(true)
-//            .generateItem(true)
-//            .generationCondition(material -> material instanceof NuclearMaterial);
-//    public static final TagPrefix oxide_nuclear = new TagPrefix("oxide_nuclear")
-//            //.idPattern("%s")
-//            .materialAmount(GTValues.M)
-//            .materialIconType(new MaterialIconType("oxide_nuclear"))
-//            .unificationEnabled(true)
-//            .generateItem(true)
-//            .generationCondition(material -> material instanceof NuclearMaterial);
-//    public static final TagPrefix zirconium_alloy_nuclear = new TagPrefix("oxide_nuclear")
-//            //.idPattern("%s")
-//            .materialAmount(GTValues.M)
-//            .materialIconType(new MaterialIconType("oxide_nuclear"))
-//            .unificationEnabled(true)
-//            .generateItem(true)
-//            .generationCondition(material -> material instanceof NuclearMaterial);
+    public static final TagPrefix nuclear = new TagPrefix("nuclear")
+            .idPattern("%s")
+            .materialAmount(GTValues.M)
+            .materialIconType(CTNHMaterialIconType.NUCLEAR)
+            .unificationEnabled(true)
+            .generateItem(true)
+            .generationCondition(material -> material.hasProperty(CTNHPropertyKeys.NUCLEAR));
+    public static final TagPrefix fuel = new TagPrefix("fuel")
+            .idPattern("%s_fuel")
+            .materialAmount(GTValues.M)
+            .materialIconType(new MaterialIconType("fuel"))
+            .unificationEnabled(true)
+            .generateItem(true)
+            .generationCondition(material -> material.hasProperty(CTNHPropertyKeys.NUCLEAR));
 //    public static final TagPrefix waste = new TagPrefix("waste")
 //            //.idPattern("%s")
 //            .materialAmount(GTValues.M)

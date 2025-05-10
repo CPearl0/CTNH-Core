@@ -50,8 +50,6 @@ public class LargeBottleRender extends WorkableCasingMachineRenderer {
     @Override
     public void render(BlockEntity blockEntity, float partialTicks, PoseStack stack, MultiBufferSource buffer,
                        int combinedLight, int combinedOverlay) {
-        super.render(blockEntity, partialTicks, stack, buffer, combinedLight, combinedOverlay);
-
         if (!ConfigHolder.INSTANCE.client.renderer.renderFluids) return;
         if (blockEntity instanceof MetaMachineBlockEntity mm) {
             if (mm.metaMachine instanceof LargeBottleMachine tankMachine) {

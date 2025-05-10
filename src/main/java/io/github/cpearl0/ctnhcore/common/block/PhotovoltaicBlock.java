@@ -1,8 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.block;
 
 import com.gregtechceu.gtceu.api.block.AppearanceBlock;
-import com.gregtechceu.gtceu.api.machine.multiblock.IBatteryData;
-import lombok.Generated;
+import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.jetbrains.annotations.NotNull;
@@ -19,7 +18,8 @@ public class PhotovoltaicBlock extends AppearanceBlock {
     public static enum PhotovoltaicType implements StringRepresentable, IPBData {
         ENERGETIC_PHOTOVOLTAIC_BLOCK(1,1),
         PULSATING_PHOTOVOLTAIC_BLOCK(2,1),
-        VIBRANT_PHOTOVOLTAIC_BLOCK(3,1);
+        VIBRANT_PHOTOVOLTAIC_BLOCK(3,1),
+        PHOTON_PRESS_COND_BLOCK(4,2);
         private final int tier;
         private final int heatlevel;
 
