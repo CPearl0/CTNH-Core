@@ -1,22 +1,17 @@
 package io.github.cpearl0.ctnhcore.registry;
 
-import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
-import com.gregtechceu.gtceu.api.machine.multiblock.IBatteryData;
-import com.gregtechceu.gtceu.common.block.BatteryBlock;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
-import com.gregtechceu.gtceu.common.data.GTConfiguredFeatures;
 import com.gregtechceu.gtceu.common.data.GTModels;
-import com.gregtechceu.gtceu.common.registry.GTRegistration;
-import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.CTNHAPI;
 import io.github.cpearl0.ctnhcore.common.block.*;
+import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHConfiguredFeatures;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -30,7 +25,6 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
@@ -39,8 +33,6 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.moddingx.libx.base.tile.BlockEntityBase;
 
 import java.util.function.Supplier;
 
@@ -117,12 +109,14 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/gearbox/mana_steel_gearbox_casing"));
     public static final BlockEntry<Block> QUASAR_ENERGY_STABILIZATION_CASING = createCasingBlock("quasar_energy_stabilization_casing",
             CTNHCore.id("block/casings/quasar_energy_stabilization_casing"));
+
     public static final BlockEntry<Block> TWISTED_FUSION_CASING = createCasingBlock("twisted_fusion_casing",
             CTNHCore.id("block/casings/twisted_fusion_casing"));
     public static final BlockEntry<Block> ADVANCE_MACHINE_CASING_SOLID_STEEL = createCasingBlock("advance_machine_casing_solid_steel",
             CTNHCore.id("block/casings/advance_machine_casing_solid_steel"));
     public static final BlockEntry<Block> WIDESPEEDINGPIPE =createCasingBlock("widespeedingpipe",CTNHCore.id("block/widespeedingpipe"));
-
+    public static final BlockEntry<Block> STELLAR_RADIATION_ROUTER_CASING = createCasingBlock("stellar_radiation_router_casing",
+            CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
 
     public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing("reservoir_computing_casing",
             "block/flux/reservoir_computing_casing");
@@ -167,6 +161,7 @@ public class CTNHBlocks {
             ("block/energetic_photovoltaic_block"));
     public static final BlockEntry<PhotovoltaicBlock> PULSATING_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PULSATING_PHOTOVOLTAIC_BLOCK,
             ("block/pulsating_photovoltaic_block"));
+    public  static final BlockEntry<PhotovoltaicBlock>PHOTON_PRESS_COND_BLOCK=createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,"block/pulsating_photovoltaic_block");
     @SuppressWarnings("removal")
     public static final BlockEntry<Block> ASTRAL_DIRT = REGISTRATE.block("astral_dirt", Block::new)
             .initialProperties(() -> Blocks.DIRT)
@@ -246,7 +241,7 @@ public class CTNHBlocks {
         return coilBlock;
     }
     @SuppressWarnings("all")
-    private static BlockEntry<PhotovoltaicBlock> createPhotovoltaicBlock(IPBData pbdata,String location) {
+    private static BlockEntry<PhotovoltaicBlock> createPhotovoltaicBlock(IPBData pbdata, String location) {
         var photovoltaicblock = REGISTRATE.block("%s".formatted(pbdata.getPhotovoltaicName()),
                         p -> new PhotovoltaicBlock(p, pbdata))
                 .initialProperties(() -> Blocks.IRON_BLOCK)

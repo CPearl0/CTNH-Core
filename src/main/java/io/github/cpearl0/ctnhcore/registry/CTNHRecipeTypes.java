@@ -562,6 +562,34 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType PHOTOVOLTAIC_GENERATOR = GTRecipeTypes.register("photovoltaic_generator",GENERATOR)
+            .setMaxIOSize(2, 2, 2, 2)
+            .setEUIO(IO.OUT)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType PHOTOVOLTAIC_ASSEMBER = GTRecipeTypes.register("photovoltaic_assember",ELECTRIC)
+            .setMaxIOSize(6, 6, 3, 3)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .addDataInfo(data->
+            {
+                if(data.contains("tier"))
+                {
+                    return LocalizationUtils.format("ctnh.pvc_tier",String.format("%d",data.getInt("tier")));
+                }
+                return "";
+            })
+            .addDataInfo(data->
+            {
+                if(data.contains("input"))
+                {
+                    return LocalizationUtils.format("ctnh.eut_model",String.format("%d",data.getInt("input")));
+                }
+                return "";
+            })
+            .setSound(GTSoundEntries.CHEMICAL);
 
 
     public static void init() {

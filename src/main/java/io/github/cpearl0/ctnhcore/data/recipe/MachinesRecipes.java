@@ -177,6 +177,17 @@ public class MachinesRecipes {
                 .solderMultiplier(2)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .duration(400).EUt(90).save(provider);
+        PHOTOVOLTAIC_GENERATOR.recipeBuilder("test")
+                .duration(20)
+                .EUt(-8192)
+                .circuitMeta(1)
+                .save(provider);
+        PHOTOVOLTAIC_ASSEMBER.recipeBuilder("test")
+                .duration(20)
+                .EUt(-1)
+                .circuitMeta(1)
+                .addData("input",32678)
+                .save(provider);
     }
 
 }

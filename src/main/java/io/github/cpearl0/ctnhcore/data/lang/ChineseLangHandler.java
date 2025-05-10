@@ -139,6 +139,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.mechanical_extractor_recipes", "机械提取");
         provider.add("gtceu.mechanical_sifter_recipes", "机械筛选");
         provider.add("gtceu.mechanical_centrifuge_recipes", "机械离心");
+        provider.add("gtceu.photovoltaic_generator","光伏发电");
+        provider.add("gtceu.photovoltaic_assember","太空光伏组装");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -602,6 +604,20 @@ public class ChineseLangHandler {
         provider.add("ctnh.hybrid_mixer.3","混合动力超频：应力等级和配方电压等级每同时提升一级，运行速度*4");
         provider.add("ctnh.hybrid_mixer.4","当转速超过64时，使配方时间*0.8。转速超过128时配方时间和电压速度将随着转速提升进一步减少");
         provider.add("ctnh.error.pv","§c必须使用同种光伏方块");
+        provider.add("ctnh.pvc_tier","需求光伏方块等级: %d");
+        provider.add("ctnh.eut_model","模拟电压消耗: %d EUt");
+        provider.add("ctnh.pvc_tier.0","当前光伏方块等级:%d");
+        provider.add("ctnh.pvc_tier.1","当前结构耐热等级:%d");
+        provider.add("ctnh.pvc_tier.2","当前结构发电量:%.2f");
+        provider.add("ctnh.pvc_tier.3","当前维度光倍率:%d");
+        provider.add("ctnh.spvb.0","§6光辉灿烂的太空之路");
+        provider.add("ctnh.spvb.1","可执行配方类型：太空光伏发电，太空光伏组装");
+        provider.add("ctnh.spvb.2","在太空发电模式下，星球类型和光伏方块的等级都会提升发电量，在空间站被视为无重力环境，且发电量*1.5,消耗特定材料以进一步提升发电量");
+        provider.add("ctnh.spvb.3","在太空光伏组装模式下，不消耗EUt，发电量将锁定为1，根据配方的模拟F功率来计算速度和并行量");
+        provider.add("ctnh.spvb.4","光伏等级，光照强度共同决定了是否可以执行太空组装配方，光伏方块耐热性和耐热结构方块决定了可以获得的光照最大倍率，太空结构方块决定了可以使用的光伏方块等级和是否可以使用附属结构");
+        provider.add("ctnh.spvb.5","在太空光伏组装模式下，最终并行为(太空发电模式下发电量/模拟功率),最终时间倍率为(模拟功率/太空发电模式下发电量)，当太空发电模式下发电量小于模拟功率时，最终时间倍率将变为平方");
+        provider.add("ctnh.spvb.ex","§6该结构将持续拓展，这还不是它的完全体状态！");
+
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -723,6 +739,8 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.FRUIT_CAFE_CRATE, "箱装水果");
         provider.addBlock(CTNHBlocks.ASPARAGUS_CRATE, "箱装芦荟");
         provider.addBlock(CTNHBlocks.CASING_NEUTRONIUM_ALLOY_BLOCK,"以太强化超能中子基岩合金钅达智能机械方块");
+        provider.addBlock(CTNHBlocks.PHOTON_PRESS_COND_BLOCK,"光压传导方块");
+        provider.addBlock(CTNHBlocks.STELLAR_RADIATION_ROUTER_CASING,"恒星辐射分流方块");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -820,6 +838,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.PLASMA_ALLOY_BLAST_SMELTER.getBlock(),"等离子合金冶炼转底炉");
         provider.add(CTNHMultiblockMachines.UNIVERSE_SINOPE.getBlock(), "中石化宇宙处理中心");
         provider.add(CTNHMultiblockMachines.COMBINED_VAPOR_DEPOSITION_FACILITY.getBlock(), "集成沉积工厂");
+        provider.add(CTNHMultiblockMachines.SPACEPHOTOVOLTAICBASESTATION.getBlock(), "太空光伏基站");
 
 
 
