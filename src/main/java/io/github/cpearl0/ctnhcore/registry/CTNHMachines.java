@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
@@ -14,14 +13,11 @@ import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
 import com.gregtechceu.gtceu.client.renderer.machine.MaintenanceHatchPartRenderer;
 import com.gregtechceu.gtceu.client.renderer.machine.OverlayTieredMachineRenderer;
 import com.gregtechceu.gtceu.client.renderer.machine.RotorHolderMachineRenderer;
-import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
@@ -33,13 +29,13 @@ import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.api.machine.computation.SimpleComputationMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalWosMachine;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,10 +45,8 @@ import java.util.function.BiFunction;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.capability.recipe.IO.OUT;
-import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.registerTieredMachines;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
-import static javax.management.Query.or;
 
 public class CTNHMachines {
     static {
@@ -69,7 +63,7 @@ public class CTNHMachines {
                     .register(),
             GTMachineUtils.ALL_TIERS);
 
-    public static final MachineDefinition[] PERSONAL_COMPUTER = registerSimpleMachines("personal_computer",
+    public static final MachineDefinition[] PERSONAL_COMPUTER = registerSimpleComputationMachines("personal_computer",
             CTNHRecipeTypes.PERSONAL_COMPUTER);
 
     public static final MachineDefinition[] PARALLEL_HATCH = registerTieredMachines("parallel_hatch",
@@ -199,6 +193,57 @@ public class CTNHMachines {
     public static MachineDefinition[] registerSimpleMachines(String name, GTRecipeType recipeType) {
         return registerSimpleMachines(name, recipeType, GTMachineUtils.defaultTankSizeFunction);
     }
+
+    /*
+     *       算力单方块
+     */
+    public static MachineDefinition[] registerSimpleComputationMachines(String name,
+                                                                        GTRecipeType recipeType,
+                                                                        Int2IntFunction tankScalingFunction,
+                                                                        boolean hasPollutionDebuff,
+                                                                        int... tiers) {
+        return registerTieredMachines(name,
+                (holder, tier) -> new SimpleComputationMachine(holder, tier, tankScalingFunction), (tier, builder) -> {
+                    if (hasPollutionDebuff) {
+                        builder.recipeModifiers(GTRecipeModifiers.ENVIRONMENT_REQUIREMENT
+                                                .apply(GTMedicalConditions.CARBON_MONOXIDE_POISONING, 100 * tier),
+                                        GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+                                .tooltips(defaultEnvironmentRequirement());
+                    } else {
+                        builder.recipeModifier(
+                                GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK));
+                    }
+                    return builder
+                            .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName(name), VLVT[tier]))
+                            .editableUI(SimpleComputationMachine.EDITABLE_UI_CREATOR.apply(CTNHCore.id(name), recipeType))
+                            .rotationState(RotationState.NON_Y_AXIS)
+                            .recipeType(recipeType)
+                            .workableTieredHullRenderer(CTNHCore.id("block/machines/" + name))
+                            .abilities(PartAbility.COMPUTATION_DATA_RECEPTION)/*阴的没边了*/
+                            .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
+                                    tankScalingFunction.apply(tier), true))
+                            .tooltips(Component.translatable("gtceu.tooltips.simplecomputationmachine"))
+                            .register();
+                },
+                tiers);
+    }
+
+    public static MachineDefinition[] registerSimpleComputationMachines(String name, GTRecipeType recipeType,
+                                                                        Int2IntFunction tankScalingFunction,
+                                                                        boolean hasPollutionDebuff) {
+        return registerSimpleComputationMachines(name, recipeType, tankScalingFunction, hasPollutionDebuff, GTMachineUtils.ELECTRIC_TIERS);
+    }
+
+    public static MachineDefinition[] registerSimpleComputationMachines(String name, GTRecipeType recipeType,
+                                                                        Int2IntFunction tankScalingFunction) {
+        return registerSimpleComputationMachines(name, recipeType, tankScalingFunction, false);
+    }
+
+    public static MachineDefinition[] registerSimpleComputationMachines(String name, GTRecipeType recipeType) {
+        return registerSimpleComputationMachines(name, recipeType, GTMachineUtils.defaultTankSizeFunction);
+    }
+
+
 
     public static Component environmentRequirement(MedicalCondition condition) {
         return Component.translatable("gtceu.recipe.environmental_hazard.reverse",

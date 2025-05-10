@@ -5,6 +5,7 @@ import com.aetherteam.aether.item.AetherItems;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
@@ -160,9 +161,11 @@ public class CTNHMaterials {
             .radioactiveHazard(6)
             .blastTemp(21800, HIGHEST)
             .element(CTNHElements.STARMETAL)
-            .color(0x0000e6)
-            .iconSet(METALLIC)
-            .flags(GENERATE_FINE_WIRE)
+            .color(0xf4f4f4)
+            .iconSet(MaterialIcons.StarsteelIcon)
+            .flags(MORTAR_GRINDABLE, GENERATE_ROTOR, GENERATE_SMALL_GEAR,
+                     DISABLE_DECOMPOSITION, GENERATE_GEAR,
+                    GENERATE_DENSE)
             .cableProperties(GTValues.V[GTValues.OpV], 4, 256)
             .buildAndRegister();
     public static final Material Infinity = new Material.Builder(GTCEu.id("my_infinity"))
@@ -449,6 +452,27 @@ public class CTNHMaterials {
                     .customStill())
             .color(0XFFFF00)
             .buildAndRegister();
+    public static final Material SUNNARIUM = new Material.Builder((GTCEu.id("sunnarium")))
+            .liquid()
+            .dust()
+            .ingot()
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .plasma()
+            .element(CTNHElements.SUNNARIUM)
+            .color(0XFFFF01)
+            .buildAndRegister();
+    public static final Material HIKARIUM = new Material.Builder((GTCEu.id("hikarium")))
+            .liquid(new FluidBuilder()
+                    .temperature(1000000)
+                    .color(0XFFAA00)
+                    .customStill())
+            .dust()
+            .ingot()
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .plasma()
+            .element(CTNHElements.HIKARIUM)
+            .color(0XFFAA00)
+            .buildAndRegister();
     public static final Material starlight = new Material.Builder(GTCEu.id("starlight"))
             .liquid(new FluidBuilder().temperature(50).textures(true,true).block())
             .buildAndRegister();
@@ -475,4 +499,9 @@ public class CTNHMaterials {
         TagPrefix.ingot.setIgnored(Stratus, DAItems.STRATUS_INGOT);
         TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
     }
+
+    public static class MaterialIcons {
+        public static MaterialIconSet StarsteelIcon = new MaterialIconSet("starsteel", SHINY);
+    }
+
 }

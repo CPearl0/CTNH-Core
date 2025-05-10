@@ -28,8 +28,11 @@ import com.mo_guang.ctpp.common.machine.KineticPartMachine;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import it.unimi.dsi.fastutil.longs.LongSets;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -113,8 +116,8 @@ public class KineticElectricMutiblockMachine extends WorkableMultiblockMachine i
     public void updateRotateBlock(boolean active, BlockEntity blockEntity) {
         if (blockEntity instanceof KineticBlockEntity kineticBlockEntity) {
             if (active) {
-                kineticBlockEntity.setSpeed(this.speed);
-                kineticBlockEntity.onSpeedChanged(this.previousSpeed);
+                kineticBlockEntity.setSpeed(this.speed-1);
+                kineticBlockEntity.onSpeedChanged(this.previousSpeed-1);
                 kineticBlockEntity.sendData();
             } else {
                 kineticBlockEntity.setSpeed(0.0F);
@@ -128,7 +131,6 @@ public class KineticElectricMutiblockMachine extends WorkableMultiblockMachine i
     //////////////////////////////////////
     // ********** GUI ***********//
     //////////////////////////////////////
-
     @Override
     public void addDisplayText(List<Component> textList) {
         int numParallels;
@@ -141,7 +143,6 @@ public class KineticElectricMutiblockMachine extends WorkableMultiblockMachine i
                     .map(IParallelHatch::getCurrentParallel)
                     .orElse(0);
         }
-
         MultiblockDisplayText.builder(textList, isFormed())
                 .setWorkingStatus(recipeLogic.isWorkingEnabled(), recipeLogic.isActive())
                 .addEnergyUsageLine(energyContainer)
@@ -194,9 +195,11 @@ public class KineticElectricMutiblockMachine extends WorkableMultiblockMachine i
         for(IMultiPart part : this.getParts()) {
             if (part instanceof KineticPartMachine kineticPart) {
                 if (kineticPart.getIO() == IO.IN) {
+                    this.speed = Math.min(256, Math.abs(kineticPart.getKineticHolder().getSpeed()));
                     if (kineticPart.getKineticDefinition().torque > this.maxTorque) {
                         this.Ktier=Math.max(((KineticPartMachine) part).getTier(),Ktier);
                         this.maxTorque = kineticPart.getKineticDefinition().torque;
+
                         this.inputPartsMax.clear();
                         this.inputPartsMax.add(kineticPart.getKineticHolder().getBlockPos());
                     } else if (kineticPart.getKineticDefinition().torque == this.maxTorque) {
@@ -235,7 +238,7 @@ public class KineticElectricMutiblockMachine extends WorkableMultiblockMachine i
         for(IMultiPart part : this.getParts()) {
             if (part instanceof IKineticMachine kineticPart) {
                 if (this.inputPartsMax.contains(kineticPart.getKineticHolder().getBlockPos())) {
-                    this.speed = Math.min(this.speed, Math.abs(kineticPart.getKineticHolder().getSpeed()));
+                    this.speed = Math.min(256, Math.abs(kineticPart.getKineticHolder().getSpeed()));
                 }
             }
         }

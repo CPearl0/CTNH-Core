@@ -49,6 +49,8 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.starlight.getUnlocalizedName(), "星能液");
         replace(provider,CTNHMaterials.COMPRESSED_ADAMANTITE.getUnlocalizedName(),"压缩精金");
         replace(provider,CTNHMaterials.COMPRESSED_AETHER.getUnlocalizedName(),"精炼超能以太");
+        replace(provider,CTNHMaterials.SUNNARIUM.getUnlocalizedName(),"阳光化合物");
+        replace(provider,CTNHMaterials.HIKARIUM.getUnlocalizedName(),"§6光素");
         //Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
         provider.add("config.ctnhcore.option.kinetic", "应力相关");
@@ -92,6 +94,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.cultivation_room", "培养");
         provider.add("gtceu.sintering_kiln","烧结");
         provider.add("gtceu.chemical_vapor_deposition","化学气相沉积");
+        provider.add("gtceu.pvb_recipe","物理气相沉积");
         provider.add("gtceu.martial_morality_eye","武德之眼");
         provider.add("gtceu.advanced_coke_oven","高级焦炉");
         provider.add("gtceu.dimensional_gas_collection_chamber","维度集气");
@@ -601,6 +604,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.hybrid_mixer.2","机器真实电压等级为配方电压等级和应力等级的较小值。应力输入仓要求转速至少为64，应力输入仓转速为256时，应力等级+1");
         provider.add("ctnh.hybrid_mixer.3","混合动力超频：应力等级和配方电压等级每同时提升一级，运行速度*4");
         provider.add("ctnh.hybrid_mixer.4","当转速超过64时，使配方时间*0.8。转速超过128时配方时间和电压速度将随着转速提升进一步减少");
+        provider.add("ctnh.error.pv","§c必须使用同种光伏方块");
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
         }
@@ -818,6 +822,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.ARC_GENERATOR_MK2.getBlock(),"过载电弧撕裂者MK1");
         provider.add(CTNHMultiblockMachines.PLASMA_ALLOY_BLAST_SMELTER.getBlock(),"等离子合金冶炼转底炉");
         provider.add(CTNHMultiblockMachines.UNIVERSE_SINOPE.getBlock(), "中石化宇宙处理中心");
+        provider.add(CTNHMultiblockMachines.COMBINED_VAPOR_DEPOSITION_FACILITY.getBlock(), "集成沉积工厂");
 
 
 
