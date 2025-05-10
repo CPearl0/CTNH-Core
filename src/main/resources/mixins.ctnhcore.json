@@ -13,11 +13,12 @@
     "adastra.OxygenApilmplMixin",
     "adastra.TemperatureApilmplMixin",
     "apotheosis.EarthsBoonEnchantMixin",
-    "gtceu.GTConfiguredFeaturesMixin",
+    "gtceu.GTItemMixin",
     "gtceu.GTMaterialMixin",
     "gtceu.GTUtilMixin",
     "gtceu.TagPrefixMixin",
     "gtceu.WorkableElectricMultiblockMachineMixin",
+    "gtnn.FirstMaterialMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
     "mc.MonsterMixin"

@@ -1,9 +1,12 @@
 package io.github.cpearl0.ctnhcore.registry;
 
 import com.gregtechceu.gtceu.api.data.chemical.Element;
+import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearElements;
 
 public class CTNHElements {
-    public static void init() {}
+    public static void init() {
+        NuclearElements.init();
+    }
     public static final Element STARMETAL = new Element( 120, 138, -1, null,"starmetal", "St", false);
     public static final Element ADAMANTINE = new Element( 119, 134, -1, null,"adamantine", "Ad", false);
     public static final Element TARANIUM = new Element( 121, 140, -1, null, "taranium","Tn", false);

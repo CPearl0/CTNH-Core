@@ -13,9 +13,7 @@
       "max_delay": 24000,
       "min_delay": 12000,
       "replace_current_music": false,
-      "sound": {
-        "sound_id": "ctnhcore:ambient_astral"
-      }
+      "sound": "ctnhcore:ambient_astral"
     },
     "sky_color": 0,
     "water_color": 4159204,

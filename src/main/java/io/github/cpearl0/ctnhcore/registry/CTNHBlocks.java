@@ -163,17 +163,7 @@ public class CTNHBlocks {
             ("block/pulsating_photovoltaic_block"));
     public  static final BlockEntry<PhotovoltaicBlock>PHOTON_PRESS_COND_BLOCK=createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,"block/pulsating_photovoltaic_block");
     @SuppressWarnings("removal")
-    public static final BlockEntry<Block> ASTRAL_DIRT = REGISTRATE.block("astral_dirt", Block::new)
-            .initialProperties(() -> Blocks.DIRT)
-            .blockstate((ctx, prov) -> {
-                prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll("astral_dirt", CTNHCore.id("block/dirts/astral_dirt")));
-            })
-            .loot(RegistrateBlockLootTables::dropSelf)
-            .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(() -> RenderType::cutoutMipped)
-            .tag(BlockTags.MINEABLE_WITH_SHOVEL)
-            .item(BlockItem::new)
-            .build()
-            .register();
+    public static BlockEntry<Block> ASTRAL_DIRT;
     @SuppressWarnings("removal")
     public static final BlockEntry<AstralSaplingBlock> ASTRAL_SAPLING = REGISTRATE
             .block("astral_sapling", properties -> new AstralSaplingBlock(new AbstractTreeGrower() {
@@ -325,6 +315,7 @@ public class CTNHBlocks {
                 .blockstate(GTModels::createCrossBlockState)
                 .addLayer(() -> RenderType::cutoutMipped)
                 .item(BlockItem::new)
+                .model(GTModels::rubberTreeSaplingModel)
                 .build()
                 .register();
     }
@@ -334,6 +325,7 @@ public class CTNHBlocks {
                 .blockstate(GTModels::createCrossBlockState)
                 .addLayer(() -> RenderType::cutoutMipped)
                 .item(BlockItem::new)
+                .model(GTModels::rubberTreeSaplingModel)
                 .build()
                 .register();
     }
@@ -343,6 +335,7 @@ public class CTNHBlocks {
                 .blockstate(GTModels::createCrossBlockState)
                 .addLayer(() -> RenderType::cutoutMipped)
                 .item(BlockItem::new)
+                .model(GTModels::rubberTreeSaplingModel)
                 .build()
                 .register();
     }
