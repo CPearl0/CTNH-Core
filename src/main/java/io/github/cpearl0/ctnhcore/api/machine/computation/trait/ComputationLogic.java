@@ -54,6 +54,7 @@ public class ComputationLogic extends RecipeLogic {
         if(recipe==null)return true;
         /*如果没有规定算力大小,就按HV=1算,电压每超过hv一级算力就翻倍*/
         int CWUtToRequest=getCWUtToRequest(recipe);
+        if(CWUtToRequest<=0)return true;
         int requestedCWUt= computationContainer.requestCWUt(CWUtToRequest,simulate);
         return requestedCWUt>=CWUtToRequest;
     }

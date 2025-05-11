@@ -6,13 +6,16 @@ import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IRotorHolderMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
+import com.gregtechceu.gtceu.api.pattern.predicates.SimplePredicate;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
@@ -23,6 +26,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachin
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
+import com.lowdragmc.lowdraglib.utils.BlockInfo;
 import com.mo_guang.ctpp.CTPP;
 import com.mo_guang.ctpp.api.CTPPPartAbility;
 import com.mo_guang.ctpp.common.data.CTPPRecipeModifiers;
@@ -3977,7 +3981,36 @@ public class CTNHMultiblockMachines {
 
             .workableCasingRenderer(CTNHCore.id("block/casings/depth_force_field_stabilizing_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-
+    public final static MultiblockMachineDefinition HYPER_PLASMA_TURBINE = REGISTRATE.multiblock("hyper_plasma_turbine", holder -> new HyperPlasmaTurbineMachine(holder))
+            .rotationState(RotationState.ALL)
+            .recipeType(GTRecipeTypes.PLASMA_GENERATOR_FUELS)
+            .generator(true)
+            .recipeModifier(HyperPlasmaTurbineMachine::recipeModifier, true)
+            .appearanceBlock(HIGH_POWER_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("CCCC", "CHHC", "CCCC")
+                    .aisle("CHHC", "H##H", "CHHC")  /*结构还没想好，先用这个测试*/
+                    .aisle("CCCC", "C@HC", "CCCC")
+                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
+                    .where('C', blocks(HIGH_POWER_CASING.get()))
+                    .where('H', blocks(HIGH_POWER_CASING.get())
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, false))
+                            .or(abilities(PartAbility.OUTPUT_LASER))
+                            .or(abilities(PartAbility.COMPUTATION_DATA_RECEPTION).setExactLimit(1)))
+                    .where('#', any())
+                    .build())
+            .recoveryItems(
+                    () -> new ItemLike[] {
+                            GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get() })
+//            .workableCasingRenderer(casingTexture, overlayModel)
+            .tooltips(
+                    Component.translatable("gtceu.multiblock.turbine.efficiency", HyperPlasmaTurbineMachine.getEfficiency()),
+                    Component.translatable("ctnh.multiblock.hyper_plasma_turbine.tooltip0"),
+                    Component.translatable("ctnh.multiblock.hyper_plasma_turbine.tooltip1"),
+                    Component.translatable("gtceu.universal.tooltip.base_production_eut", HyperPlasmaTurbineMachine.BASE_EU_OUTPUT),
+                    Component.translatable("gtceu.multiblock.laser.tooltip"))
+            .register();
     public static void init() {
 
     }
