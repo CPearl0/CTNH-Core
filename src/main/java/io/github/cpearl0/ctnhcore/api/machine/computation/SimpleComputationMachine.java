@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.List;
 
-public class SimpleComputationMachine extends SimpleTieredMachine implements IOpticalComputationReceiver {
+public class SimpleComputationMachine extends SimpleTieredMachine /*implements IOpticalComputationReceiver*/ {
 
     private final SimpleComputationContainer computationContainer = new SimpleComputationContainer(this);
 
@@ -43,10 +43,12 @@ public class SimpleComputationMachine extends SimpleTieredMachine implements IOp
         return container;
     }
 
-    @Override
+//    @Override
     public IOpticalComputationProvider getComputationProvider() {
         return computationContainer.getComputationProvider();
     }
+
+
 
     @Override
     public void onNeighborChanged(Block block, BlockPos fromPos, boolean isMoving) {
