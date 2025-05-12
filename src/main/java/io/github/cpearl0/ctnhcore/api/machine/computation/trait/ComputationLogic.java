@@ -24,6 +24,8 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 public class ComputationLogic extends RecipeLogic {
     @Getter
     public IOpticalComputationProvider computationContainer;
+    @Getter
+    int lastCWUt=0;
 
     public ComputationLogic(IRecipeLogicMachine machine) {
         super(machine);
@@ -44,18 +46,20 @@ public class ComputationLogic extends RecipeLogic {
         if(checkCWUt(recipe,true)) super.setupRecipe(recipe);
     }
 
+    private int requestCWUt(int cwut,boolean simulate)
+    {
+        return ( lastCWUt = computationContainer.requestCWUt(cwut,simulate));
+    }
+
     public boolean checkCWUt(GTRecipe recipe,boolean simulate)
     {
 //        assert recipe != null;
-        if(computationContainer ==null)
-        {
-            return false;
-        }
+        if(computationContainer ==null)return false;
         if(recipe==null)return true;
         /*如果没有规定算力大小,就按HV=1算,电压每超过hv一级算力就翻倍*/
         int CWUtToRequest=getCWUtToRequest(recipe);
         if(CWUtToRequest<=0)return true;
-        int requestedCWUt= computationContainer.requestCWUt(CWUtToRequest,simulate);
+        int requestedCWUt=requestCWUt(CWUtToRequest,simulate) ;
         return requestedCWUt>=CWUtToRequest;
     }
     /*在checkCWUt里调用，如果要修改机器需要的算力，重写这个方法就行*/

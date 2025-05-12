@@ -30,7 +30,6 @@ public class MultiblockComputationMachine extends WorkableElectricMultiblockMach
 
 
     private IOpticalComputationProvider computationContainer;
-//    private IOpticalComputationProvider computationProvider;
 
     public MultiblockComputationMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -81,6 +80,18 @@ public class MultiblockComputationMachine extends WorkableElectricMultiblockMach
 
     }
 
+    public int getMaxCWUt() {
+        var provider = getComputationProvider();
+        if(provider==null)return 0;
+        return provider.getMaxCWUt();
+    }
+    public int getLastCWUt() {
+        return getRecipeLogic().getLastCWUt();
+    }
+
+    //////////////////////////////////////
+    // ****** Recipe Logic *******//
+    //////////////////////////////////////
 
     @Override
     @NotNull
@@ -91,6 +102,21 @@ public class MultiblockComputationMachine extends WorkableElectricMultiblockMach
     @NotNull
     public MultiblockComputationLogic getRecipeLogic() {
         return (MultiblockComputationLogic)super.getRecipeLogic();
+    }
+
+    //////////////////////////////////////
+    // ******* GUI ********//
+    //////////////////////////////////////
+    @Override
+    public void addDisplayText(@NotNull List<Component> textList) {
+        if(isFormed()) {
+            int maxCUWt = getMaxCWUt(),lastCWUt = getLastCWUt();
+            textList.add(Component.translatable("gtceu.multiblock.computation.max",
+                    FormattingUtil.formatNumbers(maxCUWt)));
+            textList.add(Component.translatable("gtceu.multiblock.computation.usage",
+                    FormattingUtil.formatNumbers(lastCWUt)));
+        }
+        super.addDisplayText(textList);
     }
 }
 

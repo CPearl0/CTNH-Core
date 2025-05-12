@@ -219,7 +219,6 @@ public class CTNHMachines {
                             .rotationState(RotationState.NON_Y_AXIS)
                             .recipeType(recipeType)
                             .workableTieredHullRenderer(CTNHCore.id("block/machines/" + name))
-                            .abilities(PartAbility.COMPUTATION_DATA_RECEPTION)/*阴的没边了*/
                             .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
                                     tankScalingFunction.apply(tier), true))
                             .tooltips(Component.translatable("gtceu.tooltips.simplecomputationmachine"))

@@ -28,7 +28,6 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
     public static final long BASE_EU_OUTPUT = GTValues.V[GTValues.ZPM]*288;/*有算力时的基础功率*/
     public static final long DEFAULT_EU_OUTPUT = GTValues.V[GTValues.ZPM];/*没有算力时的默认功率*/
     public static final int CWUtStair = 64;
-    private int lastCWUt;
     public HyperPlasmaTurbineMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
@@ -47,24 +46,19 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
         return 4.0;
     }
 
-    private int requestCWUt(int cwut,boolean simulate)
-    {
-        return ( lastCWUt = getComputationProvider().requestCWUt(cwut, simulate));
-    }
-    private int getMaxCWUt() {
-        var provider = getComputationProvider();
-        if(provider==null)return 0;
-        return provider.getMaxCWUt();
-    }
+
+
     //////////////////////////////////////
     // ****** Recipe Logic *******//
     //////////////////////////////////////
 
     @Override
+    @NotNull
     public RecipeLogic createRecipeLogic(Object... args) {
         return new HyperPlasmaTurbineRecipeLogic(this);
     }
     @Override
+    @NotNull
     public MultiblockComputationLogic getRecipeLogic() {
         return (HyperPlasmaTurbineRecipeLogic) recipeLogic;
     }
@@ -113,13 +107,8 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
 
     @Override
     public void addDisplayText(@NotNull List<Component> textList) {
-        super.addDisplayText(textList);
         if (isFormed()) {
-            int maxCUWt = getMaxCWUt();
-            textList.add(Component.translatable("gtceu.multiblock.computation.max",
-                    FormattingUtil.formatNumbers(maxCUWt)));
-            textList.add(Component.translatable("gtceu.multiblock.computation.usage",
-                    FormattingUtil.formatNumbers(lastCWUt)));
+
             textList.add(Component.translatable("gtceu.multiblock.turbine.efficiency",
                     getEfficiency()*100));
 
@@ -132,8 +121,8 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
                         FormattingUtil.formatNumbers(currentProduction),
                         FormattingUtil.formatNumbers(maxProduction)));
             }
-
         }
+        super.addDisplayText(textList);
     }
 
 
