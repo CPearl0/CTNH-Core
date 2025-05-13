@@ -33,6 +33,7 @@ import io.github.cpearl0.ctnhcore.api.machine.computation.SimpleComputationMachi
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalWosMachine;
+import io.github.cpearl0.ctnhcore.common.machine.simple.HighPerformanceComputer;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -295,6 +296,12 @@ public class CTNHMachines {
             })
             .renderer(() -> new MaintenanceHatchPartRenderer(6, CTNHCore.id("block/machine/part/maintenance.sterilecleaning")))
             .register();
+
+    public static final MachineDefinition[] HIGH_PERFORMANCE_COMPUTER = registerTieredMachines("high_performance_computer",
+            HighPerformanceComputer::new,
+            (tier,builder)-> builder.langValue("%s High Performance Computer".formatted(VNF[tier]))
+                    .rotationState(RotationState.NON_Y_AXIS)
+                    .register(),GTValues.tiersBetween(HV,IV));
 
     public static void init() {
 
