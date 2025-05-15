@@ -623,15 +623,19 @@ public class ChineseLangHandler {
         provider.add("ctnh.ls.0","持续调整激光频率");
         provider.add("ctnh.ls.1","配方类型：激光分配/激光蚀刻");
         provider.add("ctnh.ls.2","本机器需要消耗算力才能运行");
-        provider.add("ctnh.ls.3","----激光蚀刻模式----");
+        provider.add("ctnh.ls.3","————————激光蚀刻模式————————");
         provider.add("ctnh.ls.4","LUV及以下的电压固定基础请求8算力，电压每高于LUV一级，请求的基础算力翻倍");
         provider.add("ctnh.ls.5","输入的算力如果为基础请求算力的整数倍，则最终输出*1.25，并行等同于⌊(输入的算力/基础请求算力)⌋的三次方");
         provider.add("ctnh.ls.6","输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）");
-        provider.add("ctnh.ls.7","----激光分配模式----");
-        provider.add("ctnh.ls.8","配方给出请求算力，如果配方没有给出则按照激光蚀刻模式的公司计算");
+        provider.add("ctnh.ls.7","————————激光分配模式————————");
+        provider.add("ctnh.ls.8","配方给出请求算力，如果配方没有给出则按照激光蚀刻模式的公式计算");
         provider.add("ctnh.ls.9","输入的算力如果为基础请求算力的整数倍，则并行等同于⌊(输入的算力/基础请求算力)⌋的三次方");
         provider.add("ctnh.ls.10","输入的算力每比基础算力多一倍，将一次超频转化为无损超频（即运行速度*2），该效果转化的次数不超过你能超频的等级（即上限为将你所有的有损超频转化为无损）");
         provider.add("ctnh.ls.11","§c如果输入的算力不为整数倍，则以上所有的增益全部无效且最终所需时间*4");
+        provider.add("ctnh.ls.cwut","所需的基础算力：%d");
+        provider.add("ctnh.drone_tier","无人机等级：%d");
+        provider.add("ctnh.drone_eut","单个无人机产生的电压: %dEU/t");
+        provider.add("ctnh.drone_durability","无人机最大耐久:%d");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");

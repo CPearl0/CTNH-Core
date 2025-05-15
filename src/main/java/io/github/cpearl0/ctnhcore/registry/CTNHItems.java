@@ -2,11 +2,13 @@ package io.github.cpearl0.ctnhcore.registry;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.cpearl0.ctnhcore.common.item.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import org.apache.commons.lang3.StringUtils;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
@@ -134,6 +136,7 @@ public class CTNHItems {
                 list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.RED));
             })))
             .register();
+
     public static ItemEntry<ThrowItem> ADVANCED_BOSS_SUMMONER = REGISTRATE
             .item("advanced_boss_summoner", ThrowItem::new)
             .lang("Advanced Boss Summoner")
@@ -142,6 +145,10 @@ public class CTNHItems {
                 list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.DARK_RED));
             })))
             .register();
+    public static ItemEntry<IDroneItem>PV_DRONE_PROTOTYPE=REGISTRATE
+            .item("photovoltaic_drone_prototype",holder->new IDroneItem(holder,1,2048,64, () -> Items.AIR))
+            .lang("pv_drone_prototype")
+            .register(); // 确保调用 register() 方法
 
     public static ItemEntry<ProgramItem> PROGRAM_EMPTY = registerProgramItem("empty");
     public static ItemEntry<ProgramItem> PROGRAM_ROCKET_CORE_1 = registerProgramItem("rocket_core_1", "Tier 1 Rocket Core");

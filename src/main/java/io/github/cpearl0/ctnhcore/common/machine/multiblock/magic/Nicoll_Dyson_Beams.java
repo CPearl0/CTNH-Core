@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.magic;
 
+import com.gregtechceu.gtceu.api.capability.IParallelHatch;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.widget.SlotWidget;
@@ -181,7 +182,9 @@ public class Nicoll_Dyson_Beams extends WorkableElectricMultiblockMachine implem
         int pa=1;
         if (machine instanceof IMultiController controller) {
             if (controller.isFormed()) {
-                int parallels = (Integer)controller.getParallelHatch().map((hatch) -> ParallelLogic.getParallelAmount(machine, recipe, hatch.getCurrentParallel())).orElse(0);
+                int parallels = (Integer)controller.getParallelHatch()
+                        .map(IParallelHatch::getCurrentParallel)
+                        .orElse(0);
                 if (parallels > 0) {
                     pa=parallels;
                 }

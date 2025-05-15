@@ -571,7 +571,7 @@ public class CTNHRecipeTypes {
             {
                 if(data.contains("cwut"))
                 {
-                    return LocalizationUtils.format("ctnh.laser_cwut",String.format("%d",data.getInt("cwut")));
+                    return LocalizationUtils.format("ctnh.ls.cwut",String.format("%d",data.getInt("cwut")));
                 }
                 return "";
             })
