@@ -3893,9 +3893,20 @@ public class CTNHMultiblockMachines {
             .register();
     public final static MultiblockMachineDefinition LaserSorder = REGISTRATE.multiblock("lasersorder", LaserSorter::new)
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(CTNHRecipeTypes.PVB_RECIPE, CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION,GTRecipeTypes.MIXER_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.perfect_overclock")
+            .recipeTypes(CTNHRecipeTypes.LS_RECIPE,GTRecipeTypes.LASER_ENGRAVER_RECIPES)
+            .recipeModifiers(LaserSorter::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.ls.0"),
+                    Component.translatable("ctnh.ls.1"),
+                    Component.translatable("ctnh.ls.2"),
+                    Component.translatable("ctnh.ls.3"),
+                    Component.translatable("ctnh.ls.4"),
+                    Component.translatable("ctnh.ls.5"),
+                    Component.translatable("ctnh.ls.6"),
+                    Component.translatable("ctnh.ls.7"),
+                    Component.translatable("ctnh.ls.8"),
+                    Component.translatable("ctnh.ls.9"),
+                    Component.translatable("ctnh.ls.10"),
+                    Component.translatable("ctnh.ls.11")
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAA", "AABBBAA", "AABBBAA", "AABBBAA", "AAAAAAA")
@@ -3908,8 +3919,9 @@ public class CTNHMultiblockMachines {
                     .where("A", Predicates.blocks(COMPUTER_HEAT_VENT.get()))
                     .where("B", Predicates.blocks(HIGH_POWER_CASING.get())
                                     .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.abilities(PartAbility.COMPUTATION_DATA_RECEPTION))
-                            .or(CTNHPredicates.PhotovoltaicBlock()))
+                            .or(Predicates.abilities(PartAbility.COMPUTATION_DATA_RECEPTION).setExactLimit(1))
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                    )
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("C", Predicates.blocks(ADVANCED_COMPUTER_CASING.get()))
                     .where("#", Predicates.any())

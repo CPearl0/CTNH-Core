@@ -562,6 +562,21 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType LS_RECIPE = GTRecipeTypes.register("laser_sorter_recipe",ELECTRIC)
+            .setMaxIOSize(6, 6, 3, 3)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .addDataInfo(data->
+            {
+                if(data.contains("cwut"))
+                {
+                    return LocalizationUtils.format("ctnh.laser_cwut",String.format("%d",data.getInt("cwut")));
+                }
+                return "";
+            })
+            .setSound(GTSoundEntries.CHEMICAL);
+
     public static final GTRecipeType PHOTOVOLTAIC_GENERATOR = GTRecipeTypes.register("photovoltaic_generator",GENERATOR)
             .setMaxIOSize(2, 2, 2, 2)
             .setEUIO(IO.OUT)
