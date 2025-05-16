@@ -19,7 +19,8 @@ public class PhotovoltaicBlock extends AppearanceBlock {
         ENERGETIC_PHOTOVOLTAIC_BLOCK(1,1),
         PULSATING_PHOTOVOLTAIC_BLOCK(2,1),
         VIBRANT_PHOTOVOLTAIC_BLOCK(3,1),
-        PHOTON_PRESS_COND_BLOCK(4,2);
+        PHOTON_PRESS_COND_BLOCK(4,2),
+        Photonic_Well_Photovoltaic(64,4);
         private final int tier;
         private final int heatlevel;
 

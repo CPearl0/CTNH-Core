@@ -81,4 +81,5 @@ public class ComputationLogic extends RecipeLogic {
                 .mapToInt(CWURecipeCapability.CAP::of)
                 .sum();
     }
+
 }
