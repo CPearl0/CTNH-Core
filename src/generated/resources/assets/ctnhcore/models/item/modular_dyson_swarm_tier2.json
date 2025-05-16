@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ctnhcore:item/modular_dyson_swarm_tier2"
+  }
+}

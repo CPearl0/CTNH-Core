@@ -68,6 +68,27 @@ public class DroneHolderMachine extends MultiblockPartMachine implements IMachin
         clearInventory(this.heldItems.storage);
     }
 
+    @NotNull
+    public ItemStack getHeldItem(int slot) {
+        ItemStack stackInSlot = heldItems.getStackInSlot(slot);
+        return stackInSlot;
+    }
+    public void consumeItem(int slot)
+    {
+        var stack=heldItems.getStackInSlot(slot);
+        if(!stack.isEmpty())
+        {
+            var c=stack.getItem().getMaxDamage(stack);
+
+            var d=stack.isDamaged();
+            stack.setDamageValue(stack.getDamageValue()+1);
+            if(stack.getDamageValue()>=c)heldItems.setStackInSlot(slot,ItemStack.EMPTY);
+            else heldItems.setStackInSlot(slot,stack);
+        }
+    }
+
+
+
     private class DroneHolderHandler extends NotifiableItemStackHandler {
         public DroneHolderHandler(MetaMachine metaTileEntity) {
             super(metaTileEntity, 15, IO.IN, IO.BOTH, size -> new CustomItemStackHandler(size) {
@@ -90,7 +111,7 @@ public class DroneHolderMachine extends MultiblockPartMachine implements IMachin
         @NotNull
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate) {
-            if (!isLocked()) {
+            if (!isLocked()||this.getStackInSlot(slot).isEmpty()) {
                 return super.extractItem(slot, amount, simulate);
             }
             return ItemStack.EMPTY;

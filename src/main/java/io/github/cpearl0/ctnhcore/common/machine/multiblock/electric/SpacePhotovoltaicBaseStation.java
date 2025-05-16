@@ -78,9 +78,9 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         } else if (dimension == Planet.MERCURY || dimension == Planet.MERCURY_ORBIT) {
             rate *= 8;
         } else if (dimension == Planet.MARS || dimension == Planet.MARS_ORBIT) {
-            rate *= 2;
+            rate *= 8;
         } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
-            rate *= 0.5;
+            rate *= 16;
         }
 
         return rate;

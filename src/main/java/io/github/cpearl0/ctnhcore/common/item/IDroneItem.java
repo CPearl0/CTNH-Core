@@ -25,7 +25,6 @@ public class IDroneItem extends ComponentItem {
     public int durability;
     public IDroneItem(Properties properties, int tier, int eut, int durability, Supplier<Item> finishedItem) {
         super(properties
-                .stacksTo(1)
                 .durability(durability)
                 .rarity(Rarity.EPIC)
         );
