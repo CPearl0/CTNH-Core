@@ -636,6 +636,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.drone_tier","无人机等级：%d");
         provider.add("ctnh.drone_eut","单个无人机产生的电压: %dEU/t");
         provider.add("ctnh.drone_durability","无人机最大耐久:%d");
+        provider.add("ctnh.dyson_tier1","集成性光伏无人机蜂群");
+        provider.add("ctnh.dyson_tier2","§4我们的蜂群遮天蔽日");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -696,6 +698,11 @@ public class ChineseLangHandler {
         provider.add(CTNHItems.ANTI_INF_MATTER.get(),"§0反无穷聚合体");
         provider.addItem(CTNHItems.BOSS_SUMMONER, "boss召唤器");
         provider.addItem(CTNHItems.ADVANCED_BOSS_SUMMONER, "进阶boss召唤器");
+        provider.addItem(CTNHItems.PV_DRONE_PROTOTYPE,"光伏无人机原型");
+        provider.addItem(CTNHItems.PV_DRONE_TIER1,"标准化光伏无人机");
+        provider.addItem(CTNHItems.PV_DRONE_TIER2,"共振结构化光伏无人机");
+        provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T1,"戴森云无人机蜂群MKI");
+        provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T2,"戴森云无人机蜂群MKII");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL, "进阶线程控制外壳");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_LINE, "进阶装配核心");

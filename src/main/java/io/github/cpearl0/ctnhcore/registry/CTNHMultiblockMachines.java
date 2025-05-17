@@ -3894,7 +3894,7 @@ public class CTNHMultiblockMachines {
     public final static MultiblockMachineDefinition LaserSorder = REGISTRATE.multiblock("lasersorder", LaserSorter::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.LS_RECIPE,GTRecipeTypes.LASER_ENGRAVER_RECIPES)
-            .recipeModifiers(LaserSorter::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(LaserSorter::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.ls.0"),
                     Component.translatable("ctnh.ls.1"),
                     Component.translatable("ctnh.ls.2"),
@@ -4022,6 +4022,46 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.multiblock.hyper_plasma_turbine.tooltip1"),
                     Component.translatable("gtceu.universal.tooltip.base_production_eut", HyperPlasmaTurbineMachine.BASE_EU_OUTPUT),
                     Component.translatable("gtceu.multiblock.laser.tooltip"))
+            .register();
+    public final static MultiblockMachineDefinition PHOTOVOLTAIC_DRONE_STATION = REGISTRATE.multiblock("photovoltaic_drone_station", PhotoVoltaicDroneStation::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(CTNHRecipeTypes.LS_RECIPE,GTRecipeTypes.LASER_ENGRAVER_RECIPES)
+            .recipeModifiers(PhotoVoltaicDroneStation::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.ls.0"),
+                    Component.translatable("ctnh.ls.1"),
+                    Component.translatable("ctnh.ls.2"),
+                    Component.translatable("ctnh.ls.3"),
+                    Component.translatable("ctnh.ls.4"),
+                    Component.translatable("ctnh.ls.5"),
+                    Component.translatable("ctnh.ls.6"),
+                    Component.translatable("ctnh.ls.7"),
+                    Component.translatable("ctnh.ls.8"),
+                    Component.translatable("ctnh.ls.9"),
+                    Component.translatable("ctnh.ls.10"),
+                    Component.translatable("ctnh.ls.11")
+            )
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAAAA", "AABBBAA", "AABBBAA", "AABBBAA", "AAAAAAA")
+                    .aisle("ACCCCCA", "AC###CA", "AC###CA", "AC###CA", "ACCCCCA")
+                    .aisle("ACCCCCA", "B#####B", "B#####B", "B#####B", "ACCDCCA")
+                    .aisle("ACCCCCA", "B#####B", "B#####B", "B#####B", "ACDDDCA")
+                    .aisle("ACCCCCA", "B#####B", "B#####B", "B#####B", "ACCDCCA")
+                    .aisle("ACCCCCA", "AC###CA", "AC###CA", "AC###CA", "ACCCCCA")
+                    .aisle("AAAAAAA", "AABBBAA", "AAB@BAA", "AABBBAA", "AAAAAAA")
+                    .where("A", Predicates.blocks(COMPUTER_HEAT_VENT.get()))
+                    .where("B", Predicates.blocks(HIGH_POWER_CASING.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(abilities(CTNHPartAbility.Drone).setExactLimit(1))
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+
+                    )
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("C", Predicates.blocks(ADVANCED_COMPUTER_CASING.get()))
+                    .where("#", Predicates.any())
+                    .where("D", Predicates.blocks(FUSION_GLASS.get()))
+                    .build())
+
+            .workableCasingRenderer(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
     public static void init() {
 
