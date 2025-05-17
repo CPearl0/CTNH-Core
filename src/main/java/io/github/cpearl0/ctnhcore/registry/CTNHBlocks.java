@@ -188,6 +188,9 @@ public class CTNHBlocks {
     public static BlockEntry<AstralFlowerBlock> PINK_FLOWER = createFlowerBlock("pink_flower", MobEffects.DAMAGE_BOOST);
     public static BlockEntry<AstralGrassBlock> ASTRAL_GRASS = createTallGrassBlock("astral_grass");
     public static BlockEntry<AstralTallGrassBlock> ASTRAL_TALL_GRASS = createDoublePlantBlock("astral_tall_grass");
+
+    public static BlockEntry<TurbineRotorBlock> HYPER_PLASMA_TURBINE_ROTOR = createTurbineRotorBlock("hyper_plasma_turbine_rotor");
+
     public static void init() {
 
     }
@@ -337,6 +340,12 @@ public class CTNHBlocks {
                 .item(BlockItem::new)
                 .model(GTModels::rubberTreeSaplingModel)
                 .build()
+                .register();
+    }
+    public static BlockEntry<TurbineRotorBlock> createTurbineRotorBlock(String name) {
+        return REGISTRATE.block(name, TurbineRotorBlock::new)
+                .initialProperties(() -> Blocks.OBSIDIAN)
+                .simpleItem()
                 .register();
     }
 }

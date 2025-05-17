@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "ctnhcore:block/turbine_rotor/base" }
+  }
+}
