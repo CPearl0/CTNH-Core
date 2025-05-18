@@ -17,10 +17,10 @@ public class PhotovoltaicBlock extends AppearanceBlock {
     }
     public static enum PhotovoltaicType implements StringRepresentable, IPBData {
         ENERGETIC_PHOTOVOLTAIC_BLOCK(1,1),
-        PULSATING_PHOTOVOLTAIC_BLOCK(2,1),
-        VIBRANT_PHOTOVOLTAIC_BLOCK(3,1),
-        PHOTON_PRESS_COND_BLOCK(4,2),
-        Photonic_Well_Photovoltaic(64,4);
+        PULSATING_PHOTOVOLTAIC_BLOCK(2,2),
+        VIBRANT_PHOTOVOLTAIC_BLOCK(3,4),
+        PHOTON_PRESS_COND_BLOCK(4,8),
+        Photonic_Well_Photovoltaic(5,32);
         private final int tier;
         private final int heatlevel;
 

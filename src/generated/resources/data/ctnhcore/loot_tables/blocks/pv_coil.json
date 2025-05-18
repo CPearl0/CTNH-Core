@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ctnhcore:neutronium_reinforced_turbine_casing"
+          "name": "ctnhcore:pv_coil"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "ctnhcore:blocks/neutronium_reinforced_turbine_casing"
+  "random_sequence": "ctnhcore:blocks/pv_coil"
 }

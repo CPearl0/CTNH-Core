@@ -10,6 +10,7 @@ import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
+import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
 import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -40,6 +41,12 @@ public class CTNHModels {
 
     public static NonNullBiConsumer<DataGenContext<Block, PhotovoltaicBlock>, RegistrateBlockstateProvider> createpvModel(String name,
                                                                                                                           String location) {
+        return (ctx, prov) -> {
+            prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, CTNHCore.id(location)));
+        };
+    }
+    public static NonNullBiConsumer<DataGenContext<Block, SpaceStructuralFramework>, RegistrateBlockstateProvider> createssfModel(String name,
+                                                                                                                                  String location) {
         return (ctx, prov) -> {
             prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, CTNHCore.id(location)));
         };
