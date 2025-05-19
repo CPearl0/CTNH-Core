@@ -665,6 +665,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[LuV].getBlock(), "§d精英数字化苦难之井 II§r");
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[ZPM].getBlock(), "§c数字化猩红深渊§r");
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[UV].getBlock(), "§3数字化猩红深渊 II§r");
+        provider.add(CTNHMachines.DRONEHOLDER.getBlock(),"无人机支架");
 
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
         provider.add(CTNHCreativeModeTabs.ITEM.get(), "CTNH物品");
@@ -765,8 +766,10 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.FRUIT_CAFE_CRATE, "箱装水果");
         provider.addBlock(CTNHBlocks.ASPARAGUS_CRATE, "箱装芦荟");
         provider.addBlock(CTNHBlocks.CASING_NEUTRONIUM_ALLOY_BLOCK,"以太强化超能中子基岩合金钅达智能机械方块");
-        provider.addBlock(CTNHBlocks.PHOTON_PRESS_COND_BLOCK,"光压传导方块");
+        provider.addBlock(CTNHBlocks.PHOTON_PRESS_COND_BLOCK,"光压传导光伏方块");
         provider.addBlock(CTNHBlocks.STELLAR_RADIATION_ROUTER_CASING,"恒星辐射分流方块");
+        provider.addBlock(CTNHBlocks.PV_COIL,"光伏线圈方块");
+        provider.addBlock(CTNHBlocks.NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK,"硅岩激发碳纳米太空结构方块");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -866,6 +869,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.COMBINED_VAPOR_DEPOSITION_FACILITY.getBlock(), "集成沉积工厂");
         provider.add(CTNHMultiblockMachines.SPACEPHOTOVOLTAICBASESTATION.getBlock(), "太空光伏基站");
         provider.add(CTNHMultiblockMachines.LaserSorder.getBlock(),"激光分配仪");
+        provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_DRONE_STATION.getBlock(), "光伏无人机道标基站");
 
 
 
