@@ -12,8 +12,8 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 @Getter
 public class TemplateModel extends ModelBase {
 
-    public TemplateModel(BlockEntityRendererProvider.Context context, ModelDefinition definition) {
-        super(context, definition);
+    public TemplateModel(ModelDefinition definition) {
+        super(definition);
         //其他的部件定义
     }
 

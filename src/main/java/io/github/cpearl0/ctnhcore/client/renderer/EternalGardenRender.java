@@ -1,15 +1,19 @@
 package io.github.cpearl0.ctnhcore.client.renderer;
 
+import com.enderio.machines.common.init.MachineBlockEntities;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.client.renderer.machine.WorkableCasingMachineRenderer;
 import com.lowdragmc.lowdraglib.utils.TrackedDummyWorld;
 import com.mojang.blaze3d.vertex.PoseStack;
+import io.github.cpearl0.ctnhcore.client.model.MagicCubeModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -21,10 +25,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class EternalGardenRender extends WorkableCasingMachineRenderer {
 
+    static MagicCubeModel model;
 
     public EternalGardenRender() {
         super(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false);
     }
+
 
     @Override
     public int getViewDistance() {
@@ -41,6 +47,7 @@ public class EternalGardenRender extends WorkableCasingMachineRenderer {
         return true;
     }
 
+
     @ParametersAreNonnullByDefault
     @Override
     @OnlyIn(Dist.CLIENT)
@@ -52,12 +59,9 @@ public class EternalGardenRender extends WorkableCasingMachineRenderer {
             var level = blockEntity.getLevel();
             if (level == null) return;
 
-            ItemStack spark = new ItemStack(BotaniaItems.corporeaSpark);
-            ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
 
             stack.pushPose();
             stack.translate(0.5, 2.5, 0.5);
-            itemRenderer.renderStatic(spark, ItemDisplayContext.FIXED, LightTexture.FULL_BRIGHT, combinedOverlay, stack, buffer, level, 1);
             stack.popPose();
         }
 

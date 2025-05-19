@@ -35,11 +35,7 @@ public class TurbineRotorRender implements BlockEntityRenderer<TurbineRotorBE> {
 
     private static final ResourceLocation TEXTURE =
             CTNHCore.id("textures/block/turbine_rotor/texture.png");
-    private final TurbineRotorModel model;
-
-    public TurbineRotorRender(BlockEntityRendererProvider.Context context) {
-        this.model = new TurbineRotorModel(context, CTNHModelLayers.TURBINE_ROTOR_MODEL);
-    }
+    private static final TurbineRotorModel model = new TurbineRotorModel(CTNHModelLayers.TURBINE_ROTOR_MODEL);
     @Override
     public int getViewDistance() {
         return 24;

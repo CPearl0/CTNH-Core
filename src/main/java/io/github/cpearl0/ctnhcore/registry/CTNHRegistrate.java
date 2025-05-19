@@ -19,8 +19,10 @@ public final class CTNHRegistrate extends GTRegistrate {
         return new CTNHRegistrate();
     }
 
+    @Deprecated
     @Getter
     private final List<ModelDefinition> models= Lists.newArrayList();
+    @Deprecated
     public ModelDefinition registerModel(String name, Supplier<LayerDefinition> createBodyLayer) {
         ModelDefinition model = new ModelDefinition(name, createBodyLayer);
         models.add(model);

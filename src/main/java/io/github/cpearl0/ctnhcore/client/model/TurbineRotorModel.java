@@ -21,8 +21,8 @@ public class TurbineRotorModel extends ModelBase {
     private final ModelPart shaft;
     private final ModelPart blade;
 
-    public TurbineRotorModel(BlockEntityRendererProvider.Context context, ModelDefinition definition){
-        super(context, definition);
+    public TurbineRotorModel(ModelDefinition definition){
+        super(definition);
         this.turbine_rotor = root.getChild("turbine_rotor");
         this.hub = this.turbine_rotor.getChild("hub");
         this.shaft = this.turbine_rotor.getChild("shaft");

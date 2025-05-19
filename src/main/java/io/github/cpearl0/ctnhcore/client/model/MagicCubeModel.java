@@ -16,8 +16,8 @@ public class MagicCubeModel extends ModelBase {
     private final ModelPart magic_cube;
     private final ModelPart ring;
 
-    public MagicCubeModel(BlockEntityRendererProvider.Context context) {
-        super(context, CTNHModelLayers.MAGIC_CUBE_MODEL);
+    public MagicCubeModel() {
+        super(CTNHModelLayers.MAGIC_CUBE_MODEL);
         this.magic_cube = root.getChild("magic_cube");
         this.ring = magic_cube.getChild("ring");
     }
