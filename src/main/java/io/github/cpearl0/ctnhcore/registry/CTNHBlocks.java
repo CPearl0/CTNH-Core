@@ -12,6 +12,7 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.CTNHAPI;
 import io.github.cpearl0.ctnhcore.common.block.*;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
+import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
 import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHConfiguredFeatures;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -161,6 +162,7 @@ public class CTNHBlocks {
             ("block/energetic_photovoltaic_block"));
     public static final BlockEntry<PhotovoltaicBlock> PULSATING_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PULSATING_PHOTOVOLTAIC_BLOCK,
             ("block/pulsating_photovoltaic_block"));
+    public static final BlockEntry<ActiveBlock> PV_COIL =createActiveCasing("pv_coil","block/flux/pv_coil");
     public  static final BlockEntry<PhotovoltaicBlock>PHOTON_PRESS_COND_BLOCK=createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,"block/pulsating_photovoltaic_block");
     @SuppressWarnings("removal")
     public static BlockEntry<Block> ASTRAL_DIRT;
@@ -191,6 +193,8 @@ public class CTNHBlocks {
 
     public static BlockEntry<TurbineRotorBlock> HYPER_PLASMA_TURBINE_ROTOR = createTurbineRotorBlock("hyper_plasma_turbine_rotor");
 
+
+    public static BlockEntry<SpaceStructuralFramework> NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK=createSpaceStructuralFrame(SpaceStructuralFramework.SpaceStructuralFrameworkType.NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK,"block/pulsating_photovoltaic_block");
     public static void init() {
 
     }
@@ -248,6 +252,22 @@ public class CTNHBlocks {
 
         CTNHAPI.PhotovoltaicBlock.put(pbdata, photovoltaicblock);
         return photovoltaicblock;
+    }
+    @SuppressWarnings("all")
+    private static BlockEntry<SpaceStructuralFramework> createSpaceStructuralFrame(ISSFData pbdata, String location) {
+        var ssfblock = REGISTRATE.block("%s".formatted(pbdata.getSpaceStructuralFrameworkName()),
+                        p -> new SpaceStructuralFramework(p, pbdata))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(CTNHModels.createssfModel(pbdata.getSpaceStructuralFrameworkName(), location))
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(BlockItem::new)
+                .build()
+                .register();
+
+        CTNHAPI.SpaceStructuralFramework.put(pbdata, ssfblock);
+        return ssfblock;
     }
 
 
@@ -312,6 +332,7 @@ public class CTNHBlocks {
                 .build()
                 .register();
     }
+    @SuppressWarnings("removal")
     public static BlockEntry<AstralFlowerBlock> createFlowerBlock(String name, MobEffect effect) {
         return REGISTRATE.block(name, (properties) -> new AstralFlowerBlock(() -> effect, 5, properties))
                 .properties(p -> BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY))
@@ -322,6 +343,7 @@ public class CTNHBlocks {
                 .build()
                 .register();
     }
+    @SuppressWarnings("removal")
     public static BlockEntry<AstralGrassBlock> createTallGrassBlock(String name) {
         return REGISTRATE.block(name, AstralGrassBlock::new)
                 .initialProperties(() -> Blocks.GRASS)
@@ -332,6 +354,7 @@ public class CTNHBlocks {
                 .build()
                 .register();
     }
+    @SuppressWarnings("removal")
     public static BlockEntry<AstralTallGrassBlock> createDoublePlantBlock(String name) {
         return REGISTRATE.block(name, AstralTallGrassBlock::new)
                 .initialProperties(() -> Blocks.TALL_GRASS)

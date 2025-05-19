@@ -2,9 +2,9 @@ package io.github.cpearl0.ctnhcore.common.block.blockdata;
 
 import org.jetbrains.annotations.NotNull;
 
-public interface IPSFData {
+public interface ISSFData {
     int getTier();
 
 
-    @NotNull String getPhotovoltaicName();
+    @NotNull String getSpaceStructuralFrameworkName();
 }

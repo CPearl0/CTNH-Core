@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
-import io.github.cpearl0.ctnhcore.common.block.blockdata.IPSFData;
+import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
 import lombok.Generated;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.GenericEvent;
@@ -27,7 +27,7 @@ public class CTNHAPI {
     private static boolean highTier;
     private static boolean highTierInitialized;
     public static final Map<IPBData, Supplier<PhotovoltaicBlock>> PhotovoltaicBlock = new HashMap();
-    public static final Map<IPSFData,Supplier<SpaceStructuralFramework>> SpaceStructuralFramework =new HashMap();
+    public static final Map<ISSFData,Supplier<SpaceStructuralFramework>> SpaceStructuralFramework =new HashMap();
 
     public CTNHAPI() {
     }

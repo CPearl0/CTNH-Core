@@ -28,6 +28,6 @@ public class CTNHElements {
     public static final Element PHANTOM_IRON = new Element(124, 148, -1, null, "phantom_iron", "Pn", false);
     public static final Element BOG_AMBER = new Element(125, 138, -1, null, "bog_amber", "Bm", false);
     public static final Element STORMVEIN = new Element(128, 150, -1, null, "stormvein", "Sv", false);
-    public static final Element SUNNARIUM = new Element(128, 150, -1, null, "Sunnarium", "☼", false);
-    public static final Element HIKARIUM = new Element(12800, 15000, -1, null, "Hikarium", "☀", false);
+    public static final Element SUNNARIUM = new Element(128, 150, -1, null, "sunnarium", "☼", false);
+    public static final Element HIKARIUM = new Element(12800, 15000, -1, null, "hikarium", "☀", false);
 }

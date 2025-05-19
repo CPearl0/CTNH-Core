@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "ctnhcore:block/flux/pv_coil"
+    },
+    "active=true": {
+      "model": "ctnhcore:block/flux/pv_coil_active"
+    }
+  }
+}
