@@ -41,6 +41,7 @@ import dev.arbor.gtnn.data.GTNNMaterials;
 import fr.lucreeper74.createmetallurgy.registries.CMBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.Pattern.CTNHPredicates;
+import io.github.cpearl0.ctnhcore.client.renderer.EternalGardenRender;
 import io.github.cpearl0.ctnhcore.client.renderer.LargeBottleRender;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.KineticElectricMutiblockMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.Hybrid_Power_Mixer;
@@ -3660,7 +3661,7 @@ public class CTNHMultiblockMachines {
                     .where("r", Predicates.blocks(BotaniaFlowerBlocks.rosaArcana))
                     .build()
             )
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false)
+            .renderer(EternalGardenRender::new)
             .register();
     public final static MultiblockMachineDefinition PLASMA_ALLOY_BLAST_SMELTER = REGISTRATE.multiblock("plasma_alloy_blast_smelter", Plasma_alloy_blast::new)
             .rotationState(RotationState.NON_Y_AXIS)
