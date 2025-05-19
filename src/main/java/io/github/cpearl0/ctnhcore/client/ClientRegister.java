@@ -1,9 +1,11 @@
 package io.github.cpearl0.ctnhcore.client;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.client.model.TurbineRotorModel;
+import io.github.cpearl0.ctnhcore.client.model.ModelDefinition;
 import io.github.cpearl0.ctnhcore.client.renderer.TurbineRotorRender;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlockEntities;
+import io.github.cpearl0.ctnhcore.registry.CTNHModelLayers;
+import io.github.cpearl0.ctnhcore.registry.CTNHRegistration;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,11 +16,16 @@ public class ClientRegister {
     @SubscribeEvent
     public static void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         CTNHCore.LOGGER.info("Registering Models...");
-        event.registerLayerDefinition(TurbineRotorModel.LAYER_LOCATION, TurbineRotorModel::createBodyLayer);
+        CTNHModelLayers.init();
+        var models = CTNHRegistration.REGISTRATE.getModels();
+        for (ModelDefinition model : models) {
+            event.registerLayerDefinition(model.LAYER_LOCATION, model.createBodyLayer);
+        }
     }
+    @Deprecated
     @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        CTNHCore.LOGGER.info("Registering Renderers...");
+        CTNHCore.LOGGER.info("Registering External Renderers...");
         event.registerBlockEntityRenderer(CTNHBlockEntities.TURBINE_ROTOR.get(), TurbineRotorRender::new);
     }
 }

@@ -7,6 +7,7 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.model.TurbineRotorModel;
 import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
+import io.github.cpearl0.ctnhcore.registry.CTNHModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -34,11 +35,10 @@ public class TurbineRotorRender implements BlockEntityRenderer<TurbineRotorBE> {
 
     private static final ResourceLocation TEXTURE =
             CTNHCore.id("textures/block/turbine_rotor/texture.png");
-    private final TurbineRotorModel<?> model;
+    private final TurbineRotorModel model;
 
     public TurbineRotorRender(BlockEntityRendererProvider.Context context) {
-        ModelPart modelPart = context.bakeLayer(TurbineRotorModel.LAYER_LOCATION);
-        this.model = new TurbineRotorModel<>(modelPart);
+        this.model = new TurbineRotorModel(context, CTNHModelLayers.TURBINE_ROTOR_MODEL);
     }
     @Override
     public int getViewDistance() {
@@ -74,7 +74,7 @@ public class TurbineRotorRender implements BlockEntityRenderer<TurbineRotorBE> {
 
 
         VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.entitySolid(TEXTURE));
-        model.renderToBuffer(
+        model.getTurbine_rotor().render(
                 poseStack,
                 vertexConsumer,
                 packedLight,

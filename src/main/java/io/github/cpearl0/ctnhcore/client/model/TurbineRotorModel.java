@@ -1,49 +1,32 @@
 package io.github.cpearl0.ctnhcore.client.model;
-// Made with Blockbench 4.12.4
-// Exported for Minecraft version 1.17 or later with Mojang mappings
-// Paste this class into your mod and generate all required imports
 
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import lombok.Getter;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
-public class TurbineRotorModel<T extends Entity> extends EntityModel<T> {
-    // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(CTNHCore.id( "turbine_rotor"), "main");
+@Getter
+public class TurbineRotorModel extends ModelBase {
     private final ModelPart turbine_rotor;
     private final ModelPart hub;
     private final ModelPart shaft;
     private final ModelPart blade;
-    private final ModelPart bone1;
-    private final ModelPart bone2;
-    private final ModelPart bone3;
-    private final ModelPart bone4;
-    private final ModelPart bone5;
-    private final ModelPart bone6;
-    private final ModelPart bone7;
-    private final ModelPart bone8;
 
-    public TurbineRotorModel(ModelPart root) {
+    public TurbineRotorModel(BlockEntityRendererProvider.Context context, ModelDefinition definition){
+        super(context, definition);
         this.turbine_rotor = root.getChild("turbine_rotor");
         this.hub = this.turbine_rotor.getChild("hub");
         this.shaft = this.turbine_rotor.getChild("shaft");
         this.blade = this.turbine_rotor.getChild("blade");
-        this.bone1 = this.blade.getChild("bone1");
-        this.bone2 = this.blade.getChild("bone2");
-        this.bone3 = this.blade.getChild("bone3");
-        this.bone4 = this.blade.getChild("bone4");
-        this.bone5 = this.blade.getChild("bone5");
-        this.bone6 = this.blade.getChild("bone6");
-        this.bone7 = this.blade.getChild("bone7");
-        this.bone8 = this.blade.getChild("bone8");
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -92,15 +75,5 @@ public class TurbineRotorModel<T extends Entity> extends EntityModel<T> {
         PartDefinition cube_r8 = bone8.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(0, 112).addBox(-72.0F, -2.0F, -7.0F, 65.0F, 2.0F, 14.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -7.0F, 0.0F, 0.7854F, 0.0F, 0.0F));
 
         return LayerDefinition.create(meshdefinition, 256, 256);
-    }
-
-    @Override
-    public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
-    }
-
-    @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        turbine_rotor.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 }

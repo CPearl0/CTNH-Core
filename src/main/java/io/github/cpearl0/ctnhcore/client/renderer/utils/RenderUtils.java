@@ -12,7 +12,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 
 @OnlyIn(Dist.CLIENT)
-public class RenderUtils {
+public abstract class RenderUtils {
     public static EnumMap<Direction, Axis> directionAxises = new EnumMap<>(Direction.class);
     static {
         directionAxises.put(Direction.NORTH, Axis.ZN);

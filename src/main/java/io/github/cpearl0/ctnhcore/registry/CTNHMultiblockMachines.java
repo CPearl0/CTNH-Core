@@ -3662,6 +3662,7 @@ public class CTNHMultiblockMachines {
                     .build()
             )
             .renderer(EternalGardenRender::new)
+            .hasTESR(true)
             .register();
     public final static MultiblockMachineDefinition PLASMA_ALLOY_BLAST_SMELTER = REGISTRATE.multiblock("plasma_alloy_blast_smelter", Plasma_alloy_blast::new)
             .rotationState(RotationState.NON_Y_AXIS)
