@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
+import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
@@ -11,13 +12,23 @@ import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.mojang.datafixers.util.Pair;
 import earth.terrarium.adastra.api.planets.Planet;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.generator.PhotoVoltaicDroneStation;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -25,8 +36,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
-public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMachine {
+public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMachine{
     public SpacePhotovoltaicBaseStation(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
@@ -36,6 +48,7 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
     @Persisted  private int heat=1;
     @Persisted private  boolean orbit=false;
     @Persisted private double muti=1;
+    @Persisted public BlockPos Drone_location;
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
@@ -48,6 +61,9 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         }
 
     }
+
+
+
     @Override
     public void onStructureInvalid() {
         super.onStructureInvalid();
@@ -55,6 +71,10 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         heat=0;
         orbit=false;
     }
+    //#############闪存绑定事件#############//
+
+
+
     public double dimension_check() {
         var level = getLevel();
         var dimension = level.dimension();
@@ -112,48 +132,55 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         return super.beforeWorking(recipe);
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
-        if(machine instanceof SpacePhotovoltaicBaseStation pmachine){
-            if(recipe.recipeType.equals(CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER)) {
-                var EUt = RecipeHelper.getOutputEUt(recipe);
-                var tier = recipe.data.getInt("tier");
-                var input = recipe.data.getInt("input");
-                var output = 8192 * tier / 2;
-                var duration=1.0;
-                if (pmachine.pv_level < tier) {
-                    return ModifierFunction.NULL;
-                }
+        if (machine instanceof SpacePhotovoltaicBaseStation pmachine) {
+            var level = pmachine.getLevel();
+            var pos = pmachine.getPos();
+//            var area = AABB.of(BoundingBox.fromCorners(pos.offset(-20, -10, -20), pos.offset(10, 10, 10)));
+//            var entities = level.getEntities(null, area);
+//            for (Entity i : entities) {
+//                if ((i instanceof IMachineBlockEntity machineBlockEntity)) {
+//                    continue;
+//                }
+                if (recipe.recipeType.equals(CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER)) {
+                    var EUt = RecipeHelper.getOutputEUt(recipe);
+                    var tier = recipe.data.getInt("tier");
+                    var input = recipe.data.getInt("input");
+                    var output = 8192 * tier / 2;
+                    var duration = 1.0;
+                    if (pmachine.pv_level < tier) {
+                        return ModifierFunction.NULL;
+                    }
 
-                var parallel = Math.max((pmachine.muti * tier*8192/input),0.01);
-                if(parallel<1)
-                {
-                    duration=1/(parallel*parallel);
-                    parallel=1;
-                }
-                else
-                {
-                    duration=((int)(parallel));
-                }
-                var new_recipe = recipe;
+                    var parallel = Math.max((pmachine.muti * tier * 8192 / input), 0.01); //真实并行
 
-                new_recipe.tickOutputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent((long) 1));
-                recipe = new_recipe;
-                var maxparallel = ParallelLogic.getParallelAmount(machine, recipe, (int)parallel);
-                return ModifierFunction.builder()
-                        .parallels(maxparallel)
-                        .durationMultiplier(1/duration)
-                        .inputModifier(ContentModifier.multiplier(maxparallel))
-                        .outputModifier(ContentModifier.multiplier(maxparallel))
-                        .build();
+                    if (parallel < 1) {
+                        duration = 1 / (parallel * parallel);
+                        parallel = 1;
+                    } else {
+                        duration = ((int) (parallel));
+                    }
+                    var new_recipe = recipe;
+
+                    new_recipe.tickOutputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent((long) 1));
+                    recipe = new_recipe;
+                    var maxparallel = ParallelLogic.getParallelAmount(machine, recipe, (int) parallel);
+                    return ModifierFunction.builder()
+                            .parallels(maxparallel)
+                            .durationMultiplier(1 / duration)
+                            .inputModifier(ContentModifier.multiplier(maxparallel))
+                            .outputModifier(ContentModifier.multiplier(maxparallel))
+                            .build();
+                }
+                if (recipe.recipeType.equals(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR)) {
+
+                    return ModifierFunction.builder()
+                            .eutMultiplier(pmachine.muti)
+                            .build();
+                }
             }
-            if(recipe.recipeType.equals(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR))
-            {
-                return ModifierFunction.builder()
-                        .eutMultiplier(pmachine.muti)
-                        .build();
-            }
+            return ModifierFunction.NULL;
         }
-        return ModifierFunction.NULL;
-    }
+
     public void addDisplayText(List<Component> textList) {
         textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.0",String.format("%d",pv_level)));
         textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.1",String.format("%d",heat)));

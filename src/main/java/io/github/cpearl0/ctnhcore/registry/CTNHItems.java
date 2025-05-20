@@ -171,7 +171,10 @@ public class CTNHItems {
                 list.add(Component.translatable("ctnh.dyson_tier2").withStyle(ChatFormatting.DARK_RED));
             })))
             .register(); // 确保调用 register() 方法
-
+    public static ItemEntry<ConnectTerminalItem> PV_TERMINAL=REGISTRATE
+            .item("pv_terminal",holder->new ConnectTerminalItem(holder))
+            .lang("pv_terminal")
+            .register();
     public static ItemEntry<ProgramItem> PROGRAM_EMPTY = registerProgramItem("empty");
     public static ItemEntry<ProgramItem> PROGRAM_ROCKET_CORE_1 = registerProgramItem("rocket_core_1", "Tier 1 Rocket Core");
     public static ItemEntry<ProgramItem> PROGRAM_ROCKET_1 = registerProgramItem("rocket_1", "Tier 1 Rocket Control");

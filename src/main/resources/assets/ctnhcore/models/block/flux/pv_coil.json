@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "gtceu:block/casings/pv_coil"
+    "all": "ctnhcore:block/casings/pv_coil"
   }
 }

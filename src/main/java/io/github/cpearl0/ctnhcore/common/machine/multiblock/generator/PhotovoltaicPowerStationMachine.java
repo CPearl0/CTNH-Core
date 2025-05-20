@@ -144,11 +144,7 @@ public class PhotovoltaicPowerStationMachine extends WorkableElectricMultiblockM
     }
     @Override
     public boolean onWorking() {
-        var recipetime=getRecipeLogic().getDuration();
-        if(getOffsetTimer()-StartTime>recipetime*5)
-        {
-            return false; //如果配方运行时间过长，强行结束配方运行
-        }
+
     return super.onWorking();
     }
 

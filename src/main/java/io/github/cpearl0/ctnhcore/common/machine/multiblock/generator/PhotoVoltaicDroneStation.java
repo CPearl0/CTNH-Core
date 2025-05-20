@@ -3,6 +3,7 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.gregtechceu.gtceu.api.capability.IObjectHolder;
 import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -16,6 +17,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import earth.terrarium.adastra.api.planets.Planet;
+import io.github.cpearl0.ctnhcore.common.item.IDroneItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.LaserSorter;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.DroneHolderMachine;
@@ -87,6 +89,19 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
             }
         }
     }
+    public int GetDronePower()
+    {
+        var drone=GetValidDrone();
+        if(drone.isEmpty())return 1;
+        int x=0;
+        for(int i=0;i<drone.size();i++)
+        {
+            var holder=droneholder.getHeldItem(drone.get(i));
+            var item=(IDroneItem)holder.getItem();
+            x=x+item.eut;
+        }
+        return x;
+    }
     public double dimension_check() {
         var level = getLevel();
         var dimension = level.dimension();
@@ -95,7 +110,7 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         if(dimension== Planet.MOON_ORBIT || dimension == Planet.VENUS_ORBIT|| dimension == Planet.MERCURY_ORBIT|| dimension == Planet.MARS_ORBIT|| dimension == Planet.GLACIO_ORBIT)
         {
             orbit=true;
-            rate*=2;
+            rate*=1.5;
         }
 
         if (dimension == Level.OVERWORLD || dimension.location().getPath().equals("twilightforest:twilight_forest") || dimension.location().getPath().equals("mythicbotany:alfheim")) {
@@ -140,7 +155,10 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof PhotoVoltaicDroneStation lmachine) {
-
+            var eut=lmachine.GetDronePower()* lmachine.dimension_check();
+            var new_recipe=recipe;
+            new_recipe.tickOutputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent((long) eut));
+            recipe=new_recipe;
             return ModifierFunction.builder()
                     .build();
 

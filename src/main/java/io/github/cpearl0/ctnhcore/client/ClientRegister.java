@@ -26,6 +26,6 @@ public class ClientRegister {
     @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         CTNHCore.LOGGER.info("Registering External Renderers...");
-        event.registerBlockEntityRenderer(CTNHBlockEntities.TURBINE_ROTOR.get(), TurbineRotorRender::new);
+        event.registerBlockEntityRenderer(CTNHBlockEntities.TURBINE_ROTOR.get(), (ctx)->new TurbineRotorRender());
     }
 }
