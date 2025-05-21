@@ -638,6 +638,12 @@ public class ChineseLangHandler {
         provider.add("ctnh.drone_durability","无人机最大耐久:%d");
         provider.add("ctnh.dyson_tier1","集成性光伏无人机蜂群");
         provider.add("ctnh.dyson_tier2","§4我们的蜂群遮天蔽日");
+        provider.add("ctnh.terminal.success_get","已经获取坐标!");
+        provider.add("ctnh.terminal.success_write","已成功写入坐标!");
+        provider.add("ctnh.terminal.location","已经绑定的坐标：(%s,%s,%s)");
+        provider.add("ctnh.terminal.success_clear","已清除坐标！");
+        provider.add("ctnh.terminal.tips","使用右键绑定光伏模块控制器，然后再右键将控制器和光伏基站绑定\nshift+右键任意方块清除坐标");
+
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -704,6 +710,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.PV_DRONE_TIER2,"共振结构化光伏无人机");
         provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T1,"戴森云无人机蜂群MKI");
         provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T2,"戴森云无人机蜂群MKII");
+        provider.addItem(CTNHItems.PV_TERMINAL,"光伏绑定终端");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL, "进阶线程控制外壳");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_LINE, "进阶装配核心");
