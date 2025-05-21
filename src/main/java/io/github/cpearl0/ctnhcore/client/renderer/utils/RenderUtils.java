@@ -1,18 +1,23 @@
 package io.github.cpearl0.ctnhcore.client.renderer.utils;
 
+import com.google.common.math.IntMath;
 import com.mojang.math.Axis;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Quaternionf;
+import org.joml.Vector3f;
 import org.joml.Vector3i;
 
 import javax.annotation.Nullable;
+import java.math.RoundingMode;
 import java.util.EnumMap;
 import java.util.HashMap;
 
 @OnlyIn(Dist.CLIENT)
-public class RenderUtils {
+public abstract class RenderUtils {
+    //方向轴
     public static EnumMap<Direction, Axis> directionAxises = new EnumMap<>(Direction.class);
     static {
         directionAxises.put(Direction.NORTH, Axis.ZN);
@@ -67,6 +72,43 @@ public class RenderUtils {
     }
     public static boolean isRightHand(Direction controller,Direction part) {
         return getFacingAxis(part, controller) == Axis.YN;
+    }
+
+    //三角函数
+    public static float sinPolynom(float x, int n){
+        float powedX = x, ret = 0, sqX = x*x;
+        int d=1;
+        for(int i=1;i<=n;i++){
+            ret += powedX/d;
+            powedX *= sqX;
+            d *= -(2*i+1)*(2*i);
+        }
+        return ret;
+    }
+    public static float cosPolynom(float x, int n){
+        float powedX = 1, ret = 0, sqX = x*x;
+        int d=1;
+        for(int i=1;i<=n;i++){
+            ret += powedX/d;
+            powedX *= sqX;
+            d *= -(2*i-1)*(2*i);
+        }
+        return ret;
+    }
+    public static float u8ToRad(byte t){
+        return ((float) t /Byte.MAX_VALUE)*(2*(float)Math.PI);
+    }
+
+    public static Vector3f randVector3f(RandomSource rand) {
+        int ix,iy,iz;
+        float l;
+        do {
+            ix = rand.nextIntBetweenInclusive(Short.MIN_VALUE / 2, Short.MAX_VALUE / 2);
+            iy = rand.nextIntBetweenInclusive(Short.MIN_VALUE / 2, Short.MAX_VALUE / 2);
+            iz = rand.nextIntBetweenInclusive(Short.MIN_VALUE / 2, Short.MAX_VALUE / 2);
+            l = (float) Math.sqrt(ix * ix + iy * iy + iz * iz);
+        } while (l == 0);
+        return new Vector3f(ix/l,iy/l,iz/l);
     }
 
 }

@@ -2,10 +2,13 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.gregtechceu.gtceu.api.capability.IObjectHolder;
+import com.gregtechceu.gtceu.api.capability.IParallelHatch;
 import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
@@ -16,10 +19,13 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import earth.terrarium.adastra.api.planets.Planet;
+import io.github.cpearl0.ctnhcore.common.item.IDroneItem;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.LaserSorter;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.DroneHolderMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import lombok.Getter;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,6 +42,11 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
     private DroneHolderMachine droneholder;
     @Persisted
     private boolean orbit=false;
+    @Persisted
+    @Getter
+    private int eut=0;
+    @Persisted
+    private double num=0.0;
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
@@ -79,6 +90,7 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         var drone=GetValidDrone();
         if(drone.isEmpty())return;
         var x=sigmoid(drone.size(),0.25,9);
+        num=x;
         for(int i=0;i<drone.size();i++)
         {
             if(Math.random()<x)
@@ -86,6 +98,19 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
                 droneholder.consumeItem(drone.get(i));
             }
         }
+    }
+    public int GetDronePower()
+    {
+        var drone=GetValidDrone();
+        if(drone.isEmpty())return 1;
+        int x=0;
+        for(int i=0;i<drone.size();i++)
+        {
+            var holder=droneholder.getHeldItem(drone.get(i));
+            var item=(IDroneItem)holder.getItem();
+            x=x+item.eut;
+        }
+        return x;
     }
     public double dimension_check() {
         var level = getLevel();
@@ -110,16 +135,16 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         } else if (dimension == Planet.MERCURY || dimension == Planet.MERCURY_ORBIT) {
             rate *= 4;
         } else if (dimension == Planet.MARS || dimension == Planet.MARS_ORBIT) {
-            rate *= 6;
-        } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
             rate *= 8;
+        } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
+            rate *= 16;
         }
 
         return rate;
     }
     @Override
     public boolean onWorking() {
-        if (getOffsetTimer() % 20 == 0) {
+        if (getOffsetTimer() % 100 == 0) {
             ConsumeDrone();
         }
         return super.onWorking();
@@ -131,6 +156,7 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
     }
     @Override
     public void afterWorking() {
+        ConsumeDrone();
         super.afterWorking();
         droneholder.setLocked(false);
     }
@@ -140,12 +166,31 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof PhotoVoltaicDroneStation lmachine) {
+            var eut=lmachine.GetDronePower()* lmachine.dimension_check();
+            var pa=1;
+            if (machine instanceof IMultiController controller) {
+                if (controller.isFormed()) {
+                    int parallels = (Integer)controller.getParallelHatch()
+                            .map(IParallelHatch::getCurrentParallel)
+                            .orElse(0);
+                    if (parallels > 0) {
+                        pa=parallels;
+                    }
 
+                }
+            }
+            lmachine.eut=(int)eut;
             return ModifierFunction.builder()
+                    .durationMultiplier(pa)
                     .build();
 
         }
 
         return ModifierFunction.NULL;
+    }
+    public void addDisplayText(List<Component> textList) {
+        textList.add(textList.size(),Component.translatable("ctnh.pvdrone.t1",String.format("%d",eut)));
+        textList.add(textList.size(),Component.translatable("ctnh.pvdrone.t2",String.format("%.4f",num)));
+        super.addDisplayText(textList);
     }
 }

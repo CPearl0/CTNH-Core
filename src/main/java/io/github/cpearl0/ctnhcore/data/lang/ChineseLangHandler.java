@@ -698,6 +698,19 @@ public class ChineseLangHandler {
         provider.add("ctnh.dyson_tier1","集成性光伏无人机蜂群");
         provider.add("ctnh.dyson_tier2","§4我们的蜂群遮天蔽日");
         provider.add("ctnh.nuclear_reactor_heat", "基础堆温：%d°C");
+        provider.add("ctnh.terminal.success_get","已经获取坐标!");
+        provider.add("ctnh.terminal.success_write","已成功写入坐标!");
+        provider.add("ctnh.terminal.location","已经绑定的坐标：(%s,%s,%s)");
+        provider.add("ctnh.terminal.success_clear","已清除坐标！");
+        provider.add("ctnh.terminal.tips","使用右键绑定光伏模块控制器，然后再右键将控制器和光伏基站绑定\nshift+右键任意方块清除坐标");
+        provider.add("ctnh.pvdrone.0","戴森云计划");
+        provider.add("ctnh.pvdrone.1","允许使用并行控制仓，并行控制仓提供的每个数值为运行时间倍率");
+        provider.add("ctnh.pvdrone.2","为光伏基站提供电力增幅，使用光伏绑定终端来为这两个结构绑定");
+        provider.add("ctnh.pvdrone.3","将无人机放入无人机支架以开始发送无人机，每5秒和运行结束时，每个无人机都有一定概率消耗");
+        provider.add("ctnh.pvdrone.4","无人机的消耗概率公式为1.0 / (1.0 + Math.exp(-0.25* (x - 9)))");
+        provider.add("ctnh.pvdrone.t1","提供的能量:%d");
+        provider.add("ctnh.pvdrone.t2","无人机消耗概率:%.4f");
+
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -725,6 +738,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[LuV].getBlock(), "§d精英数字化苦难之井 II§r");
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[ZPM].getBlock(), "§c数字化猩红深渊§r");
         provider.add(CTNHMachines.DIGITAL_WELL_OF_SUFFER[UV].getBlock(), "§3数字化猩红深渊 II§r");
+        provider.add(CTNHMachines.DRONEHOLDER.getBlock(),"无人机支架");
 
         provider.add(CTNHCreativeModeTabs.MACHINE.get(), "CTNH机器");
         provider.add(CTNHCreativeModeTabs.ITEM.get(), "CTNH物品");
@@ -763,6 +777,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.PV_DRONE_TIER2,"共振结构化光伏无人机");
         provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T1,"戴森云无人机蜂群MKI");
         provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T2,"戴森云无人机蜂群MKII");
+        provider.addItem(CTNHItems.PV_TERMINAL,"光伏绑定终端");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL, "进阶线程控制外壳");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_LINE, "进阶装配核心");
@@ -827,8 +842,10 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.CASING_NEUTRONIUM_ALLOY_BLOCK,"以太强化超能中子基岩合金钅达智能机械方块");
         provider.addBlock(CTNHBlocks.BLUE_FLOWER, "蓝焰花");
         provider.addBlock(CTNHBlocks.PINK_FLOWER, "粉球花");
-        provider.addBlock(CTNHBlocks.PHOTON_PRESS_COND_BLOCK,"光压传导方块");
+        provider.addBlock(CTNHBlocks.PHOTON_PRESS_COND_BLOCK,"光压传导光伏方块");
         provider.addBlock(CTNHBlocks.STELLAR_RADIATION_ROUTER_CASING,"恒星辐射分流方块");
+        provider.addBlock(CTNHBlocks.PV_COIL,"光伏线圈方块");
+        provider.addBlock(CTNHBlocks.NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK,"硅岩激发碳纳米太空结构方块");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -928,6 +945,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.COMBINED_VAPOR_DEPOSITION_FACILITY.getBlock(), "集成沉积工厂");
         provider.add(CTNHMultiblockMachines.SPACEPHOTOVOLTAICBASESTATION.getBlock(), "太空光伏基站");
         provider.add(CTNHMultiblockMachines.LaserSorder.getBlock(),"激光分配仪");
+        provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_DRONE_STATION.getBlock(), "光伏无人机道标基站");
 
 
 

@@ -118,6 +118,10 @@ public class MachinesRecipes {
                 .circuitMeta(1)
                 .inputFluids(CTNHMaterials.Mana.getFluid(1000))
                 .save(provider);
+        CTNHRecipeTypes.PVDRONE.recipeBuilder("blank")
+                .duration(100)
+                .circuitMeta(1)
+                .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")
                 .inputItems(plate, NaquadahAlloy, 4)
