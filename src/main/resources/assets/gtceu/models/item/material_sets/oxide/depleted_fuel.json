@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ctnhcore:item/material_sets/oxide_fuel/fuel",
+    "layer1": "ctnhcore:item/material_sets/dull/depleted_fuel_overlay"
+  }
+}
