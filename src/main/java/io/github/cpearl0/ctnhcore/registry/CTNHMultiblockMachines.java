@@ -2165,7 +2165,7 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public final static MultiblockMachineDefinition SCALABLE_RESERVOIR_COMPUTING = REGISTRATE.multiblock("scalable_reservoir_computing", holder -> new ZenithMachine(holder, 10, 25, 60, 5))
+    public final static MultiblockMachineDefinition SCALABLE_RESERVOIR_COMPUTING = REGISTRATE.multiblock("scalable_reservoir_computing", holder -> new ScalableReservoirComputingMachine(holder, 10, 25, 60, 5))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.DISTILLATION_RECIPES)
             .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)

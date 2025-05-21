@@ -9,8 +9,11 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 public class ModelBase{
 
     public final ModelPart root;
+    @Getter
+    public final ModelDefinition definition;
     //在render中构造
     public ModelBase(ModelDefinition definition){
+        this.definition = definition;
         this.root = definition.createBodyLayer.get().bakeRoot();
     }
 
