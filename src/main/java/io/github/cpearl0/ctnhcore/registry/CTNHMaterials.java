@@ -476,6 +476,27 @@ public class CTNHMaterials {
     public static final Material starlight = new Material.Builder(GTCEu.id("starlight"))
             .liquid(new FluidBuilder().temperature(50).textures(true,true).block())
             .buildAndRegister();
+    public static final Material siliconFluoride = new Material.Builder(GTCEu.id("silicon_fluoride"))
+            .liquid()
+            .color(0x76868a)
+            .components(Silicon,1 , Fluorine, 4)
+            .buildAndRegister();
+    public static final Material carbonFluoride = new Material.Builder(GTCEu.id("carbon_fluoride"))
+            .liquid()
+            .color(0xb8956d)
+            .components(Carbon,1 , Fluorine, 4)
+            .buildAndRegister();
+    public static final Material zirconiumTetrachloride = new Material.Builder(GTCEu.id("zirconium_tetrachloride"))
+            .dust()
+            .color(0xd0db7d)
+            .components(Zirconium,1 , Chlorine, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .buildAndRegister();
+    public static final Material siliconCarbide = new Material.Builder(GTCEu.id("silicon_carbide"))
+            .dust()
+            .color(0x6edade)
+            .components(Silicon, 1, Carbon, 1)
+            .buildAndRegister();
 
     public static void init() {
         NuclearMaterials.init();

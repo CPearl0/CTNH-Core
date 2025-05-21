@@ -1,10 +1,14 @@
 package io.github.cpearl0.ctnhcore.data.lang;
 
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTMachines;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
+import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
+import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.jetbrains.annotations.NotNull;
 
@@ -51,6 +55,56 @@ public class ChineseLangHandler {
         replace(provider,CTNHMaterials.COMPRESSED_AETHER.getUnlocalizedName(),"精炼超能以太");
         replace(provider,CTNHMaterials.SUNNARIUM.getUnlocalizedName(),"阳光化合物");
         replace(provider,CTNHMaterials.HIKARIUM.getUnlocalizedName(),"§6光素");
+
+        replace(provider, NuclearMaterials.ThoriumHexafluoride.getUnlocalizedName(), "六氟化钍");
+        replace(provider, NuclearMaterials.ProtactiniumHexafluoride.getUnlocalizedName(), "六氟化镤");
+        replace(provider, NuclearMaterials.NeptuniumHexafluoride.getUnlocalizedName(), "六氟化镎");
+        replace(provider, NuclearMaterials.PlutoniumHexafluoride.getUnlocalizedName(), "六氟化钋");
+        replace(provider, NuclearMaterials.AmericiumHexafluoride.getUnlocalizedName(), "六氟化镅");
+        replace(provider, NuclearMaterials.CuriumHexafluoride.getUnlocalizedName(), "六氟化锔");
+        replace(provider, NuclearMaterials.BerkeliumHexafluoride.getUnlocalizedName(), "六氟化锫");
+        replace(provider, NuclearMaterials.CaliforniumHexafluoride.getUnlocalizedName(), "六氟化锎");
+        replace(provider, NuclearMaterials.EinsteiniumHexafluoride.getUnlocalizedName(), "六氟化锿");
+        replace(provider, NuclearMaterials.FermiumHexafluoride.getUnlocalizedName(), "六氟化镄");
+        replace(provider, NuclearMaterials.MendeleviumHexafluoride.getUnlocalizedName(), "六氟化钔");
+        nuclearTranslation(provider, NuclearMaterials.Thorium233, "钍233");
+        nuclearTranslation(provider, NuclearMaterials.Protactinium233, "镤233");
+        nuclearTranslation(provider, NuclearMaterials.Uranium233, "铀233");
+        nuclearTranslation(provider, NuclearMaterials.Uranium234, "铀234");
+        nuclearTranslation(provider, NuclearMaterials.Uranium239, "铀239");
+        nuclearTranslation(provider, NuclearMaterials.Neptunium235, "镎235");
+        nuclearTranslation(provider, NuclearMaterials.Neptunium237, "镎237");
+        nuclearTranslation(provider, NuclearMaterials.Neptunium239, "镎239");
+        nuclearTranslation(provider, NuclearMaterials.Plutonium240, "钋240");
+        nuclearTranslation(provider, NuclearMaterials.Plutonium244, "钋244");
+        nuclearTranslation(provider, NuclearMaterials.Plutonium245, "钋245");
+        nuclearTranslation(provider, NuclearMaterials.Americium241, "镅241");
+        nuclearTranslation(provider, NuclearMaterials.Americium243, "镅243");
+        nuclearTranslation(provider, NuclearMaterials.Americium245, "镅245");
+        nuclearTranslation(provider, NuclearMaterials.Curium245, "锔245");
+        nuclearTranslation(provider, NuclearMaterials.Curium246, "锔246");
+        nuclearTranslation(provider, NuclearMaterials.Curium247, "锔247");
+        nuclearTranslation(provider, NuclearMaterials.Curium250, "锔250");
+        nuclearTranslation(provider, NuclearMaterials.Curium251, "锔251");
+        nuclearTranslation(provider, NuclearMaterials.Berkelium247, "锫247");
+        nuclearTranslation(provider, NuclearMaterials.Berkelium249, "锫249");
+        nuclearTranslation(provider, NuclearMaterials.Berkelium251, "锫251");
+        nuclearTranslation(provider, NuclearMaterials.Californium251, "锎251");
+        nuclearTranslation(provider, NuclearMaterials.Californium252, "锎252");
+        nuclearTranslation(provider, NuclearMaterials.Californium253, "锎253");
+        nuclearTranslation(provider, NuclearMaterials.Californium256, "锎256");
+        nuclearTranslation(provider, NuclearMaterials.Californium257, "锎257");
+        nuclearTranslation(provider, NuclearMaterials.Einsteinium253, "锿253");
+        nuclearTranslation(provider, NuclearMaterials.Einsteinium255, "锿255");
+        nuclearTranslation(provider, NuclearMaterials.Einsteinium257, "锿257");
+        nuclearTranslation(provider, NuclearMaterials.Fermium257, "镄257");
+        nuclearTranslation(provider, NuclearMaterials.Fermium258, "镄258");
+        nuclearTranslation(provider, NuclearMaterials.Fermium259, "镄259");
+        nuclearTranslation(provider, NuclearMaterials.Fermium262, "镄262");
+        nuclearTranslation(provider, NuclearMaterials.Fermium263, "镄263");
+        nuclearTranslation(provider, NuclearMaterials.Mendelevium259, "钔259");
+        nuclearTranslation(provider, NuclearMaterials.Mendelevium261, "钔261");
+        nuclearTranslation(provider, NuclearMaterials.Mendelevium263, "钔263");
         //Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
         provider.add("config.ctnhcore.option.kinetic", "应力相关");
@@ -79,6 +133,8 @@ public class ChineseLangHandler {
         //Tagprefix
         provider.add("tagprefix.nuclear", "%s");
         provider.add("tagprefix.fuel", "%s燃料");
+        provider.add("tagprefix.depleted_fuel", "%s枯竭燃料");
+        provider.add("tagprefix.waste", "%s废料");
         //Recipe Type
         provider.add("gtceu.phase_inversion","反相蚀刻");
         provider.add("gtceu.underfloor_heating_system", "地暖");
@@ -144,6 +200,9 @@ public class ChineseLangHandler {
         provider.add("gtceu.mechanical_centrifuge_recipes", "机械离心");
         provider.add("gtceu.photovoltaic_generator","光伏发电");
         provider.add("gtceu.photovoltaic_assember","太空光伏组装");
+        provider.add("gtceu.gas_centrifuge", "气体离心");
+        provider.add("gtceu.nuclear_reactor", "核能反应");
+        provider.add("gtceu.hot_coolant_turbine", "热冷却液涡轮");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -638,6 +697,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.drone_durability","无人机最大耐久:%d");
         provider.add("ctnh.dyson_tier1","集成性光伏无人机蜂群");
         provider.add("ctnh.dyson_tier2","§4我们的蜂群遮天蔽日");
+        provider.add("ctnh.nuclear_reactor_heat", "基础堆温：%d°C");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -765,6 +825,8 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.FRUIT_CAFE_CRATE, "箱装水果");
         provider.addBlock(CTNHBlocks.ASPARAGUS_CRATE, "箱装芦荟");
         provider.addBlock(CTNHBlocks.CASING_NEUTRONIUM_ALLOY_BLOCK,"以太强化超能中子基岩合金钅达智能机械方块");
+        provider.addBlock(CTNHBlocks.BLUE_FLOWER, "蓝焰花");
+        provider.addBlock(CTNHBlocks.PINK_FLOWER, "粉球花");
         provider.addBlock(CTNHBlocks.PHOTON_PRESS_COND_BLOCK,"光压传导方块");
         provider.addBlock(CTNHBlocks.STELLAR_RADIATION_ROUTER_CASING,"恒星辐射分流方块");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
@@ -884,5 +946,25 @@ public class ChineseLangHandler {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException("Error replacing entry in datagen.", e);
         }
+    }
+    public static void nuclearTranslation(RegistrateCNLangProvider provider, Material material, String name) {
+        var nuclearProperty = material.getProperty(CTNHPropertyKeys.NUCLEAR);
+        replace(provider, material.getUnlocalizedName(), name);
+        replace(provider, nuclearProperty.getCarbideMaterial().getUnlocalizedName(), "碳化" + name);
+        replace(provider, nuclearProperty.getOxideMaterial().getUnlocalizedName(), "氧化" + name);
+        replace(provider, nuclearProperty.getNitrideMaterial().getUnlocalizedName(), "氮化" + name);
+        replace(provider, nuclearProperty.getZirconiumAlloyMaterial().getUnlocalizedName(), "锆合金" + name);
+//        replace(provider, nuclearProperty.getFuel(material).getDisplayName().getString(), name + "纯净燃料");
+//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getCarbideMaterial()).getDisplayName().getString(), name + "TRISO燃料");
+//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getOxideMaterial()).getDisplayName().getString(), name + "氧化燃料");
+//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getNitrideMaterial()).getDisplayName().getString(), name + "氮化燃料");
+//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getZirconiumAlloyMaterial()).getDisplayName().getString(), name + "锆合金燃料");
+//        replace(provider, nuclearProperty.getDepletedFuel(material).getDisplayName().getString(), name + "枯竭燃料");
+//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getCarbideMaterial()).getDisplayName().getString(), name + "枯竭TRISO燃料");
+//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getOxideMaterial()).getDisplayName().getString(), name + "枯竭氧化燃料");
+//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getNitrideMaterial()).getDisplayName().getString(), name + "枯竭氮化燃料");
+//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getZirconiumAlloyMaterial()).getDisplayName().getString(), name + "枯竭锆合金燃料");
+        replace(provider, GTMaterials.get(material.getName() + "_hexafluoride").getUnlocalizedName(), "六氟化" + name);
+        replace(provider, GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked").getUnlocalizedName(), "蒸汽裂解的六氟化" + name);
     }
 }

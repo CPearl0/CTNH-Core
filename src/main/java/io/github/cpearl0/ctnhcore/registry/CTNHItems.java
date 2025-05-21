@@ -172,6 +172,10 @@ public class CTNHItems {
             })))
             .register(); // 确保调用 register() 方法
 
+    public static ItemEntry<Item> NUCLEAR_WASTE = REGISTRATE
+            .item("nuclear_waste", Item::new)
+            .lang("Nuclear Waste")
+            .register();
     public static ItemEntry<ProgramItem> PROGRAM_EMPTY = registerProgramItem("empty");
     public static ItemEntry<ProgramItem> PROGRAM_ROCKET_CORE_1 = registerProgramItem("rocket_core_1", "Tier 1 Rocket Core");
     public static ItemEntry<ProgramItem> PROGRAM_ROCKET_1 = registerProgramItem("rocket_1", "Tier 1 Rocket Control");
