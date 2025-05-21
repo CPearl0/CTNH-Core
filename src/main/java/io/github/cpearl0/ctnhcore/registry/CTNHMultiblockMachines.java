@@ -2165,7 +2165,7 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public final static MultiblockMachineDefinition SCALABLE_RESERVOIR_COMPUTING = REGISTRATE.multiblock("scalable_reservoir_computing", holder -> new ScalableReservoirComputingMachine(holder, 10, 25, 60, 5))
+    public final static MultiblockMachineDefinition SCALABLE_RESERVOIR_COMPUTING = REGISTRATE.multiblock("scalable_reservoir_computing", holder -> new ZenithMachine(holder, 10, 25, 60, 5))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.DISTILLATION_RECIPES)
             .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
@@ -2891,7 +2891,7 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.ACCELERATOR_UP, CTNHRecipeTypes.ACCELERATOR_DOWN)
 
-            .recipeModifiers(WideParticleAccelerator::recipeModifier)
+            .recipeModifiers(WideParticleAccelerator::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.wideaccelerator.1"),
                     Component.translatable("ctnh.wideaccelerator.2"),
                     Component.translatable("ctnh.wideaccelerator.3"),
@@ -3669,6 +3669,7 @@ public class CTNHMultiblockMachines {
             .recipeType(GCYMRecipeTypes.ALLOY_BLAST_RECIPES)
             .recipeModifiers(Plasma_alloy_blast::recipeModifier, GTRecipeModifiers::ebfOverclock)
             .tooltips(Component.translatable("ctnh.plasma_alloy.1"),
+                    Component.translatable("ctnh.plasma_alloy.11"),
                     Component.translatable("ctnh.pab"),
                     Component.translatable("ctnh.plasma_alloy.2"),
                     Component.translatable("ctnh.plasma_alloy.3"),
@@ -3702,7 +3703,8 @@ public class CTNHMultiblockMachines {
                     .where("#", Predicates.any())
                     .where("B", Predicates.blocks(CASING_HIGH_TEMPERATURE_SMELTING.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH)))
+                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH))
+                            .or(Predicates.abilities(PartAbility.INPUT_LASER)).setMaxGlobalLimited(1))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("C", Predicates.frames(Naquadria))
                     .where("D", Predicates.blocks(CASING_TUNGSTENCU_DIAMOND_PLATING.get()))
@@ -3937,11 +3939,13 @@ public class CTNHMultiblockMachines {
             .generator(true)
             .recipeTypes(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR, CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER)
             .recipeModifier(SpacePhotovoltaicBaseStation::recipeModifier,true)
-            .tooltips(Component.translatable("ctnh.pvdrone.0"),
-                    Component.translatable("ctnh.pvdrone.1"),
-                    Component.translatable("ctnh.pvdrone.2"),
-                    Component.translatable("ctnh.pvdrone.3"),
-                    Component.translatable("ctnh.pvdrone.4")
+            .tooltips(Component.translatable("ctnh.spvb.0"),
+                    Component.translatable("ctnh.spvb.1"),
+                    Component.translatable("ctnh.spvb.2"),
+                    Component.translatable("ctnh.spvb.3"),
+                    Component.translatable("ctnh.spvb.4"),
+                    Component.translatable("ctnh.spvb.5"),
+                    Component.translatable("ctnh.spvb.ex")
 
             )
             .pattern(definition -> FactoryBlockPattern.start()
@@ -4031,18 +4035,13 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.PVDRONE)
             .recipeModifiers(PhotoVoltaicDroneStation::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.ls.0"),
-                    Component.translatable("ctnh.ls.1"),
-                    Component.translatable("ctnh.ls.2"),
-                    Component.translatable("ctnh.ls.3"),
-                    Component.translatable("ctnh.ls.4"),
-                    Component.translatable("ctnh.ls.5"),
-                    Component.translatable("ctnh.ls.6"),
-                    Component.translatable("ctnh.ls.7"),
-                    Component.translatable("ctnh.ls.8"),
-                    Component.translatable("ctnh.ls.9"),
-                    Component.translatable("ctnh.ls.10"),
-                    Component.translatable("ctnh.ls.11")
+            .tooltips(Component.translatable("ctnh.pvdrone.0"),
+                    Component.translatable("ctnh.pvdrone.1"),
+                    Component.translatable("ctnh.pvdrone.2"),
+                    Component.translatable("ctnh.pvdrone.3"),
+                    Component.translatable("ctnh.pvdrone.4")
+
+
             )
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A#####BBBCCCBBB######", "#########CDC#########", "#########CCC#########", "#####################", "#####################", "#####################", "#####################", "#####################", "#########EEE#########", "######FFFECEFFF######", "#########EEE#########", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#########EEE#########", "######FFFECEFFF######", "#########EEE#########", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#########EEE#########", "######FFFECEFFF######", "#########EEE#########", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#########EEE#########", "######FFFECEFFF######")
