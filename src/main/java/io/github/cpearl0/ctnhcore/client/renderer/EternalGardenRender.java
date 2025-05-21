@@ -1,31 +1,39 @@
 package io.github.cpearl0.ctnhcore.client.renderer;
 
-import com.enderio.machines.common.init.MachineBlockEntities;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.client.renderer.machine.WorkableCasingMachineRenderer;
-import com.lowdragmc.lowdraglib.utils.TrackedDummyWorld;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
+import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.model.MagicCubeModel;
-import net.minecraft.client.Minecraft;
+import io.github.cpearl0.ctnhcore.client.renderer.utils.RenderUtils;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import vazkii.botania.common.item.BotaniaItems;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+import org.joml.Vector3fc;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public class EternalGardenRender extends WorkableCasingMachineRenderer {
 
-    static MagicCubeModel model;
+    private static final ResourceLocation TEXTURE =
+            CTNHCore.id("textures/block/magic_cube/texture.png");
+    static MagicCubeModel model=new MagicCubeModel();
+
+    int ticks = 0;
 
     public EternalGardenRender() {
         super(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/implosion_compressor"), false);
@@ -58,10 +66,49 @@ public class EternalGardenRender extends WorkableCasingMachineRenderer {
                 && machine.isFormed()) {
             var level = blockEntity.getLevel();
             if (level == null) return;
+            ticks++;
 
+            var recipe = machine.getRecipeLogic().getLastRecipe();
+
+            Vector3f vOffset;
+            Direction facing = machine.self().getFrontFacing();
+//            Direction upward = machine.self().getUpwardsFacing();
+
+            VertexConsumer consumer = buffer.getBuffer(RenderType.entityTranslucent(TEXTURE));
 
             stack.pushPose();
-            stack.translate(0.5, 2.5, 0.5);
+            stack.translate(0.5 , 2, 0.5);
+
+            //后退21
+            stack.pushPose();
+            vOffset=new Vector3f(RenderUtils.dircetionVectors.get(facing)).mul(19.5f);
+            stack.translate(-vOffset.x, -vOffset.y, -vOffset.z);
+            model.render(ticks, stack, consumer, combinedOverlay);
+            stack.popPose();
+
+            //后退25
+            stack.pushPose();
+            vOffset=new Vector3f(RenderUtils.dircetionVectors.get(facing)).mul(26.5f);
+            stack.translate(-vOffset.x, -vOffset.y, -vOffset.z);
+            model.render(ticks, stack, consumer, combinedOverlay);
+            stack.popPose();
+
+            //后退23，左2
+            stack.pushPose();
+            vOffset=new Vector3f(RenderUtils.dircetionVectors.get(facing)).mul(23);
+            vOffset.add(new Vector3f(RenderUtils.dircetionVectors.get(facing.getClockWise())).mul(3.5f));
+            stack.translate(-vOffset.x, -vOffset.y, -vOffset.z);
+            model.render(ticks, stack, consumer, combinedOverlay);
+            stack.popPose();
+
+            //后退23，右2
+            stack.pushPose();
+            vOffset=new Vector3f(RenderUtils.dircetionVectors.get(facing)).mul(23);
+            vOffset.add(new Vector3f(RenderUtils.dircetionVectors.get(facing.getCounterClockWise())).mul(3.5f));
+            stack.translate(-vOffset.x, -vOffset.y, -vOffset.z);
+            model.render(ticks, stack, consumer, combinedOverlay);
+            stack.popPose();
+
             stack.popPose();
         }
 

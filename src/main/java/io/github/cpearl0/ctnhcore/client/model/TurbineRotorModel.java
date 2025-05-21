@@ -4,6 +4,7 @@ package io.github.cpearl0.ctnhcore.client.model;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.registry.CTNHModelLayers;
 import lombok.Getter;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -21,8 +22,8 @@ public class TurbineRotorModel extends ModelBase {
     private final ModelPart shaft;
     private final ModelPart blade;
 
-    public TurbineRotorModel(ModelDefinition definition){
-        super(definition);
+    public TurbineRotorModel(){
+        super(CTNHModelLayers.TURBINE_ROTOR_MODEL);
         this.turbine_rotor = root.getChild("turbine_rotor");
         this.hub = this.turbine_rotor.getChild("hub");
         this.shaft = this.turbine_rotor.getChild("shaft");
@@ -33,7 +34,7 @@ public class TurbineRotorModel extends ModelBase {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
-        PartDefinition turbine_rotor = partdefinition.addOrReplaceChild("turbine_rotor", CubeListBuilder.create(), PartPose.offset(0, 0, 0));/*记得把模型的转轴调到中心*/
+        PartDefinition turbine_rotor = partdefinition.addOrReplaceChild("turbine_rotor", CubeListBuilder.create(), PartPose.offset(0, 2, 0));/*记得把模型的转轴调到中心*/
 
         PartDefinition hub = turbine_rotor.addOrReplaceChild("hub", CubeListBuilder.create().texOffs(0, 128).addBox(-7.0F, -12.0F, -7.0F, 14.0F, 8.0F, 14.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 8.0F, 0.0F));
 
