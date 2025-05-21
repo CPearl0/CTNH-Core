@@ -150,22 +150,22 @@ public class CTNHItems {
             .lang("pv_drone_prototype")
             .register(); // 确保调用 register() 方法
     public static ItemEntry<IDroneItem>PV_DRONE_TIER1=REGISTRATE
-            .item("photovoltaic_drone_tier1",holder->new IDroneItem(holder,1,2048,64, () -> Items.AIR))
+            .item("photovoltaic_drone_tier1",holder->new IDroneItem(holder,1,8192,64, () -> Items.AIR))
             .lang("pv_drone_tier1")
             .register(); // 确保调用 register() 方法
     public static ItemEntry<IDroneItem>PV_DRONE_TIER2=REGISTRATE
-            .item("photovoltaic_drone_tier2",holder->new IDroneItem(holder,2,8192,128, () -> Items.AIR))
+            .item("photovoltaic_drone_tier2",holder->new IDroneItem(holder,2,32678*2,256, () -> Items.AIR))
             .lang("pv_drone_tier2")
             .register(); // 确保调用 register() 方法
     public static ItemEntry<IDroneItem>MODULAR_DYSON_SWARM_T1=REGISTRATE
-            .item("modular_dyson_swarm_tier1",holder->new IDroneItem(holder,4,32678,64, () -> Items.AIR))
+            .item("modular_dyson_swarm_tier1",holder->new IDroneItem(holder,4,32678*4*4,64, () -> Items.AIR))
             .lang("modular_dyson_swarm_tier1")
             .onRegister(attach(new TooltipBehavior(list -> {
                 list.add(Component.translatable("ctnh.dyson_tier1").withStyle(ChatFormatting.DARK_RED));
             })))
             .register(); // 确保调用 register() 方法
     public static ItemEntry<IDroneItem>MODULAR_DYSON_SWARM_T2=REGISTRATE
-            .item("modular_dyson_swarm_tier2",holder->new IDroneItem(holder,8,32678*4*4,128, () -> Items.AIR))
+            .item("modular_dyson_swarm_tier2",holder->new IDroneItem(holder,8,32678*4*4*4,128, () -> Items.AIR))
             .lang("modular_dyson_swarm_tier2")
             .onRegister(attach(new TooltipBehavior(list -> {
                 list.add(Component.translatable("ctnh.dyson_tier2").withStyle(ChatFormatting.DARK_RED));

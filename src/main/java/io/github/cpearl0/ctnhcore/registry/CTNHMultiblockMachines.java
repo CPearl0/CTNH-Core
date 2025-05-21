@@ -3936,14 +3936,12 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.ALL)
             .generator(true)
             .recipeTypes(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR, CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER)
-            .recipeModifiers(SpacePhotovoltaicBaseStation::recipeModifier)
-            .tooltips(Component.translatable("ctnh.spvb.0"),
-                    Component.translatable("ctnh.spvb.1"),
-                    Component.translatable("ctnh.spvb.2"),
-                    Component.translatable("ctnh.spvb.3"),
-                    Component.translatable("ctnh.spvb.4"),
-                    Component.translatable("ctnh.spvb.5"),
-                    Component.translatable("ctnh.spvb.ex")
+            .recipeModifier(SpacePhotovoltaicBaseStation::recipeModifier,true)
+            .tooltips(Component.translatable("ctnh.pvdrone.0"),
+                    Component.translatable("ctnh.pvdrone.1"),
+                    Component.translatable("ctnh.pvdrone.2"),
+                    Component.translatable("ctnh.pvdrone.3"),
+                    Component.translatable("ctnh.pvdrone.4")
 
             )
             .pattern(definition -> FactoryBlockPattern.start()
@@ -3975,7 +3973,14 @@ public class CTNHMultiblockMachines {
                     .aisle("##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBB@BBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBBBBBB###############", "##############BBHHHBB###############", "##############LLLLLLL###############", "##############LLLLLLL###############", "##############LLLLLLL###############", "##############LLLLLLL###############", "##############LLLLLLL###############", "##############LLLLLLL###############", "##############LLLLLLL###############", "##############LLLLLLL###############", "##############LLLLLLL###############", "##############LLLLLLL###############", "##############LLHHHLL###############", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "###################################A")
                     .where("A", Predicates.any())
                     .where("#", Predicates.any())
-                    .where("B", (CTNHPredicates.SpaceStructuralFrameworkBlock()))
+                    .where("B", (CTNHPredicates.SpaceStructuralFrameworkBlock())
+                            .or(Predicates.abilities(PartAbility.OUTPUT_ENERGY))
+                            .or(Predicates.abilities(PartAbility.OUTPUT_LASER))
+                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
+                            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
+                    )
                     .where("C", Predicates.blocks(PV_COIL.get()))
                     .where("D", Predicates.blocks(FUSION_CASING.get()))
                     .where("E", Predicates.blocks(HIGH_POWER_CASING.get()))
@@ -3983,7 +3988,7 @@ public class CTNHMultiblockMachines {
                     .where("G", Predicates.blocks(SUPERCONDUCTING_COIL.get()))
                     .where("H", Predicates.blocks(MACHINE_CASING_LuV.get()))
                     .where("I", Predicates.blocks(HERMETIC_CASING_ZPM.get()))
-                    .where("J", CTNHPredicates.SpaceStructuralFrameworkBlock())
+                    .where("J", CTNHPredicates.PhotovoltaicBlock())
                     .where("K", Predicates.blocks(COIL_NAQUADAH.get()))
                     .where("L", Predicates.blocks(FUSION_GLASS.get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
@@ -4024,7 +4029,7 @@ public class CTNHMultiblockMachines {
             .register();
     public final static MultiblockMachineDefinition PHOTOVOLTAIC_DRONE_STATION = REGISTRATE.multiblock("photovoltaic_drone_station", PhotoVoltaicDroneStation::new)
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(CTNHRecipeTypes.LS_RECIPE,GTRecipeTypes.LASER_ENGRAVER_RECIPES)
+            .recipeTypes(CTNHRecipeTypes.PVDRONE)
             .recipeModifiers(PhotoVoltaicDroneStation::recipeModifier,GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.ls.0"),
                     Component.translatable("ctnh.ls.1"),
@@ -4065,7 +4070,9 @@ public class CTNHMultiblockMachines {
                     .where("#", Predicates.any())
                     .where("B", CTNHPredicates.SpaceStructuralFrameworkBlock())
                     .where("C", Predicates.blocks(HIGH_POWER_CASING.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH))
+                    )
                     .where("D", Predicates.any())
                     .where("E", Predicates.blocks(PV_COIL.get()))
                     .where("F", Predicates.blocks(FUSION_CASING.get()))
