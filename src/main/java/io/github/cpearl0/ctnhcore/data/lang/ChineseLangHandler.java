@@ -642,6 +642,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.anti_inf_matter.1","-∞");
         provider.add("ctnh.anti_inf_matter.2","它到底是怎么在现实世界存在的......");
         provider.add("ctnh.plasma_alloy.1","§4转底炉的复仇");
+        provider.add("ctnh.plasma_alloy.11","允许使用§b激光仓§r，使用激光仓时最终速度将除以10，速度低于原速度时拒绝运行");
         provider.add("ctnh.plasma_alloy.2","线圈温度每有1800K，获得4点并行，线圈温度超过10000K时，获得(线圈温度-10000)/10000的额外加速");
         provider.add("ctnh.plasma_alloy.3","运行前消耗(并行数*对应等离子体消耗)的等离子体，获得额外加速");
         provider.add("ctnh.plasma_alloy.4","氦等离子体：消耗500*并行的等离子体，速度+100%");
@@ -714,7 +715,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.pvdrone.0","戴森云计划");
         provider.add("ctnh.pvdrone.1","允许使用并行控制仓，并行控制仓提供的每个数值为运行时间倍率");
         provider.add("ctnh.pvdrone.2","为光伏基站提供电力增幅，使用光伏绑定终端来为这两个结构绑定");
-        provider.add("ctnh.pvdrone.3","将无人机放入无人机支架以开始发送无人机，每5秒和运行结束时，每个无人机都有一定概率消耗");
+        provider.add("ctnh.pvdrone.3","将无人机放入无人机支架以开始发送无人机，每5秒和运行结束时，每个无人机都有一定概率消耗，无人机发电同样受维度和空间站增幅");
         provider.add("ctnh.pvdrone.4","无人机的消耗概率公式为1.0 / (1.0 + Math.exp(-0.25* (x - 9)))");
         provider.add("ctnh.pvdrone.t1","提供的能量:%d");
         provider.add("ctnh.pvdrone.t2","无人机消耗概率:%.4f");
