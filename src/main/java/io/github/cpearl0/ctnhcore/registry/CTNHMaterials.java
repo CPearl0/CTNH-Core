@@ -497,6 +497,22 @@ public class CTNHMaterials {
             .color(0x6edade)
             .components(Silicon, 1, Carbon, 1)
             .buildAndRegister();
+    public static final Material HotSteam = new Material.Builder(GTCEu.id("hot_steam"))
+            .gas()
+            .color(0xd4d4d4)
+            .buildAndRegister();
+    public static final Material HotDeuterium = new Material.Builder(GTCEu.id("hot_deuterium"))
+            .gas()
+            .color(0xe6e857)
+            .buildAndRegister();
+    public static final Material HotSodium = new Material.Builder(GTCEu.id("hot_sodium"))
+            .gas()
+            .color(0x237ad1)
+            .buildAndRegister();
+    public static final Material HotSodiumPotassium = new Material.Builder(GTCEu.id("hot_sodium_potassium"))
+            .gas()
+            .color(0x39cf89)
+            .buildAndRegister();
 
     public static void init() {
         NuclearMaterials.init();

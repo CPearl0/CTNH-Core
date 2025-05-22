@@ -55,6 +55,14 @@ public class ChineseLangHandler {
         replace(provider,CTNHMaterials.COMPRESSED_AETHER.getUnlocalizedName(),"精炼超能以太");
         replace(provider,CTNHMaterials.SUNNARIUM.getUnlocalizedName(),"阳光化合物");
         replace(provider,CTNHMaterials.HIKARIUM.getUnlocalizedName(),"§6光素");
+        replace(provider, CTNHMaterials.carbonFluoride.getUnlocalizedName(), "氟化碳");
+        replace(provider, CTNHMaterials.siliconFluoride.getUnlocalizedName(), "氟化硅");
+        replace(provider, CTNHMaterials.zirconiumTetrachloride.getUnlocalizedName(), "四氯化锆");
+        replace(provider, CTNHMaterials.siliconCarbide.getUnlocalizedName(), "碳化硅");
+        replace(provider, CTNHMaterials.HotSteam.getUnlocalizedName(), "过热蒸汽");
+        replace(provider, CTNHMaterials.HotDeuterium.getUnlocalizedName(), "过热氘");
+        replace(provider, CTNHMaterials.HotSodium.getUnlocalizedName(), "过热钠");
+        replace(provider, CTNHMaterials.HotSodiumPotassium.getUnlocalizedName(), "过热钠钾合金");
 
         replace(provider, NuclearMaterials.ThoriumHexafluoride.getUnlocalizedName(), "六氟化钍");
         replace(provider, NuclearMaterials.ProtactiniumHexafluoride.getUnlocalizedName(), "六氟化镤");
@@ -710,6 +718,14 @@ public class ChineseLangHandler {
         provider.add("ctnh.pvdrone.4","无人机的消耗概率公式为1.0 / (1.0 + Math.exp(-0.25* (x - 9)))");
         provider.add("ctnh.pvdrone.t1","提供的能量:%d");
         provider.add("ctnh.pvdrone.t2","无人机消耗概率:%.4f");
+        provider.add("multiblock.ctnh.nuclear_reactor.coolant", "冷却液：%s");
+        provider.add("multiblock.ctnh.nuclear_reactor.coolant_amount", "冷却液量：%s mB");
+        provider.add("multiblock.ctnh.nuclear_reactor.consume_amount", "冷却液消耗率：%s mB/s");
+        provider.add("nuclear_reactor", "核能转化时刻");
+        provider.add("ctnh.nuclear_reactor.basic", "这是一个耗能设备，但是会产生大量的热量，可以转化用以发电");
+        provider.add("ctnh.nuclear_reactor.coolant", "冷却液可以使用蒸汽（150°C），氘（450°C），钠（800°C），钠钾合金（900°C），反应的堆温越高，消耗冷却液的速度越快，冷却液的热容越大，消耗速度越慢");
+        provider.add("ctnh.nuclear_reactor.overclock", "冷却液并非运行所必须，但是在有冷却液时，配方每运行一秒，进度会增加两秒");
+        provider.add("ctnh.nuclear_reactor.safe", "反应堆不会过热爆炸");
 
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
@@ -846,6 +862,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.STELLAR_RADIATION_ROUTER_CASING,"恒星辐射分流方块");
         provider.addBlock(CTNHBlocks.PV_COIL,"光伏线圈方块");
         provider.addBlock(CTNHBlocks.NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK,"硅岩激发碳纳米太空结构方块");
+        provider.addBlock(CTNHBlocks.CASING_SHIELDED_REACTOR, "覆层核反应堆外壳");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -946,6 +963,9 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.SPACEPHOTOVOLTAICBASESTATION.getBlock(), "太空光伏基站");
         provider.add(CTNHMultiblockMachines.LaserSorder.getBlock(),"激光分配仪");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_DRONE_STATION.getBlock(), "光伏无人机道标基站");
+        provider.add(CTNHMultiblockMachines.HOT_COOLANT_TURBINE.getBlock(), "热冷却涡轮");
+        provider.add(CTNHMultiblockMachines.NUCLEAR_REACTOR.getBlock(), "核反应堆");
+        provider.add(CTNHMultiblockMachines.GAS_CENTRIFUGE.getBlock(), "气体离心机");
 
 
 

@@ -31,6 +31,14 @@ public class MachineUtils {
         }
         return false;
     }
+    public static boolean outputFluid(FluidStack fluidStack, WorkableMultiblockMachine machine) {
+        var Recipe = GTRecipeBuilder.ofRaw().outputFluids(fluidStack).buildRawRecipe();
+        if (Recipe.matchRecipe(machine).isSuccess()) {
+            Recipe.handleRecipeIO(IO.OUT, machine, machine.getRecipeLogic().getChanceCaches());
+            return true;
+        }
+        return false;
+    }
     public static  boolean inputCWUT(int CWU,WorkableMultiblockMachine machine){
         var Recipe = GTRecipeBuilder.ofRaw().inputCWU(CWU).buildRawRecipe();
         if(Recipe.matchRecipe(machine).isSuccess())
@@ -42,6 +50,10 @@ public class MachineUtils {
     }
     public static boolean canInputFluid(FluidStack fluidStack, WorkableMultiblockMachine machine) {
         var Recipe = GTRecipeBuilder.ofRaw().inputFluids(fluidStack).buildRawRecipe();
+        return Recipe.matchRecipe(machine).isSuccess();
+    }
+    public static boolean canOutputFluid(FluidStack fluidStack, WorkableMultiblockMachine machine) {
+        var Recipe = GTRecipeBuilder.ofRaw().outputFluids(fluidStack).buildRawRecipe();
         return Recipe.matchRecipe(machine).isSuccess();
     }
     public static boolean canInputItem(ItemStack itemStack, WorkableMultiblockMachine machine) {

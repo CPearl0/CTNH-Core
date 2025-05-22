@@ -23,6 +23,7 @@ import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.AssemblyLineMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeTurbineMachine;
 import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -3302,27 +3303,27 @@ public class CTNHMultiblockMachines {
                     .aisle("FIF", "RTR", "SAG", "#Y#")
                     .aisle("FIF", "RTR", "DAG", "#Y#").setRepeatable(3, 15)
                     .aisle("FOF", "RTR", "DAG", "#Y#")
-                    .where('S', Predicates.controller(blocks(definition.getBlock())))
-                    .where('F', blocks(ADVANCE_MACHINE_CASING_SOLID_STEEL.get())
+                    .where("S", Predicates.controller(blocks(definition.getBlock())))
+                    .where("F", blocks(ADVANCE_MACHINE_CASING_SOLID_STEEL.get())
                             .or(!ConfigHolder.INSTANCE.machines.orderedAssemblyLineFluids ?
                                     abilities(PartAbility.IMPORT_FLUIDS_1X,
                                             PartAbility.IMPORT_FLUIDS_4X, PartAbility.IMPORT_FLUIDS_9X) :
                                     abilities(PartAbility.IMPORT_FLUIDS_1X).setMaxGlobalLimited(4))
                             .or(abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1).setPreviewCount(1)))
-                    .where('O',
+                    .where("O",
                             abilities(PartAbility.EXPORT_ITEMS)
                                     .addTooltips(Component.translatable("gtceu.multiblock.pattern.location_end")))
-                    .where('Y',
+                    .where("Y",
                             blocks(ADVANCE_MACHINE_CASING_SOLID_STEEL.get())
                                     .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(16))
                                     .or(abilities(PartAbility.INPUT_LASER).setMaxGlobalLimited(16)))
-                    .where('I', abilities(PartAbility.IMPORT_ITEMS))
-                    .where('G', blocks(ADVANCE_MACHINE_CASING_GRATE.get()))
-                    .where('A', blocks(ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL.get()))
-                    .where('R', blocks(FUSION_GLASS.get()))
-                    .where('T', blocks(ADVANCE_MACHINE_CASING_ASSEMBLY_LINE.get()))
-                    .where('D', dataHatchPredicate(blocks(ADVANCE_MACHINE_CASING_GRATE.get())))
-                    .where('#', Predicates.any())
+                    .where("I", abilities(PartAbility.IMPORT_ITEMS))
+                    .where("G", blocks(ADVANCE_MACHINE_CASING_GRATE.get()))
+                    .where("A", blocks(ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL.get()))
+                    .where("R", blocks(FUSION_GLASS.get()))
+                    .where("T", blocks(ADVANCE_MACHINE_CASING_ASSEMBLY_LINE.get()))
+                    .where("D", dataHatchPredicate(blocks(ADVANCE_MACHINE_CASING_GRATE.get())))
+                    .where("#", Predicates.any())
                     .build())
             .workableCasingRenderer(CTNHCore.id("block/casings/advance_machine_casing_solid_steel"),
                     GTCEu.id("block/multiblock/assembly_line"))
@@ -4007,14 +4008,14 @@ public class CTNHMultiblockMachines {
                     .aisle("CCCC", "CHHC", "CCCC")
                     .aisle("CHHC", "H##H", "CHHC")  /*结构还没想好，先用这个测试*/
                     .aisle("CCCC", "C@HC", "CCCC")
-                    .where('@', Predicates.controller(Predicates.blocks(definition.get())))
-                    .where('C', blocks(HIGH_POWER_CASING.get()))
-                    .where('H', blocks(HIGH_POWER_CASING.get())
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .where("C", blocks(HIGH_POWER_CASING.get()))
+                    .where("H", blocks(HIGH_POWER_CASING.get())
                             .or(autoAbilities(definition.getRecipeTypes()))
                             .or(autoAbilities(true, false, false))
                             .or(abilities(PartAbility.OUTPUT_LASER))
                             .or(abilities(PartAbility.COMPUTATION_DATA_RECEPTION).setExactLimit(1)))
-                    .where('#', any())
+                    .where("#", any())
                     .build())
             .recoveryItems(
                     () -> new ItemLike[] {
@@ -4089,6 +4090,72 @@ public class CTNHMultiblockMachines {
                     .build())
 
             .workableCasingRenderer(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public static final MultiblockMachineDefinition GAS_CENTRIFUGE = REGISTRATE.multiblock("gas_centrifuge", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.GAS_CENTRIFUGE_RECIPES)
+            .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
+            .pattern(definition -> FactoryBlockPattern.start()
+            .aisle("#CCC#", "#CCC#", "#####", "#####", "#####", "#####", "#####")
+            .aisle("CBBBC", "CBBBC", "#DED#", "#D#D#", "#D#D#", "#D#D#", "#D#D#")
+            .aisle("CBBBC", "CBBBC", "#EEE#", "#####", "#####", "#####", "#####")
+            .aisle("CBBBC", "CBBBC", "#DED#", "#D#D#", "#D#D#", "#D#D#", "#D#D#")
+            .aisle("#CCC#", "#C@C#", "#####", "#####", "#####", "#####", "#####")
+            .where("B", Predicates.blocks(GTBlocks.CASING_STAINLESS_CLEAN.get()))
+            .where("C", Predicates.blocks(GTBlocks.CASING_STAINLESS_CLEAN.get())
+                    .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                    .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+            .where("#", Predicates.air())
+            .where("D", Predicates.blocks(CASING_STEEL_SOLID.get()))
+            .where("E", Predicates.blocks(CASING_STEEL_PIPE.get()))
+            .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+            .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public static final MultiblockMachineDefinition HOT_COOLANT_TURBINE = REGISTRATE.multiblock("hot_coolant_turbine", holder -> new LargeTurbineMachine(holder, GTValues.EV))
+            .generator(true)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.HOT_COOLANT_TURBINE_RECIPES)
+            .recipeModifier(LargeTurbineMachine::recipeModifier, true)
+            .appearanceBlock(GTBlocks.CASING_TITANIUM_TURBINE)
+            .pattern(definition -> FactoryBlockPattern.start()
+                .aisle("AAAA", "ASSA", "AAAA")
+                .aisle("ASSA", "BCCB", "ASSA")
+                .aisle("AAAA", "A@SA", "AAAA")
+                .where("A", Predicates.blocks(GTBlocks.CASING_TITANIUM_TURBINE.get()))
+                .where("B", Predicates.abilities(PartAbility.OUTPUT_ENERGY).setExactLimit(1)
+                    .or(Predicates.abilities(PartAbility.ROTOR_HOLDER).setExactLimit(1)))
+                .where("C", Predicates.blocks(GTBlocks.CASING_TITANIUM_GEARBOX.get()))
+                .where("S", Predicates.blocks(GTBlocks.CASING_TITANIUM_TURBINE.get())
+                .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                .or(Predicates.abilities(PartAbility.MUFFLER).setExactLimit(1)))
+                .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/mechanic/machine_casing_turbine_titanium"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public static final MultiblockMachineDefinition NUCLEAR_REACTOR = REGISTRATE.multiblock("nuclear_reactor", NuclearReactorMachine::new)
+            .rotationState(RotationState.ALL)
+            .recipeType(CTNHRecipeTypes.NUCLEAR_REACTOR_RECIPES)
+            .tooltips(Component.translatable("nuclear_reactor").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("ctnh.nuclear_reactor.basic"),
+                    Component.translatable("ctnh.nuclear_reactor.coolant"),
+                    Component.translatable("ctnh.nuclear_reactor.overclock"),
+                    Component.translatable("ctnh.nuclear_reactor.safe"))
+            .recipeModifier(NuclearReactorMachine::recipeModifier)
+            .appearanceBlock(CASING_SHIELDED_REACTOR)
+            .pattern(definition -> FactoryBlockPattern.start()
+            .aisle("DDD", "ABA", "ABA", "ABA", "ABA", "ABA", "ABA", "ABA", "DDD")
+            .aisle("DDD", "BCB", "BCB", "BCB", "BCB", "BCB", "BCB", "BCB", "DDD")
+            .aisle("D@D", "ABA", "ABA", "ABA", "ABA", "ABA", "ABA", "ABA", "DDD")
+            .where("A", Predicates.blocks(CASING_SHIELDED_REACTOR.get()))
+            .where("B", Predicates.blocks(CASING_TEMPERED_GLASS.get()))
+            .where("C", CTNHPredicates.reactorCore())
+            .where("D", Predicates.blocks(CASING_SHIELDED_REACTOR.get())
+                .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+            .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+            .build())
+            .workableCasingRenderer(CTNHCore.id("block/casings/shielded_reactor_casing"), GTCEu.id("block/machines/nuclear_reactor"), false)
             .register();
     public static void init() {
 

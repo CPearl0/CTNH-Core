@@ -1,21 +1,22 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.common.data.GTMaterialItems;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
-import io.github.cpearl0.ctnhcore.registry.CTNHItems;
-import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
-import io.github.cpearl0.ctnhcore.registry.CTNHTagPrefixes;
+import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Mendelevium;
+import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.CIRCUIT;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.*;
 
 public class NuclearRecipes {
@@ -184,5 +185,63 @@ public class NuclearRecipes {
                             .save(provider);
             });
         });
+        CTNHRecipeTypes.GAS_CENTRIFUGE_RECIPES.recipeBuilder("uranium")
+                .duration(500)
+                .EUt(960)
+                .inputFluids(UraniumHexafluoride.getFluid(20000))
+                .outputFluids(Uranium234Hexafluoride.getFluid(20))
+                .outputFluids(EnrichedUraniumHexafluoride.getFluid(2000))
+                .outputFluids(DepletedUraniumHexafluoride.getFluid(17980))
+                .save(provider);
+
+        CTNHRecipeTypes.HOT_COOLANT_TURBINE_RECIPES.recipeBuilder("steam")
+                .inputFluids(CTNHMaterials.HotSteam.getFluid(54))
+                .outputFluids(Steam.getFluid(54))
+                .EUt(-32)
+                .duration(60)
+                .save(provider);
+        CTNHRecipeTypes.HOT_COOLANT_TURBINE_RECIPES.recipeBuilder("deuterium")
+                .inputFluids(CTNHMaterials.HotDeuterium.getFluid(18))
+                .outputFluids(Deuterium.getFluid(18))
+                .EUt(-32)
+                .duration(60)
+                .save(provider);
+        CTNHRecipeTypes.HOT_COOLANT_TURBINE_RECIPES.recipeBuilder("sodium")
+                .inputFluids(CTNHMaterials.HotSodium.getFluid(10))
+                .outputFluids(Sodium.getFluid(10))
+                .EUt(-32)
+                .duration(60)
+                .save(provider);
+        CTNHRecipeTypes.HOT_COOLANT_TURBINE_RECIPES.recipeBuilder("sodium_potassium")
+                .inputFluids(CTNHMaterials.HotSodiumPotassium.getFluid(9))
+                .outputFluids(SodiumPotassium.getFluid(9))
+                .EUt(-32)
+                .duration(60)
+                .save(provider);
+        GTRecipeTypes.FORMING_PRESS_RECIPES.recipeBuilder("shielded_reactor_casing")
+                .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plateDense, Lead).asStack(12),
+                        GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plateDense, StainlessSteel).asStack(2),
+                        GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plateDense, VanadiumSteel).asStack(4))
+                .outputItems(CTNHBlocks.CASING_SHIELDED_REACTOR.get().asItem().getDefaultInstance().copyWithCount(4))
+                .EUt(500)
+                .duration(1500)
+                .save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("nuclear_reactor")
+                .inputItems(CTNHBlocks.CASING_SHIELDED_REACTOR.get().asItem().getDefaultInstance().copyWithCount(4),
+                   GTItems.SENSOR_EV.asStack(2),
+                   GTItems.ELECTRIC_MOTOR_EV.asStack(2),
+                   GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, Ultimet).asStack(2))
+                .outputItems("gtceu:nuclear_reactor")
+                .EUt(1920)
+                .duration(400)
+                .save(provider);
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("hot_coolant_turbine")
+                .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.gear, Stellite100).asStack(4),
+                    GTMachines.HULL[GTValues.EV].asStack())
+                .inputItems(CustomTags.EV_CIRCUITS, 2)
+                .outputItems("gtceu:hot_coolant_turbine")
+                .EUt(1920)
+                .duration(400)
+                .save(provider);
     }
 }

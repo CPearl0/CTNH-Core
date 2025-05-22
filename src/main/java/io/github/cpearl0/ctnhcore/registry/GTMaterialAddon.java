@@ -76,7 +76,7 @@ public class GTMaterialAddon {
         Hafnium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         EnderEye.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         EnderPearl.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
-        Protactinium.setProperty(PropertyKey.DUST, new DustProperty());
+        Protactinium.setProperty(PropertyKey.INGOT, new IngotProperty());
         Protactinium.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         Protactinium.setProperty(PropertyKey.HAZARD, radioactive(1));
         Protactinium.addFlags(CTNHMaterialFlags.GENERATE_WASTE,GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROD, GENERATE_FOIL, GENERATE_BOLT_SCREW, GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_SMALL_GEAR);

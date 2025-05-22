@@ -3,8 +3,11 @@ package io.github.cpearl0.ctnhcore.registry;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
+import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTModels;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -13,6 +16,7 @@ import io.github.cpearl0.ctnhcore.api.CTNHAPI;
 import io.github.cpearl0.ctnhcore.common.block.*;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
+import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHConfiguredFeatures;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -37,6 +41,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
+import static io.github.cpearl0.ctnhcore.api.CTNHAPI.ReactorCoreBlock;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
 public class CTNHBlocks {
@@ -118,6 +123,8 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> WIDESPEEDINGPIPE =createCasingBlock("widespeedingpipe",CTNHCore.id("block/widespeedingpipe"));
     public static final BlockEntry<Block> STELLAR_RADIATION_ROUTER_CASING = createCasingBlock("stellar_radiation_router_casing",
             CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
+    public static final BlockEntry<Block> CASING_SHIELDED_REACTOR = createCasingBlock("sheleded_reactor_casing",
+            CTNHCore.id("block/casings/sheleded_reactor_casing"));
 
     public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing("reservoir_computing_casing",
             "block/flux/reservoir_computing_casing");
@@ -196,7 +203,18 @@ public class CTNHBlocks {
 
     public static BlockEntry<SpaceStructuralFramework> NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK=createSpaceStructuralFrame(SpaceStructuralFramework.SpaceStructuralFrameworkType.NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK,"block/pulsating_photovoltaic_block");
     public static void init() {
-
+        ReactorCoreBlock.put(0, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Thorium).get());
+        ReactorCoreBlock.put(1, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Protactinium).get());
+        ReactorCoreBlock.put(2, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, NuclearMaterials.Uranium).get());
+        ReactorCoreBlock.put(7, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Neptunium).get());
+        ReactorCoreBlock.put(10, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, NuclearMaterials.Plutonium).get());
+        ReactorCoreBlock.put(15, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Americium).get());
+        ReactorCoreBlock.put(25, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Curium).get());
+        ReactorCoreBlock.put(35, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Berkelium).get());
+        ReactorCoreBlock.put(50, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Californium).get());
+        ReactorCoreBlock.put(75, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Einsteinium).get());
+        ReactorCoreBlock.put(100, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Fermium).get());
+        ReactorCoreBlock.put(200, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Mendelevium).get());
     }
     // Utils
     public static BlockEntry<Block> createCasingBlock(String name, ResourceLocation texture) {

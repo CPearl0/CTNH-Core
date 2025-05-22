@@ -617,13 +617,18 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL)
-            .addDataInfo(data -> LocalizationUtils.format("ctnh.nuclear_reactor_heat", String.format("%.1s",data.getFloat("heat"))));
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.nuclear_reactor_heat", String.format("%.1f",data.getFloat("heat"))));
     public static final GTRecipeType GAS_CENTRIFUGE_RECIPES = GTRecipeTypes.register("gas_centrifuge", MULTIBLOCK)
             .setMaxIOSize(0, 0, 1, 3)
             .setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CENTRIFUGE);
+    public static final GTRecipeType HOT_COOLANT_TURBINE_RECIPES = GTRecipeTypes.register("hot_coolant_turbine", MULTIBLOCK)
+            .setMaxIOSize(0, 0, 1, 1)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.TURBINE);
 
 
     public static void init() {
