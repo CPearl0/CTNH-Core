@@ -164,9 +164,7 @@ public class CTNHMaterials {
             .element(CTNHElements.STARMETAL)
             .color(0xf4f4f4)
             .iconSet(MaterialIcons.StarsteelIcon)
-            .flags(MORTAR_GRINDABLE, GENERATE_ROTOR, GENERATE_SMALL_GEAR,
-                     DISABLE_DECOMPOSITION, GENERATE_GEAR,
-                    GENERATE_DENSE)
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_ROTOR)
             .cableProperties(GTValues.V[GTValues.OpV], 4, 256)
             .buildAndRegister();
     public static final Material Infinity = new Material.Builder(GTCEu.id("my_infinity"))
