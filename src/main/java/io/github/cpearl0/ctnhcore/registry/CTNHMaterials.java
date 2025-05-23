@@ -514,11 +514,11 @@ public class CTNHMaterials {
             .gas()
             .color(0x39cf89)
             .buildAndRegister();
-    public static final Material LivingRock = new Material.Builder(GTCEu.id("living_rock"))
+    public static final Material Livingrock = new Material.Builder(GTCEu.id("livingrock"))
             .dust()
             .color(0xfafafa)
             .buildAndRegister();
-    public static final Material iceStone = new Material.Builder(GTCEu.id("ice_stone"))
+    public static final Material icestone = new Material.Builder(GTCEu.id("icestone"))
             .dust()
             .color(0xd7fffd)
             .buildAndRegister();
@@ -558,7 +558,7 @@ public class CTNHMaterials {
         TagPrefix.ingot.setIgnored(Stratus, DAItems.STRATUS_INGOT);
         TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
 
-        TagPrefix.block.setIgnored(LivingRock, BotaniaBlocks.livingrock);
+        TagPrefix.block.setIgnored(Livingrock, BotaniaBlocks.livingrock);
     }
 
     public static class MaterialIcons {

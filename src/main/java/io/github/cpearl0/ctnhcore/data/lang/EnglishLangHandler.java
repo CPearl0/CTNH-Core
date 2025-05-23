@@ -23,6 +23,10 @@ public class EnglishLangHandler {
         LangHandler.replace(provider, CTNHMaterials.Skyjade.getUnlocalizedName(), "Skyjade");
         LangHandler.replace(provider, CTNHMaterials.Stratus.getUnlocalizedName(), "Stratus");
 
+        provider.add("enchantment.kubejs.vacuum_seal.desc", "Protects you from vacuum damage. Note: All equipped items must have this enchantment to take effect");
+        provider.add("enchantment.kubejs.warming.desc", "Enhance your hot defending ability");
+        provider.add("enchantment.kubejs.cooling.desc", "Enhance your cold defending ability");
+
         provider.add("tagprefix.nuclear", "%s");
         provider.add("tagprefix.fuel", "%s Fuel");
         provider.add("tagprefix.depleted_fuel", "%s Depleted Fuel");

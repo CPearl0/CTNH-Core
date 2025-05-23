@@ -78,8 +78,8 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.PreciousAlloy.getUnlocalizedName(), "贵金属");
         replace(provider, CTNHMaterials.ManaFused.getUnlocalizedName(), "蕴魔");
         replace(provider, CTNHMaterials.CombustibleIce.getUnlocalizedName(), "可燃冰");
-        replace(provider, CTNHMaterials.LivingRock.getUnlocalizedName(), "活石");
-        replace(provider, CTNHMaterials.iceStone.getUnlocalizedName(), "冰石");
+        replace(provider, CTNHMaterials.Livingrock.getUnlocalizedName(), "活石");
+        replace(provider, CTNHMaterials.icestone.getUnlocalizedName(), "冰石");
 
         replace(provider, NuclearMaterials.ThoriumHexafluoride.getUnlocalizedName(), "六氟化钍");
         replace(provider, NuclearMaterials.ProtactiniumHexafluoride.getUnlocalizedName(), "六氟化镤");
@@ -241,6 +241,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.gas_centrifuge", "气体离心");
         provider.add("gtceu.nuclear_reactor", "核能反应");
         provider.add("gtceu.hot_coolant_turbine", "热冷却液涡轮");
+        provider.add("gtceu.mana_condenser", "魔力凝集");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -794,6 +795,9 @@ public class ChineseLangHandler {
         provider.addEnchantment(CTNHEnchantments.VACUUM_SEAL, "真空密封");
         provider.addEnchantment(CTNHEnchantments.WARMING, "御寒");
         provider.addEnchantment(CTNHEnchantments.COOLING, "御暑");
+        provider.add("enchantment.kubejs.vacuum_seal.desc", "使你不再受到真空的伤害。注：必须所有装备均拥有该附魔");
+        provider.add("enchantment.kubejs.warming.desc", "增强御暑能力");
+        provider.add("enchantment.kubejs.cooling.desc", "增强御寒能力");
 
         provider.addItem(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1, "完善的一阶航天数据芯片");
         provider.addItem(CTNHItems.ASTRONOMY_CIRCUIT_1, "一阶航天数据芯片");

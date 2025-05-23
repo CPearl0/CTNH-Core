@@ -17,6 +17,7 @@ import java.util.List;
 
 public class NuclearReactorMachine extends WorkableElectricMultiblockMachine {
     public float heat;
+    public float baseHeat = 0;
     public int coolant_amount = 0;
     public int consume_amount = 0;
     public Material current_coolant;
@@ -41,11 +42,11 @@ public class NuclearReactorMachine extends WorkableElectricMultiblockMachine {
                             if (contents instanceof FluidStack fluidStack) {
                                 for (var coolant : Coolant) {
                                     if (fluidStack.getFluid().equals(coolant.inputMaterial.getFluid())) {
-                                        if (MachineUtils.canInputFluid(coolant.inputMaterial.getFluid((int) (heat * coolant.consume_count)), this)
-                                                && MachineUtils.canOutputFluid(coolant.outputMaterial.getFluid((int) (heat * coolant.consume_count)), this)) {
+                                        if (MachineUtils.canInputFluid(coolant.inputMaterial.getFluid((int) ((heat + baseHeat) * coolant.consume_count)), this)
+                                                && MachineUtils.canOutputFluid(coolant.outputMaterial.getFluid((int) ((heat + baseHeat) * coolant.consume_count)), this)) {
                                             current_coolant = coolant.inputMaterial;
                                             coolant_amount = fluidStack.getAmount();
-                                            consume_amount = (int) (heat * coolant.consume_count);
+                                            consume_amount = (int) ((heat + baseHeat) * coolant.consume_count);
                                             MachineUtils.inputFluid(coolant.inputMaterial.getFluid(consume_amount), this);
                                             MachineUtils.outputFluid(coolant.outputMaterial.getFluid(consume_amount), this);
                                             recipeLogic.setProgress(Math.min(getProgress() + 20, getMaxProgress()));
@@ -63,12 +64,18 @@ public class NuclearReactorMachine extends WorkableElectricMultiblockMachine {
     }
 
     @Override
+    public void onStructureFormed() {
+        baseHeat = getMultiblockState().getMatchContext().getOrPut("ReactorCore", 0);
+        super.onStructureFormed();
+    }
+
+    @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
         if (isFormed()) {
             String coolantName = "None";
             if(current_coolant != null) {
-                coolantName = current_coolant.getFluid().getFluidType().getDescriptionId();
+                coolantName = current_coolant.getFluid().getFluidType().getDescription().getString();
             }
             textList.add(textList.size(), Component.translatable("multiblock.ctnh.nuclear_reactor.coolant",coolantName));
             textList.add(textList.size(), Component.translatable("multiblock.ctnh.nuclear_reactor.coolant_amount", coolant_amount));
