@@ -4,9 +4,12 @@ import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.worldgen.BiomeWeightModifier;
 import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
 import com.gregtechceu.gtceu.api.data.worldgen.WorldGenLayers;
+import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import dev.arbor.gtnn.data.GTNNOres;
 import dev.arbor.gtnn.data.GTNNWorld;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import mythicbotany.register.ModBlocks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.block.Blocks;
@@ -19,7 +22,58 @@ import static com.gregtechceu.gtceu.common.data.GTOres.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHWorlds.*;
 
 public class CTNHOres {
-    public static void init() {}
+    public static void init() {
+        MAGNETITE_VEIN_OW.layeredVeinGenerator(generator -> generator
+                .buildLayerPattern(pattern -> pattern
+                .layer(l -> l.weight(3).mat(GTMaterials.Magnetite).size(2, 4))
+                .layer(l -> l.weight(2).mat(GTMaterials.VanadiumMagnetite).size(1, 1))
+                .layer(l -> l.weight(1).mat(CTNHMaterials.PreciousAlloy).size(1, 1))
+            )
+        );
+        GTNNOres.INSTANCE.getGOLD_VEIN_TF().layeredVeinGenerator(generator -> generator
+                .buildLayerPattern(pattern -> pattern
+                .layer(l -> l.weight(3).mat(GTMaterials.Magnetite).size(2, 4))
+                .layer(l -> l.weight(2).mat(GTMaterials.VanadiumMagnetite).size(1, 1))
+                .layer(l -> l.weight(1).mat(CTNHMaterials.PreciousAlloy).size(1, 1))
+            )
+        );
+        GTRegistries.ORE_VEINS.remove(GTCEu.id("nether_quartz_vein"));
+        GTRegistries.ORE_VEINS.remove(GTCEu.id("nickel_vein"));
+        GTRegistries.ORE_VEINS.remove(GTCEu.id("galena_vein"));
+        GTRegistries.ORE_VEINS.remove(GTCEu.id("sheldonite_vein"));
+        MICA_VEIN.layer(WorldGenLayers.NETHERRACK)
+                .dimensions(ResourceLocation.tryParse("minecraft:the_nether"))
+                .biomes(BiomeTags.IS_NETHER)
+                .heightRangeUniform(0, 25)
+                .layeredVeinGenerator(generator -> generator
+                    .buildLayerPattern(pattern -> pattern
+                        .layer(l -> l.weight(3).mat(GTMaterials.Kyanite).size(2, 4))
+                        .layer(l -> l.weight(2).mat(GTMaterials.Mica).size(1, 1))
+                        .layer(l -> l.weight(2).mat(GTMaterials.Aluminium).size(1, 1))
+                        .layer(l -> l.weight(1).mat(GTMaterials.Pollucite).size(1, 1))
+                    )
+                );
+
+
+//        let ADASTRA = ["ad_astra:lunar_wastelands","ad_astra:glacio_ice_peaks","ad_astra:glacio_snowny_barrens",
+//                "ad_astra:inferno_venus_barrens","ad_astra:martian_canyon_creek","ad_astra:martian_polar_caps",
+//                "ad_astra:martian_wastelands","ad_astra:mercury_deltas","ad_astra:venus_wastelands","ad_extendra:cosmic_gaslands",
+//                "ad_extendra:intriguing_wastelands"]
+        // event.modify("gtceu:naquadah_vein", vein => {
+        //     vein.layer("all_layer")
+        //     ADASTRA.forEach(biome =>{
+        //         vein.biomes(biome)
+        //     })
+        //     vein.dimensions(["ad_astra:mercury", "ad_extendra:jupiter"])
+        // })
+        // event.modify("gtceu:monazite_vein", vein => {
+        //     vein.layer("all_layer")
+        //     ADASTRA.forEach(biome =>{
+        //         vein.biomes(biome)
+        //     })
+        //     vein.dimensions("ad_extendra:jupiter")
+        // })
+    }
 
     public static GTOreDefinition NETHER_QUARTZ_VEIN_OW = create(CTNHCore.id("nether_quartz_vein_ow"), vein -> vein
             .weight(80)
@@ -594,4 +648,49 @@ public class CTNHOres {
             .density(0.4F)
             .radius(5)
     ));
+    public static GTOreDefinition COMBUSTIBLE_ICE_VEIN_AETHER = create(CTNHCore.id("combustible_ice_vein_aether"), vein ->
+        vein.weight(80)
+            .clusterSize(30)
+            .density(0.55F)
+            .discardChanceOnAirExposure(0)
+            .layer(CTNHWorldgenLayers.AETHER)
+            .dimensions(THE_AETHER)
+            .heightRangeUniform(20, 80)
+            .layeredVeinGenerator(generator -> generator
+                    .buildLayerPattern(pattern -> pattern
+                    .layer(l -> l.weight(3).mat(CTNHMaterials.CombustibleIce).size(2, 4))
+                    .layer(l -> l.weight(2).mat(GTMaterials.Coal).size(1, 1))
+                    .layer(l -> l.weight(1).mat(GTMaterials.Opal).size(1, 1))
+                    .layer(l -> l.weight(1).mat(CTNHMaterials.CombustibleIce).size(1, 1))
+                )
+            )
+            .surfaceIndicatorGenerator(indicator -> indicator
+                    .surfaceRock(CTNHMaterials.CombustibleIce)
+                    .placement(ABOVE)
+                    .density(0.2F)
+                    .radius(5)
+            )
+    );
+    public static GTOreDefinition MANA_FUSED_VEIN = create(CTNHCore.id("mana_fused_vein"), vein ->
+        vein.weight(80)
+        .clusterSize(40)
+        .density(0.25F)
+        .discardChanceOnAirExposure(0)
+        .layer(CTNHWorldgenLayers.ALFHEIM)
+        .dimensions(ALFHEIM)
+        .heightRangeUniform(20, 40)
+        .layeredVeinGenerator(generator -> generator
+                .buildLayerPattern(pattern -> pattern
+                .layer(l -> l.weight(3).mat(CTNHMaterials.ManaFused).size(2, 4))
+                .layer(l -> l.weight(2).block(() -> ModBlocks.goldOre).size(1, 1))
+                .layer(l -> l.weight(1).block(() -> ModBlocks.dragonstoneOre).size(1, 1))
+            )
+        )
+        .surfaceIndicatorGenerator(indicator -> indicator
+                .surfaceRock(GTMaterials.Gold)
+                .placement(ABOVE)
+                .density(0.4F)
+                .radius(5)
+        )
+    );
 }

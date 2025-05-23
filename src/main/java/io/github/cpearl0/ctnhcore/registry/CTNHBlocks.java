@@ -123,8 +123,8 @@ public class CTNHBlocks {
     public static final BlockEntry<Block> WIDESPEEDINGPIPE =createCasingBlock("widespeedingpipe",CTNHCore.id("block/widespeedingpipe"));
     public static final BlockEntry<Block> STELLAR_RADIATION_ROUTER_CASING = createCasingBlock("stellar_radiation_router_casing",
             CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
-    public static final BlockEntry<Block> CASING_SHIELDED_REACTOR = createCasingBlock("sheleded_reactor_casing",
-            CTNHCore.id("block/casings/sheleded_reactor_casing"));
+    public static final BlockEntry<Block> CASING_SHIELDED_REACTOR = createCasingBlock("shielded_reactor_casing",
+            CTNHCore.id("block/casings/shielded_reactor_casing"));
 
     public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing("reservoir_computing_casing",
             "block/flux/reservoir_computing_casing");

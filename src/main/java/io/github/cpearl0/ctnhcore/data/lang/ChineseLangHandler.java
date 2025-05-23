@@ -63,6 +63,23 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.HotDeuterium.getUnlocalizedName(), "过热氘");
         replace(provider, CTNHMaterials.HotSodium.getUnlocalizedName(), "过热钠");
         replace(provider, CTNHMaterials.HotSodiumPotassium.getUnlocalizedName(), "过热钠钾合金");
+        replace(provider, CTNHMaterials.Eglinalloy.getUnlocalizedName(), "埃格林合金");
+        replace(provider, CTNHMaterials.Inconel625.getUnlocalizedName(), "镍铬基合金-625");
+        replace(provider, CTNHMaterials.Starmetal.getUnlocalizedName(), "炫星");
+        replace(provider, CTNHMaterials.AlfSteel.getUnlocalizedName(), "精灵钢");
+        replace(provider, CTNHMaterials.Jasper.getUnlocalizedName(), "碧玉");
+        replace(provider, CTNHMaterials.Abyssalalloy.getUnlocalizedName(), "渊狱合金");
+        replace(provider, CTNHMaterials.Titansteel.getUnlocalizedName(), "泰坦钢");
+        replace(provider, CTNHMaterials.Pikyonium.getUnlocalizedName(), "皮卡优");
+        replace(provider, CTNHMaterials.BlackTitanium.getUnlocalizedName(), "黑钛");
+        replace(provider, CTNHMaterials.Zircon.getUnlocalizedName(), "锆石");
+        replace(provider, CTNHMaterials.Zirkelite.getUnlocalizedName(), "钛锆钍石");
+        replace(provider, CTNHMaterials.Alumina.getUnlocalizedName(), "氧化铝");
+        replace(provider, CTNHMaterials.PreciousAlloy.getUnlocalizedName(), "贵金属");
+        replace(provider, CTNHMaterials.ManaFused.getUnlocalizedName(), "蕴魔");
+        replace(provider, CTNHMaterials.CombustibleIce.getUnlocalizedName(), "可燃冰");
+        replace(provider, CTNHMaterials.LivingRock.getUnlocalizedName(), "活石");
+        replace(provider, CTNHMaterials.iceStone.getUnlocalizedName(), "冰石");
 
         replace(provider, NuclearMaterials.ThoriumHexafluoride.getUnlocalizedName(), "六氟化钍");
         replace(provider, NuclearMaterials.ProtactiniumHexafluoride.getUnlocalizedName(), "六氟化镤");
@@ -113,6 +130,17 @@ public class ChineseLangHandler {
         nuclearTranslation(provider, NuclearMaterials.Mendelevium259, "钔259");
         nuclearTranslation(provider, NuclearMaterials.Mendelevium261, "钔261");
         nuclearTranslation(provider, NuclearMaterials.Mendelevium263, "钔263");
+        replace(provider, NuclearMaterials.CarbideUranium235.getUnlocalizedName(), "碳化铀235");
+        replace(provider, NuclearMaterials.OxideUranium235.getUnlocalizedName(), "氧化铀235");
+        replace(provider, NuclearMaterials.NitrideUranium235.getUnlocalizedName(), "氮化铀235");
+        replace(provider, NuclearMaterials.ZirconiumAlloyUranium235.getUnlocalizedName(), "锆合金铀235");
+        replace(provider, NuclearMaterials.CarbideUranium238.getUnlocalizedName(), "碳化铀238");
+        replace(provider, NuclearMaterials.OxideUranium238.getUnlocalizedName(), "氧化铀238");
+        replace(provider, NuclearMaterials.NitrideUranium238.getUnlocalizedName(), "氮化铀238");
+        replace(provider, NuclearMaterials.ZirconiumAlloyUranium238.getUnlocalizedName(), "锆合金铀238");
+        nuclearTranslation2(provider, GTMaterials.Plutonium239, "钚239");
+        nuclearTranslation2(provider, GTMaterials.Plutonium241, "钚241");
+
         //Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
         provider.add("config.ctnhcore.option.kinetic", "应力相关");
@@ -143,6 +171,8 @@ public class ChineseLangHandler {
         provider.add("tagprefix.fuel", "%s燃料");
         provider.add("tagprefix.depleted_fuel", "%s枯竭燃料");
         provider.add("tagprefix.waste", "%s废料");
+        provider.add("tagprefix.icestone", "冰石%s矿石");
+        provider.add("tagprefix.livingrock", "活石%s矿石");
         //Recipe Type
         provider.add("gtceu.phase_inversion","反相蚀刻");
         provider.add("gtceu.underfloor_heating_system", "地暖");
@@ -993,17 +1023,22 @@ public class ChineseLangHandler {
         replace(provider, nuclearProperty.getOxideMaterial().getUnlocalizedName(), "氧化" + name);
         replace(provider, nuclearProperty.getNitrideMaterial().getUnlocalizedName(), "氮化" + name);
         replace(provider, nuclearProperty.getZirconiumAlloyMaterial().getUnlocalizedName(), "锆合金" + name);
-//        replace(provider, nuclearProperty.getFuel(material).getDisplayName().getString(), name + "纯净燃料");
-//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getCarbideMaterial()).getDisplayName().getString(), name + "TRISO燃料");
-//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getOxideMaterial()).getDisplayName().getString(), name + "氧化燃料");
-//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getNitrideMaterial()).getDisplayName().getString(), name + "氮化燃料");
-//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getZirconiumAlloyMaterial()).getDisplayName().getString(), name + "锆合金燃料");
-//        replace(provider, nuclearProperty.getDepletedFuel(material).getDisplayName().getString(), name + "枯竭燃料");
-//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getCarbideMaterial()).getDisplayName().getString(), name + "枯竭TRISO燃料");
-//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getOxideMaterial()).getDisplayName().getString(), name + "枯竭氧化燃料");
-//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getNitrideMaterial()).getDisplayName().getString(), name + "枯竭氮化燃料");
-//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getZirconiumAlloyMaterial()).getDisplayName().getString(), name + "枯竭锆合金燃料");
         replace(provider, GTMaterials.get(material.getName() + "_hexafluoride").getUnlocalizedName(), "六氟化" + name);
         replace(provider, GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked").getUnlocalizedName(), "蒸汽裂解的六氟化" + name);
+    }
+    public static void nuclearTranslation2(RegistrateCNLangProvider provider, Material material, String name) {
+        var nuclearProperty = material.getProperty(CTNHPropertyKeys.NUCLEAR);
+        replace(provider, nuclearProperty.getCarbideMaterial().getUnlocalizedName(), "碳化" + name);
+        replace(provider, nuclearProperty.getOxideMaterial().getUnlocalizedName(), "氧化" + name);
+        replace(provider, nuclearProperty.getNitrideMaterial().getUnlocalizedName(), "氮化" + name);
+        replace(provider, nuclearProperty.getZirconiumAlloyMaterial().getUnlocalizedName(), "锆合金" + name);
+        if(material.equals(GTMaterials.Plutonium239)){
+            replace(provider, GTMaterials.get(material.getName() + "_239_hexafluoride").getUnlocalizedName(), "六氟化" + name);
+            replace(provider, GTMaterials.get(material.getName() + "_239_hexafluoride_steam_cracked").getUnlocalizedName(), "蒸汽裂解的六氟化" + name);
+        }
+        else {
+            replace(provider, GTMaterials.get(material.getName() + "_hexafluoride").getUnlocalizedName(), "六氟化" + name);
+            replace(provider, GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked").getUnlocalizedName(), "蒸汽裂解的六氟化" + name);
+        }
     }
 }

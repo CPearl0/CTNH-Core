@@ -18,6 +18,7 @@ import lombok.Generated;
 import net.minecraft.server.commands.PublishCommand;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
+import vazkii.botania.common.block.BotaniaBlocks;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
@@ -513,8 +514,29 @@ public class CTNHMaterials {
             .gas()
             .color(0x39cf89)
             .buildAndRegister();
+    public static final Material LivingRock = new Material.Builder(GTCEu.id("living_rock"))
+            .dust()
+            .color(0xfafafa)
+            .buildAndRegister();
+    public static final Material iceStone = new Material.Builder(GTCEu.id("ice_stone"))
+            .dust()
+            .color(0xd7fffd)
+            .buildAndRegister();
+    public static final Material CombustibleIce = new Material.Builder(GTCEu.id("combustible_ice"))
+            .gem()
+            .iconSet(LIGNITE)
+            .color(0xebfbfc)
+            .burnTime(6000)
+            .ore()
+            .buildAndRegister();
+    public static final Material ManaFused = new Material.Builder(GTCEu.id("mana_fused"))
+            .dust()
+            .ore()
+            .color(0x4FC1FF)
+            .buildAndRegister();
 
     public static void init() {
+        CombustibleIce.setFormula("(CH4)(H2O)", true);
         NuclearMaterials.init();
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);
@@ -535,6 +557,8 @@ public class CTNHMaterials {
 
         TagPrefix.ingot.setIgnored(Stratus, DAItems.STRATUS_INGOT);
         TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
+
+        TagPrefix.block.setIgnored(LivingRock, BotaniaBlocks.livingrock);
     }
 
     public static class MaterialIcons {

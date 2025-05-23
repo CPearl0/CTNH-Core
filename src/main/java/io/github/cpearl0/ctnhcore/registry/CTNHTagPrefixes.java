@@ -16,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+import vazkii.botania.common.block.BotaniaBlocks;
 
 import java.util.List;
 
@@ -35,6 +36,17 @@ public class CTNHTagPrefixes {
                     () -> CTNHMaterials.Holystone,
                     BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(3.0F, 3.0F),
                     new ResourceLocation(Aether.MODID, "block/mossy_holystone"), true, false, true);
+    public static final TagPrefix oreLivingrock = TagPrefix.oreTagPrefix("living_rock", BlockTags.MINEABLE_WITH_PICKAXE)
+            .registerOre(() -> BotaniaBlocks.livingrock.defaultBlockState(),
+                    () -> CTNHMaterials.LivingRock,
+                    BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(3.0F, 3.0F),
+                    ResourceLocation.tryParse("botania:block/polished_livingrock"), false, false, true);
+    public static final TagPrefix oreIcestone = TagPrefix.oreTagPrefix("ice_stone", BlockTags.MINEABLE_WITH_PICKAXE)
+            .registerOre(() -> AetherBlocks.ICESTONE.get().defaultBlockState(),
+                    () -> CTNHMaterials.iceStone,
+                    BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(2.0F, 2.0F),
+                    ResourceLocation.tryParse("aether:block/icestone"), false, false, true);
+
     public static final TagPrefix nuclear = new TagPrefix("nuclear")
             .idPattern("%s")
             .materialAmount(GTValues.M)
@@ -67,5 +79,7 @@ public class CTNHTagPrefixes {
     public static void init() {
         oreHolystone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Holystone, TagPrefix.dust.materialAmount()));
         oreMossyHolystone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.Holystone, TagPrefix.dust.materialAmount()));
+        oreLivingrock.addSecondaryMaterial(new MaterialStack(CTNHMaterials.LivingRock, TagPrefix.dust.materialAmount()));
+        oreIcestone.addSecondaryMaterial(new MaterialStack(CTNHMaterials.iceStone, TagPrefix.dust.materialAmount()));
     }
 }

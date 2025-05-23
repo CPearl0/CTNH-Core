@@ -23,6 +23,13 @@ public class EnglishLangHandler {
         LangHandler.replace(provider, CTNHMaterials.Skyjade.getUnlocalizedName(), "Skyjade");
         LangHandler.replace(provider, CTNHMaterials.Stratus.getUnlocalizedName(), "Stratus");
 
+        provider.add("tagprefix.nuclear", "%s");
+        provider.add("tagprefix.fuel", "%s Fuel");
+        provider.add("tagprefix.depleted_fuel", "%s Depleted Fuel");
+        provider.add("tagprefix.waste", "%s Waste");
+        provider.add("tagprefix.icestone", "Icestone %s Ore");
+        provider.add("tagprefix.livingrock", "Livingrock %s Ore");
+
         provider.add("gtceu.underfloor_heating_system", "Underfloor Heating");
         provider.add("gtceu.astronomical_observatory", "Astronomical Observatory");
         provider.add("gtceu.photovoltaic_power", "Photovoltaic Powering");

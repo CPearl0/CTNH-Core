@@ -439,7 +439,7 @@ public class NuclearMaterialsInfo {
         fertileMaterial.add(Uranium238);
         CarbideUranium238 = new CTNHMaterialBuilder(GTCEu.id("carbide_uranium_238"))
                 .nuclear(false, false)
-                .color(20)
+                .color(Uranium238.getMaterialRGB())
                 .components(Uranium238, 1, Carbon, 1)
                 .iconSet(CTNHMaterialIconSet.CARBIDE)
                 .radioactiveHazard(1)
@@ -448,7 +448,7 @@ public class NuclearMaterialsInfo {
                 .setCarbideMaterial(CarbideUranium238);
         OxideUranium238 = new CTNHMaterialBuilder(GTCEu.id("oxide_uranium_238"))
                 .nuclear(false, false)
-                .color(0)
+                .color(Uranium238.getMaterialRGB())
                 .components(Uranium238, 1, Oxygen, 2)
                 .iconSet(CTNHMaterialIconSet.OXIDE)
                 .radioactiveHazard(1)
@@ -457,7 +457,7 @@ public class NuclearMaterialsInfo {
                 .setOxideMaterial(OxideUranium238);
         NitrideUranium238 = new CTNHMaterialBuilder(GTCEu.id("nitride_uranium_238"))
                 .nuclear(false, false)
-                .color(-20)
+                .color(Uranium238.getMaterialRGB())
                 .components(Uranium238, 3, Nitrogen, 2)
                 .iconSet(CTNHMaterialIconSet.NITRIDE)
                 .radioactiveHazard(1)
@@ -466,7 +466,7 @@ public class NuclearMaterialsInfo {
                 .setNitrideMaterial(NitrideUranium238);
         ZirconiumAlloyUranium238 = new CTNHMaterialBuilder(GTCEu.id("zirconium_alloy_uranium_238"))
                 .nuclear(false, false)
-                .color(0)
+                .color(Uranium238.getMaterialRGB())
                 .components(Uranium238, 1, Zirconium, 1)
                 .iconSet(CTNHMaterialIconSet.ZIRCON_ALLOY)
                 .radioactiveHazard(1)
@@ -480,7 +480,7 @@ public class NuclearMaterialsInfo {
                 .setHeat(10);
         CarbideUranium235 = new CTNHMaterialBuilder(GTCEu.id("carbide_uranium_235"))
                 .nuclear(false, false)
-                .color(20)
+                .color(Uranium235.getMaterialRGB())
                 .components(Uranium235, 1, Carbon, 1)
                 .iconSet(CTNHMaterialIconSet.CARBIDE)
                 .radioactiveHazard(1)
@@ -489,7 +489,7 @@ public class NuclearMaterialsInfo {
                 .setCarbideMaterial(CarbideUranium235);
         OxideUranium235 = new CTNHMaterialBuilder(GTCEu.id("oxide_uranium_235"))
                 .nuclear(false, false)
-                .color(0)
+                .color(Uranium235.getMaterialRGB())
                 .components(Uranium235, 1, Oxygen, 2)
                 .iconSet(CTNHMaterialIconSet.OXIDE)
                 .radioactiveHazard(1)
@@ -498,7 +498,7 @@ public class NuclearMaterialsInfo {
                 .setOxideMaterial(OxideUranium235);
         NitrideUranium235 = new CTNHMaterialBuilder(GTCEu.id("nitride_uranium_235"))
                 .nuclear(false, false)
-                .color(-20)
+                .color(Uranium235.getMaterialRGB())
                 .components(Uranium235, 3, Nitrogen, 2)
                 .iconSet(CTNHMaterialIconSet.NITRIDE)
                 .radioactiveHazard(1)
@@ -507,7 +507,7 @@ public class NuclearMaterialsInfo {
                 .setNitrideMaterial(NitrideUranium235);
         ZirconiumAlloyUranium235 = new CTNHMaterialBuilder(GTCEu.id("zirconium_alloy_uranium_235"))
                 .nuclear(false, false)
-                .color(0)
+                .color(Uranium235.getMaterialRGB())
                 .components(Uranium235, 1, Zirconium, 1)
                 .iconSet(CTNHMaterialIconSet.ZIRCON_ALLOY)
                 .radioactiveHazard(1)
@@ -861,7 +861,7 @@ public class NuclearMaterialsInfo {
                 .setHeat(10);
         CarbidePlutonium239 = new CTNHMaterialBuilder(GTCEu.id("carbide_plutonium_239"))
                 .nuclear(false, false)
-                .color(20)
+                .color(Plutonium239.getMaterialRGB())
                 .components(Plutonium239, 1, Carbon, 1)
                 .iconSet(CTNHMaterialIconSet.CARBIDE)
                 .radioactiveHazard(1)
@@ -870,7 +870,7 @@ public class NuclearMaterialsInfo {
                 .setCarbideMaterial(CarbidePlutonium239);
         OxidePlutonium239 = new CTNHMaterialBuilder(GTCEu.id("oxide_plutonium_239"))
                 .nuclear(false, false)
-                .color(0)
+                .color(Plutonium239.getMaterialRGB())
                 .components(Plutonium239, 1, Oxygen, 2)
                 .iconSet(CTNHMaterialIconSet.OXIDE)
                 .radioactiveHazard(1)
@@ -879,7 +879,7 @@ public class NuclearMaterialsInfo {
                 .setOxideMaterial(OxidePlutonium239);
         NitridePlutonium239 = new CTNHMaterialBuilder(GTCEu.id("nitride_plutonium_239"))
                 .nuclear(false, false)
-                .color(-20)
+                .color(Plutonium239.getMaterialRGB())
                 .components(Plutonium239, 3, Nitrogen, 2)
                 .iconSet(CTNHMaterialIconSet.NITRIDE)
                 .radioactiveHazard(1)
@@ -888,7 +888,7 @@ public class NuclearMaterialsInfo {
                 .setNitrideMaterial(NitridePlutonium239);
         ZirconiumAlloyPlutonium239 = new CTNHMaterialBuilder(GTCEu.id("zirconium_alloy_plutonium_239"))
                 .nuclear(false, false)
-                .color(0)
+                .color(Plutonium239.getMaterialRGB())
                 .components(Plutonium239, 1, Zirconium, 1)
                 .iconSet(CTNHMaterialIconSet.ZIRCON_ALLOY)
                 .radioactiveHazard(1)
@@ -897,13 +897,13 @@ public class NuclearMaterialsInfo {
                 .setZirconiumAlloyMaterial(ZirconiumAlloyPlutonium239);
         Plutonium239Hexafluoride = new CTNHMaterialBuilder(GTCEu.id("plutonium_239_hexafluoride"))
                 .gas()
-                .color(0)
+                .color(Plutonium239.getMaterialRGB())
                 .components(Plutonium239, 1, Fluorine, 6)
                 .radioactiveHazard(1)
                 .register();
         Plutonium239HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("plutonium_239_hexafluoride_steam_cracked"))
                 .gas()
-                .color(20)
+                .color(Plutonium239.getMaterialRGB())
                 .radioactiveHazard(1)
                 .register();
 
@@ -913,7 +913,7 @@ public class NuclearMaterialsInfo {
                 .setHeat(13);
         CarbidePlutonium241 = new CTNHMaterialBuilder(GTCEu.id("carbide_plutonium_241"))
                 .nuclear(false, false)
-                .color(20)
+                .color(Plutonium241.getMaterialRGB())
                 .components(Plutonium241, 1, Carbon, 1)
                 .iconSet(CTNHMaterialIconSet.CARBIDE)
                 .radioactiveHazard(1)
@@ -922,7 +922,7 @@ public class NuclearMaterialsInfo {
                 .setCarbideMaterial(CarbidePlutonium241);
         OxidePlutonium241 = new CTNHMaterialBuilder(GTCEu.id("oxide_plutonium_241"))
                 .nuclear(false, false)
-                .color(0)
+                .color(Plutonium241.getMaterialRGB())
                 .components(Plutonium241, 1, Oxygen, 2)
                 .iconSet(CTNHMaterialIconSet.OXIDE)
                 .radioactiveHazard(1)
@@ -931,7 +931,7 @@ public class NuclearMaterialsInfo {
                 .setOxideMaterial(OxidePlutonium241);
         NitridePlutonium241 = new CTNHMaterialBuilder(GTCEu.id("nitride_plutonium_241"))
                 .nuclear(false, false)
-                .color(-20)
+                .color(Plutonium241.getMaterialRGB())
                 .components(Plutonium241, 3, Nitrogen, 2)
                 .iconSet(CTNHMaterialIconSet.NITRIDE)
                 .radioactiveHazard(1)
@@ -940,7 +940,7 @@ public class NuclearMaterialsInfo {
                 .setNitrideMaterial(NitridePlutonium241);
         ZirconiumAlloyPlutonium241 = new CTNHMaterialBuilder(GTCEu.id("zirconium_alloy_plutonium_241"))
                 .nuclear(false, false)
-                .color(0)
+                .color(Plutonium241.getMaterialRGB())
                 .components(Plutonium241, 1, Zirconium, 1)
                 .iconSet(CTNHMaterialIconSet.ZIRCON_ALLOY)
                 .radioactiveHazard(1)
@@ -949,13 +949,13 @@ public class NuclearMaterialsInfo {
                 .setZirconiumAlloyMaterial(ZirconiumAlloyPlutonium241);
         Plutonium241Hexafluoride = new CTNHMaterialBuilder(GTCEu.id("plutonium_241_hexafluoride"))
                 .gas()
-                .color(0)
+                .color(Plutonium241.getMaterialRGB())
                 .components(Plutonium241, 1, Fluorine, 6)
                 .radioactiveHazard(1)
                 .register();
         Plutonium241HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("plutonium_241_hexafluoride_steam_cracked"))
                 .gas()
-                .color(20)
+                .color(Plutonium241.getMaterialRGB())
                 .radioactiveHazard(1)
                 .register();
 
