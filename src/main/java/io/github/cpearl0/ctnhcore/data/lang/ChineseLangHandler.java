@@ -11,6 +11,7 @@ import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.jetbrains.annotations.NotNull;
+import oshi.jna.platform.windows.NtDll;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -403,7 +404,7 @@ public class ChineseLangHandler {
         provider.add("crystallizer", "专业结晶");
         provider.add("ctnh.crystallizer.basic", "结晶器能更加快速的完成晶体配方");
         provider.add("ctnh.crystallizer.coolant", "随着线圈等级上升，工作效率逐级提升");
-        provider.add("ctnh.crystallizer.overclock", "可以运行化学气相沉积的配方和部分高压釜的配方");
+        provider.add("ctnh.crystallizer.overclock", "可以运行部分化学气相沉积的配方和部分高压釜的配方");
         provider.add("ctnh.crystallizer.safe", "省材料的最佳帮手");
         provider.add("desalting_introduction", "从海水中烘干出盐，很环保不是吗？");
         provider.add("multiblock.ctnh.water_power_station1", "水量：%d");
@@ -727,10 +728,16 @@ public class ChineseLangHandler {
         provider.add("ctnh.nuclear_reactor.coolant", "冷却液可以使用蒸汽（150°C），氘（450°C），钠（800°C），钠钾合金（900°C），反应的堆温越高，消耗冷却液的速度越快，冷却液的热容越大，消耗速度越慢");
         provider.add("ctnh.nuclear_reactor.overclock", "冷却液并非运行所必须，但是在有冷却液时，配方每运行一秒，进度会增加两秒");
         provider.add("ctnh.nuclear_reactor.safe", "反应堆不会过热爆炸");
-
+        provider.add("ctnh.mana.waring","§c魔力机器不再拥有任何并行");
+        provider.add("ctnh.cryotheum.0","§b泪水如凛冰般落下");
+        provider.add("ctnh.cryotheum.1","每次运行配方消耗10mb极寒之凛冰，电压每高于§9IV§r一级，这个消耗就翻4倍");
+        provider.add("ctnh.cryotheum.2","具有16并行，能耗-25%，运行速度+25%");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
+        }
+        for (var tier : GTMachineUtils.ALL_TIERS) {
+            provider.add(CTNHMachines.COMPILERMACHINE[tier].getBlock(), GTValues.VNF[tier] + "§r神经拟合仓");
         }
         for (var tier : GTMachineUtils.ELECTRIC_TIERS) {
             provider.add(CTNHMachines.PERSONAL_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r个人计算机");
@@ -864,6 +871,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.PV_COIL,"光伏线圈方块");
         provider.addBlock(CTNHBlocks.NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK,"硅岩激发碳纳米太空结构方块");
         provider.addBlock(CTNHBlocks.CASING_SHIELDED_REACTOR, "覆层核反应堆外壳");
+        provider.addBlock(CTNHBlocks.SUPERCOOLED_BLOCK,"超级冷冻机械线圈");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -967,7 +975,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.HOT_COOLANT_TURBINE.getBlock(), "热冷却涡轮");
         provider.add(CTNHMultiblockMachines.NUCLEAR_REACTOR.getBlock(), "核反应堆");
         provider.add(CTNHMultiblockMachines.GAS_CENTRIFUGE.getBlock(), "气体离心机");
-
+        provider.add(CTNHMultiblockMachines.CRYOTHEUMFREEZER.getBlock(),"凛冰冷冻机");
 
 
 

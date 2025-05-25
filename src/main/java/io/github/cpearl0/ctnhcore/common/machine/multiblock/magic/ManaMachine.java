@@ -59,7 +59,7 @@ public class ManaMachine extends WorkableElectricMultiblockMachine implements IT
 
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof ManaMachine mmachine) {
-            int parallel= ParallelLogic.getParallelAmount(machine,recipe,mmachine.parallel);
+            int parallel= ParallelLogic.getParallelAmount(machine,recipe,1);
             var amount=(1-Math.min(0.75,0.01*parallel));
             var tier=mmachine.tier;
             var recipe_tier= RecipeHelper.getRecipeEUtTier(recipe);

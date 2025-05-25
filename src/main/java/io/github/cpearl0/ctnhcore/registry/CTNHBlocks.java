@@ -125,7 +125,8 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
     public static final BlockEntry<Block> CASING_SHIELDED_REACTOR = createCasingBlock("sheleded_reactor_casing",
             CTNHCore.id("block/casings/sheleded_reactor_casing"));
-
+    public static final BlockEntry<ActiveBlock> SUPERCOOLED_BLOCK = createActiveCasing("supercooled_bloock",
+            "block/flux/plasma_cooled_core");
     public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing("reservoir_computing_casing",
             "block/flux/reservoir_computing_casing");
     public static final BlockEntry<ActiveBlock> SPACE_ELEVATOR_POWER_CORE = createActiveCasing("space_elevator_power_core",

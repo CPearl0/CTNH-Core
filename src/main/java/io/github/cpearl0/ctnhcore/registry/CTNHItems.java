@@ -175,6 +175,10 @@ public class CTNHItems {
             .item("pv_terminal",holder->new ConnectTerminalItem(holder))
             .lang("pv_terminal")
             .register();
+    public static ItemEntry<IDataItem> RESEARCH_DATASET=REGISTRATE
+            .item("research_dataset",holder->new IDataItem(holder))
+            .lang("research_dataset")
+            .register();
     public static ItemEntry<Item> NUCLEAR_WASTE = REGISTRATE
             .item("nuclear_waste", Item::new)
             .lang("Nuclear Waste")

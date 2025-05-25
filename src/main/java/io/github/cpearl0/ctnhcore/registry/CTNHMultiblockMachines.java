@@ -942,7 +942,9 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.manamachine.debuff"),
                     Component.translatable("ctnh.quasar_mode"),
                     Component.translatable("ctnh.manamachine.parallel"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.perfect_overclock")
+
 
             )
 
@@ -972,6 +974,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.manamachine.debuff"),
                     Component.translatable("ctnh.quasar_mode"),
                     Component.translatable("ctnh.manamachine.parallel"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.perfect_overclock"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("EEEEE", "ABBBA", "ABBBA", "ACCCA")
@@ -1005,6 +1008,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.zenith_machine_tip"),
                     Component.translatable("ctnh.zenith_waring"),
                     Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.manamachine.parallel"))
 
             .pattern(definition -> FactoryBlockPattern.start()
@@ -1040,6 +1044,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.manamachine.debuff"),
                     Component.translatable("ctnh.quasar_mode"),
                     Component.translatable("ctnh.manamachine.parallel"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.perfect_overclock"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAA", "BBB", "CCC")
@@ -1065,6 +1070,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.manamachine.debuff"),
                     Component.translatable("ctnh.quasar_mode"),
                     Component.translatable("ctnh.manamachine.parallel"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.perfect_overclock"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABA", "AAA", "AAA", "CAC")
@@ -1094,6 +1100,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.manamachine.debuff"),
                     Component.translatable("ctnh.quasar_mode"),
                     Component.translatable("ctnh.manamachine.parallel"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.perfect_overclock"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABBBBBA", "ABBBBBA", "ABBBBBA", "ACCCCCA", "AAAAAAA")
@@ -2106,6 +2113,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.zenith_machine_tip"),
                     Component.translatable("ctnh.zenith_waring"),
                     Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.manamachine.parallel"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("####PPP####", "####PHP####", "####PPP####", "###########")
@@ -2147,6 +2155,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.zenith_machine_tip"),
                     Component.translatable("ctnh.zenith_waring"),
                     Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.manamachine.parallel"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "BBBBB", "BBEBB", "BEEEB", "BEEEB", "BEEEB", "BDDDB")
@@ -2260,7 +2269,7 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ALTER)
             // .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
-            .recipeModifiers(ZenithMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(AlterLogic::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.alter.tips1"),
                     Component.translatable("ctnh.alter.tips2"),
                     Component.translatable("ctnh.alter.tips3"),
@@ -4155,6 +4164,27 @@ public class CTNHMultiblockMachines {
             .where("@", Predicates.controller(Predicates.blocks(definition.get())))
             .build())
             .workableCasingRenderer(CTNHCore.id("block/casings/shielded_reactor_casing"), GTCEu.id("block/machines/nuclear_reactor"), false)
+            .register();
+    public final static MultiblockMachineDefinition  CRYOTHEUMFREEZER = REGISTRATE.multiblock("cryotheum_freezer", CryotheumFreezer::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.VACUUM_RECIPES)
+            .recipeModifiers(CryotheumFreezer::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.cryotheum.0"),
+                    Component.translatable("ctnh.cryotheum.1"),
+                    Component.translatable("ctnh.cryotheum.2"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAA", "BBB", "AAA")
+                    .aisle("AAA", "B#B", "AAA")
+                    .aisle("AAA", "B@B", "AAA")
+                    .where("A", Predicates.blocks(CASING_ANTIFREEZE_HEATPROOF_MACHINE.get()).setMinGlobalLimited(10)
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+
+                    .where("B", Predicates.blocks(SUPERCOOLED_BLOCK.get()))
+                    .where("#", Predicates.any())
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build()
+            )
+            .workableCasingRenderer(CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"), GTCEu.id("block/multiblock/vacuum_freezer"), false)
             .register();
     public static void init() {
 

@@ -165,6 +165,7 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         return 1.0 / (1.0 + Math.exp(-k * (x - c)));
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+
         if (machine instanceof PhotoVoltaicDroneStation lmachine) {
             var eut=lmachine.GetDronePower()* lmachine.dimension_check();
             var pa=1;

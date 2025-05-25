@@ -30,6 +30,7 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.machine.computation.SimpleComputationMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CompilerMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.DroneHolderMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalWosMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.HighPerformanceComputer;
@@ -70,6 +71,15 @@ public class CTNHMachines {
             .renderer(() -> new OverlayTieredActiveMachineRenderer(UV, GTCEu.id("block/machine/part/object_holder"),
                     GTCEu.id("block/machine/part/object_holder_active")))
             .register();
+    public static final MachineDefinition[] COMPILERMACHINE = registerTieredMachines("neuro_compiler", CompilerMachine::new,
+            (tier, builder) -> builder
+                    .langValue(GTValues.VNF[tier] + " Neuro Compiler")
+                    .rotationState(RotationState.ALL)
+                    .abilities(CTNHPartAbility.CIRCUIT)
+                    .renderer(() -> new OverlayTieredMachineRenderer(tier, GTCEu.id("block/machine/part/item_bus.import")))
+                    .register(),
+            GTMachineUtils.ALL_TIERS);
+
     public static final MachineDefinition[] PERSONAL_COMPUTER = registerSimpleComputationMachines("personal_computer",
             CTNHRecipeTypes.PERSONAL_COMPUTER);
 
