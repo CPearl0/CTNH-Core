@@ -18,6 +18,7 @@ import lombok.Generated;
 import net.minecraft.server.commands.PublishCommand;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
+import vazkii.botania.common.block.BotaniaBlocks;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
@@ -163,9 +164,7 @@ public class CTNHMaterials {
             .element(CTNHElements.STARMETAL)
             .color(0xf4f4f4)
             .iconSet(MaterialIcons.StarsteelIcon)
-            .flags(MORTAR_GRINDABLE, GENERATE_ROTOR, GENERATE_SMALL_GEAR,
-                     DISABLE_DECOMPOSITION, GENERATE_GEAR,
-                    GENERATE_DENSE)
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_ROTOR)
             .cableProperties(GTValues.V[GTValues.OpV], 4, 256)
             .buildAndRegister();
     public static final Material Infinity = new Material.Builder(GTCEu.id("my_infinity"))
@@ -476,8 +475,66 @@ public class CTNHMaterials {
     public static final Material starlight = new Material.Builder(GTCEu.id("starlight"))
             .liquid(new FluidBuilder().temperature(50).textures(true,true).block())
             .buildAndRegister();
+    public static final Material siliconFluoride = new Material.Builder(GTCEu.id("silicon_fluoride"))
+            .liquid()
+            .color(0x76868a)
+            .components(Silicon,1 , Fluorine, 4)
+            .buildAndRegister();
+    public static final Material carbonFluoride = new Material.Builder(GTCEu.id("carbon_fluoride"))
+            .liquid()
+            .color(0xb8956d)
+            .components(Carbon,1 , Fluorine, 4)
+            .buildAndRegister();
+    public static final Material zirconiumTetrachloride = new Material.Builder(GTCEu.id("zirconium_tetrachloride"))
+            .dust()
+            .color(0xd0db7d)
+            .components(Zirconium,1 , Chlorine, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .buildAndRegister();
+    public static final Material siliconCarbide = new Material.Builder(GTCEu.id("silicon_carbide"))
+            .dust()
+            .color(0x6edade)
+            .components(Silicon, 1, Carbon, 1)
+            .buildAndRegister();
+    public static final Material HotSteam = new Material.Builder(GTCEu.id("hot_steam"))
+            .gas()
+            .color(0xd4d4d4)
+            .buildAndRegister();
+    public static final Material HotDeuterium = new Material.Builder(GTCEu.id("hot_deuterium"))
+            .gas()
+            .color(0xe6e857)
+            .buildAndRegister();
+    public static final Material HotSodium = new Material.Builder(GTCEu.id("hot_sodium"))
+            .gas()
+            .color(0x237ad1)
+            .buildAndRegister();
+    public static final Material HotSodiumPotassium = new Material.Builder(GTCEu.id("hot_sodium_potassium"))
+            .gas()
+            .color(0x39cf89)
+            .buildAndRegister();
+    public static final Material Livingrock = new Material.Builder(GTCEu.id("livingrock"))
+            .dust()
+            .color(0xfafafa)
+            .buildAndRegister();
+    public static final Material icestone = new Material.Builder(GTCEu.id("icestone"))
+            .dust()
+            .color(0xd7fffd)
+            .buildAndRegister();
+    public static final Material CombustibleIce = new Material.Builder(GTCEu.id("combustible_ice"))
+            .gem()
+            .iconSet(LIGNITE)
+            .color(0xebfbfc)
+            .burnTime(6000)
+            .ore()
+            .buildAndRegister();
+    public static final Material ManaFused = new Material.Builder(GTCEu.id("mana_fused"))
+            .dust()
+            .ore()
+            .color(0x4FC1FF)
+            .buildAndRegister();
 
     public static void init() {
+        CombustibleIce.setFormula("(CH4)(H2O)", true);
         NuclearMaterials.init();
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);
@@ -498,6 +555,8 @@ public class CTNHMaterials {
 
         TagPrefix.ingot.setIgnored(Stratus, DAItems.STRATUS_INGOT);
         TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
+
+        TagPrefix.block.setIgnored(Livingrock, BotaniaBlocks.livingrock);
     }
 
     public static class MaterialIcons {

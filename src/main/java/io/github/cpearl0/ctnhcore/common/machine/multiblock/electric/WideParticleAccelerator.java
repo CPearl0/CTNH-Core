@@ -123,8 +123,10 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
         var hatchs=0;
         if (machine instanceof IMultiController controller) {
             if (controller.isFormed()) {
-                int parallels = (Integer)controller.getParallelHatch().map((hatch) -> ParallelLogic.getParallelAmount(machine, recipe, hatch.getCurrentParallel())).orElse(0);
-                if (parallels > 0) {
+                int parallels = (Integer)controller.getParallelHatch()
+                        .map(IParallelHatch::getCurrentParallel)
+                        .orElse(0);
+                if (parallels >= 0) {
                     hatchs=parallels;
                 }
 
@@ -146,6 +148,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
             {
                 wmachine.isconnect=false;
             }
+            //速度不足
             if(recipe.data.getString("type").equals("nu") && recipe.data.getDouble("speed")>=wmachine.nu_speed)
             {
                 return ModifierFunction.NULL;
@@ -158,14 +161,27 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
             {
                 return ModifierFunction.NULL;
             }
+            //计算并行
+            int parallel=16;
 
-            int parallel = ParallelLogic.getParallelAmount(machine,recipe,16);
             var random = Math.random()*0.25;
-            if(hatchs>0)parallel=hatchs;
+            var eut_consume=recipe.getTickInputContents(EURecipeCapability.CAP).stream()
+                    .map(Content::getContent)
+                    .mapToLong(EURecipeCapability.CAP::of)
+                    .sum();
             double total_eut= (wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/1000;
+            //计算能耗，减速模式根本没写笑死
+            var true_eut=eut_consume*(1+total_eut);
+            recipe.tickInputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent((long) true_eut));
+            parallel = ParallelLogic.getParallelAmount(machine,recipe,16);
+            if(hatchs>0)parallel=ParallelLogic.getParallelAmount(machine,recipe,hatchs);
+
+
+
+
 
             if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN))total_eut=(wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/250;
-
+            //加速粒子模式逻辑
             if(recipe.data.getString("type").equals("addnu")||recipe.data.getString("type").equals("addproton")||recipe.data.getString("type").equals("addelement"))
             {
                 if(recipe.getType().equals(CTNHRecipeTypes.ACCELERATOR_DOWN)) {
@@ -183,11 +199,13 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
                     wmachine.add_parallel_proton=parallel;
                 if(recipe.data.getString("type").equals("addelement"))
                     wmachine.add_parallel_element=parallel;
+
                 return ModifierFunction.builder()
                         .parallels(parallel)
                         .eutMultiplier(Math.abs(parallel))
                         .build();
             }
+            //暗物质开始
             if(recipe.data.getString("darkmatter").equals("nu"))
             {
                 if(getMachine(level, pos) instanceof Superconducting_Penning_Trap gmachine)
@@ -240,6 +258,7 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
                 }
 
             }
+            //暗物质结束
             var muti=1.0;
             if(wmachine.nu_speed+wmachine.element_speed+ wmachine.proton_speed>10000) {
                  muti = 0.1;
@@ -248,11 +267,14 @@ public class WideParticleAccelerator extends WorkableElectricMultiblockMachine i
             {
                  muti=1-(recipe.data.getDouble("speed")-(wmachine.nu_speed+ wmachine.proton_speed+ wmachine.element_speed)/2000);
             }
+
+
+
             return ModifierFunction.builder()
                     .parallels(parallel)
                     .inputModifier(ContentModifier.multiplier(parallel))
                     .outputModifier(ContentModifier.multiplier(parallel))
-                    .eutMultiplier(parallel*(1+total_eut))
+                    .eutMultiplier(parallel)
                     .durationMultiplier(Math.max(0.1,muti))
                     .build();
         }

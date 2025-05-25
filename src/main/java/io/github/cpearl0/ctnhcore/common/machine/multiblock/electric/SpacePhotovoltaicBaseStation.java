@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
@@ -38,9 +39,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMachine{
+public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMachine implements ITieredMachine {
     public SpacePhotovoltaicBaseStation(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
+
     }
     @Persisted IPBData data;
 
@@ -52,14 +54,15 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
+        Drone_location=getPos();
         Object type = this.getMultiblockState().getMatchContext().get("IPBData");
         if (type instanceof IPBData coil) {
             this.data = coil;
             this.heat= data.getheatlevel();
             this.pv_level= data.getTier();
             muti=dimension_check();
-        }
 
+        }
     }
 
 
@@ -70,6 +73,7 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         pv_level=0;
         heat=0;
         orbit=false;
+        Drone_location=getPos();
     }
     //#############闪存绑定事件#############//
 
@@ -83,7 +87,7 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         if(dimension==Planet.MOON_ORBIT || dimension == Planet.VENUS_ORBIT|| dimension == Planet.MERCURY_ORBIT|| dimension == Planet.MARS_ORBIT|| dimension == Planet.GLACIO_ORBIT)
         {
             orbit=true;
-            rate*=1.5;
+            rate*=4;
         }
 
         if (dimension == Level.OVERWORLD || dimension.location().getPath().equals("twilightforest:twilight_forest") || dimension.location().getPath().equals("mythicbotany:alfheim")) {
@@ -98,9 +102,9 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         } else if (dimension == Planet.MERCURY || dimension == Planet.MERCURY_ORBIT) {
             rate *= 8;
         } else if (dimension == Planet.MARS || dimension == Planet.MARS_ORBIT) {
-            rate *= 8;
-        } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
             rate *= 16;
+        } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
+            rate *= 32;
         }
 
         return rate;
@@ -114,20 +118,18 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         {
             return false;
         }
-        FluidStack pyrotheumFluid = new FluidStack(
-                Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:pyrotheum"))),
-                1000
-        );
-            boolean isFluidSufficient = MachineUtils.inputFluid(pyrotheumFluid, this);
-            if (isFluidSufficient) {
-                freeze+=2;
-            }
-            if(freeze<muti)
-            {
-                return false;
-            }
-
-
+//        FluidStack pyrotheumFluid = new FluidStack(
+//                Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:pyrotheum"))),
+//                1000
+//        );
+//            boolean isFluidSufficient = MachineUtils.inputFluid(pyrotheumFluid, this);
+//            if (isFluidSufficient) {
+//                freeze+=2;
+//            }
+//            if(freeze<muti)
+//            {
+//                return false;
+//            }
 
         return super.beforeWorking(recipe);
     }
@@ -135,28 +137,28 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         if (machine instanceof SpacePhotovoltaicBaseStation pmachine) {
             var level = pmachine.getLevel();
             var pos = pmachine.getPos();
-//            var area = AABB.of(BoundingBox.fromCorners(pos.offset(-20, -10, -20), pos.offset(10, 10, 10)));
-//            var entities = level.getEntities(null, area);
-//            for (Entity i : entities) {
-//                if ((i instanceof IMachineBlockEntity machineBlockEntity)) {
-//                    continue;
-//                }
+            var EUt=0;
+            var dmachine=getMachine(level,pmachine.Drone_location);
+            if(dmachine instanceof PhotoVoltaicDroneStation pvdrone)
+            {
+                if(pvdrone.isActive())
+                {
+                    EUt+=pvdrone.getEut();
+                }
+            }
+
+
                 if (recipe.recipeType.equals(CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER)) {
-                    var EUt = RecipeHelper.getOutputEUt(recipe);
                     var tier = recipe.data.getInt("tier");
                     var input = recipe.data.getInt("input");
-                    var output = 8192 * tier / 2;
                     var duration = 1.0;
-                    if (pmachine.pv_level < tier) {
-                        return ModifierFunction.NULL;
-                    }
-
-                    var parallel = Math.max((pmachine.muti * tier * 8192 / input), 0.01); //真实并行
-
+                    var true_eut=pmachine.muti * pmachine.heat * 16384+EUt;
+                    var parallel = Math.max((true_eut / input), 0.01); //真实并行
                     if (parallel < 1) {
                         duration = 1 / (parallel * parallel);
                         parallel = 1;
-                    } else {
+                    }
+                    else {
                         duration = ((int) (parallel));
                     }
                     var new_recipe = recipe;
@@ -172,9 +174,9 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
                             .build();
                 }
                 if (recipe.recipeType.equals(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR)) {
-
+                    var true_eut=EUt+ pmachine.muti*16384* pmachine.heat;
+                    recipe.tickOutputs.put(EURecipeCapability.CAP, EURecipeCapability.makeEUContent((long) true_eut));
                     return ModifierFunction.builder()
-                            .eutMultiplier(pmachine.muti)
                             .build();
                 }
             }
@@ -182,9 +184,9 @@ public class SpacePhotovoltaicBaseStation extends WorkableElectricMultiblockMach
         }
 
     public void addDisplayText(List<Component> textList) {
-        textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.0",String.format("%d",pv_level)));
+        textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.0",String.format("%d",heat)));
         textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.1",String.format("%d",heat)));
-        textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.2",String.format("%.2f",muti*8192*tier)));
+        textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.2",String.format("%.2f",muti*16384*heat)));
         textList.add(textList.size(),Component.translatable("ctnh.pvc_tier.3",String.format("%.1f",muti)));
         super.addDisplayText(textList);
     }

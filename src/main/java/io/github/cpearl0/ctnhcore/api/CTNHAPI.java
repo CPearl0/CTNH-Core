@@ -5,7 +5,10 @@ import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.addon.AddonFinder;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.data.chemical.material.IMaterialRegistryManager;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.registry.GTRegistry;
+import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +18,10 @@ import io.github.cpearl0.ctnhcore.common.block.SpaceStructuralFramework;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.block.PhotovoltaicBlock;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
+import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import lombok.Generated;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.GenericEvent;
 import net.minecraftforge.fml.event.IModBusEvent;
 import org.jetbrains.annotations.ApiStatus.Internal;
@@ -28,6 +33,7 @@ public class CTNHAPI {
     private static boolean highTierInitialized;
     public static final Map<IPBData, Supplier<PhotovoltaicBlock>> PhotovoltaicBlock = new HashMap();
     public static final Map<ISSFData,Supplier<SpaceStructuralFramework>> SpaceStructuralFramework =new HashMap();
+    public static final Map<Integer, Supplier<Block>> ReactorCoreBlock = new HashMap();
 
     public CTNHAPI() {
     }

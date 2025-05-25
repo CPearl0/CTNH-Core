@@ -1,5 +1,4 @@
-// 1.20.1	2025-05-25T22:40:35.9580323	Registries
-ffd0481f4f4b5abcc11506d4d8ed0be9af26f7e6 data/ctnhcore/damage_type/computation_sacrifice.json
+// 1.20.1	2025-05-10T13:50:23.7591116	Registries
 6cc75e99eed5a42311778967df12c6da972c1de0 data/ctnhcore/dimension/astral_orbit.json
 cca4727d31c59fde0afa4bbff10a3b576b4e1ea4 data/ctnhcore/dimension/astral_planet.json
 43ca8910bd0609d08e50fe4f68c6ad6beb0983e0 data/ctnhcore/dimension_type/astral_orbit.json
@@ -16,7 +15,7 @@ eb9d05929f617494ff462fd882805461d68fc509 data/ctnhcore/worldgen/density_function
 17a2852b9f2c08a92e2e56da41053b327a1b7635 data/ctnhcore/worldgen/density_function/factor.json
 63dfd4a34698e04b000792010f90d57d66185c75 data/ctnhcore/worldgen/density_function/final_density.json
 a729f64940f4517cff6c1daaf7efee8724d11d59 data/ctnhcore/worldgen/density_function/sloped_cheese.json
-b0f8ad1666aa5c895daae2e1b0f6f5a886674759 data/ctnhcore/worldgen/noise_settings/abyss.json
+13f816ca8b1216d9a9a0d960c4db1415b1c4ce49 data/ctnhcore/worldgen/noise_settings/abyss.json
 251da65c7109a1079c1d3bd6fe61a424e827f0b8 data/ctnhcore/worldgen/noise_settings/astral_planet.json
 84e423f0064f0e51ec51c4a3909ca4a6e7a02e12 data/ctnhcore/worldgen/noise_settings/orbit.json
 95e5372a488104eeb00e9cc15d9b7fd7488005e9 data/ctnhcore/worldgen/placed_feature/astral_flower.json

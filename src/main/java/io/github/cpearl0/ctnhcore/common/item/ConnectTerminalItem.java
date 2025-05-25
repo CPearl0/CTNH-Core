@@ -55,7 +55,7 @@ public class ConnectTerminalItem extends ComponentItem implements IInteractionIt
         CompoundTag nbt = stack.getOrCreateTag();
         if(machine instanceof PhotoVoltaicDroneStation)
         {
-            nbt.putInt("block_x", blockPos.getZ());
+            nbt.putInt("block_x", blockPos.getX());
             nbt.putInt("block_y", blockPos.getY());
             nbt.putInt("block_z", blockPos.getZ());
             player.displayClientMessage(Component.translatable("ctnh.terminal.success_get"), true);
@@ -93,7 +93,7 @@ public class ConnectTerminalItem extends ComponentItem implements IInteractionIt
         if(nbt.contains("block_x"))
         {
             tooltipComponents.add(Component.translatable("ctnh.terminal.tips"));
-            tooltipComponents.add(Component.translatable("ctnh.terminal.location",String.format("%d %d %d",nbt.getInt("block_x"),nbt.getInt("block_y"),nbt.getInt("block_z"))));
+            tooltipComponents.add(Component.translatable("ctnh.terminal.location",String.format("%d%d%d",nbt.getInt("block_x"),nbt.getInt("block_y"),nbt.getInt("block_z"))));
         }
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced); // 调用父类方法以处理原版提示信息
 

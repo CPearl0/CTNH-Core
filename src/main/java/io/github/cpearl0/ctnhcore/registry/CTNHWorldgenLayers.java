@@ -19,7 +19,8 @@ public enum CTNHWorldgenLayers implements IWorldGenLayer, StringRepresentable {
 
     //TWILIGHT("twilight_forest", new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Set.of(TWILIGHT_FOREST)),
 
-    AETHER("aether", new TagMatchTest(CTNHTags.AETHER_STONES), Set.of(THE_AETHER));
+    AETHER("aether", new TagMatchTest(CTNHTags.AETHER_STONES), Set.of(THE_AETHER)),
+    ALFHEIM("alfheim", new TagMatchTest(CTNHTags.ALFHEIM_STONES), Set.of(CTNHWorlds.ALFHEIM));
     public static void init() {}
 
     CTNHWorldgenLayers(String name, RuleTest target, Set<ResourceLocation> levels) {
