@@ -644,6 +644,11 @@ public class ChineseLangHandler {
         provider.add("ctnh.terminal.success_clear","已清除坐标！");
         provider.add("ctnh.terminal.tips","使用右键绑定光伏模块控制器，然后再右键将控制器和光伏基站绑定\nshift+右键任意方块清除坐标");
 
+        provider.add("ctnhcore.src.sacrifice_empty","无牺牲者");
+        provider.add("ctnhcore.src.sacrifice_locked","已锁定牺牲者！");
+        provider.add("ctnhcore.src.sacrifice_unlocked","无法锁定牺牲者");
+        provider.add("ctnhcore.src.wetware_duration", "湿件剩余存活时间: %s ticks");
+        provider.add("ctnhcore.src.sacrifice", "牺牲着: %s");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");

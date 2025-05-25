@@ -2167,7 +2167,7 @@ public class CTNHMultiblockMachines {
             .register();
     public final static MultiblockMachineDefinition SCALABLE_RESERVOIR_COMPUTING = REGISTRATE.multiblock("scalable_reservoir_computing", holder -> new ScalableReservoirComputingMachine(holder, 10, 25, 60, 5))
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(GTRecipeTypes.DISTILLATION_RECIPES)
+            .recipeTypes(CTNHRecipeTypes.SCALABLE_RESERVOIR_COMPUTING)
             .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
             .recipeModifiers(ZenithMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.computer.a1"),
@@ -2188,7 +2188,10 @@ public class CTNHMultiblockMachines {
                     .aisle("XVX########################XVX", "W#W#########XXXXXXX########W#W", "W#W########X#######X#######W#W", "XVX#######X#########X######XVX", "#########X##########X#########", "#########X##########X#########", "#########X##########X#########", "#########X##########X#########", "#########X##########X#########", "##########X#########X#########", "###########X#######X##########", "############XXXXXXX###########", "XVX##########XXXXX#########XVX", "W#W########################W#W", "W#W########################W#W", "XVX########################XVX")
                     .aisle("#X##########################X#", "XWX########################X#X", "XWX#########XXXXXXX########X#X", "#X#########XOOO@OOOX########X#", "##########XOOOOOOOOOX#########", "#########XOOOOOOOOOOX#########", "#########XOOOOOOOOOOX#########", "#########XOOOOOOOOOOX#########", "#########XOOOOOOOOOOX#########", "##########XOOOOOOOOOX#########", "###########XOOOOOOOX##########", "############XXXXXXX###########", "#X##########################X#", "XWX########################XWX", "XWX########################XWX", "PX##########################XY")
                     .where("Y", Predicates.any())
-                    .where("X", Predicates.blocks(GTBlocks.HIGH_POWER_CASING.get()))
+                    .where("X", Predicates.autoAbilities(definition.getRecipeTypes())
+                            .or(abilities(PartAbility.COMPUTATION_DATA_TRANSMISSION))
+                            .or(abilities(PartAbility.INPUT_LASER))
+                            .or( Predicates.blocks(GTBlocks.HIGH_POWER_CASING.get())))
                     .where("#", Predicates.any())
                     .where("W", Predicates.blocks(IRON_BARS))
                     .where("V", Predicates.blocks(GTBlocks.CASING_ASSEMBLY_CONTROL.get()))

@@ -344,5 +344,10 @@ public class EnglishLangHandler {
         provider.add("ctnh.astronomical.intro", "Knowing the heavens is easy, but defying them is difficult");
         provider.add("ctnh.astronomical.mechanism", "Cannot work under direct sunlight, but will automatically collect data for the chips in the chip bus while working");
         provider.add("ctnh.multiblock.lcr.duration_reduction", "Can reduce the duration as pyrolyse oven");
+        provider.add("ctnhcore.src.sacrifice_empty","No sacrifices found");
+        provider.add("ctnhcore.src.sacrifice_locked","Sacrifice LOCKED");
+        provider.add("ctnhcore.src.sacrifice_unlocked","Sacrifice UNLOCKED");
+        provider.add("ctnhcore.src.wetware_duration", "Wetware duration: %s ticks");
+        provider.add("ctnhcore.src.sacrifice", "Sacrifices: %s");
     }
 }
