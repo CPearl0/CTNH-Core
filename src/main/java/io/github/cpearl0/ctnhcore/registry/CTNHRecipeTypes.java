@@ -634,6 +634,11 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_COMPRESS, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
+    public static final GTRecipeType COMPILER_RECIPE = GTRecipeTypes.register("compiler_recipe", ELECTRIC)
+            .setMaxIOSize(5, 0, 0, 1)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_COMPRESS, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.COOLING);
     public static final GTRecipeType SCALABLE_RESERVOIR_COMPUTING = GTRecipeTypes.register("scalable_reservoir_computing",ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(1,0,1,0)

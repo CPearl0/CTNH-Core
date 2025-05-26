@@ -70,7 +70,7 @@ public class ManaMachine extends WorkableElectricMultiblockMachine implements IT
                     amount+=0.01;
                 }
                 else {
-                    amount += 0.33;
+                    amount += 0.5;
                 }
             }
 

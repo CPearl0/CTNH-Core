@@ -75,7 +75,7 @@ public class CTNHMachines {
             (tier, builder) -> builder
                     .langValue(GTValues.VNF[tier] + " Neuro Compiler")
                     .rotationState(RotationState.ALL)
-                    .abilities(CTNHPartAbility.CIRCUIT)
+                    .abilities(CTNHPartAbility.COMPILER)
                     .renderer(() -> new OverlayTieredMachineRenderer(tier, GTCEu.id("block/machine/part/item_bus.import")))
                     .register(),
             GTMachineUtils.ALL_TIERS);

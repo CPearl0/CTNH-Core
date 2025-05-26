@@ -476,7 +476,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.alter.tips1","§4血魔法，就在你家门口！");
         provider.add("ctnh.alter.tips2","与血祭坛相同，该结构有输入LP上限，同时你§4必须通过特定配方来增加其lp§r\n详见JEI以查询增加的配方");
         provider.add("ctnh.alter.tips3","电压每超过HV一级，就增加10000可存储LP上限，达到LUV后每级额外增加30000");
-        provider.add("ctnh.alter.tips4","每一个增容符文增加2500LP上限，强化增容符文增加5000,达到LUV后每级额外增加10000/20000LP上限");
+        provider.add("ctnh.alter.tips4","每一个增容符文增加2500LP上限，强化增容符文增加5000,达到LUV后每级额外增加1000000/2000000LP上限");
         provider.add("ctnh.tier5_rune","五级符文");
         provider.add("ctnh.rune_energy","符文能量：%.2f");
         provider.add("ctnh.rune_consumption","当前消耗符文能量速率:%.2f /100tick");
@@ -616,7 +616,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.accelerator.mode.speed.m","需求速度：%.2fMev");
         provider.add("ctnh.accelerator.mode.speed.g","需求速度:%.2fGev");
         provider.add("ctnh.mk4.waring","只能使用激光仓");
-        provider.add("ctnh.multiblock.lcr.duration_reduction", "和热解炉一样根据线圈等级减免配方时间");
+        provider.add("ctnh.multiblock.lcr.duration_reduction", "线圈温度超过5400K时，每1800K使运行速度+25%");
         provider.add("ctnh.manareactor.1","工业魔力奠基者");
         provider.add("ctnh.manareactor.2","允许使用并行控制仓");
         provider.add("ctnh.arcgenerator.arc.1","电弧最大强度:%d");
@@ -668,7 +668,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.eternalgarden.3","每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制");
         provider.add("ctnh.eternalgarden.unknown","§5......等待着永恒的紫罗兰如今在何方？");
         provider.add("ctnh.manamachine.parallel","运行中的每一并行提供1%时间和耗能减免，至多减少75%");
-        provider.add("ctnh.manamachine.debuff","§4当电压低于LUV且配方电压等级等于当前配方电压时，使配方时间增加33%（魔力组装只增加1%)");
+        provider.add("ctnh.manamachine.debuff","§4当电压低于LUV且配方电压等级等于当前配方电压时，使配方时间增加50%（魔力组装只增加1%)");
         provider.add("ctnh.quasar_mode","放入§5类星体符文§r以在100次配方内启用§5星体之眼模式§r：并行变为无限，并行不再提供额外的时间与电压减少。启动此模式不消耗类星体符文");
         provider.add("ctnh.anti_inf_matter.1","-∞");
         provider.add("ctnh.anti_inf_matter.2","它到底是怎么在现实世界存在的......");
@@ -694,7 +694,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.u_sinope.6","允许使用激光仓，但你的配方电压等级必须达到OPV，否则效率将减少99%");
         provider.add("ctnh.u_sinope.7","对于常规配方，该巨构拥有8^（电压等级）的并行，最高不超过2^32，在能源仓等级达到OPV时解锁无损超频，配方等级每超过UHV一级，处理速度+555%,每100点并行使处理速度增加333%,如果使用了四维工程学材料，则速度额外增加5000%");
         provider.add("ctnh.u_sinope.8","对于该巨构特有的配方类型具有特殊机制：时间固定为100秒，并行固定为10，电压每超过UHV一级，则时间减少10秒，并行增加10,如果使用了四维工程学材料且线圈等级大于等于UIV，则时间固定为1秒");
-        provider.add("ctnh.overclock_parallel_machine","机器运行时每有一实际并行，能源消耗减少1%（至多75%）。运行时间减少1%(至多50%)");
+        provider.add("ctnh.overclock_parallel_machine","机器运行时每有一实际并行，能源消耗减少2%（至多75%）。运行时间减少2%(至多50%)");
         provider.add("ctnh.coil_speed","线圈温度大于1800K时，每额外的1800K温度额外提供50%的速度加成");
         provider.add("ctnh.pab","配方类型：“合金冶炼炉“");
         provider.add("ctnh.acc.danger","§c危险粒子实验");
@@ -762,6 +762,12 @@ public class ChineseLangHandler {
         provider.add("ctnh.cryotheum.0","§b泪水如凛冰般落下");
         provider.add("ctnh.cryotheum.1","每次运行配方消耗10mb极寒之凛冰，电压每高于§9IV§r一级，这个消耗就翻4倍");
         provider.add("ctnh.cryotheum.2","具有16并行，能耗-25%，运行速度+25%");
+        provider.add("ctnh.compiler.part_states","片区%d状态:%s");
+        provider.add("ctnh.compiler.state.idle","§e待机");
+        provider.add("ctnh.compiler.state.error","§c故障");
+        provider.add("ctnh.compiler.state.working","§9运行中:%ss/%ss");
+        provider.add("ctnh.compiler.state.finish","§a完成");
+        provider.add("ctnh.compiler.state.waiting","§b等待中......");
 
         provider.add("ctnhcore.src.sacrifice_empty","无牺牲者");
         provider.add("ctnhcore.src.sacrifice_locked","已锁定牺牲者！");
