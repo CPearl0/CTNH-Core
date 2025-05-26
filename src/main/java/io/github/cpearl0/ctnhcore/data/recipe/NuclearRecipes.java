@@ -166,7 +166,8 @@ public class NuclearRecipes {
                     .inputFluids(GTMaterials.get(name + "_hexafluoride").getFluid(20000));
 
             composition.forEach(m -> {
-                    builder.outputFluids(GTMaterials.get(m.key + "_hexafluoride").getFluid(m.value * 2));
+                    builder.outputFluids(GTMaterials.get(m.key + "_hexafluoride").getFluid(m.value * 2))
+                            .save(provider);
                     // [Mat + F6] + 3H2O -> [Mat + F6 + 3H2O]
                     GTRecipeTypes.CRACKING_RECIPES.recipeBuilder(m.key + "steam_cracked")
                             .inputFluids(GTMaterials.get(m.key + "_hexafluoride").getFluid(1000))

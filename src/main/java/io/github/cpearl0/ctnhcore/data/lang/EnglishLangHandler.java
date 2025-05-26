@@ -23,6 +23,17 @@ public class EnglishLangHandler {
         LangHandler.replace(provider, CTNHMaterials.Skyjade.getUnlocalizedName(), "Skyjade");
         LangHandler.replace(provider, CTNHMaterials.Stratus.getUnlocalizedName(), "Stratus");
 
+        provider.add("enchantment.kubejs.vacuum_seal.desc", "Protects you from vacuum damage. Note: All equipped items must have this enchantment to take effect");
+        provider.add("enchantment.kubejs.warming.desc", "Enhance your hot defending ability");
+        provider.add("enchantment.kubejs.cooling.desc", "Enhance your cold defending ability");
+
+        provider.add("tagprefix.nuclear", "%s");
+        provider.add("tagprefix.fuel", "%s Fuel");
+        provider.add("tagprefix.depleted_fuel", "%s Depleted Fuel");
+        provider.add("tagprefix.waste", "%s Waste");
+        provider.add("tagprefix.icestone", "Icestone %s Ore");
+        provider.add("tagprefix.livingrock", "Livingrock %s Ore");
+
         provider.add("gtceu.underfloor_heating_system", "Underfloor Heating");
         provider.add("gtceu.astronomical_observatory", "Astronomical Observatory");
         provider.add("gtceu.photovoltaic_power", "Photovoltaic Powering");
@@ -344,5 +355,10 @@ public class EnglishLangHandler {
         provider.add("ctnh.astronomical.intro", "Knowing the heavens is easy, but defying them is difficult");
         provider.add("ctnh.astronomical.mechanism", "Cannot work under direct sunlight, but will automatically collect data for the chips in the chip bus while working");
         provider.add("ctnh.multiblock.lcr.duration_reduction", "Can reduce the duration as pyrolyse oven");
+        provider.add("ctnhcore.src.sacrifice_empty","No sacrifices found");
+        provider.add("ctnhcore.src.sacrifice_locked","Sacrifice LOCKED");
+        provider.add("ctnhcore.src.sacrifice_unlocked","Sacrifice UNLOCKED");
+        provider.add("ctnhcore.src.wetware_duration", "Wetware duration: %s ticks");
+        provider.add("ctnhcore.src.sacrifice", "Sacrifices: %s");
     }
 }

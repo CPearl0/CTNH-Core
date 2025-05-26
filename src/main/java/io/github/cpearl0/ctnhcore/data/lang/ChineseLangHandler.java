@@ -11,7 +11,6 @@ import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.jetbrains.annotations.NotNull;
-import oshi.jna.platform.windows.NtDll;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -64,6 +63,23 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.HotDeuterium.getUnlocalizedName(), "过热氘");
         replace(provider, CTNHMaterials.HotSodium.getUnlocalizedName(), "过热钠");
         replace(provider, CTNHMaterials.HotSodiumPotassium.getUnlocalizedName(), "过热钠钾合金");
+        replace(provider, CTNHMaterials.Eglinalloy.getUnlocalizedName(), "埃格林合金");
+        replace(provider, CTNHMaterials.Inconel625.getUnlocalizedName(), "镍铬基合金-625");
+        replace(provider, CTNHMaterials.Starmetal.getUnlocalizedName(), "炫星");
+        replace(provider, CTNHMaterials.AlfSteel.getUnlocalizedName(), "精灵钢");
+        replace(provider, CTNHMaterials.Jasper.getUnlocalizedName(), "碧玉");
+        replace(provider, CTNHMaterials.Abyssalalloy.getUnlocalizedName(), "渊狱合金");
+        replace(provider, CTNHMaterials.Titansteel.getUnlocalizedName(), "泰坦钢");
+        replace(provider, CTNHMaterials.Pikyonium.getUnlocalizedName(), "皮卡优");
+        replace(provider, CTNHMaterials.BlackTitanium.getUnlocalizedName(), "黑钛");
+        replace(provider, CTNHMaterials.Zircon.getUnlocalizedName(), "锆石");
+        replace(provider, CTNHMaterials.Zirkelite.getUnlocalizedName(), "钛锆钍石");
+        replace(provider, CTNHMaterials.Alumina.getUnlocalizedName(), "氧化铝");
+        replace(provider, CTNHMaterials.PreciousAlloy.getUnlocalizedName(), "贵金属");
+        replace(provider, CTNHMaterials.ManaFused.getUnlocalizedName(), "蕴魔");
+        replace(provider, CTNHMaterials.CombustibleIce.getUnlocalizedName(), "可燃冰");
+        replace(provider, CTNHMaterials.Livingrock.getUnlocalizedName(), "活石");
+        replace(provider, CTNHMaterials.icestone.getUnlocalizedName(), "冰石");
 
         replace(provider, NuclearMaterials.ThoriumHexafluoride.getUnlocalizedName(), "六氟化钍");
         replace(provider, NuclearMaterials.ProtactiniumHexafluoride.getUnlocalizedName(), "六氟化镤");
@@ -114,6 +130,17 @@ public class ChineseLangHandler {
         nuclearTranslation(provider, NuclearMaterials.Mendelevium259, "钔259");
         nuclearTranslation(provider, NuclearMaterials.Mendelevium261, "钔261");
         nuclearTranslation(provider, NuclearMaterials.Mendelevium263, "钔263");
+        replace(provider, NuclearMaterials.CarbideUranium235.getUnlocalizedName(), "碳化铀235");
+        replace(provider, NuclearMaterials.OxideUranium235.getUnlocalizedName(), "氧化铀235");
+        replace(provider, NuclearMaterials.NitrideUranium235.getUnlocalizedName(), "氮化铀235");
+        replace(provider, NuclearMaterials.ZirconiumAlloyUranium235.getUnlocalizedName(), "锆合金铀235");
+        replace(provider, NuclearMaterials.CarbideUranium238.getUnlocalizedName(), "碳化铀238");
+        replace(provider, NuclearMaterials.OxideUranium238.getUnlocalizedName(), "氧化铀238");
+        replace(provider, NuclearMaterials.NitrideUranium238.getUnlocalizedName(), "氮化铀238");
+        replace(provider, NuclearMaterials.ZirconiumAlloyUranium238.getUnlocalizedName(), "锆合金铀238");
+        nuclearTranslation2(provider, GTMaterials.Plutonium239, "钚239");
+        nuclearTranslation2(provider, GTMaterials.Plutonium241, "钚241");
+
         //Config
         provider.add("config.ctnhcore.option.ftbPlugin", "FTB相关");
         provider.add("config.ctnhcore.option.kinetic", "应力相关");
@@ -144,6 +171,8 @@ public class ChineseLangHandler {
         provider.add("tagprefix.fuel", "%s燃料");
         provider.add("tagprefix.depleted_fuel", "%s枯竭燃料");
         provider.add("tagprefix.waste", "%s废料");
+        provider.add("tagprefix.icestone", "冰石%s矿石");
+        provider.add("tagprefix.livingrock", "活石%s矿石");
         //Recipe Type
         provider.add("gtceu.phase_inversion","反相蚀刻");
         provider.add("gtceu.underfloor_heating_system", "地暖");
@@ -212,6 +241,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.gas_centrifuge", "气体离心");
         provider.add("gtceu.nuclear_reactor", "核能反应");
         provider.add("gtceu.hot_coolant_turbine", "热冷却液涡轮");
+        provider.add("gtceu.mana_condenser", "魔力凝集");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -733,11 +763,14 @@ public class ChineseLangHandler {
         provider.add("ctnh.cryotheum.1","每次运行配方消耗10mb极寒之凛冰，电压每高于§9IV§r一级，这个消耗就翻4倍");
         provider.add("ctnh.cryotheum.2","具有16并行，能耗-25%，运行速度+25%");
 
+        provider.add("ctnhcore.src.sacrifice_empty","无牺牲者");
+        provider.add("ctnhcore.src.sacrifice_locked","已锁定牺牲者！");
+        provider.add("ctnhcore.src.sacrifice_unlocked","无法锁定牺牲者");
+        provider.add("ctnhcore.src.wetware_duration", "湿件剩余存活时间: %s ticks");
+        provider.add("ctnhcore.src.sacrifice", "牺牲着: %s");
+
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
-        }
-        for (var tier : GTMachineUtils.ALL_TIERS) {
-            provider.add(CTNHMachines.COMPILERMACHINE[tier].getBlock(), GTValues.VNF[tier] + "§r神经拟合仓");
         }
         for (var tier : GTMachineUtils.ELECTRIC_TIERS) {
             provider.add(CTNHMachines.PERSONAL_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r个人计算机");
@@ -771,6 +804,9 @@ public class ChineseLangHandler {
         provider.addEnchantment(CTNHEnchantments.VACUUM_SEAL, "真空密封");
         provider.addEnchantment(CTNHEnchantments.WARMING, "御寒");
         provider.addEnchantment(CTNHEnchantments.COOLING, "御暑");
+        provider.add("enchantment.kubejs.vacuum_seal.desc", "使你不再受到真空的伤害。注：必须所有装备均拥有该附魔");
+        provider.add("enchantment.kubejs.warming.desc", "增强御暑能力");
+        provider.add("enchantment.kubejs.cooling.desc", "增强御寒能力");
 
         provider.addItem(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1, "完善的一阶航天数据芯片");
         provider.addItem(CTNHItems.ASTRONOMY_CIRCUIT_1, "一阶航天数据芯片");
@@ -1013,5 +1049,20 @@ public class ChineseLangHandler {
 //        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getZirconiumAlloyMaterial()).getDisplayName().getString(), name + "枯竭锆合金燃料");
         replace(provider, GTMaterials.get(material.getName() + "_hexafluoride").getUnlocalizedName(), "六氟化" + name);
         replace(provider, GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked").getUnlocalizedName(), "蒸汽裂解的六氟化" + name);
+    }
+    public static void nuclearTranslation2(RegistrateCNLangProvider provider, Material material, String name) {
+        var nuclearProperty = material.getProperty(CTNHPropertyKeys.NUCLEAR);
+        replace(provider, nuclearProperty.getCarbideMaterial().getUnlocalizedName(), "碳化" + name);
+        replace(provider, nuclearProperty.getOxideMaterial().getUnlocalizedName(), "氧化" + name);
+        replace(provider, nuclearProperty.getNitrideMaterial().getUnlocalizedName(), "氮化" + name);
+        replace(provider, nuclearProperty.getZirconiumAlloyMaterial().getUnlocalizedName(), "锆合金" + name);
+        if(material.equals(GTMaterials.Plutonium239)){
+            replace(provider, GTMaterials.get(material.getName() + "_239_hexafluoride").getUnlocalizedName(), "六氟化" + name);
+            replace(provider, GTMaterials.get(material.getName() + "_239_hexafluoride_steam_cracked").getUnlocalizedName(), "蒸汽裂解的六氟化" + name);
+        }
+        else {
+            replace(provider, GTMaterials.get(material.getName() + "_hexafluoride").getUnlocalizedName(), "六氟化" + name);
+            replace(provider, GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked").getUnlocalizedName(), "蒸汽裂解的六氟化" + name);
+        }
     }
 }

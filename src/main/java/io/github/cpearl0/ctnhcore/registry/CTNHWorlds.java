@@ -10,5 +10,6 @@ public class CTNHWorlds {
     public static final ResourceLocation MERCURY = new ResourceLocation("ad_astra", "mercury");
     public static final ResourceLocation GLACIO = new ResourceLocation("ad_astra", "glacio");
     public static final ResourceLocation THE_AETHER = new ResourceLocation("aether", "the_aether");
+    public static final ResourceLocation ALFHEIM = new ResourceLocation("mythicbotany", "alfheim");
 
 }

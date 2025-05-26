@@ -21,12 +21,14 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.SoundDefinitionsProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.RegisterEvent;
 
 import java.util.Set;
 
@@ -79,7 +81,8 @@ public class EventHandler {
                         .add(Registries.DIMENSION_TYPE, CTNHDimensionTypes::bootstrap)
                         .add(Registries.LEVEL_STEM, CTNHDimensions::bootstrap)
                         .add(Registries.NOISE_SETTINGS, CTNHNoiseGenerationSettings::bootstrap)
-                        .add(Registries.DENSITY_FUNCTION, CTNHDensityFunctions::bootstrap),
+                        .add(Registries.DENSITY_FUNCTION, CTNHDensityFunctions::bootstrap)
+                        .add(Registries.DAMAGE_TYPE,CTNHDamageTypes::bootstrap),
                         set));
         }
     }

@@ -18,6 +18,7 @@ import lombok.Generated;
 import net.minecraft.server.commands.PublishCommand;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
+import vazkii.botania.common.block.BotaniaBlocks;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
@@ -163,9 +164,7 @@ public class CTNHMaterials {
             .element(CTNHElements.STARMETAL)
             .color(0xf4f4f4)
             .iconSet(MaterialIcons.StarsteelIcon)
-            .flags(MORTAR_GRINDABLE, GENERATE_ROTOR, GENERATE_SMALL_GEAR,
-                     DISABLE_DECOMPOSITION, GENERATE_GEAR,
-                    GENERATE_DENSE)
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_ROTOR)
             .cableProperties(GTValues.V[GTValues.OpV], 4, 256)
             .buildAndRegister();
     public static final Material Infinity = new Material.Builder(GTCEu.id("my_infinity"))
@@ -513,8 +512,29 @@ public class CTNHMaterials {
             .gas()
             .color(0x39cf89)
             .buildAndRegister();
+    public static final Material Livingrock = new Material.Builder(GTCEu.id("livingrock"))
+            .dust()
+            .color(0xfafafa)
+            .buildAndRegister();
+    public static final Material icestone = new Material.Builder(GTCEu.id("icestone"))
+            .dust()
+            .color(0xd7fffd)
+            .buildAndRegister();
+    public static final Material CombustibleIce = new Material.Builder(GTCEu.id("combustible_ice"))
+            .gem()
+            .iconSet(LIGNITE)
+            .color(0xebfbfc)
+            .burnTime(6000)
+            .ore()
+            .buildAndRegister();
+    public static final Material ManaFused = new Material.Builder(GTCEu.id("mana_fused"))
+            .dust()
+            .ore()
+            .color(0x4FC1FF)
+            .buildAndRegister();
 
     public static void init() {
+        CombustibleIce.setFormula("(CH4)(H2O)", true);
         NuclearMaterials.init();
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);
@@ -535,6 +555,8 @@ public class CTNHMaterials {
 
         TagPrefix.ingot.setIgnored(Stratus, DAItems.STRATUS_INGOT);
         TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
+
+        TagPrefix.block.setIgnored(Livingrock, BotaniaBlocks.livingrock);
     }
 
     public static class MaterialIcons {
