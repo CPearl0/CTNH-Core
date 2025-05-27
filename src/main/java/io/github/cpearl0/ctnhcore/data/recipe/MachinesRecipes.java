@@ -110,6 +110,15 @@ public class MachinesRecipes {
                 .duration(100)
                 .circuitMeta(1)
                 .save(provider);
+        CTNHRecipeTypes.COMPILER_RECIPE.recipeBuilder("test")
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .duration(20*30)
+                .EUt(1000)
+                .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")
                 .inputItems(plate, NaquadahAlloy, 4)

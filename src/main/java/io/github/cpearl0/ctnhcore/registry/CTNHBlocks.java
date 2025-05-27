@@ -107,6 +107,8 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/gearbox/machine_casing_gearbox_naquadah"));
     public static final BlockEntry<Block> BIO_REACTOR_CASING = createCasingBlock("bio_reactor_casing",
             CTNHCore.id("block/casings/bio_reactor_casing"));
+    public static final BlockEntry<Block> ADVANCED_BIO_REACTOR_CASING = createCasingBlock("advanced_bio_reactor_casing",
+            CTNHCore.id("block/casings/advanced_bio_reactor_casing"));
     public static final BlockEntry<Block> ELEMENTIUM_PIPE_CASING = createCasingBlock("elementium_pipe_casing",
             CTNHCore.id("block/casings/pipe/elementium_pipe_casing"));
     public static final BlockEntry<Block> ELEMENTIUM_NORMAL_FLUID_PIPE = createCasingBlock("elementium_normal_fluid_pipe",
