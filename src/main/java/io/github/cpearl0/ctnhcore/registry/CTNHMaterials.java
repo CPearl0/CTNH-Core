@@ -560,7 +560,7 @@ public class CTNHMaterials {
     }
 
     public static class MaterialIcons {
-        public static MaterialIconSet StarsteelIcon = new MaterialIconSet("starsteel", SHINY);
+        public static MaterialIconSet StarsteelIcon = new MaterialIconSet("starsteel", METALLIC);
     }
 
 }
