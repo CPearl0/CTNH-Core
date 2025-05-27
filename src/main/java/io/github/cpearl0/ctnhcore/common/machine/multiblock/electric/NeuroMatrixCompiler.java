@@ -58,11 +58,13 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     @Persisted public long ticks=0;
     @Override
     public boolean onWorking() {
-        if(turn>5)
+
+        if(turn>4)
         {
              getRecipeLogic().setProgress(getRecipeLogic().getDuration());
-        }
-        if (getRecipeLogic().getProgress()>100&&turn<=5) {
+        }else states.set(turn,1);
+        if (getRecipeLogic().getProgress()>100&&turn<=4) {
+            states.set(turn,3);
             ticks=getOffsetTimer();
             var tier = getTier();
             turn+=1;
@@ -74,7 +76,10 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
      public void afterWorking() {
         turn=0;
         super.afterWorking();
-
+        for(int i=0;i<=4;i++)
+        {
+            states.set(i,0);
+        }
     }
     @Override
     public void onStructureFormed() {
@@ -201,27 +206,34 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
                 .filter(itemStacks -> itemStacks.length > 0) // 确保至少有一个 ItemStack
                 .map(itemStacks -> itemStacks[0].getItem()) // 获取第一个 ItemStack 的 Item
                 .collect(Collectors.toList()); // 收集到一个 List<Item>
-        CheckRecipeValid(recipe,itemsR);
+//        CheckRecipeValid(recipe,itemsR);
         ticks=getOffsetTimer();
         return super.beforeWorking(recipe);
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
-        var itemsR = recipe.getInputContents(ItemRecipeCapability.CAP).stream()
-                .map(num -> (SizedIngredient) num.getContent()) // 转换为 SizedIngredient
-                .map(SizedIngredient::getItems) // 获取 ItemStack 数组
-                .filter(itemStacks -> itemStacks.length > 0) // 确保至少有一个 ItemStack
-                .map(itemStacks -> itemStacks[0].getItem()) // 获取第一个 ItemStack 的 Item
-                .collect(Collectors.toList()); // 收集到一个 List<Item>
-        int parallel = ParallelLogic.getParallelAmount(machine,recipe,8);
-        var reduce = new ContentModifier(0.5 * parallel,0);
-        if(parallel==0)
-            return ModifierFunction.NULL;
-        return ModifierFunction.builder()
-                .eutModifier(reduce)
-                .inputModifier(ContentModifier.multiplier(parallel))
-                .outputModifier(ContentModifier.multiplier(parallel))
-                .parallels(parallel)
-                .build();
+        if(machine instanceof NeuroMatrixCompiler nmachine) {
+            var itemsR = recipe.getInputContents(ItemRecipeCapability.CAP).stream()
+                    .map(num -> (SizedIngredient) num.getContent()) // 转换为 SizedIngredient
+                    .map(SizedIngredient::getItems) // 获取 ItemStack 数组
+                    .filter(itemStacks -> itemStacks.length > 0) // 确保至少有一个 ItemStack
+                    .map(itemStacks -> itemStacks[0].getItem()) // 获取第一个 ItemStack 的 Item
+                    .collect(Collectors.toList()); // 收集到一个 List<Item>
+            for(int i=0;i<=4;i++)
+            {
+                nmachine.states.set(i,4);
+            }
+            int parallel = ParallelLogic.getParallelAmount(machine, recipe, 8);
+            var reduce = new ContentModifier(0.5 * parallel, 0);
+            if (parallel == 0)
+                return ModifierFunction.NULL;
+            return ModifierFunction.builder()
+                    .eutModifier(reduce)
+                    .inputModifier(ContentModifier.multiplier(parallel))
+                    .outputModifier(ContentModifier.multiplier(parallel))
+                    .parallels(parallel)
+                    .build();
+        }
+        return ModifierFunction.NULL;
     }
     @Override
     public void addDisplayText(List<Component> textList) {
@@ -242,25 +254,25 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     public MutableComponent addProgressPartSatus(int i) {
         if(states.get(i)==0)
         {
-            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i,Component.translatable("ctnh.compiler.state.idle")}));
+            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.idle")}));
         }
         if(states.get(i)==1)
         {
-            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i,Component.translatable("ctnh.compiler.state.working"),(double)this.recipeLogic.getProgress(), (double)this.recipeLogic.getMaxProgress()}));
+            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.working"),(double)this.recipeLogic.getProgress(), (double)this.recipeLogic.getMaxProgress()}));
         }
         if(states.get(i)==2)
         {
-            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i,Component.translatable("ctnh.compiler.state.error")}));
+            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.error")}));
         }
         if(states.get(i)==3)
         {
-            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i,Component.translatable("ctnh.compiler.state.finish")}));
+            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.finish")}));
         }
         if(states.get(i)==4)
         {
-            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i,Component.translatable("ctnh.compiler.state.waiting")}));
+            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.waiting")}));
         }
-        return (Component.translatable("ctnh.compiler.part_states", new Object[]{i,Component.translatable("ctnh.compiler.state.error")}));
+        return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.error")}));
     }
 
 

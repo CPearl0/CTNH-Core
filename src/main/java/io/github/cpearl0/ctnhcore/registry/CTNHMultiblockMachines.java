@@ -4253,6 +4253,7 @@ public class CTNHMultiblockMachines {
     public final static MultiblockMachineDefinition  NERUOMATRIXCOMPILER = REGISTRATE.multiblock("neruo_martix_compiler", NeuroMatrixCompiler::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.COMPILER_RECIPE)
+            .appearanceBlock(CASING_ANTIFREEZE_HEATPROOF_MACHINE)
             .recipeModifiers(NeuroMatrixCompiler::recipeModifier)
             .tooltips(Component.translatable("ctnh.cryotheum.0"),
                     Component.translatable("ctnh.cryotheum.1"),
@@ -4289,7 +4290,7 @@ public class CTNHMultiblockMachines {
                     .aisle("##BBBBB#################BBBBB##", "##CCDCC#################CCDCC##", "##B#B#B#################B#B#B##", "###############################", "###############################", "###############################", "###B#B###################B#B###", "##CCCCC#################CCCCC##", "##BBBBB#################BBBBB#A")
                     .where("A",Predicates.any())
                     .where("#", Predicates.any())
-                    .where("B", Predicates.blocks(BIO_REACTOR_CASING.get()))
+                    .where("B", Predicates.blocks(ADVANCED_BIO_REACTOR_CASING.get()))
                     .where("C", Predicates.blocks(FUSION_CASING.get()))
                     .where("D", Predicates.abilities(CTNHPartAbility.COMPILER))
                     .where("E", Predicates.blocks(ADVANCED_COMPUTER_CASING.get()))

@@ -763,7 +763,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.cryotheum.1","每次运行配方消耗10mb极寒之凛冰，电压每高于§9IV§r一级，这个消耗就翻4倍");
         provider.add("ctnh.cryotheum.2","具有16并行，能耗-25%，运行速度+25%");
         provider.add("ctnh.compiler.part_states","片区%d状态:%s");
-        provider.add("ctnh.compiler.state.idle","§e待机");
+        provider.add("ctnh.compiler.state.idle","§6待机");
         provider.add("ctnh.compiler.state.error","§c故障");
         provider.add("ctnh.compiler.state.working","§9运行中:%ss/%ss");
         provider.add("ctnh.compiler.state.finish","§a完成");

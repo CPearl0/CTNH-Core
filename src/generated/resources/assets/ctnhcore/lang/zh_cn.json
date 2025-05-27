@@ -348,7 +348,7 @@
   "ctnh.compiler.part_states": "片区%d状态:%s",
   "ctnh.compiler.state.error": "§c故障",
   "ctnh.compiler.state.finish": "§a完成",
-  "ctnh.compiler.state.idle": "待机",
+  "ctnh.compiler.state.idle": "§e待机",
   "ctnh.compiler.state.waiting": "§b等待中......",
   "ctnh.compiler.state.working": "§9运行中:%ss/%ss",
   "ctnh.computer.a1": "§c一切伟大之作都需要§4牺牲§r§j来铸就。其他生物或许不能理解，但他们必将§4服从§r。",

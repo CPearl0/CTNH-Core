@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ctnhcore:block/casings/bio_reactor_casing"
+    "all": "ctnhcore:block/casings/advanced_bio_reactor_casing"
   }
 }
