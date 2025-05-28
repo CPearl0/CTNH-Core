@@ -1,5 +1,5 @@
 {
-  "parent": "gtceu:item/material_sets/shiny/ingot",
+  "parent": "gtceu:item/material_sets/metallic/ingot",
   "textures": {
     "layer1": "gtceu:item/material_sets/starsteel/ingot_overlay"
   }
