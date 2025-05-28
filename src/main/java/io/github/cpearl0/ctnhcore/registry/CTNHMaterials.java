@@ -532,6 +532,11 @@ public class CTNHMaterials {
             .ore()
             .color(0x4FC1FF)
             .buildAndRegister();
+    public static final Material NQ_END_OF_GASOLINE =new Material.Builder(GTCEu.id("nq_end_gasoline"))
+            .liquid()
+            .color(0x000000)
+            .element(CTNHElements.END_OF_OIL)
+            .buildAndRegister();
 
     public static void init() {
         CombustibleIce.setFormula("(CH4)(H2O)", true);

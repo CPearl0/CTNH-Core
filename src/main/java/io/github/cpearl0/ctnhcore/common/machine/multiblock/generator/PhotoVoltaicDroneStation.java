@@ -135,9 +135,9 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         } else if (dimension == Planet.MERCURY || dimension == Planet.MERCURY_ORBIT) {
             rate *= 4;
         } else if (dimension == Planet.MARS || dimension == Planet.MARS_ORBIT) {
-            rate *= 8;
+            rate *= 6;
         } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
-            rate *= 16;
+            rate *= 8;
         }
 
         return rate;

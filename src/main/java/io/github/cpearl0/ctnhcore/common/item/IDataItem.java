@@ -22,14 +22,14 @@ public class IDataItem extends ComponentItem implements IInteractionItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
         CompoundTag nbt = stack.getOrCreateTag();
-        if(nbt.contains("data1"))
+        if(nbt.contains("formula"))
         {
-            tooltipComponents.add(Component.translatable("ctnh.terminal.tips"));
+            var formula=nbt.getLongArray("formula");
+            tooltipComponents.add(Component.translatable("ctnh.data.tip1",String.format("%d",formula[0]),String.format("%d",formula[1]),String.format("%d",formula[2])));
         }
-        if(nbt.contains("block_x"))
+        if(nbt.contains("muti"))
         {
-            tooltipComponents.add(Component.translatable("ctnh.terminal.tips"));
-            tooltipComponents.add(Component.translatable("ctnh.terminal.location",String.format("%d%d%d",nbt.getInt("block_x"),nbt.getInt("block_y"),nbt.getInt("block_z"))));
+            tooltipComponents.add(Component.translatable("ctnh.data.muti",String.format("%.2f",nbt.getDouble("muti"))));
         }
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced); // 调用父类方法以处理原版提示信息
 

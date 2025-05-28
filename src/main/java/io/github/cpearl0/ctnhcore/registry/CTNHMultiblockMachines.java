@@ -4255,9 +4255,25 @@ public class CTNHMultiblockMachines {
             .recipeType(CTNHRecipeTypes.COMPILER_RECIPE)
             .appearanceBlock(CASING_ANTIFREEZE_HEATPROOF_MACHINE)
             .recipeModifiers(NeuroMatrixCompiler::recipeModifier)
-            .tooltips(Component.translatable("ctnh.cryotheum.0"),
-                    Component.translatable("ctnh.cryotheum.1"),
-                    Component.translatable("ctnh.cryotheum.2"))
+            .tooltips(Component.translatable("ctnh.compiler.0"),
+                    Component.translatable("ctnh.compiler.01"),
+                    Component.translatable("ctnh.compiler.1"),
+                    Component.translatable("ctnh.compiler.2"),
+                    Component.translatable("ctnh.compiler.3"),
+                    Component.translatable("ctnh.compiler.4"),
+                    Component.translatable("ctnh.compiler.5"),
+                    Component.translatable("ctnh.compiler.6"),
+                    Component.translatable("ctnh.compiler.part1"),
+                    Component.translatable("ctnh.compiler.part2"),
+                    Component.translatable("ctnh.compiler.part3"),
+                    Component.translatable("ctnh.compiler.part4"),
+                    Component.translatable("ctnh.compiler.7"),
+                    Component.translatable("ctnh.compiler.8"),
+                    Component.translatable("ctnh.compiler.9"),
+                    Component.translatable("ctnh.compiler.10"),
+                    Component.translatable("ctnh.compiler.11"),
+
+                    Component.translatable("ctnh.compiler.12"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A############BBBBB#############", "#############CCDCC#############", "#############B#B#B#############", "###############################", "###############################", "###############################", "##############B#B##############", "#############CCCCC#############", "#############BBBBB#############")
                     .aisle("#############BBBBB#############", "#############CEFEC#############", "##############EFE##############", "##############EFE##############", "##############EFE##############", "##############EFE##############", "#############BEFEB#############", "#############CEFEC#############", "#############BBBBB#############")
@@ -4281,7 +4297,7 @@ public class CTNHMultiblockMachines {
                     .aisle("#########IJJJJJIJJJJJI#########", "#########I#####I#####I#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########IKKKKKIKKKKKI#########")
                     .aisle("#########IIJJJJIJJJJII#########", "#########FH####I####HF#########", "#########BI####I####IB#########", "##########I####F####I##########", "##########I####F####I##########", "##########I####F####I##########", "##########I####F####I##########", "##########I####I####I##########", "##########IKKKKIKKKKI##########")
                     .aisle("########IIIIIJJIJJIIIII########", "########FHFII##I##IIFHF########", "########BCBFF##I##FFBCB########", "###########FF##I##FF###########", "###########FF##F##FF###########", "###########FF##F##FF###########", "###########FF##I##FF###########", "###########FF##I##FF###########", "###########IIKKIKKII###########")
-                    .aisle("#######III###IIIII###III#######", "#######FHF###II@II###FHF#######", "#######BCB###IIIII###BCB#######", "#############FIIIF#############", "#############FFIFF#############", "#############FFIFF#############", "#############FIIIF#############", "#############IIIII#############", "#############IIIII#############")
+                    .aisle("#######III###IIIII###III#######", "#######FHF###II@II###FHF#######", "#######BCB###IIDII###BCB#######", "#############FIIIF#############", "#############FFIFF#############", "#############FFIFF#############", "#############FIIIF#############", "#############IIIII#############", "#############IIIII#############")
                     .aisle("######III#############III######", "######FHF#############FHF######", "######BCB#############BCB######", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################")
                     .aisle("##BBBBBI###############IBBBBB##", "##CCCCHF###############FCCCCC##", "##B#BBCB###############BCBB#B##", "###############################", "###############################", "###############################", "###B#######################B###", "##CCCCC#################CCCCC##", "##BBBBB#################BBBBB##")
                     .aisle("##BBBBB#################BBBBB##", "##CEFEC#################CEFEC##", "###EFEB#################BEFE###", "###EFC###################CFE###", "###EFC###################CFE###", "###EFC###################CFE###", "##BEFC###################CFEB##", "##CEFCC#################CCFEC##", "##BBBBB#################BBBBB##")
