@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 public class TurbineRotorBlock extends Block implements EntityBlock {
 
     public TurbineRotorBlock(Properties pProperties) {
-        super(pProperties);
+        super(pProperties.noOcclusion());
     }
 
     @Override
@@ -30,7 +30,7 @@ public class TurbineRotorBlock extends Block implements EntityBlock {
 
     @Override
     public RenderShape getRenderShape(BlockState state) {
-        return RenderShape.INVISIBLE; // 禁用原方块模型渲染
+        return RenderShape.INVISIBLE;
     }
 
 

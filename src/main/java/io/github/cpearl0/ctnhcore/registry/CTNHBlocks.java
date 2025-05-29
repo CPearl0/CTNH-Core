@@ -127,6 +127,7 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
     public static final BlockEntry<Block> CASING_SHIELDED_REACTOR = createCasingBlock("sheleded_reactor_casing",
             CTNHCore.id("block/casings/sheleded_reactor_casing"));
+    public static final BlockEntry<Block> NEUTRONIUM_REINFORCED_TURBINE_CASING = createCasingBlock("neutronium_reinforced_turbine_casing",CTNHCore.id("block/casings/neutronium_reinforced_turbine_casing"));
     public static final BlockEntry<ActiveBlock> SUPERCOOLED_BLOCK = createActiveCasing("supercooled_bloock",
             "block/flux/plasma_cooled_core");
     public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing("reservoir_computing_casing",
@@ -389,6 +390,8 @@ public class CTNHBlocks {
     public static BlockEntry<TurbineRotorBlock> createTurbineRotorBlock(String name) {
         return REGISTRATE.block(name, TurbineRotorBlock::new)
                 .initialProperties(() -> Blocks.OBSIDIAN)
+                .blockstate((ctx, prov) ->
+                        prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, CTNHCore.id("block/transparent"))))
                 .simpleItem()
                 .register();
     }

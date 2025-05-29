@@ -1,4 +1,4 @@
-// 1.20.1	2025-05-27T09:48:03.629273	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
+// 1.20.1	2025-05-29T21:42:19.2050782	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 2472318a4ef3d41e0f3a7bcd262b594486fb5028 assets/ctnhcore/blockstates/advanced_bio_reactor_casing.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
@@ -45,6 +45,7 @@ d534316de2c216804d3a3347960433668fba14fb assets/ctnhcore/blockstates/mana_steel_
 53ef4b547f6d40f1fb24ea93e9cd59c050203c60 assets/ctnhcore/blockstates/naquadah_gearbox.json
 66b26d923856bc0020b2ed1e083377f25e5a22ca assets/ctnhcore/blockstates/natural_ecological_shell_casing.json
 cd5e1977130bb785c94941e17fe6ddd3cbb629da assets/ctnhcore/blockstates/neutronium_alloy_casing_block.json
+ce9eef8200062c0d23da92ec307b8bf88bff8087 assets/ctnhcore/blockstates/neutronium_reinforced_turbine_casing.json
 7a06238a0ec9bb3723a21fa965e394d4e2aef851 assets/ctnhcore/blockstates/nq_excite_carbon_carbon_nanofiber_structural_block.json
 fb4357154c8b009894517f73f1d36665b7e12db9 assets/ctnhcore/blockstates/osmiridium_casing.json
 b80770b8fe6208f60a71642cf81d223a25a3e74d assets/ctnhcore/blockstates/pepper_crate.json
@@ -76,9 +77,9 @@ f37e897ef97cb6a5e0cd1aa2213c2e60d6aa3841 assets/ctnhcore/blockstates/vibrant_pho
 55c3cf0fdf5b9b4e569f1f91f3acdc45deb0c80d assets/ctnhcore/blockstates/zenith_casing.json
 f17c7b2d8495b9535bc4c92a544ea0c2bcc5e595 assets/ctnhcore/blockstates/zenith_casing_gearbox.json
 71fb0f01bd60854473495a9b97cef4eac5c59ac2 assets/ctnhcore/blockstates/zenith_eye.json
-6dfe682143cc245afdaed19462c6f4c43677029f assets/ctnhcore/lang/en_ud.json
-6c9dcc6bc9ef4709cd4b2aab96bc9de5bdd5613d assets/ctnhcore/lang/en_us.json
-4d4fb44e2c5e2c5d8846402b64f739b2bc238d97 assets/ctnhcore/lang/zh_cn.json
+52ae0deab995112e54b38cccd381a57a08ac0dfa assets/ctnhcore/lang/en_ud.json
+54590b895a07fd7c88a323b37c44c0d80c8af2f6 assets/ctnhcore/lang/en_us.json
+e52e65c169474b12e06a24c0cdf7bdf41616c41b assets/ctnhcore/lang/zh_cn.json
 df65321a1742a74b662d28389e11b0a2406960b1 assets/ctnhcore/models/block/abyssalalloy_coil_block.json
 13db5d9c835eeecee9dc13bee7a130e73a4bc89e assets/ctnhcore/models/block/abyssalalloy_coil_block_active.json
 14d9cbb950f41d793cc7c86563f0fa3020b0c2b6 assets/ctnhcore/models/block/advanced_bio_reactor_casing.json
@@ -121,7 +122,7 @@ e8f2c8970dfc44029b7300d439b1079dc761d5ee assets/ctnhcore/models/block/fruit_cafe
 28e9d5b20af6b2de680d4593e921ea2ba790aad7 assets/ctnhcore/models/block/garlic_crate_horizontal.json
 a0ce88e83ac78ebacb34ae8cd8c56e63a954ce3e assets/ctnhcore/models/block/high_strength_concrete.json
 65895068243a8ea4cb6448a7f04d1f8a4cc9a2d8 assets/ctnhcore/models/block/hyper_casing.json
-0d70f3391a6b1700338e69fd960ea4cb0365bf69 assets/ctnhcore/models/block/hyper_plasma_turbine_rotor.json
+e3fdf175776aa9e7e5acecaed86d582dad2f0699 assets/ctnhcore/models/block/hyper_plasma_turbine_rotor.json
 bb3c462a48dc022201dc70e140fb5c7a919634ba assets/ctnhcore/models/block/infinity_coil_block.json
 1d5b1a51be6c2a0ea46f1ae42a237b967a282202 assets/ctnhcore/models/block/infinity_coil_block_active.json
 88fc4a1fe98d7db2afcd224b4aabccf6965db9b7 assets/ctnhcore/models/block/mana_steel_casing.json
@@ -131,6 +132,7 @@ bb3c462a48dc022201dc70e140fb5c7a919634ba assets/ctnhcore/models/block/infinity_c
 1d6701756b8f7ac8b0a198ae7b6004629616f24e assets/ctnhcore/models/block/naquadah_gearbox.json
 c87c74cc0dadf9b26ab68cd0c6dde6fa65ae6a41 assets/ctnhcore/models/block/natural_ecological_shell_casing.json
 52c14d0dea02316995662e461fef902d1688235c assets/ctnhcore/models/block/neutronium_alloy_casing_block.json
+f3548b538bd6c9c668fdf535bee89f3331961101 assets/ctnhcore/models/block/neutronium_reinforced_turbine_casing.json
 edd6656e2b6b941d699fda6deb3d4a79d641d2f6 assets/ctnhcore/models/block/nq_excite_carbon_carbon_nanofiber_structural_block.json
 3d86dc7185bba70cf4bf2e2837452aa56efc3145 assets/ctnhcore/models/block/osmiridium_casing.json
 1bb518155fae04226db069b82c02e955de894bb8 assets/ctnhcore/models/block/pepper_crate.json
@@ -222,6 +224,7 @@ b348a74615004941f1a97de64f4e5fe3be44de69 assets/ctnhcore/models/item/naquadah_ca
 13f33dff2d7bd932ed29217569c7f76ec9b2f900 assets/ctnhcore/models/item/naquadah_gearbox.json
 24ba5c119c06a52d8c43fe48e342d1fab45f49d1 assets/ctnhcore/models/item/natural_ecological_shell_casing.json
 f04d45532cad5311b0106a1987a14d5896e82469 assets/ctnhcore/models/item/neutronium_alloy_casing_block.json
+fd243d3c5f62c8b229c3ca226ac3b6516ea50826 assets/ctnhcore/models/item/neutronium_reinforced_turbine_casing.json
 75ef8dc1c0c7826943d8a2388d540d2886a968e9 assets/ctnhcore/models/item/nq_excite_carbon_carbon_nanofiber_structural_block.json
 dc64a1bb0dd12b19a59eba694c2ceb373fdae9df assets/ctnhcore/models/item/nuclear_waste.json
 f689aa44cd639c8f3e5c8aa84886f3fb0dbe1650 assets/ctnhcore/models/item/osmiridium_casing.json
@@ -319,6 +322,7 @@ a48679f82e7f46a2799c6cf89a74ac55553ded7e data/ctnhcore/loot_tables/blocks/naquad
 1595774a680cee5f4b7501c49de8c0c0c5df33e8 data/ctnhcore/loot_tables/blocks/naquadah_gearbox.json
 731e7538cd6607fdffcf748ee6151b47b2608c88 data/ctnhcore/loot_tables/blocks/natural_ecological_shell_casing.json
 3b4e1c3f6a2fdcd2cf39ad923fa75ff47114a2b8 data/ctnhcore/loot_tables/blocks/neutronium_alloy_casing_block.json
+8f649a6ca287c23b5b7ef43d43dc97d5e42bda73 data/ctnhcore/loot_tables/blocks/neutronium_reinforced_turbine_casing.json
 2f578c02a404dd8c7abb26b4fc88cf55471dc065 data/ctnhcore/loot_tables/blocks/nq_excite_carbon_carbon_nanofiber_structural_block.json
 56ff7fe8f32e6ce4ac4405fe40a63e3b26bc4efb data/ctnhcore/loot_tables/blocks/osmiridium_casing.json
 1d6e5691e200a26ba968518848c6e51ab631661e data/ctnhcore/loot_tables/blocks/pepper_crate.json
@@ -353,9 +357,9 @@ c12f469412fb0f269db9f61a23c3137e4ddf1f80 data/ctnhcore/loot_tables/blocks/zenith
 801c0ddbdd107af720ccb4feddaf685d8f514d5c data/forge/tags/blocks/ad_astra_stones.json
 8b23a2ed8bfd251bd2a8952d236a8809502f5444 data/forge/tags/blocks/aether_stones.json
 5871e91cf56e29f90ddb263dcaf97feb3d61129e data/forge/tags/blocks/alfheim_stones.json
-73ba343d7ff26de8e8a70ef55bcc5ae4d15d272e data/forge/tags/blocks/mineable/wrench.json
+ef7861fb9a6c5b69e4fcf1e85949e6609305af45 data/forge/tags/blocks/mineable/wrench.json
 d9e2820239e3a7448c8e500b4580c33fb4a2da6d data/minecraft/tags/blocks/mineable/axe.json
-cd5dfdf72b811468ee75d1319f5e6ee16807ebc0 data/minecraft/tags/blocks/mineable/pickaxe.json
+8b035ea6b98af94050c517d4b54f1471bd5e1413 data/minecraft/tags/blocks/mineable/pickaxe.json
 39abddb654a66e4b63dc2354ab79ac89ec323755 data/minecraft/tags/blocks/mineable/shovel.json
 a2ad7bf3ffe828f00234d1639862f299770b6714 data/minecraft/tags/blocks/saplings.json
 a2ad7bf3ffe828f00234d1639862f299770b6714 data/minecraft/tags/items/saplings.json

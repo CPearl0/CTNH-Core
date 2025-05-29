@@ -12,8 +12,6 @@ import net.minecraft.world.level.block.state.BlockState;
 public class TurbineRotorBE extends BlockEntity {
     public TurbineRotorBE(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
         super(pType, pPos, pBlockState);
-        RandomSource random = RandomSource.create(pPos.asLong());
-        rotation= random.nextInt(360);
     }
     public static TurbineRotorBE create(BlockPos pPos, BlockState pBlockState) {
         return new TurbineRotorBE(CTNHBlockEntities.TURBINE_ROTOR.get(), pPos, pBlockState);
