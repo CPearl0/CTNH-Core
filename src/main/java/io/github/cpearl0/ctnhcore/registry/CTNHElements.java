@@ -30,4 +30,5 @@ public class CTNHElements {
     public static final Element STORMVEIN = new Element(128, 150, -1, null, "stormvein", "Sv", false);
     public static final Element SUNNARIUM = new Element(128, 150, -1, null, "sunnarium", "☼", false);
     public static final Element HIKARIUM = new Element(12800, 15000, -1, null, "hikarium", "☀", false);
+    public static final Element END_OF_OIL=new Element(1000,1000,-1,null,"end_of_oil","END",false);
 }

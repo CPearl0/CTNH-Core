@@ -29,6 +29,7 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Glaciostone.getUnlocalizedName(), "霜原石");
 
         replace(provider, CTNHMaterials.FlowingAmberGold.getUnlocalizedName(), "通流琥珀金");
+        replace(provider,CTNHMaterials.NQ_END_OF_GASOLINE.getUnlocalizedName(), "高硅岩值终末汽油");
         replace(provider, CTNHMaterials.SpecialCompositeSteelM77.getUnlocalizedName(), "特种复合钢-M77");
         replace(provider, CTNHMaterials.HiddenAlloy.getUnlocalizedName(), "幽匿合金");
         replace(provider, CTNHMaterials.SpiritAsh.getUnlocalizedName(), "巫师之骨");
@@ -520,8 +521,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.sinope.parallel","并行数:%d");
         provider.add("ctnh.nano.1","利用摩擦热的力量");
         provider.add("ctnh.nano.2","最大并行数:1024");
-        provider.add("ctnh.nano.3","每有1并行数，总体发电量提升0.2%\n实际运行时间为配方时间*sqrt(并行数)");
-        provider.add("ctnh.nano.4","在机器内塞入特定材料可提升倍率，但也有概率消耗\n无材料：0.4倍率\n橡胶片：0.8倍率,并行数/512几率消耗\n聚乙烯片：1.2倍率，并行数/1024几率消耗\n硅橡胶片：2.0倍率，并行数/4096几率消耗\n丁苯橡胶片：3.2倍率，并行数/65535几率消耗\n聚苯并咪唑片：5倍率，并行数/1048576几率消耗");
+        provider.add("ctnh.nano.3","每有1并行数，总体发电量提升0.5%\n实际运行时间为配方时间*sqrt(并行数)");
+        provider.add("ctnh.nano.4","在机器内塞入特定材料可提升倍率，但也有概率消耗\n无材料：0.8倍率\n橡胶片：1.0倍率,并行数/512几率消耗\n聚乙烯片：1.6倍率，并行数/1024几率消耗\n硅橡胶片：2.4倍率，并行数/4096几率消耗\n丁苯橡胶片：3.2倍率，并行数/65535几率消耗\n聚苯并咪唑片：8倍率，并行数/1048576几率消耗");
         provider.add("ctnh.connect","连接已搭建");
         provider.add("ctnh.anti_nu","反中子量:%d");
         provider.add("ctnh.anti_proton","反质子量:%d");
@@ -768,7 +769,26 @@ public class ChineseLangHandler {
         provider.add("ctnh.compiler.state.working","§9运行中:%ss/%ss");
         provider.add("ctnh.compiler.state.finish","§a完成");
         provider.add("ctnh.compiler.state.waiting","§b等待中......");
-
+        provider.add("ctnh.data.tip1","当前公式: a%s+b%s+c%s+d");
+        provider.add("ctnh.data.muti","获取的倍率: %s");
+        provider.add("ctnh.compiler.0","将生物的进化之道完全放任于碳基生物的自然演变是一种低效且缓慢的做法，现在我们将亲自编码每一个基因序列，将我们的至臻完美编译在神经元的逻辑之中");
+        provider.add("ctnh.compiler.01","神经矩阵编码器（CMP）是一台编译神经序列的机器，其不同于其他机器，不执行正常的输入逻辑，无法超频");
+        provider.add("ctnh.compiler.1","该机器的输入由6个神经矩阵研究舱室组成，每个舱室在结构完成时将被编码，所有研究舱室必须为同一等级，编码完成后，每个研究舱室将会显示他们所属的片区");
+        provider.add("ctnh.compiler.2","该机器的输入§c必须严格按照JEI的物品顺序§9从左到右§r从第一行到第二行放置在§91-5片区§r，同时在第六片区放置§9研究数据集§r§r,任何错误的放置或者外部舱室的放置都会导致机器故障并在对应舱室显示故障");
+        provider.add("ctnh.compiler.3","必须保证所有神经矩阵研究舱室的等级不低于配方等级，否则配方不会运行");
+        provider.add("ctnh.compiler.4","————————机器总体机制————————");
+        provider.add("ctnh.compiler.5","每次检测到新的配方时，机器将§6完美诉诸于随机§r，生成函数F(x1,x2,x3)=§6y=ax1+bx2+cx3+d§r，其中，x1,x2,x3为期望的片区所消耗的物品数量，同时在给定范围内随机x1,x2,x3,获取答案y");
+        provider.add("ctnh.compiler.6","当配方执行时，在开始逻辑运算，1-5片区将各自运行5s,运行完毕时将消耗舱室内所有物品来取得函数");
+        provider.add("ctnh.compiler.part1","片区1-3：用于提供函数F(x)的真实x1,x2,x3");
+        provider.add("ctnh.compiler.part2","片区4：代表函数F(x)的常数量d，同时决定噪声ϵ");
+        provider.add("ctnh.compiler.part3","片区5：此片区用为神经编译提供电路板支持，决定噪声ϵ波动，如果提供电路板大于配方给定值则不造成噪声影响");
+        provider.add("ctnh.compiler.part4","片区6：收集最终编译结果的片区，在完成一次逻辑运算流程后，将根据结果对神经数据集进行修改");
+        provider.add("ctnh.compiler.7","在片区1-5执行完毕后，进行持续5s的总计算流程，在此过程中给出x1,x2,x3，计算得到计算值y，与真实比较，进行最终编译运算");
+        provider.add("ctnh.compiler.8","————————最终编译运算————————");
+        provider.add("ctnh.compiler.9","最终编译运算将比较真实y与结果y，如果结果y的值在真实值y的0.9-1.1倍内，则运算成功，将编译数据集变为配方输出");
+        provider.add("ctnh.compiler.10","如果运算失败，则定义噪声结果函数f(x1,x2,x3)=ax1+bx2+cx3+d+ϵ,根据噪声决定片区，噪声波动最多翻倍5倍，片区误差项为0.9-1.1间，则噪声变为0.5倍率");
+        provider.add("ctnh.compiler.11","最终编译数据集将获得三个信息，信息1代表本次的方程，信息2代表噪声结果函数获得的结果值对于y的倍率，信息3代表误差项的比率");
+        provider.add("ctnh.compiler.12","在执行相同配方时方程不会重置，在执行配方或者结构重新成型时，重置y和方程");
         provider.add("ctnhcore.src.sacrifice_empty","无牺牲者");
         provider.add("ctnhcore.src.sacrifice_locked","已锁定牺牲者！");
         provider.add("ctnhcore.src.sacrifice_unlocked","无法锁定牺牲者");

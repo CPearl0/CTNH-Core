@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -116,8 +117,18 @@ public class MachinesRecipes {
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
                 .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .outputItems(dust, CTNHMaterials.SpiritAsh, 1)
+                .addData("1",1)
+                .addData("2",1)
+                .addData("3",1)
+                .addData("range",50)
                 .duration(20*30)
                 .EUt(1000)
+                .save(provider);
+        COMBUSTION_GENERATOR_FUELS.recipeBuilder("end")
+                .inputFluids(CTNHMaterials.NQ_END_OF_GASOLINE.getFluid(1))
+                .duration(1000)
+                .EUt(-320)
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")
