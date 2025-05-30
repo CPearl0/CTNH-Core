@@ -8,7 +8,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-
+@Getter
+@Setter
 public class TurbineRotorBE extends BlockEntity {
     public TurbineRotorBE(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
         super(pType, pPos, pBlockState);
@@ -17,15 +18,5 @@ public class TurbineRotorBE extends BlockEntity {
         return new TurbineRotorBE(CTNHBlockEntities.TURBINE_ROTOR.get(), pPos, pBlockState);
     }
     private int speed=1;//旋转的角速度，默认为20度/s
-
-    @Getter
-    @Setter
-    private int rotation=0;
-    @Getter
-    @Setter
-    private boolean active=false;
-    public void tick() {
-        rotation=(rotation+speed)%360;
-    }
 
 }
