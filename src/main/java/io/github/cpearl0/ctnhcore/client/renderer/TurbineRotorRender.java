@@ -7,6 +7,7 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.model.TurbineRotorModel;
 import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -61,7 +62,7 @@ public class TurbineRotorRender implements BlockEntityRenderer<TurbineRotorBE> {
         else if (facing == Direction.DOWN)
             poseStack.mulPose(Axis.XP.rotationDegrees(180));  //倒过来
         if(block.isActive(blockEntity.getBlockState()))
-            poseStack.mulPose(Axis.YP.rotationDegrees(partialTick * blockEntity.getSpeed()));  //转子旋转, YP为模型的正面
+            poseStack.mulPose(Axis.YP.rotationDegrees((blockEntity.tick()) * blockEntity.getSpeed()));  //转子旋转, YP为模型的正面
 
 
 

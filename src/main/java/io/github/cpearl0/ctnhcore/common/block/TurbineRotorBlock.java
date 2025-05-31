@@ -30,6 +30,7 @@ public class TurbineRotorBlock extends ActiveBlock implements EntityBlock {
 
     public TurbineRotorBlock(Properties pProperties,float r,float g,float b,float a) {
         super(pProperties.noOcclusion());
+        registerDefaultState(defaultBlockState().setValue(BlockStateProperties.FACING, Direction.NORTH));
         this.R = r;
         this.G = g;
         this.B = b;
