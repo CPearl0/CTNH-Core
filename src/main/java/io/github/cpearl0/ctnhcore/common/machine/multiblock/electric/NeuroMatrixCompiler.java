@@ -124,7 +124,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     }
     public double CaculateEquation(long Noise)
     {
-        //计算方程式，但带噪声
+        //计算方程式
         var noise=(long)(Noise*Math.random()*Noise_Muti);
         long answer=0;
         for(int i=0;i<3;i++)
@@ -189,7 +189,8 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         Inventorys.add(part4);
         Inventorys.add(part5);
         var inventory=Inventorys.get(turn).getInventory();
-        var num=inventory.getStackInSlot(0).getCount();
+        var num=0;
+        if(!inventory.getStackInSlot(0).isEmpty()) num=inventory.getStackInSlot(0).getCount();
         Inventorys.get(turn).getInventory().setStackInSlot(0, ItemStack.EMPTY);
         return num;
     }
@@ -330,7 +331,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
             List<Content> itemList = new ArrayList<>();
             var new_recipe=recipe.copy();
             itemList.add(new Content(ingredient, 0, 0, 0, null, null));
-            new_recipe.inputs.put(ItemRecipeCapability.CAP,itemList);
+            new_recipe.outputs.put(ItemRecipeCapability.CAP,itemList);
             return recipe1->new_recipe;
         }
         return ModifierFunction.NULL;

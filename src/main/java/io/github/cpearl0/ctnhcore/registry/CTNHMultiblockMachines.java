@@ -4179,7 +4179,7 @@ public class CTNHMultiblockMachines {
                     .aisle("AAA", "BBB", "AAA")
                     .aisle("AAA", "B#B", "AAA")
                     .aisle("AAA", "B@B", "AAA")
-                    .where("A", Predicates.blocks(CASING_ANTIFREEZE_HEATPROOF_MACHINE.get()).setMinGlobalLimited(10)
+                    .where("A", Predicates.blocks(SUPER_FREEZE_BLOCK.get()).setMinGlobalLimited(10)
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
 
                     .where("B", Predicates.blocks(SUPERCOOLED_BLOCK.get()))
