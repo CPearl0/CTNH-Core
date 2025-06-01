@@ -13,9 +13,11 @@ import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.api.CTNHAPI;
+import io.github.cpearl0.ctnhcore.client.renderer.TurbineRotorRender;
 import io.github.cpearl0.ctnhcore.common.block.*;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
+import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHConfiguredFeatures;
 import net.minecraft.client.renderer.RenderType;
@@ -129,6 +131,7 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"));
     public static final BlockEntry<Block> CASING_SHIELDED_REACTOR = createCasingBlock("sheleded_reactor_casing",
             CTNHCore.id("block/casings/sheleded_reactor_casing"));
+    public static final BlockEntry<Block> NEUTRONIUM_REINFORCED_TURBINE_CASING = createCasingBlock("neutronium_reinforced_turbine_casing",CTNHCore.id("block/casings/neutronium_reinforced_turbine_casing"));
     public static final BlockEntry<ActiveBlock> SUPERCOOLED_BLOCK = createActiveCasing("supercooled_bloock",
             "block/flux/plasma_cooled_core");
     public static final BlockEntry<ActiveBlock> RESERVOIR_COMPUTING_CASING = createActiveCasing("reservoir_computing_casing",
@@ -203,7 +206,7 @@ public class CTNHBlocks {
     public static BlockEntry<AstralGrassBlock> ASTRAL_GRASS = createTallGrassBlock("astral_grass");
     public static BlockEntry<AstralTallGrassBlock> ASTRAL_TALL_GRASS = createDoublePlantBlock("astral_tall_grass");
 
-    public static BlockEntry<TurbineRotorBlock> HYPER_PLASMA_TURBINE_ROTOR = createTurbineRotorBlock("hyper_plasma_turbine_rotor");
+    public static BlockEntry<TurbineRotorBlock> HYPER_PLASMA_TURBINE_ROTOR = createTurbineRotorBlock("hyper_plasma_turbine_rotor",1,1,1,1);
 
 
     public static BlockEntry<SpaceStructuralFramework> NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK=createSpaceStructuralFrame(SpaceStructuralFramework.SpaceStructuralFrameworkType.NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK,"block/pulsating_photovoltaic_block");
@@ -388,9 +391,11 @@ public class CTNHBlocks {
                 .build()
                 .register();
     }
-    public static BlockEntry<TurbineRotorBlock> createTurbineRotorBlock(String name) {
-        return REGISTRATE.block(name, TurbineRotorBlock::new)
+    public static BlockEntry<TurbineRotorBlock> createTurbineRotorBlock(String name,int R,int G,int B,int A) {
+        return REGISTRATE.block(name, TurbineRotorBlock.create(R,G,B,A))
                 .initialProperties(() -> Blocks.OBSIDIAN)
+                .blockstate((ctx, prov) ->
+                        prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, CTNHCore.id("block/transparent"))))
                 .simpleItem()
                 .register();
     }

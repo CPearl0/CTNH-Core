@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientRegister {
+    @Deprecated
     @SubscribeEvent
     public static void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         CTNHCore.LOGGER.info("Registering Models...");
@@ -26,6 +27,6 @@ public class ClientRegister {
     @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         CTNHCore.LOGGER.info("Registering External Renderers...");
-        event.registerBlockEntityRenderer(CTNHBlockEntities.TURBINE_ROTOR.get(), (ctx)->new TurbineRotorRender());
+//        event.registerBlockEntityRenderer(CTNHBlockEntities.TURBINE_ROTOR.get(), (ctx)->new TurbineRotorRender());
     }
 }

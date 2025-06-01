@@ -360,5 +360,7 @@ public class EnglishLangHandler {
         provider.add("ctnhcore.src.sacrifice_unlocked","Sacrifice UNLOCKED");
         provider.add("ctnhcore.src.wetware_duration", "Wetware duration: %s ticks");
         provider.add("ctnhcore.src.sacrifice", "Sacrifices: %s");
+        provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§5FINAL FANTASY §fof §a Precise Computation §f and §e Plasma Energy");
+        provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","Provide %d computation to reach the Base Production. For every %d computation provided, the Output Production DOUBLES.");
     }
 }
