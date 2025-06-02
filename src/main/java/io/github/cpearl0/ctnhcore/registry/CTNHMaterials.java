@@ -537,6 +537,11 @@ public class CTNHMaterials {
             .color(0x000000)
             .element(CTNHElements.END_OF_OIL)
             .buildAndRegister();
+    public static final Material LIVING_METAL=new Material.Builder(GTCEu.id("living_metal"))
+            .liquid()
+            .color(0x000000)
+            .element(CTNHElements.Living_Metal)
+            .buildAndRegister();
 
     public static void init() {
         CombustibleIce.setFormula("(CH4)(H2O)", true);

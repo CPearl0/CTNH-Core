@@ -29,7 +29,8 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Glaciostone.getUnlocalizedName(), "霜原石");
 
         replace(provider, CTNHMaterials.FlowingAmberGold.getUnlocalizedName(), "通流琥珀金");
-        replace(provider,CTNHMaterials.NQ_END_OF_GASOLINE.getUnlocalizedName(), "高硅岩值终末汽油");
+        replace(provider,CTNHMaterials.NQ_END_OF_GASOLINE.getUnlocalizedName(), "硅岩基终末燃油-NQ");
+        replace(provider,CTNHMaterials.LIVING_METAL.getUnlocalizedName(), "活体金属");
         replace(provider, CTNHMaterials.SpecialCompositeSteelM77.getUnlocalizedName(), "特种复合钢-M77");
         replace(provider, CTNHMaterials.HiddenAlloy.getUnlocalizedName(), "幽匿合金");
         replace(provider, CTNHMaterials.SpiritAsh.getUnlocalizedName(), "巫师之骨");
@@ -674,7 +675,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.anti_inf_matter.1","-∞");
         provider.add("ctnh.anti_inf_matter.2","它到底是怎么在现实世界存在的......");
         provider.add("ctnh.plasma_alloy.1","§4转底炉的复仇");
-        provider.add("ctnh.plasma_alloy.11","允许使用§b激光仓§r，使用激光仓时最终速度将除以10，速度低于原速度时拒绝运行");
+        provider.add("ctnh.plasma_alloy.11","允许使用§b激光仓§r，使用激光仓时最终速度将除以4，速度低于原速度时拒绝运行");
         provider.add("ctnh.plasma_alloy.2","线圈温度每有1800K，获得4点并行，线圈温度超过10000K时，获得(线圈温度-10000)/10000的额外加速");
         provider.add("ctnh.plasma_alloy.3","运行前消耗(并行数*对应等离子体消耗)的等离子体，获得额外加速");
         provider.add("ctnh.plasma_alloy.4","氦等离子体：消耗500*并行的等离子体，速度+100%");
@@ -794,6 +795,7 @@ public class ChineseLangHandler {
         provider.add("ctnhcore.src.sacrifice_unlocked","无法锁定牺牲者");
         provider.add("ctnhcore.src.wetware_duration", "湿件剩余存活时间: %s ticks");
         provider.add("ctnhcore.src.sacrifice", "牺牲着: %s");
+        provider.add("ctnh.data.noise","当前噪声值：%s");
 
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
@@ -867,6 +869,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T1,"戴森云无人机蜂群MKI");
         provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T2,"戴森云无人机蜂群MKII");
         provider.addItem(CTNHItems.PV_TERMINAL,"光伏绑定终端");
+        provider.addItem(CTNHItems.RESEARCH_DATASET_LIVING_MATERIAL,"研究数据集：活体金属");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL, "进阶线程控制外壳");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_LINE, "进阶装配核心");
@@ -1043,6 +1046,7 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.GAS_CENTRIFUGE.getBlock(), "气体离心机");
         provider.add(CTNHMultiblockMachines.CRYOTHEUMFREEZER.getBlock(),"凛冰冷冻机");
         provider.add(CTNHMultiblockMachines.HYPER_PLASMA_TURBINE.getBlock(), "超極等离子涡轮");
+        provider.add(CTNHMultiblockMachines.NERUOMATRIXCOMPILER.getBlock(),"神经矩阵编译器");
 
 
 

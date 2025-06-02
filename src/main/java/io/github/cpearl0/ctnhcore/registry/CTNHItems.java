@@ -179,6 +179,10 @@ public class CTNHItems {
             .item("research_dataset",holder->new IDataItem(holder))
             .lang("research_dataset")
             .register();
+    public static ItemEntry<IDataItem> RESEARCH_DATASET_LIVING_MATERIAL=REGISTRATE
+            .item("research_dataset_lm",holder->new IDataItem(holder))
+            .lang("research_dataset_lm")
+            .register();
     public static ItemEntry<Item> NUCLEAR_WASTE = REGISTRATE
             .item("nuclear_waste", Item::new)
             .lang("Nuclear Waste")

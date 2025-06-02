@@ -119,6 +119,8 @@ public class CTNHBlocks {
             CTNHCore.id("block/casings/gearbox/mana_steel_gearbox_casing"));
     public static final BlockEntry<Block> QUASAR_ENERGY_STABILIZATION_CASING = createCasingBlock("quasar_energy_stabilization_casing",
             CTNHCore.id("block/casings/quasar_energy_stabilization_casing"));
+    public static final BlockEntry<Block> SUPER_FREEZE_BLOCK = createCasingBlock("super_machine_casing_frost_proof",
+            CTNHCore.id("block/casings/super_machine_casing_frost_proof"));
 
     public static final BlockEntry<Block> TWISTED_FUSION_CASING = createCasingBlock("twisted_fusion_casing",
             CTNHCore.id("block/casings/twisted_fusion_casing"));

@@ -77,6 +77,8 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     @Persisted public double eff;
     @Persisted public double eff_fake;
     @Persisted public Item items;
+    @Persisted public long  noisea;
+    @Persisted public long  noiseb;
 
 
 
@@ -124,7 +126,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     }
     public double CaculateEquation(long Noise)
     {
-        //计算方程式，但带噪声
+        //计算方程式
         var noise=(long)(Noise*Math.random()*Noise_Muti);
         long answer=0;
         for(int i=0;i<3;i++)
@@ -136,6 +138,21 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         return((double) Math.abs(true_answer - answer) /true_answer);
 
     }
+    public void getNoise()
+    {
+        if(Equation.get(4)>=noiseb)
+        {
+            Noise_Muti-=3;
+        }
+        if(Equation.get(3)>noisea)
+            Noise_Muti=Noise_Muti*(1+(noisea/Equation.get(3)));
+        if(Equation.get(3)<noisea)
+            Noise_Muti=Noise_Muti*(1+(Equation.get(3)/noisea));
+        if(Equation.get(3)==noisea&&Equation.get(5)>=noiseb)
+        {
+            Noise_Muti=0.5;
+        }
+    }
     //
 
 
@@ -146,6 +163,8 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     public void reload_recipe(GTRecipe recipe)
     {
         range=recipe.data.getInt("range");
+        noisea=recipe.data.getInt("noiseb");
+        noiseb=recipe.data.getInt("noiseb");
         RawEquation=getRawEquation(range);
         getTrueAnswer(recipe);
     }
@@ -189,7 +208,8 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         Inventorys.add(part4);
         Inventorys.add(part5);
         var inventory=Inventorys.get(turn).getInventory();
-        var num=inventory.getStackInSlot(0).getCount();
+        var num=0;
+        if(!inventory.getStackInSlot(0).isEmpty()) num=inventory.getStackInSlot(0).getCount();
         Inventorys.get(turn).getInventory().setStackInSlot(0, ItemStack.EMPTY);
         return num;
     }
@@ -207,6 +227,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         if(turn>4&&turn<10)
         {
              getRecipeLogic().setProgress(getRecipeLogic().getDuration()-100);
+             getNoise();
              eff_fake=CaculateEquationNoise(range);
              eff=CaculateEquation(range);
              turn=10;
@@ -238,10 +259,12 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
             var nbt=part6.getInventory().getStackInSlot(0).getOrCreateTag();
             nbt.putLongArray("formula",Equation);
             nbt.putDouble("muti",eff_fake);
+            nbt.putDouble("Noise",Noise_Muti);
         }
         eff=0;
         eff_fake=0;
         Equation.clear();
+        Noise_Muti=5;
 
     }
     @Override
@@ -330,7 +353,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
             List<Content> itemList = new ArrayList<>();
             var new_recipe=recipe.copy();
             itemList.add(new Content(ingredient, 0, 0, 0, null, null));
-            new_recipe.inputs.put(ItemRecipeCapability.CAP,itemList);
+            new_recipe.outputs.put(ItemRecipeCapability.CAP,itemList);
             return recipe1->new_recipe;
         }
         return ModifierFunction.NULL;
