@@ -1,4 +1,4 @@
-package io.github.cpearl0.ctnhcore.client.renderer.utils;
+package io.github.cpearl0.ctnhcore.api.MathUtils;
 
 import lombok.Setter;
 

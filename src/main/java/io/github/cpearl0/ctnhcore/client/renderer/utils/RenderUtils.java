@@ -1,6 +1,8 @@
 package io.github.cpearl0.ctnhcore.client.renderer.utils;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraftforge.api.distmarker.Dist;
@@ -116,5 +118,33 @@ public abstract class RenderUtils {
         } while (l == 0);
         return new Vector3f(ix/l,iy/l,iz/l);
     }
+    public static void autoMulPose(PoseStack stack, Direction facing, Direction original){
+        Axis rot = getFacingAxis(facing, original);
+        if(rot == null ){
+            if(facing == original.getOpposite())
+                stack.mulPose(directionAxises.get(facing.getClockWise()).rotationDegrees(180));
+        }
+        else{
+            stack.mulPose(rot.rotationDegrees(-90));
+        }
+    }
+    public static void autoMulPose(PoseStack stack, Direction facing){
+        autoMulPose(stack, facing, Direction.SOUTH);
+    }
+    public static BlockPos autoRotate(BlockPos pos, Direction facing, Direction original)
+    {
+        Vector3i x = new Vector3i( directionVectors.get(facing.getClockWise()));
+        Vector3i y = new Vector3i( directionVectors.get(Direction.UP));
+        Vector3i z = new Vector3i( directionVectors.get(original));
 
+        Vector3i ret = new Vector3i();
+        ret.add(x.mul(pos.getX()));
+        ret.add(y.mul(pos.getY()));
+        ret.add(z.mul(pos.getZ()));
+        return new BlockPos(ret.x, ret.y, ret.z);
+    }
+    public static BlockPos autoRotate(BlockPos pos, Direction facing)
+    {
+        return autoRotate(pos, facing, Direction.SOUTH);
+    }
 }

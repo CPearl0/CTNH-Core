@@ -20,7 +20,6 @@ import javax.annotation.*;
 
 import io.github.cpearl0.ctnhcore.client.renderer.utils.RenderUtils;
 
-@OnlyIn(Dist.CLIENT)
 public class TurbineRotorRender implements BlockEntityRenderer<TurbineRotorBE> {
 
     private static final ResourceLocation TEXTURE =
