@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ctnhcore:block/casings/neutronium_reinforced_turbine_casing"
+  }
+}

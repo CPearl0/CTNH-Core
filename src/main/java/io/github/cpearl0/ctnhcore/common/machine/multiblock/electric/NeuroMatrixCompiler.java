@@ -77,6 +77,8 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     @Persisted public double eff;
     @Persisted public double eff_fake;
     @Persisted public Item items;
+    @Persisted public long  noisea;
+    @Persisted public long  noiseb;
 
 
 
@@ -136,6 +138,21 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         return((double) Math.abs(true_answer - answer) /true_answer);
 
     }
+    public void getNoise()
+    {
+        if(Equation.get(4)>=noiseb)
+        {
+            Noise_Muti-=3;
+        }
+        if(Equation.get(3)>noisea)
+            Noise_Muti=Noise_Muti*(1+(noisea/Equation.get(3)));
+        if(Equation.get(3)<noisea)
+            Noise_Muti=Noise_Muti*(1+(Equation.get(3)/noisea));
+        if(Equation.get(3)==noisea&&Equation.get(5)>=noiseb)
+        {
+            Noise_Muti=0.5;
+        }
+    }
     //
 
 
@@ -146,6 +163,8 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     public void reload_recipe(GTRecipe recipe)
     {
         range=recipe.data.getInt("range");
+        noisea=recipe.data.getInt("noiseb");
+        noiseb=recipe.data.getInt("noiseb");
         RawEquation=getRawEquation(range);
         getTrueAnswer(recipe);
     }
@@ -208,6 +227,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         if(turn>4&&turn<10)
         {
              getRecipeLogic().setProgress(getRecipeLogic().getDuration()-100);
+             getNoise();
              eff_fake=CaculateEquationNoise(range);
              eff=CaculateEquation(range);
              turn=10;
@@ -239,10 +259,12 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
             var nbt=part6.getInventory().getStackInSlot(0).getOrCreateTag();
             nbt.putLongArray("formula",Equation);
             nbt.putDouble("muti",eff_fake);
+            nbt.putDouble("Noise",Noise_Muti);
         }
         eff=0;
         eff_fake=0;
         Equation.clear();
+        Noise_Muti=5;
 
     }
     @Override
