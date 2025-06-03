@@ -484,9 +484,9 @@ public class CTNHOres {
         .heightRangeUniform(10, 50)
         .layeredVeinGenerator(generator -> generator
                 .buildLayerPattern(pattern -> pattern
-                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(2, 4))
+                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(1, 2))
                 .layer(l -> l.weight(2).mat(GTMaterials.Cobalt).size(1, 1))
-                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 1))
+                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 2))
                 .layer(l -> l.weight(1).mat(GTMaterials.Uranium238).size(1, 1))
             )
         )
@@ -506,9 +506,9 @@ public class CTNHOres {
         .heightRangeUniform(-30, 0)
         .layeredVeinGenerator(generator -> generator
                 .buildLayerPattern(pattern -> pattern
-                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(2, 4))
+                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(1, 3))
                 .layer(l -> l.weight(2).mat(GTMaterials.Cobalt).size(1, 1))
-                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 1))
+                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 2))
                 .layer(l -> l.weight(1).mat(GTMaterials.Uranium238).size(1, 1))
             )
         )
@@ -528,9 +528,9 @@ public class CTNHOres {
         .heightRangeUniform(10, 40)
         .layeredVeinGenerator(generator -> generator
                 .buildLayerPattern(pattern -> pattern
-                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(2, 4))
+                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(1, 3))
                 .layer(l -> l.weight(2).mat(GTMaterials.Cobalt).size(1, 1))
-                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 1))
+                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 2))
                 .layer(l -> l.weight(1).mat(GTMaterials.Uranium238).size(1, 1))
             )
         )

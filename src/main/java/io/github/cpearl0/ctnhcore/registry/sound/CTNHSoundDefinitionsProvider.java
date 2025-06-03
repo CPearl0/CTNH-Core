@@ -18,15 +18,19 @@ public class CTNHSoundDefinitionsProvider extends SoundDefinitionsProvider {
                 .subtitle("subtitle.ctnhcore.bgm.plague_wasteland")
                 .with(sound(CTNHCore.id("astral_infection"))
                         .weight(3)
+                        .volume(0.6)
                         .stream(),
                         sound(CTNHCore.id("astral_infection_underground"))
                                 .weight(3)
+                                .volume(0.6)
                                 .stream(),
                         sound(CTNHCore.id("astrum_deus"))
                                 .weight(1)
+                                .volume(0.6)
                                 .stream(),
                         sound(CTNHCore.id("astrum_aureus"))
                                 .weight(1)
+                                .volume(0.6)
                                 .stream()));
     }
 }

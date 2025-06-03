@@ -48,7 +48,7 @@ public class CTNHCore
     {
         event.enqueueWork(() ->
         {
-            Regions.register(new CTNHOverworldRegion(10));
+            Regions.register(new CTNHOverworldRegion(2));
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, CTNHCore.MODID, CTNHSurfaceRuleData.customSurface());
         });
     }

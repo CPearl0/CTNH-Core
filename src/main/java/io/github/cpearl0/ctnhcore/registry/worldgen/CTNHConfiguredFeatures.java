@@ -1,6 +1,8 @@
 package io.github.cpearl0.ctnhcore.registry.worldgen;
 
 import com.gregtechceu.gtceu.common.data.GTBlocks;
+import com.simibubi.create.AllBlocks;
+import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
@@ -18,6 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.LakeFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -26,12 +29,16 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.MegaJungleFolia
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
+
+import static com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes.OCHRUM;
 
 public class CTNHConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?,?>> ASTRAL_TREE = ResourceKey.create(Registries.CONFIGURED_FEATURE, CTNHCore.id("astral_tree"));
     public static final ResourceKey<ConfiguredFeature<?,?>> ASTRAL_FLOWER = ResourceKey.create(Registries.CONFIGURED_FEATURE, CTNHCore.id("astral_flower"));
     public static final ResourceKey<ConfiguredFeature<?,?>> ASTRAL_GRASS = ResourceKey.create(Registries.CONFIGURED_FEATURE, CTNHCore.id("astral_grass"));
     public static final ResourceKey<ConfiguredFeature<?,?>> ASTRAL_LAKE = ResourceKey.create(Registries.CONFIGURED_FEATURE, CTNHCore.id("astral_lake"));
+    public static final ResourceKey<ConfiguredFeature<?,?>> VENUS_OCHRUM = ResourceKey.create(Registries.CONFIGURED_FEATURE, CTNHCore.id("venus_ochrum"));
 
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> ctx) {
@@ -52,6 +59,7 @@ public class CTNHConfiguredFeatures {
         grass.add(CTNHBlocks.ASTRAL_GRASS.getDefaultState(), 6).add(CTNHBlocks.ASTRAL_TALL_GRASS.getDefaultState(), 1);
         FeatureUtils.register(ctx, ASTRAL_GRASS, Feature.RANDOM_PATCH, CTNHConfiguredFeatures.grassPatch(new WeightedStateProvider(grass), 64));
         FeatureUtils.register(ctx, ASTRAL_LAKE, Feature.LAKE, new LakeFeature.Configuration(BlockStateProvider.simple(CTNHMaterials.starlight.getFluid().defaultFluidState().createLegacyBlock()), BlockStateProvider.simple(CTNHBlocks.ASTRAL_COBBLESTONE.getDefaultState())));
+        FeatureUtils.register(ctx, VENUS_OCHRUM, Feature.ORE, new OreConfiguration(new BlockMatchTest(ModBlocks.VENUS_STONE.get()), OCHRUM.getBaseBlock().get().defaultBlockState(), 9));
     }
     private static RandomPatchConfiguration grassPatch(BlockStateProvider blockStateProvider, int n) {
         return FeatureUtils.simpleRandomPatchConfiguration(n, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(blockStateProvider)));

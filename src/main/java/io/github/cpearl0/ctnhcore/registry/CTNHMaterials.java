@@ -542,6 +542,10 @@ public class CTNHMaterials {
             .color(0x000000)
             .element(CTNHElements.Living_Metal)
             .buildAndRegister();
+    public static final Material MysteryFluid = new Material.Builder(GTCEu.id("mystery_fluid"))
+            .liquid()
+            .color(0x4ded1c)
+            .buildAndRegister();
 
     public static void init() {
         CombustibleIce.setFormula("(CH4)(H2O)", true);
