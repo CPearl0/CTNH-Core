@@ -46,46 +46,46 @@ public class Plasma_alloy_blast extends CoilWorkableElectricMultiblockMachine {
             int parallel= ParallelLogic.getParallelAmount(machine,recipe,pmachine.machine_level*4);
             if(MachineUtils.inputFluid(Iron.getFluid(PLASMA,200*parallel),pmachine))
             {
-                speed=3.0;
+                speed=4.0;
             }
             if(MachineUtils.inputFluid(Nickel.getFluid(PLASMA,200*parallel),pmachine))
             {
-                speed=3.0;
+                speed=4.0;
             }
             total_speed+=speed;
             if(MachineUtils.inputFluid(Argon.getFluid(PLASMA,300*parallel),pmachine))
             {
-                speed=2.0;
+                speed=3.0;
             }
             if(MachineUtils.inputFluid(Oxygen.getFluid(PLASMA,300*parallel),pmachine))
             {
-                speed=2.0;
+                speed=3.0;
             }
             if(MachineUtils.inputFluid(Nitrogen.getFluid(PLASMA,300*parallel),pmachine))
             {
-                speed=2.0;
+                speed=3.0;
             }
             total_speed+=speed;
             if(MachineUtils.inputFluid(Helium.getFluid(PLASMA,500*parallel),pmachine))
             {
-                speed=1.0;
+                speed=2.0;
             }
-            total_speed+=speed;
+            total_speed=speed;
             if(pmachine.getCoilType().getCoilTemperature()>10000)
             {
                 total_speed+=((double) (pmachine.getCoilType().getCoilTemperature() - 10000) /1000);
             }
             if(MachineUtils.inputFluid(CTNHMaterials.COMPRESSED_ADAMANTITE.getFluid(PLASMA,100),pmachine))
             {
-                total_speed*=5;
+                total_speed*=2.5;
                 eut=2.0;
             }
             if(MachineUtils.inputFluid(CTNHMaterials.COMPRESSED_AETHER.getFluid(PLASMA,50*parallel),pmachine))
             {
-                total_speed*=10;
+                total_speed*=5;
                 output=1-0.2*(Math.random());
             }
-            speed=speed*(0.1*pmachine.islasor);
+            speed=speed*(0.25*pmachine.islasor);
             if(speed>50)
             {
                 output=0.5*(Math.random());

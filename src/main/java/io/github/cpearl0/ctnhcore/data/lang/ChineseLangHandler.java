@@ -29,6 +29,8 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Glaciostone.getUnlocalizedName(), "霜原石");
 
         replace(provider, CTNHMaterials.FlowingAmberGold.getUnlocalizedName(), "通流琥珀金");
+        replace(provider,CTNHMaterials.NQ_END_OF_GASOLINE.getUnlocalizedName(), "硅岩基终末燃油-NQ");
+        replace(provider,CTNHMaterials.LIVING_METAL.getUnlocalizedName(), "活体金属");
         replace(provider, CTNHMaterials.SpecialCompositeSteelM77.getUnlocalizedName(), "特种复合钢-M77");
         replace(provider, CTNHMaterials.HiddenAlloy.getUnlocalizedName(), "幽匿合金");
         replace(provider, CTNHMaterials.SpiritAsh.getUnlocalizedName(), "巫师之骨");
@@ -434,7 +436,7 @@ public class ChineseLangHandler {
         provider.add("crystallizer", "专业结晶");
         provider.add("ctnh.crystallizer.basic", "结晶器能更加快速的完成晶体配方");
         provider.add("ctnh.crystallizer.coolant", "随着线圈等级上升，工作效率逐级提升");
-        provider.add("ctnh.crystallizer.overclock", "可以运行化学气相沉积的配方和部分高压釜的配方");
+        provider.add("ctnh.crystallizer.overclock", "可以运行部分化学气相沉积的配方和部分高压釜的配方");
         provider.add("ctnh.crystallizer.safe", "省材料的最佳帮手");
         provider.add("desalting_introduction", "从海水中烘干出盐，很环保不是吗？");
         provider.add("multiblock.ctnh.water_power_station1", "水量：%d");
@@ -476,7 +478,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.alter.tips1","§4血魔法，就在你家门口！");
         provider.add("ctnh.alter.tips2","与血祭坛相同，该结构有输入LP上限，同时你§4必须通过特定配方来增加其lp§r\n详见JEI以查询增加的配方");
         provider.add("ctnh.alter.tips3","电压每超过HV一级，就增加10000可存储LP上限，达到LUV后每级额外增加30000");
-        provider.add("ctnh.alter.tips4","每一个增容符文增加2500LP上限，强化增容符文增加5000,达到LUV后每级额外增加10000/20000LP上限");
+        provider.add("ctnh.alter.tips4","每一个增容符文增加2500LP上限，强化增容符文增加5000,达到LUV后每级额外增加1000000/2000000LP上限");
         provider.add("ctnh.tier5_rune","五级符文");
         provider.add("ctnh.rune_energy","符文能量：%.2f");
         provider.add("ctnh.rune_consumption","当前消耗符文能量速率:%.2f /100tick");
@@ -520,8 +522,8 @@ public class ChineseLangHandler {
         provider.add("ctnh.sinope.parallel","并行数:%d");
         provider.add("ctnh.nano.1","利用摩擦热的力量");
         provider.add("ctnh.nano.2","最大并行数:1024");
-        provider.add("ctnh.nano.3","每有1并行数，总体发电量提升0.2%\n实际运行时间为配方时间*sqrt(并行数)");
-        provider.add("ctnh.nano.4","在机器内塞入特定材料可提升倍率，但也有概率消耗\n无材料：0.4倍率\n橡胶片：0.8倍率,并行数/512几率消耗\n聚乙烯片：1.2倍率，并行数/1024几率消耗\n硅橡胶片：2.0倍率，并行数/4096几率消耗\n丁苯橡胶片：3.2倍率，并行数/65535几率消耗\n聚苯并咪唑片：5倍率，并行数/1048576几率消耗");
+        provider.add("ctnh.nano.3","每有1并行数，总体发电量提升0.5%\n实际运行时间为配方时间*sqrt(并行数)");
+        provider.add("ctnh.nano.4","在机器内塞入特定材料可提升倍率，但也有概率消耗\n无材料：0.8倍率\n橡胶片：1.0倍率,并行数/512几率消耗\n聚乙烯片：1.6倍率，并行数/1024几率消耗\n硅橡胶片：2.4倍率，并行数/4096几率消耗\n丁苯橡胶片：3.2倍率，并行数/65535几率消耗\n聚苯并咪唑片：8倍率，并行数/1048576几率消耗");
         provider.add("ctnh.connect","连接已搭建");
         provider.add("ctnh.anti_nu","反中子量:%d");
         provider.add("ctnh.anti_proton","反质子量:%d");
@@ -616,7 +618,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.accelerator.mode.speed.m","需求速度：%.2fMev");
         provider.add("ctnh.accelerator.mode.speed.g","需求速度:%.2fGev");
         provider.add("ctnh.mk4.waring","只能使用激光仓");
-        provider.add("ctnh.multiblock.lcr.duration_reduction", "和热解炉一样根据线圈等级减免配方时间");
+        provider.add("ctnh.multiblock.lcr.duration_reduction", "线圈温度超过5400K时，每1800K使运行速度+25%");
         provider.add("ctnh.manareactor.1","工业魔力奠基者");
         provider.add("ctnh.manareactor.2","允许使用并行控制仓");
         provider.add("ctnh.arcgenerator.arc.1","电弧最大强度:%d");
@@ -668,12 +670,12 @@ public class ChineseLangHandler {
         provider.add("ctnh.eternalgarden.3","每朵花都有自己独特的机制，机制太复杂了！请参阅§5魔力飞升§r章节来获取各种花的机制");
         provider.add("ctnh.eternalgarden.unknown","§5......等待着永恒的紫罗兰如今在何方？");
         provider.add("ctnh.manamachine.parallel","运行中的每一并行提供1%时间和耗能减免，至多减少75%");
-        provider.add("ctnh.manamachine.debuff","§4当电压低于LUV且配方电压等级等于当前配方电压时，使配方时间增加33%（魔力组装只增加1%)");
+        provider.add("ctnh.manamachine.debuff","§4当电压低于LUV且配方电压等级等于当前配方电压时，使配方时间增加50%（魔力组装只增加1%)");
         provider.add("ctnh.quasar_mode","放入§5类星体符文§r以在100次配方内启用§5星体之眼模式§r：并行变为无限，并行不再提供额外的时间与电压减少。启动此模式不消耗类星体符文");
         provider.add("ctnh.anti_inf_matter.1","-∞");
         provider.add("ctnh.anti_inf_matter.2","它到底是怎么在现实世界存在的......");
         provider.add("ctnh.plasma_alloy.1","§4转底炉的复仇");
-        provider.add("ctnh.plasma_alloy.11","允许使用§b激光仓§r，使用激光仓时最终速度将除以10，速度低于原速度时拒绝运行");
+        provider.add("ctnh.plasma_alloy.11","允许使用§b激光仓§r，使用激光仓时最终速度将除以4，速度低于原速度时拒绝运行");
         provider.add("ctnh.plasma_alloy.2","线圈温度每有1800K，获得4点并行，线圈温度超过10000K时，获得(线圈温度-10000)/10000的额外加速");
         provider.add("ctnh.plasma_alloy.3","运行前消耗(并行数*对应等离子体消耗)的等离子体，获得额外加速");
         provider.add("ctnh.plasma_alloy.4","氦等离子体：消耗500*并行的等离子体，速度+100%");
@@ -694,7 +696,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.u_sinope.6","允许使用激光仓，但你的配方电压等级必须达到OPV，否则效率将减少99%");
         provider.add("ctnh.u_sinope.7","对于常规配方，该巨构拥有8^（电压等级）的并行，最高不超过2^32，在能源仓等级达到OPV时解锁无损超频，配方等级每超过UHV一级，处理速度+555%,每100点并行使处理速度增加333%,如果使用了四维工程学材料，则速度额外增加5000%");
         provider.add("ctnh.u_sinope.8","对于该巨构特有的配方类型具有特殊机制：时间固定为100秒，并行固定为10，电压每超过UHV一级，则时间减少10秒，并行增加10,如果使用了四维工程学材料且线圈等级大于等于UIV，则时间固定为1秒");
-        provider.add("ctnh.overclock_parallel_machine","机器运行时每有一实际并行，能源消耗减少1%（至多75%）。运行时间减少1%(至多50%)");
+        provider.add("ctnh.overclock_parallel_machine","机器运行时每有一实际并行，能源消耗减少2%（至多75%）。运行时间减少2%(至多50%)");
         provider.add("ctnh.coil_speed","线圈温度大于1800K时，每额外的1800K温度额外提供50%的速度加成");
         provider.add("ctnh.pab","配方类型：“合金冶炼炉“");
         provider.add("ctnh.acc.danger","§c危险粒子实验");
@@ -758,7 +760,45 @@ public class ChineseLangHandler {
         provider.add("ctnh.nuclear_reactor.coolant", "冷却液可以使用蒸汽（150°C），氘（450°C），钠（800°C），钠钾合金（900°C），反应的堆温越高，消耗冷却液的速度越快，冷却液的热容越大，消耗速度越慢");
         provider.add("ctnh.nuclear_reactor.overclock", "冷却液并非运行所必须，但是在有冷却液时，配方每运行一秒，进度会增加两秒");
         provider.add("ctnh.nuclear_reactor.safe", "反应堆不会过热爆炸");
+        provider.add("ctnh.mana.waring","§c魔力机器不再拥有任何并行");
+        provider.add("ctnh.cryotheum.0","§b泪水如凛冰般落下");
+        provider.add("ctnh.cryotheum.1","每次运行配方消耗10mb极寒之凛冰，电压每高于§9IV§r一级，这个消耗就翻4倍");
+        provider.add("ctnh.cryotheum.2","具有16并行，能耗-25%，运行速度+25%");
+        provider.add("ctnh.compiler.part_states","片区%d状态:%s");
+        provider.add("ctnh.compiler.state.idle","§6待机");
+        provider.add("ctnh.compiler.state.error","§c故障");
+        provider.add("ctnh.compiler.state.working","§9运行中:%ss/%ss");
+        provider.add("ctnh.compiler.state.finish","§a完成");
+        provider.add("ctnh.compiler.state.waiting","§b等待中......");
+        provider.add("ctnh.data.tip1","当前公式: a%s+b%s+c%s+d");
+        provider.add("ctnh.data.muti","获取的倍率: %s");
+        provider.add("ctnh.compiler.0","将生物的进化之道完全放任于碳基生物的自然演变是一种低效且缓慢的做法，现在我们将亲自编码每一个基因序列，将我们的至臻完美编译在神经元的逻辑之中");
+        provider.add("ctnh.compiler.01","神经矩阵编码器（CMP）是一台编译神经序列的机器，其不同于其他机器，不执行正常的输入逻辑，无法超频");
+        provider.add("ctnh.compiler.1","该机器的输入由6个神经矩阵研究舱室组成，每个舱室在结构完成时将被编码，所有研究舱室必须为同一等级，编码完成后，每个研究舱室将会显示他们所属的片区");
+        provider.add("ctnh.compiler.2","该机器的输入§c必须严格按照JEI的物品顺序§9从左到右§r从第一行到第二行放置在§91-5片区§r，同时在第六片区放置§9研究数据集§r§r,任何错误的放置或者外部舱室的放置都会导致机器故障并在对应舱室显示故障");
+        provider.add("ctnh.compiler.3","必须保证所有神经矩阵研究舱室的等级不低于配方等级，否则配方不会运行");
+        provider.add("ctnh.compiler.4","————————机器总体机制————————");
+        provider.add("ctnh.compiler.5","每次检测到新的配方时，机器将§6完美诉诸于随机§r，生成函数F(x1,x2,x3)=§6y=ax1+bx2+cx3+d§r，其中，x1,x2,x3为期望的片区所消耗的物品数量，同时在给定范围内随机x1,x2,x3,获取答案y");
+        provider.add("ctnh.compiler.6","当配方执行时，在开始逻辑运算，1-5片区将各自运行5s,运行完毕时将消耗舱室内所有物品来取得函数");
+        provider.add("ctnh.compiler.part1","片区1-3：用于提供函数F(x)的真实x1,x2,x3");
+        provider.add("ctnh.compiler.part2","片区4：代表函数F(x)的常数量d，同时决定噪声ϵ");
+        provider.add("ctnh.compiler.part3","片区5：此片区用为神经编译提供电路板支持，决定噪声ϵ波动，如果提供电路板大于配方给定值则不造成噪声影响");
+        provider.add("ctnh.compiler.part4","片区6：收集最终编译结果的片区，在完成一次逻辑运算流程后，将根据结果对神经数据集进行修改");
+        provider.add("ctnh.compiler.7","在片区1-5执行完毕后，进行持续5s的总计算流程，在此过程中给出x1,x2,x3，计算得到计算值y，与真实比较，进行最终编译运算");
+        provider.add("ctnh.compiler.8","————————最终编译运算————————");
+        provider.add("ctnh.compiler.9","最终编译运算将比较真实y与结果y，如果结果y的值在真实值y的0.9-1.1倍内，则运算成功，将编译数据集变为配方输出");
+        provider.add("ctnh.compiler.10","如果运算失败，则定义噪声结果函数f(x1,x2,x3)=ax1+bx2+cx3+d+ϵ,根据噪声决定片区，噪声波动最多翻倍5倍，片区误差项为0.9-1.1间，则噪声变为0.5倍率");
+        provider.add("ctnh.compiler.11","最终编译数据集将获得三个信息，信息1代表本次的方程，信息2代表噪声结果函数获得的结果值对于y的倍率，信息3代表误差项的比率");
+        provider.add("ctnh.compiler.12","在执行相同配方时方程不会重置，在执行配方或者结构重新成型时，重置y和方程");
+        provider.add("ctnhcore.src.sacrifice_empty","无牺牲者");
+        provider.add("ctnhcore.src.sacrifice_locked","已锁定牺牲者！");
+        provider.add("ctnhcore.src.sacrifice_unlocked","无法锁定牺牲者");
+        provider.add("ctnhcore.src.wetware_duration", "湿件剩余存活时间: %s ticks");
+        provider.add("ctnhcore.src.sacrifice", "牺牲着: %s");
+        provider.add("ctnh.data.noise","当前噪声值：%s");
 
+        provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
+        provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -829,6 +869,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T1,"戴森云无人机蜂群MKI");
         provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T2,"戴森云无人机蜂群MKII");
         provider.addItem(CTNHItems.PV_TERMINAL,"光伏绑定终端");
+        provider.addItem(CTNHItems.RESEARCH_DATASET_LIVING_MATERIAL,"研究数据集：活体金属");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL, "进阶线程控制外壳");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_LINE, "进阶装配核心");
@@ -898,6 +939,8 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.PV_COIL,"光伏线圈方块");
         provider.addBlock(CTNHBlocks.NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK,"硅岩激发碳纳米太空结构方块");
         provider.addBlock(CTNHBlocks.CASING_SHIELDED_REACTOR, "覆层核反应堆外壳");
+        provider.addBlock(CTNHBlocks.SUPERCOOLED_BLOCK,"超级冷冻机械线圈");
+        provider.addBlock(CTNHBlocks.HYPER_PLASMA_TURBINE_ROTOR,"超極等离子涡轮转子");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");
@@ -1001,8 +1044,9 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.HOT_COOLANT_TURBINE.getBlock(), "热冷却涡轮");
         provider.add(CTNHMultiblockMachines.NUCLEAR_REACTOR.getBlock(), "核反应堆");
         provider.add(CTNHMultiblockMachines.GAS_CENTRIFUGE.getBlock(), "气体离心机");
-
-
+        provider.add(CTNHMultiblockMachines.CRYOTHEUMFREEZER.getBlock(),"凛冰冷冻机");
+        provider.add(CTNHMultiblockMachines.HYPER_PLASMA_TURBINE.getBlock(), "超極等离子涡轮");
+        provider.add(CTNHMultiblockMachines.NERUOMATRIXCOMPILER.getBlock(),"神经矩阵编译器");
 
 
 
@@ -1027,6 +1071,16 @@ public class ChineseLangHandler {
         replace(provider, nuclearProperty.getOxideMaterial().getUnlocalizedName(), "氧化" + name);
         replace(provider, nuclearProperty.getNitrideMaterial().getUnlocalizedName(), "氮化" + name);
         replace(provider, nuclearProperty.getZirconiumAlloyMaterial().getUnlocalizedName(), "锆合金" + name);
+//        replace(provider, nuclearProperty.getFuel(material).getDisplayName().getString(), name + "纯净燃料");
+//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getCarbideMaterial()).getDisplayName().getString(), name + "TRISO燃料");
+//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getOxideMaterial()).getDisplayName().getString(), name + "氧化燃料");
+//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getNitrideMaterial()).getDisplayName().getString(), name + "氮化燃料");
+//        replace(provider, nuclearProperty.getFuel(nuclearProperty.getZirconiumAlloyMaterial()).getDisplayName().getString(), name + "锆合金燃料");
+//        replace(provider, nuclearProperty.getDepletedFuel(material).getDisplayName().getString(), name + "枯竭燃料");
+//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getCarbideMaterial()).getDisplayName().getString(), name + "枯竭TRISO燃料");
+//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getOxideMaterial()).getDisplayName().getString(), name + "枯竭氧化燃料");
+//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getNitrideMaterial()).getDisplayName().getString(), name + "枯竭氮化燃料");
+//        replace(provider, nuclearProperty.getDepletedFuel(nuclearProperty.getZirconiumAlloyMaterial()).getDisplayName().getString(), name + "枯竭锆合金燃料");
         replace(provider, GTMaterials.get(material.getName() + "_hexafluoride").getUnlocalizedName(), "六氟化" + name);
         replace(provider, GTMaterials.get(material.getName() + "_hexafluoride_steam_cracked").getUnlocalizedName(), "蒸汽裂解的六氟化" + name);
     }

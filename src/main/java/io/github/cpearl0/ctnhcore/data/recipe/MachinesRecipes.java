@@ -6,13 +6,13 @@ import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import com.simibubi.create.AllBlocks;
 import io.github.cpearl0.ctnhcore.registry.*;
-import net.minecraft.client.resources.model.Material;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -22,17 +22,7 @@ import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.MinecartItem;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
-import twilightforest.TwilightForestMod;
-import twilightforest.enums.TwilightArmorMaterial;
-import twilightforest.item.SteeleafArmorItem;
-import twilightforest.item.TwilightBoatItem;
-import twilightforest.item.TwilightWandItem;
-import twilightforest.util.TwilightItemTier;
-import twilightforest.world.components.structures.TwilightTemplateStructurePiece;
 
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -45,7 +35,6 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.*;
 import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.*;
-import static net.minecraft.world.item.Items.BONE_MEAL;
 import static twilightforest.init.TFItems.STEELEAF_INGOT;
 
 public class MachinesRecipes {
@@ -121,6 +110,27 @@ public class MachinesRecipes {
         CTNHRecipeTypes.PVDRONE.recipeBuilder("blank")
                 .duration(100)
                 .circuitMeta(1)
+                .save(provider);
+        CTNHRecipeTypes.COMPILER_RECIPE.recipeBuilder("test")
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .outputItems(dust, CTNHMaterials.SpiritAsh, 1)
+                .addData("1",48)
+                .addData("2",30)
+                .addData("3",30)
+                .addData("noisea",20)
+                .addData("noiseb",2)
+                .addData("range",120)
+                .duration(20*30)
+                .EUt(1000000)
+                .save(provider);
+        COMBUSTION_GENERATOR_FUELS.recipeBuilder("end")
+                .inputFluids(CTNHMaterials.NQ_END_OF_GASOLINE.getFluid(1))
+                .duration(1000)
+                .EUt(-320)
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")

@@ -26,6 +26,7 @@ public class CommonProxy {
         CTNHTemperatureModifierRegister.init();
         CTNHCoreDatagen.init();
         CTNHConfig.init();
+        CTNHDamageTypes.init();
     }
 
     public void addMaterialFlag(MaterialEvent event) {

@@ -1,17 +1,16 @@
 package io.github.cpearl0.ctnhcore.client.renderer.utils;
 
-import com.google.common.math.IntMath;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import org.joml.Vector3i;
 
 import javax.annotation.Nullable;
-import java.math.RoundingMode;
 import java.util.EnumMap;
 import java.util.HashMap;
 
@@ -27,14 +26,23 @@ public abstract class RenderUtils {
         directionAxises.put(Direction.UP, Axis.YP);
         directionAxises.put(Direction.DOWN, Axis.YN);
     }
-    public static EnumMap<Direction, Vector3i> dircetionVectors = new EnumMap<>(Direction.class);
+    public static EnumMap<Direction, Vector3i> directionVectors = new EnumMap<>(Direction.class);
     static {
-        dircetionVectors.put(Direction.NORTH, new Vector3i(0, 0, -1));
-        dircetionVectors.put(Direction.SOUTH, new Vector3i(0, 0, 1));
-        dircetionVectors.put(Direction.EAST, new Vector3i(1, 0, 0));
-        dircetionVectors.put(Direction.WEST, new Vector3i(-1, 0, 0));
-        dircetionVectors.put(Direction.UP, new Vector3i(0, 1, 0));
-        dircetionVectors.put(Direction.DOWN, new Vector3i(0, -1, 0));
+        directionVectors.put(Direction.NORTH, new Vector3i(0, 0, -1));
+        directionVectors.put(Direction.SOUTH, new Vector3i(0, 0, 1));
+        directionVectors.put(Direction.EAST, new Vector3i(1, 0, 0));
+        directionVectors.put(Direction.WEST, new Vector3i(-1, 0, 0));
+        directionVectors.put(Direction.UP, new Vector3i(0, 1, 0));
+        directionVectors.put(Direction.DOWN, new Vector3i(0, -1, 0));
+    }
+    public static HashMap<Vector3i,Direction> vectorDirections = new HashMap<>();
+    static {
+        vectorDirections.put(new Vector3i(0, 0, -1), Direction.NORTH);
+        vectorDirections.put(new Vector3i(0, 0, 1), Direction.SOUTH);
+        vectorDirections.put(new Vector3i(1, 0, 0), Direction.EAST);
+        vectorDirections.put(new Vector3i(-1, 0, 0), Direction.WEST);
+        vectorDirections.put(new Vector3i(0, 1, 0), Direction.UP);
+        vectorDirections.put(new Vector3i(0, -1, 0), Direction.DOWN);
     }
     public static HashMap<Vector3i, Axis> vectorToAxis = new HashMap<>();
     static {
@@ -60,8 +68,8 @@ public abstract class RenderUtils {
 //        Quaternionf b = (Quaternionf) directionAxises.get(relative);
 //        return (Axis)a.mul(b);
         //打表出奇迹
-        var a = dircetionVectors.get(facing);
-        var b = dircetionVectors.get(relative);
+        var a = directionVectors.get(facing);
+        var b = directionVectors.get(relative);
         var c = cross(a, b);
 //        if(c.equals(new Vector3i(0, 0, 0)))return vectorToAxis.get(a);
         return vectorToAxis.get(c);
@@ -110,5 +118,33 @@ public abstract class RenderUtils {
         } while (l == 0);
         return new Vector3f(ix/l,iy/l,iz/l);
     }
+    public static void autoMulPose(PoseStack stack, Direction facing, Direction original){
+        Axis rot = getFacingAxis(facing, original);
+        if(rot == null ){
+            if(facing == original.getOpposite())
+                stack.mulPose(directionAxises.get(facing.getClockWise()).rotationDegrees(180));
+        }
+        else{
+            stack.mulPose(rot.rotationDegrees(-90));
+        }
+    }
+    public static void autoMulPose(PoseStack stack, Direction facing){
+        autoMulPose(stack, facing, Direction.SOUTH);
+    }
+    public static BlockPos autoRotate(BlockPos pos, Direction facing, Direction original)
+    {
+        Vector3i x = new Vector3i( directionVectors.get(facing.getClockWise()));
+        Vector3i y = new Vector3i( directionVectors.get(Direction.UP));
+        Vector3i z = new Vector3i( directionVectors.get(original));
 
+        Vector3i ret = new Vector3i();
+        ret.add(x.mul(pos.getX()));
+        ret.add(y.mul(pos.getY()));
+        ret.add(z.mul(pos.getZ()));
+        return new BlockPos(ret.x, ret.y, ret.z);
+    }
+    public static BlockPos autoRotate(BlockPos pos, Direction facing)
+    {
+        return autoRotate(pos, facing, Direction.SOUTH);
+    }
 }

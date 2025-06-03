@@ -7,35 +7,31 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.model.TurbineRotorModel;
 import io.github.cpearl0.ctnhcore.common.block.TurbineRotorBlock;
 import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
-import io.github.cpearl0.ctnhcore.registry.CTNHModelLayers;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
-import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import org.joml.Quaternionf;
+import net.minecraftforge.api.distmarker.*;
 
-import javax.annotation.Nullable;
 import javax.annotation.*;
-import java.util.EnumMap;
+
 import io.github.cpearl0.ctnhcore.client.renderer.utils.RenderUtils;
 
-@OnlyIn(Dist.CLIENT)
 public class TurbineRotorRender implements BlockEntityRenderer<TurbineRotorBE> {
 
     private static final ResourceLocation TEXTURE =
             CTNHCore.id("textures/block/turbine_rotor/texture.png");
     private static final TurbineRotorModel model = new TurbineRotorModel();
+
+    @Override
+    @ParametersAreNonnullByDefault
+    public boolean shouldRenderOffScreen(TurbineRotorBE pBlockEntity) {
+        return true;
+    }
+
     @Override
     public int getViewDistance() {
         return 24;
@@ -51,7 +47,7 @@ public class TurbineRotorRender implements BlockEntityRenderer<TurbineRotorBE> {
             int packedLight,
             int packedOverlay
     ) {
-        if(blockEntity.isActive())blockEntity.tick();
+        TurbineRotorBlock block = (TurbineRotorBlock) blockEntity.getBlockState().getBlock();
         poseStack.pushPose();
 
 
@@ -64,7 +60,8 @@ public class TurbineRotorRender implements BlockEntityRenderer<TurbineRotorBE> {
             poseStack.mulPose(modelAxis.rotationDegrees(-90));  //把模型的正面转向facing方向
         else if (facing == Direction.DOWN)
             poseStack.mulPose(Axis.XP.rotationDegrees(180));  //倒过来
-        poseStack.mulPose(Axis.YP.rotationDegrees(blockEntity.getRotation()));  //转子旋转, YP为模型的正面
+        if(block.isActive(blockEntity.getBlockState()))
+            poseStack.mulPose(Axis.YP.rotationDegrees((blockEntity.tick()) * blockEntity.getSpeed()));  //转子旋转, YP为模型的正面
 
 
 
@@ -75,7 +72,10 @@ public class TurbineRotorRender implements BlockEntityRenderer<TurbineRotorBE> {
                 vertexConsumer,
                 packedLight,
                 packedOverlay,
-                1.0F,1.0F,1.0F,1.0F
+                block.getR(),
+                block.getG(),
+                block.getB(),
+                block.getA()
         );
 
         poseStack.popPose();

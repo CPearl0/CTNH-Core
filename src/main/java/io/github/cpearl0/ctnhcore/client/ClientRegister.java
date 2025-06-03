@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = CTNHCore.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientRegister {
+    @Deprecated
     @SubscribeEvent
     public static void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         CTNHCore.LOGGER.info("Registering Models...");
@@ -22,7 +23,6 @@ public class ClientRegister {
             event.registerLayerDefinition(model.LAYER_LOCATION, model.createBodyLayer);
         }
     }
-    @Deprecated
     @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         CTNHCore.LOGGER.info("Registering External Renderers...");

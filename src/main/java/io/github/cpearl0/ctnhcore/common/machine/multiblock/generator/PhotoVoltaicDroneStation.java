@@ -135,9 +135,9 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         } else if (dimension == Planet.MERCURY || dimension == Planet.MERCURY_ORBIT) {
             rate *= 4;
         } else if (dimension == Planet.MARS || dimension == Planet.MARS_ORBIT) {
-            rate *= 8;
+            rate *= 6;
         } else if (dimension == Planet.GLACIO || dimension == Planet.GLACIO_ORBIT) {
-            rate *= 16;
+            rate *= 8;
         }
 
         return rate;
@@ -165,6 +165,7 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         return 1.0 / (1.0 + Math.exp(-k * (x - c)));
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
+
         if (machine instanceof PhotoVoltaicDroneStation lmachine) {
             var eut=lmachine.GetDronePower()* lmachine.dimension_check();
             var pa=1;

@@ -634,6 +634,24 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_COMPRESS, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
+    public static final GTRecipeType  COMPILER_RECIPE = GTRecipeTypes.register("compiler_recipe",ELECTRIC)
+            .setMaxIOSize(5, 1, 0, 0)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType SCALABLE_RESERVOIR_COMPUTING = GTRecipeTypes.register("scalable_reservoir_computing",ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(1,0,1,0)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
+            .setSlotOverlay(false,false,GuiTextures.RESEARCH_STATION_OVERLAY)
+            .setSlotOverlay(false,true,GuiTextures.FLUID_SLOT)
+            .setSound(GTSoundEntries.COMPUTATION)
+            .addDataInfo(data->LocalizationUtils.format("gtceu.machine.hpca.component_type.computation_cwut",data.getInt("maxCWUt")))
+            .addDataInfo(data->LocalizationUtils.format("ctnhcore.src.wetware_duration",data.getInt("wetwareDuration")))
+            //TODO: 渲染以后写
+            .addDataInfo(data->LocalizationUtils.format("ctnhcore.src.sacrifice",data.getString("sacrifice")))
+            ;
 
 
     public static void init() {

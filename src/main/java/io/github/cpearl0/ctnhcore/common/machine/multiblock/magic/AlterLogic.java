@@ -51,6 +51,7 @@ public class AlterLogic extends WorkableElectricMultiblockMachine implements ITi
         }
         return Capacity_rune;
     }
+    @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
         var tier = getTier();
@@ -66,7 +67,7 @@ public class AlterLogic extends WorkableElectricMultiblockMachine implements ITi
         max_lp=max_lp+10000*Math.max((tier-3),0);
         max_lp=max_lp+30000*Math.max((tier-5),0);
         max_lp=max_lp+2500*calculateRune();
-        max_lp=max_lp+(10000*calculateRune()*Math.max((tier-5),0));
+        max_lp=max_lp+(10000000*calculateRune()*Math.max((tier-5),0));
 
     }
 

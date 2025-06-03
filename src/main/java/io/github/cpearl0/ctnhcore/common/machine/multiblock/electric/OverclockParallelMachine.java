@@ -37,15 +37,15 @@ public class OverclockParallelMachine extends CoilWorkableElectricMultiblockMach
         if(machine instanceof OverclockParallelMachine pmachine) {
             var speed=1;
             int parallel= ParallelLogic.getParallelAmount(machine,recipe,pa);
-            var eut=Math.max(0.25,1.01-0.01*parallel);
-            var parallel_speed=Math.max(0.5,1.01-0.01*parallel);
-            var coil_speed=((int) pmachine.temperature /1800)*0.5+1-0.5;
+            var eut=Math.max(0.25,1.01-0.02*parallel);
+            var parallel_speed=Math.max(0.5,1.01-0.02*parallel);
+            var coil_speed=Math.max(0,((int)(pmachine.temperature/1800)*0.25-0.75))+1;
             return  ModifierFunction.builder()
-                    .parallels(pa)
-                    .eutMultiplier(eut)
+                    .parallels(parallel)
+                    .eutMultiplier(eut*parallel)
                     .durationMultiplier(parallel_speed/coil_speed)
-                    .inputModifier(ContentModifier.multiplier(pa))
-                    .outputModifier(ContentModifier.multiplier(pa))
+                    .inputModifier(ContentModifier.multiplier(parallel))
+                    .outputModifier(ContentModifier.multiplier(parallel))
                     .build();
         }
         return ModifierFunction.NULL;

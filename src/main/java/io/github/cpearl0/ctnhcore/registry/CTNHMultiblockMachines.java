@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblo
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
+import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.predicates.SimplePredicate;
@@ -57,7 +58,9 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.IndustrialPr
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.HyperPlasmaTurbineRegister;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
@@ -942,7 +945,9 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.manamachine.debuff"),
                     Component.translatable("ctnh.quasar_mode"),
                     Component.translatable("ctnh.manamachine.parallel"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.perfect_overclock")
+
 
             )
 
@@ -972,6 +977,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.manamachine.debuff"),
                     Component.translatable("ctnh.quasar_mode"),
                     Component.translatable("ctnh.manamachine.parallel"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.perfect_overclock"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("EEEEE", "ABBBA", "ABBBA", "ACCCA")
@@ -1005,6 +1011,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.zenith_machine_tip"),
                     Component.translatable("ctnh.zenith_waring"),
                     Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.manamachine.parallel"))
 
             .pattern(definition -> FactoryBlockPattern.start()
@@ -1040,6 +1047,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.manamachine.debuff"),
                     Component.translatable("ctnh.quasar_mode"),
                     Component.translatable("ctnh.manamachine.parallel"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.perfect_overclock"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAA", "BBB", "CCC")
@@ -1065,6 +1073,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.manamachine.debuff"),
                     Component.translatable("ctnh.quasar_mode"),
                     Component.translatable("ctnh.manamachine.parallel"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.perfect_overclock"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABA", "AAA", "AAA", "CAC")
@@ -1094,6 +1103,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.manamachine.debuff"),
                     Component.translatable("ctnh.quasar_mode"),
                     Component.translatable("ctnh.manamachine.parallel"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.perfect_overclock"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABBBBBA", "ABBBBBA", "ABBBBBA", "ACCCCCA", "AAAAAAA")
@@ -2106,6 +2116,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.zenith_machine_tip"),
                     Component.translatable("ctnh.zenith_waring"),
                     Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.manamachine.parallel"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("####PPP####", "####PHP####", "####PPP####", "###########")
@@ -2147,6 +2158,7 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.zenith_machine_tip"),
                     Component.translatable("ctnh.zenith_waring"),
                     Component.translatable("ctnh.perfect_overclock"),
+                    Component.translatable("ctnh.mana.waring"),
                     Component.translatable("ctnh.manamachine.parallel"))
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "#####", "BBBBB", "BBEBB", "BEEEB", "BEEEB", "BEEEB", "BDDDB")
@@ -2166,9 +2178,9 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public final static MultiblockMachineDefinition SCALABLE_RESERVOIR_COMPUTING = REGISTRATE.multiblock("scalable_reservoir_computing", holder -> new ZenithMachine(holder, 10, 25, 60, 5))
+    public final static MultiblockMachineDefinition SCALABLE_RESERVOIR_COMPUTING = REGISTRATE.multiblock("scalable_reservoir_computing", holder -> new ScalableReservoirComputingMachine(holder))
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(GTRecipeTypes.DISTILLATION_RECIPES)
+            .recipeTypes(CTNHRecipeTypes.SCALABLE_RESERVOIR_COMPUTING)
             .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
             .recipeModifiers(ZenithMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.computer.a1"),
@@ -2189,7 +2201,10 @@ public class CTNHMultiblockMachines {
                     .aisle("XVX########################XVX", "W#W#########XXXXXXX########W#W", "W#W########X#######X#######W#W", "XVX#######X#########X######XVX", "#########X##########X#########", "#########X##########X#########", "#########X##########X#########", "#########X##########X#########", "#########X##########X#########", "##########X#########X#########", "###########X#######X##########", "############XXXXXXX###########", "XVX##########XXXXX#########XVX", "W#W########################W#W", "W#W########################W#W", "XVX########################XVX")
                     .aisle("#X##########################X#", "XWX########################X#X", "XWX#########XXXXXXX########X#X", "#X#########XOOO@OOOX########X#", "##########XOOOOOOOOOX#########", "#########XOOOOOOOOOOX#########", "#########XOOOOOOOOOOX#########", "#########XOOOOOOOOOOX#########", "#########XOOOOOOOOOOX#########", "##########XOOOOOOOOOX#########", "###########XOOOOOOOX##########", "############XXXXXXX###########", "#X##########################X#", "XWX########################XWX", "XWX########################XWX", "PX##########################XY")
                     .where("Y", Predicates.any())
-                    .where("X", Predicates.blocks(GTBlocks.HIGH_POWER_CASING.get()))
+                    .where("X", Predicates.autoAbilities(definition.getRecipeTypes())
+                            .or(abilities(PartAbility.COMPUTATION_DATA_TRANSMISSION))
+                            .or(abilities(PartAbility.INPUT_LASER))
+                            .or( Predicates.blocks(GTBlocks.HIGH_POWER_CASING.get())))
                     .where("#", Predicates.any())
                     .where("W", Predicates.blocks(IRON_BARS))
                     .where("V", Predicates.blocks(GTBlocks.CASING_ASSEMBLY_CONTROL.get()))
@@ -2260,7 +2275,7 @@ public class CTNHMultiblockMachines {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ALTER)
             // .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
-            .recipeModifiers(ZenithMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .recipeModifiers(AlterLogic::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(Component.translatable("ctnh.alter.tips1"),
                     Component.translatable("ctnh.alter.tips2"),
                     Component.translatable("ctnh.alter.tips3"),
@@ -3705,7 +3720,7 @@ public class CTNHMultiblockMachines {
                     .where("B", Predicates.blocks(CASING_HIGH_TEMPERATURE_SMELTING.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(Predicates.abilities(PartAbility.PARALLEL_HATCH))
-                            .or(Predicates.abilities(PartAbility.INPUT_LASER)).setMaxGlobalLimited(1))
+                            .or(Predicates.abilities(PartAbility.INPUT_LASER)))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("C", Predicates.frames(Naquadria))
                     .where("D", Predicates.blocks(CASING_TUNGSTENCU_DIAMOND_PLATING.get()))
@@ -4002,36 +4017,7 @@ public class CTNHMultiblockMachines {
 
             .workableCasingRenderer(CTNHCore.id("block/casings/depth_force_field_stabilizing_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public final static MultiblockMachineDefinition HYPER_PLASMA_TURBINE = REGISTRATE.multiblock("hyper_plasma_turbine", holder -> new HyperPlasmaTurbineMachine(holder))
-            .rotationState(RotationState.ALL)
-            .recipeType(GTRecipeTypes.PLASMA_GENERATOR_FUELS)
-            .generator(true)
-            .recipeModifier(HyperPlasmaTurbineMachine::recipeModifier, true)
-            .appearanceBlock(HIGH_POWER_CASING)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("CCCC", "CHHC", "CCCC")
-                    .aisle("CHHC", "H##H", "CHHC")  /*结构还没想好，先用这个测试*/
-                    .aisle("CCCC", "C@HC", "CCCC")
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .where("C", blocks(HIGH_POWER_CASING.get()))
-                    .where("H", blocks(HIGH_POWER_CASING.get())
-                            .or(autoAbilities(definition.getRecipeTypes()))
-                            .or(autoAbilities(true, false, false))
-                            .or(abilities(PartAbility.OUTPUT_LASER))
-                            .or(abilities(PartAbility.COMPUTATION_DATA_RECEPTION).setExactLimit(1)))
-                    .where("#", any())
-                    .build())
-            .recoveryItems(
-                    () -> new ItemLike[] {
-                            GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get() })
-//            .workableCasingRenderer(casingTexture, overlayModel)
-            .tooltips(
-                    Component.translatable("gtceu.multiblock.turbine.efficiency", HyperPlasmaTurbineMachine.getEfficiency()),
-                    Component.translatable("ctnh.multiblock.hyper_plasma_turbine.tooltip0"),
-                    Component.translatable("ctnh.multiblock.hyper_plasma_turbine.tooltip1"),
-                    Component.translatable("gtceu.universal.tooltip.base_production_eut", HyperPlasmaTurbineMachine.BASE_EU_OUTPUT),
-                    Component.translatable("gtceu.multiblock.laser.tooltip"))
-            .register();
+    public final static MultiblockMachineDefinition HYPER_PLASMA_TURBINE = HyperPlasmaTurbineRegister.register();
     public final static MultiblockMachineDefinition PHOTOVOLTAIC_DRONE_STATION = REGISTRATE.multiblock("photovoltaic_drone_station", PhotoVoltaicDroneStation::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.PVDRONE)
@@ -4156,6 +4142,27 @@ public class CTNHMultiblockMachines {
             .build())
             .workableCasingRenderer(CTNHCore.id("block/casings/shielded_reactor_casing"), GTCEu.id("block/machines/nuclear_reactor"), false)
             .register();
+    public final static MultiblockMachineDefinition  CRYOTHEUMFREEZER = REGISTRATE.multiblock("cryotheum_freezer", CryotheumFreezer::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.VACUUM_RECIPES)
+            .recipeModifiers(CryotheumFreezer::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.cryotheum.0"),
+                    Component.translatable("ctnh.cryotheum.1"),
+                    Component.translatable("ctnh.cryotheum.2"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAA", "BBB", "AAA")
+                    .aisle("AAA", "B#B", "AAA")
+                    .aisle("AAA", "B@B", "AAA")
+                    .where("A", Predicates.blocks(SUPER_FREEZE_BLOCK.get()).setMinGlobalLimited(10)
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+
+                    .where("B", Predicates.blocks(SUPERCOOLED_BLOCK.get()))
+                    .where("#", Predicates.any())
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build()
+            )
+            .workableCasingRenderer(CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"), GTCEu.id("block/multiblock/vacuum_freezer"), false)
+            .register();
     public static final MultiblockMachineDefinition MANA_CONDENSER = REGISTRATE.multiblock("mana_condenser", ManaCondenserMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MANA_CONDENSER_RECIPES)
@@ -4216,6 +4223,79 @@ public class CTNHMultiblockMachines {
                 .where("R", Predicates.blocks(BotaniaBlocks.fabulousPool))
                 .build())
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
+    public final static MultiblockMachineDefinition  NERUOMATRIXCOMPILER = REGISTRATE.multiblock("neruo_martix_compiler", NeuroMatrixCompiler::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CTNHRecipeTypes.COMPILER_RECIPE)
+            .appearanceBlock(CASING_ANTIFREEZE_HEATPROOF_MACHINE)
+            .recipeModifiers(NeuroMatrixCompiler::recipeModifier)
+            .tooltips(Component.translatable("ctnh.compiler.0"),
+                    Component.translatable("ctnh.compiler.01"),
+                    Component.translatable("ctnh.compiler.1"),
+                    Component.translatable("ctnh.compiler.2"),
+                    Component.translatable("ctnh.compiler.3"),
+                    Component.translatable("ctnh.compiler.4"),
+                    Component.translatable("ctnh.compiler.5"),
+                    Component.translatable("ctnh.compiler.6"),
+                    Component.translatable("ctnh.compiler.part1"),
+                    Component.translatable("ctnh.compiler.part2"),
+                    Component.translatable("ctnh.compiler.part3"),
+                    Component.translatable("ctnh.compiler.part4"),
+                    Component.translatable("ctnh.compiler.7"),
+                    Component.translatable("ctnh.compiler.8"),
+                    Component.translatable("ctnh.compiler.9"),
+                    Component.translatable("ctnh.compiler.10"),
+                    Component.translatable("ctnh.compiler.11"),
+
+                    Component.translatable("ctnh.compiler.12"))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("A############BBBBB#############", "#############CCDCC#############", "#############B#B#B#############", "###############################", "###############################", "###############################", "##############B#B##############", "#############CCCCC#############", "#############BBBBB#############")
+                    .aisle("#############BBBBB#############", "#############CEFEC#############", "##############EFE##############", "##############EFE##############", "##############EFE##############", "##############EFE##############", "#############BEFEB#############", "#############CEFEC#############", "#############BBBBB#############")
+                    .aisle("#############BBBBB#############", "#############CFGFC#############", "#############BFGFB#############", "##############FGF##############", "##############FGF##############", "##############FGF##############", "##############FGF##############", "#############CFGFC#############", "#############BBBBB#############")
+                    .aisle("#############BBBBB#############", "#############CEHEC#############", "##############ECE##############", "##############ECE##############", "##############ECE##############", "##############ECE##############", "#############BECEB#############", "#############CECEC#############", "#############BBBBB#############")
+                    .aisle("#############BBBBB#############", "#############CCHCC#############", "#############BBCBB#############", "###############################", "###############################", "###############################", "###############################", "#############CCCCC#############", "#############BBBBB#############")
+                    .aisle("##############III##############", "##############FHF##############", "##############BCB##############", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################")
+                    .aisle("##############III##############", "##############FHF##############", "##############BCB##############", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################")
+                    .aisle("##############III##############", "##############FHF##############", "##############BCB##############", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################")
+                    .aisle("#############IIIII#############", "#############IIHII#############", "#############IIIII#############", "#############FIIIF#############", "#############FFIFF#############", "#############FFIFF#############", "#############FIIIF#############", "#############IIIII#############", "#############IIIII#############")
+                    .aisle("###########IIJJIJJII###########", "###########II##I##II###########", "###########FF##I##FF###########", "###########FF##I##FF###########", "###########FF##F##FF###########", "###########FF##F##FF###########", "###########FF##I##FF###########", "###########FF##I##FF###########", "###########IIKKIKKII###########")
+                    .aisle("##########IJJJJIJJJJI##########", "##########I####I####I##########", "##########I####I####I##########", "##########I####F####I##########", "##########I####F####I##########", "##########I####F####I##########", "##########I####F####I##########", "##########I####I####I##########", "##########IKKKKIKKKKI##########")
+                    .aisle("#########IJJJJJIJJJJJI#########", "#########I#####I#####I#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########IKKKKKIKKKKKI#########")
+                    .aisle("#########IJJJJJIJJJJJI#########", "#########I#####I#####I#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########IKKKKKIKKKKKI#########")
+                    .aisle("BBBBB###IJJJJJJIJJJJJJI###BBBBB", "CCCCC###I######I######I###CCCCC", "B#B#B###I######I######I###B#B#B", "########F######F######F########", "########F######F######F########", "########F######F######F########", "#B#B####F######F######F####B#B#", "CCCCC###I######I######I###CCCCC", "BBBBB###IKKKKKKIKKKKKKI###BBBBB")
+                    .aisle("BBBBBIIIIJJJJJJIJJJJJJIIIIBBBBB", "CEFECFFFI######I######IFFFCEFEC", "#EFEBBBBI######I######IBBBBEFE#", "#EFE####I######I######I####EFE#", "#EFE####F######F######F####EFE#", "#EFE####F######F######F####EFE#", "BEFE####I######I######I####EFEB", "CEFEC###I######I######I###CEFEC", "BBBBB###IKKKKKKIKKKKKKI###BBBBB")
+                    .aisle("BBBBBIIIIIIIIIIIIIIIIIIIIIBBBBB", "DFGHHHHHHIIIIIIIIIIIIIHHHHHHGCD", "BFGCCCCCIIIFFIIIIIFFIIICCCCCGCB", "#FGC####IIFFFFIIIFFFFII####CGC#", "#FGC####IFFFFFFIFFFFFFI####CGC#", "#FGC####IFFFFFFIFFFFFFI####CGC#", "#FGC####IIFFFFIIIFFFFII####CGC#", "CFGCC###IIIFFIIIIIFFIII###CCGCC", "BBBBB###IIIIIIILIIIIIII###BBBBB")
+                    .aisle("BBBBBIIIIJJJJJJIJJJJJJIIIIBBBBB", "CEFECFFFI######I######IFFFCEFEC", "#EFEBBBBI######I######IBBBBEFE#", "#EFE####I######I######I####EFE#", "#EFE####F######F######F####EFE#", "#EFE####F######F######F####EFE#", "BEFE####I######I######I####EFEB", "CEFEC###I######I######I###CEFEC", "BBBBB###IKKKKKKIKKKKKKI###BBBBB")
+                    .aisle("BBBBB###IJJJJJJIJJJJJJI###BBBBB", "CCCCC###I######I######I###CCCCC", "B#B#B###I######I######I###B#B#B", "########F######F######F########", "########F######F######F########", "########F######F######F########", "#B#B####F######F######F####B#B#", "CCCCC###I######I######I###CCCCC", "BBBBB###IKKKKKKIKKKKKKI###BBBBB")
+                    .aisle("#########IJJJJJIJJJJJI#########", "#########I#####I#####I#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########IKKKKKIKKKKKI#########")
+                    .aisle("#########IJJJJJIJJJJJI#########", "#########I#####I#####I#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########F#####F#####F#########", "#########IKKKKKIKKKKKI#########")
+                    .aisle("#########IIJJJJIJJJJII#########", "#########FH####I####HF#########", "#########BI####I####IB#########", "##########I####F####I##########", "##########I####F####I##########", "##########I####F####I##########", "##########I####F####I##########", "##########I####I####I##########", "##########IKKKKIKKKKI##########")
+                    .aisle("########IIIIIJJIJJIIIII########", "########FHFII##I##IIFHF########", "########BCBFF##I##FFBCB########", "###########FF##I##FF###########", "###########FF##F##FF###########", "###########FF##F##FF###########", "###########FF##I##FF###########", "###########FF##I##FF###########", "###########IIKKIKKII###########")
+                    .aisle("#######III###IIIII###III#######", "#######FHF###II@II###FHF#######", "#######BCB###IIDII###BCB#######", "#############FIIIF#############", "#############FFIFF#############", "#############FFIFF#############", "#############FIIIF#############", "#############IIIII#############", "#############IIIII#############")
+                    .aisle("######III#############III######", "######FHF#############FHF######", "######BCB#############BCB######", "###############################", "###############################", "###############################", "###############################", "###############################", "###############################")
+                    .aisle("##BBBBBI###############IBBBBB##", "##CCCCHF###############FCCCCC##", "##B#BBCB###############BCBB#B##", "###############################", "###############################", "###############################", "###B#######################B###", "##CCCCC#################CCCCC##", "##BBBBB#################BBBBB##")
+                    .aisle("##BBBBB#################BBBBB##", "##CEFEC#################CEFEC##", "###EFEB#################BEFE###", "###EFC###################CFE###", "###EFC###################CFE###", "###EFC###################CFE###", "##BEFC###################CFEB##", "##CEFCC#################CCFEC##", "##BBBBB#################BBBBB##")
+                    .aisle("##BBBBB#################BBBBB##", "##CFGFC#################CFGCC##", "##BFGFB#################BFGCB##", "###FGF###################FGC###", "###FGF###################FGC###", "###FGF###################FG####", "###FGF###################FG####", "##CFGFC#################CFGCC##", "##BBBBB#################BBBBB##")
+                    .aisle("##BBBBB#################BBBBB##", "##CEFEC#################CEFEC##", "###EFE###################EFE###", "###EFE###################EFE###", "###EFE###################EFE###", "###EFE###################EFE###", "##BEFEB#################BEFEB##", "##CEFEC#################CEFEC##", "##BBBBB#################BBBBB##")
+                    .aisle("##BBBBB#################BBBBB##", "##CCDCC#################CCDCC##", "##B#B#B#################B#B#B##", "###############################", "###############################", "###############################", "###B#B###################B#B###", "##CCCCC#################CCCCC##", "##BBBBB#################BBBBB#A")
+                    .where("A",Predicates.any())
+                    .where("#", Predicates.any())
+                    .where("B", Predicates.blocks(ADVANCED_BIO_REACTOR_CASING.get()))
+                    .where("C", Predicates.blocks(FUSION_CASING.get()))
+                    .where("D", Predicates.abilities(CTNHPartAbility.COMPILER))
+                    .where("E", Predicates.blocks(ADVANCED_COMPUTER_CASING.get()))
+                    .where("F", Predicates.blocks(FUSION_CASING.get()))
+                    .where("G", Predicates.blocks(HIGH_POWER_CASING.get()))
+                    .where("H", Predicates.blocks(WIDESPEEDINGPIPE.get()))
+                    .where("I", Predicates.blocks(CASING_ANTIFREEZE_HEATPROOF_MACHINE.get())
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                    .where("J", Predicates.blocks(CASING_PTFE_INERT.get()))
+                    .where("K", Predicates.frames(Naquadria))
+                    .where("L", Predicates.blocks(CASING_NEUTRONIUM_ALLOY_BLOCK.get()))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build()
+            )
+            .workableCasingRenderer(CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"), GTCEu.id("block/multiblock/vacuum_freezer"), false)
             .register();
     public static void init() {
 
