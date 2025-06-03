@@ -1554,7 +1554,7 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer(CTNHCore.id("block/high_grade_coke_oven_bricks"), GTCEu.id("block/machines/alloy_smelter"), false)
             .register();
     public static final MultiblockMachineDefinition ULTIMATE_COMBUSTION_ENGINE = registerLargeCombustionEngine(
-            "ultimate_combustion_engine", LuV,
+            "ultimate_combustion_engine", UV,
             CASING_NAQUADAH_BLOCK, CASING_NAQUADAH_GEARBOX, CASING_ULTIMATE_ENGINE_INTAKE,
             CTNHCore.id("block/casings/nq_casing"),
             GTCEu.id("block/multiblock/generator/extreme_combustion_engine"));

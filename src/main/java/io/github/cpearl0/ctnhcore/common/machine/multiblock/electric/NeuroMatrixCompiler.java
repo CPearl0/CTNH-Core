@@ -321,6 +321,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
 
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
+        if(tiers<RecipeHelper.getInputEUt(recipe))return false;
         var itemsR = recipe.getInputContents(ItemRecipeCapability.CAP).stream()
                 .map(num -> (SizedIngredient) num.getContent()) // 转换为 SizedIngredient
                 .map(SizedIngredient::getItems) // 获取 ItemStack 数组
