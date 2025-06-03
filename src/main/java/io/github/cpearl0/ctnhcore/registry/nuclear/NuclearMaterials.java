@@ -349,6 +349,8 @@ public class NuclearMaterials {
     public static Material OxideThorium232;
     public static Material NitrideThorium232;
     public static Material ZirconiumAlloyThorium232;
+    public static Material Thorium232Hexafluoride;
+    public static Material Thorium232HexafluorideSteamCracked;
 
     public static Material CarbideUranium235;
     public static Material OxideUranium235;

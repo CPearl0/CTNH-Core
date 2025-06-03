@@ -18,6 +18,8 @@
     "gtceu.GTUtilMixin",
     "gtceu.TagPrefixMixin",
     "gtceu.WorkableElectricMultiblockMachineMixin",
+    "gtnn.FirstMaterialMixin",
+    "gtnn.GTOreVeinMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
     "mc.MonsterMixin"

@@ -1285,7 +1285,7 @@ public class CTNHMultiblockMachines {
                             .or(Predicates.autoAbilities(true, false, true)))
                     .where("H", abilities(PartAbility.MUFFLER))
                     .where("C", Predicates.heatingCoils())
-                    .where("#", Predicates.air())
+                    .where("#", Predicates.any())
                     .build()
             )
             .recoveryItems(

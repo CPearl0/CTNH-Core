@@ -53,7 +53,8 @@ public class CTNHOres {
                         .layer(l -> l.weight(1).mat(GTMaterials.Pollucite).size(1, 1))
                     )
                 );
-
+        GTNNOres.INSTANCE.getOSTRUM_VEIN_AD()
+                .clusterSize(40);
 
 //        let ADASTRA = ["ad_astra:lunar_wastelands","ad_astra:glacio_ice_peaks","ad_astra:glacio_snowny_barrens",
 //                "ad_astra:inferno_venus_barrens","ad_astra:martian_canyon_creek","ad_astra:martian_polar_caps",
@@ -628,7 +629,7 @@ public class CTNHOres {
         ));
     public static GTOreDefinition ZIRKELITE_VEIN = create(CTNHCore.id("zirkelite_vein"), vein ->
             vein.weight(60)
-        .clusterSize(50)
+        .clusterSize(40)
         .density(0.25F)
             .discardChanceOnAirExposure(0)
         .layer(GTNNWorld.GTNNWorldGenLayers.AD)
