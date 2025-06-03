@@ -1050,6 +1050,7 @@ public class ChineseLangHandler {
 
 
 
+
     }
     public static void replace(@NotNull RegistrateCNLangProvider provider, @NotNull String key,
                                @NotNull String value) {

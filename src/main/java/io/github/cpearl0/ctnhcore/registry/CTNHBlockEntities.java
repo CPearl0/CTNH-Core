@@ -12,6 +12,7 @@ public class CTNHBlockEntities {
     public static void init() {
 
     }
+
     public static BlockEntityEntry<TurbineRotorBE> TURBINE_ROTOR=REGISTRATE
             .blockEntity("turbine_rotor", TurbineRotorBE::new)
 //            .renderer(()->(ctx)-> new TurbineRotorRender())
