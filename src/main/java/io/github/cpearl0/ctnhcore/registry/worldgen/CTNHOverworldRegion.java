@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
+import terrablender.api.ParameterUtils;
 import terrablender.api.Region;
 import terrablender.api.RegionType;
 
@@ -22,11 +23,11 @@ public class CTNHOverworldRegion extends Region {
         super.addBiomes(registry, mapper);
         this.addBiome(mapper,
                 Climate.Parameter.span(0.95F, 1.0F),
-                Climate.Parameter.span(1.75F, 2F),
-                Climate.Parameter.span(0.9F, 1.8F),
+                Climate.Parameter.span(0.8F, 0.9F),
+                Climate.Parameter.span(0.9F, 1.0F),
                 Climate.Parameter.span(0.1F,0.25F),
-                Climate.Parameter.span(0.95F, 1F),
-                Climate.Parameter.span(0.25F, 0.8F),
+                ParameterUtils.Weirdness.LOW_SLICE_NORMAL_DESCENDING.parameter(),
+                ParameterUtils.Depth.SURFACE.parameter(),
                 0.99F,CTNHBiomes.PLAGUE_WASTELAND);
     }
 }
