@@ -542,6 +542,10 @@ public class CTNHMaterials {
             .color(0x000000)
             .element(CTNHElements.Living_Metal)
             .buildAndRegister();
+    public static  final Material COLORFUL_GEM=new Material.Builder(GTCEu.id("colorful_gem"))
+            .gem()
+            .color(0x000000)
+            .buildAndRegister();
 
     public static void init() {
         CombustibleIce.setFormula("(CH4)(H2O)", true);

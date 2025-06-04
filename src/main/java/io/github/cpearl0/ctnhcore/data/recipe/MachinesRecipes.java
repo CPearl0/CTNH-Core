@@ -127,6 +127,13 @@ public class MachinesRecipes {
                 .duration(20*30)
                 .EUt(1000000)
                 .save(provider);
+        ETERNAL_GARDEN.recipeBuilder("firetest")
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 10086)
+                .addData("type", "fire")
+                .addData("temp", 25)
+                        .duration(20)
+                .EUt(120)
+                .save(provider);
         COMBUSTION_GENERATOR_FUELS.recipeBuilder("end")
                 .inputFluids(CTNHMaterials.NQ_END_OF_GASOLINE.getFluid(1))
                 .duration(1000)
