@@ -640,6 +640,12 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType QUASAR_CREATE=GTRecipeTypes.register("quasar_create",GENERATOR)
+            .setMaxIOSize(1, 3, 1, 21)
+            .setEUIO(IO.OUT)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
     public static final GTRecipeType SCALABLE_RESERVOIR_COMPUTING = GTRecipeTypes.register("scalable_reservoir_computing",ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(1,0,1,0)
@@ -652,7 +658,18 @@ public class CTNHRecipeTypes {
             //TODO: 渲染以后写
             .addDataInfo(data->LocalizationUtils.format("ctnhcore.src.sacrifice",data.getString("sacrifice")))
             ;
-
+    public static final GTRecipeType DIFFERENTIAL_CENTRIFUGE_RECIPES = GTRecipeTypes.register("differential_centrifuge", ELECTRIC)
+                .setEUIO(IO.IN)
+                .setMaxIOSize(6, 6, 6, 6)
+                .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.CENTRIFUGE);
+    public static final GTRecipeType ULTRASONICATION_RECIPES = GTRecipeTypes.register("ultrasonication", ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(3, 3, 3, 3)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.MACERATOR);
 
     public static void init() {
         CreateRecipeTypes.init();

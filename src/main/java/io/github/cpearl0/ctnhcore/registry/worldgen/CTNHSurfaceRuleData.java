@@ -16,10 +16,9 @@ public class CTNHSurfaceRuleData {
         SurfaceRules.ConditionSource gradient = SurfaceRules.verticalGradient("ctnhcore:astral_stone", VerticalAnchor.belowTop(13), VerticalAnchor.belowTop(9));
         return SurfaceRules.ifTrue(biome, SurfaceRules.sequence(
                 SurfaceRules.ifTrue(surface4, SurfaceRules.sequence(
-                        SurfaceRules.ifTrue(belowWater, SurfaceRules.state(CTNHBlocks.ASTRAL_DIRT.getDefaultState())),
                                 SurfaceRules.ifTrue(surface1, SurfaceRules.state(CTNHBlocks.ASTRAL_GRASS_BLOCK.getDefaultState())),
                                 SurfaceRules.state(CTNHBlocks.ASTRAL_DIRT.getDefaultState()))),
-                SurfaceRules.ifTrue(gradient, SurfaceRules.state(CTNHBlocks.ASTRAL_STONE.getDefaultState()))
+                SurfaceRules.ifTrue(surface10, SurfaceRules.state(CTNHBlocks.ASTRAL_STONE.getDefaultState()))
         ));
     }
 }

@@ -53,7 +53,8 @@ public class CTNHOres {
                         .layer(l -> l.weight(1).mat(GTMaterials.Pollucite).size(1, 1))
                     )
                 );
-
+        GTNNOres.INSTANCE.getOSTRUM_VEIN_AD()
+                .clusterSize(40);
 
 //        let ADASTRA = ["ad_astra:lunar_wastelands","ad_astra:glacio_ice_peaks","ad_astra:glacio_snowny_barrens",
 //                "ad_astra:inferno_venus_barrens","ad_astra:martian_canyon_creek","ad_astra:martian_polar_caps",
@@ -483,9 +484,9 @@ public class CTNHOres {
         .heightRangeUniform(10, 50)
         .layeredVeinGenerator(generator -> generator
                 .buildLayerPattern(pattern -> pattern
-                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(2, 4))
+                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(1, 2))
                 .layer(l -> l.weight(2).mat(GTMaterials.Cobalt).size(1, 1))
-                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 1))
+                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 2))
                 .layer(l -> l.weight(1).mat(GTMaterials.Uranium238).size(1, 1))
             )
         )
@@ -505,9 +506,9 @@ public class CTNHOres {
         .heightRangeUniform(-30, 0)
         .layeredVeinGenerator(generator -> generator
                 .buildLayerPattern(pattern -> pattern
-                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(2, 4))
+                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(1, 3))
                 .layer(l -> l.weight(2).mat(GTMaterials.Cobalt).size(1, 1))
-                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 1))
+                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 2))
                 .layer(l -> l.weight(1).mat(GTMaterials.Uranium238).size(1, 1))
             )
         )
@@ -527,9 +528,9 @@ public class CTNHOres {
         .heightRangeUniform(10, 40)
         .layeredVeinGenerator(generator -> generator
                 .buildLayerPattern(pattern -> pattern
-                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(2, 4))
+                .layer(l -> l.weight(3).mat(CTNHMaterials.Zircon).size(1, 3))
                 .layer(l -> l.weight(2).mat(GTMaterials.Cobalt).size(1, 1))
-                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 1))
+                .layer(l -> l.weight(2).mat(GTMaterials.Lead).size(1, 2))
                 .layer(l -> l.weight(1).mat(GTMaterials.Uranium238).size(1, 1))
             )
         )
@@ -628,7 +629,7 @@ public class CTNHOres {
         ));
     public static GTOreDefinition ZIRKELITE_VEIN = create(CTNHCore.id("zirkelite_vein"), vein ->
             vein.weight(60)
-        .clusterSize(50)
+        .clusterSize(40)
         .density(0.25F)
             .discardChanceOnAirExposure(0)
         .layer(GTNNWorld.GTNNWorldGenLayers.AD)

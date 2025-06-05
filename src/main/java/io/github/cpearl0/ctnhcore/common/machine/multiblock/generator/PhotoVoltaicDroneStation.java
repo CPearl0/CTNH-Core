@@ -120,7 +120,7 @@ public class PhotoVoltaicDroneStation extends WorkableElectricMultiblockMachine 
         if(dimension== Planet.MOON_ORBIT || dimension == Planet.VENUS_ORBIT|| dimension == Planet.MERCURY_ORBIT|| dimension == Planet.MARS_ORBIT|| dimension == Planet.GLACIO_ORBIT)
         {
             orbit=true;
-            rate*=2;
+            rate*=4;
         }
 
         if (dimension == Level.OVERWORLD || dimension.location().getPath().equals("twilightforest:twilight_forest") || dimension.location().getPath().equals("mythicbotany:alfheim")) {

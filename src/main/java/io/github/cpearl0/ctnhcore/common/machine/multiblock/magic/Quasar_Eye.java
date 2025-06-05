@@ -12,6 +12,7 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
+import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -28,6 +29,7 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
  public static final String RUNE_ENERGY = "rune_energy";
     public static final String ET = "energy_tier";
     public static final String ACTIVE = "active";
+    public long power=0;
  private static int[] based_output={0,67108864,134217728,268435456};
     public Quasar_Eye(IMachineBlockEntity holder){
         super(holder);
@@ -91,17 +93,32 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
         textList.add(textList.size(), Component.translatable("ctnh.mana_production",String.format("%.2f",energy_caculate(rune_energy,energy_tier))));
         textList.add(textList.size(), Component.translatable("ctnh.rune_consumption",String.format("%.2f",(rune_energy/50)*Math.log(rune_energy/50+1))));
         textList.add(textList.size(), Component.translatable("ctnh.quasar_parallel",String.format("%.2f",energy_caculate(rune_energy,energy_tier)*5)));
-        textList.add(textList.size(), Component.translatable("ctnh.consumption_parallel",String.format("%.2f",1-0.05*Math.max((rune_energy-50)/50,0.75))));
+        textList.add(textList.size(), Component.translatable("ctnh.consumption_parallel",String.format("%.2f",(1-0.05*Math.max((rune_energy-50)/50,10)))));
+        textList.add(textList.size(),Component.translatable("ctnh.quasar.tip.3",(double)power/100000000+"E EU"));
     }
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if(machine instanceof Quasar_Eye qmachine){
+            if(recipe.recipeType.equals(CTNHRecipeTypes.QUASAR_CREATE))
+            {
+
+                var true_eut=Math.min(qmachine.power/200,Long.MAX_VALUE);
+                if(true_eut<10000000)return ModifierFunction.NULL;
+                var outputmuti=true_eut/50000000L;
+                qmachine.power=0;
+                return ModifierFunction.builder()
+                        .eutMultiplier(true_eut)
+                        .outputModifier(ContentModifier.multiplier(outputmuti))
+                        .build();
+            }
             var EUt = RecipeHelper.getOutputEUt(recipe);
             var tier=recipe.data.getInt("tier");
+            var power=(long)(qmachine.energy_caculate(qmachine.rune_energy,tier)*RecipeHelper.getOutputEUt(recipe)*(qmachine.energy_caculate(qmachine.rune_energy,tier)*5)*recipe.duration*0.2*(qmachine.rune_energy/25));
+            qmachine.power+=power/200;
             return ModifierFunction.builder()
                     .eutMultiplier(qmachine.energy_caculate(qmachine.rune_energy,tier))
                     .durationMultiplier(qmachine.energy_caculate(qmachine.rune_energy,tier)*5)
-                    .inputModifier(ContentModifier.multiplier(qmachine.energy_caculate(qmachine.rune_energy,tier)*5*(1-0.05*Math.max((qmachine.rune_energy-50)/50,0))))
-                    .outputModifier(ContentModifier.multiplier(qmachine.energy_caculate(qmachine.rune_energy,tier)*5*(1-0.05*Math.max((qmachine.rune_energy-50)/50,0))))
+                    .inputModifier(ContentModifier.multiplier(qmachine.energy_caculate(qmachine.rune_energy,tier)*5*(1-0.05*Math.max((qmachine.rune_energy-50)/50,10))))
+                    .outputModifier(ContentModifier.multiplier(qmachine.energy_caculate(qmachine.rune_energy,tier)*5*(1-0.05*Math.max((qmachine.rune_energy-50)/50,10))))
                     .build();
         }
         return ModifierFunction.NULL;

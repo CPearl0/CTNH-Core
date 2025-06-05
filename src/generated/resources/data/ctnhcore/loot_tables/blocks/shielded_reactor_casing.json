@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ctnhcore:sheleded_reactor_casing"
+          "name": "ctnhcore:shielded_reactor_casing"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "ctnhcore:blocks/sheleded_reactor_casing"
+  "random_sequence": "ctnhcore:blocks/shielded_reactor_casing"
 }

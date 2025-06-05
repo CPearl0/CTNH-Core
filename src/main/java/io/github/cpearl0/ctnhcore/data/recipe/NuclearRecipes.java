@@ -4,9 +4,11 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
+import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterialsInfo;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -17,11 +19,13 @@ import java.util.function.Consumer;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Mendelevium;
 import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.CIRCUIT;
+import static dev.arbor.gtnn.data.GTNNMaterials.Thorium232;
 import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.*;
 
 public class NuclearRecipes {
     public static void init(Consumer<FinishedRecipe> provider){
         Thorium233.getProperty(CTNHPropertyKeys.NUCLEAR).generateRecipes(provider, NuclearMaterials.Thorium233);
+        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR).generateRecipes(provider, Thorium232);
         Protactinium233.getProperty(CTNHPropertyKeys.NUCLEAR).generateRecipes(provider, Protactinium233);
         Uranium234.getProperty(CTNHPropertyKeys.NUCLEAR).generateRecipes(provider, Uranium234);
         Uranium235.getProperty(CTNHPropertyKeys.NUCLEAR).generateRecipes(provider, Uranium235);
@@ -194,6 +198,21 @@ public class NuclearRecipes {
                 .outputFluids(EnrichedUraniumHexafluoride.getFluid(2000))
                 .outputFluids(DepletedUraniumHexafluoride.getFluid(17980))
                 .save(provider);
+        GTRecipeTypes.CRACKING_RECIPES.recipeBuilder("uranium_234_steam_cracked")
+                .inputFluids(Uranium234Hexafluoride.getFluid(1000))
+                .inputFluids(Steam.getFluid(3000))
+                .outputFluids(Uranium234HexafluorideSteamCracked.getFluid(1000))
+                .duration(40 * 100 / 100).EUt(120).save(provider);
+        // [Mat + F6 + 3H2O] -> [Mat + 2O] + 6HF + O (O lost)
+        GTRecipeTypes.BLAST_RECIPES.recipeBuilder("uranium_234_oxide")
+                .circuitMeta(0)
+                .inputFluids(Uranium234HexafluorideSteamCracked.getFluid(1000))
+                .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear,Uranium234.getProperty(CTNHPropertyKeys.NUCLEAR).getOxideMaterial()).asStack())
+                .outputFluids(HydrofluoricAcid.getFluid(6000))
+                .blastFurnaceTemp(600)
+                .duration(600 * 100 / 100)
+                .EUt(120)
+                .save(provider);
 
         CTNHRecipeTypes.HOT_COOLANT_TURBINE_RECIPES.recipeBuilder("steam")
                 .inputFluids(CTNHMaterials.HotSteam.getFluid(54))
@@ -232,7 +251,7 @@ public class NuclearRecipes {
                    GTItems.SENSOR_EV.asStack(2),
                    GTItems.ELECTRIC_MOTOR_EV.asStack(2),
                    GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, Ultimet).asStack(2))
-                .outputItems("gtceu:nuclear_reactor")
+                .outputItems(CTNHMultiblockMachines.NUCLEAR_REACTOR.asStack())
                 .EUt(1920)
                 .duration(400)
                 .save(provider);
@@ -240,9 +259,44 @@ public class NuclearRecipes {
                 .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.gear, Stellite100).asStack(4),
                     GTMachines.HULL[GTValues.EV].asStack())
                 .inputItems(CustomTags.EV_CIRCUITS, 2)
-                .outputItems("gtceu:hot_coolant_turbine")
+                .outputItems(CTNHMultiblockMachines.HOT_COOLANT_TURBINE.asStack())
                 .EUt(1920)
                 .duration(400)
                 .save(provider);
+
+        // GT铀和钚处理
+        VanillaRecipeHelper.addShapelessRecipe(provider, "uranium_235", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Uranium235).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Uranium235).asStack());
+        VanillaRecipeHelper.addShapelessRecipe(provider, "uranium_238", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Uranium238).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Uranium238).asStack());
+        VanillaRecipeHelper.addShapelessRecipe(provider, "pluotnium_239", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Plutonium239).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Plutonium239).asStack());
+        VanillaRecipeHelper.addShapelessRecipe(provider, "pluotnium_241", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Plutonium241).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Plutonium241).asStack());
+        VanillaRecipeHelper.addShapelessRecipe(provider, "thorium_232", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Thorium232).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Thorium232).asStack());
+        VanillaRecipeHelper.addShapelessRecipe(provider, "thorium_233", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Thorium233).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Thorium).asStack());
+
+        NuclearMaterialsInfo.decayMaterial.forEach(material -> {
+            var nuclear = material.getProperty(CTNHPropertyKeys.NUCLEAR);
+            nuclear.fertileDecay.forEach((fertile, amount) ->{
+                CTNHRecipeTypes.DECAY_POOLS.recipeBuilder(material.getName() + "_oxide_decay")
+                        .duration(600).EUt(30)
+                        .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.fuel, nuclear.getOxideMaterial()).asStack())
+                        .chancedOutput(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.fuel, fertile.getProperty(CTNHPropertyKeys.NUCLEAR).getOxideMaterial()).asStack(), 9000, 100)
+                        .save(provider);
+                CTNHRecipeTypes.DECAY_POOLS.recipeBuilder(material.getName() + "_carbide_decay")
+                        .duration(600).EUt(30)
+                        .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.fuel, nuclear.getCarbideMaterial()).asStack())
+                        .chancedOutput(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.fuel, fertile.getProperty(CTNHPropertyKeys.NUCLEAR).getCarbideMaterial()).asStack(), 9000, 100)
+                        .save(provider);
+                CTNHRecipeTypes.DECAY_POOLS.recipeBuilder(material.getName() + "_nitride_decay")
+                        .duration(600).EUt(30)
+                        .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.fuel, nuclear.getNitrideMaterial()).asStack())
+                        .chancedOutput(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.fuel, fertile.getProperty(CTNHPropertyKeys.NUCLEAR).getNitrideMaterial()).asStack(), 9000, 100)
+                        .save(provider);
+                CTNHRecipeTypes.DECAY_POOLS.recipeBuilder(material.getName() + "_zirconium_decay")
+                        .duration(600).EUt(30)
+                        .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.fuel, nuclear.getZirconiumAlloyMaterial()).asStack())
+                        .chancedOutput(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.fuel, fertile.getProperty(CTNHPropertyKeys.NUCLEAR).getZirconiumAlloyMaterial()).asStack(), 9000, 100)
+                        .save(provider);
+            });
+
+        });
     }
 }

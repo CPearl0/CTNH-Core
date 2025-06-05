@@ -24,6 +24,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static dev.arbor.gtnn.data.GTNNMaterials.Thorium232;
+
 public class NuclearProperty implements IMaterialProperty {
     @Getter
     @Setter
@@ -125,7 +128,12 @@ public class NuclearProperty implements IMaterialProperty {
                 .save(provider);
 
         // [Fuel + Zr] + 4Cl = Fuel + ZrCl4
-        if (thisMaterial.equals(GTMaterials.Uranium238) || thisMaterial.equals(GTMaterials.Plutonium239)) {
+        if (thisMaterial.equals(GTMaterials.Uranium238)
+                || thisMaterial.equals(GTMaterials.Plutonium239)
+                || thisMaterial.equals(Uranium235)
+                || thisMaterial.equals(Plutonium241)
+                || thisMaterial.equals(Thorium232)
+                || thisMaterial.equals(Thorium)) {
             GTRecipeTypes.LARGE_CHEMICAL_RECIPES.recipeBuilder(name)
                     .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, getZirconiumAlloyMaterial()).asStack())
                     .outputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, thisMaterial).asStack())
@@ -145,7 +153,12 @@ public class NuclearProperty implements IMaterialProperty {
         }
 
         // Fuel + O = [Fuel + O]
-        if(thisMaterial.equals(GTMaterials.Uranium238) || thisMaterial.equals(GTMaterials.Plutonium239)){
+        if(thisMaterial.equals(GTMaterials.Uranium238)
+                || thisMaterial.equals(GTMaterials.Plutonium239)
+                || thisMaterial.equals(Uranium235)
+                || thisMaterial.equals(Plutonium241)
+                || thisMaterial.equals(Thorium232)
+                || thisMaterial.equals(Thorium)){
             GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder("oxide_" + name)
                     .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, thisMaterial).asStack())
                     .inputFluids(GTMaterials.Oxygen.getFluid(1000))

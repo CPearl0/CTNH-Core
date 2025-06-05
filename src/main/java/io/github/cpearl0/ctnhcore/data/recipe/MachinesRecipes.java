@@ -6,7 +6,6 @@ import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -80,7 +79,7 @@ public class MachinesRecipes {
         CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator1")
                 .circuitMeta(0)
                 .inputFluids(CTNHMaterials.Mana.getFluid(100000))
-                .EUt(-33554432)
+                .EUt(-33554432*2)
                 .duration(200)
                 .addData("consumption",1000000)
                 .addData("tier",1)

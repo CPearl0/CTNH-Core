@@ -1,4 +1,4 @@
-// 1.20.1	2025-05-26T18:59:49.9835736	Registries
+// 1.20.1	2025-06-03T18:39:15.8916403	Registries
 ffd0481f4f4b5abcc11506d4d8ed0be9af26f7e6 data/ctnhcore/damage_type/computation_sacrifice.json
 6cc75e99eed5a42311778967df12c6da972c1de0 data/ctnhcore/dimension/astral_orbit.json
 cca4727d31c59fde0afa4bbff10a3b576b4e1ea4 data/ctnhcore/dimension/astral_planet.json
@@ -11,6 +11,7 @@ da62bed04e93c1a53495bea271e3b745b60e677a data/ctnhcore/worldgen/configured_featu
 2d75023b33ce12d8458f63f2348afac141d3d6e2 data/ctnhcore/worldgen/configured_feature/astral_grass.json
 5a077586946c0dbaa351196323938dff3783b795 data/ctnhcore/worldgen/configured_feature/astral_lake.json
 f74a52b868f833241f095d17ae55e7d4dd3d4a45 data/ctnhcore/worldgen/configured_feature/astral_tree.json
+eb22918a5ce52fa1795d02bd19b49efd4acbf073 data/ctnhcore/worldgen/configured_feature/venus_ochrum.json
 eb9d05929f617494ff462fd882805461d68fc509 data/ctnhcore/worldgen/density_function/base_3d_noise.json
 3c5c9d9abf83d5b60c6294b882e7a3c84ba08f3e data/ctnhcore/worldgen/density_function/depth.json
 17a2852b9f2c08a92e2e56da41053b327a1b7635 data/ctnhcore/worldgen/density_function/factor.json
@@ -24,3 +25,4 @@ a729f64940f4517cff6c1daaf7efee8724d11d59 data/ctnhcore/worldgen/density_function
 71085d4b987b2b2c74b1e665ef3c2d88a8663bc9 data/ctnhcore/worldgen/placed_feature/astral_lake.json
 8fa8bcd8e7dcd7a8a309623f59e9522e053c2f92 data/ctnhcore/worldgen/placed_feature/astral_lake_underground.json
 134c971740dce87218aaf24981d2fa7b389e2fbd data/ctnhcore/worldgen/placed_feature/astral_tree.json
+9cc2c8da91d8f7cbf3d6bf7126e9d63890b24705 data/ctnhcore/worldgen/placed_feature/venus_ochrum.json

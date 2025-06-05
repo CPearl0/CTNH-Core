@@ -4,20 +4,24 @@
       {
         "name": "ctnhcore:astral_infection",
         "stream": true,
+        "volume": 0.6,
         "weight": 3
       },
       {
         "name": "ctnhcore:astral_infection_underground",
         "stream": true,
+        "volume": 0.6,
         "weight": 3
       },
       {
         "name": "ctnhcore:astrum_deus",
-        "stream": true
+        "stream": true,
+        "volume": 0.6
       },
       {
         "name": "ctnhcore:astrum_aureus",
-        "stream": true
+        "stream": true,
+        "volume": 0.6
       }
     ],
     "subtitle": "subtitle.ctnhcore.bgm.plague_wasteland"

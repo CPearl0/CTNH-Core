@@ -90,9 +90,10 @@ public class ConnectTerminalItem extends ComponentItem implements IInteractionIt
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
         CompoundTag nbt = stack.getOrCreateTag();
+        tooltipComponents.add(Component.translatable("ctnh.terminal.tips"));
         if(nbt.contains("block_x"))
         {
-            tooltipComponents.add(Component.translatable("ctnh.terminal.tips"));
+
             tooltipComponents.add(Component.translatable("ctnh.terminal.location",String.format("%d",nbt.getInt("block_x")),String.format("%d",nbt.getInt("block_y")),String.format("%d",nbt.getInt("block_y"))));
         }
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced); // 调用父类方法以处理原版提示信息
