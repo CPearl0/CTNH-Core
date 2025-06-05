@@ -270,7 +270,7 @@ public class NuclearRecipes {
         VanillaRecipeHelper.addShapelessRecipe(provider, "pluotnium_239", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Plutonium239).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Plutonium239).asStack());
         VanillaRecipeHelper.addShapelessRecipe(provider, "pluotnium_241", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Plutonium241).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Plutonium241).asStack());
         VanillaRecipeHelper.addShapelessRecipe(provider, "thorium_232", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Thorium232).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Thorium232).asStack());
-        VanillaRecipeHelper.addShapelessRecipe(provider, "thorium_232", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Thorium233).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Thorium233).asStack());
+        VanillaRecipeHelper.addShapelessRecipe(provider, "thorium_233", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Thorium233).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Thorium).asStack());
 
         NuclearMaterialsInfo.decayMaterial.forEach(material -> {
             var nuclear = material.getProperty(CTNHPropertyKeys.NUCLEAR);
