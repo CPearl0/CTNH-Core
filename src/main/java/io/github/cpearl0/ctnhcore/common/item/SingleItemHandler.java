@@ -9,6 +9,8 @@ import appeng.api.storage.MEStorage;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
+import static io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior.USE_ON_CONTEXT;
+
 public class SingleItemHandler implements IItemHandler {
 
     private final ItemStack stack;
@@ -50,7 +52,7 @@ public class SingleItemHandler implements IItemHandler {
                         key,
                         extractAmount,
                         Actionable.MODULATE,
-                        IActionSource.ofPlayer(MEAdvancedTerminalItem.USE_ON_CONTEXT.get().getPlayer())
+                        IActionSource.ofPlayer(USE_ON_CONTEXT.get().getPlayer())
                 );
                 System.out.println("exact: "+a);
             }

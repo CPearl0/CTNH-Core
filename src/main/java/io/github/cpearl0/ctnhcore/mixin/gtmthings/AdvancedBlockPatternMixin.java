@@ -26,6 +26,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Arrays;
 import java.util.List;
 
+import static io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior.GRID_CONTEXT;
+import static io.github.cpearl0.ctnhcore.common.item.MEAdvancedTerminalBehavior.USE_ON_CONTEXT;
+
 @Mixin(AdvancedBlockPattern.class)
 public class AdvancedBlockPatternMixin {
 
@@ -42,8 +45,8 @@ public class AdvancedBlockPatternMixin {
                 .anyMatch(el -> el.getClassName().contains("ctnhcore.common.item.MEAdvancedTerminal"));
         //MEAdvancedTerminalBehavior
         if (override) {
-            IGrid grid = MEAdvancedTerminalItem.GRID_CONTEXT.get();
-            var player = MEAdvancedTerminalItem.USE_ON_CONTEXT.get().getPlayer();
+            IGrid grid = GRID_CONTEXT.get();
+            var player = USE_ON_CONTEXT.get().getPlayer();
             for (ItemStack candidate : candidates){
                 if (candidate.isEmpty()) continue;
                 MEStorage inventory = grid.getStorageService().getInventory();

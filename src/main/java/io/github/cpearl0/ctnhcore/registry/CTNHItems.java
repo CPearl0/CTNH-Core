@@ -133,7 +133,7 @@ public class CTNHItems {
                     )
             )
             .lang("Me Advanced Terminal")
-//            .onRegister(attach(new MEAdvancedTerminalBehavior()))
+            .onRegister(attach(new MEAdvancedTerminalBehavior()))
             .register();
 
     public static ItemEntry<AstronomyCircuitItem> ASTRONOMY_CIRCUIT_1 = REGISTRATE
