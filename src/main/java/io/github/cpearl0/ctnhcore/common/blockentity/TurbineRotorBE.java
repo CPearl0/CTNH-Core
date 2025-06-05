@@ -20,10 +20,4 @@ public class TurbineRotorBE extends BlockEntity {
     }
     private int speed=1;//旋转的角速度，默认为20度/s
 
-    @OnlyIn(Dist.CLIENT)
-    private short _tick=0;
-    @OnlyIn(Dist.CLIENT)
-    public short tick(){
-        return (_tick= (short) ((_tick+1)%360));
-    }
 }

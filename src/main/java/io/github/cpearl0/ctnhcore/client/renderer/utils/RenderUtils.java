@@ -2,6 +2,7 @@ package io.github.cpearl0.ctnhcore.client.renderer.utils;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -146,5 +147,11 @@ public abstract class RenderUtils {
     public static BlockPos autoRotate(BlockPos pos, Direction facing)
     {
         return autoRotate(pos, facing, Direction.SOUTH);
+    }
+    @OnlyIn(Dist.CLIENT)
+    public static float getTime(){
+        return Minecraft.getInstance().level != null ?
+                Minecraft.getInstance().level.getGameTime() + Minecraft.getInstance().getFrameTime() :
+                0;
     }
 }

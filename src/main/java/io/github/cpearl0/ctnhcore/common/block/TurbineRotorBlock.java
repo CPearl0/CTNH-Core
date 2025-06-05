@@ -1,6 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.block;
 
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
+import com.lowdragmc.lowdraglib.client.renderer.IBlockRendererProvider;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import io.github.cpearl0.ctnhcore.CTNHCore;
@@ -22,8 +23,10 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 
-public class TurbineRotorBlock extends ActiveBlock implements EntityBlock {
+
+public class TurbineRotorBlock extends ActiveBlock implements EntityBlock, IBlockRendererProvider {
 
     @Getter
     float R,G,B,A;//颜色通道
@@ -60,5 +63,10 @@ public class TurbineRotorBlock extends ActiveBlock implements EntityBlock {
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         super.getStateForPlacement(context);
         return this.defaultBlockState().setValue(BlockStateProperties.FACING, context.getNearestLookingDirection().getOpposite());
+    }
+
+    @Override
+    public @Nonnull IRenderer getRenderer(BlockState blockState) {
+        return TurbineRotorRender.INSTANCE;
     }
 }
