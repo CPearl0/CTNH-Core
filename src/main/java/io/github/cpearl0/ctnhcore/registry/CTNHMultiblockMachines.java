@@ -2310,7 +2310,7 @@ public class CTNHMultiblockMachines {
             .register();
     public static MultiblockMachineDefinition EYE_OF_QUASAR = REGISTRATE.multiblock("eye_of_quasar", Quasar_Eye::new)
             .rotationState(RotationState.ALL)
-            .recipeType(CTNHRecipeTypes.QUASAR_EYE)
+            .recipeTypes(CTNHRecipeTypes.QUASAR_EYE,CTNHRecipeTypes.QUASAR_CREATE)
             .generator(true)
             .recipeModifier(Quasar_Eye::recipeModifier, true)
             .tooltips(Component.translatable("ctnh.quarsar.tips1"),
@@ -2323,6 +2323,8 @@ public class CTNHMultiblockMachines {
                     Component.translatable("ctnh.quarsar.tips9"),
                     Component.translatable("ctnh.quarsar.tips10"),
                     Component.translatable("ctnh.quarsar.tips11"),
+                    Component.translatable("ctnh.quasar.tip.4"),
+                    Component.translatable("ctnh.quasar.tip.5"),
                     Component.translatable("ctnh.quarsar.tips5")
 
 
@@ -4164,7 +4166,7 @@ public class CTNHMultiblockMachines {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
-            .workableCasingRenderer(CTNHCore.id("block/casings/super_freeze_block"), GTCEu.id("block/multiblock/vacuum_freezer"), false)
+            .workableCasingRenderer(CTNHCore.id("block/casings/super_machine_casing_frost_proof"), GTCEu.id("block/multiblock/vacuum_freezer"), false)
             .register();
     public static final MultiblockMachineDefinition MANA_CONDENSER = REGISTRATE.multiblock("mana_condenser", ManaCondenserMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)

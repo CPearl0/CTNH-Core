@@ -79,7 +79,7 @@ public class MachinesRecipes {
         CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator1")
                 .circuitMeta(0)
                 .inputFluids(CTNHMaterials.Mana.getFluid(100000))
-                .EUt(-33554432)
+                .EUt(-33554432*2)
                 .duration(200)
                 .addData("consumption",1000000)
                 .addData("tier",1)
@@ -125,13 +125,6 @@ public class MachinesRecipes {
                 .addData("range",120)
                 .duration(20*30)
                 .EUt(1000000)
-                .save(provider);
-        ETERNAL_GARDEN.recipeBuilder("firetest")
-                .inputItems(dust, CTNHMaterials.SteelLeaf, 10086)
-                .addData("type", "fire")
-                .addData("temp", 25)
-                        .duration(20)
-                .EUt(120)
                 .save(provider);
         COMBUSTION_GENERATOR_FUELS.recipeBuilder("end")
                 .inputFluids(CTNHMaterials.NQ_END_OF_GASOLINE.getFluid(1))

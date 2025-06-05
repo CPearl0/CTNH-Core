@@ -249,6 +249,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.mana_condenser", "魔力凝集");
         provider.add("gtceu.differential_centrifuge", "差速离心");
         provider.add("gtceu.ultrasonication", "超声破碎");
+        provider.add("gtceu.quasar_create","类星体创生");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -663,6 +664,9 @@ public class ChineseLangHandler {
         provider.add("ctnh.arcreactor.t1","该机器并行数:1");
         provider.add("ctnh.quasar.tip.1","能量等级: %d");
         provider.add("ctnh.quasar.tip.2","启动等级: %d");
+        provider.add("ctnh.quasar.tip.3","积累的能量:%s");
+        provider.add("ctnh.quasar.tip.4","在普通模式下发电时积将发电量的1%积累入类星体之眼之中，你每有25符文能量，就可以额外积累1%");
+        provider.add("ctnh.quasar.tip.5","在创生模式下释放所有积累的电量，使用高级燃料可以使输出获得倍乘。同时每积累1000E EU就额外产出一份气体产出,积累电量小于1E时无法启动创生模式");
         provider.add("ctnh.advanceassemblyline.1", "更好的装配线,但是有序输入");
         provider.add("ctnh.magic.generator","精炼天地之魔精");
         provider.add("ctnh.magic.generator.1","具有8并行，每秒基础消耗12mB液态魔力，电压每超过§7LV§r一级，消耗量变为原来的两倍");
@@ -726,7 +730,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.pvc_tier.3","当前维度光倍率:%d");
         provider.add("ctnh.spvb.0","§6光辉灿烂的太空之路");
         provider.add("ctnh.spvb.1","可执行配方类型：太空光伏发电，太空光伏组装");
-        provider.add("ctnh.spvb.2","在太空发电模式下，星球类型和光伏方块的等级都会提升发电量，在空间站被视为无重力环境，且发电量*1.5,消耗特定材料以进一步提升发电量");
+        provider.add("ctnh.spvb.2","在太空发电模式下，星球类型和光伏方块的等级都会提升发电量，在空间站被视为无重力环境，且发电量*4,消耗特定材料以进一步提升发电量");
         provider.add("ctnh.spvb.3","在太空光伏组装模式下，不消耗EUt，发电量将锁定为1，根据配方的模拟F功率来计算速度和并行量");
         provider.add("ctnh.spvb.4","光伏等级，光照强度共同决定了是否可以执行太空组装配方，光伏方块耐热性和耐热结构方块决定了可以获得的光照最大倍率，太空结构方块决定了可以使用的光伏方块等级和是否可以使用附属结构");
         provider.add("ctnh.spvb.5","在太空光伏组装模式下，最终并行为(太空发电模式下发电量/模拟功率),最终时间倍率为(模拟功率/太空发电模式下发电量)，当太空发电模式下发电量小于模拟功率时，最终时间倍率将变为平方");
@@ -883,6 +887,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T1,"戴森云无人机蜂群MKI");
         provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T2,"戴森云无人机蜂群MKII");
         provider.addItem(CTNHItems.PV_TERMINAL,"光伏绑定终端");
+        provider.addItem(CTNHItems.RESEARCH_DATASET,"研究数据集");
         provider.addItem(CTNHItems.RESEARCH_DATASET_LIVING_MATERIAL,"研究数据集：活体金属");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL, "进阶线程控制外壳");
