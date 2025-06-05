@@ -5,9 +5,11 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
+import dev.arbor.gtnn.data.GTNNMaterials;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.jetbrains.annotations.NotNull;
@@ -95,6 +97,7 @@ public class ChineseLangHandler {
         replace(provider, NuclearMaterials.FermiumHexafluoride.getUnlocalizedName(), "六氟化镄");
         replace(provider, NuclearMaterials.MendeleviumHexafluoride.getUnlocalizedName(), "六氟化钔");
         nuclearTranslation(provider, NuclearMaterials.Thorium233, "钍233");
+        nuclearTranslation(provider, GTNNMaterials.Thorium232, "钍232");
         nuclearTranslation(provider, NuclearMaterials.Protactinium233, "镤233");
         nuclearTranslation(provider, NuclearMaterials.Uranium233, "铀233");
         nuclearTranslation(provider, NuclearMaterials.Uranium234, "铀234");
@@ -244,6 +247,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.nuclear_reactor", "核能反应");
         provider.add("gtceu.hot_coolant_turbine", "热冷却液涡轮");
         provider.add("gtceu.mana_condenser", "魔力凝集");
+        provider.add("gtceu.differential_centrifuge", "差速离心");
+        provider.add("gtceu.ultrasonication", "超声破碎");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -796,6 +801,9 @@ public class ChineseLangHandler {
         provider.add("ctnhcore.src.wetware_duration", "湿件剩余存活时间: %s ticks");
         provider.add("ctnhcore.src.sacrifice", "牺牲着: %s");
         provider.add("ctnh.data.noise","当前噪声值：%s");
+        provider.add("super_centrifuge", "超速离心");
+        provider.add("ctnh.super_centrifuge.parallel", "普通离心机模式下会获得8并行");
+        provider.add("ultrasonic_apparatus", "超声破碎");
 
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
@@ -1047,6 +1055,8 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.CRYOTHEUMFREEZER.getBlock(),"凛冰冷冻机");
         provider.add(CTNHMultiblockMachines.HYPER_PLASMA_TURBINE.getBlock(), "超極等离子涡轮");
         provider.add(CTNHMultiblockMachines.NERUOMATRIXCOMPILER.getBlock(),"神经矩阵编译器");
+        provider.add(MultiblocksA.SUPER_CENTRIFUGE.getBlock(), "超速离心机");
+        provider.add(MultiblocksA.ULTRASONIC_APPARATUS.getBlock(), "超声破碎仪");
 
 
 

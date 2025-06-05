@@ -251,7 +251,7 @@ public class NuclearRecipes {
                    GTItems.SENSOR_EV.asStack(2),
                    GTItems.ELECTRIC_MOTOR_EV.asStack(2),
                    GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, Ultimet).asStack(2))
-                .outputItems(CTNHMultiblockMachines.NUCLEAR_REACTOR.get())
+                .outputItems(CTNHMultiblockMachines.NUCLEAR_REACTOR.asStack())
                 .EUt(1920)
                 .duration(400)
                 .save(provider);
@@ -259,7 +259,7 @@ public class NuclearRecipes {
                 .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.gear, Stellite100).asStack(4),
                     GTMachines.HULL[GTValues.EV].asStack())
                 .inputItems(CustomTags.EV_CIRCUITS, 2)
-                .outputItems(CTNHMultiblockMachines.HOT_COOLANT_TURBINE.get())
+                .outputItems(CTNHMultiblockMachines.HOT_COOLANT_TURBINE.asStack())
                 .EUt(1920)
                 .duration(400)
                 .save(provider);

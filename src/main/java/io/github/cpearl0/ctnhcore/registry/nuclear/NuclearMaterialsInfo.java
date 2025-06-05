@@ -34,7 +34,7 @@ public class NuclearMaterialsInfo {
                 .iconSet(MaterialIconSet.SHINY)
                 .radioactiveHazard(1)
                 .register();
-        Plutonium = new CTNHMaterialBuilder(GTCEu.id("uranium"))
+        Plutonium = new CTNHMaterialBuilder(GTCEu.id("plutonium"))
                 .ingot()
                 .ore()
                 .color(0x9e1616)
