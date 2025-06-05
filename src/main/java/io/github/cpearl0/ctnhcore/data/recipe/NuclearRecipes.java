@@ -251,7 +251,7 @@ public class NuclearRecipes {
                    GTItems.SENSOR_EV.asStack(2),
                    GTItems.ELECTRIC_MOTOR_EV.asStack(2),
                    GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate, Ultimet).asStack(2))
-                .outputItems(CTNHMultiblockMachines.NUCLEAR_REACTOR.get())
+                .outputItems(CTNHMultiblockMachines.NUCLEAR_REACTOR.asStack())
                 .EUt(1920)
                 .duration(400)
                 .save(provider);
@@ -259,7 +259,7 @@ public class NuclearRecipes {
                 .inputItems(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.gear, Stellite100).asStack(4),
                     GTMachines.HULL[GTValues.EV].asStack())
                 .inputItems(CustomTags.EV_CIRCUITS, 2)
-                .outputItems(CTNHMultiblockMachines.HOT_COOLANT_TURBINE.get())
+                .outputItems(CTNHMultiblockMachines.HOT_COOLANT_TURBINE.asStack())
                 .EUt(1920)
                 .duration(400)
                 .save(provider);
@@ -269,6 +269,8 @@ public class NuclearRecipes {
         VanillaRecipeHelper.addShapelessRecipe(provider, "uranium_238", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Uranium238).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Uranium238).asStack());
         VanillaRecipeHelper.addShapelessRecipe(provider, "pluotnium_239", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Plutonium239).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Plutonium239).asStack());
         VanillaRecipeHelper.addShapelessRecipe(provider, "pluotnium_241", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Plutonium241).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Plutonium241).asStack());
+        VanillaRecipeHelper.addShapelessRecipe(provider, "thorium_232", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Thorium232).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Thorium232).asStack());
+        VanillaRecipeHelper.addShapelessRecipe(provider, "thorium_233", GTMaterialItems.MATERIAL_ITEMS.get(CTNHTagPrefixes.nuclear, Thorium233).asStack(), GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dust, Thorium).asStack());
 
         NuclearMaterialsInfo.decayMaterial.forEach(material -> {
             var nuclear = material.getProperty(CTNHPropertyKeys.NUCLEAR);

@@ -59,6 +59,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachin
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.HyperPlasmaTurbineRegister;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -4302,6 +4303,6 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer(CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"), GTCEu.id("block/multiblock/vacuum_freezer"), false)
             .register();
     public static void init() {
-
+        MultiblocksA.init();
     }
 }

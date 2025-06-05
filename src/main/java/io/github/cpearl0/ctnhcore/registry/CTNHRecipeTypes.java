@@ -658,7 +658,18 @@ public class CTNHRecipeTypes {
             //TODO: 渲染以后写
             .addDataInfo(data->LocalizationUtils.format("ctnhcore.src.sacrifice",data.getString("sacrifice")))
             ;
-
+    public static final GTRecipeType DIFFERENTIAL_CENTRIFUGE_RECIPES = GTRecipeTypes.register("differential_centrifuge", ELECTRIC)
+                .setEUIO(IO.IN)
+                .setMaxIOSize(6, 6, 6, 6)
+                .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.CENTRIFUGE);
+    public static final GTRecipeType ULTRASONICATION_RECIPES = GTRecipeTypes.register("ultrasonication", ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(3, 3, 3, 3)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.MACERATOR);
 
     public static void init() {
         CreateRecipeTypes.init();
