@@ -240,7 +240,8 @@ public class CTNHBlocks {
                                                       Supplier<Supplier<RenderType>> type) {
         return REGISTRATE.block(name, blockSupplier)
                 .initialProperties(properties)
-                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false)).addLayer(type)
+                .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+                .addLayer(type)
                 .blockstate((ctx, prov) -> {
                     prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
                 })

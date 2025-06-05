@@ -3352,7 +3352,8 @@ public class CTNHMultiblockMachines {
                     GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
             .tooltips(Component.translatable("ctnh.cultivationroom.1").withStyle(ChatFormatting.GREEN),
                     Component.translatable("ctnh.cultivationroom.2"),
-                    Component.translatable("ctnh.multiblock.parallelize.tooltip")
+                    Component.translatable("ctnh.multiblock.parallelize.tooltip"),
+                    Component.translatable("gtceu.multiblock.laser.tooltip")
             )
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -3366,6 +3367,7 @@ public class CTNHMultiblockMachines {
                     .where("C", Predicates.autoAbilities(definition.getRecipeTypes())
                             .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
                             .or(abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
+                            .or(abilities(PartAbility.INPUT_LASER).setMaxGlobalLimited(1))
                             .or(blocks(CASING_STAINLESS_CLEAN.get())))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("D", Predicates.blocks(CLEANROOM_GLASS.get()))
@@ -4162,7 +4164,7 @@ public class CTNHMultiblockMachines {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
-            .workableCasingRenderer(CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"), GTCEu.id("block/multiblock/vacuum_freezer"), false)
+            .workableCasingRenderer(CTNHCore.id("block/casings/super_freeze_block"), GTCEu.id("block/multiblock/vacuum_freezer"), false)
             .register();
     public static final MultiblockMachineDefinition MANA_CONDENSER = REGISTRATE.multiblock("mana_condenser", ManaCondenserMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)

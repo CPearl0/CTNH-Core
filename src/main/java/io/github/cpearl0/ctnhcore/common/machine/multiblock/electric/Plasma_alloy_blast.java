@@ -77,12 +77,12 @@ public class Plasma_alloy_blast extends CoilWorkableElectricMultiblockMachine {
             }
             if(MachineUtils.inputFluid(CTNHMaterials.COMPRESSED_ADAMANTITE.getFluid(PLASMA,100),pmachine))
             {
-                total_speed*=2.5;
+                total_speed*=5;
                 eut=2.0;
             }
             if(MachineUtils.inputFluid(CTNHMaterials.COMPRESSED_AETHER.getFluid(PLASMA,50*parallel),pmachine))
             {
-                total_speed*=5;
+                total_speed*=10;
                 output=1-0.2*(Math.random());
             }
             speed=speed*(0.25*pmachine.islasor);

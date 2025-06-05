@@ -318,14 +318,14 @@ public class EternalGarden extends WorkableElectricMultiblockMachine implements 
                 int temp=recipe.data.getInt("temp")/2;
                 mmachine.Temperature+=temp;
                 FluidStack pyrotheumFluid = new FluidStack(
-                        Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:pyrotheum"))),
+                        Objects.requireNonNull(ForgeRegistries.FLUIDS.getValue(new ResourceLocation("gtceu:cryotheum"))),
                         100
                 );
                 // 检查输入仓是否有足够流体
                 boolean isFluidSufficient = MachineUtils.inputFluid(pyrotheumFluid, mmachine);
                 if(isFluidSufficient)mmachine.Temperature-=1000;
                 double rate=-Math.pow((12500- mmachine.Temperature),2)+156250001;
-                double rate2=Math.sqrt(rate)/500;
+                double rate2=Math.sqrt(rate)/1000;
                 int parallel= ParallelLogic.getParallelAmount(machine,recipe,maxparallel);
                 return  ModifierFunction.builder()
                         .parallels(parallel)
