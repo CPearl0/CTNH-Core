@@ -23,7 +23,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS
 public class TagLoaderMixin {
     @Inject(method = "load", at = @At("RETURN"))
     public void CTNH$loadTags(ResourceManager manager, CallbackInfoReturnable<Map<ResourceLocation, List<TagLoader.EntryWithSource>>> cir) {
-        if (CTNHConfig.INSTANCE.ftbPlugin.disableFTBUltimineOnGTOres) {
+        if (!CTNHConfig.INSTANCE.ftbPlugin.enableFTBUltimineOnGTOres) {
             List<TagLoader.EntryWithSource> tags = new ArrayList<>();
             MATERIAL_BLOCKS.rowMap().forEach((prefix, map) -> {
                 if (TagPrefix.ORES.containsKey(prefix)) {

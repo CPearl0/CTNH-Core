@@ -179,4 +179,8 @@ public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
             }
         }
     }
+    @Override
+    public boolean dampingWhenWaiting() {
+        return false;
+    }
 }

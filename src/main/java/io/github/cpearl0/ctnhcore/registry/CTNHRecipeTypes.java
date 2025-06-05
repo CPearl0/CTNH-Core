@@ -15,6 +15,7 @@ import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
 import com.lowdragmc.lowdraglib.utils.CycleItemStackHandler;
 import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 import com.simibubi.create.AllBlocks;
+import io.github.cpearl0.ctnhcore.data.CreateRecipeTypes;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -143,7 +144,7 @@ public class CTNHRecipeTypes {
             .addDataInfo(data -> LocalizationUtils.format("ctnh.stress_input", String.format("%.1f",data.getFloat("input_stress"))));
     public static final GTRecipeType MANA_GENERATOR = GTRecipeTypes.register("mana_generator",GENERATOR)
             .setEUIO(IO.OUT)
-            .setMaxIOSize(2, 0, 1, 1)
+            .setMaxIOSize(2, 1, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.TURBINE);
@@ -164,7 +165,7 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.COOLING);
-    public static final GTRecipeType CHEMICAL_VAPOR_DEPOSITION = GTRecipeTypes.register("chemical_vapor_deposition", GTRecipeTypes.ELECTRIC)
+    public static final GTRecipeType CHEMICAL_VAPOR_DEPOSITION = GTRecipeTypes.register("chemical_vapor_deposition", ELECTRIC)
             .setEUIO(IO.IN)
             .setMaxIOSize(2, 2, 2, 2)
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
@@ -414,7 +415,7 @@ public class CTNHRecipeTypes {
                 {
                     return LocalizationUtils.format("ctnh.accelerator.mode.proton.consume");
                 }
-                return "";
+                return  "";
             })
             .addDataInfo(data->{
 
@@ -430,10 +431,19 @@ public class CTNHRecipeTypes {
                         return LocalizationUtils.format("ctnh.accelerator.mode.speed.g",String.format("%.2f",speed/1000));
                     }
 
-
                 }
                 return "";
-            });
+            }
+            )
+            .addDataInfo(data->{
+                if(data.contains("darkmatter"))
+                {
+                    return LocalizationUtils.format("ctnh.acc.danger");
+                }
+                return "";
+
+            })
+            ;
 
     public static final GTRecipeType ACCELERATOR_DOWN =GTRecipeTypes.register("accelerator_downmode", ELECTRIC)
             .setMaxIOSize(9,9,3,3)
@@ -466,6 +476,7 @@ public class CTNHRecipeTypes {
                 {
                     return LocalizationUtils.format("ctnh.accelerator.mode.proton.consume");
                 }
+
                 return "";
             })
             .addDataInfo(data->{
@@ -485,7 +496,16 @@ public class CTNHRecipeTypes {
 
                 }
                 return "";
-            });
+            })
+            .addDataInfo(data->{
+                if(data.contains("darkmatter"))
+                {
+                    return LocalizationUtils.format("ctnh.acc.danger");
+                }
+                return "";
+
+            })
+            ;
     public static final GTRecipeType ARC_GENERATOR = GTRecipeTypes.register("arc_generator",GENERATOR)
             .setMaxIOSize(6, 6, 3, 3)
             .setEUIO(IO.OUT)
@@ -518,8 +538,134 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BATH,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MIXER);
+    public static final GTRecipeType ETERNAL_GARDEN = GTRecipeTypes.register("eternal_garden",ELECTRIC)
+            .setMaxIOSize(6, 6, 3, 3)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType CT_ASSEMBLY_LINE = GTRecipeTypes.register("ct_assembly_line",ELECTRIC)
+            .setMaxIOSize(6, 1, 3, 0)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType CT_ASSEMBLY_LINE_MAKER = GTRecipeTypes.register("ct_assembly_line_maker",ELECTRIC)
+            .setMaxIOSize(6, 1, 0, 0)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType PVB_RECIPE = GTRecipeTypes.register("pvb_recipe",ELECTRIC)
+            .setMaxIOSize(6, 6, 3, 3)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType LS_RECIPE = GTRecipeTypes.register("laser_sorter_recipe",ELECTRIC)
+            .setMaxIOSize(6, 6, 3, 3)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .addDataInfo(data->
+            {
+                if(data.contains("cwut"))
+                {
+                    return LocalizationUtils.format("ctnh.ls.cwut",String.format("%d",data.getInt("cwut")));
+                }
+                return "";
+            })
+            .setSound(GTSoundEntries.CHEMICAL);
+
+    public static final GTRecipeType PHOTOVOLTAIC_GENERATOR = GTRecipeTypes.register("photovoltaic_generator",GENERATOR)
+            .setMaxIOSize(2, 2, 2, 2)
+            .setEUIO(IO.OUT)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType PHOTOVOLTAIC_ASSEMBER = GTRecipeTypes.register("photovoltaic_assember",GENERATOR)
+            .setMaxIOSize(6, 6, 3, 3)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .addDataInfo(data->
+            {
+                if(data.contains("tier"))
+                {
+                    return LocalizationUtils.format("ctnh.pvc_tier",String.format("%d",data.getInt("tier")));
+                }
+                return "";
+            })
+            .addDataInfo(data->
+            {
+                if(data.contains("input"))
+                {
+                    return LocalizationUtils.format("ctnh.eut_model",String.format("%d",data.getInt("input")));
+                }
+                return "";
+            })
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType PVDRONE=GTRecipeTypes.register("pv_drone_recipe",ELECTRIC)
+            .setMaxIOSize(6, 6, 3, 3)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType NUCLEAR_REACTOR_RECIPES = GTRecipeTypes.register("nuclear_reactor", MULTIBLOCK)
+            .setMaxIOSize(6,3,3,3)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL)
+            .addDataInfo(data -> LocalizationUtils.format("ctnh.nuclear_reactor_heat", String.format("%.1f",data.getFloat("heat"))));
+    public static final GTRecipeType GAS_CENTRIFUGE_RECIPES = GTRecipeTypes.register("gas_centrifuge", MULTIBLOCK)
+            .setMaxIOSize(0, 0, 1, 3)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CENTRIFUGE);
+    public static final GTRecipeType HOT_COOLANT_TURBINE_RECIPES = GTRecipeTypes.register("hot_coolant_turbine", MULTIBLOCK)
+            .setMaxIOSize(0, 0, 1, 1)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.TURBINE);
+    public static final GTRecipeType MANA_CONDENSER_RECIPES = GTRecipeTypes.register("mana_condenser", MULTIBLOCK)
+            .setMaxIOSize(0, 0, 1, 1)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_COMPRESS, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.COOLING);
+    public static final GTRecipeType  COMPILER_RECIPE = GTRecipeTypes.register("compiler_recipe",ELECTRIC)
+            .setMaxIOSize(5, 1, 0, 0)
+            .setEUIO(IO.IN)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE,  ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+    public static final GTRecipeType SCALABLE_RESERVOIR_COMPUTING = GTRecipeTypes.register("scalable_reservoir_computing",ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(1,0,1,0)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
+            .setSlotOverlay(false,false,GuiTextures.RESEARCH_STATION_OVERLAY)
+            .setSlotOverlay(false,true,GuiTextures.FLUID_SLOT)
+            .setSound(GTSoundEntries.COMPUTATION)
+            .addDataInfo(data->LocalizationUtils.format("gtceu.machine.hpca.component_type.computation_cwut",data.getInt("maxCWUt")))
+            .addDataInfo(data->LocalizationUtils.format("ctnhcore.src.wetware_duration",data.getInt("wetwareDuration")))
+            //TODO: 渲染以后写
+            .addDataInfo(data->LocalizationUtils.format("ctnhcore.src.sacrifice",data.getString("sacrifice")))
+            ;
+    public static final GTRecipeType DIFFERENTIAL_CENTRIFUGE_RECIPES = GTRecipeTypes.register("differential_centrifuge", ELECTRIC)
+                .setEUIO(IO.IN)
+                .setMaxIOSize(6, 6, 6, 6)
+                .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.CENTRIFUGE);
+    public static final GTRecipeType ULTRASONICATION_RECIPES = GTRecipeTypes.register("ultrasonication", ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(3, 3, 3, 3)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.MACERATOR);
 
     public static void init() {
-
+        CreateRecipeTypes.init();
     }
 }

@@ -62,4 +62,8 @@ public class Arc_Generator extends WorkableElectricMultiblockMachine implements 
         textList.add(textList.size(), Component.translatable("ctnh.arcgenerator.arc.3",String.format("%.2f",efficiency*100)));
         textList.add(textList.size(), Component.translatable("ctnh.arcgenerator.arc.4",String.format("%.2f",rotor*100)));
     }
+    @Override
+    public boolean dampingWhenWaiting() {
+        return false;
+    }
 }

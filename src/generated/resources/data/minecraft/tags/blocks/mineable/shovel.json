@@ -1,5 +1,7 @@
 {
   "values": [
-    "ctnhcore:astral_sand"
+    "ctnhcore:astral_sand",
+    "ctnhcore:astral_dirt",
+    "ctnhcore:astral_grass_block"
   ]
 }

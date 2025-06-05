@@ -1,0 +1,4 @@
+// 1.20.1	2025-03-19T21:26:53.6675904	Tags for minecraft:worldgen/biome mod id gtceu
+6525dda69924a36f16797ed873bffc083e1f4de5 data/forge/tags/worldgen/biome/is_swamp.json
+6178acd896f5f1500b4c1952912ef22d32ab5052 data/gtceu/tags/worldgen/biome/has_rubber_tree.json
+86ef4d151d15c5b6ab5f404b67caf1e9fc3b130f data/gtceu/tags/worldgen/biome/is_sandy.json

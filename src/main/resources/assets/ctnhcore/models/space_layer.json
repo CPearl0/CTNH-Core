@@ -1,0 +1,9 @@
+{
+  "loader": "forge:obj",
+  "flip_v": true,
+  "model": "ctnhcore:models/space_layer.obj",
+  "textures": {
+    "texture0": "ctnhcore:block/space_layer",
+    "particle":"ctnhcore:block/space_layer"
+  }
+}

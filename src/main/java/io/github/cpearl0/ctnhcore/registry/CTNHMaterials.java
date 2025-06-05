@@ -5,6 +5,7 @@ import com.aetherteam.aether.item.AetherItems;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
@@ -12,9 +13,12 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import dev.arbor.gtnn.data.GTNNMaterials;
 import earth.terrarium.adastra.common.registry.ModBlocks;
 import io.github.cpearl0.ctnhcore.CTNHCore;
+import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
+import lombok.Generated;
 import net.minecraft.server.commands.PublishCommand;
 import teamrazor.deepaether.init.DABlocks;
 import teamrazor.deepaether.init.DAItems;
+import vazkii.botania.common.block.BotaniaBlocks;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
@@ -158,9 +162,9 @@ public class CTNHMaterials {
             .radioactiveHazard(6)
             .blastTemp(21800, HIGHEST)
             .element(CTNHElements.STARMETAL)
-            .color(0x0000e6)
-            .iconSet(METALLIC)
-            .flags(GENERATE_FINE_WIRE)
+            .color(0xf4f4f4)
+            .iconSet(MaterialIcons.StarsteelIcon)
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_ROTOR)
             .cableProperties(GTValues.V[GTValues.OpV], 4, 256)
             .buildAndRegister();
     public static final Material Infinity = new Material.Builder(GTCEu.id("my_infinity"))
@@ -180,6 +184,12 @@ public class CTNHMaterials {
             .iconSet(METALLIC)
             .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
             .cableProperties(GTValues.V[GTValues.UHV], 4, 64)
+            .buildAndRegister();
+    public static  final Material COMPRESSED_ADAMANTITE= new Material.Builder(GTCEu.id("compressed_adamantite"))
+            .plasma()
+            .buildAndRegister();
+    public static  final Material COMPRESSED_AETHER = new Material.Builder(GTCEu.id("compressed_aether"))
+            .plasma()
             .buildAndRegister();
     public static final Material EVE = new Material.Builder(GTCEu.id("eve"))
             .plasma()
@@ -291,6 +301,84 @@ public class CTNHMaterials {
             .addOreByproducts(GTMaterials.EchoShard, GTMaterials.Sculk)
             .components(EchoShard,10, Sculk,6, RedAlloy,4, BlueAlloy,4, Apatite,4)
             .buildAndRegister();
+    public static final Material SpiritAsh = new Material.Builder(GTCEu.id("spirit_ash"))
+            .dust()
+            .color(0xcfbee4)
+            .secondaryColor(0x306080)
+            .ore()
+            .addOreByproducts(TricalciumPhosphate, Phosphate)
+            .components(CalciumChloride,1, Redstone,1, Biotite,1)
+            .buildAndRegister();
+    public static final Material SteelLeaf = new Material.Builder(GTCEu.id("steel_leaf"))
+            .dust()
+            .color(0x9db186)
+            .secondaryColor(0x306080)
+            .ore()
+            .addOreByproducts(TricalciumPhosphate, Phosphate)
+            .components(Uvarovite,1, Malachite,1, Olivine,1, Carbon,1)
+            .buildAndRegister();
+    public static final Material EclipseShadow = new Material.Builder(GTCEu.id("eclipse_shadow"))
+            .ingot()
+            .dust()
+            .color(0x1A0A2E)
+            .secondaryColor(0x6A00F4)
+            .element(CTNHElements.SHADOWSTEEL)
+            .iconSet(METALLIC)
+            .ore()
+            .addOreByproducts(Stibnite, Antimony)
+            .blast(b -> b.temp(2500, BlastProperty.GasTier.HIGH))
+            .buildAndRegister();
+    public static final Material Dragonflame = new Material.Builder(GTCEu.id("dragonflame"))
+            .ingot()
+            .dust()
+            .color(0xFF4500)
+            .secondaryColor(0xE25822)
+            .element(CTNHElements.PYROSCALE)
+            .iconSet(METALLIC)
+            .blast(b -> b.temp(3600, BlastProperty.GasTier.HIGH))
+            .ore()
+            .addOreByproducts(Sulfur, BariumSulfide)
+            .buildAndRegister();
+    public static final Material PolarIceCore = new Material.Builder(GTCEu.id("polar_ice_core"))
+            .gem()
+            .dust()
+            .color(0x7FB6D6)
+            .secondaryColor(0xB0E0E6)
+            .element(CTNHElements.GLACIAL_CORE)
+            .ore()
+            .addOreByproducts(Ice, Bauxite)
+            .buildAndRegister();
+    public static final Material IllusionIron = new Material.Builder(GTCEu.id("illusion_iron"))
+            .ingot()
+            .dust()
+            .color(0xC0C0C0)
+            .secondaryColor(0xA0A0FF)
+            .element(CTNHElements.PHANTOM_IRON)
+            .iconSet(METALLIC)
+            .blast(b -> b.temp(1200, BlastProperty.GasTier.HIGH))
+            .ore()
+            .addOreByproducts(Glowstone, Kyanite)
+            .buildAndRegister();
+    public static final Material ToxicSwampAmber = new Material.Builder(GTCEu.id("toxic_swamp_amber"))
+            .gem()
+            .dust()
+            .color(0x2F4F4F)
+            .secondaryColor(0x00FF7F)
+            .element(CTNHElements.BOG_AMBER)
+            .ore()
+            .addOreByproducts(Sulfur, Realgar)
+            .buildAndRegister();
+    public static final Material LightningPattern = new Material.Builder(GTCEu.id("lightning_pattern"))
+            .ingot()
+            .dust()
+            .color(0x3A1D6B)
+            .secondaryColor(0xFFD700)
+            .element(CTNHElements.STORMVEIN)
+            .iconSet(METALLIC)
+            .blast(b -> b.temp(5400, BlastProperty.GasTier.HIGH))
+            .ore()
+            .addOreByproducts(BatteryAlloy, Wulfenite)
+            .buildAndRegister();
     public static final Material Alumina = new Material.Builder(GTCEu.id("alumina"))
             .dust()
             .color(0x09474A)
@@ -351,10 +439,121 @@ public class CTNHMaterials {
             .color(0xffd919)
             .iconSet(METALLIC)
             .buildAndRegister();
+    public static final Material O_bar = new Material.Builder((GTCEu.id("o_bar")))
+            .liquid(new FluidBuilder()
+                    .temperature(0)
+                    .customStill())
+            .color(0X522719)
+            .buildAndRegister();
+    public static final Material H_bar = new Material.Builder((GTCEu.id("h_bar")))
+            .liquid(new FluidBuilder()
+                    .temperature(0)
+                    .customStill())
+            .color(0XFFFF00)
+            .buildAndRegister();
+    public static final Material SUNNARIUM = new Material.Builder((GTCEu.id("sunnarium")))
+            .liquid()
+            .dust()
+            .ingot()
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .plasma()
+            .element(CTNHElements.SUNNARIUM)
+            .color(0XFFFF01)
+            .buildAndRegister();
+    public static final Material HIKARIUM = new Material.Builder((GTCEu.id("hikarium")))
+            .liquid(new FluidBuilder()
+                    .temperature(1000000)
+                    .color(0XFFAA00)
+                    .customStill())
+            .dust()
+            .ingot()
+            .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+            .plasma()
+            .element(CTNHElements.HIKARIUM)
+            .color(0XFFAA00)
+            .buildAndRegister();
     public static final Material starlight = new Material.Builder(GTCEu.id("starlight"))
             .liquid(new FluidBuilder().temperature(50).textures(true,true).block())
             .buildAndRegister();
+    public static final Material siliconFluoride = new Material.Builder(GTCEu.id("silicon_fluoride"))
+            .liquid()
+            .color(0x76868a)
+            .components(Silicon,1 , Fluorine, 4)
+            .buildAndRegister();
+    public static final Material carbonFluoride = new Material.Builder(GTCEu.id("carbon_fluoride"))
+            .liquid()
+            .color(0xb8956d)
+            .components(Carbon,1 , Fluorine, 4)
+            .buildAndRegister();
+    public static final Material zirconiumTetrachloride = new Material.Builder(GTCEu.id("zirconium_tetrachloride"))
+            .dust()
+            .color(0xd0db7d)
+            .components(Zirconium,1 , Chlorine, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .buildAndRegister();
+    public static final Material siliconCarbide = new Material.Builder(GTCEu.id("silicon_carbide"))
+            .dust()
+            .color(0x6edade)
+            .components(Silicon, 1, Carbon, 1)
+            .buildAndRegister();
+    public static final Material HotSteam = new Material.Builder(GTCEu.id("hot_steam"))
+            .gas()
+            .color(0xd4d4d4)
+            .buildAndRegister();
+    public static final Material HotDeuterium = new Material.Builder(GTCEu.id("hot_deuterium"))
+            .gas()
+            .color(0xe6e857)
+            .buildAndRegister();
+    public static final Material HotSodium = new Material.Builder(GTCEu.id("hot_sodium"))
+            .gas()
+            .color(0x237ad1)
+            .buildAndRegister();
+    public static final Material HotSodiumPotassium = new Material.Builder(GTCEu.id("hot_sodium_potassium"))
+            .gas()
+            .color(0x39cf89)
+            .buildAndRegister();
+    public static final Material Livingrock = new Material.Builder(GTCEu.id("livingrock"))
+            .dust()
+            .color(0xfafafa)
+            .buildAndRegister();
+    public static final Material icestone = new Material.Builder(GTCEu.id("icestone"))
+            .dust()
+            .color(0xd7fffd)
+            .buildAndRegister();
+    public static final Material CombustibleIce = new Material.Builder(GTCEu.id("combustible_ice"))
+            .gem()
+            .iconSet(LIGNITE)
+            .color(0xebfbfc)
+            .burnTime(6000)
+            .ore()
+            .buildAndRegister();
+    public static final Material ManaFused = new Material.Builder(GTCEu.id("mana_fused"))
+            .dust()
+            .ore()
+            .color(0x4FC1FF)
+            .buildAndRegister();
+    public static final Material NQ_END_OF_GASOLINE =new Material.Builder(GTCEu.id("nq_end_gasoline"))
+            .liquid()
+            .color(0x000000)
+            .element(CTNHElements.END_OF_OIL)
+            .buildAndRegister();
+    public static final Material LIVING_METAL=new Material.Builder(GTCEu.id("living_metal"))
+            .liquid()
+            .color(0x000000)
+            .element(CTNHElements.Living_Metal)
+            .buildAndRegister();
+    public static final Material MysteryFluid = new Material.Builder(GTCEu.id("mystery_fluid"))
+            .liquid()
+            .color(0x4ded1c)
+            .buildAndRegister();
+    public static  final Material COLORFUL_GEM=new Material.Builder(GTCEu.id("colorful_gem"))
+            .gem()
+            .color(0x000000)
+            .buildAndRegister();
+
     public static void init() {
+        CombustibleIce.setFormula("(CH4)(H2O)", true);
+        NuclearMaterials.init();
         TagPrefix.block.setIgnored(Moonstone, ModBlocks.MOON_STONE);
         TagPrefix.block.setIgnored(Marsstone, ModBlocks.MARS_STONE);
         TagPrefix.block.setIgnored(Venusstone, ModBlocks.VENUS_STONE);
@@ -374,5 +573,12 @@ public class CTNHMaterials {
 
         TagPrefix.ingot.setIgnored(Stratus, DAItems.STRATUS_INGOT);
         TagPrefix.block.setIgnored(Stratus, DABlocks.STRATUS_BLOCK);
+
+        TagPrefix.block.setIgnored(Livingrock, BotaniaBlocks.livingrock);
     }
+
+    public static class MaterialIcons {
+        public static MaterialIconSet StarsteelIcon = new MaterialIconSet("starsteel", METALLIC);
+    }
+
 }

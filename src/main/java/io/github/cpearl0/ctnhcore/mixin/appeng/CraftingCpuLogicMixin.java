@@ -40,7 +40,7 @@ public class CraftingCpuLogicMixin {
         }catch (NoSuchFieldException | IllegalAccessException ignored) {
         }
 
-        if(CTNHCore$tickCount % 20 != 0 && stored > 1000000)
+        if(CTNHCore$tickCount % 20 != 0 && stored > 1000000000)
         {
             ci.cancel();
         }

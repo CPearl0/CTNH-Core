@@ -73,4 +73,8 @@ public class Arc_Reactor extends WorkableElectricMultiblockMachine implements IT
 
 
     }
+    @Override
+    public boolean dampingWhenWaiting() {
+        return false;
+    }
 }

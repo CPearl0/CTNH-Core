@@ -42,8 +42,17 @@ public class CTNHCoreGTAddon implements IGTAddon {
     }
 
     @Override
+    public void registerFluidVeins() {
+        CTNHFluidVeins.init();
+    }
+
+    @Override
     public void registerWorldgenLayers() {
         CTNHWorldgenLayers.init();
+    }
+
+    @Override
+    public void registerSounds() {
     }
 
     @Override
@@ -64,5 +73,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         Sinope_recipes.init(provider);
         MachinesRecipes.init(provider);
         AcceleratorRecipes.init(provider);
+        NuclearRecipes.init(provider);
+        ScalableReservoirComputingRecipes.init(provider);
     }
 }

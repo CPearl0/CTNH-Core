@@ -23,6 +23,17 @@ public class EnglishLangHandler {
         LangHandler.replace(provider, CTNHMaterials.Skyjade.getUnlocalizedName(), "Skyjade");
         LangHandler.replace(provider, CTNHMaterials.Stratus.getUnlocalizedName(), "Stratus");
 
+        provider.add("enchantment.kubejs.vacuum_seal.desc", "Protects you from vacuum damage. Note: All equipped items must have this enchantment to take effect");
+        provider.add("enchantment.kubejs.warming.desc", "Enhance your hot defending ability");
+        provider.add("enchantment.kubejs.cooling.desc", "Enhance your cold defending ability");
+
+        provider.add("tagprefix.nuclear", "%s");
+        provider.add("tagprefix.fuel", "%s Fuel");
+        provider.add("tagprefix.depleted_fuel", "%s Depleted Fuel");
+        provider.add("tagprefix.waste", "%s Waste");
+        provider.add("tagprefix.icestone", "Icestone %s Ore");
+        provider.add("tagprefix.livingrock", "Livingrock %s Ore");
+
         provider.add("gtceu.underfloor_heating_system", "Underfloor Heating");
         provider.add("gtceu.astronomical_observatory", "Astronomical Observatory");
         provider.add("gtceu.photovoltaic_power", "Photovoltaic Powering");
@@ -188,7 +199,8 @@ public class EnglishLangHandler {
         provider.add("ctnh.martial_morality_eye.tooltip.1", "Produces ores from the Overworld, Twilight Forest, and the Moon");
         provider.add("ctnh.martial_morality_eye.tooltip.2", "Unlocks more recipes as the voltage level increases");
         provider.add("ctnh.martial_morality_eye.tooltip.3", "More useful than falling stars in the early stages");
-        provider.add("ctnh.martial_morality_eye.tooltip.4", "Structure source: Twist Space Technology");
+        provider.add("ctnh.martial_morality_eye.tooltip.4","The center of the structure seems to emanate a mysterious force, filled with an aura of danger. Stay away!");
+        provider.add("ctnh.martial_morality_eye.tooltip.5", "Structure source: Twist Space Technology");
         provider.add("ctnh.lp_now", "Current LP amount: %d");
         provider.add("ctnh.lp_max", "Max LP amount: %d");
         provider.add("ctnh.lp_consumption", "LP consumption/input: %.1f");
@@ -343,5 +355,12 @@ public class EnglishLangHandler {
         provider.add("ctnh.astronomical.intro", "Knowing the heavens is easy, but defying them is difficult");
         provider.add("ctnh.astronomical.mechanism", "Cannot work under direct sunlight, but will automatically collect data for the chips in the chip bus while working");
         provider.add("ctnh.multiblock.lcr.duration_reduction", "Can reduce the duration as pyrolyse oven");
+        provider.add("ctnhcore.src.sacrifice_empty","No sacrifices found");
+        provider.add("ctnhcore.src.sacrifice_locked","Sacrifice LOCKED");
+        provider.add("ctnhcore.src.sacrifice_unlocked","Sacrifice UNLOCKED");
+        provider.add("ctnhcore.src.wetware_duration", "Wetware duration: %s ticks");
+        provider.add("ctnhcore.src.sacrifice", "Sacrifices: %s");
+        provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§5FINAL FANTASY §fof §a Precise Computation §f and §e Plasma Energy");
+        provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","Provide %d computation to reach the Base Production. For every %d computation provided, the Output Production DOUBLES.");
     }
 }

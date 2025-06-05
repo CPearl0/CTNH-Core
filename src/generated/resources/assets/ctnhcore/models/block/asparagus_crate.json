@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "ctnhcore:block/asparagus_crate_top",
+    "side": "ctnhcore:block/asparagus_crate"
+  }
+}

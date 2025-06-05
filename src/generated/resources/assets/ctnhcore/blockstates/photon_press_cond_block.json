@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ctnhcore:block/photon_press_cond_block"
+    }
+  }
+}

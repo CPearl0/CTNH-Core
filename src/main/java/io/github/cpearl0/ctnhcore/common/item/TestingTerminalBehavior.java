@@ -13,6 +13,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -29,7 +30,7 @@ public class TestingTerminalBehavior implements IInteractionItem {
         if (player == null) return InteractionResult.PASS;
 
         Level level = context.getLevel();
-        if (level instanceof ClientLevel) {
+        if (level instanceof ServerLevel) {
             return InteractionResult.PASS;  // 客户端不进行实际操作
         }
 

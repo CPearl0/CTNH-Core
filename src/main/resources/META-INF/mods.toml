@@ -67,8 +67,15 @@ description='''${mod_description}'''
     modId="gtceu"
     mandatory=true
     versionRange="[1.3,)"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="gtnn"
+mandatory=true
+versionRange="[1.1.8,)"
+ordering="AFTER"
+side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="ad_astra"
