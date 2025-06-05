@@ -14,7 +14,7 @@ public class CTNHBlockEntities {
     }
     public static BlockEntityEntry<TurbineRotorBE> TURBINE_ROTOR=REGISTRATE
             .blockEntity("turbine_rotor", TurbineRotorBE::new)
-            .renderer(()->(ctx)-> new TurbineRotorRender())
+            //.renderer(()->(ctx)-> new TurbineRotorRender())
             .validBlocks(()->(Block)CTNHBlocks.HYPER_PLASMA_TURBINE_ROTOR.get())
             .register();
 }

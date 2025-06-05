@@ -46,6 +46,7 @@ import java.util.function.Supplier;
 import static io.github.cpearl0.ctnhcore.api.CTNHAPI.ReactorCoreBlock;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
+@SuppressWarnings("removal")
 public class CTNHBlocks {
     static {
         REGISTRATE.creativeModeTab(() -> CTNHCreativeModeTabs.BLOCK);

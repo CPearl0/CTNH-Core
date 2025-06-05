@@ -843,6 +843,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.PROGRAM_ROCKET_CORE_1, "一阶火箭核心代码");
         provider.addItem(CTNHItems.PROGRAM_ROCKET_1, "一阶火箭控制代码");
         provider.addItem(CTNHItems.TESTING_TERMINAL, "检测终端");
+        provider.addItem(CTNHItems.ME_ADVANCED_TERMINAL, "ME高级终端");
         provider.addItem(CTNHItems.SIMPLE_NUTRITIOUS_MEAL, "简易营养餐");
         provider.addItem(CTNHItems.ECOLOGICAL_STAR, "生态之星");
         provider.addItem(CTNHItems.ANIMAL_EXCRETA, "动物排泄物");
