@@ -18,6 +18,7 @@ import io.github.cpearl0.ctnhcore.common.block.*;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.IPBData;
 import io.github.cpearl0.ctnhcore.common.block.blockdata.ISSFData;
 import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
+import io.github.cpearl0.ctnhcore.common.item.TurbineRotorItem;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import io.github.cpearl0.ctnhcore.registry.worldgen.CTNHConfiguredFeatures;
 import net.minecraft.client.renderer.RenderType;
@@ -396,9 +397,12 @@ public class CTNHBlocks {
     public static BlockEntry<TurbineRotorBlock> createTurbineRotorBlock(String name,int R,int G,int B,int A) {
         return REGISTRATE.block(name, TurbineRotorBlock.create(R,G,B,A))
                 .initialProperties(() -> Blocks.OBSIDIAN)
+//                .blockEntity(TurbineRotorBE::new)
+//                .build()
                 .blockstate((ctx, prov) ->
                         prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, CTNHCore.id("block/transparent"))))
-                .simpleItem()
+                .item(TurbineRotorItem::new)
+                .build()
                 .register();
     }
 }

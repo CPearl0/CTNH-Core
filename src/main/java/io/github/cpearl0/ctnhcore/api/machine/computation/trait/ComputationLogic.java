@@ -34,9 +34,10 @@ public class ComputationLogic extends RecipeLogic {
 
     @Override
     public GTRecipe.ActionResult handleTickRecipe(GTRecipe recipe) {
-        var ret=super.handleTickRecipe(recipe);
+        GTRecipe.ActionResult ret;
         if(!checkCWUt(recipe,false))
             ret=GTRecipe.ActionResult.fail(() -> Component.translatable("gtceu.recipe_logic.insufficient_cwut"));
+        else ret=super.handleTickRecipe(recipe);
         return ret;
     }
 

@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.client;
 
+import com.lowdragmc.lowdraglib.client.renderer.ATESRRendererProvider;
 import io.github.cpearl0.ctnhcore.CTNHCore;
 import io.github.cpearl0.ctnhcore.client.model.ModelDefinition;
 import io.github.cpearl0.ctnhcore.client.renderer.TurbineRotorRender;
@@ -23,9 +24,10 @@ public class ClientRegister {
             event.registerLayerDefinition(model.LAYER_LOCATION, model.createBodyLayer);
         }
     }
+    @Deprecated
     @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         CTNHCore.LOGGER.info("Registering External Renderers...");
-        event.registerBlockEntityRenderer(CTNHBlockEntities.TURBINE_ROTOR.get(), (ctx)->new TurbineRotorRender());
+        event.registerBlockEntityRenderer(CTNHBlockEntities.TURBINE_ROTOR.get(), ATESRRendererProvider::new);
     }
 }

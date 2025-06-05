@@ -36,9 +36,10 @@ import java.util.List;
 import java.util.Set;
 
 public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine implements IExplosionMachine {
-    public static final long BASE_EU_OUTPUT = GTValues.V[GTValues.ZPM]*288;/*有算力时的基础功率*/
+    public static final long BASE_EU_OUTPUT = GTValues.V[GTValues.ZPM] * 288;/*有算力时的基础功率*/
     public static final long DEFAULT_EU_OUTPUT = GTValues.V[GTValues.ZPM];/*没有算力时的默认功率*/
     public static final int CWUtStair = 64;
+
     public HyperPlasmaTurbineMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
@@ -48,8 +49,8 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
     public void onStructureFormed() {
         var pattern = CTNHMultiblockMachines.HYPER_PLASMA_TURBINE.getPatternFactory().get();
         //转子：往里四格，往左/右[4,11]格
-        var level=getLevel();
-        if(level==null)return;
+        var level = getLevel();
+        if (level == null) return;
         var dfront = getFrontFacing();
         var dup = Direction.UP;
 
@@ -57,39 +58,32 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
         var up = RenderUtils.directionVectors.get(dup);
         var left = RenderUtils.cross(front, up);
         var right = new Vector3i(left).negate();
-        Vector3i loffset,roffset;
-        BlockPos lpos,rpos,pos=getPos();
-        for(int i=4;i<=11;i++)
-        {
+        Vector3i loffset, roffset;
+        BlockPos lpos, rpos, pos = getPos();
+        for (int i = 4; i <= 11; i++) {
             loffset = new Vector3i(left).mul(i).add(new Vector3i(front).mul(-4));
             roffset = new Vector3i(left).mul(-i).add(new Vector3i(front).mul(-4));
-            lpos= new BlockPos(pos.getX() + loffset.x,pos.getY() +loffset.y,pos.getZ() + loffset.z);
-            rpos= new BlockPos(pos.getX() + roffset.x,pos.getY() +roffset.y,pos.getZ() + roffset.z);
-            if(level.getBlockEntity(lpos) instanceof TurbineRotorBE ltbe
-                    /*&& RenderUtils.dircetionVectors.get(ltbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(left)*/)
-            {
-                if(!RenderUtils.directionVectors.get(ltbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(left)){
-                    var new_state = ltbe.getBlockState().setValue(BlockStateProperties.FACING,RenderUtils.vectorDirections.get(left));
-                    level.setBlockAndUpdate(lpos,new_state);
+            lpos = new BlockPos(pos.getX() + loffset.x, pos.getY() + loffset.y, pos.getZ() + loffset.z);
+            rpos = new BlockPos(pos.getX() + roffset.x, pos.getY() + roffset.y, pos.getZ() + roffset.z);
+            if (level.getBlockEntity(lpos) instanceof TurbineRotorBE ltbe
+                /*&& RenderUtils.dircetionVectors.get(ltbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(left)*/) {
+                if (!RenderUtils.directionVectors.get(ltbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(left)) {
+                    var new_state = ltbe.getBlockState().setValue(BlockStateProperties.FACING, RenderUtils.vectorDirections.get(left));
+                    level.setBlockAndUpdate(lpos, new_state);
                     ltbe = (TurbineRotorBE) level.getBlockEntity(lpos);
                 }
-            }
-            else
-            {
+            } else {
                 onStructureInvalid();
                 return;
             }
-            if(level.getBlockEntity(rpos) instanceof TurbineRotorBE rtbe
-                    /*&& RenderUtils.dircetionVectors.get(rtbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(right)*/)
-            {
-                if(!RenderUtils.directionVectors.get(rtbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(right)){
-                    var new_state = rtbe.getBlockState().setValue(BlockStateProperties.FACING,RenderUtils.vectorDirections.get(right));
-                    level.setBlockAndUpdate(rpos,new_state);
+            if (level.getBlockEntity(rpos) instanceof TurbineRotorBE rtbe
+                /*&& RenderUtils.dircetionVectors.get(rtbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(right)*/) {
+                if (!RenderUtils.directionVectors.get(rtbe.getBlockState().getValue(BlockStateProperties.FACING)).equals(right)) {
+                    var new_state = rtbe.getBlockState().setValue(BlockStateProperties.FACING, RenderUtils.vectorDirections.get(right));
+                    level.setBlockAndUpdate(rpos, new_state);
                     rtbe = (TurbineRotorBE) level.getBlockEntity(rpos);
                 }
-            }
-            else
-            {
+            } else {
                 onStructureInvalid();
                 return;
             }
@@ -106,12 +100,12 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
     public long getOverclockVoltage() {
         /*算力不足时，功率为zpm1a，算力足够时以基础功率zpm288a为底，每多提供64算力就翻倍输出功率*/
         var cwut = getMaxCWUt();
-        if(cwut<CWUtStair)
-        {
+        if (cwut < CWUtStair) {
             return DEFAULT_EU_OUTPUT;
         }
-        return (BASE_EU_OUTPUT << (int)(cwut / CWUtStair -1));
+        return (BASE_EU_OUTPUT << (int) (cwut / CWUtStair - 1));
     }
+
     /*产能效率*/
     static public double getEfficiency() {
         return 4.0;
@@ -120,18 +114,21 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
 
     //////////////////////////////////////
     // ****** Recipe Logic *******//
-    //////////////////////////////////////
+
+    /// ///////////////////////////////////
 
     @Override
     @NotNull
     public RecipeLogic createRecipeLogic(Object... args) {
         return new HyperPlasmaTurbineRecipeLogic(this);
     }
+
     @Override
     @NotNull
     public MultiblockComputationLogic getRecipeLogic() {
         return (HyperPlasmaTurbineRecipeLogic) recipeLogic;
     }
+
     public static ModifierFunction recipeModifier(@NotNull MetaMachine machine, @NotNull GTRecipe recipe) {
         if (!(machine instanceof HyperPlasmaTurbineMachine hptm)) {
             return RecipeModifier.nullWrongType(HyperPlasmaTurbineMachine.class, machine);
@@ -145,7 +142,7 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
 
         // get the amount of parallel required to match the desired output voltage
         double euMultiplier = getEfficiency();
-        int maxParallel = (int) ( turbineMaxVoltage / EUt );
+        int maxParallel = (int) (turbineMaxVoltage / EUt);
         int actualParallel = ParallelLogic.getParallelAmountFast(hptm, recipe, maxParallel);
 
         return ModifierFunction.builder()
@@ -158,12 +155,10 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
     }
 
 
-
     @Override
     public boolean dampingWhenWaiting() {
         return false;
     }
-
 
 
     @Override
@@ -173,14 +168,15 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
 
     //////////////////////////////////////
     // ******* GUI ********//
-    //////////////////////////////////////
+
+    /// ///////////////////////////////////
 
     @Override
     public void addDisplayText(@NotNull List<Component> textList) {
         if (isFormed()) {
 
             textList.add(Component.translatable("gtceu.multiblock.turbine.efficiency",
-                    getEfficiency()*100));
+                    getEfficiency() * 100));
 
             long maxProduction = getOverclockVoltage();
             long currentProduction = isActive() && recipeLogic.getLastRecipe() != null ?
@@ -196,30 +192,33 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
     }
 
 
-
-
-    private static class HyperPlasmaTurbineRecipeLogic  extends MultiblockComputationLogic
-    {
+    private static class HyperPlasmaTurbineRecipeLogic extends MultiblockComputationLogic {
 
         public HyperPlasmaTurbineRecipeLogic(MultiblockComputationMachine machine) {
             super(machine);
         }
-        public static int fastLog2(long n){
-            return ((Long.SIZE-1) - Long.numberOfLeadingZeros((long)n));
+
+        public static int fastLog2(long n) {
+            return ((Long.SIZE - 1) - Long.numberOfLeadingZeros((long) n));
         }
-        public static int fastLogBased2(long n,long m){
-            return fastLog2(n/m);
+
+        public static int fastLogBased2(long n, long m) {
+            return fastLog2(n / m);
         }
+
+        private boolean isExploding = false;
+
         @Override
         public int getCWUtToRequest(GTRecipe recipe) {
             var EUt = RecipeHelper.getOutputEUt(recipe);
-            if(EUt<BASE_EU_OUTPUT)return 0;
-            return CWUtStair * (fastLogBased2(EUt,BASE_EU_OUTPUT) + 1);
+            if (EUt > DEFAULT_EU_OUTPUT && EUt <= BASE_EU_OUTPUT) return CWUtStair;
+            return CWUtStair * (fastLogBased2(EUt, BASE_EU_OUTPUT-1) + 2);
         }
+
         @Override
         public boolean checkCWUt(GTRecipe recipe, boolean simulate) {
             var b = super.checkCWUt(recipe, simulate);
-            if(!simulate&&!b){
+            if (!simulate && !b) {
                 doExplosion();
             }
             return b;
@@ -228,10 +227,19 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
         private void doExplosion() {
             if (machine instanceof HyperPlasmaTurbineMachine hptm) {
                 this.setWorkingEnabled(false);/*不加会NPE*/
-                this.setStatus(Status.SUSPEND);
-                hptm.doExplosion(20f);
+                this.setStatus(Status.IDLE);
+                isExploding = true;
             }
         }
 
+        @Override
+        public void handleRecipeWorking() {
+            super.handleRecipeWorking();
+            if (isExploding) {
+                if (machine instanceof HyperPlasmaTurbineMachine hptm) {
+                    hptm.doExplosion(20.0f);
+                }
+            }
+        }
     }
 }
