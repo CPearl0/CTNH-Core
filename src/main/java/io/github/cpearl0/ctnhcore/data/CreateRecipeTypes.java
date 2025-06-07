@@ -35,7 +35,6 @@ public class CreateRecipeTypes {
                 new CTPPRecipeBuilder(newrecipe, MECHANICAL_PRESSOR_RECIPES).rpm(CTNHConfig.INSTANCE.kinetic.pressorRpmRequirement)
                         .noEUt()
                         .inputStress(builder.EUt() * CTNHConfig.INSTANCE.kinetic.pressorStressRequirement)
-                        .chancedOutputLogic(ItemRecipeCapability.CAP, ChanceLogic.NONE)
                         .save(provider);
             }
         });
@@ -48,7 +47,6 @@ public class CreateRecipeTypes {
                 new CTPPRecipeBuilder(newrecipe, MECHANICAL_MIXER_RECIPES).rpm(CTNHConfig.INSTANCE.kinetic.mixerRpmRequirement)
                         .noEUt()
                         .inputStress(builder.EUt() * CTNHConfig.INSTANCE.kinetic.mixerStressRequirement)
-                        .chancedOutputLogic(ItemRecipeCapability.CAP, ChanceLogic.NONE)
                         .save(provider);
             }
         });
@@ -61,7 +59,6 @@ public class CreateRecipeTypes {
                 new CTPPRecipeBuilder(newrecipe, MECHANICAL_CENTRIFUGE_RECIPES).rpm(CTNHConfig.INSTANCE.kinetic.centrifugeRpmRequirement)
                         .noEUt()
                         .inputStress(builder.EUt() * CTNHConfig.INSTANCE.kinetic.centrifugeStressRequirement)
-                        .chancedOutputLogic(ItemRecipeCapability.CAP, ChanceLogic.NONE)
                         .save(provider);
             }
         });
@@ -100,7 +97,6 @@ public class CreateRecipeTypes {
                 new CTPPRecipeBuilder(newrecipe, MECHANICAL_LATHE_RECIPES).rpm(CTNHConfig.INSTANCE.kinetic.latheRpmRequirement)
                         .noEUt()
                         .inputStress(builder.EUt() * CTNHConfig.INSTANCE.kinetic.latheStressRequirement)
-                        .chancedOutputLogic(ItemRecipeCapability.CAP, ChanceLogic.NONE)
                         .save(provider);
             }
         });
@@ -113,7 +109,6 @@ public class CreateRecipeTypes {
                 new CTPPRecipeBuilder(newrecipe, MECHANICAL_LASER_RECIPES).rpm(CTNHConfig.INSTANCE.kinetic.laserRpmRequirement)
                         .noEUt()
                         .inputStress(builder.EUt() * CTNHConfig.INSTANCE.kinetic.laserStressRequirement)
-                        .chancedOutputLogic(ItemRecipeCapability.CAP, ChanceLogic.NONE)
                         .save(provider);
             }
         });

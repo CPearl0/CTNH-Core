@@ -15,6 +15,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -31,6 +32,7 @@ public class CTNHPlacements {
     public static final ResourceKey<PlacedFeature> ASTRAL_GRASS = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("astral_grass"));
     public static final ResourceKey<PlacedFeature> ASTRAL_LAKE = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("astral_lake"));
     public static final ResourceKey<PlacedFeature> ASTRAL_LAKE_UNDERGROUND = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("astral_lake_underground"));
+    public static final ResourceKey<PlacedFeature> VENUS_OCHRUM = ResourceKey.create(Registries.PLACED_FEATURE, CTNHCore.id("venus_ochrum"));
 
     public static void bootstrap(BootstapContext<PlacedFeature> ctx) {
         HolderGetter<ConfiguredFeature<?, ?>> featureLookup = ctx.lookup(Registries.CONFIGURED_FEATURE);
@@ -73,6 +75,11 @@ public class CTNHPlacements {
                 RarityFilter.onAverageOnceEvery(50),
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                BiomeFilter.biome());
+        PlacementUtils.register(ctx, VENUS_OCHRUM, featureLookup.getOrThrow(CTNHConfiguredFeatures.VENUS_OCHRUM),
+                HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(15), VerticalAnchor.absolute(70)),
+                InSquarePlacement.spread(),
+                CountPlacement.of(UniformInt.of(15, 40)),
                 BiomeFilter.biome());
     }
 }

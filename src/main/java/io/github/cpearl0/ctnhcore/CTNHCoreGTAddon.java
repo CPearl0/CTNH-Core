@@ -42,6 +42,11 @@ public class CTNHCoreGTAddon implements IGTAddon {
     }
 
     @Override
+    public void registerFluidVeins() {
+        CTNHFluidVeins.init();
+    }
+
+    @Override
     public void registerWorldgenLayers() {
         CTNHWorldgenLayers.init();
     }

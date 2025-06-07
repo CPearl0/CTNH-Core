@@ -5,9 +5,11 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
+import dev.arbor.gtnn.data.GTNNMaterials;
 import io.github.cpearl0.ctnhcore.api.data.material.CTNHPropertyKeys;
 import io.github.cpearl0.ctnhcore.registry.*;
 import io.github.cpearl0.ctnhcore.registry.adventure.CTNHEnchantments;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.jetbrains.annotations.NotNull;
@@ -29,7 +31,8 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.Glaciostone.getUnlocalizedName(), "霜原石");
 
         replace(provider, CTNHMaterials.FlowingAmberGold.getUnlocalizedName(), "通流琥珀金");
-        replace(provider,CTNHMaterials.NQ_END_OF_GASOLINE.getUnlocalizedName(), "高硅岩值终末汽油");
+        replace(provider,CTNHMaterials.NQ_END_OF_GASOLINE.getUnlocalizedName(), "硅岩基终末燃油-NQ");
+        replace(provider,CTNHMaterials.LIVING_METAL.getUnlocalizedName(), "活体金属");
         replace(provider, CTNHMaterials.SpecialCompositeSteelM77.getUnlocalizedName(), "特种复合钢-M77");
         replace(provider, CTNHMaterials.HiddenAlloy.getUnlocalizedName(), "幽匿合金");
         replace(provider, CTNHMaterials.SpiritAsh.getUnlocalizedName(), "巫师之骨");
@@ -94,6 +97,7 @@ public class ChineseLangHandler {
         replace(provider, NuclearMaterials.FermiumHexafluoride.getUnlocalizedName(), "六氟化镄");
         replace(provider, NuclearMaterials.MendeleviumHexafluoride.getUnlocalizedName(), "六氟化钔");
         nuclearTranslation(provider, NuclearMaterials.Thorium233, "钍233");
+        nuclearTranslation(provider, GTNNMaterials.Thorium232, "钍232");
         nuclearTranslation(provider, NuclearMaterials.Protactinium233, "镤233");
         nuclearTranslation(provider, NuclearMaterials.Uranium233, "铀233");
         nuclearTranslation(provider, NuclearMaterials.Uranium234, "铀234");
@@ -243,6 +247,8 @@ public class ChineseLangHandler {
         provider.add("gtceu.nuclear_reactor", "核能反应");
         provider.add("gtceu.hot_coolant_turbine", "热冷却液涡轮");
         provider.add("gtceu.mana_condenser", "魔力凝集");
+        provider.add("gtceu.differential_centrifuge", "差速离心");
+        provider.add("gtceu.ultrasonication", "超声破碎");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");
@@ -620,7 +626,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.accelerator.mode.speed.m","需求速度：%.2fMev");
         provider.add("ctnh.accelerator.mode.speed.g","需求速度:%.2fGev");
         provider.add("ctnh.mk4.waring","只能使用激光仓");
-        provider.add("ctnh.multiblock.lcr.duration_reduction", "线圈温度超过5400K时，每1800K使运行速度+25%");
+        provider.add("ctnh.multiblock.lcr.duration_reduction", "线圈温度超过3600K时，每1800K使运行速度+25%");
         provider.add("ctnh.manareactor.1","工业魔力奠基者");
         provider.add("ctnh.manareactor.2","允许使用并行控制仓");
         provider.add("ctnh.arcgenerator.arc.1","电弧最大强度:%d");
@@ -677,15 +683,15 @@ public class ChineseLangHandler {
         provider.add("ctnh.anti_inf_matter.1","-∞");
         provider.add("ctnh.anti_inf_matter.2","它到底是怎么在现实世界存在的......");
         provider.add("ctnh.plasma_alloy.1","§4转底炉的复仇");
-        provider.add("ctnh.plasma_alloy.11","允许使用§b激光仓§r，使用激光仓时最终速度将除以10，速度低于原速度时拒绝运行");
+        provider.add("ctnh.plasma_alloy.11","允许使用§b激光仓§r，使用激光仓时最终速度将除以4，速度低于原速度时拒绝运行");
         provider.add("ctnh.plasma_alloy.2","线圈温度每有1800K，获得4点并行，线圈温度超过10000K时，获得(线圈温度-10000)/10000的额外加速");
         provider.add("ctnh.plasma_alloy.3","运行前消耗(并行数*对应等离子体消耗)的等离子体，获得额外加速");
         provider.add("ctnh.plasma_alloy.4","氦等离子体：消耗500*并行的等离子体，速度+100%");
         provider.add("ctnh.plasma_alloy.5","氧，氮等离子体：消耗300*并行的等离子体，速度+200%");
         provider.add("ctnh.plasma_alloy.6","镍，铁等离子体：消耗200*并行的等离子体，速度+300%");
         provider.add("ctnh.plasma_alloy.7","消耗特殊的冶炼等离子体可以获得额外的速度加成，§c但是同样会将增加你冶炼的风险");
-        provider.add("ctnh.plasma_alloy.8","压缩精金等离子：消耗固定100等离子体，使速度+1000%,使消耗电压翻倍（§c这可能导致配方不运行，请使用多安能源仓）");
-        provider.add("ctnh.plasma_alloy.9","精炼超能以太等离子体：消耗50*并行等离子体，使速度+2000%,§c使最终产物在80%-100%中浮动");
+        provider.add("ctnh.plasma_alloy.8","压缩精金等离子：消耗固定100等离子体，使速度*5,使消耗电压翻倍（§c这可能导致配方不运行，请使用多安能源仓）");
+        provider.add("ctnh.plasma_alloy.9","精炼超能以太等离子体：消耗50*并行等离子体，使速度*10,§c使最终产物在80%-100%中浮动");
         provider.add("ctnh.plasma_alloy.10","§c速度增幅超过5000%时，最终产物量将会在0%-50%中浮动！");
         provider.add("ctnh.u_sinope.story.1","在战争没有开始前，人们曾团结在一起，一齐建造这工业的巴别巨塔");
         provider.add("ctnh.u_sinope.story.2","直到那场永恒的战争，这座真空巨塔化为永恒的残骸，随着战争的双方破碎在真空中");
@@ -698,8 +704,10 @@ public class ChineseLangHandler {
         provider.add("ctnh.u_sinope.6","允许使用激光仓，但你的配方电压等级必须达到OPV，否则效率将减少99%");
         provider.add("ctnh.u_sinope.7","对于常规配方，该巨构拥有8^（电压等级）的并行，最高不超过2^32，在能源仓等级达到OPV时解锁无损超频，配方等级每超过UHV一级，处理速度+555%,每100点并行使处理速度增加333%,如果使用了四维工程学材料，则速度额外增加5000%");
         provider.add("ctnh.u_sinope.8","对于该巨构特有的配方类型具有特殊机制：时间固定为100秒，并行固定为10，电压每超过UHV一级，则时间减少10秒，并行增加10,如果使用了四维工程学材料且线圈等级大于等于UIV，则时间固定为1秒");
-        provider.add("ctnh.overclock_parallel_machine","机器运行时每有一实际并行，能源消耗减少2%（至多75%）。运行时间减少2%(至多50%)");
-        provider.add("ctnh.coil_speed","线圈温度大于1800K时，每额外的1800K温度额外提供50%的速度加成");
+        provider.add("ctnh.overclock_parallel_machine","机器运行时每有一实际并行，能源消耗减少2%（至多75%）。运行时间减少2%(至多75%)");
+        provider.add("ctnh.lcr.coil","当前线圈温度:%s");
+        provider.add("ctnh.lcr.speed","当前配方时间倍率:%s");
+        provider.add("ctnh.coil_speed","线圈温度大于3600K时，每额外的1800K温度额外提供25%的速度加成");
         provider.add("ctnh.pab","配方类型：“合金冶炼炉“");
         provider.add("ctnh.acc.danger","§c危险粒子实验");
         provider.add("ctnh.garden.fire","当前烧煤花温度:%.1f");
@@ -797,6 +805,10 @@ public class ChineseLangHandler {
         provider.add("ctnhcore.src.sacrifice_unlocked","无法锁定牺牲者");
         provider.add("ctnhcore.src.wetware_duration", "湿件剩余存活时间: %s ticks");
         provider.add("ctnhcore.src.sacrifice", "牺牲着: %s");
+        provider.add("ctnh.data.noise","当前噪声值：%s");
+        provider.add("super_centrifuge", "超速离心");
+        provider.add("ctnh.super_centrifuge.parallel", "普通离心机模式下会获得8并行");
+        provider.add("ultrasonic_apparatus", "超声破碎");
 
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
@@ -871,6 +883,7 @@ public class ChineseLangHandler {
         provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T1,"戴森云无人机蜂群MKI");
         provider.addItem(CTNHItems.MODULAR_DYSON_SWARM_T2,"戴森云无人机蜂群MKII");
         provider.addItem(CTNHItems.PV_TERMINAL,"光伏绑定终端");
+        provider.addItem(CTNHItems.RESEARCH_DATASET_LIVING_MATERIAL,"研究数据集：活体金属");
         provider.addBlock(CTNHBlocks.CASING_REFLECT_LIGHT, "反光机械方块");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_CONTROL, "进阶线程控制外壳");
         provider.addBlock(CTNHBlocks.ADVANCE_MACHINE_CASING_ASSEMBLY_LINE, "进阶装配核心");
@@ -1047,6 +1060,11 @@ public class ChineseLangHandler {
         provider.add(CTNHMultiblockMachines.GAS_CENTRIFUGE.getBlock(), "气体离心机");
         provider.add(CTNHMultiblockMachines.CRYOTHEUMFREEZER.getBlock(),"凛冰冷冻机");
         provider.add(CTNHMultiblockMachines.HYPER_PLASMA_TURBINE.getBlock(), "超極等离子涡轮");
+        provider.add(CTNHMultiblockMachines.NERUOMATRIXCOMPILER.getBlock(),"神经矩阵编译器");
+        provider.add(MultiblocksA.SUPER_CENTRIFUGE.getBlock(), "超速离心机");
+        provider.add(MultiblocksA.ULTRASONIC_APPARATUS.getBlock(), "超声破碎仪");
+        provider.add(CTNHMultiblockMachines.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
+
 
 
 

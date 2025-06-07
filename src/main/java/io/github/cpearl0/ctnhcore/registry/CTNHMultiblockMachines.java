@@ -59,6 +59,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.kinetic.MeadowMachin
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.magic.*;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.*;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.HyperPlasmaTurbineRegister;
+import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -1285,7 +1286,7 @@ public class CTNHMultiblockMachines {
                             .or(Predicates.autoAbilities(true, false, true)))
                     .where("H", abilities(PartAbility.MUFFLER))
                     .where("C", Predicates.heatingCoils())
-                    .where("#", Predicates.air())
+                    .where("#", Predicates.any())
                     .build()
             )
             .recoveryItems(
@@ -1554,7 +1555,7 @@ public class CTNHMultiblockMachines {
             .workableCasingRenderer(CTNHCore.id("block/high_grade_coke_oven_bricks"), GTCEu.id("block/machines/alloy_smelter"), false)
             .register();
     public static final MultiblockMachineDefinition ULTIMATE_COMBUSTION_ENGINE = registerLargeCombustionEngine(
-            "ultimate_combustion_engine", LuV,
+            "ultimate_combustion_engine", UV,
             CASING_NAQUADAH_BLOCK, CASING_NAQUADAH_GEARBOX, CASING_ULTIMATE_ENGINE_INTAKE,
             CTNHCore.id("block/casings/nq_casing"),
             GTCEu.id("block/multiblock/generator/extreme_combustion_engine"));
@@ -3351,7 +3352,8 @@ public class CTNHMultiblockMachines {
                     GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
             .tooltips(Component.translatable("ctnh.cultivationroom.1").withStyle(ChatFormatting.GREEN),
                     Component.translatable("ctnh.cultivationroom.2"),
-                    Component.translatable("ctnh.multiblock.parallelize.tooltip")
+                    Component.translatable("ctnh.multiblock.parallelize.tooltip"),
+                    Component.translatable("gtceu.multiblock.laser.tooltip")
             )
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -3365,6 +3367,7 @@ public class CTNHMultiblockMachines {
                     .where("C", Predicates.autoAbilities(definition.getRecipeTypes())
                             .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
                             .or(abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
+                            .or(abilities(PartAbility.INPUT_LASER).setMaxGlobalLimited(1))
                             .or(blocks(CASING_STAINLESS_CLEAN.get())))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("D", Predicates.blocks(CLEANROOM_GLASS.get()))
@@ -3720,7 +3723,7 @@ public class CTNHMultiblockMachines {
                     .where("B", Predicates.blocks(CASING_HIGH_TEMPERATURE_SMELTING.get())
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
                             .or(Predicates.abilities(PartAbility.PARALLEL_HATCH))
-                            .or(Predicates.abilities(PartAbility.INPUT_LASER)).setMaxGlobalLimited(1))
+                            .or(Predicates.abilities(PartAbility.INPUT_LASER)))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .where("C", Predicates.frames(Naquadria))
                     .where("D", Predicates.blocks(CASING_TUNGSTENCU_DIAMOND_PLATING.get()))
@@ -4161,7 +4164,7 @@ public class CTNHMultiblockMachines {
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
-            .workableCasingRenderer(CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"), GTCEu.id("block/multiblock/vacuum_freezer"), false)
+            .workableCasingRenderer(CTNHCore.id("block/casings/super_freeze_block"), GTCEu.id("block/multiblock/vacuum_freezer"), false)
             .register();
     public static final MultiblockMachineDefinition MANA_CONDENSER = REGISTRATE.multiblock("mana_condenser", ManaCondenserMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
@@ -4291,13 +4294,13 @@ public class CTNHMultiblockMachines {
                             .or(Predicates.autoAbilities(definition.getRecipeTypes())))
                     .where("J", Predicates.blocks(CASING_PTFE_INERT.get()))
                     .where("K", Predicates.frames(Naquadria))
-                    .where("L", Predicates.blocks(ADVANCED_BIO_REACTOR_CASING.get()))
+                    .where("L", Predicates.blocks(CASING_NEUTRONIUM_ALLOY_BLOCK.get()))
                     .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                     .build()
             )
             .workableCasingRenderer(CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"), GTCEu.id("block/multiblock/vacuum_freezer"), false)
             .register();
     public static void init() {
-
+        MultiblocksA.init();
     }
 }

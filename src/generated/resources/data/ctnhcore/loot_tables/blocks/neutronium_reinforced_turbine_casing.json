@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ctnhcore:sheleded_reactor_casing"
+          "name": "ctnhcore:neutronium_reinforced_turbine_casing"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "ctnhcore:blocks/sheleded_reactor_casing"
+  "random_sequence": "ctnhcore:blocks/neutronium_reinforced_turbine_casing"
 }

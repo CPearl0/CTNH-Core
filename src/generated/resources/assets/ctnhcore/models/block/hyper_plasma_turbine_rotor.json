@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ctnhcore:block/casings/sheleded_reactor_casing"
+    "all": "ctnhcore:block/transparent"
   }
 }

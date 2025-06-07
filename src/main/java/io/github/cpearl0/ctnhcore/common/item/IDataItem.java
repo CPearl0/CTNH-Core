@@ -31,6 +31,10 @@ public class IDataItem extends ComponentItem implements IInteractionItem {
         {
             tooltipComponents.add(Component.translatable("ctnh.data.muti",String.format("%.2f",nbt.getDouble("muti"))));
         }
+        if(nbt.contains("noise"))
+        {
+            tooltipComponents.add(Component.translatable("ctnh.data.noise",String.format("%.2f",nbt.getDouble("noise"))));
+        }
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced); // 调用父类方法以处理原版提示信息
 
     }

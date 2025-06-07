@@ -52,7 +52,7 @@ public class CTNHCore
     {
         event.enqueueWork(() ->
         {
-            Regions.register(new CTNHOverworldRegion(10));
+            Regions.register(new CTNHOverworldRegion(2));
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, CTNHCore.MODID, CTNHSurfaceRuleData.customSurface());
         });
         GridLinkables.register(ME_ADVANCED_TERMINAL, MEAdvancedTerminalItem.LINKABLE_HANDLER);

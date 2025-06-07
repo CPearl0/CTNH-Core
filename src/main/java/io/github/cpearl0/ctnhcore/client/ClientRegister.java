@@ -23,7 +23,6 @@ public class ClientRegister {
             event.registerLayerDefinition(model.LAYER_LOCATION, model.createBodyLayer);
         }
     }
-    @Deprecated
     @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         CTNHCore.LOGGER.info("Registering External Renderers...");

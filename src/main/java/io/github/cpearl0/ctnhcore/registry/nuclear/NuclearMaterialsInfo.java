@@ -22,6 +22,7 @@ import static io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials.*;
 
 public class NuclearMaterialsInfo {
     public static Set<Material> fertileMaterial = new HashSet<>();
+    public static Set<Material> decayMaterial = new HashSet<>();
     public static void register() {
         //basic material
         Uranium = new CTNHMaterialBuilder(GTCEu.id("uranium"))
@@ -33,7 +34,7 @@ public class NuclearMaterialsInfo {
                 .iconSet(MaterialIconSet.SHINY)
                 .radioactiveHazard(1)
                 .register();
-        Plutonium = new CTNHMaterialBuilder(GTCEu.id("uranium"))
+        Plutonium = new CTNHMaterialBuilder(GTCEu.id("plutonium"))
                 .ingot()
                 .ore()
                 .color(0x9e1616)
@@ -150,61 +151,56 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
         // thorium_232
-//        Thorium232.getProperties().ensureSet(CTNHPropertyKeys.NUCLEAR);
-//        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
-//                .fertileDecay.put(Thorium233, 100);
-//        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
-//                .fertileDecay.put(Protactinium233, 1000);
-//        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
-//                .fertileDecay.put(Uranium233, 8900);
-//        fertileMaterial.add(Thorium232);
-//        CarbideThorium232 = new CTNHMaterialBuilder(GTCEu.id("carbide_thorium_232"))
-//                .nuclear(false, false)
-//                .color(20)
-//                .components(Thorium232, 1, Carbon, 1)
-//                .iconSet(CTNHMaterialIconSet.CARBIDE)
-//                .radioactiveHazard(1)
-//                .flags(DISABLE_DECOMPOSITION).register();
-//        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
-//                .setCarbideMaterial(CarbideThorium232);
-//        OxideThorium232 = new CTNHMaterialBuilder(GTCEu.id("oxide_thorium_232"))
-//                .nuclear(false, false)
-//                .color(0)
-//                .components(Thorium232, 1, Oxygen, 2)
-//                .iconSet(CTNHMaterialIconSet.OXIDE)
-//                .radioactiveHazard(1)
-//                .flags(DISABLE_DECOMPOSITION).register();
-//        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
-//                .setOxideMaterial(OxideThorium232);
-//        NitrideThorium232 = new CTNHMaterialBuilder(GTCEu.id("nitride_thorium_232"))
-//                .nuclear(false, false)
-//                .color(-20)
-//                .components(Thorium232, 3, Nitrogen, 2)
-//                .iconSet(CTNHMaterialIconSet.NITRIDE)
-//                .radioactiveHazard(1)
-//                .flags(DISABLE_DECOMPOSITION).register();
-//        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
-//                .setNitrideMaterial(NitrideThorium232);
-//        ZirconiumAlloyThorium232 = new CTNHMaterialBuilder(GTCEu.id("zirconium_alloy_thorium_232"))
-//                .nuclear(false, false)
-//                .color(0)
-//                .components(Thorium232, 1, Zirconium, 1)
-//                .iconSet(CTNHMaterialIconSet.ZIRCON_ALLOY)
-//                .radioactiveHazard(1)
-//                .flags(DISABLE_DECOMPOSITION).register();
-//        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
-//                .setZirconiumAlloyMaterial(ZirconiumAlloyThorium232);
-//        Thorium232Hexafluoride = new CTNHMaterialBuilder(GTCEu.id("thorium_232_hexafluoride"))
-//                .gas()
-//                .color(0)
-//                .components(Thorium232, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
-//                .radioactiveHazard(1)
-//                .register();
-//        Thorium232HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("thorium_232_hexafluoride_steam_cracked"))
-//                .gas()
-//                .color(20)
-//                .radioactiveHazard(1)
-//                .register();
+        Thorium232.getProperties().ensureSet(CTNHPropertyKeys.NUCLEAR);
+        fertileMaterial.add(Thorium232);
+        CarbideThorium232 = new CTNHMaterialBuilder(GTCEu.id("carbide_thorium_232"))
+                .nuclear(false, false)
+                .color(0x2c9f2c)
+                .components(Thorium232, 1, Carbon, 1)
+                .iconSet(CTNHMaterialIconSet.CARBIDE)
+                .radioactiveHazard(1)
+                .flags(DISABLE_DECOMPOSITION).register();
+        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .setCarbideMaterial(CarbideThorium232);
+        OxideThorium232 = new CTNHMaterialBuilder(GTCEu.id("oxide_thorium_232"))
+                .nuclear(false, false)
+                .color(0x2c9f2c)
+                .components(Thorium232, 1, Oxygen, 2)
+                .iconSet(CTNHMaterialIconSet.OXIDE)
+                .radioactiveHazard(1)
+                .flags(DISABLE_DECOMPOSITION).register();
+        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .setOxideMaterial(OxideThorium232);
+        NitrideThorium232 = new CTNHMaterialBuilder(GTCEu.id("nitride_thorium_232"))
+                .nuclear(false, false)
+                .color(0x2c9f2c)
+                .components(Thorium232, 3, Nitrogen, 2)
+                .iconSet(CTNHMaterialIconSet.NITRIDE)
+                .radioactiveHazard(1)
+                .flags(DISABLE_DECOMPOSITION).register();
+        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .setNitrideMaterial(NitrideThorium232);
+        ZirconiumAlloyThorium232 = new CTNHMaterialBuilder(GTCEu.id("zirconium_alloy_thorium_232"))
+                .nuclear(false, false)
+                .color(0x2c9f2c)
+                .components(Thorium232, 1, Zirconium, 1)
+                .iconSet(CTNHMaterialIconSet.ZIRCON_ALLOY)
+                .radioactiveHazard(1)
+                .flags(DISABLE_DECOMPOSITION).register();
+        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .setZirconiumAlloyMaterial(ZirconiumAlloyThorium232);
+        Thorium232Hexafluoride = new CTNHMaterialBuilder(GTCEu.id("thorium_232_hexafluoride"))
+                .gas()
+                .color(0x2c9f2c)
+                .components(Thorium232, 1, Fluorine, 6).flags(DISABLE_DECOMPOSITION)
+                .radioactiveHazard(1)
+                .register();
+        Thorium232HexafluorideSteamCracked = new CTNHMaterialBuilder(GTCEu.id("thorium_232_hexafluoride_steam_cracked"))
+                .gas()
+                .color(0x2c9f2c)
+                .radioactiveHazard(1)
+                .register();
+
 
 // protactinium_233
         Protactinium233 = new CTNHMaterialBuilder(GTCEu.id("protactinium_233"))
@@ -2497,7 +2493,7 @@ public class NuclearMaterialsInfo {
                 .radioactiveHazard(1)
                 .register();
 
-        //        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR).setBasicMaterial(Thorium);
+        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR).setBasicMaterial(Thorium);
         Thorium233.getProperty(CTNHPropertyKeys.NUCLEAR).setBasicMaterial(Thorium);
         Protactinium233.getProperty(CTNHPropertyKeys.NUCLEAR).setBasicMaterial(Protactinium);
         Uranium234.getProperty(CTNHPropertyKeys.NUCLEAR).setBasicMaterial(Uranium);
@@ -2540,6 +2536,67 @@ public class NuclearMaterialsInfo {
         Mendelevium259.getProperty(CTNHPropertyKeys.NUCLEAR).setBasicMaterial(Mendelevium);
         Mendelevium261.getProperty(CTNHPropertyKeys.NUCLEAR).setBasicMaterial(Mendelevium);
         Mendelevium263.getProperty(CTNHPropertyKeys.NUCLEAR).setBasicMaterial(Mendelevium);
+
+        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Thorium233, 100);
+        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Protactinium233, 1000);
+        Thorium232.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Uranium233, 8900);
+        Thorium233.getProperty(CTNHPropertyKeys.NUCLEAR)
+                        .fertileDecay.put(Protactinium233, 9000);
+        Protactinium233.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Uranium233, 9000);
+        Uranium239.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Neptunium239, 9000);
+        Plutonium245.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Americium245, 9000);
+        Americium243.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Neptunium239, 9000);
+        Americium245.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Curium245, 9000);
+        Americium241.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Plutonium241, 9000);
+        Curium251.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Americium245, 9000);
+        Berkelium249.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Americium245, 9000);
+        Berkelium251.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Californium251, 9000);
+        Berkelium247.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Curium247, 9000);
+        Californium257.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Einsteinium257, 9000);
+        Einsteinium255.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Berkelium251, 9000);
+        Einsteinium257.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Fermium257, 9000);
+        Einsteinium253.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Californium253, 9000);
+        Fermium263.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Mendelevium263, 9000);
+        Mendelevium261.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Einsteinium257, 9000);
+        Mendelevium259.getProperty(CTNHPropertyKeys.NUCLEAR)
+                .fertileDecay.put(Fermium259, 9000);
+        decayMaterial.add(Thorium233);
+        decayMaterial.add(Protactinium233);
+        decayMaterial.add(Uranium239);
+        decayMaterial.add(Plutonium245);
+        decayMaterial.add(Americium243);
+        decayMaterial.add(Americium245);
+        decayMaterial.add(Americium241);
+        decayMaterial.add(Curium251);
+        decayMaterial.add(Berkelium249);
+        decayMaterial.add(Berkelium251);
+        decayMaterial.add(Berkelium247);
+        decayMaterial.add(Californium257);
+        decayMaterial.add(Einsteinium255);
+        decayMaterial.add(Einsteinium257);
+        decayMaterial.add(Einsteinium253);
+        decayMaterial.add(Fermium263);
+        decayMaterial.add(Mendelevium261);
+        decayMaterial.add(Mendelevium259);
 
         Uranium234.getProperty(CTNHPropertyKeys.NUCLEAR)
                 .fertileDecay.put(Uranium235, 9000);
