@@ -80,6 +80,9 @@ public class EnglishLangHandler {
         provider.add("ctnh.test_terminal.success","Everything is OK！");
         provider.add("ctnh.testing_terminal.tooltip.1","Use to check the error when building the multiblock");
         provider.add("ctnh.testing_terminal.tooltip.2","Right-click the controller to show the error info");
+        provider.add("ctnh.me_advanced_terminal.tooltip.1", "Can build multiblock structures using items from the ME network");
+        provider.add("ctnh.me_advanced_terminal.tooltip.2", "Connects to the network via ME Wireless Access Point");
+        provider.add("ctnh.me_advanced_terminal.tooltip.3", "Prioritizes items from the player's inventory");
         provider.add("ctnh.plasma_condenser.tooltips.1","The dense air condenses into frost and dew");
         provider.add("ctnh.sweat_shop.tooltips.1", "Means of Production and Surplus Value");
         provider.add("ctnh.sweat_shop.tooltips.2", "The number of villagers in the factory determines efficiency. Recipe time x (2 / number of villagers)");
