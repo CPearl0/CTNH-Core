@@ -1,12 +1,15 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import appeng.core.AEConfig;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import io.github.cpearl0.ctnhcore.common.item.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import org.apache.commons.lang3.StringUtils;
 
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
@@ -66,8 +69,28 @@ public class CTNHItems {
             .item("proliferation_rune",Item::new)
             .lang("proliferation_rune")
             .register();
-
-
+    public static ItemEntry<ComponentItem> ANTI_INF_MATTER =REGISTRATE
+            .item("anti_inf_matter",ComponentItem::create)
+            .lang("anti_inf_matter")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.anti_inf_matter.1").withStyle(ChatFormatting.BLACK));
+                list.add(Component.translatable("ctnh.anti_inf_matter.2").withStyle(ChatFormatting.DARK_GRAY));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> ANTIHYDROGEN_CONTAINS =REGISTRATE
+            .item("anti_h_contains",ComponentItem::create)
+            .lang("anti_h_contains")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.anti_matter_contains").withStyle(ChatFormatting.DARK_RED));
+            })))
+            .register();
+    public static ItemEntry<ComponentItem> ANTIOXYGEN_CONTAINS =REGISTRATE
+            .item("anti_o_contains",ComponentItem::create)
+            .lang("anti_o_contains")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.anti_matter_contains").withStyle(ChatFormatting.DARK_RED));
+            })))
+            .register();
     public static ItemEntry<Item> TUMOR = REGISTRATE
             .item("tumor",Item::new)
             .lang("Tumor")
@@ -102,6 +125,21 @@ public class CTNHItems {
                 list.add(Component.translatable("ctnh.testing_terminal.tooltip.2"));
             })))
             .register();
+    public static ItemEntry<MEAdvancedTerminalItem> ME_ADVANCED_TERMINAL = REGISTRATE
+            .item("me_advanced_terminal",
+                    MEAdvancedTerminalItem::new
+            )
+            .lang("Me Advanced Terminal")
+            .properties(p -> p.stacksTo(1))
+            .onRegister(attach(new MEAdvancedTerminalBehavior()))
+//            .model((ctx, prov) -> prov.generated(ctx))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.1").withStyle(ChatFormatting.GRAY));
+                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.2").withStyle(ChatFormatting.GRAY));
+                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.3").withStyle(ChatFormatting.GRAY));
+            })))
+            .register();
+
     public static ItemEntry<AstronomyCircuitItem> ASTRONOMY_CIRCUIT_1 = REGISTRATE
             .item("astronomy_circuit_1", properties -> new AstronomyCircuitItem(properties, 1, GREAT_ASTRONOMY_CIRCUIT_1))
             .lang("Astronomy Circuit I")
@@ -114,15 +152,53 @@ public class CTNHItems {
                 list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.RED));
             })))
             .register();
+
     public static ItemEntry<ThrowItem> ADVANCED_BOSS_SUMMONER = REGISTRATE
             .item("advanced_boss_summoner", ThrowItem::new)
             .lang("Advanced Boss Summoner")
             .onRegister(attach(new BossSummonerBehavior(2)))
             .onRegister(attach(new TooltipBehavior(list -> {
-                list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.RED));
+                list.add(Component.translatable("ctnh.boss_summoner.use").withStyle(ChatFormatting.DARK_RED));
             })))
             .register();
-
+    public static ItemEntry<IDroneItem>PV_DRONE_PROTOTYPE=REGISTRATE
+            .item("photovoltaic_drone_prototype",holder->new IDroneItem(holder,0,512,16, () -> Items.AIR))
+            .lang("pv_drone_prototype")
+            .register(); // 确保调用 register() 方法
+    public static ItemEntry<IDroneItem>PV_DRONE_TIER1=REGISTRATE
+            .item("photovoltaic_drone_tier1",holder->new IDroneItem(holder,1,8192,64, () -> Items.AIR))
+            .lang("pv_drone_tier1")
+            .register(); // 确保调用 register() 方法
+    public static ItemEntry<IDroneItem>PV_DRONE_TIER2=REGISTRATE
+            .item("photovoltaic_drone_tier2",holder->new IDroneItem(holder,2,32678*2,256, () -> Items.AIR))
+            .lang("pv_drone_tier2")
+            .register(); // 确保调用 register() 方法
+    public static ItemEntry<IDroneItem>MODULAR_DYSON_SWARM_T1=REGISTRATE
+            .item("modular_dyson_swarm_tier1",holder->new IDroneItem(holder,4,32678*4*4,64, () -> Items.AIR))
+            .lang("modular_dyson_swarm_tier1")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.dyson_tier1").withStyle(ChatFormatting.DARK_RED));
+            })))
+            .register(); // 确保调用 register() 方法
+    public static ItemEntry<IDroneItem>MODULAR_DYSON_SWARM_T2=REGISTRATE
+            .item("modular_dyson_swarm_tier2",holder->new IDroneItem(holder,8,32678*4*4*4,128, () -> Items.AIR))
+            .lang("modular_dyson_swarm_tier2")
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.dyson_tier2").withStyle(ChatFormatting.DARK_RED));
+            })))
+            .register(); // 确保调用 register() 方法
+    public static ItemEntry<ConnectTerminalItem> PV_TERMINAL=REGISTRATE
+            .item("pv_terminal",holder->new ConnectTerminalItem(holder))
+            .lang("pv_terminal")
+            .register();
+    public static ItemEntry<IDataItem> RESEARCH_DATASET=REGISTRATE
+            .item("research_dataset",holder->new IDataItem(holder))
+            .lang("research_dataset")
+            .register();
+    public static ItemEntry<Item> NUCLEAR_WASTE = REGISTRATE
+            .item("nuclear_waste", Item::new)
+            .lang("Nuclear Waste")
+            .register();
     public static ItemEntry<ProgramItem> PROGRAM_EMPTY = registerProgramItem("empty");
     public static ItemEntry<ProgramItem> PROGRAM_ROCKET_CORE_1 = registerProgramItem("rocket_core_1", "Tier 1 Rocket Core");
     public static ItemEntry<ProgramItem> PROGRAM_ROCKET_1 = registerProgramItem("rocket_1", "Tier 1 Rocket Control");

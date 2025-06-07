@@ -47,6 +47,10 @@ public class CTNHCoreGTAddon implements IGTAddon {
     }
 
     @Override
+    public void registerSounds() {
+    }
+
+    @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
         UnderfloorHeatingSystemRecipes.init(provider);
         AstronomicalObservatoryRecipes.init(provider);
@@ -64,5 +68,7 @@ public class CTNHCoreGTAddon implements IGTAddon {
         Sinope_recipes.init(provider);
         MachinesRecipes.init(provider);
         AcceleratorRecipes.init(provider);
+        NuclearRecipes.init(provider);
+        ScalableReservoirComputingRecipes.init(provider);
     }
 }

@@ -8,6 +8,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
+import vazkii.botania.common.block.BotaniaBlocks;
 
 import java.util.Objects;
 
@@ -16,6 +17,7 @@ public class StoneTags {
         create(provider, CTNHTags.AD_ASTRA_STONES, ModBlocks.MOON_STONE.get(), ModBlocks.MARS_STONE.get(), ModBlocks.MERCURY_STONE.get(),
                 ModBlocks.VENUS_STONE.get(), ModBlocks.GLACIO_STONE.get(), Blocks.BLACKSTONE, Blocks.BASALT, Blocks.DEEPSLATE, Blocks.SOUL_SOIL);
         create(provider, CTNHTags.AETHER_STONES, AetherBlocks.HOLYSTONE.get(), AetherBlocks.MOSSY_HOLYSTONE.get(), AetherBlocks.ICESTONE.get());
+        create(provider, CTNHTags.ALFHEIM_STONES, BotaniaBlocks.livingrock);
     }
 
     public static void create(RegistrateTagsProvider<Block> provider, TagKey<Block> tagKey, Block... rls) {

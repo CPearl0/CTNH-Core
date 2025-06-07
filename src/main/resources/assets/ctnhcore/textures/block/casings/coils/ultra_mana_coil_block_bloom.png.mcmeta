@@ -1,6 +1,6 @@
 {
     "ldlib": {
-        "connection": "ctnhcore:block/casings/coils/starmetal_coil_block_bloom_ctm",
+        "connection": "ctnhcore:block/casings/coils/ultra_mana_coil_block_bloom_ctm",
         "emissive": true
     },
     "shimmer": {

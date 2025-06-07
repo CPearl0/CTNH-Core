@@ -149,4 +149,8 @@ public class NaqReactorMachine extends WorkableElectricMultiblockMachine impleme
         currentTemperature= tag.contains(CURRENTTEMPERATURE_STRING) ? tag.getInt(CURRENTTEMPERATURE_STRING) : 0;
     }
 
+    @Override
+    public boolean dampingWhenWaiting() {
+        return false;
+    }
 }

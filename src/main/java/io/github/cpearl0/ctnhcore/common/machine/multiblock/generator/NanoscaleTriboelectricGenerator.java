@@ -33,8 +33,8 @@ import org.jetbrains.annotations.NotNull;
 public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockMachine implements ITieredMachine {
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
-    public int parallel=1024;
-    public double effencicy=1.0;
+    @Persisted public int parallel=1024;
+    @Persisted public double effencicy=1.0;
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             NanoscaleTriboelectricGenerator.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
     public NanoscaleTriboelectricGenerator(IMachineBlockEntity holder){
@@ -103,22 +103,22 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
     public void consumeItem() { machineStorage.extractItem(0, 1,false); }
     public static ModifierFunction recipeModifier(MetaMachine machine, GTRecipe recipe) {
         if (machine instanceof NanoscaleTriboelectricGenerator zmachine) {
-            double effencicy=0.4;
+            double effencicy=0.8;
             var random=Math.random();
             var maxParallel = eutgetParallelAmount(zmachine,recipe,1024);
             if(zmachine.getMachineStorageItem().getItem().equals(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate,GTMaterials.Rubber).get()))
             {
-                effencicy=0.8;
+                effencicy=1.0;
                 if(random<(double)(maxParallel)/512)zmachine.consumeItem();
             }
             else if(zmachine.getMachineStorageItem().getItem().equals(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate,GTMaterials.Polyethylene).get()))
             {
-                effencicy=1.2;
+                effencicy=1.6;
                 if(random<(double)(maxParallel)/1024)zmachine.consumeItem();
             }
             else if(zmachine.getMachineStorageItem().getItem().equals(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate,GTMaterials.SiliconeRubber).get()))
             {
-                effencicy=2.0;
+                effencicy=2.4;
                 if(random<(double)(maxParallel)/4096)zmachine.consumeItem();
             }
             else if(zmachine.getMachineStorageItem().getItem().equals(GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.plate,GTMaterials.StyreneButadieneRubber).get()))
@@ -136,7 +136,7 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
             return ModifierFunction.builder()
                     .inputModifier(ContentModifier.multiplier(maxParallel))
                     .outputModifier(ContentModifier.multiplier(maxParallel))
-                    .durationMultiplier(Math.sqrt(maxParallel))
+                    .durationMultiplier(2*Math.sqrt(maxParallel))
                     .eutMultiplier(maxParallel*(1+maxParallel*0.002)*effencicy)
                     .build();
         }
@@ -145,5 +145,9 @@ public class NanoscaleTriboelectricGenerator extends WorkableElectricMultiblockM
     @Override
     public ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;
+    }
+    @Override
+    public boolean dampingWhenWaiting() {
+        return false;
     }
 }

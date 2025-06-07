@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "ctnhcore:block/cassava_crate_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "ctnhcore:block/cassava_crate"
+    },
+    "axis=z": {
+      "model": "ctnhcore:block/cassava_crate_horizontal",
+      "x": 90
+    }
+  }
+}

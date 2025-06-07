@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -19,9 +20,10 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
+
 import io.github.cpearl0.ctnhcore.registry.CTNHBlocks;
 import net.minecraft.world.level.material.Fluids;
+
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -29,9 +31,11 @@ import java.util.stream.Stream;
 import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static com.gregtechceu.gtceu.api.GTValues.ZPM;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Osmiridium;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.CIRCUIT_ASSEMBLER_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.*;
 import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.*;
+import static io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes.*;
+import static twilightforest.init.TFItems.STEELEAF_INGOT;
 
 public class MachinesRecipes {
     public static Component MONITOR = new Component(Stream.of(new Object[][] {
@@ -60,6 +64,19 @@ public class MachinesRecipes {
                 .circuitMeta(2)
                 .outputItems(CTNHMultiblockMachines.ZPM_LARGE_MINER)
                 .duration(400).EUt(VA[ZPM]).save(provider);
+        COMPRESSOR_RECIPES.recipeBuilder("steelleaf")
+                .duration(300)
+                .EUt(2)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .outputItems(STEELEAF_INGOT,1)
+                .save(provider);
+        MIXER_RECIPES.recipeBuilder("plantfood")
+                .duration(500)
+                .EUt(28)
+                .inputItems(dust, CTNHMaterials.SpiritAsh, 4)
+                .inputItems(dust, Apatite, 4)
+                .outputItems(FERTILIZER,16)
+                .save(provider);
         CTNHRecipeTypes.QUASAR_EYE.recipeBuilder("generator1")
                 .circuitMeta(0)
                 .inputFluids(CTNHMaterials.Mana.getFluid(100000))
@@ -74,18 +91,47 @@ public class MachinesRecipes {
                 .duration(20)
                 .circuitMeta(1)
                 .save(provider);
-        CTNHRecipeTypes.VOID_MINER.recipeBuilder("test")
-                .EUt(1)
-                .duration(2000)
-                .circuitMeta((3))
-                .save(provider);
         CTNHRecipeTypes.TRAP_ENERGY.recipeBuilder("test")
                 .EUt(1)
                 .duration(10)
                 .circuitMeta(1)
                 .save(provider);
-        ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")
+        CTNHRecipeTypes.VOID_MINER.recipeBuilder("void")
+                .EUt(32678*64)
+                .duration(20*100)
+                .circuitMeta(1)
+                .save(provider);
+        CTNHRecipeTypes.MANA_GENERATOR.recipeBuilder("mana1")
+                .EUt(-28)
+                .duration(20)
+                .circuitMeta(1)
+                .inputFluids(CTNHMaterials.Mana.getFluid(1000))
+                .save(provider);
+        CTNHRecipeTypes.PVDRONE.recipeBuilder("blank")
+                .duration(100)
+                .circuitMeta(1)
+                .save(provider);
+        CTNHRecipeTypes.COMPILER_RECIPE.recipeBuilder("test")
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .inputItems(dust, CTNHMaterials.SteelLeaf, 1)
+                .outputItems(dust, CTNHMaterials.SpiritAsh, 1)
+                .addData("1",1)
+                .addData("2",1)
+                .addData("3",1)
+                .addData("range",50)
+                .duration(20*30)
+                .EUt(1000)
+                .save(provider);
+        COMBUSTION_GENERATOR_FUELS.recipeBuilder("end")
+                .inputFluids(CTNHMaterials.NQ_END_OF_GASOLINE.getFluid(1))
+                .duration(1000)
+                .EUt(-320)
+                .save(provider);
 
+        ASSEMBLER_RECIPES.recipeBuilder("naquadah_gearbox_casing")
                 .inputItems(plate, NaquadahAlloy, 4)
                 .inputItems(gear, NaquadahAlloy, 2)
                 .inputItems(frameGt, NaquadahAlloy)
@@ -143,6 +189,17 @@ public class MachinesRecipes {
                 .solderMultiplier(2)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .duration(400).EUt(90).save(provider);
+        PHOTOVOLTAIC_GENERATOR.recipeBuilder("test")
+                .duration(20)
+                .EUt(-8192)
+                .circuitMeta(1)
+                .save(provider);
+        PHOTOVOLTAIC_ASSEMBER.recipeBuilder("test")
+                .duration(20)
+                .EUt(-1)
+                .circuitMeta(1)
+                .addData("input",32678)
+                .save(provider);
     }
 
 }

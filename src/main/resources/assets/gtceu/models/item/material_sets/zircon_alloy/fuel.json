@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ctnhcore:item/material_sets/zirconium_alloy_fuel/fuel"
+  }
+}

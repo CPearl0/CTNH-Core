@@ -31,6 +31,14 @@ public class MachineUtils {
         }
         return false;
     }
+    public static boolean outputFluid(FluidStack fluidStack, WorkableMultiblockMachine machine) {
+        var Recipe = GTRecipeBuilder.ofRaw().outputFluids(fluidStack).buildRawRecipe();
+        if (Recipe.matchRecipe(machine).isSuccess()) {
+            Recipe.handleRecipeIO(IO.OUT, machine, machine.getRecipeLogic().getChanceCaches());
+            return true;
+        }
+        return false;
+    }
     public static  boolean inputCWUT(int CWU,WorkableMultiblockMachine machine){
         var Recipe = GTRecipeBuilder.ofRaw().inputCWU(CWU).buildRawRecipe();
         if(Recipe.matchRecipe(machine).isSuccess())
@@ -44,6 +52,10 @@ public class MachineUtils {
         var Recipe = GTRecipeBuilder.ofRaw().inputFluids(fluidStack).buildRawRecipe();
         return Recipe.matchRecipe(machine).isSuccess();
     }
+    public static boolean canOutputFluid(FluidStack fluidStack, WorkableMultiblockMachine machine) {
+        var Recipe = GTRecipeBuilder.ofRaw().outputFluids(fluidStack).buildRawRecipe();
+        return Recipe.matchRecipe(machine).isSuccess();
+    }
     public static boolean canInputItem(ItemStack itemStack, WorkableMultiblockMachine machine) {
         var Recipe = GTRecipeBuilder.ofRaw().inputItems(itemStack).buildRawRecipe();
         return Recipe.matchRecipe(machine).isSuccess();
@@ -53,10 +65,10 @@ public class MachineUtils {
         var facing = machine.getFrontFacing();
         switch (facing) {
             case NORTH -> {
-                return pos.offset(-leftoff,upoff,backoff);
+                return pos.offset(leftoff,upoff,backoff);
             }
             case SOUTH -> {
-                return pos.offset(leftoff,upoff,-backoff);
+                return pos.offset(-leftoff,upoff,-backoff);
             }
             case WEST -> {
                 return pos.offset(backoff,upoff,-leftoff);
@@ -72,10 +84,10 @@ public class MachineUtils {
         var facing = machine.getFrontFacing();
         switch (facing) {
             case NORTH -> {
-                return AABB.of(BoundingBox.fromCorners(pos.offset(-left1,up1,back1),pos.offset(-left2,up2,back2)));
+                return AABB.of(BoundingBox.fromCorners(pos.offset(left1,up1,back1),pos.offset(left2,up2,back2)));
             }
             case SOUTH -> {
-                return AABB.of(BoundingBox.fromCorners(pos.offset(left1,up1,-back1),pos.offset(left2,up2,-back2)));
+                return AABB.of(BoundingBox.fromCorners(pos.offset(-left1,up1,-back1),pos.offset(-left2,up2,-back2)));
             }
             case WEST -> {
                 return AABB.of(BoundingBox.fromCorners(pos.offset(back1,up1,-left1),pos.offset(back2,up2,-left2)));

@@ -34,16 +34,28 @@ public class TwistedFusionMachine extends WorkableElectricMultiblockMachine {
             if (recipe.getType().equals(GTRecipeTypes.FUSION_RECIPES)) {
                 var startEU = recipe.data.getLong("eu_to_start");
                 ModifierFunction modifierFunction = ModifierFunction.IDENTITY;
-                if(zmachine.mks>5) {
-                    modifierFunction = CTNHRecipeModifiers.accurateParallel(zmachine, recipe, 1024);
+                if(zmachine.mks>5&&zmachine.mks<Integer.MAX_VALUE-1) {
                     int pa= ParallelLogic.getParallelAmount(machine,recipe,1024);
 
                     return  ModifierFunction.builder()
-                            .durationMultiplier(0.25*pa)
-                            .eutMultiplier(0.25*pa)
+                            .parallels(pa)
+                            .durationMultiplier(0.25*pa*Math.pow(0.99,pa))
+                            .eutMultiplier(0.25*pa*Math.pow(0.99,pa))
                             .inputModifier(ContentModifier.multiplier(pa))
                             .outputModifier(ContentModifier.multiplier(pa))
                             .build();
+                }
+                else if(zmachine.mks>=Integer.MAX_VALUE-1)
+                {
+                    int pa= ParallelLogic.getParallelAmount(machine,recipe,Integer.MAX_VALUE-10);
+                    return  ModifierFunction.builder()
+                            .parallels(pa)
+                            .durationMultiplier(0.0001*pa*Math.pow(0.9,pa))
+                            .eutMultiplier(0.0001*pa*Math.pow(0.9,pa))
+                            .inputModifier(ContentModifier.multiplier(pa))
+                            .outputModifier(ContentModifier.multiplier(pa))
+                            .build();
+
                 }
                 else if (startEU <= 160000000) {
                     modifierFunction = CTNHRecipeModifiers.accurateParallel(zmachine, recipe, zmachine.mks*16+16);

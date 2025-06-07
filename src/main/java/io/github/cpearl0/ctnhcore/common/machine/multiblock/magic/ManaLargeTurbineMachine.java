@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.magic;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
-import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -18,13 +17,11 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.chance.logic.ChanceLogic;
-import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.RotorHolderPartMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
@@ -32,7 +29,9 @@ import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
+import io.github.cpearl0.ctnhcore.registry.CTNHMaterials;
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -50,7 +49,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     public static final int MIN_DURABILITY_TO_WARN = 10;
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
-    private final int BASE_EU_OUTPUT;
+
     @Getter
     private final int RestrictTier;
     @Getter
@@ -59,14 +58,18 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     public double efficiency = 1;
     public int parallel=0;
     public double consumpution_rate = 1;
-
+    public double consumputionrate =1;
+    public double consumputionefficiency=1;
+    public double mana_consumption=1;
+    private long BASE_EU_OUTPUT;
     private List<String> Tier4_rune = List.of("asgard_rune","vanaheim_rune","alfheim_rune","midgard_rune", "joetunheim_rune","muspelheim_rune","nifheim_rune","nidavellir_rune","helheim_rune");
 
-    public ManaLargeTurbineMachine(IMachineBlockEntity holder, int BaseEuOutput, int tier) {
+    public ManaLargeTurbineMachine(IMachineBlockEntity holder, int tier,double consumptionrate,double consumputionefficiency) {
         super(holder);
         this.RestrictTier = tier;
-        this.BASE_EU_OUTPUT = BaseEuOutput;
         this.machineStorage = createMachineStorage((byte) 64);
+        this.consumputionrate=consumptionrate;
+        this.consumputionefficiency=consumputionefficiency;
     }
 
     //////////////////////////////////////
@@ -75,6 +78,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     @Nullable
     public static ModifierFunction recipeModifier(MetaMachine machine, @NotNull GTRecipe recipe) {
         if (!(machine instanceof ManaLargeTurbineMachine turbineMachine)) return ModifierFunction.NULL;
+
         if (turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeAir) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeEarth) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeWater) ||
@@ -87,7 +91,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeAutumn) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeWinter)){
             turbineMachine.efficiency = 2;
-            turbineMachine.consumpution_rate = 0.6;
+            turbineMachine.consumpution_rate = 1.2;
         }
         else if(turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeEnvy) ||
                 turbineMachine.getMachineStorageItem().getItem().equals(BotaniaItems.runeGluttony) ||
@@ -100,13 +104,13 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
             turbineMachine.consumpution_rate = 0.8;
         }
         else if(turbineMachine.Tier4_rune.contains(turbineMachine.getMachineStorageItem().getItem().toString())){
-            turbineMachine.efficiency = 3;
+            turbineMachine.efficiency = 4;
             turbineMachine.consumpution_rate = 0.6;
         }
-        else if(turbineMachine.getMachineStorageItem().getItem().equals(CTNHItems.HORIZEN_RUNE)||turbineMachine.getMachineStorageItem().getItem().equals(CTNHItems.STARLIGHT_RUNE)||turbineMachine.getMachineStorageItem().getItem().equals(CTNHItems.TWIST_RUNE)||turbineMachine.getMachineStorageItem().getItem().equals(CTNHItems.PROLIFERATION_RUNE))
+        else if(turbineMachine.getMachineStorageItem().getItem().equals(CTNHItems.HORIZEN_RUNE.get())||turbineMachine.getMachineStorageItem().getItem().equals(CTNHItems.STARLIGHT_RUNE.get())||turbineMachine.getMachineStorageItem().getItem().equals(CTNHItems.TWIST_RUNE.get())||turbineMachine.getMachineStorageItem().getItem().equals(CTNHItems.PROLIFERATION_RUNE.get()))
         {
-            turbineMachine.efficiency = 4;
-            turbineMachine.consumpution_rate = 0.4;
+            turbineMachine.efficiency = 5;
+            turbineMachine.consumpution_rate = 0.3;
         }
         else {
             turbineMachine.efficiency = 1;
@@ -114,7 +118,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         }
         var rotorHolder = turbineMachine.getRotorHolder();
         var EUt = RecipeHelper.getOutputEUt(recipe);
-
+        turbineMachine.BASE_EU_OUTPUT=EUt;
         if (rotorHolder == null || EUt <= 0) return ModifierFunction.NULL;
 
         var turbineMaxVoltage = (int) turbineMachine.getOverclockVoltage();
@@ -126,17 +130,22 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
         double holderEfficiency = rotorHolder.getTotalEfficiency() / 100.0;
 
         // get the amount of parallel required to match the desired output voltage
-        var maxParallel = (int) ((turbineMaxVoltage - turbineMachine.excessVoltage) / (EUt * holderEfficiency));
-
+        var maxParallel = (int) ((turbineMaxVoltage - turbineMachine.excessVoltage) / (EUt));
+        int lose_mana=1;
+        turbineMachine.mana_consumption=maxParallel*(turbineMachine.consumputionrate)*turbineMachine.consumpution_rate*turbineMachine.productionBoost()/2;
+        if(!MachineUtils.inputFluid(CTNHMaterials.Mana.getFluid(maxParallel),turbineMachine))
+        {
+            lose_mana=5;
+        }
         // this is necessary to prevent over-consumption of fuel
-        turbineMachine.excessVoltage += (int) (maxParallel * EUt * holderEfficiency - turbineMaxVoltage);
-        int actualParallel = (int)ParallelLogic.getParallelAmountFast(turbineMachine, recipe, maxParallel);
+        turbineMachine.excessVoltage += (int) (maxParallel * EUt - turbineMaxVoltage);
+        int actualParallel = maxParallel;
         turbineMachine.parallel=actualParallel;
         return ModifierFunction.builder()
-                .inputModifier(ContentModifier.multiplier(actualParallel))
-                .outputModifier(ContentModifier.multiplier(actualParallel))
-                .eutMultiplier(turbineMachine.productionBoost() * actualParallel/2)
-                .durationMultiplier(holderEfficiency/turbineMachine.consumpution_rate)
+                .inputModifier(ContentModifier.multiplier(turbineMachine.consumputionrate))
+                .outputModifier(ContentModifier.multiplier(turbineMachine.consumputionrate))
+                .eutMultiplier(turbineMachine.productionBoost() * actualParallel/lose_mana)
+                .durationMultiplier(holderEfficiency)
                 .build();
     }
     @Override
@@ -182,15 +191,16 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                     consumeItem();
                 }
             }
-            else if(getMachineStorageItem().getItem().equals(CTNHItems.HORIZEN_RUNE)||getMachineStorageItem().getItem().equals(CTNHItems.STARLIGHT_RUNE)||getMachineStorageItem().getItem().equals(CTNHItems.TWIST_RUNE)||getMachineStorageItem().getItem().equals(CTNHItems.PROLIFERATION_RUNE)) {
+            else if(getMachineStorageItem().getItem().equals(CTNHItems.HORIZEN_RUNE.get())||getMachineStorageItem().getItem().equals(CTNHItems.STARLIGHT_RUNE.get())||getMachineStorageItem().getItem().equals(CTNHItems.TWIST_RUNE.get())||getMachineStorageItem().getItem().equals(CTNHItems.PROLIFERATION_RUNE.get())) {
                 if(random<=0.02)
                 {
                     consumeItem();
                 }
             }
-            else if(getMachineStorageItem().getItem().equals(CTNHItems.QUASAR_RUNE))
+            else if(getMachineStorageItem().getItem().equals(CTNHItems.QUASAR_RUNE.get()))
             {
                 doExplosion(3f);
+                return false;
             }
         }
         return super.onWorking();
@@ -199,13 +209,13 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
         var rotorHolder = (RotorHolderPartMachine) getParts().stream().filter(part -> part instanceof RotorHolderPartMachine).findFirst().get();
-            if (!rotorHolder.hasRotor()) {
-                return false;
-            }
-            if (rotorHolder.getTier() > RestrictTier) {
-                getRecipeLogic().interruptRecipe();
-                return false;
-            }
+        if (!rotorHolder.hasRotor()) {
+            return false;
+        }
+        if (rotorHolder.getTier() > RestrictTier) {
+            getRecipeLogic().interruptRecipe();
+            return false;
+        }
         return super.beforeWorking(recipe);
     }
 
@@ -222,8 +232,13 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
     @Override
     public long getOverclockVoltage() {
         var rotorHolder = getRotorHolder();
-        if (rotorHolder != null && rotorHolder.hasRotor())
-            return (long) (BASE_EU_OUTPUT * efficiency * rotorHolder.getTotalPower() / 100);
+
+        if (rotorHolder != null && rotorHolder.hasRotor()) {
+            var p=rotorHolder.getTotalPower();
+            var c=rotorHolder.getHolderPowerMultiplier();
+            var d=rotorHolder.getRotorPower();
+            return (long) (BASE_EU_OUTPUT * efficiency * rotorHolder.getTotalPower() / 100*consumputionefficiency);
+        }
         return 0;
     }
 
@@ -287,7 +302,6 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
             if (rotorHolder != null && rotorHolder.getRotorEfficiency() > 0) {
                 textList.add(Component.translatable("gtceu.multiblock.turbine.rotor_speed", FormattingUtil.formatNumbers(rotorHolder.getRotorSpeed()), FormattingUtil.formatNumbers(rotorHolder.getMaxRotorHolderSpeed())));
                 textList.add(Component.translatable("gtceu.multiblock.turbine.efficiency", rotorHolder.getTotalEfficiency()));
-                textList.add(Component.translatable("ctnh.magic.parallel",parallel));
                 long maxProduction = getOverclockVoltage();
                 long currentProduction = isActive() && recipeLogic.getLastRecipe() != null ?
                         RecipeHelper.getOutputEUt(recipeLogic.getLastRecipe()) : 0;
@@ -304,7 +318,7 @@ public class ManaLargeTurbineMachine extends WorkableElectricMultiblockMachine i
                     textList.add(Component.translatable("gtceu.multiblock.turbine.rotor_durability", rotorDurability).setStyle(Style.EMPTY.withColor(ChatFormatting.RED)));
                 }
                 textList.add(Component.translatable("ctnh.manaturbine.efficiency",efficiency*100));
-                textList.add(Component.translatable("ctnh.manaturbine.consumption_rate",consumpution_rate*4));
+                textList.add(Component.translatable("ctnh.manaturbine.consumption_rate",mana_consumption));
             }
         }
     }

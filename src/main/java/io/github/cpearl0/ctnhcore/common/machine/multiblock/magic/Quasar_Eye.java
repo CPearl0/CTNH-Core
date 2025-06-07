@@ -123,4 +123,8 @@ public class Quasar_Eye extends WorkableElectricMultiblockMachine implements ITi
         energy_tier=tag.contains(ET)? tag.getInt(ET):0;
         rune_energy=tag.contains(RUNE_ENERGY)?tag.getDouble(RUNE_ENERGY):0;
     }
+    @Override
+    public boolean dampingWhenWaiting() {
+        return false;
+    }
 }

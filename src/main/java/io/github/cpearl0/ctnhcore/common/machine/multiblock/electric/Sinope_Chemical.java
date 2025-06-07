@@ -60,7 +60,7 @@ public  int machine_tier=0;
             if(maxparallel==0)
                 return ModifierFunction.NULL;
             var reduce=Math.max(1-0.005*maxparallel,0.75);
-            var speed_up=reduce/(zmachine.machine_tier*2);
+            var speed_up=reduce/(zmachine.machine_tier);
             return ModifierFunction.builder()
                     .parallels(maxparallel)
                     .eutModifier(ContentModifier.multiplier((reduce)))

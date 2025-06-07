@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "ctnhcore:block/garlic_crate_top",
+    "side": "ctnhcore:block/garlic_crate"
+  }
+}
