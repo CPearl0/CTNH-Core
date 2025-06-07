@@ -127,13 +127,17 @@ public class CTNHItems {
             .register();
     public static ItemEntry<MEAdvancedTerminalItem> ME_ADVANCED_TERMINAL = REGISTRATE
             .item("me_advanced_terminal",
-                    p ->new MEAdvancedTerminalItem(
-                            AEConfig.instance().getWirelessTerminalBattery(),
-                            p.stacksTo(1)
-                    )
+                    MEAdvancedTerminalItem::new
             )
             .lang("Me Advanced Terminal")
+            .properties(p -> p.stacksTo(1))
             .onRegister(attach(new MEAdvancedTerminalBehavior()))
+//            .model((ctx, prov) -> prov.generated(ctx))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.1").withStyle(ChatFormatting.GRAY));
+                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.2").withStyle(ChatFormatting.GRAY));
+                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.3").withStyle(ChatFormatting.GRAY));
+            })))
             .register();
 
     public static ItemEntry<AstronomyCircuitItem> ASTRONOMY_CIRCUIT_1 = REGISTRATE

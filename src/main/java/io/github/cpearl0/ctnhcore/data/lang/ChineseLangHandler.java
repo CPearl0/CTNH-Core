@@ -277,7 +277,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.machine.duration_multiplier.tooltip", "耗时倍数：%s");
         provider.add("ctnh.manaturbine.efficiency", "发电效率：%d%%");
         provider.add("ctnh.manaturbine.consumption_rate", "运行魔力消耗量：%d mb");
-        provider.add("ctnh.machine.chemical_plant.tooltip.0","线圈等级每高出白铜一级能耗与速度x5%");
+        provider.add("ctnh.machine.chemical_plant.tooltip.0","线圈等级每高出白铜一级，能耗与速度增加5%");
         provider.add("ctnh.multiblock.naq_reactor_machine.boost_disallowed", "§b升级你的动力仓以激活等离子体加速");
         provider.add("ctnh.multiblock.naq_reactor_machine.oxygen_plasma_boosted","§b氧等离子体加速中");
         provider.add("ctnh.multiblock.naq_reactor_machine.supply_oxygen_plasma_to_boost","提供氧等离子体以加速");
@@ -292,6 +292,9 @@ public class ChineseLangHandler {
         provider.add("ctnh.test_terminal.success","一切正常！");
         provider.add("ctnh.testing_terminal.tooltip.1","用于检测多方块搭建时产生的错误");
         provider.add("ctnh.testing_terminal.tooltip.2","右键多方块的主方块以显示错误信息");
+        provider.add("ctnh.me_advanced_terminal.tooltip.1","可使用ME网络中的物品搭建多方块结构");
+        provider.add("ctnh.me_advanced_terminal.tooltip.2","通过ME无线访问点链接到网络");
+        provider.add("ctnh.me_advanced_terminal.tooltip.3","优先使用玩家物品栏中物品");
         provider.add("ctnh.simple_nutritious_meal.tooltip.1","能维持机体基本的生理功能");
         provider.add("item.ctnh.ecological_star.desc", "蕴含生态圈的所有精华");
         provider.add("item.sculk_cell.desc", "分化....");

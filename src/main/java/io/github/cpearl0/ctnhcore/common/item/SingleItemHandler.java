@@ -46,15 +46,15 @@ public class SingleItemHandler implements IItemHandler {
             result.setCount(extractAmount);
             var storage = grid.getStorageService().getInventory();
             if (!simulate) {
-                System.out.println(extractAmount);
-                System.out.println(grid);
+                //System.out.println(extractAmount);
+                //System.out.println(grid);
                 var a = storage.extract(
                         key,
                         extractAmount,
                         Actionable.MODULATE,
                         IActionSource.ofPlayer(USE_ON_CONTEXT.get().getPlayer())
                 );
-                System.out.println("exact: "+a);
+                //System.out.println("exact: "+a);
             }
             return result;
         }

@@ -30,14 +30,14 @@ public class MEAdvancedTerminalBehavior extends AdvancedTerminalBehavior impleme
 
     @Override
     public InteractionResultHolder<ItemStack> use(Item item, Level level, Player player, InteractionHand hand) {
-        System.out.println("111");
+        //System.out.println("111");
         ItemStack is = player.getItemInHand(hand);
         if(player.isShiftKeyDown())
         {
             return new InteractionResultHolder<>(InteractionResult.PASS, is);
         }
 
-        if(!level.isClientSide() && is.getItem() instanceof MEAdvancedTerminalItem terminal && terminal.isUsable(is, player, 100))
+        if(!level.isClientSide() && is.getItem() instanceof MEAdvancedTerminalItem terminal && terminal.isUsable(is, player))
         {
 
             return super.use(item, level, player, hand);
@@ -49,24 +49,25 @@ public class MEAdvancedTerminalBehavior extends AdvancedTerminalBehavior impleme
 
 
     public @NotNull InteractionResult useOn(UseOnContext pContext) {
-        System.out.println("222");
+        //System.out.println("222");
         ItemStack is = pContext.getItemInHand();
 
-        if(!pContext.getLevel().isClientSide()
-                && is.getItem() instanceof MEAdvancedTerminalItem terminal
-                && terminal.isUsable(is, pContext.getPlayer(), 100))
+        if(is.getItem() instanceof MEAdvancedTerminalItem terminal
+                && terminal.isUsable(is, pContext.getPlayer()))
         {
             GRID_CONTEXT.set(terminal.getLinkedGrid(is, pContext.getLevel(), null));
             USE_ON_CONTEXT.set(pContext);
             var result = super.useOn(pContext);
-            if(result.consumesAction())
-                terminal.usePower(is, 100);
+//            if(result.consumesAction())
+//                terminal.usePower(is, 100);
             GRID_CONTEXT.remove();
             USE_ON_CONTEXT.remove();
             return result;
         }
         return InteractionResult.PASS;
     }
+
+
 }
 
 //class MEBuildHelper extends AdvancedBlockPattern {

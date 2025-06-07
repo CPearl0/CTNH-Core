@@ -40,60 +40,33 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.DoubleSupplier;
 
-public class MEAdvancedTerminalItem extends AEBasePoweredItem implements IComponentItem {
+public class MEAdvancedTerminalItem extends ComponentItem {
 
-    private final MEAdvancedTerminalBehavior handler = new MEAdvancedTerminalBehavior();
+    //private final MEAdvancedTerminalBehavior handler = new MEAdvancedTerminalBehavior();
     public static final IGridLinkableHandler LINKABLE_HANDLER = new MEAdvancedTerminalItem.LinkableHandler();
 
     private static final String TAG_ACCESS_POINT_POS = "accessPoint";
-    private ArrayList<IItemComponent> components;
 
-    public MEAdvancedTerminalItem(DoubleSupplier powerCapacity, Properties props) {
-        super(powerCapacity, props);
-        components = new ArrayList<>();
+
+    public MEAdvancedTerminalItem(Properties properties) {
+        super(properties);
     }
 
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level level, List<Component> lines, TooltipFlag advancedTooltips) {
-        super.appendHoverText(stack, level, lines, advancedTooltips);
         if (this.getLinkedPosition(stack) == null) {
             lines.add(Tooltips.of(GuiText.Unlinked, Tooltips.RED));
         } else {
             lines.add(Tooltips.of(GuiText.Linked, Tooltips.GREEN));
         }
+        super.appendHoverText(stack, level, lines, advancedTooltips);
     }
 
-    @Override
-    public double getChargeRate(ItemStack itemStack) {
-        return 800.0F;
-    }
-
-    public boolean usePower(ItemStack stack, double amount) {
-        if (hasPower(stack, amount)) {
-            this.extractAEPower(stack, amount, Actionable.MODULATE);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean hasPower(ItemStack stack, double required) {
-        return this.getAECurrentPower(stack) >= required;
-    }
-
-    public boolean isUsable(ItemStack item, Player player, double requiredPower) {
-        if (item.isEmpty() || item.getItem() != this) {
-            return false;
-        }
-
-        if (getLinkedGrid(item, player.level(), player) == null) {
-            return false;
-        }
-
-        if (!player.isCreative() && !hasPower(item, requiredPower)) {
-            player.displayClientMessage(PlayerMessages.DeviceNotPowered.text(), true);
-            return false;
-        }
-        return true;
+    public boolean isUsable(ItemStack item, Player player) {
+        return !item.isEmpty()
+                && item.getItem() == this
+                && getLinkedGrid(item, player.level(), player) != null
+                ;
     }
 
     @Nullable
@@ -162,20 +135,6 @@ public class MEAdvancedTerminalItem extends AEBasePoweredItem implements ICompon
             itemStack.removeTagKey(TAG_ACCESS_POINT_POS);
         }
     }
-
-    @Override
-    public List<IItemComponent> getComponents() {
-        return List.of();
-    }
-
-    @Override
-    public void attachComponents(IItemComponent... components) {
-        this.components.addAll(Arrays.asList(components));
-        for (IItemComponent component : components) {
-            component.onAttached(this);
-        }
-    }
-
 //    @Override
 //    public void attachComponents(IItemComponent... components) {
 //        super.atta

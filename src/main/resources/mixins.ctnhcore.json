@@ -19,6 +19,7 @@
     "gtceu.TagPrefixMixin",
     "gtceu.WorkableElectricMultiblockMachineMixin",
     "gtmthings.AdvancedBlockPatternMixin",
+    "gtmthings.AutoBuildSettingMixin",
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MobMixin",
     "mc.MonsterMixin"
