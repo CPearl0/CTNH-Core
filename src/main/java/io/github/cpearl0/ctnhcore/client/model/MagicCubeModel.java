@@ -61,7 +61,7 @@ public class MagicCubeModel extends ModelBase {
     static Quaternionf qBase=new Quaternionf().rotateAxis((float)(60/(2* Math.PI)),0.7071f,0,0.7071f);
 
 
-    public void render(int ticks, PoseStack stack, VertexConsumer consumer, int combinedOverlay){
+    public void render(float ticks, PoseStack stack, VertexConsumer consumer, int combinedOverlay){
         stack.pushPose();
 
 
