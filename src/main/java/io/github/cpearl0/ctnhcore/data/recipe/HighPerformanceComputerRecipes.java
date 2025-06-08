@@ -15,18 +15,20 @@ import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.*;
 
 public class HighPerformanceComputerRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
-        Material[] rodMaterials ={GTMaterials.Platinum,GTMaterials.Ruthenium,GTMaterials.Osmium};
+        Material[] plateMaterials ={GTMaterials.Ruthenium,GTMaterials.Iridium,GTMaterials.Osmium};
         for (int tier = GTValues.HV; tier <= GTValues.IV; tier++){
             var definition = CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier];
             GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("high_performance_computer_"+ GTValues.VN[tier])
                     .inputItems(CASING.getIngredient(tier),1)
-                    .inputItems(TagPrefix.plate,rodMaterials[tier - GTValues.HV],6)
+                    .inputItems(TagPrefix.plate,plateMaterials[tier - GTValues.HV],6)
                     .inputItems(VOLTAGE_COIL.getIngredient(tier),4)
                     .inputItems(POWER_COMPONENT.getIngredient(tier),16)
                     .inputItems(CustomTags.BATTERIES_ARRAY[tier],4)
                     .inputItems(CABLE_QUAD.getIngredient(tier+1))
                     .inputItems(CustomTags.CIRCUITS_ARRAY[tier+2],16)   //喜欢吗
-                    .circuitMeta(0)
+                    .duration(600)
+                    .EUt(GTValues.VA[tier])
+//                    .circuitMeta(0)
                     .outputItems(definition)
                     .save(provider);
         }
