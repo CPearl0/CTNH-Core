@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-05T10:27:25.9296044	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
+// 1.20.1	2025-06-08T20:31:59.5104179	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 2472318a4ef3d41e0f3a7bcd262b594486fb5028 assets/ctnhcore/blockstates/advanced_bio_reactor_casing.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
@@ -78,9 +78,9 @@ f37e897ef97cb6a5e0cd1aa2213c2e60d6aa3841 assets/ctnhcore/blockstates/vibrant_pho
 55c3cf0fdf5b9b4e569f1f91f3acdc45deb0c80d assets/ctnhcore/blockstates/zenith_casing.json
 f17c7b2d8495b9535bc4c92a544ea0c2bcc5e595 assets/ctnhcore/blockstates/zenith_casing_gearbox.json
 71fb0f01bd60854473495a9b97cef4eac5c59ac2 assets/ctnhcore/blockstates/zenith_eye.json
-6ff70dac896f4e0873bc2c488929fce0a3d0c7e5 assets/ctnhcore/lang/en_ud.json
-34641aaa8e653af72314a5748da1f973b353bde0 assets/ctnhcore/lang/en_us.json
-86b9c9f3d85d8b8f45c6dd265c55c7c0f09337a5 assets/ctnhcore/lang/zh_cn.json
+9af74d4afea440be50aedd42470167a9b1b34a22 assets/ctnhcore/lang/en_ud.json
+ee9d8b1a60e3344294687efe0fd67d34e85b9148 assets/ctnhcore/lang/en_us.json
+51457b7869fff9270b460dd23fd0a9a230e8926a assets/ctnhcore/lang/zh_cn.json
 df65321a1742a74b662d28389e11b0a2406960b1 assets/ctnhcore/models/block/abyssalalloy_coil_block.json
 13db5d9c835eeecee9dc13bee7a130e73a4bc89e assets/ctnhcore/models/block/abyssalalloy_coil_block_active.json
 14d9cbb950f41d793cc7c86563f0fa3020b0c2b6 assets/ctnhcore/models/block/advanced_bio_reactor_casing.json
@@ -123,7 +123,7 @@ e8f2c8970dfc44029b7300d439b1079dc761d5ee assets/ctnhcore/models/block/fruit_cafe
 28e9d5b20af6b2de680d4593e921ea2ba790aad7 assets/ctnhcore/models/block/garlic_crate_horizontal.json
 a0ce88e83ac78ebacb34ae8cd8c56e63a954ce3e assets/ctnhcore/models/block/high_strength_concrete.json
 65895068243a8ea4cb6448a7f04d1f8a4cc9a2d8 assets/ctnhcore/models/block/hyper_casing.json
-e3fdf175776aa9e7e5acecaed86d582dad2f0699 assets/ctnhcore/models/block/hyper_plasma_turbine_rotor.json
+a7a1c26a7c6b0979efcf548430b04d9fca654080 assets/ctnhcore/models/block/hyper_plasma_turbine_rotor.json
 bb3c462a48dc022201dc70e140fb5c7a919634ba assets/ctnhcore/models/block/infinity_coil_block.json
 1d5b1a51be6c2a0ea46f1ae42a237b967a282202 assets/ctnhcore/models/block/infinity_coil_block_active.json
 88fc4a1fe98d7db2afcd224b4aabccf6965db9b7 assets/ctnhcore/models/block/mana_steel_casing.json
@@ -362,9 +362,9 @@ c12f469412fb0f269db9f61a23c3137e4ddf1f80 data/ctnhcore/loot_tables/blocks/zenith
 801c0ddbdd107af720ccb4feddaf685d8f514d5c data/forge/tags/blocks/ad_astra_stones.json
 8b23a2ed8bfd251bd2a8952d236a8809502f5444 data/forge/tags/blocks/aether_stones.json
 5871e91cf56e29f90ddb263dcaf97feb3d61129e data/forge/tags/blocks/alfheim_stones.json
-5f8cc620e4fe07b7bb7015e0c692b0e3e7cd2417 data/forge/tags/blocks/mineable/wrench.json
+d8dbb0a85c19b1b2ada3e8b91b8a2cffc8b25aa7 data/forge/tags/blocks/mineable/wrench.json
 d9e2820239e3a7448c8e500b4580c33fb4a2da6d data/minecraft/tags/blocks/mineable/axe.json
-774f65be2df2c78725723f30cea7ad88b07ec352 data/minecraft/tags/blocks/mineable/pickaxe.json
+d86f2f0dcc881b6a517ad7d5e630865e4833594f data/minecraft/tags/blocks/mineable/pickaxe.json
 39abddb654a66e4b63dc2354ab79ac89ec323755 data/minecraft/tags/blocks/mineable/shovel.json
 a2ad7bf3ffe828f00234d1639862f299770b6714 data/minecraft/tags/blocks/saplings.json
 a2ad7bf3ffe828f00234d1639862f299770b6714 data/minecraft/tags/items/saplings.json

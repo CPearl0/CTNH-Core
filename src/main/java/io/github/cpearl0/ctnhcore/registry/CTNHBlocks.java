@@ -242,7 +242,7 @@ public class CTNHBlocks {
         return REGISTRATE.block(name, blockSupplier)
                 .initialProperties(properties)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
-                .addLayer(type)
+                 .addLayer(type)
                 .blockstate((ctx, prov) -> {
                     prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
                 })
@@ -396,10 +396,9 @@ public class CTNHBlocks {
     public static BlockEntry<TurbineRotorBlock> createTurbineRotorBlock(String name,int R,int G,int B,int A) {
         return REGISTRATE.block(name, TurbineRotorBlock.create(R,G,B,A))
                 .initialProperties(() -> Blocks.OBSIDIAN)
-//                .blockEntity(TurbineRotorBE::new)
-//                .build()
+                .tag(TagKey.create(BuiltInRegistries.BLOCK.key(), new ResourceLocation("forge", "mineable/wrench")), BlockTags.MINEABLE_WITH_PICKAXE)
                 .blockstate((ctx, prov) ->
-                        prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, CTNHCore.id("block/transparent"))))
+                        prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, new ResourceLocation("minecraft:block/iron_block"))))
                 .item(TurbineRotorItem::new)
                 .build()
                 .register();

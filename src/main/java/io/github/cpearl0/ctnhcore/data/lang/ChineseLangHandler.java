@@ -805,11 +805,13 @@ public class ChineseLangHandler {
         provider.add("ctnhcore.src.sacrifice_locked","已锁定牺牲者！");
         provider.add("ctnhcore.src.sacrifice_unlocked","无法锁定牺牲者");
         provider.add("ctnhcore.src.wetware_duration", "湿件剩余存活时间: %s ticks");
-        provider.add("ctnhcore.src.sacrifice", "牺牲着: %s");
+        provider.add("ctnhcore.src.sacrifice", "牺牲者: %s");
         provider.add("ctnh.data.noise","当前噪声值：%s");
         provider.add("super_centrifuge", "超速离心");
         provider.add("ctnh.super_centrifuge.parallel", "普通离心机模式下会获得8并行");
         provider.add("ultrasonic_apparatus", "超声破碎");
+        provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3残忍的超频?");
+        provider.add("ctnhcore.machine.high_performance_computer.tooltip.1", "§r能量充足时,提供%d算力");
 
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
@@ -828,6 +830,10 @@ public class ChineseLangHandler {
         }
         for (int tier : GTValues.tiersBetween(ULV, MV)){
             provider.add(CTNHMachines.ROTOR_HOLDER_EXTEND[tier].getBlock(), GTValues.VNF[tier] + "§r转子支架");
+        }
+        for (var definiton : CTNHMachines.HIGH_PERFORMANCE_COMPUTER){
+            var tier = definiton.getTier();
+            provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
         }
 
         provider.add(CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH.getBlock(), "无菌超净间维护仓");
@@ -1065,7 +1071,6 @@ public class ChineseLangHandler {
         provider.add(MultiblocksA.SUPER_CENTRIFUGE.getBlock(), "超速离心机");
         provider.add(MultiblocksA.ULTRASONIC_APPARATUS.getBlock(), "超声破碎仪");
         provider.add(CTNHMultiblockMachines.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
-
 
 
 

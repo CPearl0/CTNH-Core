@@ -62,6 +62,7 @@
     "ctnhcore:pulsating_photovoltaic_block",
     "ctnhcore:pv_coil",
     "ctnhcore:photon_press_cond_block",
+    "ctnhcore:hyper_plasma_turbine_rotor",
     "ctnhcore:nq_excite_carbon_carbon_nanofiber_structural_block",
     "ctnhcore:astral_stone"
   ]
