@@ -15,10 +15,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
-import com.gregtechceu.gtceu.client.renderer.machine.MaintenanceHatchPartRenderer;
-import com.gregtechceu.gtceu.client.renderer.machine.OverlayTieredActiveMachineRenderer;
-import com.gregtechceu.gtceu.client.renderer.machine.OverlayTieredMachineRenderer;
-import com.gregtechceu.gtceu.client.renderer.machine.RotorHolderMachineRenderer;
+import com.gregtechceu.gtceu.client.renderer.machine.*;
 import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils;
@@ -33,7 +30,7 @@ import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartM
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CompilerMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.DroneHolderMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.DigitalWosMachine;
-import io.github.cpearl0.ctnhcore.common.machine.simple.HighPerformanceComputer;
+import io.github.cpearl0.ctnhcore.common.machine.simple.HighPerformanceComputerMachine;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -314,10 +311,16 @@ public class CTNHMachines {
             .register();
 
     public static final MachineDefinition[] HIGH_PERFORMANCE_COMPUTER = registerTieredMachines("high_performance_computer",
-            HighPerformanceComputer::new,
+            HighPerformanceComputerMachine::new,
             (tier,builder)-> builder.langValue("%s High Performance Computer".formatted(VNF[tier]))
+                    .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName("high_performance_computer"), VLVT[tier]))
                     .rotationState(RotationState.NON_Y_AXIS)
-                    .register(),GTValues.tiersBetween(HV,IV));
+                    .renderer(()->new WorkableTieredHullMachineRenderer(tier,GTCEu.id("block/machines/high_performance_computer/" + VN[tier].toLowerCase(Locale.ROOT))))
+                    .tooltips(Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.0"),
+                              Component.translatable("ctnhcore.machine.high_performance_computer.tooltip.1",(tier>=GTValues.HV?1<<(tier-GTValues.HV):0)),
+                              Component.translatable("gtceu.universal.tooltip.voltage_in",FormattingUtil.formatNumbers(VA[tier]*HighPerformanceComputerMachine.getMaxInputOutputAmperageStatic()), VNF[tier]))   //输入电流16A
+                    .register(),GTValues.tiersBetween(HV,IV))
+            ;
 
     public static void init() {
 

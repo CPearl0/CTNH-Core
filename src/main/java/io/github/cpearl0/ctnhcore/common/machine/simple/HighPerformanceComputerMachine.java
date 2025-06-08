@@ -2,36 +2,52 @@ package io.github.cpearl0.ctnhcore.common.machine.simple;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
+import com.gregtechceu.gtceu.api.capability.IWorkable;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.TieredEnergyMachine;
-import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
+import com.gregtechceu.gtceu.api.machine.trait.NotifiableEnergyContainer;
+import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
-public class HighPerformanceComputer extends TieredEnergyMachine implements IOpticalComputationProvider {
+public final class HighPerformanceComputerMachine extends TieredEnergyMachine implements IOpticalComputationProvider, IWorkable {
 
     /*属性*/
-    boolean isActive=true;
+    @Setter @Getter
+    boolean isWorkingEnabled=true;
+    @Getter
+    final long maxInputOutputAmperage = getMaxInputOutputAmperageStatic();
     int CWUtToProduce;
     long energyToDrain;
     int lastCWUt=0;
 
-    public HighPerformanceComputer(IMachineBlockEntity holder, int tier) {
+
+    public HighPerformanceComputerMachine(IMachineBlockEntity holder, int tier) {
         super(holder, tier);
+        energyContainer.setSideInputCondition((direction -> direction!= getFrontFacing()));
         /*HV为1，超过HV每级翻倍*/
         CWUtToProduce = (tier>=GTValues.HV?1<<(tier-GTValues.HV):0);
-        energyToDrain = GTValues.V[tier];
+        energyToDrain = (long) GTValues.VA[tier] * maxInputOutputAmperage;
     }
 
+    @Override
+    protected NotifiableEnergyContainer createEnergyContainer(Object... args) {
+        var tierVoltage = GTValues.VA[tier] * getMaxInputOutputAmperageStatic();
+        return NotifiableEnergyContainer.receiverContainer(this,
+                tierVoltage * 64L, tierVoltage, getMaxInputOutputAmperageStatic());
+    }
 
     @Override
     public int requestCWUt(int cwut, boolean simulate, @NotNull Collection<IOpticalComputationProvider> seen) {
        seen.add(this);
-       if (isActive) {
+       if (isActive()) {
            if (drainEnergy(simulate)) {
                int requestedCWUt=Math.min(cwut, CWUtToProduce);
-               if(!simulate)lastCWUt=cwut;
+               if(!simulate) {
+                   lastCWUt = cwut;
+               }
                return requestedCWUt;
            }
        }
@@ -41,7 +57,7 @@ public class HighPerformanceComputer extends TieredEnergyMachine implements IOpt
     @Override
     public int getMaxCWUt(@NotNull Collection<IOpticalComputationProvider> seen) {
         seen.add(this);
-        return isActive ? CWUtToProduce : 0;
+        return isActive() ? CWUtToProduce : 0;
     }
 
     @Override
@@ -57,6 +73,25 @@ public class HighPerformanceComputer extends TieredEnergyMachine implements IOpt
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean isActive(){
+        return energyContainer.getEnergyStored() >= (energyToDrain>>2);
+    }
+
+    public static long getMaxInputOutputAmperageStatic() {
+        return 16;
+    }
+
+    @Override
+    public int getProgress() {
+        return 0;
+    }
+
+    @Override
+    public int getMaxProgress() {
+        return 0;
     }
 
 }

@@ -253,6 +253,8 @@ public class EnglishLangHandler {
         provider.add("ctnh.nano.2", "Maximum parallel count: 1024");
         provider.add("ctnh.nano.3", "For each parallel count, the overall power generation increases by 0.2%\nActual operation time is recipe time * sqrt(parallel count)");
         provider.add("ctnh.nano.4", "Inserting specific materials into the machine can enhance the multiplier, but also has a chance of consumption\nNo material: 0.4 multiplier\nRubber sheet: 0.8 multiplier, consumption chance per 512 parallel count\nPolyethylene sheet: 1.2 multiplier, consumption chance per 1024 parallel count\nSilicone rubber sheet: 2.0 multiplier, consumption chance per 4096 parallel count\nStyrene-butadiene rubber sheet: 3.2 multiplier, consumption chance per 65535 parallel count\nPolybenzimidazole sheet: 5 multiplier, consumption chance per 1048576 parallel count");
+        provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3Fetal OVERCLOCKING?");
+        provider.add("ctnhcore.machine.high_performance_computer.tooltip.1", "§rProvider %d computation when energy is sufficient.");
 
         provider.add("ctnh.beams_overload", "§cWarning: Machine Overloaded!!!");
         provider.add("ctnh.beams_crash", "§cMachine has been damaged");
