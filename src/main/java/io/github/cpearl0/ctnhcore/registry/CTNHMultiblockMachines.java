@@ -239,7 +239,6 @@ public class CTNHMultiblockMachines {
                         .build())
                 .workableCasingRenderer(CTNHCore.id("block/casings/reflect_light_casing"),
                         GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
-                .recipeModifier(PhotovoltaicPowerStationMachine::recipeModifier)
                 .register();
     }
 

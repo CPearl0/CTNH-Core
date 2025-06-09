@@ -1,7 +1,5 @@
-package io.github.cpearl0.ctnhcore.api.machine.computation;
+package io.github.cpearl0.ctnhcore.common.machine.multiblock;
 
-import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.capability.IObjectHolder;
 import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
 import com.gregtechceu.gtceu.api.capability.IOpticalComputationReceiver;
 import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
@@ -12,18 +10,14 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.machine.trait.MachineTrait;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableComputationContainer;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
-import io.github.cpearl0.ctnhcore.api.machine.computation.trait.MultiblockComputationLogic;
-import io.github.cpearl0.ctnhcore.api.machine.computation.trait.SimpleComputationLogic;
-import lombok.Getter;
+import io.github.cpearl0.ctnhcore.common.machine.trait.MultiblockComputationLogic;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collection;
 import java.util.List;
 
 public class MultiblockComputationMachine extends WorkableElectricMultiblockMachine implements ITieredMachine, IOpticalComputationReceiver {
