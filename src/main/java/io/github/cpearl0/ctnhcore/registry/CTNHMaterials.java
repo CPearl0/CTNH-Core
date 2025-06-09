@@ -548,7 +548,9 @@ public class CTNHMaterials {
             .buildAndRegister();
     public static  final Material COLORFUL_GEM=new Material.Builder(GTCEu.id("colorful_gem"))
             .gem()
-            .color(0x000000)
+            .element(CTNHElements.COLORFUL_GEM)
+            .color(0xFF0000) // 主颜色设为红色
+            .secondaryColor(0x0000FF)
             .buildAndRegister();
 
     public static void init() {

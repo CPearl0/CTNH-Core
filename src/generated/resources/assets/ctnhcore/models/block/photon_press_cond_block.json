@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ctnhcore:block/pulsating_photovoltaic_block"
+    "all": "ctnhcore:block/photon_press_cond_block"
   }
 }
