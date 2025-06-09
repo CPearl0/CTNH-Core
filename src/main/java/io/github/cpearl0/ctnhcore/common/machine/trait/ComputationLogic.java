@@ -1,23 +1,15 @@
-package io.github.cpearl0.ctnhcore.api.machine.computation.trait;
+package io.github.cpearl0.ctnhcore.common.machine.trait;
 
 import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
 import com.gregtechceu.gtceu.api.capability.recipe.CWURecipeCapability;
-import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
-import com.gregtechceu.gtceu.api.machine.trait.NotifiableComputationContainer;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.utils.GTUtil;
-import io.github.cpearl0.ctnhcore.api.machine.computation.MultiblockComputationMachine;
-import io.github.cpearl0.ctnhcore.api.machine.computation.SimpleComputationMachine;
 import lombok.Getter;
 import net.minecraft.network.chat.Component;
-
-import java.util.Collections;
-import java.util.Iterator;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 

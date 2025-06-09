@@ -14,26 +14,19 @@ import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
-import io.github.cpearl0.ctnhcore.api.machine.computation.MultiblockComputationMachine;
-import io.github.cpearl0.ctnhcore.api.machine.computation.trait.MultiblockComputationLogic;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MultiblockComputationMachine;
+import io.github.cpearl0.ctnhcore.common.machine.trait.MultiblockComputationLogic;
 import io.github.cpearl0.ctnhcore.client.renderer.utils.RenderUtils;
 import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
-import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
 import io.github.cpearl0.ctnhcore.registry.CTNHMultiblockMachines;
-import io.github.cpearl0.ctnhcore.registry.machines.multiblock.HyperPlasmaTurbineRegister;
-import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3i;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine implements IExplosionMachine {
     public static final long BASE_EU_OUTPUT = GTValues.V[GTValues.ZPM] * 288;/*有算力时的基础功率*/

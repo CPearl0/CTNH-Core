@@ -1,26 +1,15 @@
-package io.github.cpearl0.ctnhcore.api.machine.computation;
+package io.github.cpearl0.ctnhcore.common.machine.simple;
 
 import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
-import com.gregtechceu.gtceu.api.capability.IOpticalComputationReceiver;
-import com.gregtechceu.gtceu.api.capability.recipe.IO;
-import com.gregtechceu.gtceu.api.capability.recipe.IRecipeHandler;
-import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
-import com.gregtechceu.gtceu.api.machine.trait.NotifiableComputationContainer;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
-import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import io.github.cpearl0.ctnhcore.api.machine.computation.trait.SimpleComputationContainer;
-import io.github.cpearl0.ctnhcore.api.machine.computation.trait.SimpleComputationLogic;
+import io.github.cpearl0.ctnhcore.common.machine.trait.SimpleComputationContainer;
+import io.github.cpearl0.ctnhcore.common.machine.trait.SimpleComputationLogic;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
-import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Collection;
-import java.util.List;
 
 public class SimpleComputationMachine extends SimpleTieredMachine {
 

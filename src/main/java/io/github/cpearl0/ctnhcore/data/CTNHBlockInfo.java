@@ -18,6 +18,7 @@ import java.lang.reflect.Method;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 
+@SuppressWarnings("removal")
 public class CTNHBlockInfo {
     public static void init() {
 

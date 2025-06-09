@@ -24,7 +24,7 @@ import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import io.github.cpearl0.ctnhcore.CTNHCore;
-import io.github.cpearl0.ctnhcore.api.machine.computation.SimpleComputationMachine;
+import io.github.cpearl0.ctnhcore.common.machine.simple.SimpleComputationMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CTNHPartAbility;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CircuitBusPartMachine;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.part.CompilerMachine;

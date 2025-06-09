@@ -1,12 +1,7 @@
-package io.github.cpearl0.ctnhcore.api.machine.computation.trait;
+package io.github.cpearl0.ctnhcore.common.machine.trait;
 
-import com.gregtechceu.gtceu.api.capability.IOpticalComputationProvider;
-import com.gregtechceu.gtceu.api.capability.recipe.IO;
-import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
-import com.gregtechceu.gtceu.api.machine.trait.NotifiableComputationContainer;
-import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import io.github.cpearl0.ctnhcore.api.machine.computation.MultiblockComputationMachine;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MultiblockComputationMachine;
 
 public class MultiblockComputationLogic extends ComputationLogic {
     public MultiblockComputationLogic(MultiblockComputationMachine machine) {
