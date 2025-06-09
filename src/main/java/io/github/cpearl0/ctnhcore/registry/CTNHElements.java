@@ -32,5 +32,5 @@ public class CTNHElements {
     public static final Element HIKARIUM = new Element(12800, 15000, -1, null, "hikarium", "☀", false);
     public static final Element END_OF_OIL=new Element(1000,1000,-1,null,"end_of_oil","END",false);
     public static final Element Living_Metal=new Element(1000,1000,-1,null,"living_metal","*Sn?Pb?&LM*Ω",false);
-    public static final Element COLORFUL_GEM=new Element(1000,1000,-1,null,"colorful_gem","COLOR",false);
+    public static final Element COLORFUL_GEM=new Element(1000,1000,-1,null,"colorful_gem","§cC§eO§aL§9O§dR",false);
 }

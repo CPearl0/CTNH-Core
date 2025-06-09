@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-08T20:31:59.5104179	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
+// 1.20.1	2025-06-09T15:44:28.1270382	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 2472318a4ef3d41e0f3a7bcd262b594486fb5028 assets/ctnhcore/blockstates/advanced_bio_reactor_casing.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
@@ -78,9 +78,9 @@ f37e897ef97cb6a5e0cd1aa2213c2e60d6aa3841 assets/ctnhcore/blockstates/vibrant_pho
 55c3cf0fdf5b9b4e569f1f91f3acdc45deb0c80d assets/ctnhcore/blockstates/zenith_casing.json
 f17c7b2d8495b9535bc4c92a544ea0c2bcc5e595 assets/ctnhcore/blockstates/zenith_casing_gearbox.json
 71fb0f01bd60854473495a9b97cef4eac5c59ac2 assets/ctnhcore/blockstates/zenith_eye.json
-9af74d4afea440be50aedd42470167a9b1b34a22 assets/ctnhcore/lang/en_ud.json
-ee9d8b1a60e3344294687efe0fd67d34e85b9148 assets/ctnhcore/lang/en_us.json
-51457b7869fff9270b460dd23fd0a9a230e8926a assets/ctnhcore/lang/zh_cn.json
+e58467dbe24524f41cb46ac816934c019a6dfab1 assets/ctnhcore/lang/en_ud.json
+6255ec76cd52c3979c73d4aabd3f2588d7b04256 assets/ctnhcore/lang/en_us.json
+e31a1f64d1bc57781928087d543e3c79ed445082 assets/ctnhcore/lang/zh_cn.json
 df65321a1742a74b662d28389e11b0a2406960b1 assets/ctnhcore/models/block/abyssalalloy_coil_block.json
 13db5d9c835eeecee9dc13bee7a130e73a4bc89e assets/ctnhcore/models/block/abyssalalloy_coil_block_active.json
 14d9cbb950f41d793cc7c86563f0fa3020b0c2b6 assets/ctnhcore/models/block/advanced_bio_reactor_casing.json
@@ -134,11 +134,11 @@ bb3c462a48dc022201dc70e140fb5c7a919634ba assets/ctnhcore/models/block/infinity_c
 c87c74cc0dadf9b26ab68cd0c6dde6fa65ae6a41 assets/ctnhcore/models/block/natural_ecological_shell_casing.json
 52c14d0dea02316995662e461fef902d1688235c assets/ctnhcore/models/block/neutronium_alloy_casing_block.json
 f3548b538bd6c9c668fdf535bee89f3331961101 assets/ctnhcore/models/block/neutronium_reinforced_turbine_casing.json
-edd6656e2b6b941d699fda6deb3d4a79d641d2f6 assets/ctnhcore/models/block/nq_excite_carbon_carbon_nanofiber_structural_block.json
+bae0cbeb614db90a9bcb4449fde7b139a9a9c861 assets/ctnhcore/models/block/nq_excite_carbon_carbon_nanofiber_structural_block.json
 3d86dc7185bba70cf4bf2e2837452aa56efc3145 assets/ctnhcore/models/block/osmiridium_casing.json
 1bb518155fae04226db069b82c02e955de894bb8 assets/ctnhcore/models/block/pepper_crate.json
 d2c62bb3d59766676397f9ac692d3e3301dba3cb assets/ctnhcore/models/block/pepper_crate_horizontal.json
-edd6656e2b6b941d699fda6deb3d4a79d641d2f6 assets/ctnhcore/models/block/photon_press_cond_block.json
+b27c9338c5c1254686184e865ae33fab220815cb assets/ctnhcore/models/block/photon_press_cond_block.json
 c0e9f2559fffc656362dd3a48f46e0d10f8473e4 assets/ctnhcore/models/block/pikyonium_coil_block.json
 e933dac986f316e6b2339356ba70a6c2f96c8331 assets/ctnhcore/models/block/pikyonium_coil_block_active.json
 8f65a359334a851e2be67862f78e1cec6452593b assets/ctnhcore/models/block/pink_flower.json

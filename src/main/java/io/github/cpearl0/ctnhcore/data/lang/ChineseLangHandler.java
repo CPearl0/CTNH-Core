@@ -785,7 +785,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.data.muti","获取的倍率: %s");
         provider.add("ctnh.compiler.0","将生物的进化之道完全放任于碳基生物的自然演变是一种低效且缓慢的做法，现在我们将亲自编码每一个基因序列，将我们的至臻完美编译在神经元的逻辑之中");
         provider.add("ctnh.compiler.01","神经矩阵编码器（CMP）是一台编译神经序列的机器，其不同于其他机器，不执行正常的输入逻辑，无法超频");
-        provider.add("ctnh.compiler.1","该机器的输入由6个神经矩阵研究舱室组成，每个舱室在结构完成时将被编码，所有研究舱室必须为同一等级，编码完成后，每个研究舱室将会显示他们所属的片区");
+        provider.add("ctnh.compiler.1","该机器的输入由6个神经矩阵研究舱室组成，每个舱室在结构完成时将被编码，所有研究舱室必须为同一等级，编码完成后，每个研究舱室将会显示他们所属的片区（并未实现）现在片区分配固定为：机器主方块左前方为1，右前方为2，左后方为3，右后方为4");
         provider.add("ctnh.compiler.2","该机器的输入§c必须严格按照JEI的物品顺序§9从左到右§r从第一行到第二行放置在§91-5片区§r，同时在第六片区放置§9研究数据集§r§r,任何错误的放置或者外部舱室的放置都会导致机器故障并在对应舱室显示故障");
         provider.add("ctnh.compiler.3","必须保证所有神经矩阵研究舱室的等级不低于配方等级，否则配方不会运行");
         provider.add("ctnh.compiler.4","————————机器总体机制————————");
@@ -831,10 +831,10 @@ public class ChineseLangHandler {
         for (int tier : GTValues.tiersBetween(ULV, MV)){
             provider.add(CTNHMachines.ROTOR_HOLDER_EXTEND[tier].getBlock(), GTValues.VNF[tier] + "§r转子支架");
         }
-        for (var definiton : CTNHMachines.HIGH_PERFORMANCE_COMPUTER){
-            var tier = definiton.getTier();
-            provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
-        }
+//        for (var definiton : CTNHMachines.HIGH_PERFORMANCE_COMPUTER){
+//            var tier = definiton.getTier();
+//            provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
+//        }
 
         provider.add(CTNHMachines.STERILE_CLEANROOM_MAINTENANCE_HATCH.getBlock(), "无菌超净间维护仓");
 

@@ -179,7 +179,7 @@ public class CTNHBlocks {
     public static final BlockEntry<PhotovoltaicBlock> PULSATING_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PULSATING_PHOTOVOLTAIC_BLOCK,
             ("block/pulsating_photovoltaic_block"));
     public static final BlockEntry<ActiveBlock> PV_COIL =createActiveCasing("pv_coil","block/flux/pv_coil");
-    public  static final BlockEntry<PhotovoltaicBlock>PHOTON_PRESS_COND_BLOCK=createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,"block/pulsating_photovoltaic_block");
+    public  static final BlockEntry<PhotovoltaicBlock>PHOTON_PRESS_COND_BLOCK=createPhotovoltaicBlock(PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,"block/photon_press_cond_block");
     @SuppressWarnings("removal")
     public static BlockEntry<Block> ASTRAL_DIRT;
     @SuppressWarnings("removal")
@@ -210,7 +210,7 @@ public class CTNHBlocks {
     public static BlockEntry<TurbineRotorBlock> HYPER_PLASMA_TURBINE_ROTOR = createTurbineRotorBlock("hyper_plasma_turbine_rotor",1,1,1,1);
 
 
-    public static BlockEntry<SpaceStructuralFramework> NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK=createSpaceStructuralFrame(SpaceStructuralFramework.SpaceStructuralFrameworkType.NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK,"block/pulsating_photovoltaic_block");
+    public static BlockEntry<SpaceStructuralFramework> NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK=createSpaceStructuralFrame(SpaceStructuralFramework.SpaceStructuralFrameworkType.NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK,"block/nq_excite_carbon_carbon_nanofiber_structural_block");
     public static void init() {
         ReactorCoreBlock.put(0, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Thorium).get());
         ReactorCoreBlock.put(1, () -> GTMaterialBlocks.MATERIAL_BLOCKS.get(TagPrefix.block, GTMaterials.Protactinium).get());
