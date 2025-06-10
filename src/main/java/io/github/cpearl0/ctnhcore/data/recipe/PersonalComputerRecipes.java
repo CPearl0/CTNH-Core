@@ -43,5 +43,14 @@ public class PersonalComputerRecipes {
                 .duration(60)
                 .EUt(VA[HV])
                 .save(provider);
+
+        CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder("program_rocket_1_force")
+                .circuitMeta(1)
+                .inputItems(CTNHItems.PROGRAM_EMPTY)
+                .notConsumable(CTNHItems.PROGRAM_ROCKET_CORE_1)
+                .notConsumable(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1)
+                .duration(60)
+                .EUt(VA[HV])
+                .save(provider);
     }
 }
