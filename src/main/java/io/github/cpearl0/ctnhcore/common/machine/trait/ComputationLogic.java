@@ -28,7 +28,7 @@ public class ComputationLogic extends RecipeLogic {
     public GTRecipe.ActionResult handleTickRecipe(GTRecipe recipe) {
         GTRecipe.ActionResult ret;
         if(!checkCWUt(recipe,false))
-            ret=GTRecipe.ActionResult.fail(() -> Component.translatable("gtceu.recipe_logic.insufficient_cwut"));
+            ret=GTRecipe.ActionResult.fail(() -> Component.translatable("ctnhcore.recipe_logic.insufficient_cwut"));
         else ret=super.handleTickRecipe(recipe);
         return ret;
     }
@@ -57,12 +57,12 @@ public class ComputationLogic extends RecipeLogic {
     }
     /*在checkCWUt里调用，如果要修改机器需要的算力，重写这个方法就行*/
     public int getCWUtToRequest(GTRecipe recipe) {
-        /*这是默认的算力计算方式，初始算力为1，每超过HV一级就翻倍一次*/
-        int ret=1;
+        /*这是默认的算力计算方式，初始算力为0，HV为1,每超过HV一级就翻倍一次*/
+        int ret=0;
         int tier= GTUtil.getTierByVoltage(RecipeHelper.getInputEUt(recipe));
-        if(tier>HV)
+        if(tier>=HV)
         {
-            ret<<=(tier-HV);
+            ret=1<<(tier-HV);
         }
         return ret;
     }

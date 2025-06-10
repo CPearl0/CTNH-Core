@@ -27,8 +27,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static com.gregtechceu.gtceu.api.GTValues.ZPM;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.COIL_TRITANIUM;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.HIGH_POWER_CASING;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Neutronium;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHBlocks.HYPER_PLASMA_TURBINE_ROTOR;
@@ -69,7 +68,7 @@ public class HyperPlasmaTurbineRegister {
                             )
                             .where("F", Predicates.frames(Neutronium))
                             .where("G", Predicates.blocks(GTBlocks.SUPERCONDUCTING_COIL.get()))
-                            .where("H", Predicates.blocks(COIL_TRITANIUM.get()))
+                            .where("H", Predicates.blocks(COIL_TRINIUM.get()))
                             .where("I", Predicates.abilities(PartAbility.EXPORT_FLUIDS))
                             .where("i", Predicates.abilities(PartAbility.EXPORT_FLUIDS))
 //                        .where("R", Predicates.states(HYPER_PLASMA_TURBINE_ROTOR.get().defaultBlockState().setValue(BlockStateProperties.FACING, Direction.EAST)))
