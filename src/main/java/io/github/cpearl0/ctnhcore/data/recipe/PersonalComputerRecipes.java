@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.data.recipe;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import io.github.cpearl0.ctnhcore.common.item.ProgramItem;
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
@@ -7,6 +8,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
+
+import static com.gregtechceu.gtceu.api.GTValues.*;
 
 public class PersonalComputerRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -31,6 +34,14 @@ public class PersonalComputerRecipes {
                 .outputItems(CTNHItems.PROGRAM_ROCKET_1)
                 .duration(40)
                 .EUt(30)
+                .save(provider);
+
+        CTNHRecipeTypes.PERSONAL_COMPUTER.recipeBuilder("astronomy_circuit_force")
+                .circuitMeta(1)
+                .inputItems(CTNHItems.ASTRONOMY_CIRCUIT_1)
+                .outputItems(CTNHItems.GREAT_ASTRONOMY_CIRCUIT_1)
+                .duration(60)
+                .EUt(VA[HV])
                 .save(provider);
     }
 }

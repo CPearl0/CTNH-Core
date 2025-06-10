@@ -810,11 +810,12 @@ public class ChineseLangHandler {
         provider.add("super_centrifuge", "超速离心");
         provider.add("ctnh.super_centrifuge.parallel", "普通离心机模式下会获得8并行");
         provider.add("ultrasonic_apparatus", "超声破碎");
-        provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3残忍的超频?");
+        provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3飞龙一般的超频计算");
         provider.add("ctnhcore.machine.high_performance_computer.tooltip.1", "§r能量充足时,提供%d算力");
 
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
+        provider.add("ctnhcore.recipe_logic.insufficient_cwut","算力不足");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");

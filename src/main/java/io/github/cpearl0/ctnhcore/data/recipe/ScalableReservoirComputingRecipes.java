@@ -14,7 +14,7 @@ public class ScalableReservoirComputingRecipes {
 
         SCALABLE_RESERVOIR_COMPUTING.recipeBuilder("player")
                 .duration(20)
-                .EUt(V[ZPM]*64)
+                .EUt(V[ZPM]*4)
                 .circuitMeta(1)
                 .addData("maxCWUt",512)
                 .addData("wetwareDuration",200)

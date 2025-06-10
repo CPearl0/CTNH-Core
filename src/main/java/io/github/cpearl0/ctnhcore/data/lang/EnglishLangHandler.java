@@ -364,5 +364,6 @@ public class EnglishLangHandler {
         provider.add("ctnhcore.src.sacrifice", "Sacrifices: %s");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§5FINAL FANTASY §fof §a Precise Computation §f and §e Plasma Energy");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","Provide %d computation to reach the Base Production. For every %d computation provided, the Output Production DOUBLES.");
+        provider.add("ctnhcore.recipe_logic.insufficient_cwut", "Insufficient Computation");
     }
 }
