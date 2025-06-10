@@ -230,7 +230,7 @@ dependencies {
     // Blood Magic
     implementation fg.deobf("maven.modrinth:blood-magic:${bloodmagic_version}")
 
-    implementation fg.deobf("curse.maven:gtmthings-1104310:6015409")
+    implementation fg.deobf("curse.maven:gtmthings-1104310:6539394")
 
     implementation fg.deobf("curse.maven:mythicbotany-400058:5101899")
     annotationProcessor fg.deobf("org.moddingx:LibX:${minecraft_version}-${libx_version}")

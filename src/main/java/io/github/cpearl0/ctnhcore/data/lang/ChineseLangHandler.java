@@ -250,7 +250,6 @@ public class ChineseLangHandler {
         provider.add("gtceu.quasar_create","类星体创生");
         provider.add("gtceu.differential_centrifuge", "差速离心");
         provider.add("gtceu.ultrasonication", "超声破碎");
-        provider.add("gtceu.quasar_create","类星体创生");
         //Machine tooltip
         provider.add("gtceu.machine.parallel_hatch_mk9.tooltip", "允许同时处理至多1024个配方。") ;
         provider.add("gtceu.machine.parallel_hatch_mk10.tooltip", "允许同时处理至多4096个配方。");

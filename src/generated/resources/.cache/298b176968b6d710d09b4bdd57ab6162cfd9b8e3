@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-09T15:44:28.1270382	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
+// 1.20.1	2025-06-10T14:04:36.2173594	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 2472318a4ef3d41e0f3a7bcd262b594486fb5028 assets/ctnhcore/blockstates/advanced_bio_reactor_casing.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
@@ -78,9 +78,9 @@ f37e897ef97cb6a5e0cd1aa2213c2e60d6aa3841 assets/ctnhcore/blockstates/vibrant_pho
 55c3cf0fdf5b9b4e569f1f91f3acdc45deb0c80d assets/ctnhcore/blockstates/zenith_casing.json
 f17c7b2d8495b9535bc4c92a544ea0c2bcc5e595 assets/ctnhcore/blockstates/zenith_casing_gearbox.json
 71fb0f01bd60854473495a9b97cef4eac5c59ac2 assets/ctnhcore/blockstates/zenith_eye.json
-e58467dbe24524f41cb46ac816934c019a6dfab1 assets/ctnhcore/lang/en_ud.json
-6255ec76cd52c3979c73d4aabd3f2588d7b04256 assets/ctnhcore/lang/en_us.json
-e31a1f64d1bc57781928087d543e3c79ed445082 assets/ctnhcore/lang/zh_cn.json
+b3a35e773c9882e4cce5e1e2b8e017f0baf05c0b assets/ctnhcore/lang/en_ud.json
+ed4ffe5ef834aaf9439b4822f6d6de59a5f53255 assets/ctnhcore/lang/en_us.json
+a67e221af6f665ff882d99f3f8d1d0e378e925a9 assets/ctnhcore/lang/zh_cn.json
 df65321a1742a74b662d28389e11b0a2406960b1 assets/ctnhcore/models/block/abyssalalloy_coil_block.json
 13db5d9c835eeecee9dc13bee7a130e73a4bc89e assets/ctnhcore/models/block/abyssalalloy_coil_block_active.json
 14d9cbb950f41d793cc7c86563f0fa3020b0c2b6 assets/ctnhcore/models/block/advanced_bio_reactor_casing.json
@@ -219,6 +219,7 @@ ec358c383981d29af5d3158a9c9b204d9d05fda5 assets/ctnhcore/models/item/hyper_plasm
 5152993b12d9bdd7bfa0d6bf0fb49effcf13579f assets/ctnhcore/models/item/infinity_coil_block.json
 3729e8cc57151c58b8743471180b52a7386c7ce2 assets/ctnhcore/models/item/mana_steel_casing.json
 8f1937a9fabe3e3a2b9d4e5972eb877253521cc2 assets/ctnhcore/models/item/mana_steel_gearbox_casing.json
+5e9471a4b0c0b80406c42e40dea8375b4db00c2a assets/ctnhcore/models/item/me_advanced_terminal.json
 619f146fbb5a84ddcc8e1887d8cbe331e8986356 assets/ctnhcore/models/item/modular_dyson_swarm_tier1.json
 1103a869ebc77e039f5c2cc051be9a9689dd8179 assets/ctnhcore/models/item/modular_dyson_swarm_tier2.json
 47698d8c3abe098a18541f9d40e22c47e0efee58 assets/ctnhcore/models/item/naquadah_alloy_casing_block.json
