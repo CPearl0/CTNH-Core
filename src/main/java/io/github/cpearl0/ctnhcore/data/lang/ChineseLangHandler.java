@@ -247,6 +247,7 @@ public class ChineseLangHandler {
         provider.add("gtceu.nuclear_reactor", "核能反应");
         provider.add("gtceu.hot_coolant_turbine", "热冷却液涡轮");
         provider.add("gtceu.mana_condenser", "魔力凝集");
+        provider.add("gtceu.quasar_create","类星体创生");
         provider.add("gtceu.differential_centrifuge", "差速离心");
         provider.add("gtceu.ultrasonication", "超声破碎");
         provider.add("gtceu.quasar_create","类星体创生");
