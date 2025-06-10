@@ -529,6 +529,7 @@
   "ctnh.zenith_waring": "Warning: The consumption of Source Matter is unrelated to the number of items you input. Even without parallelism, your Zenith Source Matter will be deducted. After reaching the maximum parallelism, Zenith Source Matter will continue to be consumed, but the consumption rate will be fixed at 60.",
   "ctnhcore.machine.high_performance_computer.tooltip.0": "§3Fetal OVERCLOCKING?",
   "ctnhcore.machine.high_performance_computer.tooltip.1": "§rProvider %d computation when energy is sufficient.",
+  "ctnhcore.recipe_logic.insufficient_cwut": "Insufficient Computation",
   "ctnhcore.src.sacrifice": "Sacrifices: %s",
   "ctnhcore.src.sacrifice_empty": "No sacrifices found",
   "ctnhcore.src.sacrifice_locked": "Sacrifice LOCKED",
