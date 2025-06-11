@@ -70,6 +70,26 @@ public class MEAdvancedTerminalItem extends ComponentItem {
     }
 
     @Nullable
+    public  IWirelessAccessPoint getAccessPoint(ItemStack item, Level level) {
+        var linkedPos = getLinkedPosition(item);
+        if (linkedPos == null) {
+
+            return null;
+        }
+
+        var linkedLevel = level.getServer().getLevel(linkedPos.dimension());
+        if (linkedLevel == null) {
+            return null;
+        }
+
+        var be = Platform.getTickingBlockEntity(linkedLevel, linkedPos.pos());
+        if (!(be instanceof IWirelessAccessPoint accessPoint)) {
+            return null;
+        }
+        else return accessPoint;
+    }
+
+    @Nullable
     public GlobalPos getLinkedPosition(ItemStack stack) {
         if (!stack.hasTag() || !stack.getTag().contains(TAG_ACCESS_POINT_POS)) return null;
 
