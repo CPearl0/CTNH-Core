@@ -41,4 +41,3 @@ jobs:
         name: mod-artifacts
         path: |
           build/libs/*.jar
-          build/reports/**
