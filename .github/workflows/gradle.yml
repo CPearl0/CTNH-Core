@@ -1,0 +1,55 @@
+name: CTNHCore Build
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'  # 根据你的Mod需求调整Java版本
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Cache Gradle packages
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+    
+    - name: Build with Gradle
+      run: ./gradlew build --info
+
+    - name: Get workflow timestamp
+      id: timestamp
+      run: echo "TIMESTAMP=$(TZ='Asia/Shanghai' date +'%Y%m%d-%H-%M')" >> $GITHUB_ENV
+
+    - name: Rename JAR
+      run: |
+        cd build/libs
+        for f in *.jar; do
+          mv "$f" "${f%.jar}-SNAPSHOT-$TIMESTAMP.jar"
+        done
+      shell: bash
+      
+    - name: Upload JAR file
+      uses: actions/upload-artifact@v4
+      with:
+        name: CTNH-Core
+        path: build/libs/*.jar
+        compression-level: 0
