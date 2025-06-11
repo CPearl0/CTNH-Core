@@ -37,13 +37,13 @@ jobs:
 
     - name: Get workflow timestamp
       id: timestamp
-      run: echo "TIMESTAMP=$(date +'%Y%m%d-%H%M')" >> $GITHUB_ENV
+      run: echo "TIMESTAMP=$(TZ='Asia/Shanghai' date +'%Y%m%d-%H-%M')" >> $GITHUB_ENV
 
     - name: Rename JAR
       run: |
         cd build/libs
         for f in *.jar; do
-          mv "$f" "${f%.jar}-$TIMESTAMP.jar"
+          mv "$f" "${f%.jar}-SNAPSHOT-$TIMESTAMP.jar"
         done
       shell: bash
       
