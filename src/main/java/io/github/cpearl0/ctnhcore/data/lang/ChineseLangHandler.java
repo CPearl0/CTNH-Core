@@ -422,6 +422,7 @@ public class ChineseLangHandler {
         provider.add("mana_generator_turbine_tier4", "神奇的能量守恒");
         provider.add("ctnh.mana_generator_turbine_tier4.basic_power", "§e基础产能功率：§r4096 EU/t");
         provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§cZPM§r");
+        provider.add("ctnh.tooltips.simplecomputationmachine","执行大于电压等级HV的配方时,需要2^(配方等级-HV)CWU/t算力");
         
         provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，魔力消耗量x0.8，每5秒符文消耗概率：0.2\n  二级符文：发电量x2。4，魔力消耗量x1.2，每5秒符文消耗概率：0.1\n  三级符文：发电量x3，魔力消耗量x0.8，每5秒符文消耗概率：0.05\n   四级符文：发电量x4， 魔力消耗量x0.6，每5秒符文消耗概率：0.025\n  五级符文： 发电量x5, 魔力消耗量x0.3， 每5秒符文消耗概率：0.02\n  §5类星体符文§r: 发电量*999, 消耗量*999，§c在被吞噬的星辰中绽放最终的光芒§r");
         provider.add("ctnh.machine.super_ebf.tooltip1", "所有配方耗时减半");
@@ -979,6 +980,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.CASING_SHIELDED_REACTOR, "覆层核反应堆外壳");
         provider.addBlock(CTNHBlocks.SUPERCOOLED_BLOCK,"超级冷冻机械线圈");
         provider.addBlock(CTNHBlocks.HYPER_PLASMA_TURBINE_ROTOR,"超極等离子涡轮转子");
+        provider.addBlock(CTNHBlocks.NEUTRONIUM_REINFORCED_TURBINE_CASING,"中子素强化涡轮外壳");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");

@@ -235,7 +235,7 @@ public class CTNHMachines {
                             .workableTieredHullRenderer(CTNHCore.id("block/machines/" + name))
                             .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
                                     tankScalingFunction.apply(tier), true))
-                            .tooltips(Component.translatable("gtceu.tooltips.simplecomputationmachine"))
+                            .tooltips(Component.translatable("ctnh.tooltips.simplecomputationmachine"))
                             .register();
                 },
                 tiers);
