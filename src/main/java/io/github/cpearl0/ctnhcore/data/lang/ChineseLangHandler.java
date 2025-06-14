@@ -277,6 +277,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.photovoltaic_power_station2", "产能功率：%s/%s EU/t");
         provider.add("info.ctnhcore.network_machine", "发电网络机器数：%d");
         provider.add("info.ctnhcore.network_machine_efficiency", "发电效率：%d");
+        provider.add("info.ctnhcore.network_dirty", "网络将在%d秒后重建");
         provider.add("ctnh.multiblock.slaughter_house.mobcount", "怪物种类：%d (%s)");
         provider.add("ctnh.stress_output", "产出应力：%ssu");
         provider.add("ctnh.stress_input", "输入应力：%ssu");
@@ -423,7 +424,8 @@ public class ChineseLangHandler {
         provider.add("mana_generator_turbine_tier4", "神奇的能量守恒");
         provider.add("ctnh.mana_generator_turbine_tier4.basic_power", "§e基础产能功率：§r4096 EU/t");
         provider.add("ctnh.mana_generator_turbine_tier4.restriction", "转子支架等级不能超过§cZPM§r");
-        
+        provider.add("ctnh.tooltips.simplecomputationmachine","执行大于电压等级HV的配方时,需要2^(配方等级-HV)CWU/t算力");
+
         provider.add("ctnh.mana_generator_turbine_rune", "在机器内放入符文可以提升发电效率：\n  一级符文：发电量x1.5，魔力消耗量x0.8，每5秒符文消耗概率：0.2\n  二级符文：发电量x2。4，魔力消耗量x1.2，每5秒符文消耗概率：0.1\n  三级符文：发电量x3，魔力消耗量x0.8，每5秒符文消耗概率：0.05\n   四级符文：发电量x4， 魔力消耗量x0.6，每5秒符文消耗概率：0.025\n  五级符文： 发电量x5, 魔力消耗量x0.3， 每5秒符文消耗概率：0.02\n  §5类星体符文§r: 发电量*999, 消耗量*999，§c在被吞噬的星辰中绽放最终的光芒§r");
         provider.add("ctnh.machine.super_ebf.tooltip1", "所有配方耗时减半");
         provider.add("ctnh.mega_lcr.recipe_type","化学反应釜 / 大型化学反应釜");
@@ -826,6 +828,18 @@ public class ChineseLangHandler {
         provider.add("zenith_extruder.1","允许使用§5天顶灵压塑形§r，其以每个形态1mb§5天顶源质§5r的代价来一次性塑造大部分锭的各种形态");
         provider.add("zenith_extruder.2","允许塑形的形态包括：§7板，杆，小型齿轮，齿轮，转子，环，螺栓，§4不允许塑形南瓜派！");
 
+        provider.add("ctnh.multiblock.wind_array.tooltip0", "§7§o风力狼群:真正的自然之力");
+        provider.add("ctnh.multiblock.wind_array.tooltip1", "§8---------------§a基础数据§8-----------------");
+        provider.add("ctnh.multiblock.wind_array.tooltip2", "§f- 基础发电功率: §e%d EU/t  §7(地球)");
+        provider.add("ctnh.multiblock.wind_array.tooltip3", "§f- 天气风力增益: §e雨天x2,雷雨x4");
+        provider.add("ctnh.multiblock.wind_array.tooltip4", "§f- 高度增益: §e Clamp(Y-64, 0, 256-64) / (256-64)");
+        provider.add("ctnh.multiblock.wind_array.tooltip5", "§f- 网络增益: §e 0.3*[log2(网络大小)]");
+        provider.add("ctnh.multiblock.wind_array.tooltip6", "§f增益乘算得到发电效率");
+        provider.add("ctnh.multiblock.wind_array.tooltip7", "§f需要§e%d mB/s§f 润滑油以维护机器运行");
+        provider.add("ctnh.multiblock.wind_array.tooltip8", "§8---------------§a风力网络§8-----------------");
+        provider.add("ctnh.multiblock.wind_array.tooltip9", "§f所有结构对齐且间距<=1的风力发电机阵列会组成风力网络");
+        provider.add("ctnh.multiblock.wind_array.tooltip10", "§f润滑油会从风力网络中抽取.");
+        provider.add("ctnh.multiblock.wind_array.tooltip11", "§5顺应风力网络的工作规律,以抵挡自然之力的摧残");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -981,6 +995,7 @@ public class ChineseLangHandler {
         provider.addBlock(CTNHBlocks.CASING_SHIELDED_REACTOR, "覆层核反应堆外壳");
         provider.addBlock(CTNHBlocks.SUPERCOOLED_BLOCK,"超级冷冻机械线圈");
         provider.addBlock(CTNHBlocks.HYPER_PLASMA_TURBINE_ROTOR,"超極等离子涡轮转子");
+        provider.addBlock(CTNHBlocks.NEUTRONIUM_REINFORCED_TURBINE_CASING,"中子素强化涡轮外壳");
         provider.add(CTNHMultiblockMachines.UNDERFLOOR_HEATING_SYSTEM.getBlock(), "地暖");
         provider.add(CTNHMultiblockMachines.ASTRONOMICAL_OBSERVATORY.getBlock(), "天文台");
         provider.add(CTNHMultiblockMachines.PHOTOVOLTAIC_POWER_STATION_ENERGETIC.getBlock(), "充能光伏发电站");

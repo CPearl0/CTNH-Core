@@ -19,6 +19,7 @@ import io.github.cpearl0.ctnhcore.common.machine.trait.MultiblockComputationLogi
 import io.github.cpearl0.ctnhcore.client.renderer.utils.RenderUtils;
 import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
 import io.github.cpearl0.ctnhcore.registry.CTNHMultiblockMachines;
+import io.github.cpearl0.ctnhcore.utils.MathUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -191,12 +192,8 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine impl
             super(machine);
         }
 
-        public static int fastLog2(long n) {
-            return ((Long.SIZE - 1) - Long.numberOfLeadingZeros((long) n));
-        }
-
         public static int fastLogBased2(long n, long m) {
-            return fastLog2(n / m);
+            return MathUtils.fastLog2(n / m);
         }
 
         private boolean isExploding = false;

@@ -1,186 +1,308 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
-import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
+import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.block.MetaMachineBlock;
+import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
+import com.gregtechceu.gtceu.api.capability.IWorkable;
+import com.gregtechceu.gtceu.api.capability.forge.GTCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.gui.GuiTextures;
+import com.gregtechceu.gtceu.api.gui.fancy.FancyMachineUIWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.machine.MetaMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
-import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
-import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction;
+import com.gregtechceu.gtceu.api.machine.TickableSubscription;
+import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
+import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
+import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
+import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
+import com.lowdragmc.lowdraglib.gui.widget.*;
+import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MachineUtils;
+import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.IProviableNetHandlerMachine;
+import io.github.cpearl0.ctnhcore.common.machine.trait.providable_net.ProvidableNetHandler;
+import io.github.cpearl0.ctnhcore.utils.MathUtils;
 import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.TickTask;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-public class WindPowerArrayMachine extends WorkableElectricMultiblockMachine {
-    public static Map<BlockPos,WindPowerArrayMachine> MachineNet = new HashMap<>();
-    public static List<List<WindPowerArrayMachine>> NetGroup = new ArrayList<>();
-    public static int Threshold = 16;
-    public double efficiency = 1;
-    public int altitude;
-    public int NetworkSize = 1;
-    @Getter
-    private int Multi;
-    @Getter
-    private int tier;
-    public WindPowerArrayMachine(IMachineBlockEntity holder,int tier){
+public class WindPowerArrayMachine extends MultiblockControllerMachine implements IProviableNetHandlerMachine,IFancyUIMachine, IDisplayUIMachine, IWorkable {
+    public static final Material fluidMaterial = GTMaterials.Lubricant;
+    private EnergyContainerList energyContainer;
+    private List<FluidHatchPartMachine> fluidParts;
+
+    long basicRate;
+    final int fluidAmount;
+    public WindPowerArrayMachine(IMachineBlockEntity holder,int tier) {
         super(holder);
-        altitude = getPos().getY();
-        this.tier = tier;
-        Multi = (int) Math.pow(4,tier - 1);
-    }
-    public double NetConsume(){
-        return Multi*(1+0.25*(NetworkSize));
-    }
-    public static ModifierFunction WindPowerArrayRecipeModifier(MetaMachine machine, GTRecipe recipe) {
-        if (machine instanceof WindPowerArrayMachine wmachine) {
-            int realAltitude = Mth.clamp(wmachine.altitude,64,256);
-            return ModifierFunction.builder()
-                    .eutMultiplier(wmachine.efficiency * ((double) (realAltitude + 128) / 192) * wmachine.Multi)
-                    .inputModifier(ContentModifier.multiplier(wmachine.NetConsume()))
-                    .outputModifier(ContentModifier.multiplier(wmachine.Multi))
-                    .build();
-        }
-        return ModifierFunction.NULL;
+        this.basicRate = GTValues.V[tier];
+        this.fluidAmount = tier;
     }
 
-    public static void clearNet() {
-        if (MachineNet != null) {
-            MachineNet = MachineNet.entrySet().stream().filter(entry -> entry.getValue() != null && entry.getValue().isActive()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    ////////////////////
+    /// 生命周期      ///
+    /// ///////////////
+    @Nullable
+    protected TickableSubscription tickSubs;
+    protected void updateTickSubscription() {
+        if (isFormed && isWorkingEnabled) {
+            tickSubs = subscribeServerTick(tickSubs, this::tick);
+        } else if (tickSubs != null) {
+            tickSubs.unsubscribe();
+            tickSubs = null;
         }
     }
-
-    public static double distance(BlockPos p1, BlockPos p2) {
-        return Math.sqrt(Math.pow(p1.getX() - p2.getX(), 2) + Math.pow(p1.getY() - p2.getY(), 2) + Math.pow(p1.getZ() - p2.getZ(), 2));
-    }
-
-    public static int dfs(int node, boolean[] visited, List<List<Integer>> graph) {
-        visited[node] = true;
-        int size = 1;
-
-        for (int neighbor : graph.get(node)) {
-            if (!visited[neighbor]) {
-                size += dfs(neighbor, visited, graph);
-            }
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if (this.isFormed() && getLevel() instanceof ServerLevel serverLevel) {
+            serverLevel.getServer().tell(new TickTask(0, this::updateTickSubscription));
         }
-
-        return size;
     }
 
     @Override
-    public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        if (!MachineNet.containsKey(getPos())) {
-            MachineNet.put(getPos(),this);
+    public void onUnload() {
+        super.onUnload();
+        isActive = false;
+        fluidParts = null;
+        energyContainer = null;
+        if (tickSubs != null) {
+            tickSubs.unsubscribe();
+            tickSubs = null;
         }
-        else {
-            if (!MachineNet.get(getPos()).equals(this)){
-                MachineNet.replace(getPos(),this);
-            }
+        if(getLevel() instanceof ServerLevel)
+            quitNet();
+    }
+    @Override
+    public void onStructureInvalid() {
+        super.onStructureInvalid();
+        if (tickSubs != null) {
+            tickSubs.unsubscribe();
+            tickSubs = null;
         }
-        for(var machineNet: NetGroup) {
-            if (machineNet.contains(this)) {
-                NetworkSize = machineNet.size();
-            }
+        isActive = false;
+        if(fluidParts!=null){
+            fluidParts.clear();
+            fluidParts = null;
         }
-        if(recipe.data.getInt("consume")==0) {
-            efficiency = Math.sqrt(NetworkSize) * 0.4 + 1;
-        }
-        else{
-            efficiency=NetworkSize*0.1+1;
-        }
-        return super.beforeWorking(recipe);
+        energyContainer = null;
+        if(getLevel() instanceof ServerLevel)
+            quitNet();
     }
 
     @Override
-    public boolean onWorking() {
-        if (getOffsetTimer() % 20 == 0) {
-            for(var machineNet: NetGroup) {
-                if (machineNet.contains(this)) {
-                    NetworkSize = machineNet.size();
+    public void onStructureFormed() {
+        super.onStructureFormed();
+        updateBasicRate();
+        updateEnergyContainer();
+        updateFluidParts();
+        updateEfficiencyPara();
+
+        if (getLevel() instanceof ServerLevel serverLevel) {
+            joinNet();
+            serverLevel.getServer().tell(new TickTask(0, this::updateTickSubscription));
+        }
+    }
+
+    public void updateEnergyContainer() {
+        List<IEnergyContainer> containers = new ArrayList<>();
+
+        for (IMultiPart part : getParts())
+            part.self().holder.self()
+                    .getCapability(GTCapability.CAPABILITY_ENERGY_CONTAINER)
+                    .ifPresent(containers::add);
+
+        energyContainer = new EnergyContainerList(containers);
+    }
+    public void updateFluidParts() {
+        fluidParts = getParts().stream()
+               .filter(part -> part instanceof FluidHatchPartMachine fpm
+                       && fpm.tank.getCapabilityIO() == IO.IN)
+               .map(part -> (FluidHatchPartMachine) part)
+               .collect(Collectors.toList());
+    }
+    public static HashMap<String,Integer> dimentionRate = new HashMap<>();
+    static{
+        dimentionRate.put("minecraft:overworld",1);
+        dimentionRate.put("minecraft:nether",2);
+        dimentionRate.put("aether:the_aether",2);
+        dimentionRate.put("minecraft:the_end",4);
+        dimentionRate.put("ad_astra:mars",0);
+        dimentionRate.put("ad_astra:venus",16);
+        dimentionRate.put("ad_astra:mercury",0);
+    }
+    public void updateBasicRate() {
+        assert getLevel() != null;
+        var dimension = getLevel().dimension().location().toString();
+
+        basicRate *= (long) dimentionRate.getOrDefault(dimension, 1);
+
+
+    }
+
+    /// ////////////////////////////////
+    ////////  风电网络           ////////
+    //////// ///////////////////////
+    @Override
+    @SuppressWarnings("DataFlowIssue")
+    public List<IProviableNetHandlerMachine> getNeighbor() {
+        // BBB
+        // BBB
+        // B@B
+        List<IProviableNetHandlerMachine> ret = new ArrayList<>();
+        BlockPos center = getPos().relative(getFrontFacing().getOpposite());
+        for(Direction direction : Direction.values()) {
+            int ibegin = 2, iend = 4;
+            if(!direction.getAxis().isHorizontal()){
+                ibegin = 5;
+                iend = 6;
+            }
+            for (int i = ibegin; i <= iend; i++) {
+                BlockPos targetCenter = center.relative(direction, i);
+                for (Direction neighbourFacing : Direction.values()) {
+                    BlockPos targetPos = targetCenter.relative(neighbourFacing);
+                    if (getLevel().getBlockState(targetPos).getBlock() instanceof MetaMachineBlock machineBlock
+                            && machineBlock.getMachine(getLevel(), targetPos) instanceof WindPowerArrayMachine target
+                            && target.isFormed()
+                            && target.getFrontFacing() == neighbourFacing)
+                        ret.add(target);
                 }
             }
-            efficiency = Math.sqrt(NetworkSize) * 0.2 + 1;
         }
-        return super.onWorking();
+        return ret;
+    }
+
+    @Getter
+    @Nonnull
+    ProvidableNetHandler<WindPowerArrayMachine> netHandler = new ProvidableNetHandler<WindPowerArrayMachine>(this) {};
+
+    @Override
+    public boolean canProvide() {
+        return fluidParts!=null && !fluidParts.isEmpty();
     }
 
     @Override
-    public void afterWorking() {
-        MachineNet.remove(getPos(),this);
-        super.afterWorking();
+    public int getStorage() {
+        assert canProvide();
+        return fluidParts!=null ? MachineUtils.getFluidStorageBrute(fluidMaterial.getFluid(),fluidParts) : 0;
+    }
+
+    @Override
+    public int checkAndConsume(int amount) {
+        assert canProvide();
+        return fluidParts!=null ? MachineUtils.inputFluidBrute(fluidMaterial.getFluid(amount),fluidParts) : amount;
+    }
+    void joinNet(){
+        netHandler.join();
+    }
+    void quitNet() {
+        netHandler.invalidate();
+    }
+
+    /// ///////////////////////////////
+    /// /        运行逻辑/       ////
+    /// //////////////////////////
+    boolean needFluid = true;
+    float altitude_boost = 1.0f;
+    private float getEfficiency(){
+        assert getLevel() != null;
+        int weather_boost = 1;
+        if(getLevel().isRaining())
+            weather_boost = 2;
+        if(getLevel().isThundering())
+            weather_boost = 4;
+        return (1+0.3f*MathUtils.fastLog2(netHandler.getNetSize()))
+                        * weather_boost
+                        * altitude_boost;
+    }
+    private void updateEfficiencyPara(){
+        altitude_boost = 1.0f + (Mth.clamp(getPos().getY(), 64, 256)-64) / (256f-64f);
+    }
+    @SuppressWarnings("DataFlowIssue")
+    public void tick(){
+        if(!isWorkingEnabled || !netHandler.ensureNetInfo())return;
+        long time = getLevel().getGameTime();
+        if(time%20==0) {
+            isActive = !needFluid || netHandler.checkAndConsume(fluidAmount);
+            needFluid = true;
+        }
+        if(isActive) {
+            needFluid = energyContainer.addEnergy((long) (basicRate * getEfficiency())) != 0;
+        }
     }
 
     @Override
     public void addDisplayText(List<Component> textList) {
-        super.addDisplayText(textList);
-        if (isFormed) {
-            textList.add(Component.translatable("info.ctnhcore.network_machine", NetworkSize));
-            textList.add(Component.translatable("info.ctnhcore.network_machine_efficiency", String.format("%.1f",efficiency)));
-        }
-    }
-
-    public static void groupByNetwork() {
-        List<List<WindPowerArrayMachine>> groups = new ArrayList<>();
-        Map<BlockPos, WindPowerArrayMachine> nodeMap = new HashMap<>(MachineNet); // 复制 MachineNet，避免修改原数据
-        List<BlockPos> positions = new ArrayList<>(nodeMap.keySet());
-        int n = positions.size();
-
-        // 构造邻接表
-        List<List<Integer>> graph = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            graph.add(new ArrayList<>());
-        }
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                if (distance(positions.get(i), positions.get(j)) < Threshold) {
-                    graph.get(i).add(j);
-                    graph.get(j).add(i);
-                }
-            }
-        }
-
-        // 记录访问状态
-        boolean[] visited = new boolean[n];
-
-        // 遍历所有节点，找到连通子图
-        for (int i = 0; i < n; i++) {
-            if (!visited[i]) {
-                List<WindPowerArrayMachine> group = new ArrayList<>();
-                dfsGroup(i, visited, graph, positions, nodeMap, group);
-                groups.add(group);
-            }
-        }
-
-        NetGroup = groups;
-    }
-
-    private static void dfsGroup(
-            int node,
-            boolean[] visited,
-            List<List<Integer>> graph,
-            List<BlockPos> positions,
-            Map<BlockPos, WindPowerArrayMachine> nodeMap,
-            List<WindPowerArrayMachine> group
-    ) {
-        visited[node] = true;
-        BlockPos position = positions.get(node);
-        group.add(nodeMap.get(position));
-
-        for (int neighbor : graph.get(node)) {
-            if (!visited[neighbor]) {
-                dfsGroup(neighbor, visited, graph, positions, nodeMap, group);
-            }
+        if (isFormed && getLevel() instanceof ServerLevel) {
+            MultiblockDisplayText.builder(textList, isFormed())
+                    .setWorkingStatus(isWorkingEnabled,isActive)
+                    .addWorkingStatusLine()
+                    .addCurrentEnergyProductionLine(needFluid?(long) (basicRate * getEfficiency()):0)
+                    .addEnergyProductionLine(basicRate,(long) (basicRate * getEfficiency()));
+            textList.add(Component.translatable("info.ctnhcore.network_machine", netHandler.getNetSize()));
+            textList.add(Component.translatable("info.ctnhcore.network_machine_efficiency", String.format("%.1f",getEfficiency())));
+            if(netHandler.getDeadTime()!=-1)
+                textList.add(Component.translatable("info.ctnhcore.network_dirty", (netHandler.getDeadTime() - getLevel().getGameTime())/ 20 ));
         }
     }
     @Override
-    public boolean dampingWhenWaiting() {
-        return false;
+    @SuppressWarnings("DataFlowIssue")
+    public Widget createUIWidget() {
+        var group = new WidgetGroup(0, 0, 182 + 8, 117 + 8);
+        group.addWidget(new DraggableScrollableWidgetGroup(4, 4, 182, 117).setBackground(getScreenTexture())
+                .addWidget(new LabelWidget(4, 5, self().getBlockState().getBlock().getDescriptionId()))
+                .addWidget(new ComponentPanelWidget(4, 17, this::addDisplayText)
+                        .textSupplier(this.getLevel().isClientSide ? null : this::addDisplayText)
+                        .setMaxWidthLimit(200)
+                        .clickHandler(this::handleDisplayClick)));
+        group.setBackground(GuiTextures.BACKGROUND_INVERSE);
+        return group;
     }
+    @Override
+    public ModularUI createUI(Player entityPlayer) {
+        return new ModularUI(198, 208, this, entityPlayer).widget(new FancyMachineUIWidget(this, 198, 208));
+    }
+
+    @Override
+    @SuppressWarnings("DataFlowIssue")
+    public int getProgress() {
+        return isFormed()?(int) (getLevel().getGameTime() % 20):0;
+    }
+
+    @Override
+    public int getMaxProgress() {
+        return isFormed()?20:0;
+    }
+
+    @DescSynced
+    private boolean isActive = false;
+    @Override
+    public boolean isActive(){
+        return isActive && needFluid;
+    }
+
+    @Getter @Setter
+    @DescSynced
+    @Persisted
+    boolean isWorkingEnabled = true;
+
 }
