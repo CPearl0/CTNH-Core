@@ -3813,32 +3813,32 @@ public class CTNHMultiblockMachines {
                     .build())
             .workableCasingRenderer(CTNHCore.id("block/casings/osmiridium_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
             .register();
-    public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE_CT = REGISTRATE.multiblock("component_assembly_line_ct", Hybrid_Power_Mixer::new)
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeModifiers(Hybrid_Power_Mixer::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
-            .tooltips(Component.translatable("ctnh.hybrid_mixer.0"),
-                    Component.translatable("ctnh.hybrid_mixer.1"),
-                    Component.translatable("ctnh.hybrid_mixer.2"),
-                    Component.translatable("ctnh.hybrid_mixer.3"),
-                    Component.translatable("ctnh.hybrid_mixer.4")
-            )
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("ABBBBBBBBBA", "ACCCCCCCCCA", "@AAAAAAAAAA", "A#########A")
-                    .aisle("ADDDDDDDDDA", "B#########B", "AEEEEEEEEEA", "AAAAAAAAAAA")
-                    .aisle("ABBBBBBBBBA", "ACCCCCCCCCA", "AAAAAAAAAAA", "A#########A")
-                    .where("A", Predicates.blocks(AllBlocks.RAILWAY_CASING.get())
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.abilities(CTPPPartAbility.INPUT_KINETIC)))
-                    .where("B", Predicates.blocks(CASING_OSMIRIDIUM.get()))
-                    .where("C", Predicates.blocks(FUSION_GLASS.get()))
-                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
-                    .where("#", Predicates.any())
-                    .where("D", Predicates.blocks(AllBlocks.RAILWAY_CASING.get()))
-                    .where("E", Predicates.blocks(AllBlocks.DEPLOYER.get()))
-                    .build())
-
-            .workableCasingRenderer(CTPP.id("block/create/railway_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
-            .register();
+//    public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE_CT = REGISTRATE.multiblock("component_assembly_line_ct", Hybrid_Power_Mixer::new)
+//            .rotationState(RotationState.NON_Y_AXIS)
+//            .recipeModifiers(Hybrid_Power_Mixer::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+//            .tooltips(Component.translatable("ctnh.hybrid_mixer.0"),
+//                    Component.translatable("ctnh.hybrid_mixer.1"),
+//                    Component.translatable("ctnh.hybrid_mixer.2"),
+//                    Component.translatable("ctnh.hybrid_mixer.3"),
+//                    Component.translatable("ctnh.hybrid_mixer.4")
+//            )
+//            .pattern(definition -> FactoryBlockPattern.start()
+//                    .aisle("ABBBBBBBBBA", "ACCCCCCCCCA", "@AAAAAAAAAA", "A#########A")
+//                    .aisle("ADDDDDDDDDA", "B#########B", "AEEEEEEEEEA", "AAAAAAAAAAA")
+//                    .aisle("ABBBBBBBBBA", "ACCCCCCCCCA", "AAAAAAAAAAA", "A#########A")
+//                    .where("A", Predicates.blocks(AllBlocks.RAILWAY_CASING.get())
+//                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+//                            .or(Predicates.abilities(CTPPPartAbility.INPUT_KINETIC)))
+//                    .where("B", Predicates.blocks(CASING_OSMIRIDIUM.get()))
+//                    .where("C", Predicates.blocks(FUSION_GLASS.get()))
+//                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+//                    .where("#", Predicates.any())
+//                    .where("D", Predicates.blocks(AllBlocks.RAILWAY_CASING.get()))
+//                    .where("E", Predicates.blocks(AllBlocks.DEPLOYER.get()))
+//                    .build())
+//
+//            .workableCasingRenderer(CTPP.id("block/create/railway_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+//            .register();
     public final static MultiblockMachineDefinition COMBINED_VAPOR_DEPOSITION_FACILITY = REGISTRATE.multiblock("combined_vapor_deposition_facility", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.PVB_RECIPE, CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION)

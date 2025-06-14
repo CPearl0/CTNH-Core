@@ -166,6 +166,20 @@ repositories {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
     }
+    maven {
+        url "https://maven.latvian.dev/releases"
+        content {
+            includeGroup "dev.latvian.mods"
+            includeGroup "dev.latvian.apps"
+        }
+    }
+
+    maven {
+        url 'https://jitpack.io'
+        content {
+            includeGroup "com.github.rtyley"
+        }
+    }
  }
 
 dependencies {
@@ -230,7 +244,7 @@ dependencies {
     // Blood Magic
     implementation fg.deobf("maven.modrinth:blood-magic:${bloodmagic_version}")
 
-    implementation fg.deobf("curse.maven:gtmthings-1104310:6015409")
+    implementation fg.deobf("curse.maven:gtmthings-1104310:6539394")
 
     implementation fg.deobf("curse.maven:mythicbotany-400058:5101899")
     annotationProcessor fg.deobf("org.moddingx:LibX:${minecraft_version}-${libx_version}")

@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry;
 
+import appeng.core.AEConfig;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -124,6 +125,21 @@ public class CTNHItems {
                 list.add(Component.translatable("ctnh.testing_terminal.tooltip.2"));
             })))
             .register();
+    public static ItemEntry<MEAdvancedTerminalItem> ME_ADVANCED_TERMINAL = REGISTRATE
+            .item("me_advanced_terminal",
+                    MEAdvancedTerminalItem::new
+            )
+            .lang("Me Advanced Terminal")
+            .properties(p -> p.stacksTo(1))
+            .onRegister(attach(new MEAdvancedTerminalBehavior()))
+//            .model((ctx, prov) -> prov.generated(ctx))
+            .onRegister(attach(new TooltipBehavior(list -> {
+                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.1").withStyle(ChatFormatting.GRAY));
+                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.2").withStyle(ChatFormatting.GRAY));
+                list.add(Component.translatable("ctnh.me_advanced_terminal.tooltip.3").withStyle(ChatFormatting.GRAY));
+            })))
+            .register();
+
     public static ItemEntry<AstronomyCircuitItem> ASTRONOMY_CIRCUIT_1 = REGISTRATE
             .item("astronomy_circuit_1", properties -> new AstronomyCircuitItem(properties, 1, GREAT_ASTRONOMY_CIRCUIT_1))
             .lang("Astronomy Circuit I")
