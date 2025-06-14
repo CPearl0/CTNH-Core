@@ -223,7 +223,6 @@ public class CTNHMultiblockMachines {
     public static MultiblockMachineDefinition registerPhotovoltaicPowerStation(String tier, int basicRate, BlockEntry<?> photovoltaicBlock) {
         return REGISTRATE.multiblock("photovoltaic_power_station_" + tier, holder -> new PhotovoltaicPowerStationMachine(holder, basicRate))
                 .rotationState(RotationState.NON_Y_AXIS)
-                .recipeType(CTNHRecipeTypes.PHOTOVOLTAIC_POWER)
                 .appearanceBlock(CTNHBlocks.CASING_REFLECT_LIGHT)
                 .pattern(definition -> FactoryBlockPattern.start()
                         .aisle("AAAAAAA")
@@ -234,7 +233,8 @@ public class CTNHMultiblockMachines {
                         .aisle("ABBBBBA")
                         .aisle("AAA@AAA")
                         .where("A", Predicates.blocks(CTNHBlocks.CASING_REFLECT_LIGHT.get())
-                                .or(Predicates.autoAbilities(definition.getRecipeTypes())))
+                                .or(Predicates.abilities(PartAbility.OUTPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2))
+                                .or(Predicates.abilities(PartAbility.IMPORT_ITEMS)))
                         .where("B", Predicates.blocks(photovoltaicBlock.get()))
                         .where("@", Predicates.controller(Predicates.blocks(definition.get())))
                         .build())
