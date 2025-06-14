@@ -1,12 +1,11 @@
 package io.github.cpearl0.ctnhcore.common.item;
 
-import appeng.api.networking.IGrid;
+import appeng.api.implementations.blockentities.IWirelessAccessPoint;
+import appeng.api.networking.IGridNode;
+import appeng.api.networking.security.IActionHost;
 import com.gregtechceu.gtceu.api.item.component.IInteractionItem;
-import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
-import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
-import com.hepdd.gtmthings.api.pattern.AdvancedBlockPattern;
 import com.hepdd.gtmthings.common.item.AdvancedTerminalBehavior;
-import com.mojang.datafixers.util.Pair;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -15,22 +14,17 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.common.util.NonNullConsumer;
-import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-
-public class MEAdvancedTerminalBehavior extends AdvancedTerminalBehavior implements IInteractionItem
+public class MEAdvancedTerminalBehavior extends AdvancedTerminalBehavior implements IInteractionItem, IActionHost
 {
     private ItemStack itemStack;
-    public static final ThreadLocal<IGrid> GRID_CONTEXT = new ThreadLocal<>();
+    public static final ThreadLocal<IWirelessAccessPoint> ACCESS_POINT_CONTEXT = new ThreadLocal<>();
     public static final ThreadLocal<UseOnContext> USE_ON_CONTEXT = new ThreadLocal<>();
 
     @Override
     public InteractionResultHolder<ItemStack> use(Item item, Level level, Player player, InteractionHand hand) {
-        //System.out.println("111");
         ItemStack is = player.getItemInHand(hand);
         if(player.isShiftKeyDown())
         {
@@ -47,20 +41,21 @@ public class MEAdvancedTerminalBehavior extends AdvancedTerminalBehavior impleme
 
     }
 
+    @Override
+    public InteractionResult useOn(UseOnContext pContext) {
 
-    public @NotNull InteractionResult useOn(UseOnContext pContext) {
-        //System.out.println("222");
         ItemStack is = pContext.getItemInHand();
 
         if(is.getItem() instanceof MEAdvancedTerminalItem terminal
                 && terminal.isUsable(is, pContext.getPlayer()))
         {
-            GRID_CONTEXT.set(terminal.getLinkedGrid(is, pContext.getLevel(), null));
+            ACCESS_POINT_CONTEXT.set(terminal.getAccessPoint(is, pContext.getLevel()));
+            //player.sendSystemMessage(Component.literal("set ACCESS_POINT_CONTEXT"));
             USE_ON_CONTEXT.set(pContext);
-            var result = super.useOn(pContext);
-//            if(result.consumesAction())
-//                terminal.usePower(is, 100);
-            GRID_CONTEXT.remove();
+            //player.sendSystemMessage(Component.literal("set USE_ON_CONTEXT"));
+            InteractionResult result = super.useOn(pContext);
+
+            ACCESS_POINT_CONTEXT.remove();
             USE_ON_CONTEXT.remove();
             return result;
         }
@@ -68,6 +63,10 @@ public class MEAdvancedTerminalBehavior extends AdvancedTerminalBehavior impleme
     }
 
 
+    @Override
+    public @Nullable IGridNode getActionableNode() {
+        return null;
+    }
 }
 
 //class MEBuildHelper extends AdvancedBlockPattern {
