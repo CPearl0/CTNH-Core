@@ -13,6 +13,7 @@ import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
 import io.github.cpearl0.ctnhcore.registry.nuclear.NuclearMaterials;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.jetbrains.annotations.NotNull;
+import oshi.jna.platform.windows.NtDll;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -84,6 +85,7 @@ public class ChineseLangHandler {
         replace(provider, CTNHMaterials.CombustibleIce.getUnlocalizedName(), "可燃冰");
         replace(provider, CTNHMaterials.Livingrock.getUnlocalizedName(), "活石");
         replace(provider, CTNHMaterials.icestone.getUnlocalizedName(), "冰石");
+        replace(provider,CTNHMaterials.COLORFUL_GEM.getUnlocalizedName(), "异彩（无材质版）");
 
         replace(provider, NuclearMaterials.ThoriumHexafluoride.getUnlocalizedName(), "六氟化钍");
         replace(provider, NuclearMaterials.ProtactiniumHexafluoride.getUnlocalizedName(), "六氟化镤");
@@ -819,6 +821,11 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
         provider.add("ctnhcore.recipe_logic.insufficient_cwut","算力不足");
+        provider.add("zenith_machine_sp","§5灵能灯塔屹立不倒！");
+        provider.add("zenith_extruder","配方类型：压膜机/§5天顶灵压塑形");
+        provider.add("zenith_extruder.1","允许使用§5天顶灵压塑形§r，其以每个形态1mb§5天顶源质§5r的代价来一次性塑造大部分锭的各种形态");
+        provider.add("zenith_extruder.2","允许塑形的形态包括：§7板，杆，小型齿轮，齿轮，转子，环，螺栓，§4不允许塑形南瓜派！");
+
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");
@@ -835,6 +842,14 @@ public class ChineseLangHandler {
         for (int tier : GTValues.tiersBetween(ULV, MV)){
             provider.add(CTNHMachines.ROTOR_HOLDER_EXTEND[tier].getBlock(), GTValues.VNF[tier] + "§r转子支架");
         }
+        for(int tier:GTValues.tiersBetween(ZPM,MAX))
+        {
+            provider.add(CTNHMachines.COMPILERMACHINE[tier].getBlock(),GTValues.VNF[tier]+"§r神经拟合仓" );
+        }
+//        for (var definiton : CTNHMachines.HIGH_PERFORMANCE_COMPUTER){
+//            var tier = definiton.getTier();
+//            provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
+//        }
         for (int tier : GTValues.tiersBetween(HV, IV)){
             provider.add(CTNHMachines.HIGH_PERFORMANCE_COMPUTER[tier].getBlock(), GTValues.VNF[tier] + "§r高性能计算机");
         }
@@ -1075,6 +1090,7 @@ public class ChineseLangHandler {
         provider.add(MultiblocksA.SUPER_CENTRIFUGE.getBlock(), "超速离心机");
         provider.add(MultiblocksA.ULTRASONIC_APPARATUS.getBlock(), "超声破碎仪");
         provider.add(CTNHMultiblockMachines.HYBRID_POWER_MIXER.getBlock(),"混合动力搅拌机");
+        provider.add(CTNHMultiblockMachines.ZENITH_EXTRUDER.getBlock(),"§5天顶灵能塑形者");
 
 
 

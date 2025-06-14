@@ -670,6 +670,13 @@ public class CTNHRecipeTypes {
             .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MACERATOR);
+    public static final GTRecipeType ZENITH_EXTRUDER_RECIPES = GTRecipeTypes.register("zenith_extruder", ELECTRIC)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(3, 18, 1, 0)
+            .setSlotOverlay(false, false, GuiTextures.SOLIDIFIER_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.MACERATOR);
+
 
     public static void init() {
         CreateRecipeTypes.init();

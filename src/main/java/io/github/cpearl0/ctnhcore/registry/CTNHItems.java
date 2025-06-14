@@ -166,7 +166,7 @@ public class CTNHItems {
             .lang("pv_drone_prototype")
             .register(); // 确保调用 register() 方法
     public static ItemEntry<IDroneItem>PV_DRONE_TIER1=REGISTRATE
-            .item("photovoltaic_drone_tier1",holder->new IDroneItem(holder,1,8192,64, () -> Items.AIR))
+            .item("photovoltaic_drone_tier1",holder->new IDroneItem(holder,1,8192*2,64, () -> Items.AIR))
             .lang("pv_drone_tier1")
             .register(); // 确保调用 register() 方法
     public static ItemEntry<IDroneItem>PV_DRONE_TIER2=REGISTRATE

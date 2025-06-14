@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-10T14:04:36.2173594	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
+// 1.20.1	2025-06-12T22:47:07.1412726	Registrate Provider for ctnhcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider, Lang (zh_cn), Lang (zh_cn), Lang (zh_cn)]
 9efa2dcaaaa0ee63297ded8b4093cd857e0f2a66 assets/ctnhcore/blockstates/abyssalalloy_coil_block.json
 2472318a4ef3d41e0f3a7bcd262b594486fb5028 assets/ctnhcore/blockstates/advanced_bio_reactor_casing.json
 7b02265b4325b6d5a42a23c8e7866adfc07bc0ae assets/ctnhcore/blockstates/advanced_hyper_casing.json
@@ -78,9 +78,9 @@ f37e897ef97cb6a5e0cd1aa2213c2e60d6aa3841 assets/ctnhcore/blockstates/vibrant_pho
 55c3cf0fdf5b9b4e569f1f91f3acdc45deb0c80d assets/ctnhcore/blockstates/zenith_casing.json
 f17c7b2d8495b9535bc4c92a544ea0c2bcc5e595 assets/ctnhcore/blockstates/zenith_casing_gearbox.json
 71fb0f01bd60854473495a9b97cef4eac5c59ac2 assets/ctnhcore/blockstates/zenith_eye.json
-b3a35e773c9882e4cce5e1e2b8e017f0baf05c0b assets/ctnhcore/lang/en_ud.json
-ed4ffe5ef834aaf9439b4822f6d6de59a5f53255 assets/ctnhcore/lang/en_us.json
-a67e221af6f665ff882d99f3f8d1d0e378e925a9 assets/ctnhcore/lang/zh_cn.json
+0c42e5e9923bf5107103775e804775b14b32f255 assets/ctnhcore/lang/en_ud.json
+164d026f4bdf5ad26c5613b531630c69a1c49061 assets/ctnhcore/lang/en_us.json
+10014c77995da3e011dbdf5b6ea813d65c7de274 assets/ctnhcore/lang/zh_cn.json
 df65321a1742a74b662d28389e11b0a2406960b1 assets/ctnhcore/models/block/abyssalalloy_coil_block.json
 13db5d9c835eeecee9dc13bee7a130e73a4bc89e assets/ctnhcore/models/block/abyssalalloy_coil_block_active.json
 14d9cbb950f41d793cc7c86563f0fa3020b0c2b6 assets/ctnhcore/models/block/advanced_bio_reactor_casing.json

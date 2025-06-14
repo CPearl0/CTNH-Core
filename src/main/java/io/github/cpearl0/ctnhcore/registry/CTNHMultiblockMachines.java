@@ -4300,6 +4300,51 @@ public class CTNHMultiblockMachines {
             )
             .workableCasingRenderer(CTNHCore.id("block/casings/antifreeze_heatproof_machine_casing"), GTCEu.id("block/multiblock/vacuum_freezer"), false)
             .register();
+    public final static MultiblockMachineDefinition ZENITH_EXTRUDER = REGISTRATE.multiblock("zenith_extruder", holder -> new ZenithMachine(holder, 24, 12, 60, 20))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(GTRecipeTypes.EXTRUDER_RECIPES, CTNHRecipeTypes.ZENITH_EXTRUDER_RECIPES)
+            .appearanceBlock(CTNHBlocks.ZENITH_CASING_BLOCK)
+            .recipeModifiers(ZenithMachine::recipeModifier, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
+            .tooltips(Component.translatable("ctnh.zenith_laser"),
+                    Component.translatable("zenith_machine_sp").withStyle(ChatFormatting.DARK_PURPLE),
+                    Component.translatable("ctnh.super_mana_machine.mana_consume"),
+                    Component.translatable("zenith_extruder"),
+                    Component.translatable("zenith_extruder.1"),
+                    Component.translatable("zenith_extruder.2"),
+                    Component.translatable("ctnh.zenith_machine_tip"),
+                    Component.translatable("ctnh.zenith_waring"),
+                    Component.translatable("ctnh.perfect_overclock"))
+
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("A#BBBBB##", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########")
+                    .aisle("#BBBBBBB#", "##CBDBE##", "##CDFDE##", "##CBDBE##", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "###BBB###")
+                    .aisle("BBBBBBBBB", "#C##G##E#", "#C##F##E#", "#C#####E#", "##CBDBE##", "##CHDHE##", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "###BBB###", "##BDDDB##")
+                    .aisle("BBBBBBBBB", "#B##G##B#", "#D##F##D#", "#B#####B#", "##B###B##", "##B###H##", "###BIB###", "###BIB###", "###BIB###", "###BIB###", "###BIB###", "###BIB###", "###BIB###", "###BIB###", "###BIB###", "##BDDDB##", "#BDJJJDB#")
+                    .aisle("BBBBBBBBB", "#DGGGGGD#", "#FFFGFFF#", "#D##G##D#", "##D#G#D##", "##D#G#D##", "###IGI###", "###IGI###", "###IGI###", "###IGI###", "###IGI###", "###IGI###", "###IGI###", "###IGI###", "###IGI###", "##BDGDB##", "#BDJKJDB#")
+                    .aisle("BBBBBBBBB", "#B##G##B#", "#D##F##D#", "#B#####B#", "##B###B##", "##B###H##", "###BIB###", "###BIB###", "###BIB###", "###BIB###", "###BIB###", "###BIB###", "###BIB###", "###BIB###", "###BIB###", "##BDDDB##", "#BDJJJDB#")
+                    .aisle("BBBBBBBBB", "#L##G##M#", "#L##F##M#", "#L#####M#", "##LBDBM##", "##LHDHM##", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "###BBB###", "##BDDDB##")
+                    .aisle("#BBBBBBB#", "##LBDBM##", "##LDFDM##", "##LBDBM##", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "###BBB###")
+                    .aisle("##BB@BB##", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "#########", "########A")
+                    .where("A", Predicates.any())
+                    .where("#", Predicates.any())
+                    .where("B", Predicates.blocks(ZENITH_CASING_BLOCK.get())
+                            .or(autoAbilities(definition.getRecipeTypes())))
+                    .where("C", Predicates.blocks(ELEMENTIUM_CASING.get()))
+                    .where("D", Predicates.blocks(CASING_STRESS_PROOF.get()))
+                    .where("E", Predicates.blocks(MANA_STEEL_CASING.get()))
+                    .where("F", Predicates.frames(GTMaterials.Naquadah))
+                    .where("G", Predicates.blocks(ZENITH_CASING_GEARBOX.get()))
+                    .where("H", Predicates.blocks(MACHINE_CASING_ZPM.get()))
+                    .where("I", Predicates.blocks(BotaniaBlocks.manaGlass))
+                    .where("J", Predicates.blocks(FILTER_CASING.get()))
+                    .where("K", Predicates.blocks(ZENITH_EYE.get()))
+                    .where("L", Predicates.blocks(ALF_STEEL_CASING.get()))
+                    .where("M", Predicates.blocks(TERRA_STEEL_CASING.get()))
+                    .where("@", Predicates.controller(Predicates.blocks(definition.get())))
+                    .build()
+            )
+            .workableCasingRenderer((CTNHCore.id("block/casings/zenith_casing")), GTCEu.id("block/multiblock/generator/large_steam_turbine"), false)
+            .register();
     public static void init() {
         MultiblocksA.init();
     }
