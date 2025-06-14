@@ -56,6 +56,7 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.photovoltaic_power_station2", "Generating: %s/%s EU/t");
         provider.add("info.ctnhcore.network_machine","Network Machine Count：%d");
         provider.add("info.ctnhcore.network_machine_efficiency","Generating Efficiency: %d");
+        provider.add("info.ctnhcore.network_dirty", "Network will rebuild in %d second(s)");
         provider.add("ctnh.multiblock.slaughter_house.mobcount","Mob Types: %d (%s)");
         provider.add("ctnh.stress_output", "Stress output: %ssu");
         provider.add("ctnh.stress_input", "Stress input: %ssu");
@@ -365,5 +366,18 @@ public class EnglishLangHandler {
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§5FINAL FANTASY §fof §a Precise Computation §f and §e Plasma Energy");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","Provide %d computation to reach the Base Production. For every %d computation provided, the Output Production DOUBLES.");
         provider.add("ctnhcore.recipe_logic.insufficient_cwut", "Insufficient Computation");
+        provider.add("ctnh.multiblock.wind_array.tooltip0", "§7§oWind Wolf: The TRUE POWER of NATURE");
+        provider.add("ctnh.multiblock.wind_array.tooltip1", "§8-----------------§aBasic Data§8--------------------");
+        provider.add("ctnh.multiblock.wind_array.tooltip2", "§f- Basic Production: §e%d EU/t  §7(on earth)");
+        provider.add("ctnh.multiblock.wind_array.tooltip3", "§f- Weather Boost: §eRainy x2, Thunder x4");
+        provider.add("ctnh.multiblock.wind_array.tooltip4", "§f- Altitude Boost: §eClamp(Y-64, 0, 256-64) / (256-64)");
+        provider.add("ctnh.multiblock.wind_array.tooltip5", "§f- Network Boost: §e 0.3*[log2(NetSize)]");
+        provider.add("ctnh.multiblock.wind_array.tooltip6", "§fAll boosts are multiplied to determine production.");
+        provider.add("ctnh.multiblock.wind_array.tooltip7", "§fRequires §e%d mB/t§f Lubricant.");
+        provider.add("ctnh.multiblock.wind_array.tooltip8", "§8-----------------§aWind Network§8------------------");
+        provider.add("ctnh.multiblock.wind_array.tooltip9", "§fAligned structure within a distance of <= 1 form a Wind Network.");
+        provider.add("ctnh.multiblock.wind_array.tooltip10", "§fLubricant will be extracted from the network.");
+        provider.add("ctnh.multiblock.wind_array.tooltip11", "§5DO OBEY the rules to resist the DESTRUCTION from nature force.");
+
     }
 }

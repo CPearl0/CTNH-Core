@@ -275,6 +275,7 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.photovoltaic_power_station2", "产能功率：%s/%s EU/t");
         provider.add("info.ctnhcore.network_machine", "发电网络机器数：%d");
         provider.add("info.ctnhcore.network_machine_efficiency", "发电效率：%d");
+        provider.add("info.ctnhcore.network_dirty", "网络将在%d秒后重建");
         provider.add("ctnh.multiblock.slaughter_house.mobcount", "怪物种类：%d (%s)");
         provider.add("ctnh.stress_output", "产出应力：%ssu");
         provider.add("ctnh.stress_input", "输入应力：%ssu");
@@ -816,6 +817,18 @@ public class ChineseLangHandler {
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
         provider.add("ctnhcore.recipe_logic.insufficient_cwut","算力不足");
+        provider.add("ctnh.multiblock.wind_array.tooltip0", "§7§o风力狼群:真正的自然之力");
+        provider.add("ctnh.multiblock.wind_array.tooltip1", "§8---------------§a基础数据§8-----------------");
+        provider.add("ctnh.multiblock.wind_array.tooltip2", "§f- 基础发电功率: §e%d EU/t  §7(地球)");
+        provider.add("ctnh.multiblock.wind_array.tooltip3", "§f- 天气风力增益: §e雨天x2,雷雨x4");
+        provider.add("ctnh.multiblock.wind_array.tooltip4", "§f- 高度增益: §e Clamp(Y-64, 0, 256-64) / (256-64)");
+        provider.add("ctnh.multiblock.wind_array.tooltip5", "§f- 网络增益: §e 0.3*[log2(网络大小)]");
+        provider.add("ctnh.multiblock.wind_array.tooltip6", "§f增益乘算得到发电效率");
+        provider.add("ctnh.multiblock.wind_array.tooltip7", "§f需要§e%d mB/s§f 润滑油以维护机器运行");
+        provider.add("ctnh.multiblock.wind_array.tooltip8", "§8---------------§a风力网络§8-----------------");
+        provider.add("ctnh.multiblock.wind_array.tooltip9", "§f所有结构对齐且间距<=1的风力发电机阵列会组成风力网络");
+        provider.add("ctnh.multiblock.wind_array.tooltip10", "§f润滑油会从风力网络中抽取.");
+        provider.add("ctnh.multiblock.wind_array.tooltip11", "§5顺应风力网络的工作规律,以抵挡自然之力的摧残");
 
         for (var tier : GTMachineUtils.ALL_TIERS) {
             provider.add(CTNHMachines.CIRCUIT_BUS[tier].getBlock(), GTValues.VNF[tier] + "§r芯片总线");

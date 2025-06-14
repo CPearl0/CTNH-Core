@@ -4,12 +4,18 @@ import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
+import earth.terrarium.botarium.common.registry.fluid.FluidData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+
+import java.util.List;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.machines.GTMultiMachines.FUSION_REACTOR;
@@ -30,6 +36,34 @@ public class MachineUtils {
             return true;
         }
         return false;
+    }
+    //返回值:处理剩下的
+    public static int inputFluidBrute(FluidStack fluidStack, List<FluidHatchPartMachine> source){
+        int ret = fluidStack.getAmount();
+        for(var part : source){
+            var tankStorages = part.tank.getStorages();
+            for (var tankStorage : tankStorages) {
+                FluidStack fs = tankStorage.getFluid();
+                if (fs.getFluid() != fluidStack.getFluid()) continue;
+                int toDrain = Math.min(fs.getAmount(), ret);
+                tankStorage.drain(toDrain, IFluidHandler.FluidAction.EXECUTE);
+                ret -= toDrain;
+                if(ret == 0)break;
+            }
+        }
+        return ret;
+    }
+    public static int getFluidStorageBrute(Fluid fluidType,List<FluidHatchPartMachine> source){
+        int ret = 0;
+        for(var part : source){
+            var tankStorages = part.tank.getStorages();
+            for (var tankStorage : tankStorages) {
+                FluidStack fs = tankStorage.getFluid();
+                if (fs.getFluid() != fluidType) continue;
+                ret += fs.getAmount();
+            }
+        }
+        return ret;
     }
     public static boolean outputFluid(FluidStack fluidStack, WorkableMultiblockMachine machine) {
         var Recipe = GTRecipeBuilder.ofRaw().outputFluids(fluidStack).buildRawRecipe();

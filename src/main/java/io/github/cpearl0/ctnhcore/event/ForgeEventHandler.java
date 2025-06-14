@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -25,13 +26,18 @@ import sfiomn.legendarysurvivaloverhaul.registry.AttributeRegistry;
 public class ForgeEventHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void tick(TickEvent.ServerTickEvent event) {
+    public static void tickBus(TickEvent.ServerTickEvent event) {
         if (event.getServer().getTickCount() % 40 == 0) {
             UnderfloorHeatingSystemTempModifier.UNDERFLOOR_HEATING_SYSTEM_RANGE.clear();
-            WindPowerArrayMachine.clearNet();
-            WindPowerArrayMachine.groupByNetwork();
         }
     }
+
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void postLevelTickBus(TickEvent.LevelTickEvent event){
+        ProvidableNetEventHandler.onPostTick(event);
+        ProvidableNetEventHandler.onPreTick(event);
+    }
+
     @SubscribeEvent
     public static void enchantmentTick(LivingEvent.LivingTickEvent event) {
         if (event.getEntity() instanceof Player player) {
