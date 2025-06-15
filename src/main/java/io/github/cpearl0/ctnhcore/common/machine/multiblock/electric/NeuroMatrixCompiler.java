@@ -53,7 +53,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     @Persisted public Item items;
     @Persisted public long  noisea;
     @Persisted public long  noiseb;
-
+    @Persisted public List<Integer> error_message=new ArrayList<>();
 
 
 
@@ -243,14 +243,17 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     }
     @Override
     public void onStructureFormed() {
-
+        states.clear();
+        error_message.clear();
         var tier = getTier();
         var pos=getPos();
         var m1=getMachine(this.getLevel(), MachineUtils.getOffset(this,11 ,0, -6));
+        states.clear();
         if(m1 instanceof CompilerMachine)
         {
             part1=(CompilerMachine) m1;
             tiers=part1.getTier();
+            part1.set_id(1);
         }
         var m2=getMachine(this.getLevel(), MachineUtils.getOffset(this,-11,0,-6));
         var m3=getMachine(this.getLevel(), MachineUtils.getOffset(this,15,0,7));
@@ -260,28 +263,67 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         if(m2 instanceof IMultiPart)
         {
             part2=(CompilerMachine) m2;
+            part2.set_id(2);
         }
         if(m3 instanceof IMultiPart)
         {
             part3=(CompilerMachine) m3;
+            part3.set_id(3);
         }
         if(m4 instanceof IMultiPart)
         {
             part4=(CompilerMachine) m4;
+            part4.set_id(4);
         }
         if(m5 instanceof IMultiPart)
         {
             part5=(CompilerMachine) m5;
+            part5.set_id(5);
         }
         if(m6 instanceof IMultiPart)
         {
             part6=(CompilerMachine) m6;
+            part6.set_id(6);
         }
-        if(part2.getTier()!=tier||part3.getTier()!=tier||part4.getTier()!=tier||part5.getTier()!=tier||part6.getTier()!=tier)
-            onStructureInvalid();
         for(int i=0;i<=4;i++)
         {
             states.add(0);
+            error_message.add(-1);
+
+        }
+        if (part2.getTier() != tiers) {
+            onStructureInvalid();
+            states.set(1,2);
+            error_message.set(1,0);
+            return;
+        }
+
+        if (part3.getTier() != tiers) {
+            onStructureInvalid();
+            states.set(2,2);
+            error_message.set(2,0);
+            return;
+        }
+
+        if (part4.getTier() != tiers) {
+            onStructureInvalid();
+            states.set(3,2);
+            error_message.set(3,0);
+            return;
+        }
+
+        if (part5.getTier() != tiers) {
+            onStructureInvalid();
+            states.set(4,2);
+            error_message.set(4,0);
+            return;
+        }
+
+        if (part6.getTier() != tiers) {
+            onStructureInvalid();
+            states.set(5,2);
+            error_message.set(5,0);
+            return;
         }
         super.onStructureFormed();
 
@@ -290,12 +332,11 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
     public void onStructureInvalid()
     {
         super.onStructureInvalid();
-        states.clear();
     }
 
     @Override
     public boolean beforeWorking(@Nullable GTRecipe recipe) {
-        if(tiers<RecipeHelper.getInputEUt(recipe))return false;
+        if(tiers<RecipeHelper.getRecipeEUtTier(recipe))return false;
         var itemsR = recipe.getInputContents(ItemRecipeCapability.CAP).stream()
                 .map(num -> (SizedIngredient) num.getContent()) // 转换为 SizedIngredient
                 .map(SizedIngredient::getItems) // 获取 ItemStack 数组
@@ -349,6 +390,16 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
                 });
         this.getDefinition().getAdditionalDisplay().accept(this, textList);
     }
+    public MutableComponent error_analyse(int i)
+    {
+        if(i==-1)
+        {
+            return Component.translatable("ctnh.compiler.error.0");
+        }
+        if(i==0)
+            return Component.translatable("ctnh.compiler.error.1");
+        return Component.translatable("ctnh.compiler.error.0");
+    }
     public MutableComponent addProgressPartSatus(int i) {
         if(states.get(i)==0)
         {
@@ -360,7 +411,7 @@ public class NeuroMatrixCompiler extends WorkableElectricMultiblockMachine imple
         }
         if(states.get(i)==2)
         {
-            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.error")}));
+            return (Component.translatable("ctnh.compiler.part_states", new Object[]{i+1,Component.translatable("ctnh.compiler.state.error",new Object[]{error_analyse(error_message.get(i))})}));
         }
         if(states.get(i)==3)
         {

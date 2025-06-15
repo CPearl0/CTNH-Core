@@ -784,11 +784,13 @@ public class ChineseLangHandler {
         provider.add("ctnh.cryotheum.2","具有16并行，能耗-25%，运行速度+25%");
         provider.add("ctnh.compiler.part_states","片区%d状态:%s");
         provider.add("ctnh.compiler.state.idle","§6待机");
-        provider.add("ctnh.compiler.state.error","§c故障");
+        provider.add("ctnh.compiler.state.error","§c错误,类型：%s");
         provider.add("ctnh.compiler.state.working","§9运行中:%ss/%ss");
         provider.add("ctnh.compiler.state.finish","§a完成");
         provider.add("ctnh.compiler.state.waiting","§b等待中......");
         provider.add("ctnh.data.tip1","当前公式: a%s+b%s+c%s+d");
+        provider.add("ctnh.compiler.id","该舱室被分配到的片区编号:%s");
+        provider.add("ctnh.compiler.noid","§c当前舱室尚未连接到主机！");
         provider.add("ctnh.data.muti","获取的倍率: %s");
         provider.add("ctnh.compiler.0","将生物的进化之道完全放任于碳基生物的自然演变是一种低效且缓慢的做法，现在我们将亲自编码每一个基因序列，将我们的至臻完美编译在神经元的逻辑之中");
         provider.add("ctnh.compiler.01","神经矩阵编码器（CMP）是一台编译神经序列的机器，其不同于其他机器，不执行正常的输入逻辑，无法超频");
@@ -819,6 +821,8 @@ public class ChineseLangHandler {
         provider.add("ultrasonic_apparatus", "超声破碎");
         provider.add("ctnhcore.machine.high_performance_computer.tooltip.0", "§3飞龙一般的超频计算");
         provider.add("ctnhcore.machine.high_performance_computer.tooltip.1", "§r能量充足时,提供%d算力");
+        provider.add("ctnh.compiler.error.0","§c未知错误");
+        provider.add("ctnh.compiler.error.1","§c舱室等级与片区1不匹配");
 
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip0","§a精密计算§f与§e等离子体§f的§5终极艺术");
         provider.add("ctnh.multiblock.hyper_plasma_turbine.tooltip1","提供%d算力以达到基础功率，每提供%d算力，输出功率翻一倍");
