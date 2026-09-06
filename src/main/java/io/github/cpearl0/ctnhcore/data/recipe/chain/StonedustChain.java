@@ -71,8 +71,8 @@ public class StonedustChain {
                 .inputItems(dust, StonePowderMaterials.STONE_RESIDUE, 24)
                 .outputItems(dust, StonePowderMaterials.UNCOMMON_RESIDUES)
                 .outputItems(ChemicalHelper.get(dustSmall, Magnetite))
-                .inputFluids(BauxiteProcessingMaterials.SODIUM_HYDROXIDE_SOLUTION.getFluid(1000))
-                .outputFluids(BauxiteProcessingMaterials.SODIUM_HYDROXIDE_SOLUTION.getFluid(925))
+                .inputFluids(BauxiteProcessingMaterials.IMPURE_SODIUM_ALUMINATE_SOLUTION.getFluid(1000))
+                .outputFluids(BauxiteProcessingMaterials.IMPURE_SODIUM_ALUMINATE_SOLUTION.getFluid(925))
                 .outputFluids(BauxiteProcessingMaterials.RED_MUD.getFluid(75))
                 .duration(40).EUt(100)
                 .save(provider);

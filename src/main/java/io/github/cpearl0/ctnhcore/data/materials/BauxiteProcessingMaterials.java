@@ -12,8 +12,8 @@ public class BauxiteProcessingMaterials {
     public static Material SODIUM_FLUORIDE;
     public static Material ALUMINIUM_TRIFLUORIDE;
     public static Material SODIUM_HYDROXIDE_BAUXITE;
-    public static Material IMPURE_ALUMINIUM_HYDROXIDE_SOLUTION;
-    public static Material PURE_ALUMINIUM_HYDROXIDE_SOLUTION;
+    public static Material IMPURE_SODIUM_ALUMINATE_SOLUTION;
+    public static Material PURE_SODIUM_ALUMINATE_SOLUTION;
     public static Material RED_MUD;
     public static Material NEUTRALISED_RED_MUD;
     public static Material RED_SLURRY;
@@ -50,48 +50,49 @@ public class BauxiteProcessingMaterials {
 
         SODIUM_HYDROXIDE_BAUXITE = REGISTRATE.material(CTNHCore.id("sodium_hydroxide_bauxite"))
                 .cnlang("氢氧化钠-铝土矿混合物")
-                .formula("(TiO2)Al2H10O29-Na(OH)2")
+                .formula("(TiO2)(?)(Al2O3)2+4NaOH+nH2O")
                 .liquid()
                 .color(0xA46D2C)
                 .buildAndRegister();
 
-        IMPURE_ALUMINIUM_HYDROXIDE_SOLUTION = REGISTRATE.material(CTNHCore.id("impure_aluminium_hydroxide_solution"))
-                .cnlang("含杂氢氧化铝溶液")
-                .formula("(Al(OH)3)")
+        IMPURE_SODIUM_ALUMINATE_SOLUTION = REGISTRATE.material(CTNHCore.id("impure_sodium_aluminate_solution"))
+                .cnlang("含杂偏铝酸钠溶液")
+                .formula("(TiO2)(?)+4NaAl(OH)4+nH2O")
                 .liquid()
                 .color(0xC95D3A)
                 .buildAndRegister();
 
-        PURE_ALUMINIUM_HYDROXIDE_SOLUTION = REGISTRATE.material(CTNHCore.id("pure_aluminium_hydroxide_solution"))
-                .cnlang("纯净氢氧化铝溶液")
-                .formula("Al(OH)3")
+        PURE_SODIUM_ALUMINATE_SOLUTION = REGISTRATE.material(CTNHCore.id("pure_sodium_aluminate_solution"))
+                .cnlang("纯净偏铝酸钠溶液")
+                .formula("Al(OH)3+NaOH+H2O")
                 .liquid()
                 .color(0x803DC2)
                 .buildAndRegister();
+
         RED_MUD = REGISTRATE.material(CTNHCore.id("red_mud"))
                 .cnlang("赤泥")
-                .formula("Ti?Fe?")
+                .formula("(TiO2)(Fe(OH)3)(?)+nH2O")
                 .liquid()
                 .color(0xB2370D)
                 .buildAndRegister();
 
         NEUTRALISED_RED_MUD = REGISTRATE.material(CTNHCore.id("neutralised_red_mud"))
                 .cnlang("中和赤泥")
-                .formula("Ti?Fe?")
+                .formula("TiO2+(FeCl3)(?)+nH2O")
                 .liquid()
                 .color(0xAF3C15)
                 .buildAndRegister();
 
         RED_SLURRY = REGISTRATE.material(CTNHCore.id("red_slurry"))
                 .cnlang("赤泥浆液")
-                .formula("Ti?")
+                .formula("TiO2+nH2O")
                 .liquid()
                 .color(0xAC401C)
                 .buildAndRegister();
 
         TITANYL_SULFATE = REGISTRATE.material(CTNHCore.id("titanyl_sulfate"))
                 .cnlang("硫酸钛酯")
-                .formula("TiO(SO4)")
+                .formula("TiO(SO4)+nH2O")
                 .liquid()
                 .color(0xCC3C75)
                 .buildAndRegister();
@@ -105,7 +106,7 @@ public class BauxiteProcessingMaterials {
 
         SODIUM_HYDROXIDE_SOLUTION = REGISTRATE.material(CTNHCore.id("sodium_hydroxide_solution"))
                 .cnlang("氢氧化钠溶液")
-                .formula("NaOH")
+                .formula("NaOH+H2O")
                 .liquid()
                 .color(0x15286D)
                 .buildAndRegister();
@@ -118,14 +119,14 @@ public class BauxiteProcessingMaterials {
 
         FERRIC_REE_CHLORIDE = REGISTRATE.material(CTNHCore.id("ferric_ree_chloride"))
                 .cnlang("含稀土氯化铁溶液")
-                .formula("(FeCl3)")
+                .formula("(FeCl3)(RCl4)")
                 .liquid()
                 .color(0x3B3B2B)
                 .buildAndRegister();
 
         REFINING_TITANIUM_TETRACHLORIDE = REGISTRATE.material(CTNHCore.id("refining_titanium_tetrachloride"))
                 .cnlang("富集四氯化钛")
-                .formula("Re-TiCl4")
+                .formula("+TiCl4")
                 .liquid()
                 .color(0x631CAB)
                 .buildAndRegister();
@@ -139,7 +140,7 @@ public class BauxiteProcessingMaterials {
 
         TITANIUM_TETRACHLORIDE_V = REGISTRATE.material(CTNHCore.id("titanium_tetrachloride_v"))
                 .cnlang("含钒四氯化钛")
-                .formula("V-TiCl4")
+                .formula("(V?)(TiCl4)")
                 .liquid()
                 .color(0x024789)
                 .buildAndRegister();

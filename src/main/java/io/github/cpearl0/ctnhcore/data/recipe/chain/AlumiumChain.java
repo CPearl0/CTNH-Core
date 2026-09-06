@@ -2,14 +2,13 @@ package io.github.cpearl0.ctnhcore.data.recipe.chain;
 
 import io.github.cpearl0.ctnhcore.CTNHCore;
 
-import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static com.gregtechceu.gtceu.api.GTValues.VA;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.data.materials.BauxiteProcessingMaterials.*;
@@ -25,14 +24,14 @@ public class AlumiumChain {
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_green_sapphire"))
                 .inputItems(dust, GreenSapphire, 5) // 绿色蓝宝石 Al2O3
                 .outputItems(dust, Alumina, 5)
-                .EUt(VA[GTValues.HV])
+                .EUt(VA[HV])
                 .duration(100)
                 .save(provider);
 
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_sapphire"))
                 .inputItems(dust, Sapphire, 5) // 蓝宝石 Al2O3
                 .outputItems(dust, Alumina, 5)
-                .EUt(VA[GTValues.HV])
+                .EUt(VA[HV])
                 .duration(100)
                 .save(provider);
 
@@ -40,7 +39,7 @@ public class AlumiumChain {
                 .inputItems(dust, Ruby, 2) // 红宝石 CrAl2O3
                 .outputItems(dust, Alumina, 1)
                 .outputItems(dust, Chromium, 1)
-                .EUt(VA[GTValues.HV])
+                .EUt(VA[HV])
                 .duration(100)
                 .save(provider);
 
@@ -51,7 +50,7 @@ public class AlumiumChain {
                 .outputItems(dust, SiliconDioxide, 3)
                 .outputItems(dust, Magnesium, 3)
                 .outputFluids(Oxygen.getFluid(3000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(200)
                 .save(provider);
 
@@ -59,7 +58,7 @@ public class AlumiumChain {
                 .inputItems(dust, GraniteRed, 2) // 红花岗岩 Al2(KAlSi3O8)O3
                 .outputItems(dust, Alumina, 1)
                 .outputItems(dust, PotassiumFeldspar, 1)
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(60)
                 .save(provider);
 
@@ -69,7 +68,7 @@ public class AlumiumChain {
                 .outputItems(dust, SiliconDioxide, 6)
                 .outputItems(dust, Potassium, 2)
                 .outputFluids(Oxygen.getFluid(1000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(200)
                 .save(provider);
 
@@ -80,7 +79,7 @@ public class AlumiumChain {
                 .outputItems(dust, Caesium, 2)
                 .outputFluids(Water.getFluid(2000))
                 .outputFluids(Oxygen.getFluid(1000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(280)
                 .save(provider);
 
@@ -88,7 +87,7 @@ public class AlumiumChain {
                 .inputItems(dust, Kyanite, 2) // 蓝晶石 Al2SiO5
                 .outputItems(dust, Alumina, 1)
                 .outputItems(dust, SiliconDioxide, 1)
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(80)
                 .save(provider);
 
@@ -98,7 +97,7 @@ public class AlumiumChain {
                 .outputItems(dust, SiliconDioxide, 4)
                 .outputItems(dust, Lithium, 2)
                 .outputFluids(Oxygen.getFluid(1000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(180)
                 .save(provider);
 
@@ -108,7 +107,7 @@ public class AlumiumChain {
                 .outputItems(dust, SiliconDioxide, 3)
                 .outputItems(dust, Manganese, 3)
                 .outputFluids(Oxygen.getFluid(3000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(220)
                 .save(provider);
 
@@ -118,7 +117,7 @@ public class AlumiumChain {
                 .outputItems(dust, SiliconDioxide, 6)
                 .outputItems(dust, Potassium, 2)
                 .outputFluids(Fluorine.getFluid(4000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(380)
                 .save(provider);
 
@@ -129,7 +128,7 @@ public class AlumiumChain {
                 .outputItems(dust, Potassium, 1)
                 .outputFluids(Oxygen.getFluid(4000))
                 .outputFluids(Fluorine.getFluid(2000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(160)
                 .save(provider);
 
@@ -139,7 +138,7 @@ public class AlumiumChain {
                 .outputItems(dust, SiliconDioxide, 3)
                 .outputItems(dust, Calcium, 3)
                 .outputFluids(Oxygen.getFluid(3000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(220)
                 .save(provider);
 
@@ -152,7 +151,7 @@ public class AlumiumChain {
                 .outputFluids(Oxygen.getFluid(3000))
                 .outputFluids(Hydrogen.getFluid(2000))
                 .outputFluids(Water.getFluid(1000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(220)
                 .save(provider);
 
@@ -162,7 +161,7 @@ public class AlumiumChain {
                 .outputItems(dust, SiliconDioxide, 6)
                 .outputItems(dust, Beryllium, 3)
                 .outputFluids(Oxygen.getFluid(3000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(260)
                 .save(provider);
 
@@ -171,7 +170,7 @@ public class AlumiumChain {
                 .outputItems(dust, Alumina, 1)
                 .outputItems(dust, SiliconDioxide, 1)
                 .outputFluids(Fluorine.getFluid(2000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(100)
                 .save(provider);
 
@@ -183,7 +182,7 @@ public class AlumiumChain {
                 .outputItems(dust, Potassium, 2)
                 .outputFluids(Fluorine.getFluid(2000))
                 .outputFluids(Oxygen.getFluid(5000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(440)
                 .save(provider);
 
@@ -194,7 +193,7 @@ public class AlumiumChain {
                 .outputItems(dust, SiliconDioxide, 3)
                 .outputFluids(Oxygen.getFluid(5000))
                 .outputFluids(Hydrogen.getFluid(6000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(520)
                 .save(provider);
 
@@ -204,7 +203,7 @@ public class AlumiumChain {
                 .outputItems(dust, SiliconDioxide, 3)
                 .outputItems(dust, Iron, 3)
                 .outputFluids(Oxygen.getFluid(3000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(200)
                 .save(provider);
 
@@ -215,7 +214,7 @@ public class AlumiumChain {
                 .outputItems(dust, Sodium, 2)
                 .outputItems(dust, Lithium, 1)
                 .outputFluids(Hydrogen.getFluid(12000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(180)
                 .save(provider);
 
@@ -227,7 +226,7 @@ public class AlumiumChain {
                 .outputFluids(Oxygen.getFluid(5000))
                 .outputFluids(Hydrogen.getFluid(1000))
                 .outputFluids(Fluorine.getFluid(1000))
-                .EUt(VA[GTValues.EV])
+                .EUt(VA[EV])
                 .duration(200)
                 .save(provider);
 
@@ -237,7 +236,7 @@ public class AlumiumChain {
                 .outputItems(dust, Silicon, 3)
                 .outputItems(dust, Sodium, 4)
                 .outputFluids(Chlorine.getFluid(1000))
-                .EUt(VA[GTValues.EV])
+                .EUt(VA[EV])
                 .duration(390)
                 .save(provider);
 
@@ -247,7 +246,7 @@ public class AlumiumChain {
                 .outputItems(dust, Silicon, 3)
                 .outputItems(dust, Sodium, 4)
                 .outputItems(dust, Calcium, 4)
-                .EUt(VA[GTValues.EV])
+                .EUt(VA[EV])
                 .duration(460)
                 .save(provider);
 
@@ -260,7 +259,7 @@ public class AlumiumChain {
                 .outputItems(dust, SODIUM_FLUORIDE, 6)
                 .outputItems(dust, ALUMINIUM_TRIFLUORIDE, 4)
                 .outputFluids(Oxygen.getFluid(6000))
-                .EUt(VA[GTValues.LV])
+                .EUt(VA[LV])
                 .duration(200)
                 .save(provider);
         // HV
@@ -269,7 +268,7 @@ public class AlumiumChain {
                 .inputItems(dust, Alumina, 10)
                 .outputItems(dust, Aluminium, 4)
                 .outputFluids(Oxygen.getFluid(6000))
-                .EUt(VA[GTValues.HV])
+                .EUt(VA[HV])
                 .duration(400)
                 .save(provider);
 
@@ -278,7 +277,7 @@ public class AlumiumChain {
         GTRecipeTypes.EXTRACTOR_RECIPES.recipeBuilder(CTNHCore.id("sodium_hexafluoroaluminate_3"))
                 .inputItems(dust, Cryolite, 10)
                 .outputFluids(SODIUM_HEXAFLUOROALUMINATE.getFluid(1000))
-                .EUt(VA[GTValues.LV])
+                .EUt(VA[LV])
                 .duration(100)
                 .save(provider);
         // 合成
@@ -288,7 +287,7 @@ public class AlumiumChain {
                 .inputFluids(HydrofluoricAcid.getFluid(12000))
                 .outputFluids(SODIUM_HEXAFLUOROALUMINATE.getFluid(2000))
                 .outputFluids(Water.getFluid(9000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(400)
                 .save(provider);
         // 回收
@@ -296,7 +295,7 @@ public class AlumiumChain {
                 .inputItems(dust, SODIUM_FLUORIDE, 6)
                 .inputItems(dust, ALUMINIUM_TRIFLUORIDE, 4)
                 .outputFluids(SODIUM_HEXAFLUOROALUMINATE.getFluid(1000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(200)
                 .save(provider);
         // 电解
@@ -305,7 +304,7 @@ public class AlumiumChain {
                 .inputFluids(SODIUM_HEXAFLUOROALUMINATE.getFluid(1000))
                 .outputItems(dust, SODIUM_FLUORIDE, 6)
                 .outputItems(dust, ALUMINIUM_TRIFLUORIDE, 4)
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(200)
                 .save(provider);
 
@@ -313,9 +312,9 @@ public class AlumiumChain {
         // 碱浸
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("alkali_leach_bauxite"))
                 .inputItems(dust, Bauxite, 13)
-                .inputFluids(SODIUM_HYDROXIDE_SOLUTION.getFluid(8000))
-                .outputFluids(SODIUM_HYDROXIDE_BAUXITE.getFluid(8000))
-                .EUt(VA[GTValues.MV])
+                .inputFluids(SODIUM_HYDROXIDE_SOLUTION.getFluid(8000))// 氢氧化钠溶液
+                .outputFluids(SODIUM_HYDROXIDE_BAUXITE.getFluid(8000))// 氢氧化钠铝土混合物
+                .EUt(VA[MV])
                 .duration(80)
                 .save(provider);
         // 碱溶液
@@ -323,50 +322,50 @@ public class AlumiumChain {
                 .inputItems(dust, SodiumHydroxide, 3)
                 .inputFluids(Water.getFluid(1000))
                 .outputFluids(SODIUM_HYDROXIDE_SOLUTION.getFluid(1000))
-                .EUt(VA[GTValues.MV])
-                .duration(200)
+                .EUt(VA[MV])
+                .duration(100)
                 .save(provider);
         // 加热沉淀
         GTRecipeTypes.FLUID_HEATER_RECIPES.recipeBuilder(CTNHCore.id("impure_aluminum_hydroxide_solution"))
-                .inputFluids(SODIUM_HYDROXIDE_BAUXITE.getFluid(1000))
-                .outputFluids(IMPURE_ALUMINIUM_HYDROXIDE_SOLUTION.getFluid(1000))
-                .EUt(VA[GTValues.LV])
+                .inputFluids(SODIUM_HYDROXIDE_BAUXITE.getFluid(1000))// 氢氧化钠铝土混合物
+                .outputFluids(IMPURE_SODIUM_ALUMINATE_SOLUTION.getFluid(1000))// 含杂偏铝酸钠溶液
+                .EUt(VA[LV])
                 .duration(30)
                 .save(provider);
-        // 氯化铝变氢氧化铝
-        GTRecipeTypes.BLAST_RECIPES.recipeBuilder(CTNHCore.id("aluminium_process1s"))
+        // 水解氯化铝
+        GTRecipeTypes.BLAST_RECIPES.recipeBuilder(CTNHCore.id("alcl3_to_aloh3"))
                 .inputItems(dust, ALUMINIUM_CHLORIDE, 4)
                 .inputFluids(Water.getFluid(1500))
                 .outputItems(dust, ALUMINIUM_HYDROXIDE, 7)
                 .outputFluids(HydrochloricAcid.getFluid(3000))
                 .blastFurnaceTemp(900)
-                .EUt(96)
+                .EUt(VA[LV] * 3L)
                 .duration(40)
                 .save(provider);
         // 分离赤泥
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("red_mud"))
-                .inputFluids(IMPURE_ALUMINIUM_HYDROXIDE_SOLUTION.getFluid(3000))
-                .outputFluids(PURE_ALUMINIUM_HYDROXIDE_SOLUTION.getFluid(2000))
+                .inputFluids(IMPURE_SODIUM_ALUMINATE_SOLUTION.getFluid(4000))// 含杂偏铝酸钠溶液
+                .outputFluids(PURE_SODIUM_ALUMINATE_SOLUTION.getFluid(4000))// 纯净偏铝酸钠溶液
                 .outputFluids(RED_MUD.getFluid(1000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(30)
                 .save(provider);
         // 分离氢氧化铝
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("aluminium_hydroxide_dust"))
-                .inputFluids(PURE_ALUMINIUM_HYDROXIDE_SOLUTION.getFluid(1000))
-                .outputItems(dust, ALUMINIUM_HYDROXIDE, 14)
-                .outputFluids(Water.getFluid(1000))
-                .EUt(VA[GTValues.MV])
-                .duration(240)
+                .inputFluids(PURE_SODIUM_ALUMINATE_SOLUTION.getFluid(1000))// 纯净偏铝酸钠溶液
+                .outputItems(dust, ALUMINIUM_HYDROXIDE, 7)// 氢氧化铝
+                .outputFluids(SODIUM_HYDROXIDE_SOLUTION.getFluid(1000))
+                .EUt(VA[MV])
+                .duration(200)
                 .save(provider);
 
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("aluminium_hydroxide_dust_much"))
                 .notConsumable(dust, ALUMINIUM_HYDROXIDE)
-                .inputFluids(PURE_ALUMINIUM_HYDROXIDE_SOLUTION.getFluid(4000))
+                .inputFluids(PURE_SODIUM_ALUMINATE_SOLUTION.getFluid(8000))
                 .outputItems(dust, ALUMINIUM_HYDROXIDE, 56)
-                .outputFluids(Water.getFluid(4000))
-                .EUt((long) (0.5 * VA[GTValues.HV]))
-                .duration(240)
+                .outputFluids(SODIUM_HYDROXIDE_SOLUTION.getFluid(8000))
+                .EUt(VA[MV] * 2L)
+                .duration(200)
                 .save(provider);
         // 氢氧化铝脱水
         GTRecipeTypes.BLAST_RECIPES.recipeBuilder(CTNHCore.id("alumina"))
@@ -374,24 +373,23 @@ public class AlumiumChain {
                 .outputItems(dust, Alumina, 5)
                 .outputFluids(Water.getFluid(3000))
                 .blastFurnaceTemp(1100)
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(200)
                 .save(provider);
         // 中和赤泥
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder(CTNHCore.id("neutralised_red_mud"))
-                .inputFluids(HydrochloricAcid.getFluid(9000))
-                .inputFluids(RED_MUD.getFluid(2000))
-                .outputFluids(NEUTRALISED_RED_MUD.getFluid(8000))
-                .EUt(VA[GTValues.MV])
+                .inputFluids(HydrochloricAcid.getFluid(3000))
+                .inputFluids(RED_MUD.getFluid(1000))
+                .outputFluids(NEUTRALISED_RED_MUD.getFluid(1000))// 中和赤泥
+                .EUt(VA[MV])
                 .duration(100)
                 .save(provider);
         // 分离赤泥浆液
         GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(CTNHCore.id("red_slurry"))
-                .inputFluids(NEUTRALISED_RED_MUD.getFluid(8000))
-                .outputFluids(RED_SLURRY.getFluid(1000))
-                .outputFluids(FERRIC_REE_CHLORIDE.getFluid(1000))
-                .outputFluids(SaltWater.getFluid(6000))
-                .EUt(VA[GTValues.MV])
+                .inputFluids(NEUTRALISED_RED_MUD.getFluid(1000))// 中和赤泥
+                .outputFluids(RED_SLURRY.getFluid(1000))// 赤泥浆液
+                .outputFluids(FERRIC_REE_CHLORIDE.getFluid(1000))// 含稀土氯化铁溶液
+                .EUt(VA[MV])
                 .duration(240)
                 .save(provider);
         // 分离含氯稀土
@@ -399,42 +397,43 @@ public class AlumiumChain {
                 .inputFluids(FERRIC_REE_CHLORIDE.getFluid(2000))
                 .outputFluids(RARE_EARTH_CHLORIDE_SOLUTION.getFluid(1000))
                 .outputFluids(Iron3Chloride.getFluid(1000))
-                .EUt(VA[GTValues.HV])
+                .EUt(VA[HV])
                 .duration(320)
                 .save(provider);
         // 硫酸钛酯
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("titanyl_sulfate"))
-                .inputFluids(SulfuricAcid.getFluid(2000))
-                .inputFluids(RED_SLURRY.getFluid(2000))
-                .outputFluids(TITANYL_SULFATE.getFluid(2000))
-                .outputFluids(Water.getFluid(2000))
-                .EUt(VA[GTValues.MV])
-                .duration(160)
+                .inputFluids(SulfuricAcid.getFluid(1000))
+                .inputFluids(RED_SLURRY.getFluid(1000))
+                .outputFluids(TITANYL_SULFATE.getFluid(1000))
+                .EUt(VA[MV])
+                .duration(100)
                 .save(provider);
         // 四氯化钛
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("titanium_tetrachloride"))
-                .inputFluids(HydrochloricAcid.getFluid(4000))
-                .inputFluids(TITANYL_SULFATE.getFluid(1000))
-                .outputFluids(TitaniumTetrachloride.getFluid(1000))
-                .outputFluids(SulfuricAcid.getFluid(2000))
-                .EUt((long) (0.5 * VA[GTValues.EV]))
-                .duration(160)
+                .inputFluids(HydrochloricAcid.getFluid(8000))
+                .inputFluids(TITANYL_SULFATE.getFluid(2000))
+                .outputFluids(TitaniumTetrachloride.getFluid(2000))
+                .outputFluids(DilutedSulfuricAcid.getFluid(3000))
+                .outputFluids(Water.getFluid(3000))
+                .EUt(VA[HV] * 2L)
+                .duration(100)
                 .save(provider);
+
         // 电解氟化钠
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("electrolyzing_sodium_fluoride"))
                 .inputItems(dust, SODIUM_FLUORIDE, 2)
                 .outputItems(dust, Sodium, 1)
                 .outputFluids(Fluorine.getFluid(1000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(160)
                 .save(provider);
         // 水解氟化铝
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("hydrolyzing_aluminium_trifluoride"))
                 .inputFluids(Water.getFluid(6000))
                 .inputItems(dust, ALUMINIUM_TRIFLUORIDE, 8)
-                .outputItems(dust, ALUMINIUM_HYDROXIDE, 8)
+                .outputItems(dust, ALUMINIUM_HYDROXIDE, 14)
                 .outputFluids(HydrofluoricAcid.getFluid(6000))
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(160)
                 .save(provider);
         // 合成氟化钠
@@ -442,7 +441,7 @@ public class AlumiumChain {
                 .inputFluids(Fluorine.getFluid(1000))
                 .inputItems(dust, Sodium)
                 .outputItems(dust, SODIUM_FLUORIDE, 2)
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(160)
                 .save(provider);
         // 离心铝土矿
@@ -451,7 +450,7 @@ public class AlumiumChain {
                 .outputItems(dust, Alumina)
                 .chancedOutput(dust, Gallium, 2500, 0)
                 .chancedOutput(dust, Rutile, 3000, 0)
-                .EUt(VA[GTValues.MV])
+                .EUt(VA[MV])
                 .duration(240)
                 .save(provider);
         // 催化剂处理铝土
@@ -463,7 +462,7 @@ public class AlumiumChain {
                 .outputFluids(FERRIC_REE_CHLORIDE.getFluid(1000))
                 .outputFluids(Water.getFluid(12000))
                 .outputItems(dust, Aluminium, 24)
-                .EUt((long) (0.5 * VA[GTValues.EV]))
+                .EUt(VA[HV] * 2L)
                 .duration(160)
                 .save(provider);
     }
