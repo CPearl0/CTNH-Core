@@ -35,7 +35,6 @@
     "legendarysurvival.AltitudeModifierMixin",
     "mc.MonsterMixin",
     "mc.NaturalSpawnerMixin",
-    "mc.RecipeManagerApplyMixin",
     "mc.ServerChunkCacheMixin",
     "mc.ServerChunkCacheAccessor",
     "tmrv.RecipeManagerMixin",
