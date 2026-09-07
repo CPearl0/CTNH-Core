@@ -1,5 +1,6 @@
 package io.github.cpearl0.ctnhcore.registry.machines;
 
+import io.github.cpearl0.ctnhcore.common.machine.multiblock.MultiblockComputationMachine;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeTypes;
 import io.github.cpearl0.ctnhcore.registry.machines.multiblock.MultiblocksA;
@@ -30,6 +31,7 @@ import com.ctnhlang.Prefix;
 import com.ctnhlang.Suffix;
 import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -134,7 +136,8 @@ public class GTMachineModify {
 
     private static void modifyGTAssembly() {
         var lASB = GCYMMachines.LARGE_ASSEMBLER;
-        var lASBRecipeTypes = new java.util.ArrayList<>(Arrays.stream(lASB.getRecipeTypes()).toList());
+        lASB.setMachineSupplier(MultiblockComputationMachine::new);
+        var lASBRecipeTypes = new ArrayList<>(Arrays.stream(lASB.getRecipeTypes()).toList());
         lASBRecipeTypes.add(CTNHRecipeTypes.PRECISION_ASSEMBLY_RECIPES);
         lASB.setRecipeTypes(lASBRecipeTypes.toArray(GTRecipeType[]::new));
         lASB.setTooltipBuilder(lASB.getTooltipBuilder().andThen((itemStack, components) -> {
