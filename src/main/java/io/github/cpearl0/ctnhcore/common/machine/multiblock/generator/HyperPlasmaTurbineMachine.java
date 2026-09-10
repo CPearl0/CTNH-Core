@@ -11,7 +11,6 @@ import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
@@ -170,7 +169,7 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
             return RecipeModifier.nullWrongType(HyperPlasmaTurbineMachine.class, machine);
         }
 
-        final long EUt = RecipeHelper.getRealEUtWithIO(recipe);
+        final long EUt = recipe.getOutputEUt();
         final long turbineMaxVoltage = hptm.getOverclockVoltage();
 
         if (EUt <= 0 || turbineMaxVoltage <= EUt) return RecipeModifier.DEFAULT_FAILURE;
@@ -215,7 +214,7 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
 
             long maxProduction = getOverclockVoltage();
             long currentProduction = isActive() && recipeLogic.getLastRecipe() != null ?
-                    RecipeHelper.getRealEUtWithIO(recipeLogic.getLastRecipe()) : 0;
+                    recipeLogic.getLastRecipe().getOutputEUt() : 0;
 
             if (isActive()) {
                 textList.add(Component.translatable("gtceu.multiblock.turbine.energy_per_tick",

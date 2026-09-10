@@ -10,7 +10,6 @@ import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IRotorHolderMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
@@ -83,7 +82,7 @@ public class MegaTurbineMachine extends RecipeElectricMultiblockMachine implemen
         var rotorHolder = turbineMachine.getRotorHolder();
         if (rotorHolder == null) return RecipeModifier.DEFAULT_FAILURE;
 
-        long EUt = RecipeHelper.getRealEUtWithIO(recipe);
+        long EUt = recipe.getOutputEUt();
         long turbineMaxVoltage = turbineMachine.getOverclockVoltage();
         double holderEfficiency = rotorHolder.getTotalEfficiency() / 100.0;
 
@@ -130,7 +129,7 @@ public class MegaTurbineMachine extends RecipeElectricMultiblockMachine implemen
 
                 long maxProduction = getOverclockVoltage();
                 long currentProduction = isActive() && recipeLogic.getLastRecipe() != null ?
-                        RecipeHelper.getRealEUtWithIO(recipeLogic.getLastRecipe()) : 0;
+                        recipeLogic.getLastRecipe().getOutputEUt() : 0;
                 String voltageName = GTValues.VNF[GTUtil.getTierByVoltage(currentProduction)];
 
                 if (isActive()) {
