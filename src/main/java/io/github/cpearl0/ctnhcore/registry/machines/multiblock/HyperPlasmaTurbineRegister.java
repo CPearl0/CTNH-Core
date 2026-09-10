@@ -51,7 +51,7 @@ public class HyperPlasmaTurbineRegister {
                 .recipeType(GTRecipeTypes.PLASMA_GENERATOR_FUELS)
                 .generator(true)
                 .recipeModifier(HyperPlasmaTurbineMachine::recipeModifier, true)
-                .appearanceBlock(NEUTRONIUM_REINFORCED_TURBINE_CASING)
+                .cnLangValue("超極等离子涡轮").appearanceBlock(NEUTRONIUM_REINFORCED_TURBINE_CASING)
                 .pattern(definition -> {
                     return FactoryBlockPattern.start()
                             .aisle("#############################", "#############################",

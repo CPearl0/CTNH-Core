@@ -56,7 +56,7 @@ public class MultiblocksC {
             .recipeType(CTNHRecipeTypes.GREENHOUSE_RECIPES)
             .recipeModifiers(GTRecipeModifiers.OC_NON_PERFECT, GTRecipeModifiers.BATCH_MODE)
             .tooltips(greenhouseTooltip0.translate().withStyle(ChatFormatting.GRAY))
-            .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
+            .cnLangValue("温室").appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "ABBBA", "ABBBA", "#BBB#", "#BBB#", "##B##", "#####")
                     .aisle("ACCCA", "B###B", "B###B", "B###B", "B###B", "#BBB#", "##A##")
@@ -105,7 +105,7 @@ public class MultiblocksC {
             //.rotationState(RotationState.NON_Y_AXIS)
 
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, CTNHRecipeModifiers::ebfOverclock, GTRecipeModifiers.BATCH_MODE)
-            .appearanceBlock(GTBlocks.COMPUTER_CASING)
+            .cnLangValue("数控合金冶炼炉").appearanceBlock(GTBlocks.COMPUTER_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####AAAAA#####", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############")
                     .aisle("###AABBBBBAA###", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############")

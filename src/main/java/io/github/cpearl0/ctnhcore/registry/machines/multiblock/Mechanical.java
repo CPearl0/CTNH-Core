@@ -44,7 +44,7 @@ public class Mechanical {
             .multiblock("mechanical_pressor", KineticWorkableMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_PRESSOR_RECIPES)
-            .appearanceBlock(AllBlocks.RAILWAY_CASING)
+            .cnLangValue("机械辊压厂").appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
                     CommonTooltips.INPUT_SPEED.translate())
@@ -72,7 +72,7 @@ public class Mechanical {
             .multiblock("mechanical_mixer", KineticMixerMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_MIXER_RECIPES)
-            .appearanceBlock(AllBlocks.RAILWAY_CASING)
+            .cnLangValue("机械搅拌厂").appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
                     CommonTooltips.INPUT_SPEED.translate())
@@ -111,7 +111,7 @@ public class Mechanical {
             .multiblock("mechanical_centrifuge", KineticCentrifugeMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_CENTRIFUGE_RECIPES)
-            .appearanceBlock(AllBlocks.RAILWAY_CASING)
+            .cnLangValue("机械离心厂").appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
                     CommonTooltips.INPUT_SPEED.translate())
@@ -163,7 +163,7 @@ public class Mechanical {
             .multiblock("mechanical_sifter", KineticWorkableMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_SIFTER_RECIPES)
-            .appearanceBlock(AllBlocks.RAILWAY_CASING)
+            .cnLangValue("机械筛选厂").appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
                     CommonTooltips.INPUT_SPEED.translate())
@@ -197,7 +197,7 @@ public class Mechanical {
             .multiblock("mechanical_lathe", KineticWorkableMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_LATHE_RECIPES)
-            .appearanceBlock(AllBlocks.RAILWAY_CASING)
+            .cnLangValue("机械车床厂").appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
                     CommonTooltips.INPUT_SPEED.translate())
