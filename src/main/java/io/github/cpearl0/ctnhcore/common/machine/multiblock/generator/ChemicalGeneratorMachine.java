@@ -67,7 +67,7 @@ public class ChemicalGeneratorMachine extends RecipeElectricMultiblockMachine {
         if (!(machine instanceof ChemicalGeneratorMachine engineMachine)) {
             return RecipeModifier.nullWrongType(ChemicalGeneratorMachine.class, machine);
         }
-        long EUt = RecipeHelper.getRealEUtWithIO(recipe);
+        long EUt = recipe.getOutputEUt();
         // has lubricant
         if (EUt > 0) {
             int maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
