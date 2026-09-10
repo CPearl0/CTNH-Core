@@ -51,6 +51,7 @@ public class RecipeRemoval {
      * 最终在 {@code RecipeManagerApplyMixin} 中统一处理。
      */
     public static void init() {
+
         // ===== 外部类删除（与 RecipeRemoval 同模块/相关模块） =====
         EIORecipes.eioRemovals();
         QuantumOmniRecipes.omniRemovals();
@@ -337,38 +338,8 @@ public class RecipeRemoval {
     }
 
     public static void gtceuRemovals() {
-        remove(new RemoveFilter().id("gtceu:assembler/stonecutter"));
-        remove(new RemoveFilter().id("gtceu:assembler/grindstone"));
-        remove(new RemoveFilter().id("gtceu:assembler/plate_radiation_2"));
-        remove(new RemoveFilter().id("gtceu:assembler/plate_radiation"));
-        remove(new RemoveFilter().id("gtceu:electric_blast_furnace/iro2"));
-        remove(new RemoveFilter().id("gtceu:shaped/casing_assembly_control"));
+
         remove(new RemoveFilter().id("gtceu:shaped/ulv_machine_hull"));
-        remove(new RemoveFilter().id("gtceu:shaped/casing_assembly_line"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_ammonium_chloride"));
-        remove(new RemoveFilter().id("gtceu:assembler/mar_casing"));
-        remove(new RemoveFilter().id("gtceu:arc_furnace/arc_cleaning_maintenance_hatch"));
-        remove(new RemoveFilter()
-                .id("gtceu:smashing_factory_recipes/smashing_factory_recipes/macerate_cleaning_maintenance_hatch"));
-        remove(new RemoveFilter().id("gtceu:fusion_reactor/americium_and_naquadria_to_neutronium_plasma"));
-        remove(new RemoveFilter().id("gtceu:shapeless/compressed_clay"));
-        remove(new RemoveFilter().id("gtceu:shapeless/glass_full_dust_flint"));
-        remove(new RemoveFilter().id("gtceu:shapeless/glass_dust_flint"));
-        remove(new RemoveFilter().id("gtceu:extractor/extract_coke_oven_bricks"));
-        remove(new RemoveFilter().id("gtceu:smelting/coke_oven_brick"));
-        remove(new RemoveFilter().id("gtceu:brewing/lubricant_from_seed_oil_and_talc"));
-        remove(new RemoveFilter().id("gtceu:brewing/lubricant_from_seed_oil_and_soapstone"));
-        remove(new RemoveFilter().id("gtceu:brewing/lubricant_from_seed_oil_and_redstone"));
-        remove(new RemoveFilter().id("gtceu:shaped/compressed_coke_clay"));
-        remove(new RemoveFilter().id("gtceu:shaped/casing_coke_bricks"));
-        remove(new RemoveFilter().id("gtceu:shapeless/fireclay_dust"));
-        remove(new RemoveFilter().id("gtceu:shaped/casing_primitive_bricks"));
-        remove(new RemoveFilter().idRegex("gtceu:shaped/.*gem.*"));
-        remove(new RemoveFilter().idRegex("gtceu:shaped/plate_.*"));
-        remove(new RemoveFilter().idRegex("gtceu:shapeless/.*(?:chipped|flawed|flawless|exquisite)_gem.*"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/raw_palladium_separation"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_niobium_oxide"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_tantalite_oxide"));
         remove(new RemoveFilter().id("gtceu:shaped/casing_hsse_sturdy"));
         remove(new RemoveFilter().id("gtceu:assembler/casing_hsse_sturdy"));
         remove(new RemoveFilter().id("gtceu:shaped/diamond_sword"));
@@ -553,29 +524,19 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_*"));
         remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_*"));
         remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_*"));
-        // 不同晶圆材料的蚀刻变体一并移除
-        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_phosphorus"));
-        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_naquadah"));
-        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_neutronium"));
-        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_phosphorus"));
-        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_naquadah"));
-        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_neutronium"));
-        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_phosphorus"));
-        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_naquadah"));
-        // remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_neutronium"));
         // 移除微处理器系列旧配方（LV~IV 段），改为 HV 段新配方
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/microprocessor_lv"));
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_mv"));
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_assembly_hv"));
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/workstation_ev"));
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/mainframe_iv"));
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/microprocessor_lv*"));
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_mv*"));
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_assembly_hv*"));
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/workstation_ev*"));
+        remove(new RemoveFilter().id("gtceu:circuit_assembler/mainframe_iv*"));
         // 焊锡（soldering_alloy）焊料变体一并移除
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/microprocessor_lv_soldering_alloy"));
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_mv_soldering_alloy"));
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_assembly_hv_soldering_alloy"));
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/workstation_ev_soldering_alloy"));
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/mainframe_iv_soldering_alloy"));
-        remove(new RemoveFilter().id("gtceu:centrifuge/decomposition_centrifuging__redstone"));
+//        remove(new RemoveFilter().id("gtceu:circuit_assembler/microprocessor_lv_soldering_alloy"));
+//        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_mv_soldering_alloy"));
+//        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_assembly_hv_soldering_alloy"));
+//        remove(new RemoveFilter().id("gtceu:circuit_assembler/workstation_ev_soldering_alloy"));
+//        remove(new RemoveFilter().id("gtceu:circuit_assembler/mainframe_iv_soldering_alloy"));
+//        remove(new RemoveFilter().id("gtceu:centrifuge/decomposition_centrifuging__redstone"));
 
         // 移除 GTCEu 默认 LV~IV 电动马达与 LV 组件工作台配方，统一改为 CTNH 工作台配方
         remove(new RemoveFilter().idRegex(

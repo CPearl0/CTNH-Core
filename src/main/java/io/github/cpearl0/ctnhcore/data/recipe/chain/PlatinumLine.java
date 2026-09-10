@@ -267,7 +267,7 @@ public class PlatinumLine {
                 .inputFluids(PlatinumLineMaterials.SodiumPeroxide.getFluid(144 * 4))           // 槽位2：1000mb熔融过氧化钠
                 .inputFluids(GTMaterials.SodiumHydroxide.getFluid(144 * 6))           // 槽位3：1000mb氢氧化钠溶液
                 .outputFluids(PlatinumLineMaterials.SodiumOsmateRuthenateSolution.getFluid(2000)) // 2000mb混合溶液
-                .outputItems(dust, PlatinumLineMaterials.IridiumDioxide, 1)
+                .outputItems(dust, PlatinumLineMaterials.IridiumDioxide, 3)
                 .EUt(GTValues.VA[GTValues.EV])  // 高电压（7,680 EU/t）
                 .duration(200)                   // 20秒（400 ticks）
                 .save(provider);
@@ -443,7 +443,6 @@ public class PlatinumLine {
         chemicalRemoval(provider, "inert_metal_mixture_separation");
         chemicalRemoval(provider, "iridium_chloride_separation");
         chemicalRemoval(provider, "ruthenium_tetroxide_separation");
-        chemicalRemoval(provider, "raw_palladium_separation");
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder(CTNHCore.id("decomposition_electrolyzing_cooperite"))
                 .duration(648)
                 .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Cooperite))

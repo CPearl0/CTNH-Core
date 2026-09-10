@@ -390,28 +390,30 @@ public class PrimitiveKineticAgeRecipes {
     }
 
     private static void addCokeOvenBrickRecipes(Consumer<FinishedRecipe> provider) {
-        // 焦炉砖泥（搅拌机混合黏土球 + 沙子，参考原版压缩焦黏土配方，无需模具）
-        MixingRecipeBuilder.builder(CTNHCore.id("create/coke_oven_brick_mud"))
+        // 焦黏土（搅拌机混合黏土球 + 沙子，参考原版压缩焦黏土配方，无需模具）
+        MixingRecipeBuilder.builder(CTNHCore.id("create/coke_clay"))
                 .input(Items.CLAY_BALL, 3)
                 .input(ItemTags.SAND, 5)
-                .output(CTNHItems.COKE_OVEN_BRICK_MUD.asStack(3))
+                .output(CTNHItems.COKE_CLAY.asStack(4))
                 .processingTime(40)
                 .save(provider);
 
-        // 焦炉泥砖（焦炉砖泥 + 木制砖模具）
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/coke_oven_brick_from_mold"),
-                GTItems.COKE_OVEN_BRICK.asStack(4),
-                "FF",
-                "FM",
-                'F', CTNHItems.COKE_OVEN_BRICK_MUD.asStack(),
-                'M', GTItems.WOODEN_FORM_BRICK.asStack());
+        // 压缩焦黏土（焦黏土 + 木制砖模具，无序合成）
+        VanillaRecipeHelper.addShapelessRecipe(provider, CTNHCore.id("crafttable/compressed_coke_clay_from_mold"),
+                GTItems.COMPRESSED_COKE_CLAY.asStack(),
+                CTNHItems.COKE_CLAY.asStack(),
+                GTItems.WOODEN_FORM_BRICK.asStack());
 
-        // 焦炉砖块（加热塑形）
+        // 焦炉砖（烧制压缩焦黏土）
+        VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("brick_preform_to_seared_brick"),
+                Ingredient.of(GTItems.COMPRESSED_COKE_CLAY.asStack()),
+                new ItemStack(GTItems.COKE_OVEN_BRICK), 0.3f);
+
+        // 焦炉砖块（压块塑形）
         CompactingRecipeBuilder.builder(CTNHCore.id("create/coke_oven_bricks"))
                 .input(GTItems.COKE_OVEN_BRICK.asStack(4))
                 .inputFluid(GTMaterials.Concrete.getFluid(200))
                 .result(GTBlocks.CASING_COKE_BRICKS.asStack())
-                .heated()
                 .processingTime(40)
                 .save(provider);
 
@@ -433,13 +435,11 @@ public class PrimitiveKineticAgeRecipes {
                 .processingTime(40)
                 .save(provider);
 
-        // 砖胚（砖泥 + 木制砖模具，3:4）
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/brick_preform_from_mold"),
-                CTNHItems.BRICK_PREFORM.asStack(4),
-                "FF",
-                "FM",
-                'F', CTNHItems.BRICK_MUD.asStack(),
-                'M', GTItems.WOODEN_FORM_BRICK.asStack());
+        // 砖胚（砖泥 + 木制砖模具，无序合成）
+        VanillaRecipeHelper.addShapelessRecipe(provider, CTNHCore.id("crafttable/brick_preform_from_mold"),
+                GTItems.COMPRESSED_COKE_CLAY.asStack(),
+                CTNHItems.BRICK_MUD.asStack(),
+                GTItems.WOODEN_FORM_BRICK.asStack());
 
         // 焦黑砖（烧制砖胚）
         VanillaRecipeHelper.addSmeltingRecipe(provider, CTNHCore.id("brick_preform_to_seared_brick"),
