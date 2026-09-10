@@ -40,6 +40,26 @@ public class CTNHCommonTooltips {
     @EN("Recipe modification failed")
     public static Lang gtceuRecipeModifierDefaultFail;
 
+    @CN("该配方没有定义 EU 输出")
+    @EN("This recipe defines no EU output")
+    public static Lang recipeModifierNoEuOutput;
+
+    @CN("机器输出功率不足：配方需要 %s EU/t，当前输出上限 %s EU/t")
+    @EN("Insufficient machine output: recipe requires %s EU/t, current limit is %s EU/t")
+    public static Lang recipeModifierInsufficientOutputPower;
+
+    @CN("输入材料不足，无法运行一次配方")
+    @EN("Not enough input materials to run the recipe once")
+    public static Lang recipeModifierInsufficientInput;
+
+    @CN("输出仓已满，配方产物无处存放")
+    @EN("Output is full; the recipe products cannot be stored")
+    public static Lang recipeModifierOutputFull;
+
+    @CN("该配方类型不被这台机器支持")
+    @EN("This recipe type is not supported by this machine")
+    public static Lang recipeModifierUnsupportedRecipeType;
+
     public static MutableComponent PARALLEL_HATCH = commonTooltipParallelHatch.translate()
             .withStyle(ChatFormatting.GOLD);
     public static MutableComponent SUBTICK_PARALLEL = commonTooltipSubtickOverclock.translate()

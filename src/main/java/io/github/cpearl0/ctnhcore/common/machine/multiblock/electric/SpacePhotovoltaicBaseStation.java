@@ -187,7 +187,7 @@ public class SpacePhotovoltaicBaseStation extends RecipeElectricMultiblockMachin
                 return null;
             }
         }
-        return RecipeModifier.DEFAULT_FAILURE;
+        return RecipeModifier.nullWrongType(SpacePhotovoltaicBaseStation.class, machine);
     }
 
     public void addDisplayText(List<Component> textList) {

@@ -70,6 +70,10 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
     @EN("Mob Types: %d (%s)")
     public static Lang slaughterHouseInfoMobcount;
 
+    @CN("没有可宰杀的怪物：请放入带有实体数据的电动刷怪笼")
+    @EN("No mob to slaughter: insert a powered spawner holding entity data")
+    public static Lang noMobToSlaughter;
+
     @Persisted
     public final NotifiableItemStackHandler machineStorage;
     public UUID uuid = UUID.randomUUID();
@@ -243,7 +247,7 @@ public class SlaughterHouseMachine extends RecipeElectricMultiblockMachine imple
         var failReason = super.beforeWorking(recipe);
         if (failReason != null) return failReason;
         ensureMobListUpToDate();
-        return mobList.isEmpty() ? RecipeModifier.DEFAULT_FAILURE : null;
+        return mobList.isEmpty() ? noMobToSlaughter.translate() : null;
     }
 
     public void resetMobList() {

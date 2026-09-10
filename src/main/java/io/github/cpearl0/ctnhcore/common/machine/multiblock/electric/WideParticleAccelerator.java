@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
 import io.github.cpearl0.ctnhcore.common.gui.WPAAcceleratorGui;
-import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 
 import com.gregtechceu.gtceu.api.capability.IParallelHatch;
 import com.gregtechceu.gtceu.api.gui.fancy.TabsWidget;
@@ -18,6 +17,7 @@ import com.gregtechceu.gtceu.api.misc.EnergyContainerList;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
@@ -65,6 +65,18 @@ public class WideParticleAccelerator extends RecipeElectricMultiblockMachine
     @CN("质子速度:%.2fMev")
     @EN("Proton Velocity: %.2f MeV")
     public static Lang wideAcceleratorInfoProtonSpeed;
+
+    @CN("中子速度不足：配方需要 %.2f MeV，当前仅 %.2f MeV")
+    @EN("Neutron velocity too low: the recipe needs %.2f MeV, currently only %.2f MeV")
+    public static Lang nuSpeedInsufficient;
+
+    @CN("电子速度不足：配方需要 %.2f MeV，当前仅 %.2f MeV")
+    @EN("Electron velocity too low: the recipe needs %.2f MeV, currently only %.2f MeV")
+    public static Lang electricSpeedInsufficient;
+
+    @CN("质子速度不足：配方需要 %.2f MeV，当前仅 %.2f MeV")
+    @EN("Proton velocity too low: the recipe needs %.2f MeV, currently only %.2f MeV")
+    public static Lang protonSpeedInsufficient;
 
     @Persisted
     @Getter
@@ -250,15 +262,17 @@ public class WideParticleAccelerator extends RecipeElectricMultiblockMachine
             }
             // 速度不足
             if (recipe.data.getString("type").equals("nu") && recipe.data.getDouble("speed") >= wmachine.nu_speed) {
-                return CTNHCommonTooltips.gtceuRecipeModifierDefaultFail.translate();
+                return nuSpeedInsufficient.translate(recipe.data.getDouble("speed"), wmachine.nu_speed);
             }
             if (recipe.data.getString("type").equals("element") &&
                     recipe.data.getDouble("speed") >= wmachine.electric_speed) {
-                return CTNHCommonTooltips.gtceuRecipeModifierDefaultFail.translate();
+                return electricSpeedInsufficient.translate(recipe.data.getDouble("speed"),
+                        wmachine.electric_speed);
             }
             if (recipe.data.getString("type").equals("proton") &&
                     recipe.data.getDouble("speed") >= wmachine.proton_speed) {
-                return CTNHCommonTooltips.gtceuRecipeModifierDefaultFail.translate();
+                return protonSpeedInsufficient.translate(recipe.data.getDouble("speed"),
+                        wmachine.proton_speed);
             }
             // 计算并行
             int parallel = 1;
@@ -354,7 +368,7 @@ public class WideParticleAccelerator extends RecipeElectricMultiblockMachine
             recipe.multiplyDuration(Math.max(0.1, muti));
             return null;
         }
-        return CTNHCommonTooltips.gtceuRecipeModifierDefaultFail.translate();
+        return RecipeModifier.nullWrongType(WideParticleAccelerator.class, machine);
     }
 
     @Override

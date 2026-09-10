@@ -30,6 +30,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import com.mo_guang.ctpp.common.blockentity.IKineticBlockEntityExtension;
 import com.mo_guang.ctpp.common.blockentity.KineticMachineBlockEntity;
 import com.mo_guang.ctpp.common.machine.IKineticMachine;
@@ -38,6 +40,7 @@ import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import it.unimi.dsi.fastutil.longs.LongSets;
 import org.jetbrains.annotations.NotNull;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +48,10 @@ import java.util.Objects;
 
 public class KineticElectricMultiblockMachine extends RecipeMultiblockMachine implements IFancyUIMachine,
                                               IDisplayUIMachine, ITieredMachine, IOverclockMachine {
+
+    @CN("动力转速不足：当前 %d，至少需要 64")
+    @EN("Insufficient kinetic speed: currently %d, at least 64 required")
+    public static Lang insufficientKineticSpeed;
 
     public KineticElectricMultiblockMachine(IMachineBlockEntity holder) {
         super(holder, new Object[0]);
@@ -255,7 +262,7 @@ public class KineticElectricMultiblockMachine extends RecipeMultiblockMachine im
             this.updateRotateBlocks(true);
         }
         if (this.speed < 64) {
-            return Component.translatable("gtceu.recipe_logic.insufficient_in");
+            return insufficientKineticSpeed.translate((int) this.speed);
         }
 
         return null;

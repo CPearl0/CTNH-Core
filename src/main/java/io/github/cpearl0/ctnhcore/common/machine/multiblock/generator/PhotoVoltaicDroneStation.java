@@ -37,6 +37,10 @@ public class PhotoVoltaicDroneStation extends RecipeElectricMultiblockMachine {
     @EN("Drone consumption chance: %.4f")
     public static Lang pvdroneInfoT2;
 
+    @CN("只能在轨道维度执行挖矿配方")
+    @EN("Mining recipes can only run in orbit dimensions")
+    public static Lang onlyInOrbit;
+
     public PhotoVoltaicDroneStation(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
@@ -184,7 +188,7 @@ public class PhotoVoltaicDroneStation extends RecipeElectricMultiblockMachine {
                 // 运行非挖矿配方时对光伏进行强化
                 lmachine.eut = (int) eut;
             else if (!lmachine.orbit)  // 只能在轨道维度挖矿
-                return RecipeModifier.DEFAULT_FAILURE;
+                return onlyInOrbit.translate();
             else {
                 recipe.multiplyOutputs((int) (0.1 * Math.sqrt(lmachine.GetDronePower())));
                 return null;
@@ -194,7 +198,7 @@ public class PhotoVoltaicDroneStation extends RecipeElectricMultiblockMachine {
 
         }
 
-        return RecipeModifier.DEFAULT_FAILURE;
+        return RecipeModifier.nullWrongType(PhotoVoltaicDroneStation.class, machine);
     }
 
     public void addDisplayText(List<Component> textList) {

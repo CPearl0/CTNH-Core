@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
+
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -155,7 +157,9 @@ public class NanoscaleTriboelectricGenerator extends RecipeElectricMultiblockMac
                 }
             }
 
-            if (maxParallel <= 0) return RecipeModifier.DEFAULT_FAILURE;
+            if (maxParallel <= 0) {
+                return CTNHCommonTooltips.recipeModifierInsufficientInput.translate();
+            }
 
             recipe.multiplyAllContents(maxParallel);
             recipe.multiplyDuration(Math.sqrt(maxParallel));
@@ -163,7 +167,7 @@ public class NanoscaleTriboelectricGenerator extends RecipeElectricMultiblockMac
             recipe.parallels *= maxParallel;
             return null;
         }
-        return RecipeModifier.DEFAULT_FAILURE;
+        return RecipeModifier.nullWrongType(NanoscaleTriboelectricGenerator.class, machine);
     }
 
     @Override

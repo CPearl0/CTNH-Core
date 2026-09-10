@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.simple;
 
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
+import io.github.cpearl0.ctnhcore.utils.CTNHRecipeHelper;
+
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.SimpleGeneratorMachine;
@@ -50,13 +53,14 @@ public class EfficiencyGeneratorMachine extends SimpleGeneratorMachine {
         }
 
         long recipeEUt = recipe.getOutputEUt();
-        if (recipeEUt <= 0) return RecipeModifier.DEFAULT_FAILURE;
+        if (recipeEUt <= 0) return CTNHCommonTooltips.recipeModifierNoEuOutput.translate();
 
-        int maxParallel = (int) (generator.getOverclockVoltage() / recipeEUt);
-        if (maxParallel <= 0) return RecipeModifier.DEFAULT_FAILURE;
+        long maxOutput = generator.getOverclockVoltage();
+        int maxParallel = (int) (maxOutput / recipeEUt);
+        if (maxParallel <= 0) return CTNHRecipeHelper.insufficientOutputPower(recipeEUt, maxOutput);
 
         int parallels = ParallelLogic.getParallelAmountFast(group, recipe, maxParallel);
-        if (parallels <= 0) return RecipeModifier.DEFAULT_FAILURE;
+        if (parallels <= 0) return CTNHCommonTooltips.recipeModifierInsufficientInput.translate();
 
         recipe.multiplyAllContents(parallels);
         recipe.parallels *= parallels;

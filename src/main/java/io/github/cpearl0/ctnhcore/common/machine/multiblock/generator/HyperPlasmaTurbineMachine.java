@@ -4,6 +4,7 @@ import io.github.cpearl0.ctnhcore.client.renderer.utils.RenderUtils;
 import io.github.cpearl0.ctnhcore.common.blockentity.TurbineRotorBE;
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.MultiblockComputationMachine;
 import io.github.cpearl0.ctnhcore.data.recipe.utils.ComputationModifier;
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
@@ -22,14 +23,21 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3i;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
 
 import static io.github.cpearl0.ctnhcore.utils.MathUtils.fastLog2;
 
 public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
+
+    @CN("等离子涡轮输出功率不足：配方需要 %s EU/t，当前输出上限 %s EU/t（提供更多算力可提升上限）")
+    @EN("Insufficient plasma turbine output: recipe requires %s EU/t, current limit is %s EU/t (supply more CWU/t to raise the limit)")
+    public static Lang insufficientOutputPower;
 
     public static final long BASE_EU_OUTPUT = GTValues.V[GTValues.ZPM] * 288;/* 有算力时的基础功率 */
     public static final long DEFAULT_EU_OUTPUT = GTValues.V[GTValues.ZPM];/* 没有算力时的默认功率 */
@@ -173,7 +181,11 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
         final long EUt = RecipeHelper.getRealEUtWithIO(recipe);
         final long turbineMaxVoltage = hptm.getOverclockVoltage();
 
-        if (EUt <= 0 || turbineMaxVoltage <= EUt) return RecipeModifier.DEFAULT_FAILURE;
+        if (EUt <= 0) return CTNHCommonTooltips.recipeModifierNoEuOutput.translate();
+        if (turbineMaxVoltage <= EUt) {
+            return insufficientOutputPower.translate(FormattingUtil.formatNumbers(EUt),
+                    FormattingUtil.formatNumbers(turbineMaxVoltage));
+        }
 
         // get the amount of parallel required to match the desired output voltage
         final double euMultiplier = getEfficiency();

@@ -17,12 +17,23 @@ import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 
 import net.minecraft.network.chat.Component;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 import tech.vixhentx.mcmod.ctnhlib.utils.MachineUtils;
 
 import static com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys.PLASMA;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class PlasmaAlloyBlast extends CoilWorkableElectricMultiblockMachine {
+
+    @CN("线圈温度不足：无法提供并行等级（至少需要 1800K 的线圈）")
+    @EN("Coil temperature too low: cannot provide a parallel tier (requires a coil of at least 1800K)")
+    public static Lang coilTierTooLow;
+
+    @CN("缺少等离子体：没有消耗任何有效的等离子体输入")
+    @EN("Missing plasma: no valid plasma input was consumed")
+    public static Lang missingPlasma;
 
     public PlasmaAlloyBlast(IMachineBlockEntity holder) {
         super(holder);
@@ -48,6 +59,7 @@ public class PlasmaAlloyBlast extends CoilWorkableElectricMultiblockMachine {
 
     public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof PlasmaAlloyBlast pmachine) {
+            if (pmachine.machine_level <= 0) return coilTierTooLow.translate();
             var speed = 1.0;
             var output = 1.0;
             var eut = 1.0;
@@ -93,7 +105,7 @@ public class PlasmaAlloyBlast extends CoilWorkableElectricMultiblockMachine {
                 output = 0.5 * (Math.random());
             }
             if (speed <= 0.5) {
-                return RecipeModifier.DEFAULT_FAILURE;
+                return missingPlasma.translate();
             }
             recipe.multiplyInputs(parallel);
             recipe.multiplyOutputs((int) (parallel * output));
@@ -102,6 +114,6 @@ public class PlasmaAlloyBlast extends CoilWorkableElectricMultiblockMachine {
             recipe.parallels *= parallel;
             return null;
         }
-        return RecipeModifier.DEFAULT_FAILURE;
+        return RecipeModifier.nullWrongType(PlasmaAlloyBlast.class, machine);
     }
 }

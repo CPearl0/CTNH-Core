@@ -35,7 +35,7 @@ public class WaterPowerStationMachine extends CoilWorkableElectricMultiblockMach
             recipe.multiplyEUt(wmachine.water * random * wmachine.efficiency / 100);
             return null;
         }
-        return RecipeModifier.DEFAULT_FAILURE;
+        return RecipeModifier.nullWrongType(WaterPowerStationMachine.class, machine);
     }
 
     @Override

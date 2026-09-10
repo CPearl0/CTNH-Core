@@ -1,5 +1,7 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
@@ -12,7 +14,6 @@ import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeCombustionEngineMachine;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
 import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
@@ -64,7 +65,7 @@ public class ChemicalGeneratorMachine extends RecipeElectricMultiblockMachine {
     public static Component recipeModifier(@NotNull MetaMachine machine, RecipeHandlerGroup group,
                                            @NotNull GTRecipe recipe) {
         if (!(machine instanceof ChemicalGeneratorMachine engineMachine)) {
-            return RecipeModifier.nullWrongType(LargeCombustionEngineMachine.class, machine);
+            return RecipeModifier.nullWrongType(ChemicalGeneratorMachine.class, machine);
         }
         long EUt = RecipeHelper.getRealEUtWithIO(recipe);
         // has lubricant
@@ -77,7 +78,7 @@ public class ChemicalGeneratorMachine extends RecipeElectricMultiblockMachine {
             recipe.parallels *= actualParallel;
             return null;
         }
-        return RecipeModifier.DEFAULT_FAILURE;
+        return CTNHCommonTooltips.recipeModifierNoEuOutput.translate();
     }
 
     protected double getProductionBoost() {

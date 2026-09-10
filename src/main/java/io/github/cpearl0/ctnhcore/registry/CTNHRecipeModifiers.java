@@ -2,6 +2,8 @@ package io.github.cpearl0.ctnhcore.registry;
 
 import io.github.cpearl0.ctnhcore.common.machine.multiblock.electric.ChemicalPlantMachine;
 import io.github.cpearl0.ctnhcore.common.machine.simple.EfficiencyGeneratorMachine;
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
+import io.github.cpearl0.ctnhcore.utils.CTNHRecipeHelper;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -152,13 +154,14 @@ public class CTNHRecipeModifiers {
         }
 
         long recipeEUt = recipe.getOutputEUt();
-        if (recipeEUt <= 0) return RecipeModifier.DEFAULT_FAILURE;
+        if (recipeEUt <= 0) return CTNHCommonTooltips.recipeModifierNoEuOutput.translate();
 
-        int maxParallel = (int) (generator.getOverclockVoltage() / recipeEUt);
-        if (maxParallel <= 0) return RecipeModifier.DEFAULT_FAILURE;
+        long maxOutput = generator.getOverclockVoltage();
+        int maxParallel = (int) (maxOutput / recipeEUt);
+        if (maxParallel <= 0) return CTNHRecipeHelper.insufficientOutputPower(recipeEUt, maxOutput);
 
         int multiplier = ParallelLogic.getParallelAmountFast(group, recipe, maxParallel);
-        if (multiplier <= 0) return RecipeModifier.DEFAULT_FAILURE;
+        if (multiplier <= 0) return CTNHCommonTooltips.recipeModifierInsufficientInput.translate();
 
         recipe.multiplyEUt(multiplier);
         recipe.multiplyDuration(((double) generator.efficiency / 100) / multiplier);

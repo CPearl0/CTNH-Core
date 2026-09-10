@@ -1,5 +1,8 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
+import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
+import io.github.cpearl0.ctnhcore.utils.CTNHRecipeHelper;
+
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
@@ -21,13 +24,20 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
 
 public class MegaTurbineMachine extends RecipeElectricMultiblockMachine implements ITieredMachine {
+
+    @CN("未找到涡轮转子支架，多方块结构不完整")
+    @EN("No rotor holder found; the multiblock structure is incomplete")
+    public static Lang missingRotorHolder;
 
     public static final int MIN_DURABILITY_TO_WARN = 10;
 
@@ -81,13 +91,22 @@ public class MegaTurbineMachine extends RecipeElectricMultiblockMachine implemen
         }
 
         var rotorHolder = turbineMachine.getRotorHolder();
-        if (rotorHolder == null) return RecipeModifier.DEFAULT_FAILURE;
+        if (rotorHolder == null) return missingRotorHolder.translate();
+        if (!rotorHolder.hasRotor()) {
+            return Component.translatable("gtceu.recipe_modifier.missing_valid_turbine_rotor");
+        }
 
         long EUt = RecipeHelper.getRealEUtWithIO(recipe);
         long turbineMaxVoltage = turbineMachine.getOverclockVoltage();
         double holderEfficiency = rotorHolder.getTotalEfficiency() / 100.0;
 
-        if (EUt <= 0 || turbineMaxVoltage <= EUt || holderEfficiency <= 0) return RecipeModifier.DEFAULT_FAILURE;
+        if (EUt <= 0) return CTNHCommonTooltips.recipeModifierNoEuOutput.translate();
+        if (holderEfficiency <= 0) {
+            return Component.translatable("gtceu.recipe_modifier.missing_valid_turbine_rotor");
+        }
+        if (turbineMaxVoltage <= EUt) {
+            return CTNHRecipeHelper.insufficientOutputPower(EUt, turbineMaxVoltage);
+        }
 
         // get the amount of parallel required to match the desired output voltage
         int maxParallel = (int) (turbineMaxVoltage / EUt);
