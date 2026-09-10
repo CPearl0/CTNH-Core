@@ -245,8 +245,10 @@ public class CTNHMachineUtils {
                                                                             Supplier<? extends Block> gear,
                                                                             Supplier<? extends Block> intake,
                                                                             ResourceLocation casingTexture,
-                                                                            ResourceLocation overlayModel) {
+                                                                            ResourceLocation overlayModel,
+                                                                            String cnName) {
         return REGISTRATE.multiblock(name, holder -> new LargeCombustionEngineMachine(holder, tier))
+                .cnLangValue(cnName)
                 .rotationState(RotationState.ALL)
                 .recipeType(GTRecipeTypes.COMBUSTION_GENERATOR_FUELS)
                 .generator(true)

@@ -287,12 +287,13 @@ public class CTNHBlocks {
     public static final BlockEntry<ActiveBlock> CASING_ULTIMATE_ENGINE_INTAKE = createActiveCasing(
             "ultimate_engine_intake_casing", "无尽引擎进气机械方块", "block/variant/ultimate_engine_intake");
 
-    public static final BlockEntry<CoilBlock> COIL_ABYSALALLOY = createCoilBlock(CoilType.ABYSSALALLOY);
-    public static final BlockEntry<CoilBlock> COIL_TITANSTEEL = createCoilBlock(CoilType.TITANSTEEL);
-    public static final BlockEntry<CoilBlock> COIL_PIKYONIUM = createCoilBlock(CoilType.PIKYONIUM);
-    public static final BlockEntry<CoilBlock> COIL_BLACKTITANIUM = createCoilBlock(CoilType.BLACKTITANIUM);
-    public static final BlockEntry<CoilBlock> COIL_STARMETAL = createCoilBlock(CoilType.STARMETAL);
-    public static final BlockEntry<CoilBlock> COIL_INFINITY = createCoilBlock(CoilType.INFINITYY);
+    public static final BlockEntry<CoilBlock> COIL_ABYSALALLOY = createCoilBlock(CoilType.ABYSSALALLOY, "渊狱合金线圈");
+    public static final BlockEntry<CoilBlock> COIL_TITANSTEEL = createCoilBlock(CoilType.TITANSTEEL, "泰坦钢线圈");
+    public static final BlockEntry<CoilBlock> COIL_PIKYONIUM = createCoilBlock(CoilType.PIKYONIUM, "皮卡优线圈");
+    public static final BlockEntry<CoilBlock> COIL_BLACKTITANIUM = createCoilBlock(CoilType.BLACKTITANIUM,
+            "黑钛合金线圈");
+    public static final BlockEntry<CoilBlock> COIL_STARMETAL = createCoilBlock(CoilType.STARMETAL, "星辉线圈");
+    public static final BlockEntry<CoilBlock> COIL_INFINITY = createCoilBlock(CoilType.INFINITYY, "无尽线圈");
     // public static final BlockEntry<CoilBlock> COIL_ULTRA_MANA = createCoilBlock(CoilType.ULTRA_MANA);
 
     public static final BlockEntry<Block> BRONZE_FRAMED_GLASS = createGlassCasingBlock(
@@ -320,7 +321,7 @@ public class CTNHBlocks {
 
     public static final BlockEntry<RotatedPillarBlock> TEST_CASING = createRotateCasing("test_machine_casing", "t1");
     public static final BlockEntry<RotatedPillarBlock> ATOMS_SPLIT_BLOCKS = createRotateCasing("atoms_split_blocks",
-            "atomssplit");
+            "atomssplit", "原子裂解方块");
     public static final BlockEntry<PhotovoltaicBlock> VIBRANT_PHOTOVOLTAIC_BLOCK = createPhotovoltaicBlock(
             PhotovoltaicBlock.PhotovoltaicType.VIBRANT_PHOTOVOLTAIC_BLOCK,
             ("block/vibrant_photovoltaic_block"), "振动光伏方块");
@@ -334,7 +335,7 @@ public class CTNHBlocks {
 
     // Fireboxes
     public static final BlockEntry<ActiveBlock> NAQUADAH_FIREBOX = createFireboxCasing(
-            CTNHBoilerFireboxType.NAQUADAH_FIREBOX);
+            CTNHBoilerFireboxType.NAQUADAH_FIREBOX, "硅岩燃烧室");
 
     public static final BlockEntry<PhotovoltaicBlock> PHOTON_PRESS_COND_BLOCK = createPhotovoltaicBlock(
             PhotovoltaicBlock.PhotovoltaicType.PHOTON_PRESS_COND_BLOCK,
@@ -353,9 +354,10 @@ public class CTNHBlocks {
             .build()
             .register();
 
-    private static BlockEntry<ActiveBlock> createFireboxCasing(BoilerFireboxType type) {
+    private static BlockEntry<ActiveBlock> createFireboxCasing(BoilerFireboxType type, String cnName) {
         var block = REGISTRATE
                 .block("%s_casing".formatted(type.name()), ActiveBlock::new)
+                .cnlang(cnName)
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
                 .addLayer(() -> RenderType::cutoutMipped)
@@ -371,7 +373,7 @@ public class CTNHBlocks {
     }
 
     public static BlockEntry<TurbineRotorBlock> HYPER_PLASMA_TURBINE_ROTOR = createTurbineRotorBlock(
-            "hyper_plasma_turbine_rotor", 1, 1, 1, 1);
+            "hyper_plasma_turbine_rotor", 1, 1, 1, 1, "超極等离子涡轮转子");
 
     public static BlockEntry<SpaceStructuralFramework> NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK = createSpaceStructuralFrame(
             SpaceStructuralFramework.SpaceStructuralFrameworkType.NQ_EXCITE_CARBON_CARBON_NANOFIBER_STRUCTURAL_BLOCK,
@@ -425,9 +427,10 @@ public class CTNHBlocks {
     }
 
     @SuppressWarnings("all")
-    private static BlockEntry<CoilBlock> createCoilBlock(ICoilType coilType) {
+    private static BlockEntry<CoilBlock> createCoilBlock(ICoilType coilType, String cnName) {
         BlockEntry<CoilBlock> coilBlock = REGISTRATE
                 .block("%s_coil_block".formatted(coilType.getName()), p -> new CoilBlock(p, coilType))
+                .cnlang(cnName)
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
                 .addLayer(() -> RenderType::cutoutMipped)
@@ -493,7 +496,13 @@ public class CTNHBlocks {
 
     @SuppressWarnings("all")
     private static BlockEntry<RotatedPillarBlock> createRotateCasing(String name, String map) {
-        return REGISTRATE.block(name, RotatedPillarBlock::new)
+        return createRotateCasing(name, map, null);
+    }
+
+    private static BlockEntry<RotatedPillarBlock> createRotateCasing(String name, String map, String cnName) {
+        var builder = REGISTRATE.block(name, RotatedPillarBlock::new);
+        if (cnName != null) builder.cnlang(cnName);
+        return builder
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .addLayer(() -> RenderType::cutoutMipped)
                 .blockstate(CTNHModels.createMapCasingModel(name, map))
@@ -503,8 +512,10 @@ public class CTNHBlocks {
                 .register();
     }
 
-    public static BlockEntry<TurbineRotorBlock> createTurbineRotorBlock(String name, int R, int G, int B, int A) {
+    public static BlockEntry<TurbineRotorBlock> createTurbineRotorBlock(String name, int R, int G, int B, int A,
+                                                                        String cnName) {
         return REGISTRATE.block(name, TurbineRotorBlock.create(R, G, B, A))
+                .cnlang(cnName)
                 .initialProperties(() -> Blocks.OBSIDIAN)
                 .tag(CustomTags.MINEABLE_WITH_WRENCH, BlockTags.MINEABLE_WITH_PICKAXE)
                 .blockstate((ctx, prov) -> prov.simpleBlock(ctx.getEntry(),
