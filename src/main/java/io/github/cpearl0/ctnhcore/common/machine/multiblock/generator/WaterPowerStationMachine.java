@@ -5,7 +5,6 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.machine.trait.multiblock.CoilMachineTrait;
@@ -65,7 +64,7 @@ public class WaterPowerStationMachine extends CoilWorkableElectricMultiblockMach
     public void addDisplayText(List<Component> textList) {
         if (isFormed()) {
             var outputEnergy = isActive() && recipeLogic.getLastRecipe() != null ?
-                    RecipeHelper.getRealEUtWithIO(recipeLogic.getLastRecipe()) : 0;
+                    recipeLogic.getLastRecipe().getOutputEUt() : 0;
             var voltageName = GTValues.VNF[GTUtil.getTierByVoltage(outputEnergy)];
             textList.add(Component.translatable("multiblock.ctnh.water_power_station1", water));
             textList.add(Component.translatable("multiblock.ctnh.water_power_station.efficiency",
