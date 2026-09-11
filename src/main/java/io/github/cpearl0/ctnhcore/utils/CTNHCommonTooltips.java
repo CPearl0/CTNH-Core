@@ -48,14 +48,6 @@ public class CTNHCommonTooltips {
     @EN("Insufficient machine output: recipe requires %s EU/t, current limit is %s EU/t")
     public static Lang recipeModifierInsufficientOutputPower;
 
-    @CN("输入材料不足，无法运行一次配方")
-    @EN("Not enough input materials to run the recipe once")
-    public static Lang recipeModifierInsufficientInput;
-
-    @CN("输出仓已满，配方产物无处存放")
-    @EN("Output is full; the recipe products cannot be stored")
-    public static Lang recipeModifierOutputFull;
-
     @CN("该配方类型不被这台机器支持")
     @EN("This recipe type is not supported by this machine")
     public static Lang recipeModifierUnsupportedRecipeType;

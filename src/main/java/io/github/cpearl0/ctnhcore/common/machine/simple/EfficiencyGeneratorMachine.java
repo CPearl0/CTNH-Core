@@ -59,8 +59,7 @@ public class EfficiencyGeneratorMachine extends SimpleGeneratorMachine {
         int maxParallel = (int) (maxOutput / recipeEUt);
         if (maxParallel <= 0) return CTNHRecipeHelper.insufficientOutputPower(recipeEUt, maxOutput);
 
-        int parallels = ParallelLogic.getParallelAmountFast(group, recipe, maxParallel);
-        if (parallels <= 0) return CTNHCommonTooltips.recipeModifierInsufficientInput.translate();
+        int parallels = Math.max(1, ParallelLogic.getParallelAmountFast(group, recipe, maxParallel));
 
         recipe.multiplyAllContents(parallels);
         recipe.parallels *= parallels;

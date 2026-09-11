@@ -1,7 +1,6 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
 import io.github.cpearl0.ctnhcore.registry.material.CTNHMaterials;
-import io.github.cpearl0.ctnhcore.utils.CTNHRecipeHelper;
 
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
@@ -88,9 +87,7 @@ public class BlazeBlastFurnaceMachine extends CoilWorkableElectricMultiblockMach
     }
 
     public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
-        int parallel = ParallelLogic.getParallelAmount(group, recipe, 8);
-        if (parallel == 0)
-            return CTNHRecipeHelper.diagnoseParallelFailure(group, recipe);
+        int parallel = Math.max(1, ParallelLogic.getParallelAmount(group, recipe, 8));
         recipe.multiplyEUt(0.5);
         recipe.multiplyAllContents(parallel);
         recipe.parallels *= parallel;

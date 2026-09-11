@@ -160,8 +160,7 @@ public class CTNHRecipeModifiers {
         int maxParallel = (int) (maxOutput / recipeEUt);
         if (maxParallel <= 0) return CTNHRecipeHelper.insufficientOutputPower(recipeEUt, maxOutput);
 
-        int multiplier = ParallelLogic.getParallelAmountFast(group, recipe, maxParallel);
-        if (multiplier <= 0) return CTNHCommonTooltips.recipeModifierInsufficientInput.translate();
+        int multiplier = Math.max(1, ParallelLogic.getParallelAmountFast(group, recipe, maxParallel));
 
         recipe.multiplyEUt(multiplier);
         recipe.multiplyDuration(((double) generator.efficiency / 100) / multiplier);
