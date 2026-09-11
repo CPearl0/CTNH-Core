@@ -340,60 +340,6 @@ public class RecipeRemoval {
     public static void gtceuRemovals() {
 
         remove(new RemoveFilter().id("gtceu:shaped/ulv_machine_hull"));
-        remove(new RemoveFilter().id("gtceu:shaped/casing_hsse_sturdy"));
-        remove(new RemoveFilter().id("gtceu:assembler/casing_hsse_sturdy"));
-        remove(new RemoveFilter().id("gtceu:shaped/diamond_sword"));
-        remove(new RemoveFilter().id("gtceu:electric_blast_furnace/titanium_from_tetrachloride"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/titaniumtetrachloride"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/tungstic_acid_electrolysis"));
-        remove(new RemoveFilter().id("gtceu:neutron_activator/naquadah"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/iridium_chloride"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/iridium_dioxide_dissolving"));
-        remove(new RemoveFilter().id("gtceu:electric_blast_furnace/iridium_metal_residue_processh"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/iridium_chloride"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/iridium_chloride_separation"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/raw_platinum_separation"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/raw_platinum_separation"));
-        remove(new RemoveFilter().id("gtceu:electric_blast_furnace/refined_platinum_salt_dust_ebf"));
-        remove(new RemoveFilter().id("gtceu:electric_blast_furnace/iridium_metal_residue_process"));
-        remove(new RemoveFilter().id("gtceu:smelting/smelt_dust_bedrock_dust_to_ingot"));
-        remove(new RemoveFilter().id("gtceu:arc_furnace/arc_bedrock_dust_dust"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/indium_concentrate_separation"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/indium_concentrate_separation_4x"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/indium_concentrate_separation_4x"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_aluminium_sulfite"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/phosphoric_acid_from_pentoxide"));
-        remove(new RemoveFilter().id("gtceu:shaped/large_bronze_boiler"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/soda_ash_from_carbon_dioxide"));
-        remove(new RemoveFilter().id("gtceu:electric_blast_furnace/blast_adamantite"));
-        remove(new RemoveFilter().id("gtceu:fluid_solidifier/solidify_adamantite_to_plate"));
-        remove(new RemoveFilter().id("gtceu:fluid_solidifier/solidify_adamantite_gear"));
-        remove(new RemoveFilter().id("gtceu:fluid_solidifier/solidify_adamantite_block"));
-        remove(new RemoveFilter().id("gtceu:fluid_solidifier/solidify_adamantite_to_ingot"));
-        remove(new RemoveFilter().id("gtceu:fluid_solidifier/solidify_adamantite_small_gear"));
-        remove(new RemoveFilter().id("gtceu:fluid_solidifier/solidify_adamantite_to_nugget"));
-        remove(new RemoveFilter().id("gtceu:shaped/plate_double_graphite_ir_plate"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/iridium_dioxide_dissolving"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/iridium_chloride_separation"));
-        remove(new RemoveFilter().id("gtceu:dehydrator/xenoauric_fluoroantimonic_acid"));
-        remove(new RemoveFilter().id("gtceu:assembly_line/energy_hatch_uhv"));
-        remove(new RemoveFilter().id("gtceu:rocket_engine/rp_1_mixed_fuel"));
-        remove(new RemoveFilter().id("gtceu:rocket_engine/methylhydrazine_nitrate_rocket_fuel"));
-        remove(new RemoveFilter().id("gtceu:rocket_engine/udmh_rocket_fuel"));
-        remove(new RemoveFilter().id("gtceu:rocket_engine/dense_hydrazine_mixed_fuel"));
-        remove(new RemoveFilter().id("gtceu:gas_turbine/coal_gas"));
-        remove(new RemoveFilter().id("gtceu:gas_turbine/wood_gas"));
-        remove(new RemoveFilter().id("gtceu:combustion_generator/naphtha"));
-        remove(new RemoveFilter().id("gtceu:combustion_generator/diesel"));
-        remove(new RemoveFilter().id("gtceu:combustion_generator/light_fuel"));
-        remove(new RemoveFilter().id("gtceu:shaped/filter_casing_sterile"));
-        remove(new RemoveFilter().id("gtceu:shaped/maintenance_hatch_cleaning"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/calcite_from_quicklime"));
-        remove(new RemoveFilter().id("gtceu:extractor/extract_osmium_tetroxide_dust"));
-        remove(new RemoveFilter().id("gtceu:combustion_generator/biodiesel"));
-        remove(new RemoveFilter().id("gtceu:combustion_generator/cetane_diesel"));
-        remove(new RemoveFilter().id("gtceu:gas_turbine/benzene"));
-        remove(new RemoveFilter().id("gtceu:gas_turbine/nitrobenzene"));
         remove(new RemoveFilter().id("gtceu:large_chemical_reactor/hydrogen_peroxide"));
         remove(new RemoveFilter().id("gtceu:distillation/distill_fermented_biomass"));
         remove(new RemoveFilter().id("gtceu:pyrolyse_oven/bio_chaff_to_fermented_biomass"));
@@ -406,7 +352,6 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:shaped/space_suit"));
         remove(new RemoveFilter().id("gtceu:shaped/space_pants"));
         remove(new RemoveFilter().id("gtceu:shaped/space_boots"));
-        remove(new RemoveFilter().id("gtceu:electric_blast_furnace/rutile_from_ilmenite"));
         remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_green_sapphire"));
         remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_sapphire"));
         remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_ruby"));
@@ -530,13 +475,6 @@ public class RecipeRemoval {
         remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_assembly_hv*"));
         remove(new RemoveFilter().id("gtceu:circuit_assembler/workstation_ev*"));
         remove(new RemoveFilter().id("gtceu:circuit_assembler/mainframe_iv*"));
-        // 焊锡（soldering_alloy）焊料变体一并移除
-//        remove(new RemoveFilter().id("gtceu:circuit_assembler/microprocessor_lv_soldering_alloy"));
-//        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_mv_soldering_alloy"));
-//        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_assembly_hv_soldering_alloy"));
-//        remove(new RemoveFilter().id("gtceu:circuit_assembler/workstation_ev_soldering_alloy"));
-//        remove(new RemoveFilter().id("gtceu:circuit_assembler/mainframe_iv_soldering_alloy"));
-//        remove(new RemoveFilter().id("gtceu:centrifuge/decomposition_centrifuging__redstone"));
 
         // 移除 GTCEu 默认 LV~IV 电动马达与 LV 组件工作台配方，统一改为 CTNH 工作台配方
         remove(new RemoveFilter().idRegex(
