@@ -52,11 +52,12 @@ public class MultiblocksC {
     public static void init() {}
 
     public static final MultiblockMachineDefinition GREENHOUSE = REGISTRATE.multiblock("greenhouse", RecipeElectricMultiblockMachine::new)
+            .cnLangValue("温室")
             .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.GREENHOUSE_RECIPES)
             .recipeModifiers(GTRecipeModifiers.OC_NON_PERFECT, GTRecipeModifiers.BATCH_MODE)
             .tooltips(greenhouseTooltip0.translate().withStyle(ChatFormatting.GRAY))
-            .cnLangValue("温室").appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
+            .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "ABBBA", "ABBBA", "#BBB#", "#BBB#", "##B##", "#####")
                     .aisle("ACCCA", "B###B", "B###B", "B###B", "B###B", "#BBB#", "##A##")
@@ -91,6 +92,7 @@ public class MultiblocksC {
 
     public static final MultiblockMachineDefinition CNC_ALLOY_SMELTER = REGISTRATE
             .multiblock("cnc_alloy_smelter", CNCAlloySmelter::new)
+            .cnLangValue("数控合金冶炼炉")
             .langValue("CNC ALLOY Smelter")
             .recipeType(ALLOY_BLAST_RECIPES)
             .tooltips(MultiblocksA.megaLcrTooltip0.translate(),
@@ -105,7 +107,7 @@ public class MultiblocksC {
             //.rotationState(RotationState.NON_Y_AXIS)
 
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, CTNHRecipeModifiers::ebfOverclock, GTRecipeModifiers.BATCH_MODE)
-            .cnLangValue("数控合金冶炼炉").appearanceBlock(GTBlocks.COMPUTER_CASING)
+            .appearanceBlock(GTBlocks.COMPUTER_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####AAAAA#####", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############")
                     .aisle("###AABBBBBAA###", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############")

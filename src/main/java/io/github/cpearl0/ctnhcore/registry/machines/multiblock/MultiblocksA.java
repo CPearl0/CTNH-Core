@@ -1241,13 +1241,14 @@ public class MultiblocksA {
 
     public static void init(){}
     public static final MultiblockMachineDefinition UNDERFLOOR_HEATING_SYSTEM = REGISTRATE.multiblock("underfloor_heating_system", UnderfloorHeatingMachine::new)
+            .cnLangValue("地暖")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.UNDERFLOOR_HEATING_SYSTEM)
             .tooltips(underfloorHeatingSystemTooltip0.translate().withStyle(ChatFormatting.GRAY),
                     underfloorHeatingSystemTooltip1.translate(),
                     underfloorHeatingSystemTooltip2.translate(),
                     underfloorHeatingSystemTooltip3.translate())
-            .cnLangValue("地暖").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAAAAAAAAAA")
                     .aisle("AAAAAAAABAAAAAAA")
                     .aisle("AAAAAAAABAAAAAAA")
@@ -1325,11 +1326,12 @@ public class MultiblocksA {
 
 
     public static final MultiblockMachineDefinition ASTRONOMICAL_OBSERVATORY = REGISTRATE.multiblock("astronomical_observatory", AstronomicalMachine::new)
+            .cnLangValue("天文台")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ASTRONOMICAL_OBSERVATORY)
             .tooltips(astronomicalTooltip0.translate().withStyle(ChatFormatting.GRAY),
                     astronomicalTooltip1.translate())
-            .cnLangValue("天文台").appearanceBlock(CASING_STAINLESS_CLEAN)
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("   BBB   ", "   BBB   ", "   BBB   ", "   BBB   ", "   BBB   ", "   RDR   ", "         ", "         ", "         ")
                     .aisle("  BBBBB  ", "  B   B  ", "  B E B  ", "  B F B  ", "  B   B  ", "  R   R  ", "   RDR   ", "         ", "         ")
@@ -1436,6 +1438,7 @@ public class MultiblocksA {
     public static final MultiblockMachineDefinition SUPER_WIND_POWER_ARRAY = WindPowerArrayRegister.register("super_wind_power_array",3,CASING_TUNGSTENSTEEL_ROBUST, TungstenSteel,"machine_casing_robust_tungstensteel", "超级风力发电阵列");
 
     public static final MultiblockMachineDefinition SLAUGHTER_HOUSE = REGISTRATE.multiblock("slaughter_house", SlaughterHouseMachine::new)
+            .cnLangValue("屠宰场")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.SLAUGHTER_HOUSE)
             .tooltips(slaughterHouseTooltip0.translate().withStyle(ChatFormatting.GRAY),
@@ -1445,7 +1448,7 @@ public class MultiblocksA {
                     slaughterHouseTooltip4.translate().withStyle(ChatFormatting.GREEN),
                     slaughterHouseTooltip5.translate())
             .recipeModifiers(SlaughterHouseMachine::recipeModifier, GTRecipeModifiers.BATCH_MODE)
-            .cnLangValue("屠宰场").appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
+            .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABBBA", "ABBBA", "CCCCC", "CCCCC", "CCCCC", "CCCCC", "ABBBA")
                     .aisle("BAAAB", "BDDDB", "CDDDC", "CDDDC", "CDDDC", "CDDDC", "BAAAB")
@@ -1466,12 +1469,13 @@ public class MultiblocksA {
             .register();
 
     public final static MultiblockMachineDefinition COKE_TOWER = REGISTRATE.multiblock("coke_tower", CoilWorkableElectricMultiblockMachine::new)
+            .cnLangValue("焦化塔")
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.PYROLYSE_RECIPES)
             .tooltips(cokeTowerTooltip0.translate().withStyle(ChatFormatting.GRAY),
                     cokeTowerTooltip1.translate())
             .recipeModifiers(GTRecipeModifiers::multiSmelterParallel, BATCH_MODE)
-            .cnLangValue("焦化塔").appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
+            .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABBBA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "ACCCA", "#ACA#")
                     .aisle("BDDDB", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "CFFFC", "CEEEC", "ACCCA")
@@ -1501,12 +1505,13 @@ public class MultiblocksA {
             .register();
 
     public final static MultiblockMachineDefinition BEDROCK_DRILLING_RIGS = REGISTRATE.multiblock("bedrock_drilling_rigs", CoilWorkableElectricMultiblockMachine::new)
+            .cnLangValue("基岩钻机")
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.BEDROCK_DRILLING_RIGS)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH)
             .tooltips(CTNHCommonTooltips.gtceuMultiblockLaserTooltip.translate())
             .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
-            .cnLangValue("基岩钻机").appearanceBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING)
+            .appearanceBlock(CTNHBlocks.CASING_TUNGSTENCU_DIAMOND_PLATING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#######", "AAAAAAA", "A#####A", "A#####A", "A#####A", "A#####A", "A#####A", "AAAAAAA")
                     .aisle("#######", "A#####A", "#######", "#B###B#", "#######", "#######", "#######", "AB###BA")
@@ -1530,6 +1535,7 @@ public class MultiblocksA {
                     GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
     public final static MultiblockMachineDefinition NAQ_REACTOR_MK3 = REGISTRATE.multiblock("naq_reactor_mk3", NaqReactorMachine::new)
+            .cnLangValue("超级硅岩反应堆")
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.NAQ_MK1)
             .generator(true)
@@ -1539,7 +1545,7 @@ public class MultiblocksA {
             .tooltips(naqReactorMk3Tooltip3.translate())
             .tooltips(naqReactorMk3Tooltip4.translate())
             .tooltips(CTNHCommonTooltips.gtceuMultiblockLaserTooltip.translate())
-            .cnLangValue("超级硅岩反应堆").appearanceBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK)
+            .appearanceBlock(CTNHBlocks.CASING_NAQUADAH_ALLOY_BLOCK)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("        BBBBBBB        ", "          CDC          ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "          CDC          ", "        BBBBBBB        ")
                     .aisle("      BBBBBBBBBBB      ", "          DDD          ", "          CDC          ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "          CDC          ", "          DDD          ", "      BBBBBBBBBBB      ")
@@ -1665,6 +1671,7 @@ public class MultiblocksA {
                     .register(),
             GTValues.LuV, GTValues.ZPM, GTValues.UV);
     public final static MultiblockMachineDefinition SWEATSHOP = REGISTRATE.multiblock("sweat_shop", FactoryMachine::new)
+            .cnLangValue("§4血汗工厂")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.CENTRIFUGE_RECIPES, GTRecipeTypes.LATHE_RECIPES, GTRecipeTypes.BENDER_RECIPES,
                     GTRecipeTypes.MACERATOR_RECIPES, GTRecipeTypes.MIXER_RECIPES, GTRecipeTypes.EXTRACTOR_RECIPES,
@@ -1679,7 +1686,7 @@ public class MultiblocksA {
             .tooltips(sweatShopTooltip6.translate())
             .tooltips(sweatShopTooltip7.translate())
             .tooltips(sweatShopTooltip8.translate())
-            .cnLangValue("§4血汗工厂").appearanceBlock(CASING_STEEL_SOLID)
+            .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start(RelativeDirection.LEFT, RelativeDirection.UP, RelativeDirection.BACK)
                     .aisle("aaaaa", "aadaa", "aaaaa", "aaaaa")
                     .aisle("ccccc", "a b a", "e   e", "ccccc").setRepeatable(3, 16)
@@ -1697,13 +1704,14 @@ public class MultiblocksA {
             .register();
 
     public final static MultiblockMachineDefinition PLASMA_CONDENSER = REGISTRATE.multiblock("plasma_condenser", WorkableElectricMultiblockMachine::new)
+            .cnLangValue("等离子冷凝器")
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.PLASMA_CONDENSER_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT, BATCH_MODE)
             .tooltips(plasmaCondenserTooltip1.translate().withStyle(ChatFormatting.GRAY),
                     CTNHCommonTooltips.gtceuMultiblockLaserTooltip.translate(),
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
-            .cnLangValue("等离子冷凝器").appearanceBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE)
+            .appearanceBlock(CTNHBlocks.CASING_ANTIFREEZE_HEATPROOF_MACHINE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####AAA#####", "#####AAA#####", "#####AAA#####")
                     .aisle("####AAAAA####", "####BCCCB####", "####AAAAA####")
@@ -1736,6 +1744,7 @@ public class MultiblocksA {
 
 
     public final static MultiblockMachineDefinition MEADOW = REGISTRATE.multiblock("meadow", MeadowMachine::new)
+            .cnLangValue("§6牧场")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.MEADOW)
             .recipeModifier(MeadowMachine::stressCrossParallel)
@@ -1744,7 +1753,7 @@ public class MultiblocksA {
                     meadowTooltip2.translate(),
                     meadowTooltip3.translate()
             )
-            .cnLangValue("§6牧场").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("BBBBBBBBBBB", "JCCCJCCCCCC", "J###J######", "JJJJJD#####", "EEEEE######", "###########")
                     .aisle("BBBBFFFBBBB", "CEE####GG#C", "#E#####GG##", "J###JD#####", "EEEEE######", "#EEE#######")
                     .aisle("BBBBFFFBBBB", "CE#####GG#C", "###########", "J###JD#####", "EEEEE######", "#EEE#######")
@@ -1776,12 +1785,13 @@ public class MultiblocksA {
             .register();
 
     public final static MultiblockMachineDefinition LARGE_BOTTLE = REGISTRATE.multiblock("large_bottle", holder -> new LargeBottleMachine(holder, 10000 * 1000, null))
+            .cnLangValue("发酵瓶")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
             .tooltips(largeBottleTooltip0.translate().withStyle(ChatFormatting.GRAY),
                     largeBottleTooltip1.translate(),
                     largeBottleTooltip2.translate())
-            .cnLangValue("发酵瓶").appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
+            .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("##AAAAA##", "##BBBBB##", "##BBBBB##", "##BBBBB##", "##CCCCC##", "##BBBBB##", "##BBBBB##", "##BBBBB##", "#########", "#########", "#########", "#########", "#########", "#########", "#########")
                     .aisle("#AAAAAAA#", "#B#####B#", "#B#####B#", "#BAAAAAB#", "#C#####C#", "#B#####B#", "#B#####B#", "#B#####B#", "#BBBBBBB#", "###BBB###", "#########", "#########", "#########", "#########", "#########")
@@ -1804,6 +1814,7 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
     public final static MultiblockMachineDefinition FERMENTING_TANK = REGISTRATE.multiblock("fermenting_tank", FermentingTankMachine::new)
+            .cnLangValue("发酵罐")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.FERMENTING)
             .tooltips(fermentingTankTooltip0.translate().withStyle(ChatFormatting.GRAY),
@@ -1816,7 +1827,7 @@ public class MultiblocksA {
                     fermentingTankTooltip2.translate(),
                     fermentingTankTooltip3.translate())
             .recipeModifiers(FermentingTankMachine::recipeModifier, GTRecipeModifiers::ebfOverclock)
-            .cnLangValue("发酵罐").appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
+            .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("C   C", "C   C", "CCCCC", "H   H", "H   H", "H   H", "DAAAD")
                     .aisle("     ", " GGG ", "CGGGC", " MMM ", " GGG ", " GGG ", "AAAAA")
@@ -1889,13 +1900,14 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
     public final static MultiblockMachineDefinition DIGESTION_TANK = REGISTRATE.multiblock("digestion_tank", DigestingTankMachine::new)
+            .cnLangValue("化粪池")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.DIGESTING)
             .tooltips(digestionTankTooltip0.translate().withStyle(ChatFormatting.GRAY),
                     digestionTankTooltip1.translate().withStyle(ChatFormatting.GREEN),
                     digestionTankTooltip2.translate())
             .recipeModifiers(BioMachine::recipeModifier, OC_NON_PERFECT, BATCH_MODE)
-            .cnLangValue("化粪池").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("CCCCC", "CAAAC", "CCCCC")
                     .aisle("CCCCC", "AWWWA", "CDDDC")
                     .aisle("CCCCC", "CAKAC", "CGGGC")
@@ -1913,10 +1925,11 @@ public class MultiblocksA {
             .workableCasingModel(ResourceLocation.tryParse("minecraft:block/bricks"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
     public final static MultiblockMachineDefinition BLAZE_BLAST_FURNACE = REGISTRATE.multiblock("blaze_blast_furnace", BlazeBlastFurnaceMachine::new)
+            .cnLangValue("§c炽焱高炉")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.BLAST_RECIPES)
             .recipeModifiers(BlazeBlastFurnaceMachine::recipeModifier, GTRecipeModifiers::ebfOverclock, BATCH_MODE)
-            .cnLangValue("§c炽焱高炉").appearanceBlock(CTNHBlocks.BLAZE_BLAST_FURNACE_CASING)
+            .appearanceBlock(CTNHBlocks.BLAZE_BLAST_FURNACE_CASING)
             .tooltips(blazeBlastFurnaceTooltip0.translate().withStyle(ChatFormatting.GRAY),
                     blazeBlastFurnaceTooltip1.translate(),
                     blazeBlastFurnaceTooltip2.translate(),
@@ -1991,10 +2004,11 @@ public class MultiblocksA {
     //Come from GTCA
     public static final MultiblockMachineDefinition MEGA_OIL_CRACKING_UNIT = REGISTRATE
             .multiblock("mega_oil_cracking_unit", CoilWorkableElectricMultiblockMachine::new)
+            .cnLangValue("巨型原油裂解厂")
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.CRACKING_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::crackerOverclock, BATCH_MODE)
-            .cnLangValue("巨型原油裂解厂").appearanceBlock(CASING_STAINLESS_CLEAN)
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("HHHHHHHHHHHHH", "#H#########H#", "#H#########H#", "#H#########H#", "#H#########H#", "#H#########H#", "#H#########H#")
                     .aisle("HHHHHHHHHHHHH", "HGGGGGGGGGGGH", "HGGGGGGGGGGGH", "HGGGGGGGGGGGH", "HGGGGGGGGGGGH", "HGGGGGGGGGGGH", "HHGGGGGGGGGHH")
@@ -2031,9 +2045,10 @@ public class MultiblocksA {
     //Come from GTCA
     public static final MultiblockMachineDefinition MEGA_LCR = REGISTRATE
             .multiblock("mega_lcr", RecipeElectricMultiblockMachine::new)
+            .cnLangValue("巨型化学反应釜")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
-            .cnLangValue("巨型化学反应釜").appearanceBlock(CASING_PTFE_INERT)
+            .appearanceBlock(CASING_PTFE_INERT)
             .recipeModifiers(GTRecipeModifiers.OC_PERFECT_SUBTICK, GTRecipeModifiers.BATCH_MODE)
             .pattern(definition ->
                     FactoryBlockPattern.start()
@@ -2133,9 +2148,10 @@ public class MultiblocksA {
     }
 
     public static final MultiblockMachineDefinition INDUSTRIAL_PRIMITIVE_BLAST_FURNACE = REGISTRATE.multiblock("industrial_primitive_blast_furnace", IndustrialPrimitiveBlastFurnaceMachine::new)
+            .cnLangValue("工业土高炉")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.PRIMITIVE_BLAST_FURNACE_RECIPES)
-            .cnLangValue("工业土高炉").appearanceBlock(CASING_PRIMITIVE_BRICKS)
+            .appearanceBlock(CASING_PRIMITIVE_BRICKS)
             .tooltips(industrialPrimitiveBlastFurnaceTooltip0.translate().withStyle(ChatFormatting.GRAY),
                     industrialPrimitiveBlastFurnaceTooltip1.translate(),
                     industrialPrimitiveBlastFurnaceTooltip2.translate().withStyle(ChatFormatting.GREEN),
@@ -2160,9 +2176,10 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_primitive_bricks"), GTCEu.id("block/multiblock/steam_oven"))
             .register();
     public static final MultiblockMachineDefinition VOID_MINER = REGISTRATE.multiblock("void_miner", VoidMinerProcessingMachine::new)
+            .cnLangValue("虚空采矿场")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.VOID_MINER)
-            .cnLangValue("虚空采矿场").appearanceBlock(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST)
+            .appearanceBlock(GTBlocks.CASING_TUNGSTENSTEEL_ROBUST)
             .tooltips(voidMinerTooltip0.translate().withStyle(ChatFormatting.GRAY),
                     voidMinerTooltip1.translate(),
                     voidMinerTooltip2.translate(),
@@ -2204,10 +2221,11 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition SINTERING_KILN = REGISTRATE.multiblock("sintering_kiln", WorkableElectricMultiblockMachine::new)
+            .cnLangValue("烧结窑")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.SINTERING_KILN)
             .tooltips(sinteringKilnTooltip0.translate().withStyle(ChatFormatting.GRAY))
-            .cnLangValue("烧结窑").appearanceBlock(CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS)
+            .appearanceBlock(CTNHBlocks.HIGH_GRADE_COKE_OVEN_BRICKS)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "#AAA#", "#AAA#", "#ADA#", "#####")
                     .aisle("AAAAA", "ABBBA", "AB#BA", "ABCBA", "#AAA#")
@@ -2237,10 +2255,11 @@ public class MultiblocksA {
             "无尽内燃引擎");
 
     public static final MultiblockMachineDefinition CHEMICAL_VAPOR_DEPOSITION_MACHINE = REGISTRATE.multiblock("chemical_vapor_deposition_machine", WorkableElectricMultiblockMachine::new)
+            .cnLangValue("化学气相沉积器")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION)
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
-            .cnLangValue("化学气相沉积器").appearanceBlock(CASING_STEEL_SOLID)
+            .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAA", "AAABBBA", "AAABBBA")
                     .aisle("AAAAAAA", "ACADDDA", "AAABBBA")
@@ -2258,9 +2277,10 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition MARTIAL_MORALITY_EYE = REGISTRATE.multiblock("martial_morality_eye", MartialMoralityEyeMachine::new)
+            .cnLangValue("武德之眼")
             .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.MARTIAL_MORALITY_EYE)
-            .cnLangValue("武德之眼").appearanceBlock(CASING_BRONZE_BRICKS)
+            .appearanceBlock(CASING_BRONZE_BRICKS)
             .tooltips(martialMoralityEyeTooltip0.translate().withStyle(ChatFormatting.GRAY),
                     martialMoralityEyeTooltip1.translate(),
                     martialMoralityEyeTooltip2.translate(),
@@ -2356,10 +2376,11 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition DIMENSIONAL_GAS_COLLECTION_CHAMBER = REGISTRATE.multiblock("dimensional_gas_collection_chamber", WorkableElectricMultiblockMachine::new)
+            .cnLangValue("维度集气室")
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.DIMENSIONAL_GAS_COLLECTION)
             .recipeModifiers(OC_PERFECT_SUBTICK, BATCH_MODE)
-            .cnLangValue("维度集气室").appearanceBlock(PLASTCRETE)
+            .appearanceBlock(PLASTCRETE)
             .tooltips(
                     largeGasCollectionChamberTooltip0.translate().withStyle(ChatFormatting.GRAY),
                     largeGasCollectionChamberTooltip1.translate(),
@@ -2386,6 +2407,7 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition CONDENSING_DISCRETE = REGISTRATE.multiblock("condensing_discrete", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.CONDENSING_DISCRETE))
+            .cnLangValue("冷凝离散塔")
             .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.CONDENSING_DISCRETE)
             .tooltips(condensingDiscreteTooltip1.translate(),
@@ -2394,7 +2416,7 @@ public class MultiblocksA {
                     condensingDiscreteTooltip4.translate(),
                     condensingDiscreteTooltip5.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
-            .cnLangValue("冷凝离散塔").appearanceBlock(CASING_ALUMINIUM_FROSTPROOF)
+            .appearanceBlock(CASING_ALUMINIUM_FROSTPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###########", "####BBB####", "####AAA####", "####AAA####", "####BBB####", "####AAA####", "####AAA####", "####BBB####", "####AAA####", "####AAA####", "####BBB####", "###########")
                     .aisle("###########", "###BBBBB###", "###A###A###", "###A###A###", "###B###B###", "###A###A###", "###A###A###", "###B###B###", "###A###A###", "###A###A###", "###BBBBB###", "###########")
@@ -2419,6 +2441,7 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition OXIDATION_ROASTING_FURNACE = REGISTRATE.multiblock("oxidation_roasting_furnace", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.OXIDATION_ROASTING))
+            .cnLangValue("氧化焙烧炉")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.OXIDATION_ROASTING)
             .tooltips(oxidationRoastingFurnaceTooltip1.translate(),
@@ -2427,7 +2450,7 @@ public class MultiblocksA {
                     oxidationRoastingFurnaceTooltip4.translate(),
                     oxidationRoastingFurnaceTooltip5.translate())
             .recipeModifiers(GTRecipeModifiers::ebfOverclock, BATCH_MODE)
-            .cnLangValue("氧化焙烧炉").appearanceBlock(CASING_INVAR_HEATPROOF)
+            .appearanceBlock(CASING_INVAR_HEATPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#######", "##BBB##", "#BBBBB#", "BBBBBBB", "BBBBBBB", "BBBBBBB", "#BBBBD#", "##BBBD#", "#####S#")
                     .aisle("#######", "##AAA##", "#A###A#", "A#####A", "A#####A", "A#####A", "#A###A#", "##AAA##", "#######")
@@ -2461,6 +2484,7 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition HIGH_PRESSURE_ALKALI_DIGESTER = REGISTRATE.multiblock("high_pressure_alkali_digester", holder -> new ProcessControlledElectricMultiblockMachine(holder, ProcessControlProfile.HIGH_PRESSURE_ALKALI_DIGESTION))
+            .cnLangValue("高压碱煮釜")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.HIGH_PRESSURE_ALKALI_DIGESTION)
             .tooltips(highPressureAlkaliDigesterTooltip1.translate(),
@@ -2469,7 +2493,7 @@ public class MultiblocksA {
                     highPressureAlkaliDigesterTooltip4.translate(),
                     highPressureAlkaliDigesterTooltip5.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
-            .cnLangValue("高压碱煮釜").appearanceBlock(CASING_TITANIUM_STABLE)
+            .appearanceBlock(CASING_TITANIUM_STABLE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#########", "###BBB###", "##BBBBB##", "#BBBBBBB#", "#BBBBBBB#", "#BBBBBBB#", "##BBBBB##", "###BBB###", "#########")
                     .aisle("#########", "###AAA###", "##A###A##", "#A#####A#", "#A#####A#", "#A#####A#", "##A###AD#", "###AAA#D#", "#######S#")
@@ -2497,6 +2521,7 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition SOLVENT_EXTRACTION_TOWER = REGISTRATE.multiblock("solvent_extraction_tower", holder -> new ProcessControlledElectricMultiblockMachine(holder, ProcessControlProfile.SOLVENT_EXTRACTION))
+            .cnLangValue("溶剂萃取塔")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.SOLVENT_EXTRACTION)
             .tooltips(solventExtractionTowerTooltip1.translate(),
@@ -2505,7 +2530,7 @@ public class MultiblocksA {
                     solventExtractionTowerTooltip4.translate(),
                     solventExtractionTowerTooltip5.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
-            .cnLangValue("溶剂萃取塔").appearanceBlock(CASING_PTFE_INERT)
+            .appearanceBlock(CASING_PTFE_INERT)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###########", "##BBB######", "##AAA######", "##AAA######", "##BBB######", "##AAA######", "##AAA######", "##BBB######", "##AAA######", "##AAA######", "##BBB######", "##BBB######", "###########")
                     .aisle("###########", "#BBBBB##BBB", "#A###A##CBB", "#A###A##CBB", "#B###B##CBB", "#A###A##BBB", "#A###A#####", "#B###B#####", "#A###A#####", "#A###A#####", "#B###B#####", "#BBBBB#####", "###########")
@@ -2530,6 +2555,7 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition REDUCTION_PRECIPITATION_TANK = REGISTRATE.multiblock("reduction_precipitation_tank", holder -> new ProcessControlledElectricMultiblockMachine(holder, ProcessControlProfile.REDUCTION_PRECIPITATION))
+            .cnLangValue("还原沉淀槽")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.REDUCTION_PRECIPITATION)
             .tooltips(reductionPrecipitationTankTooltip1.translate(),
@@ -2538,7 +2564,7 @@ public class MultiblocksA {
                     reductionPrecipitationTankTooltip4.translate(),
                     reductionPrecipitationTankTooltip5.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
-            .cnLangValue("还原沉淀槽").appearanceBlock(CASING_STAINLESS_CLEAN)
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###########", "###########", "##AAA######", "##AAA######", "##AAA######", "##AAA######", "##AAA######", "###########", "###########")
                     .aisle("###########", "##BBB######", "#A###A#####", "#A###A#####", "#A###A#####", "#A###A#####", "#A###A#####", "##BBB######", "###########")
@@ -2563,6 +2589,7 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition ION_EXCHANGER = REGISTRATE.multiblock("ion_exchanger", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.ION_EXCHANGE))
+            .cnLangValue("离子交换机")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ION_EXCHANGER)
             .tooltips(ionExchangerTooltip1.translate(),
@@ -2571,7 +2598,7 @@ public class MultiblocksA {
                     ionExchangerTooltip4.translate(),
                     ionExchangerTooltip5.translate())
             .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
-            .cnLangValue("离子交换机").appearanceBlock(GCYMBlocks.CASING_CORROSION_PROOF)
+            .appearanceBlock(GCYMBlocks.CASING_CORROSION_PROOF)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###AAAAA###", "#ABCBBBCBA#", "#BBCBBBCBB#", "#ABCBBBCBA#", "###########")
                     .aisle("#AACAAACAA#", "AC#DEEED#CA", "BF#DEEED#FB", "AC#DEEED#CA", "#AACAAACAA#")
@@ -2593,10 +2620,11 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition LARGE_STEEL_FURNACE = REGISTRATE.multiblock("large_steel_furnace", WorkableElectricMultiblockMachine::new)
+            .cnLangValue("大型钢制熔炉")
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.FURNACE_RECIPES)
             .recipeModifiers((machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 32), GTRecipeModifiers.OC_PERFECT_SUBTICK)
-            .cnLangValue("大型钢制熔炉").appearanceBlock(CASING_PRIMITIVE_BRICKS)
+            .appearanceBlock(CASING_PRIMITIVE_BRICKS)
             .tooltips(largeSteelFurnaceTooltip0.translate().withStyle(ChatFormatting.GRAY))
             .tooltips(CTNHCommonTooltips.commonTooltipPerfectOverclock.translate().withStyle(ChatFormatting.GREEN))
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2614,10 +2642,11 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition LARGE_STEEL_ALLOY_FURNACE = REGISTRATE.multiblock("large_steel_alloy_furnace", WorkableElectricMultiblockMachine::new)
+            .cnLangValue("大型钢制合金炉")
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.ALLOY_SMELTER_RECIPES)
             .recipeModifiers((machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 32), GTRecipeModifiers.OC_PERFECT_SUBTICK)
-            .cnLangValue("大型钢制合金炉").appearanceBlock(CASING_PRIMITIVE_BRICKS)
+            .appearanceBlock(CASING_PRIMITIVE_BRICKS)
             .tooltips(largeSteelAlloyFurnaceTooltip0.translate().withStyle(ChatFormatting.GRAY))
             .tooltips(CTNHCommonTooltips.commonTooltipPerfectOverclock.translate().withStyle(ChatFormatting.GREEN))
             .pattern(definition -> FactoryBlockPattern.start()
@@ -2726,9 +2755,10 @@ public class MultiblocksA {
 //            .workableCasingModel(CTNHCore.id("block/casings/osmiridium_casing"), GTCEu.id("block/multiblock/large_miner"))
 //            .register();
     public static final MultiblockMachineDefinition DECAY_POOLS = REGISTRATE.multiblock("decay_pools_machine", WorkableElectricMultiblockMachine::new)
+            .cnLangValue("衰变罐")
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.DECAY_POOLS)
-            .cnLangValue("衰变罐").appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
+            .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
             .tooltips(decayPoolsTooltip0.translate().withStyle(ChatFormatting.GRAY),
                     decayPoolsTooltip1.translate(),
                     decayPoolsTooltip2.translate(),
@@ -2758,10 +2788,11 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public static final MultiblockMachineDefinition FUEL_REFINING_FACTORY = REGISTRATE.multiblock("fuel_refining_factory", CoilWorkableElectricMultiblockMachine::new)
+            .cnLangValue("燃料精炼厂")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.FUEL_REFINING)
             .recipeModifier(GTRecipeModifiers::ebfOverclock)
-            .cnLangValue("燃料精炼厂").appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
+            .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####ABBBA#####", "#####BCCCB#####", "#####BCCCB#####", "#####BCCCB#####", "#####ABBBA#####", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############")
                     .aisle("###DDBEEEBDD###", "###DEEDFDEED###", "###DDBDGDBDD###", "###DBBDBDBBD###", "######EAE######", "######EEE######", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############", "###############")
@@ -2806,6 +2837,7 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"), GTCEu.id("block/multiblock/fusion_reactor"))
             .register();
     public static final MultiblockMachineDefinition VACUUM_SINTERING_TOWER = REGISTRATE.multiblock("vacuum_sintering_tower", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.VACUUM_SINTERING))
+            .cnLangValue("真空烧结厂")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.VACUUM_SINTERING)
             .tooltips(vacuumSinteringTowerTooltip1.translate(),
@@ -2814,7 +2846,7 @@ public class MultiblocksA {
                     vacuumSinteringTowerTooltip4.translate(),
                     vacuumSinteringTowerTooltip5.translate())
             .recipeModifiers((machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 16), GTRecipeModifiers::ebfOverclock)
-            .cnLangValue("真空烧结厂").appearanceBlock(CASING_TITANIUM_STABLE)
+            .appearanceBlock(CASING_TITANIUM_STABLE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###########", "###BBB#####", "##BBBBB####", "#BBBBBBB###", "#BBBBBBB###", "#BBBBBBB###", "##BBBBB####", "###BBB#####", "###########")
                     .aisle("###########", "###AAA#####", "##A###A####", "#A#####A###", "#A#####A###", "#A#####A###", "##A###A####", "###AAA#####", "###########")
@@ -2848,6 +2880,7 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
     public static final MultiblockMachineDefinition CRYSTALLIZER = REGISTRATE.multiblock("crystallizer", holder -> new ProcessControlledCoilMultiblockMachine(holder, ProcessControlProfile.CRYSTALLIZATION))
+            .cnLangValue("结晶器")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.CRYSTALLIZER)
             .tooltips(crystallizerTooltip1.translate(),
@@ -2856,7 +2889,7 @@ public class MultiblocksA {
                     crystallizerTooltip4.translate(),
                     crystallizerTooltip5.translate())
             .recipeModifiers((machine, group, recipe) -> CTNHRecipeModifiers.accurateParallel(machine, group, recipe, 16), GTRecipeModifiers::ebfOverclock, BATCH_MODE)
-            .cnLangValue("结晶器").appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
+            .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AABBBAA", "AA###AA", "AABBBAA", "AACCC##", "AA#####", "AA#####", "AA#####", "AA#####", "AA#####", "AA#####", "AA#####")
                     .aisle("ABBBBBA", "A#####A", "AB#B##A", "ACDDDC#", "A#BBB##", "A######", "A######", "A######", "A######", "A######", "AAA####")
@@ -2886,6 +2919,7 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
     public static final MultiblockMachineDefinition SEAWATER_DESALTING_FACTORY = REGISTRATE.multiblock("seawater_desalting_factory", CoilWorkableElectricMultiblockMachine::new)
+            .cnLangValue("海水晒盐工厂")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.DESALTING)
             .tooltips(desaltingFactoryTooltip0.translate().withStyle(ChatFormatting.GRAY),
@@ -2893,7 +2927,7 @@ public class MultiblocksA {
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
             .recipeModifiers(GTRecipeModifiers::ebfOverclock, BATCH_MODE)
-            .cnLangValue("海水晒盐工厂").appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
+            .appearanceBlock(GTBlocks.CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("C   C", "C   C", "CGGGC", " GGG ")
                     .aisle("     ", "     ", "GMMMG", "G###G")
@@ -2919,11 +2953,12 @@ public class MultiblocksA {
             .register();
 
     public static final MultiblockMachineDefinition BIO_REACTOR = REGISTRATE.multiblock("bio_reactor", BioMachine::new)
+            .cnLangValue("生物反应器")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.BIO_REACTOR)
             .tooltips(bioReactorTooltip0.translate().withStyle(ChatFormatting.GRAY))
             .recipeModifiers(BioMachine::recipeModifier, OC_NON_PERFECT, BATCH_MODE)
-            .cnLangValue("生物反应器").appearanceBlock(BIO_REACTOR_CASING)
+            .appearanceBlock(BIO_REACTOR_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "ABBBA", "ABBBA", "ABBBA", "AAAAA")
                     .aisle("AAAAA", "B###B", "B###B", "B###B", "AAAAA")
@@ -2942,9 +2977,10 @@ public class MultiblocksA {
 
 
     public static final MultiblockMachineDefinition SUPER_CENTRIFUGE = REGISTRATE.multiblock("super_centrifuge", WorkableElectricMultiblockMachine::new)
+            .cnLangValue("超速离心机")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GTRecipeTypes.CENTRIFUGE_RECIPES, CTNHRecipeTypes.DIFFERENTIAL_CENTRIFUGE_RECIPES)
-            .cnLangValue("超速离心机").appearanceBlock(CASING_TITANIUM_STABLE)
+            .appearanceBlock(CASING_TITANIUM_STABLE)
             .recipeModifiers((metaMachine, group, gtRecipe) -> {
                 if (gtRecipe.getType().equals(GTRecipeTypes.CENTRIFUGE_RECIPES)) {
                     return CTNHRecipeModifiers.accurateParallel(metaMachine, group, gtRecipe, 8);
@@ -2970,9 +3006,10 @@ public class MultiblocksA {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"), GTCEu.id("block/multiblock/implosion_compressor"))
             .register();
     public static final MultiblockMachineDefinition ULTRASONIC_APPARATUS = REGISTRATE.multiblock("ultrasonic_apparatus", CoilWorkableElectricMultiblockMachine::new)
+            .cnLangValue("超声破碎仪")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ULTRASONICATION_RECIPES)
-            .cnLangValue("超声破碎仪").appearanceBlock(CASING_STAINLESS_CLEAN)
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
             .tooltips(ultrasonicApparatus.translate().withStyle(ChatFormatting.GRAY))
             .pattern(definition -> FactoryBlockPattern.start()
                 .aisle("##BCFCB##", "#BBCFCBB#", "##BCFCB##")

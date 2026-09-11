@@ -42,9 +42,10 @@ public class Mechanical {
 
     public final static MultiblockMachineDefinition MECHANICAL_PRESSOR = REGISTRATE
             .multiblock("mechanical_pressor", KineticWorkableMultiblockMachine::new)
+            .cnLangValue("机械辊压厂")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_PRESSOR_RECIPES)
-            .cnLangValue("机械辊压厂").appearanceBlock(AllBlocks.RAILWAY_CASING)
+            .appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
                     CommonTooltips.INPUT_SPEED.translate())
@@ -70,9 +71,10 @@ public class Mechanical {
             .register();
     public final static MultiblockMachineDefinition MECHANICAL_MIXER = REGISTRATE
             .multiblock("mechanical_mixer", KineticMixerMachine::new)
+            .cnLangValue("机械搅拌厂")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_MIXER_RECIPES)
-            .cnLangValue("机械搅拌厂").appearanceBlock(AllBlocks.RAILWAY_CASING)
+            .appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
                     CommonTooltips.INPUT_SPEED.translate())
@@ -109,9 +111,10 @@ public class Mechanical {
             .register();
     public final static MultiblockMachineDefinition MECHANICAL_CENTRIFUGE = REGISTRATE
             .multiblock("mechanical_centrifuge", KineticCentrifugeMachine::new)
+            .cnLangValue("机械离心厂")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_CENTRIFUGE_RECIPES)
-            .cnLangValue("机械离心厂").appearanceBlock(AllBlocks.RAILWAY_CASING)
+            .appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
                     CommonTooltips.INPUT_SPEED.translate())
@@ -161,9 +164,10 @@ public class Mechanical {
             .register();
     public final static MultiblockMachineDefinition MECHANICAL_SIFTER = REGISTRATE
             .multiblock("mechanical_sifter", KineticWorkableMultiblockMachine::new)
+            .cnLangValue("机械筛选厂")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_SIFTER_RECIPES)
-            .cnLangValue("机械筛选厂").appearanceBlock(AllBlocks.RAILWAY_CASING)
+            .appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
                     CommonTooltips.INPUT_SPEED.translate())
@@ -195,9 +199,10 @@ public class Mechanical {
 
     public final static MultiblockMachineDefinition MECHANICAL_LATHE = REGISTRATE
             .multiblock("mechanical_lathe", KineticWorkableMultiblockMachine::new)
+            .cnLangValue("机械车床厂")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CreateRecipeTypes.MECHANICAL_LATHE_RECIPES)
-            .cnLangValue("机械车床厂").appearanceBlock(AllBlocks.RAILWAY_CASING)
+            .appearanceBlock(AllBlocks.RAILWAY_CASING)
             .recipeModifier(CTPPRecipeModifiers.KINETIC_PARALLEL)
             .tooltips(CommonTooltips.KINETIC_OVERCLOCK.translate(),
                     CommonTooltips.INPUT_SPEED.translate())

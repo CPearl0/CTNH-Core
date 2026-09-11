@@ -709,9 +709,10 @@ public class MultiblocksB {
 
 
     public final static MultiblockMachineDefinition SILICA_ROCK_FUEL_REFINERY = REGISTRATE.multiblock("silica_rock_fuel_refinery", WorkableElectricMultiblockMachine::new)
+            .cnLangValue("硅岩燃料精炼厂")
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.SILICA_ROCK_FUEL_REFINERY)
-            .cnLangValue("硅岩燃料精炼厂").appearanceBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK)
+            .appearanceBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK)
             .recipeModifiers(OC_NON_PERFECT)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("##AAA##", "##ABA##", "##AAA##", "###B###", "###B###", "###A###")
@@ -735,6 +736,7 @@ public class MultiblocksB {
 
 
     public static MultiblockMachineDefinition NANOGENERATOR = REGISTRATE.multiblock("nanogenetor", NanoscaleTriboelectricGenerator::new)
+            .cnLangValue("纳米摩擦发电机")
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.NANO_GENERATOR)
             .generator(true)
@@ -744,7 +746,7 @@ public class MultiblocksB {
                     nanoGeneratorTooltip2.translate(),
                     nanoGeneratorTooltip3.translate()
             )
-            .cnLangValue("纳米摩擦发电机").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###B###", "###C###", "###C###", "###C###", "###C###", "###C###", "###D###", "###D###", "###D###", "###D###", "###E###", "###F###", "###F###", "###D###")
                     .aisle("##EEE##", "##B#B##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##C#C##", "##D#D##", "##D#D##", "##DED##", "##E#E##", "##F#F##", "##F#F##", "##DDD##")
                     .aisle("#EEEEE#", "#GHHHI#", "#BHHHB#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#CHHHC#", "#DHHHD#", "#DHHHD#", "#E###E#", "#F###F#", "#F###F#", "#DJJJD#")
@@ -773,9 +775,10 @@ public class MultiblocksB {
             .register();
 
     public final static MultiblockMachineDefinition FOREST_SEA_TREE_FARM = REGISTRATE.multiblock("forest_sea_tree_farm", ForestMachine::new)
+            .cnLangValue("林海树场")
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.WOOD_BIONICS)
-            .cnLangValue("林海树场").appearanceBlock(CTNHBlocks.NATURAL_ECOLOGICAL_SHELL_CASING)
+            .appearanceBlock(CTNHBlocks.NATURAL_ECOLOGICAL_SHELL_CASING)
             .recipeModifiers(ForestMachine::recipeModifier, OC_NON_PERFECT)
             .tooltips(forestSeaTooltip1.translate().withStyle(ChatFormatting.GRAY),
                     forestSeaTooltip2.translate(),
@@ -797,6 +800,7 @@ public class MultiblocksB {
             .workableCasingModel((CTNHCore.id("block/casings/natural_ecological_shell_casing")), CTNHCore.id("block/overlay/forest_sea_tree_farm"))
             .register();
     public final static MultiblockMachineDefinition SINOPE_CHEMICAL = REGISTRATE.multiblock("sinope_chemical", SinopeChemical::new)
+            .cnLangValue("SINOPE化工厂")
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.SINOPE, GTRecipeTypes.CRACKING_RECIPES)
             .recipeModifiers(SinopeChemical::recipeModifier, OC_NON_PERFECT)
@@ -810,7 +814,7 @@ public class MultiblocksB {
                     sinopeChemicalTooltip7.translate(),
                     sinopeChemicalTooltip8.translate(),
                     sinopeChemicalTooltip9.translate())
-            .cnLangValue("SINOPE化工厂").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAAAA", "A#######A", "A#######A", "A#######A", "A#######A", "A#######A", "A#######A", "A#######A", "AAAAAAAAA")
                     .aisle("AAAAAAAAA", "#BBBBBBB#", "#########", "#########", "#########", "#########", "#########", "#BBBBBBB#", "AAAAAAAAA")
                     .aisle("AAAAAAAAA", "#BCCCCCB#", "##DDDDD##", "##EEEEE##", "##EEEEE##", "##EEEEE##", "##DDDDD##", "#BCCCCCB#", "AAAAAAAAA")
@@ -838,6 +842,7 @@ public class MultiblocksB {
             .workableCasingModel((GTCEu.id("block/casings/mechanic/machine_casing_assembly_control")), GTCEu.id("block/multiblock/fusion_reactor"))
             .register();
     public final static MultiblockMachineDefinition WIDE_PARTICLE_ACCELERATOR = REGISTRATE.multiblock("wide_particle_accelerator", WideParticleAccelerator::new)
+            .cnLangValue("广粒子加速器")
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.ACCELERATOR_UP)
             .recipeModifiers(WideParticleAccelerator::recipeModifier, OC_NON_PERFECT)
@@ -855,7 +860,7 @@ public class MultiblocksB {
                     wideAcceleratorTooltip11.translate()
             )
 
-            .cnLangValue("广粒子加速器").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("###########################", "###########################", "###########################", "#############C#############", "############CDC############", "###########CD#DC###########", "############CDC############", "#############C#############", "###########################", "###########################", "###########################")
                     .aisle("###########################", "###########################", "#############C#############", "############CDC############", "###########C###C###########", "##########CD###DC##########", "###########C###C###########", "############CDC############", "#############C#############", "###########################", "###########################")
                     .aisle("############CCC############", "############DDD############", "############CDC############", "###########CDDDC###########", "#########CCD###DCC#########", "#########DDD###DDD#########", "#########CCD###DCC#########", "###########CDDDC###########", "############CDC############", "############DDD############", "############CCC############")
@@ -903,6 +908,7 @@ public class MultiblocksB {
             .register();
 
     public final static MultiblockMachineDefinition ARC_GENERATOR = REGISTRATE.multiblock("arc_generator", holder -> new Arc_Generator(holder, 0.75, 1000))
+            .cnLangValue("电弧撕裂者")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ARC_GENERATOR)
             .generator(true)
@@ -915,7 +921,7 @@ public class MultiblocksB {
                     arcgeneratorTooltip4.translate(),
                     arcgeneratorTooltip5.translate()
             )
-            .cnLangValue("电弧撕裂者").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "#####################", "#####################", "#####################").aisle("#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "##BCB###########BCB##", "###B#############B###", "#####################", "#####################")
                     .aisle("#####################", "#####################", "#####################", "#####################", "###B#############B###", "##BCB###########BCB##", "#BCDCBBBBBBBBBBBCDCB#", "##BCB#####B#####BCB##", "###B######B######B###", "##########B##########")
                     .aisle("###B#############B###", "###B#############B###", "###B#############B###", "###B#############B###", "##BCB###########BCB##", "#BCDCBBBBBBBBBBBCDCB#", "BCDFDDDDDDDDDDDDDFDCB", "#BCDCBBBBBFBBBBBCDCB#", "##BCB####BFB####BCB##", "###B#####BFB#####B###")
@@ -955,6 +961,7 @@ public class MultiblocksB {
                     .andThen(b -> b.addDynamicRenderer(ArcBlockRender::new)))
             .register();
     public final static MultiblockMachineDefinition ARC_GENERATOR_MK1 = REGISTRATE.multiblock("arc_generator_mk1", holder -> new Arc_Generator(holder, 1.25, 10000))
+            .cnLangValue("超压电弧撕裂者MK1")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ARC_GENERATOR)
             .generator(true)
@@ -967,7 +974,7 @@ public class MultiblocksB {
                     arcgeneratorTooltip4.translate(),
                     arcgeneratorTooltip5.translate()
             )
-            .cnLangValue("超压电弧撕裂者MK1").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "#####################", "#####################", "#####################").aisle("#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "##BCB###########BCB##", "###B#############B###", "#####################", "#####################")
                     .aisle("#####################", "#####################", "#####################", "#####################", "###B#############B###", "##BCB###########BCB##", "#BCDCBBBBBBBBBBBCDCB#", "##BCB#####B#####BCB##", "###B######B######B###", "##########B##########")
                     .aisle("###B#############B###", "###B#############B###", "###B#############B###", "###B#############B###", "##BCB###########BCB##", "#BCDCBBBBBBBBBBBCDCB#", "BCDFDDDDDDDDDDDDDFDCB", "#BCDCBBBBBFBBBBBCDCB#", "##BCB####BFB####BCB##", "###B#####BFB#####B###")
@@ -1006,6 +1013,7 @@ public class MultiblocksB {
             .workableCasingModel(GTCEu.id("block/casings/gcym/nonconducting_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition ARC_GENERATOR_MK2 = REGISTRATE.multiblock("arc_generator_mk2", holder -> new Arc_Generator(holder, 2.25, 50000))
+            .cnLangValue("过载电弧撕裂者MK1")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ARC_GENERATOR)
             .generator(true)
@@ -1018,7 +1026,7 @@ public class MultiblocksB {
                     arcgeneratorTooltip4.translate(),
                     arcgeneratorTooltip5.translate()
             )
-            .cnLangValue("过载电弧撕裂者MK1").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "#####################", "#####################", "#####################").aisle("#####################", "#####################", "#####################", "#####################", "#####################", "###B#############B###", "##BCB###########BCB##", "###B#############B###", "#####################", "#####################")
                     .aisle("#####################", "#####################", "#####################", "#####################", "###B#############B###", "##BCB###########BCB##", "#BCDCBBBBBBBBBBBCDCB#", "##BCB#####B#####BCB##", "###B######B######B###", "##########B##########")
                     .aisle("###B#############B###", "###B#############B###", "###B#############B###", "###B#############B###", "##BCB###########BCB##", "#BCDCBBBBBBBBBBBCDCB#", "BCDFDDDDDDDDDDDDDFDCB", "#BCDCBBBBBFBBBBBCDCB#", "##BCB####BFB####BCB##", "###B#####BFB#####B###")
@@ -1093,6 +1101,7 @@ public class MultiblocksB {
             .register();
 
     public final static MultiblockMachineDefinition SUPERCONDUCTING_PENNING_TRAP = REGISTRATE.multiblock("superconducting_penning_trap", Superconducting_Penning_Trap::new)
+            .cnLangValue("超导潘宁势阱")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
 //            .recipeModifiers(Superconducting_Penning_Trap::recipeModifier)
@@ -1102,7 +1111,7 @@ public class MultiblocksB {
                     Component.translatable("ctnh.trap.4"),
                     Component.translatable("ctnh.trap.5")
             )
-            .cnLangValue("超导潘宁势阱").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A###############BBBBBBB###############A", "###############CCCCCCCCC###############", "###############CCCCCCCCC###############", "###############CCCCCCCCC###############", "################BBBBBBB################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "##################D#D##################", "###################B###################", "##################D#D##################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################")
                     .aisle("#############BBBEEEEEEEBBB#############", "############CCC#########CCC############", "############CCC#########CCC############", "############CCC#########CCC############", "#############BBBEEEEEEEBBB#############", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "##################D#D##################", "###################B###################", "##################D#D##################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################")
                     .aisle("###########BBEEEEEEEEEEEEEBB###########", "##########CC###############CC##########", "##########CC###############CC##########", "##########CC###############CC##########", "###########BBEEEEEEEEEEEEEBB###########", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "##################D#D##################", "###################B###################", "##################D#D##################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################", "#######################################")
@@ -1166,13 +1175,14 @@ public class MultiblocksB {
 
     public static final MultiblockMachineDefinition ADVANCED_ASSEMBLY_LINE = REGISTRATE
             .multiblock("advance_assembly_line", AssemblyLineMachine::new)
+            .cnLangValue("进阶装配线")
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.ASSEMBLY_LINE_RECIPES)
             .alwaysTryModifyRecipe(true)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT, GTRecipeModifiers.BATCH_MODE)
             .tooltips(CTNHCommonTooltips.gtceuMultiblockLaserTooltip.translate(),
                     Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
-            .cnLangValue("进阶装配线").appearanceBlock(ADVANCE_MACHINE_CASING_SOLID_STEEL)
+            .appearanceBlock(ADVANCE_MACHINE_CASING_SOLID_STEEL)
             .pattern(definition -> FactoryBlockPattern.start(BACK, UP, RIGHT)
                     .aisle("FIF", "RTR", "SAG", "#Y#")
                     .aisle("FIF", "RTR", "DAG", "#Y#").setRepeatable(3, 15)
@@ -1202,6 +1212,7 @@ public class MultiblocksB {
             .register();
 
     public final static MultiblockMachineDefinition CultivationRoom = REGISTRATE.multiblock("cultivationroom", WorkableElectricMultiblockMachine::new)
+            .cnLangValue("培养室")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.CULTIVATION_ROOM)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT, BATCH_MODE)
@@ -1210,7 +1221,7 @@ public class MultiblocksB {
                     CTNHCommonTooltips.PARALLEL_HATCH,
                     CTNHCommonTooltips.gtceuMultiblockLaserTooltip.translate()
             )
-            .cnLangValue("培养室").appearanceBlock(CASING_STAINLESS_CLEAN)
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "ABBBA", "ACCCA", "ADDDA", "ADDDA", "ADDDA", "AAAAA", "ABBBA", "AAAAA")
                     .aisle("AAAAA", "BBBBB", "CDDDC", "DEEED", "DEEED", "DEEED", "ADDDA", "BBBBB", "AAAAA")
@@ -1234,6 +1245,7 @@ public class MultiblocksB {
 
 
     public final static MultiblockMachineDefinition PLASMA_ALLOY_BLAST_SMELTER = REGISTRATE.multiblock("plasma_alloy_blast_smelter", PlasmaAlloyBlast::new)
+            .cnLangValue("等离子合金冶炼转底炉")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GCYMRecipeTypes.ALLOY_BLAST_RECIPES)
             .recipeModifiers(PlasmaAlloyBlast::recipeModifier, GTRecipeModifiers::ebfOverclock, BATCH_MODE)
@@ -1249,7 +1261,7 @@ public class MultiblocksB {
                     plasmaAlloyTooltip9.translate(),
                     plasmaAlloyTooltip10.translate()
             )
-            .cnLangValue("等离子合金冶炼转底炉").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A####BBBBBBB####A", "#####BBBBBBB#####", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################")
                     .aisle("###BBBBBBBBBBB###", "###BBBBBBBBBBB###", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################", "#################")
                     .aisle("##BBBBBBBBBBBBB##", "##BBBBBBBBBBBBB##", "####CCCCCCCCC####", "####CCCCCCCCC####", "#################", "#################", "#################", "#################", "#################", "####CCCCCCCCC####", "####CCCCCCCCC####", "#################", "#################", "#################", "#################", "#################", "#################")
@@ -1436,12 +1448,13 @@ public class MultiblocksB {
 //            .workableCasingModel(CTPP.id("block/create/railway_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
 //            .register();
     public final static MultiblockMachineDefinition COMBINED_VAPOR_DEPOSITION_FACILITY = REGISTRATE.multiblock("combined_vapor_deposition_facility", WorkableElectricMultiblockMachine::new)
+            .cnLangValue("集成沉积工厂")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.PVB_RECIPE, CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION)
             .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
             .tooltips(CTNHCommonTooltips.PERFECT_OVERCLOCK
             )
-            .cnLangValue("集成沉积工厂").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ABBBA", "BACAB", "BCCCB", "BACAB", "ABBBA")
                     .aisle("BDDDB", "AEFEA", "AGHGA", "AEFEA", "BDDDB")
                     .aisle("BDDDB", "AFFFA", "AIFIA", "AFFFA", "BDDDB")
@@ -1466,6 +1479,7 @@ public class MultiblocksB {
             .workableCasingModel(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition LaserSorder = REGISTRATE.multiblock("lasersorder", LaserSorter::new)
+            .cnLangValue("激光分配仪")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.LS_RECIPE,GTRecipeTypes.LASER_ENGRAVER_RECIPES)
             .recipeModifiers(LaserSorter::recipeModifier, OC_NON_PERFECT)
@@ -1482,7 +1496,7 @@ public class MultiblocksB {
                     lasersorterTooltip10.translate(),
                     lasersorterTooltip11.translate()
             )
-            .cnLangValue("激光分配仪").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAAAA", "AABBBAA", "AABBBAA", "AABBBAA", "AAAAAAA")
                     .aisle("ACCCCCA", "AC###CA", "AC###CA", "AC###CA", "ACCCCCA")
                     .aisle("ACCCCCA", "B#####B", "B#####B", "B#####B", "ACCDCCA")
@@ -1505,6 +1519,7 @@ public class MultiblocksB {
             .workableCasingModel(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition SPACEPHOTOVOLTAICBASESTATION = REGISTRATE.multiblock("space_photovoltai_cbase_station", SpacePhotovoltaicBaseStation::new)
+            .cnLangValue("太空光伏基站")
             .allowExtendedFacing(false)
             .generator(true)
             .recipeTypes(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR, CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER)
@@ -1517,7 +1532,7 @@ public class MultiblocksB {
                     spacephotovoltaicbasestationTooltipEx.translate()
 
             )
-            .cnLangValue("太空光伏基站").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############B#######B##############", "#############BCDCCCDCB##############", "#############BCDCECDCB##############", "#############BCDCCCDCB##############", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################")
                     .aisle("####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "##############CDDDDDC###############", "#############F#######F##############", "#############C###G###C##############", "#############F##H#H##F##############", "##############CDDDDDC###############", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################")
                     .aisle("####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "##############CCCCCCC###############", "#############F#######F##############", "############F#########F#############", "############C####G####C#############", "############F###H#H###F#############", "#############F#######F##############", "##############CCCCCCC###############", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################", "####################################")
@@ -1572,6 +1587,7 @@ public class MultiblocksB {
             .register();
     public final static MultiblockMachineDefinition HYPER_PLASMA_TURBINE = HyperPlasmaTurbineRegister.register();
     public final static MultiblockMachineDefinition PHOTOVOLTAIC_DRONE_STATION = REGISTRATE.multiblock("photovoltaic_drone_station", PhotoVoltaicDroneStation::new)
+            .cnLangValue("光伏无人机道标基站")
             .allowExtendedFacing(false)
             .recipeTypes(CTNHRecipeTypes.PVDRONE)
             .recipeModifiers(PhotoVoltaicDroneStation::recipeModifier)
@@ -1583,7 +1599,7 @@ public class MultiblocksB {
                     pvdroneTooltip5.translate()
 
             )
-            .cnLangValue("光伏无人机道标基站").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A#####BBBCCCBBB######", "#########CCC#########", "#########CCC#########", "#####################", "#####################", "#####################", "#####################", "#####################", "#########EEE#########", "######FFFECEFFF######", "#########EEE#########", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#########EEE#########", "######FFFECEFFF######", "#########EEE#########", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#########EEE#########", "######FFFECEFFF######", "#########EEE#########", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#########EEE#########", "######FFFECEFFF######")
                     .aisle("####BBBBBBCBBBBBB####", "#########CFC#########", "##########G##########", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "####FF#########FF####", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "####FF#########FF####", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "####FF#########FF####", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "#####################", "####FFHHHHHHHHHFF####")
                     .aisle("##BBBBBBBBCBBBBBBBB##", "##BCCCC##CFC##CCCCB##", "##B#######G#######B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##BF#############FB##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##BF#############FB##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##BF#############FB##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##B###############B##", "##BFHH####H####HHFB##")
@@ -1630,9 +1646,10 @@ public class MultiblocksB {
             .workableCasingModel(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public static final MultiblockMachineDefinition GAS_CENTRIFUGE = REGISTRATE.multiblock("gas_centrifuge", WorkableElectricMultiblockMachine::new)
+            .cnLangValue("气体离心机")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.GAS_CENTRIFUGE_RECIPES)
-            .cnLangValue("气体离心机").appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
+            .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("#CCC#", "#CCC#", "#####", "#####", "#####", "#####", "#####")
                     .aisle("CBBBC", "CBBBC", "#DED#", "#D#D#", "#D#D#", "#D#D#", "#D#D#")
@@ -1651,11 +1668,12 @@ public class MultiblocksB {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public static final MultiblockMachineDefinition HOT_COOLANT_TURBINE = REGISTRATE.multiblock("hot_coolant_turbine", holder -> new LargeTurbineMachine(holder, GTValues.EV))
+            .cnLangValue("热冷却涡轮")
             .generator(true)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.HOT_COOLANT_TURBINE_RECIPES)
             .recipeModifier(LargeTurbineMachine::recipeModifier, true)
-            .cnLangValue("热冷却涡轮").appearanceBlock(GTBlocks.CASING_TITANIUM_TURBINE)
+            .appearanceBlock(GTBlocks.CASING_TITANIUM_TURBINE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAA", "ASSA", "AAAA")
                     .aisle("ASSA", "BCCB", "ASSA")
@@ -1673,13 +1691,14 @@ public class MultiblocksB {
             .workableCasingModel(GTCEu.id("block/casings/mechanic/machine_casing_turbine_titanium"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition  CRYOTHEUMFREEZER = REGISTRATE.multiblock("cryotheum_freezer", CryotheumFreezer::new)
+            .cnLangValue("凛冰冷冻机")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.VACUUM_RECIPES)
             .recipeModifiers(CryotheumFreezer::recipeModifier, OC_NON_PERFECT, BATCH_MODE)
             .tooltips(cryotheumFreezerTip0.translate(),
                     cryotheumFreezerTip1.translate(),
                     cryotheumFreezerTip2.translate())
-            .cnLangValue("凛冰冷冻机").pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("A###BBBBB####", "####BCCCB####", "####BCCCB####", "####BCCCB####", "####BCCCB####", "####BCCCB####", "####BBBBB####")
                     .aisle("#BBBBBDBBBBB#", "#DDDBEDEBDDD#", "#BBBBEDEBBBB#", "#DDDBEFEBDDD#", "#BBBBEDEBBBB#", "#DDDBEDEBDDD#", "#BBBBBEBBBBB#")
                     .aisle("#B##BBBBB##B#", "#D##BCCCB##D#", "#B##BCCCB##B#", "#D##BCFCB##D#", "#B##BCCCB##B#", "#D##BCCCB##D#", "#B##BBBBB##B#")
@@ -1706,9 +1725,10 @@ public class MultiblocksB {
             .register();
 
     public final static MultiblockMachineDefinition NERUOMATRIXCOMPILER = REGISTRATE.multiblock("neruo_martix_compiler", NeuroMatrixCompiler::new)
+            .cnLangValue("神经矩阵编译器")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.COMPILER_RECIPE)
-            .cnLangValue("神经矩阵编译器").appearanceBlock(CASING_ANTIFREEZE_HEATPROOF_MACHINE)
+            .appearanceBlock(CASING_ANTIFREEZE_HEATPROOF_MACHINE)
             .recipeModifiers(GTRecipeModifiers.TIER_CHECK, NeuroMatrixCompiler::recipeModifier)
             .tooltips(neuroMatrixCompilerTip0.translate(),
                     neuroMatrixCompilerTip01.translate(),

@@ -47,11 +47,12 @@ public class HyperPlasmaTurbineRegister {
 
     public static MultiblockMachineDefinition register() {
         return REGISTRATE.multiblock("hyper_plasma_turbine", HyperPlasmaTurbineMachine::new)
+                .cnLangValue("超極等离子涡轮")
                 .rotationState(RotationState.NON_Y_AXIS)
                 .recipeType(GTRecipeTypes.PLASMA_GENERATOR_FUELS)
                 .generator(true)
                 .recipeModifier(HyperPlasmaTurbineMachine::recipeModifier, true)
-                .cnLangValue("超極等离子涡轮").appearanceBlock(NEUTRONIUM_REINFORCED_TURBINE_CASING)
+                .appearanceBlock(NEUTRONIUM_REINFORCED_TURBINE_CASING)
                 .pattern(definition -> {
                     return FactoryBlockPattern.start()
                             .aisle("#############################", "#############################",
