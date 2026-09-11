@@ -22,7 +22,7 @@ import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
@@ -708,7 +708,7 @@ public class MultiblocksB {
 
 
 
-    public final static MultiblockMachineDefinition SILICA_ROCK_FUEL_REFINERY = REGISTRATE.multiblock("silica_rock_fuel_refinery", WorkableElectricMultiblockMachine::new)
+    public final static MultiblockMachineDefinition SILICA_ROCK_FUEL_REFINERY = REGISTRATE.multiblock("silica_rock_fuel_refinery", RecipeElectricMultiblockMachine::new)
             .cnLangValue("硅岩燃料精炼厂")
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.SILICA_ROCK_FUEL_REFINERY)
@@ -1211,7 +1211,7 @@ public class MultiblocksB {
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
 
-    public final static MultiblockMachineDefinition CultivationRoom = REGISTRATE.multiblock("cultivationroom", WorkableElectricMultiblockMachine::new)
+    public final static MultiblockMachineDefinition CultivationRoom = REGISTRATE.multiblock("cultivationroom", RecipeElectricMultiblockMachine::new)
             .cnLangValue("培养室")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.CULTIVATION_ROOM)
@@ -1447,7 +1447,7 @@ public class MultiblocksB {
 //
 //            .workableCasingModel(CTPP.id("block/create/railway_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
 //            .register();
-    public final static MultiblockMachineDefinition COMBINED_VAPOR_DEPOSITION_FACILITY = REGISTRATE.multiblock("combined_vapor_deposition_facility", WorkableElectricMultiblockMachine::new)
+    public final static MultiblockMachineDefinition COMBINED_VAPOR_DEPOSITION_FACILITY = REGISTRATE.multiblock("combined_vapor_deposition_facility", RecipeElectricMultiblockMachine::new)
             .cnLangValue("集成沉积工厂")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.PVB_RECIPE, CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION)
@@ -1645,7 +1645,7 @@ public class MultiblocksB {
 
             .workableCasingModel(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
-    public static final MultiblockMachineDefinition GAS_CENTRIFUGE = REGISTRATE.multiblock("gas_centrifuge", WorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition GAS_CENTRIFUGE = REGISTRATE.multiblock("gas_centrifuge", RecipeElectricMultiblockMachine::new)
             .cnLangValue("气体离心机")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.GAS_CENTRIFUGE_RECIPES)
