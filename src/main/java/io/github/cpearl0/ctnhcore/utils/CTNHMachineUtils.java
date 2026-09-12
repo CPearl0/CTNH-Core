@@ -185,7 +185,7 @@ public class CTNHMachineUtils {
                         .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName(name), VLVT[tier]))
                         .editableUI(SimpleGeneratorMachine.EDITABLE_UI_CREATOR.apply(CTNHCore.id(name), recipeType))
                         .rotationState(RotationState.NON_Y_AXIS)
-                        .recipeModifier(recipeModifier)
+                        .recipeModifiers(GTRecipeModifiers.TIER_CHECK, recipeModifier)
                         .recipeType(recipeType)
                         .simpleGeneratorModel(CTNHCore.id("block/generators/" + name))
                         .tooltips(

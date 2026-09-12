@@ -16,6 +16,7 @@ import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
+import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.machines.GTResearchMachines;
 
@@ -50,7 +51,7 @@ public class HyperPlasmaTurbineRegister {
                 .rotationState(RotationState.NON_Y_AXIS)
                 .recipeType(GTRecipeTypes.PLASMA_GENERATOR_FUELS)
                 .generator(true)
-                .recipeModifier(HyperPlasmaTurbineMachine::recipeModifier, true)
+                .recipeModifiers(true, GTRecipeModifiers.TIER_CHECK, HyperPlasmaTurbineMachine::recipeModifier)
                 .appearanceBlock(NEUTRONIUM_REINFORCED_TURBINE_CASING)
                 .pattern(definition -> {
                     return FactoryBlockPattern.start()

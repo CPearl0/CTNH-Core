@@ -3,9 +3,7 @@ package io.github.cpearl0.ctnhcore.utils;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.common.data.GTRecipeCapabilities;
-import com.gregtechceu.gtceu.utils.FormattingUtil;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemHandlerHelper;
 
@@ -74,13 +72,5 @@ public class CTNHRecipeHelper {
             }
         }
         return stack;
-    }
-
-    /**
-     * 机器输出上限不足以承载配方所需的 EU/t。
-     */
-    public static Component insufficientOutputPower(long requiredEUt, long maxEUt) {
-        return CTNHCommonTooltips.recipeModifierInsufficientOutputPower.translate(
-                FormattingUtil.formatNumbers(requiredEUt), FormattingUtil.formatNumbers(maxEUt));
     }
 }

@@ -1,8 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
-import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
-import io.github.cpearl0.ctnhcore.utils.CTNHRecipeHelper;
-
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
@@ -13,7 +10,6 @@ import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IRotorHolderMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
@@ -96,17 +92,11 @@ public class MegaTurbineMachine extends RecipeElectricMultiblockMachine implemen
             return Component.translatable("gtceu.recipe_modifier.missing_valid_turbine_rotor");
         }
 
-        long EUt = RecipeHelper.getRealEUtWithIO(recipe);
+        long EUt = recipe.getOutputEUt();
         long turbineMaxVoltage = turbineMachine.getOverclockVoltage();
         double holderEfficiency = rotorHolder.getTotalEfficiency() / 100.0;
 
-        if (EUt <= 0) return CTNHCommonTooltips.recipeModifierNoEuOutput.translate();
-        if (holderEfficiency <= 0) {
-            return Component.translatable("gtceu.recipe_modifier.missing_valid_turbine_rotor");
-        }
-        if (turbineMaxVoltage <= EUt) {
-            return CTNHRecipeHelper.insufficientOutputPower(EUt, turbineMaxVoltage);
-        }
+        if (EUt <= 0 || turbineMaxVoltage <= EUt || holderEfficiency <= 0) return null;
 
         // get the amount of parallel required to match the desired output voltage
         int maxParallel = (int) (turbineMaxVoltage / EUt);
@@ -149,7 +139,7 @@ public class MegaTurbineMachine extends RecipeElectricMultiblockMachine implemen
 
                 long maxProduction = getOverclockVoltage();
                 long currentProduction = isActive() && recipeLogic.getLastRecipe() != null ?
-                        RecipeHelper.getRealEUtWithIO(recipeLogic.getLastRecipe()) : 0;
+                        recipeLogic.getLastRecipe().getOutputEUt() : 0;
                 String voltageName = GTValues.VNF[GTUtil.getTierByVoltage(currentProduction)];
 
                 if (isActive()) {

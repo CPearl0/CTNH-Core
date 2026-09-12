@@ -1,7 +1,5 @@
 package io.github.cpearl0.ctnhcore.common.machine.multiblock.generator;
 
-import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
-
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
@@ -67,18 +65,16 @@ public class ChemicalGeneratorMachine extends RecipeElectricMultiblockMachine {
         if (!(machine instanceof ChemicalGeneratorMachine engineMachine)) {
             return RecipeModifier.nullWrongType(ChemicalGeneratorMachine.class, machine);
         }
-        long EUt = RecipeHelper.getRealEUtWithIO(recipe);
-        // has lubricant
-        if (EUt > 0) {
-            int maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
-            int actualParallel = ParallelLogic.getParallelAmount(group, recipe, maxParallel);
-            double eutMultiplier = engineMachine.getProductionBoost();
-            recipe.multiplyAllContents(actualParallel);
-            recipe.multiplyEUt(eutMultiplier);
-            recipe.parallels *= actualParallel;
-            return null;
-        }
-        return CTNHCommonTooltips.recipeModifierNoEuOutput.translate();
+        long EUt = recipe.getOutputEUt();
+        if (EUt <= 0) return null;
+
+        int maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
+        int actualParallel = ParallelLogic.getParallelAmount(group, recipe, maxParallel);
+        double eutMultiplier = engineMachine.getProductionBoost();
+        recipe.multiplyAllContents(actualParallel);
+        recipe.multiplyEUt(eutMultiplier);
+        recipe.parallels *= actualParallel;
+        return null;
     }
 
     protected double getProductionBoost() {
