@@ -982,10 +982,10 @@ public class CTNHItems {
             .cnlang("砖胚")
             .lang("Brick Preform")
             .register();
-    public static ItemEntry<Item> COKE_OVEN_BRICK_MUD = REGISTRATE
-            .item("coke_oven_brick_mud", Item::new)
-            .cnlang("焦炉砖泥")
-            .lang("Coke Oven Brick Mud")
+    public static ItemEntry<Item> COKE_CLAY = REGISTRATE
+            .item("coke_clay", Item::new)
+            .cnlang("焦黏土")
+            .lang("Coke Clay")
             .register();
     public static ItemEntry<Item> CIRCUIT_BOARD_M_ONE = REGISTRATE
             .item("circuit_board_m_one", Item::new)

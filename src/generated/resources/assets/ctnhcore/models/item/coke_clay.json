@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ctnhcore:item/coke_oven_brick_mud"
+    "layer0": "ctnhcore:item/coke_clay"
   }
 }

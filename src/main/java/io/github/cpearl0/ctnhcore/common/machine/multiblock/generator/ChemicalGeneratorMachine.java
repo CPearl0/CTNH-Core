@@ -69,6 +69,7 @@ public class ChemicalGeneratorMachine extends RecipeElectricMultiblockMachine {
         if (EUt <= 0) return null;
 
         int maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
+        if (maxParallel <= 0) return null;
         int actualParallel = ParallelLogic.getParallelAmount(group, recipe, maxParallel);
         double eutMultiplier = engineMachine.getProductionBoost();
         recipe.multiplyAllContents(actualParallel);

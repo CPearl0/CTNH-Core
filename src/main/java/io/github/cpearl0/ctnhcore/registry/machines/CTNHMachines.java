@@ -54,130 +54,6 @@ import static io.github.cpearl0.ctnhcore.utils.CTNHMachineUtils.*;
 @Suffix("tooltip")
 public class CTNHMachines {
 
-    @Key("block.ctnhcore.abyssalalloy_coil_block")
-    @CN("渊狱合金线圈")
-    public static Lang blockAbyssalalloyCoilBlock;
-
-    @Key("block.ctnhcore.atoms_split_blocks")
-    @CN("原子裂解方块")
-    public static Lang blockAtomsSplitBlocks;
-
-    @Key("block.ctnhcore.black_titanium_coil_block")
-    @CN("黑钛合金线圈")
-    public static Lang blockBlackTitaniumCoilBlock;
-
-    @Key("block.ctnhcore.hyper_plasma_turbine_rotor")
-    @CN("超極等离子涡轮转子")
-    public static Lang blockHyperPlasmaTurbineRotor;
-
-    @Key("block.ctnhcore.infinity_coil_block")
-    @CN("无尽线圈")
-    public static Lang blockInfinityCoilBlock;
-
-    @Key("block.ctnhcore.naquadah_firebox_casing")
-    @CN("硅岩燃烧室")
-    public static Lang blockNaquadahFireboxCasing;
-
-    @Key("block.ctnhcore.pikyonium_coil_block")
-    @CN("皮卡优线圈")
-    public static Lang blockPikyoniumCoilBlock;
-
-    @Key("block.ctnhcore.starmetal_coil_block")
-    @CN("星辉线圈")
-    public static Lang blockStarmetalCoilBlock;
-
-    @Key("block.ctnhcore.titansteel_coil_block")
-    @CN("泰坦钢线圈")
-    public static Lang blockTitansteelCoilBlock;
-
-    @Key("block.ctnhcore.advance_assembly_line")
-    @CN("进阶装配线")
-    public static Lang blockAdvanceAssemblyLine;
-
-    @Key("block.ctnhcore.advanced_coke_oven")
-    @CN("高级焦炉")
-    public static Lang blockAdvancedCokeOven;
-
-    @Key("block.ctnhcore.advanced_wind_power_array")
-    @CN("进阶风力发电阵列")
-    public static Lang blockAdvancedWindPowerArray;
-
-    @Key("block.ctnhcore.arc_generator")
-    @CN("电弧撕裂者")
-    public static Lang blockArcGenerator;
-
-    @Key("block.ctnhcore.arc_generator_mk1")
-    @CN("超压电弧撕裂者MK1")
-    public static Lang blockArcGeneratorMk1;
-
-    @Key("block.ctnhcore.arc_generator_mk2")
-    @CN("过载电弧撕裂者MK1")
-    public static Lang blockArcGeneratorMk2;
-
-    @Key("block.ctnhcore.astronomical_observatory")
-    @CN("天文台")
-    public static Lang blockAstronomicalObservatory;
-
-    @Key("block.ctnhcore.bedrock_drilling_rigs")
-    @CN("基岩钻机")
-    public static Lang blockBedrockDrillingRigs;
-
-    @Key("block.ctnhcore.bio_reactor")
-    @CN("生物反应器")
-    public static Lang blockBioReactor;
-
-    @Key("block.ctnhcore.blaze_blast_furnace")
-    @CN("§c炽焱高炉")
-    public static Lang blockBlazeBlastFurnace;
-
-    @Key("block.ctnhcore.chemical_vapor_deposition_machine")
-    @CN("化学气相沉积器")
-    public static Lang blockChemicalVaporDepositionMachine;
-
-    @Key("block.ctnhcore.cnc_alloy_smelter")
-    @CN("数控合金冶炼炉")
-    public static Lang blockCncAlloySmelter;
-
-    @Key("block.ctnhcore.coke_tower")
-    @CN("焦化塔")
-    public static Lang blockCokeTower;
-
-    @Key("block.ctnhcore.combined_vapor_deposition_facility")
-    @CN("集成沉积工厂")
-    public static Lang blockCombinedVaporDepositionFacility;
-
-    @Key("block.ctnhcore.condensing_discrete")
-    @CN("冷凝离散塔")
-    public static Lang blockCondensingDiscrete;
-
-    @Key("block.ctnhcore.cryotheum_freezer")
-    @CN("凛冰冷冻机")
-    public static Lang blockCryotheumFreezer;
-
-    @Key("block.ctnhcore.crystallizer")
-    @CN("结晶器")
-    public static Lang blockCrystallizer;
-
-    @Key("block.ctnhcore.cultivationroom")
-    @CN("培养室")
-    public static Lang blockCultivationroom;
-
-    @Key("block.ctnhcore.decay_pools_machine")
-    @CN("衰变罐")
-    public static Lang blockDecayPoolsMachine;
-
-    @Key("block.ctnhcore.digestion_tank")
-    @CN("化粪池")
-    public static Lang blockDigestionTank;
-
-    @Key("block.ctnhcore.dimensional_gas_collection_chamber")
-    @CN("维度集气室")
-    public static Lang blockDimensionalGasCollectionChamber;
-
-    @Key("block.ctnhcore.drone_holder")
-    @CN("无人机支架")
-    public static Lang blockDroneHolder;
-
     @Key("block.ctnhcore.ev_chemical_generator")
     @CN("化学能发电机")
     public static Lang blockEvChemicalGenerator;
@@ -198,30 +74,6 @@ public class CTNHMachines {
     @CN("§5高级火箭引擎发电机 I")
     public static Lang blockEvRocketEngine;
 
-    @Key("block.ctnhcore.fermenting_tank")
-    @CN("发酵罐")
-    public static Lang blockFermentingTank;
-
-    @Key("block.ctnhcore.forest_sea_tree_farm")
-    @CN("林海树场")
-    public static Lang blockForestSeaTreeFarm;
-
-    @Key("block.ctnhcore.fuel_refining_factory")
-    @CN("燃料精炼厂")
-    public static Lang blockFuelRefiningFactory;
-
-    @Key("block.ctnhcore.gas_centrifuge")
-    @CN("气体离心机")
-    public static Lang blockGasCentrifuge;
-
-    @Key("block.ctnhcore.greenhouse")
-    @CN("温室")
-    public static Lang blockGreenhouse;
-
-    @Key("block.ctnhcore.hot_coolant_turbine")
-    @CN("热冷却涡轮")
-    public static Lang blockHotCoolantTurbine;
-
     @Key("block.ctnhcore.hv_dehydrator")
     @CN("§6高级脱水机 II§r")
     public static Lang blockHvDehydrator;
@@ -237,22 +89,6 @@ public class CTNHMachines {
     @Key("block.ctnhcore.hv_personal_computer")
     @CN("§6HV§r个人计算机")
     public static Lang blockHvPersonalComputer;
-
-    @Key("block.ctnhcore.high_pressure_alkali_digester")
-    @CN("高压碱煮釜")
-    public static Lang blockHighPressureAlkaliDigester;
-
-    @Key("block.ctnhcore.hyper_plasma_turbine")
-    @CN("超極等离子涡轮")
-    public static Lang blockHyperPlasmaTurbine;
-
-    @Key("block.ctnhcore.industrial_primitive_blast_furnace")
-    @CN("工业土高炉")
-    public static Lang blockIndustrialPrimitiveBlastFurnace;
-
-    @Key("block.ctnhcore.ion_exchanger")
-    @CN("离子交换机")
-    public static Lang blockIonExchanger;
 
     @Key("block.ctnhcore.iv_chemical_generator")
     @CN("化学能吞噬者")
@@ -273,26 +109,6 @@ public class CTNHMachines {
     @Key("block.ctnhcore.iv_rocket_engine")
     @CN("§9精英火箭引擎发电机 II")
     public static Lang blockIvRocketEngine;
-
-    @Key("block.ctnhcore.large_bottle")
-    @CN("发酵瓶")
-    public static Lang blockLargeBottle;
-
-    @Key("block.ctnhcore.large_fermenting_tank")
-    @CN("大型发酵罐")
-    public static Lang blockLargeFermentingTank;
-
-    @Key("block.ctnhcore.large_steel_alloy_furnace")
-    @CN("大型钢制合金炉")
-    public static Lang blockLargeSteelAlloyFurnace;
-
-    @Key("block.ctnhcore.large_steel_furnace")
-    @CN("大型钢制熔炉")
-    public static Lang blockLargeSteelFurnace;
-
-    @Key("block.ctnhcore.lasersorder")
-    @CN("激光分配仪")
-    public static Lang blockLaserSorter;
 
     @Key("block.ctnhcore.luv_compressed_fusion_reactor")
     @CN("压缩核聚变反应堆控制电脑 MK-I")
@@ -330,49 +146,9 @@ public class CTNHMachines {
     @CN("§7LV§r转子支架")
     public static Lang blockLvRotorHolder;
 
-    @Key("block.ctnhcore.martial_morality_eye")
-    @CN("武德之眼")
-    public static Lang blockMartialMoralityEye;
-
     @Key("block.ctnhcore.max_parallel_hatch")
     @CN("§c§lMAX§r并行控制仓")
     public static Lang blockMaxParallelHatch;
-
-    @Key("block.ctnhcore.meadow")
-    @CN("§6牧场")
-    public static Lang blockMeadow;
-
-    @Key("block.ctnhcore.mechanical_centrifuge")
-    @CN("机械离心厂")
-    public static Lang blockMechanicalCentrifuge;
-
-    @Key("block.ctnhcore.mechanical_extractor")
-    @CN("机械熔炼厂")
-    public static Lang blockMechanicalExtractor;
-
-    @Key("block.ctnhcore.mechanical_lathe")
-    @CN("机械车床厂")
-    public static Lang blockMechanicalLathe;
-
-    @Key("block.ctnhcore.mechanical_mixer")
-    @CN("机械搅拌厂")
-    public static Lang blockMechanicalMixer;
-
-    @Key("block.ctnhcore.mechanical_pressor")
-    @CN("机械辊压厂")
-    public static Lang blockMechanicalPressor;
-
-    @Key("block.ctnhcore.mechanical_sifter")
-    @CN("机械筛选厂")
-    public static Lang blockMechanicalSifter;
-
-    @Key("block.ctnhcore.mega_lcr")
-    @CN("巨型化学反应釜")
-    public static Lang blockMegaLcr;
-
-    @Key("block.ctnhcore.mega_oil_cracking_unit")
-    @CN("巨型原油裂解厂")
-    public static Lang blockMegaOilCrackingUnit;
 
     @Key("block.ctnhcore.mv_dehydrator")
     @CN("§b高级脱水机 §r")
@@ -394,18 +170,6 @@ public class CTNHMachines {
     @CN("§bMV§r转子支架")
     public static Lang blockMvRotorHolder;
 
-    @Key("block.ctnhcore.nanogenetor")
-    @CN("纳米摩擦发电机")
-    public static Lang blockNanoGenerator;
-
-    @Key("block.ctnhcore.naq_reactor_mk3")
-    @CN("超级硅岩反应堆")
-    public static Lang blockNaqReactorMk3;
-
-    @Key("block.ctnhcore.neruo_martix_compiler")
-    @CN("神经矩阵编译器")
-    public static Lang blockNeuroMatrixCompiler;
-
     @Key("block.ctnhcore.opv_parallel_hatch")
     @CN("§9§lOpV§r并行控制仓")
     public static Lang blockOpvParallelHatch;
@@ -413,90 +177,6 @@ public class CTNHMachines {
     @Key("block.ctnhcore.opv_personal_computer")
     @CN("§9§lOpV§r个人计算机")
     public static Lang blockOpvPersonalComputer;
-
-    @Key("block.ctnhcore.oxidation_roasting_furnace")
-    @CN("氧化焙烧炉")
-    public static Lang blockOxidationRoastingFurnace;
-
-    @Key("block.ctnhcore.photovoltaic_drone_station")
-    @CN("光伏无人机道标基站")
-    public static Lang blockPhotovoltaicDroneStation;
-
-    @Key("block.ctnhcore.photovoltaic_power_station_energetic")
-    @CN("充能光伏发电站")
-    public static Lang blockPhotovoltaicPowerStationEnergetic;
-
-    @Key("block.ctnhcore.photovoltaic_power_station_pulsating")
-    @CN("脉冲光伏发电站")
-    public static Lang blockPhotovoltaicPowerStationPulsating;
-
-    @Key("block.ctnhcore.photovoltaic_power_station_vibrant")
-    @CN("振动光伏发电站")
-    public static Lang blockPhotovoltaicPowerStationVibrant;
-
-    @Key("block.ctnhcore.plasma_alloy_blast_smelter")
-    @CN("等离子合金冶炼转底炉")
-    public static Lang blockPlasmaAlloyBlastSmelter;
-
-    @Key("block.ctnhcore.plasma_condenser")
-    @CN("等离子冷凝器")
-    public static Lang blockPlasmaCondenser;
-
-    @Key("block.ctnhcore.reduction_precipitation_tank")
-    @CN("还原沉淀槽")
-    public static Lang blockReductionPrecipitationTank;
-
-    @Key("block.ctnhcore.seawater_desalting_factory")
-    @CN("海水晒盐工厂")
-    public static Lang blockSeawaterDesaltingFactory;
-
-    @Key("block.ctnhcore.silica_rock_fuel_refinery")
-    @CN("硅岩燃料精炼厂")
-    public static Lang blockSilicaRockFuelRefinery;
-
-    @Key("block.ctnhcore.sinope_chemical")
-    @CN("SINOPE化工厂")
-    public static Lang blockSinopeChemical;
-
-    @Key("block.ctnhcore.sintering_kiln")
-    @CN("烧结窑")
-    public static Lang blockSinteringKiln;
-
-    @Key("block.ctnhcore.slaughter_house")
-    @CN("屠宰场")
-    public static Lang blockSlaughterHouse;
-
-    @Key("block.ctnhcore.solvent_extraction_tower")
-    @CN("溶剂萃取塔")
-    public static Lang blockSolventExtractionTower;
-
-    @Key("block.ctnhcore.space_photovoltai_cbase_station")
-    @CN("太空光伏基站")
-    public static Lang blockSpacePhotovoltaicBaseStation;
-
-    @Key("block.ctnhcore.sterile_cleanroom_maintenance_hatch")
-    @CN("无菌超净间维护仓")
-    public static Lang blockSterileCleanroomMaintenanceHatch;
-
-    @Key("block.ctnhcore.super_centrifuge")
-    @CN("超速离心机")
-    public static Lang blockSuperCentrifuge;
-
-    @Key("block.ctnhcore.super_ebf")
-    @CN("超级电力高炉")
-    public static Lang blockSuperEbf;
-
-    @Key("block.ctnhcore.super_wind_power_array")
-    @CN("超级风力发电阵列")
-    public static Lang blockSuperWindPowerArray;
-
-    @Key("block.ctnhcore.superconducting_penning_trap")
-    @CN("超导潘宁势阱")
-    public static Lang blockSuperconductingPenningTrap;
-
-    @Key("block.ctnhcore.sweat_shop")
-    @CN("§4血汗工厂")
-    public static Lang blockSweatShop;
 
     @Key("block.ctnhcore.uev_parallel_hatch")
     @CN("§aUEV§r并行控制仓")
@@ -530,21 +210,9 @@ public class CTNHMachines {
     @CN("§2UIV§r个人计算机")
     public static Lang blockUivPersonalComputer;
 
-    @Key("block.ctnhcore.ultimate_combustion_engine")
-    @CN("无尽内燃引擎")
-    public static Lang blockUltimateCombustionEngine;
-
-    @Key("block.ctnhcore.ultrasonic_apparatus")
-    @CN("超声破碎仪")
-    public static Lang blockUltrasonicApparatus;
-
     @Key("block.ctnhcore.ulv_rotor_holder")
     @CN("§8ULV§r转子支架")
     public static Lang blockUlvRotorHolder;
-
-    @Key("block.ctnhcore.underfloor_heating_system")
-    @CN("地暖")
-    public static Lang blockUnderfloorHeatingSystem;
 
     @Key("block.ctnhcore.uv_compressed_fusion_reactor")
     @CN("压缩核聚变反应堆控制电脑 MK-III")
@@ -569,22 +237,6 @@ public class CTNHMachines {
     @Key("block.ctnhcore.uxv_personal_computer")
     @CN("§eUXV§r个人计算机")
     public static Lang blockUxvPersonalComputer;
-
-    @Key("block.ctnhcore.vacuum_sintering_tower")
-    @CN("真空烧结厂")
-    public static Lang blockVacuumSinteringTower;
-
-    @Key("block.ctnhcore.void_miner")
-    @CN("虚空采矿场")
-    public static Lang blockVoidMiner;
-
-    @Key("block.ctnhcore.wide_particle_accelerator")
-    @CN("广粒子加速器")
-    public static Lang blockWideParticleAccelerator;
-
-    @Key("block.ctnhcore.wind_power_array")
-    @CN("风力发电阵列")
-    public static Lang blockWindPowerArray;
 
     @Key("block.ctnhcore.zpm_compressed_fusion_reactor")
     @CN("压缩核聚变反应堆控制电脑 MK-II")
@@ -741,6 +393,7 @@ public class CTNHMachines {
                 .register();
 
         DRONEHOLDER = REGISTRATE.machine("drone_holder", DroneHolderMachine::new)
+                .cnLangValue("无人机支架")
                 .langValue("drone Holder")
                 .tier(UV)
                 .rotationState(RotationState.ALL)
@@ -844,6 +497,7 @@ public class CTNHMachines {
         STERILE_CLEANROOM_MAINTENANCE_HATCH = REGISTRATE
                 .machine("sterile_cleanroom_maintenance_hatch",
                         holder -> new CleaningMaintenanceHatchPartMachine(holder, CleanroomType.STERILE_CLEANROOM))
+                .cnLangValue("无菌超净间维护仓")
                 .rotationState(RotationState.ALL)
                 .abilities(PartAbility.MAINTENANCE)
                 .tooltips(Component.translatable("gtceu.part_sharing.disabled"),

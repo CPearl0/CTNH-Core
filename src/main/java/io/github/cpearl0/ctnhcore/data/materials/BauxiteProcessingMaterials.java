@@ -64,7 +64,7 @@ public class BauxiteProcessingMaterials {
 
         PURE_SODIUM_ALUMINATE_SOLUTION = REGISTRATE.material(CTNHCore.id("pure_sodium_aluminate_solution"))
                 .cnlang("纯净偏铝酸钠溶液")
-                .formula("Al(OH)3+NaOH+H2O")
+                .formula("NaAl(OH)4+H2O")
                 .liquid()
                 .color(0x803DC2)
                 .buildAndRegister();

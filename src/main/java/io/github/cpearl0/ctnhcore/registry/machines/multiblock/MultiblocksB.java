@@ -22,7 +22,7 @@ import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
@@ -708,7 +708,8 @@ public class MultiblocksB {
 
 
 
-    public final static MultiblockMachineDefinition SILICA_ROCK_FUEL_REFINERY = REGISTRATE.multiblock("silica_rock_fuel_refinery", WorkableElectricMultiblockMachine::new)
+    public final static MultiblockMachineDefinition SILICA_ROCK_FUEL_REFINERY = REGISTRATE.multiblock("silica_rock_fuel_refinery", RecipeElectricMultiblockMachine::new)
+            .cnLangValue("硅岩燃料精炼厂")
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.SILICA_ROCK_FUEL_REFINERY)
             .appearanceBlock(CTNHBlocks.CASING_NAQUADAH_BLOCK)
@@ -735,6 +736,7 @@ public class MultiblocksB {
 
 
     public static MultiblockMachineDefinition NANOGENERATOR = REGISTRATE.multiblock("nanogenetor", NanoscaleTriboelectricGenerator::new)
+            .cnLangValue("纳米摩擦发电机")
             .rotationState(RotationState.ALL)
             .recipeType(CTNHRecipeTypes.NANO_GENERATOR)
             .generator(true)
@@ -773,6 +775,7 @@ public class MultiblocksB {
             .register();
 
     public final static MultiblockMachineDefinition FOREST_SEA_TREE_FARM = REGISTRATE.multiblock("forest_sea_tree_farm", ForestMachine::new)
+            .cnLangValue("林海树场")
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.WOOD_BIONICS)
             .appearanceBlock(CTNHBlocks.NATURAL_ECOLOGICAL_SHELL_CASING)
@@ -797,6 +800,7 @@ public class MultiblocksB {
             .workableCasingModel((CTNHCore.id("block/casings/natural_ecological_shell_casing")), CTNHCore.id("block/overlay/forest_sea_tree_farm"))
             .register();
     public final static MultiblockMachineDefinition SINOPE_CHEMICAL = REGISTRATE.multiblock("sinope_chemical", SinopeChemical::new)
+            .cnLangValue("SINOPE化工厂")
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.SINOPE, GTRecipeTypes.CRACKING_RECIPES)
             .recipeModifiers(SinopeChemical::recipeModifier, OC_NON_PERFECT)
@@ -838,6 +842,7 @@ public class MultiblocksB {
             .workableCasingModel((GTCEu.id("block/casings/mechanic/machine_casing_assembly_control")), GTCEu.id("block/multiblock/fusion_reactor"))
             .register();
     public final static MultiblockMachineDefinition WIDE_PARTICLE_ACCELERATOR = REGISTRATE.multiblock("wide_particle_accelerator", WideParticleAccelerator::new)
+            .cnLangValue("广粒子加速器")
             .rotationState(RotationState.ALL)
             .recipeTypes(CTNHRecipeTypes.ACCELERATOR_UP)
             .recipeModifiers(WideParticleAccelerator::recipeModifier, OC_NON_PERFECT)
@@ -903,6 +908,7 @@ public class MultiblocksB {
             .register();
 
     public final static MultiblockMachineDefinition ARC_GENERATOR = REGISTRATE.multiblock("arc_generator", holder -> new Arc_Generator(holder, 0.75, 1000))
+            .cnLangValue("电弧撕裂者")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ARC_GENERATOR)
             .generator(true)
@@ -955,6 +961,7 @@ public class MultiblocksB {
                     .andThen(b -> b.addDynamicRenderer(ArcBlockRender::new)))
             .register();
     public final static MultiblockMachineDefinition ARC_GENERATOR_MK1 = REGISTRATE.multiblock("arc_generator_mk1", holder -> new Arc_Generator(holder, 1.25, 10000))
+            .cnLangValue("超压电弧撕裂者MK1")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ARC_GENERATOR)
             .generator(true)
@@ -1006,6 +1013,7 @@ public class MultiblocksB {
             .workableCasingModel(GTCEu.id("block/casings/gcym/nonconducting_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition ARC_GENERATOR_MK2 = REGISTRATE.multiblock("arc_generator_mk2", holder -> new Arc_Generator(holder, 2.25, 50000))
+            .cnLangValue("过载电弧撕裂者MK1")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.ARC_GENERATOR)
             .generator(true)
@@ -1093,6 +1101,7 @@ public class MultiblocksB {
             .register();
 
     public final static MultiblockMachineDefinition SUPERCONDUCTING_PENNING_TRAP = REGISTRATE.multiblock("superconducting_penning_trap", Superconducting_Penning_Trap::new)
+            .cnLangValue("超导潘宁势阱")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
 //            .recipeModifiers(Superconducting_Penning_Trap::recipeModifier)
@@ -1166,6 +1175,7 @@ public class MultiblocksB {
 
     public static final MultiblockMachineDefinition ADVANCED_ASSEMBLY_LINE = REGISTRATE
             .multiblock("advance_assembly_line", AssemblyLineMachine::new)
+            .cnLangValue("进阶装配线")
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.ASSEMBLY_LINE_RECIPES)
             .alwaysTryModifyRecipe(true)
@@ -1201,7 +1211,8 @@ public class MultiblocksB {
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
 
-    public final static MultiblockMachineDefinition CultivationRoom = REGISTRATE.multiblock("cultivationroom", WorkableElectricMultiblockMachine::new)
+    public final static MultiblockMachineDefinition CultivationRoom = REGISTRATE.multiblock("cultivationroom", RecipeElectricMultiblockMachine::new)
+            .cnLangValue("培养室")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.CULTIVATION_ROOM)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, OC_NON_PERFECT, BATCH_MODE)
@@ -1234,6 +1245,7 @@ public class MultiblocksB {
 
 
     public final static MultiblockMachineDefinition PLASMA_ALLOY_BLAST_SMELTER = REGISTRATE.multiblock("plasma_alloy_blast_smelter", PlasmaAlloyBlast::new)
+            .cnLangValue("等离子合金冶炼转底炉")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GCYMRecipeTypes.ALLOY_BLAST_RECIPES)
             .recipeModifiers(PlasmaAlloyBlast::recipeModifier, GTRecipeModifiers::ebfOverclock, BATCH_MODE)
@@ -1435,7 +1447,8 @@ public class MultiblocksB {
 //
 //            .workableCasingModel(CTPP.id("block/create/railway_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
 //            .register();
-    public final static MultiblockMachineDefinition COMBINED_VAPOR_DEPOSITION_FACILITY = REGISTRATE.multiblock("combined_vapor_deposition_facility", WorkableElectricMultiblockMachine::new)
+    public final static MultiblockMachineDefinition COMBINED_VAPOR_DEPOSITION_FACILITY = REGISTRATE.multiblock("combined_vapor_deposition_facility", RecipeElectricMultiblockMachine::new)
+            .cnLangValue("集成沉积工厂")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.PVB_RECIPE, CTNHRecipeTypes.CHEMICAL_VAPOR_DEPOSITION)
             .recipeModifiers(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK_SUBTICK))
@@ -1466,6 +1479,7 @@ public class MultiblocksB {
             .workableCasingModel(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition LaserSorder = REGISTRATE.multiblock("lasersorder", LaserSorter::new)
+            .cnLangValue("激光分配仪")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(CTNHRecipeTypes.LS_RECIPE,GTRecipeTypes.LASER_ENGRAVER_RECIPES)
             .recipeModifiers(LaserSorter::recipeModifier, OC_NON_PERFECT)
@@ -1505,6 +1519,7 @@ public class MultiblocksB {
             .workableCasingModel(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition SPACEPHOTOVOLTAICBASESTATION = REGISTRATE.multiblock("space_photovoltai_cbase_station", SpacePhotovoltaicBaseStation::new)
+            .cnLangValue("太空光伏基站")
             .allowExtendedFacing(false)
             .generator(true)
             .recipeTypes(CTNHRecipeTypes.PHOTOVOLTAIC_GENERATOR, CTNHRecipeTypes.PHOTOVOLTAIC_ASSEMBER)
@@ -1572,6 +1587,7 @@ public class MultiblocksB {
             .register();
     public final static MultiblockMachineDefinition HYPER_PLASMA_TURBINE = HyperPlasmaTurbineRegister.register();
     public final static MultiblockMachineDefinition PHOTOVOLTAIC_DRONE_STATION = REGISTRATE.multiblock("photovoltaic_drone_station", PhotoVoltaicDroneStation::new)
+            .cnLangValue("光伏无人机道标基站")
             .allowExtendedFacing(false)
             .recipeTypes(CTNHRecipeTypes.PVDRONE)
             .recipeModifiers(PhotoVoltaicDroneStation::recipeModifier)
@@ -1629,7 +1645,8 @@ public class MultiblocksB {
 
             .workableCasingModel(GTCEu.id("block/casings/hpca/high_power_casing"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
-    public static final MultiblockMachineDefinition GAS_CENTRIFUGE = REGISTRATE.multiblock("gas_centrifuge", WorkableElectricMultiblockMachine::new)
+    public static final MultiblockMachineDefinition GAS_CENTRIFUGE = REGISTRATE.multiblock("gas_centrifuge", RecipeElectricMultiblockMachine::new)
+            .cnLangValue("气体离心机")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.GAS_CENTRIFUGE_RECIPES)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
@@ -1651,6 +1668,7 @@ public class MultiblocksB {
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public static final MultiblockMachineDefinition HOT_COOLANT_TURBINE = REGISTRATE.multiblock("hot_coolant_turbine", holder -> new LargeTurbineMachine(holder, GTValues.EV))
+            .cnLangValue("热冷却涡轮")
             .generator(true)
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.HOT_COOLANT_TURBINE_RECIPES)
@@ -1673,6 +1691,7 @@ public class MultiblocksB {
             .workableCasingModel(GTCEu.id("block/casings/mechanic/machine_casing_turbine_titanium"), GTCEu.id("block/multiblock/generator/large_steam_turbine"))
             .register();
     public final static MultiblockMachineDefinition  CRYOTHEUMFREEZER = REGISTRATE.multiblock("cryotheum_freezer", CryotheumFreezer::new)
+            .cnLangValue("凛冰冷冻机")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.VACUUM_RECIPES)
             .recipeModifiers(CryotheumFreezer::recipeModifier, OC_NON_PERFECT, BATCH_MODE)
@@ -1706,6 +1725,7 @@ public class MultiblocksB {
             .register();
 
     public final static MultiblockMachineDefinition NERUOMATRIXCOMPILER = REGISTRATE.multiblock("neruo_martix_compiler", NeuroMatrixCompiler::new)
+            .cnLangValue("神经矩阵编译器")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CTNHRecipeTypes.COMPILER_RECIPE)
             .appearanceBlock(CASING_ANTIFREEZE_HEATPROOF_MACHINE)

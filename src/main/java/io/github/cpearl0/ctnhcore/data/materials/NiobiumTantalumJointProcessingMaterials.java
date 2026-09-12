@@ -4,6 +4,7 @@ import io.github.cpearl0.ctnhcore.CTNHCore;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static io.github.cpearl0.ctnhcore.registry.CTNHRegistration.REGISTRATE;
 
@@ -26,6 +27,7 @@ public class NiobiumTantalumJointProcessingMaterials {
         TANTALITE_OXIDE = REGISTRATE.material(CTNHCore.id("tantalite_oxide"))
                 .cnlang("五氧化二钽")
                 .dust()
+                .flags(DISABLE_DECOMPOSITION)
                 .color(0x46A3FF)
                 .components(Tantalum, 2, Oxygen, 5)
                 .buildAndRegister();
@@ -46,6 +48,7 @@ public class NiobiumTantalumJointProcessingMaterials {
         NIOBIUM_OXIDE = REGISTRATE.material(CTNHCore.id("niobium_oxide"))
                 .cnlang("五氧化二铌")
                 .dust()
+                .flags(DISABLE_DECOMPOSITION)
                 .color(0xB2A9A9)
                 .components(Niobium, 2, Oxygen, 5)
                 .buildAndRegister();

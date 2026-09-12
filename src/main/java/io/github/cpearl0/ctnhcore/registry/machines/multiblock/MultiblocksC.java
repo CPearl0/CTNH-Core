@@ -52,6 +52,7 @@ public class MultiblocksC {
     public static void init() {}
 
     public static final MultiblockMachineDefinition GREENHOUSE = REGISTRATE.multiblock("greenhouse", RecipeElectricMultiblockMachine::new)
+            .cnLangValue("温室")
             .allowExtendedFacing(false)
             .recipeType(CTNHRecipeTypes.GREENHOUSE_RECIPES)
             .recipeModifiers(GTRecipeModifiers.OC_NON_PERFECT, GTRecipeModifiers.BATCH_MODE)
@@ -91,6 +92,7 @@ public class MultiblocksC {
 
     public static final MultiblockMachineDefinition CNC_ALLOY_SMELTER = REGISTRATE
             .multiblock("cnc_alloy_smelter", CNCAlloySmelter::new)
+            .cnLangValue("数控合金冶炼炉")
             .langValue("CNC ALLOY Smelter")
             .recipeType(ALLOY_BLAST_RECIPES)
             .tooltips(MultiblocksA.megaLcrTooltip0.translate(),

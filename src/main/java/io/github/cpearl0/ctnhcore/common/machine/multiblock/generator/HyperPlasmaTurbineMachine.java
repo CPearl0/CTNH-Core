@@ -176,6 +176,7 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
         // get the amount of parallel required to match the desired output voltage
         final double euMultiplier = getEfficiency();
         final int maxParallel = (int) (turbineMaxVoltage / EUt);
+        if (maxParallel <= 0) return null;
         final int actualParallel = ParallelLogic.getParallelAmountFast(group, recipe, maxParallel);
         final long actualEUt = EUt * actualParallel;
 
