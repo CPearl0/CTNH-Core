@@ -111,7 +111,8 @@ public class SecondMaterials {
 
         Wollastonite = REGISTRATE.material(CTNHCore.id("wollastonite")).cnlang("硅灰石").dust().ore()
                 .components(GTMaterials.Calcium, 1, GTMaterials.Silicon, 1, GTMaterials.Oxygen, 3).color(0xc4cbcf)
-                .iconSet(MaterialIconSet.SAND).buildAndRegister();
+                .iconSet(MaterialIconSet.SAND)
+                .flags(MaterialFlags.DISABLE_DECOMPOSITION).buildAndRegister();
 
         Kaolinite = REGISTRATE.material(CTNHCore.id("kaolinite")).cnlang("高岭石").dust().ore().color(0x969090)
                 .iconSet(MaterialIconSet.ROUGH)

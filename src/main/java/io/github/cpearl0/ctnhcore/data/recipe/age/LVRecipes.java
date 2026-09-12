@@ -24,7 +24,6 @@ public class LVRecipes {
     // 这里存放的是低压(lv)时期的配方
     public static void init(Consumer<FinishedRecipe> provider) {
         addLVCoverRecipes(provider);
-        addPolarizerRecipes(provider);
         addThermalCentrifugeRecipes(provider);
         addLVAssemblerRecipes(provider);
     }
@@ -92,18 +91,6 @@ public class LVRecipes {
                 'B', ChemicalHelper.get(TagPrefix.rod, GTMaterials.Brass),
                 'C', CustomTags.LV_CIRCUITS,
                 'D', ChemicalHelper.get(TagPrefix.wireGtSingle, GTMaterials.Tin));
-    }
-
-    private static void addPolarizerRecipes(Consumer<FinishedRecipe> provider) {
-        // LV磁化机（基础两极磁化机：原版GTM配方，第三排第二列改为基础电子电路）
-        VanillaRecipeHelper.addShapedRecipe(provider, CTNHCore.id("crafttable/lv_polarizer"),
-                GTMachines.POLARIZER[GTValues.LV].asStack(),
-                "ZSZ", "WMW", "ZCZ",
-                'Z', ChemicalHelper.get(TagPrefix.wireGtDouble, GTMaterials.Tin),
-                'S', ChemicalHelper.get(TagPrefix.rod, GTMaterials.Iron),
-                'M', GTMachines.HULL[GTValues.LV].asStack(),
-                'W', ChemicalHelper.get(TagPrefix.cableGtSingle, GTMaterials.Tin),
-                'C', CustomTags.LV_CIRCUITS);
     }
 
     private static void addThermalCentrifugeRecipes(Consumer<FinishedRecipe> provider) {

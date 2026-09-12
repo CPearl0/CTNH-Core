@@ -700,6 +700,7 @@ public class CTNHMaterials {
                 .liquid()
                 .color(0x76868a)
                 .components(Silicon, 1, Fluorine, 4)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         carbonFluoride = REGISTRATE.material(CTNHCore.id("carbon_fluoride"))
                 .cnlang("氟化碳")
@@ -804,7 +805,7 @@ public class CTNHMaterials {
                 .liquid(new FluidBuilder().temperature(350))
                 .color(0x2E8B57).secondaryColor(0x228B22)
                 .iconSet(SHINY)
-                .flags(GENERATE_FOIL, GENERATE_FINE_WIRE, STICKY)
+                .flags(GENERATE_FOIL, GENERATE_FINE_WIRE, STICKY, DISABLE_DECOMPOSITION)
                 .components(Ruthenium, 1, Mercury, 2)
                 .addOreByproducts(Cinnabar, RutheniumTetroxide, Cinnabar)
                 .buildAndRegister();
@@ -813,7 +814,7 @@ public class CTNHMaterials {
                 .gem().ore()
                 .color(0x000080).secondaryColor(0x000000)
                 .iconSet(DIAMOND)
-                .flags(GENERATE_PLATE, GENERATE_ROD, CRYSTALLIZABLE)
+                .flags(GENERATE_PLATE, GENERATE_ROD, CRYSTALLIZABLE, DISABLE_DECOMPOSITION)
                 .components(Osmium, 1, Iron, 2, Oxygen, 4)
                 .addOreByproducts(RarestMetalMixture, Iron, Cinnabar)
                 .buildAndRegister();
@@ -831,7 +832,7 @@ public class CTNHMaterials {
                 .gem().ore()
                 .color(0xE6E6FA).secondaryColor(0xD8BFD8)
                 .iconSet(GEM_HORIZONTAL)
-                .flags(GENERATE_LENS, GENERATE_PLATE)
+                .flags(GENERATE_LENS, GENERATE_PLATE, DISABLE_DECOMPOSITION)
                 .components(Palladium, 1, Sulfur, 1)
                 .addOreByproducts(Palladium, Sulfur, Platinum)
                 .buildAndRegister();
@@ -883,6 +884,7 @@ public class CTNHMaterials {
                 .color(0x4B3A26).secondaryColor(0x2F1B0C)
                 .iconSet(DULL)
                 .components(Iron, 1, Manganese, 1, Tungsten, 1, Oxygen, 4)
+                .flags(DISABLE_DECOMPOSITION)
                 .addOreByproducts(Tin, Molybdenum, Bismuth)
                 .buildAndRegister();
         Germanite = REGISTRATE.material(CTNHCore.id("germanite"))
@@ -915,6 +917,7 @@ public class CTNHMaterials {
                 .color(0x4682B4).secondaryColor(0x1E90FF)
                 .iconSet(SHINY)
                 .components(Rhenium, 1, Molybdenum, 1, Sulfur, 4)
+                .flags(DISABLE_DECOMPOSITION)
                 .addOreByproducts(Copper, Silver, Gold)
                 .buildAndRegister();
         Crocoite = REGISTRATE.material(CTNHCore.id("crocoite"))
@@ -947,6 +950,7 @@ public class CTNHMaterials {
                 .color(0xA9A9A9).secondaryColor(0x808080)
                 .iconSet(METALLIC)
                 .components(Rhenium, 1, Sulfur, 2)
+                .flags(DISABLE_DECOMPOSITION)
                 .addOreByproducts(Molybdenum, Copper, Platinum)
                 .buildAndRegister();
         Thorium232 = REGISTRATE.material(CTNHCore.id("thorium_232"))

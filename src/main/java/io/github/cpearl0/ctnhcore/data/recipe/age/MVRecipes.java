@@ -20,7 +20,7 @@ import com.unrealdinnerbone.javd.JAVDRegistry;
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.plate;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
@@ -47,6 +47,14 @@ public class MVRecipes {
                 'A', ChemicalHelper.get(TagPrefix.wireGtDouble, GTMaterials.Cupronickel),
                 'B', ChemicalHelper.get(TagPrefix.rod, GTMaterials.SteelMagnetic),
                 'C', ChemicalHelper.get(TagPrefix.plate, GTMaterials.Aluminium));
+
+        // MV电动马达组装机配方（与工作台同材料）
+        ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("assembler/electric_motor_mv"))
+                .inputItems(TagPrefix.wireGtDouble, GTMaterials.Cupronickel, 4)
+                .inputItems(TagPrefix.rod, GTMaterials.SteelMagnetic)
+                .inputItems(TagPrefix.plate, GTMaterials.Aluminium, 2)
+                .outputItems(GTItems.ELECTRIC_MOTOR_MV)
+                .duration(100).EUt(VA[LV]).save(provider);
     }
 
     public static void addVoltageTerminalRecipe(Consumer<FinishedRecipe> provider) {
@@ -92,26 +100,5 @@ public class MVRecipes {
                 .circuitMeta(1)
                 .outputItems(VOLTAGE_TERMINALS[IV])
                 .save(provider);
-
-        // ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("voltage_terminal_luv")).duration(100).EUt(VA[LuV])
-        // .inputItems(plate, Samarium)
-        // .inputItems(VOLTAGE_COIL_LuV)
-        // .circuitMeta(1)
-        // .outputItems(VOLTAGE_TERMINALS[LuV])
-        // .save(provider);
-        //
-        // ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("voltage_terminal_zpm")).duration(100).EUt(VA[ZPM])
-        // .inputItems(plate, Samarium)
-        // .inputItems(VOLTAGE_COIL_ZPM)
-        // .circuitMeta(1)
-        // .outputItems(VOLTAGE_TERMINALS[ZPM])
-        // .save(provider);
-        //
-        // ASSEMBLER_RECIPES.recipeBuilder(CTNHCore.id("voltage_terminal_uv")).duration(100).EUt(VA[UV])
-        // .inputItems(plate, Samarium)
-        // .inputItems(VOLTAGE_COIL_UV)
-        // .circuitMeta(1)
-        // .outputItems(VOLTAGE_TERMINALS[UV])
-        // .save(provider);
     }
 }

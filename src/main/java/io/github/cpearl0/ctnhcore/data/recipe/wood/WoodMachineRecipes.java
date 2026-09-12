@@ -455,14 +455,6 @@ public class WoodMachineRecipes {
                         "P  ", "PP ", "PPP",
                         'P', entry.planks);
             }
-
-            // plank -> stairs assembling
-            ASSEMBLER_RECIPES.recipeBuilder(name + "_stairs")
-                    .inputItems(new ItemStack(entry.planks, 3))
-                    .outputItems(new ItemStack(entry.stairs, 4))
-                    .circuitMeta(7)
-                    .EUt(4).duration(100)
-                    .addMaterialInfo(true).save(provider);
         }
 
         // slab

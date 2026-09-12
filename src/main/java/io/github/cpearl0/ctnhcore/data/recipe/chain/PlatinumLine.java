@@ -71,7 +71,7 @@ public class PlatinumLine {
                 .duration(320)
                 .save(provider);
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(CTNHCore.id("ferrous_reduction_denitrated_solution"))
-                .inputFluids(PlatinumLineMaterials.DenitratedGoldPlatinumPalladiumSolution.getFluid(1000))//除硝金-铂-钯酸性溶液
+                .inputFluids(PlatinumLineMaterials.DenitratedGoldPlatinumPalladiumSolution.getFluid(1000))// 除硝金-铂-钯酸性溶液
                 .inputFluids(PlatinumLineMaterials.FerrousSulfate.getFluid(1000))// 硫酸亚铁溶液
                 .outputFluids(PlatinumLineMaterials.FerricSulfate.getFluid(1000))// 硫酸铁溶液
                 .outputItems(dust, Gold, 1)// 金粉

@@ -51,7 +51,6 @@ public class RecipeRemoval {
      * 最终在 {@code RecipeManagerApplyMixin} 中统一处理。
      */
     public static void init() {
-
         // ===== 外部类删除（与 RecipeRemoval 同模块/相关模块） =====
         EIORecipes.eioRemovals();
         QuantumOmniRecipes.omniRemovals();
@@ -338,159 +337,22 @@ public class RecipeRemoval {
     }
 
     public static void gtceuRemovals() {
-
         remove(new RemoveFilter().id("gtceu:shaped/ulv_machine_hull"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/hydrogen_peroxide"));
-        remove(new RemoveFilter().id("gtceu:distillation/distill_fermented_biomass"));
-        remove(new RemoveFilter().id("gtceu:pyrolyse_oven/bio_chaff_to_fermented_biomass"));
-        remove(new RemoveFilter().id("gtceu:pyrolyse_oven/bio_chaff_to_biomass"));
-        remove(new RemoveFilter().id("gtceu:fermenter/fermented_biomass"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/iodine_solution"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/iodine_solution"));
-        remove(new RemoveFilter().id("gtceu:assembler/cover_ender_fluid_link"));
-        remove(new RemoveFilter().id("gtceu:assembler/space_helmet"));
-        remove(new RemoveFilter().id("gtceu:shaped/space_suit"));
-        remove(new RemoveFilter().id("gtceu:shaped/space_pants"));
-        remove(new RemoveFilter().id("gtceu:shaped/space_boots"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_green_sapphire"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_sapphire"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_ruby"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_pyrope"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_granite_red"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_potassium_feldspar"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_pollucite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_kyanite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/bauxite_electrolysis"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_topaz"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_spodumene"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_spessartine"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_sodalite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_mica"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_lepidolite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_lazurite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_grossular"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_glauconite_sand"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_emerald"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_blue_topaz"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_biotite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_alunite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_almandine"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_chromite"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/platinum_group_sludge_tiny_dust1"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/pgs_from_pentlandite"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/platinum_group_sludge_dust1_lv"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/pgs_from_chalcopyrite"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/pgs_from_chalcocite"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/pgs_from_tetrahedrite"));
-        remove(new RemoveFilter().id("gtceu:large_chemical_reactor/pgs_from_bornite"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/platinum_group_sludge_tiny_dust1"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/pgs_from_pentlandite"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/platinum_group_sludge_dust1_lv"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/pgs_from_chalcopyrite"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/pgs_from_chalcocite"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/pgs_from_tetrahedrite"));
-        remove(new RemoveFilter().id("gtceu:chemical_reactor/pgs_from_bornite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_andradite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_ferrosilite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_wollastonite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_obsidian"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_talc"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_soapstone"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/bentonite_electrolysis"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_asbestos"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_uvarovite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_fullers_earth"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_silicon_dioxide"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_silicon_fluoride"));
-        remove(new RemoveFilter().id("gtceu:vacuum_freezer/liquid_oxygen"));
-        remove(new RemoveFilter().id("gtceu:shapeless/dust_brass"));
-        remove(new RemoveFilter().id("gtceu:shapeless/dust_bronze"));
-        remove(new RemoveFilter().id("gtceu:shapeless/potin_dust"));
-        remove(new RemoveFilter().id("gtceu:shaped/coated_board"));
-        remove(new RemoveFilter().id("gtceu:shapeless/coated_board_1x"));
-        remove(new RemoveFilter().id("gtceu:shaped/basic_circuit_board"));
-        remove(new RemoveFilter().id("gtceu:shaped/vacuum_tube"));
-        remove(new RemoveFilter().id("gtceu:assembler/vacuum_tube_plain"));
-        remove(new RemoveFilter().id("gtceu:assembler/vacuum_tube_red_alloy"));
-        remove(new RemoveFilter().id("gtceu:assembler/vacuum_tube_red_alloy_annealed"));
         remove(new RemoveFilter().id("gtceu:shaped/small_gear_andesite_alloy"));
         remove(new RemoveFilter().id("gtceu:shaped/gear_andesite_alloy"));
         remove(new RemoveFilter().id("gtceu:shaped/small_gear_wood"));
         remove(new RemoveFilter().id("gtceu:shaped/gear_treated_wood"));
-        remove(new RemoveFilter().id("gtceu:shaped/steam_turbine_lv"));
-        remove(new RemoveFilter().id("gtceu:shapeless/iron_magnetic_stick"));
-        remove(new RemoveFilter().id("gtceu:shaped/steam_turbine_mv"));
-        remove(new RemoveFilter().id("gtceu:shaped/steam_turbine_hv"));
-        remove(new RemoveFilter().id("gtceu:combustion_generator/raw_oil"));
-        remove(new RemoveFilter().id("gtceu:assembler/oak_stairs"));
-        remove(new RemoveFilter().id("gtceu:assembler/spruce_stairs"));
-        remove(new RemoveFilter().id("gtceu:assembler/birch_stairs"));
-        remove(new RemoveFilter().id("gtceu:assembler/jungle_stairs"));
-        remove(new RemoveFilter().id("gtceu:assembler/acacia_stairs"));
-        remove(new RemoveFilter().id("gtceu:assembler/dark_oak_stairs"));
-        remove(new RemoveFilter().id("gtceu:assembler/mangrove_stairs"));
-        remove(new RemoveFilter().id("gtceu:assembler/cherry_stairs"));
-        remove(new RemoveFilter().id("gtceu:assembler/bamboo_stairs"));
-        remove(new RemoveFilter().id("gtceu:assembler/crimson_stairs"));
-        remove(new RemoveFilter().id("gtceu:assembler/warped_stairs"));
         remove(new RemoveFilter().id("gtceu:extractor/extract_ammonium_chloride_dust"));
-        remove(new RemoveFilter().id("gtceu:extruder/nan_certificate"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_clay"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_wolframite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_tarkianite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_rheniite"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_palladium_sulfide"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_ruthenium_amalgam"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_osmium_iron_spinel"));
         remove(new RemoveFilter().id("gtceu:smashing_factory_recipes/smashing_factory_recipes/macerate_rail"));
         remove(new RemoveFilter().id("gtceu:smashing_factory_recipes/smashing_factory_recipes/macerate_powered_rail"));
         remove(new RemoveFilter()
                 .id("gtceu:smashing_factory_recipes/smashing_factory_recipes/macerate_activator_rail"));
         remove(new RemoveFilter().id("gtceu:smashing_factory_recipes/smashing_factory_recipes/macerate_detector_rail"));
-        remove(new RemoveFilter().id("gtceu:electric_blast_furnace/blast_high_temp_wrought_precursor"));
-        remove(new RemoveFilter().id("gtceu:electric_blast_furnace/blast_high_temp_wrought_precursor_gas"));
-        remove(new RemoveFilter().id("gtceu:vacuum_freezer/cool_hot_high_temp_wrought_precursor_ingot"));
-        remove(new RemoveFilter().id("gtceu:shaped/bronze_primitive_blast_furnace"));
-        remove(new RemoveFilter().id("gtceu:smelting/wrought_iron_nugget"));
-        remove(new RemoveFilter().idRegex("gtceu:shaped\\/foil_(.*)"));
-        remove(new RemoveFilter().idRegex("gtceu:shaped\\/spring_(.*)"));
-        remove(new RemoveFilter().id("gtceu:shapeless/block_decompress_ender_eye"));
-        remove(new RemoveFilter().id("gtceu:forge_hammer/hammer_ender_eye_block_to_gem"));
-        remove(new RemoveFilter().id("gtceu:shapeless/pumpkin_pie_from_dough"));
-        remove(new RemoveFilter().id("gtceu:research_station/1x_gtceu_wetware_processor_assembly"));
-        remove(new RemoveFilter().id("gtceu:research_station/1x_gtceu_wetware_processor_computer"));
-        remove(new RemoveFilter().id("gtceu:assembler/assembly_line_casing"));
-        remove(new RemoveFilter().id("gtceu:assembler/assembly_control_casing"));
-        remove(new RemoveFilter().id("gtceu:electrolyzer/decomposition_electrolyzing_borax"));
-        remove(new RemoveFilter().id("gtceu:electric_blast_furnace/naq_ingot"));
 
-        remove(new RemoveFilter().id("gtceu:electrolyzer/zeolite_electrolysis"));
-        // 移除硅晶圆直接激光蚀刻成 RAM/LPIC/SSoC 晶圆的配方
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ram_*"));
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_lpic_*"));
-        remove(new RemoveFilter().id("gtceu:laser_engraver/engrave_ssoc_*"));
-        // 移除微处理器系列旧配方（LV~IV 段），改为 HV 段新配方
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/microprocessor_lv*"));
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_mv*"));
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/processor_assembly_hv*"));
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/workstation_ev*"));
-        remove(new RemoveFilter().id("gtceu:circuit_assembler/mainframe_iv*"));
-
-        // 移除 GTCEu 默认 LV~IV 电动马达与 LV 组件工作台配方，统一改为 CTNH 工作台配方
-        remove(new RemoveFilter().idRegex(
-                "gtceu:shaped/(?:electric_motor_(?:lv_(?:iron|steel)|mv|hv|ev|iv)|electric_piston_lv|conveyor_module_lv_.*|electric_pump_lv_.*|robot_arm_lv|fluid_regulator_lv|emitter_lv)"));
-        // 移除 GTCEu 默认 LV 组件组装机配方，统一改为 CTNH 组装机配方（与 CTNH 工作台配方一致）
-        remove(new RemoveFilter().idRegex(
-                "gtceu:assembler/(?:electric_motor_lv_(?:iron|steel)|electric_piston_lv|conveyor_module_lv_.*|electric_pump_lv_.*|robot_arm_lv|fluid_regulator_lv|emitter_lv)"));
-        // 移除 CTPP 基础构件工作台配方，统一改为 CTNH 工作台配方（齿轮改为小齿轮）
+        // 移除 CTPP 基础构件工作台配方，改为 CTNH 工作台配方（齿轮改为小齿轮）
         remove(new RemoveFilter().id("gtceu:basic_mechanism"));
-        // 移除 GTCEu 默认 LV 两极磁化机工作台配方，统一改为 CTNH 工作台配方
-        remove(new RemoveFilter().id("gtceu:shaped/lv_polarizer"));
-        // 移除 GTCEu 默认 LV 热力离心机工作台配方，统一改为 CTNH 工作台配方
+        // 移除 GTCEu 默认 LV 热力离心机工作台配方，改为 CTNH 工作台配方
         remove(new RemoveFilter().id("gtceu:shaped/lv_thermal_centrifuge"));
-        // 移除 GTCEu 默认 LV/MV 电子电路工作台配方，统一改为 CTNH 序列装配配方
-        remove(new RemoveFilter().id("gtceu:shaped/electronic_circuit_lv"));
-        remove(new RemoveFilter().id("gtceu:shaped/electronic_circuit_mv"));
     }
 
     public static void hostilenetworksRemovals() {
