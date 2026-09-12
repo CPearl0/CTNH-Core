@@ -9,7 +9,7 @@ import com.gregtechceu.gtceu.api.machine.feature.IOverclockMachine;
 import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
@@ -58,7 +58,7 @@ public class CTNHRecipeModifiers {
                                                   @NotNull GTRecipe recipe) {
         var coilMachine = machine.getTrait(CoilMachineTrait.class);
         if (coilMachine == null ||
-                !(machine instanceof WorkableElectricMultiblockMachine workableElectricMultiblockMachine)) {
+                !(machine instanceof RecipeElectricMultiblockMachine workableElectricMultiblockMachine)) {
             return RecipeModifier.nullWrongType(CoilWorkableElectricMultiblockMachine.class, machine);
         }
 

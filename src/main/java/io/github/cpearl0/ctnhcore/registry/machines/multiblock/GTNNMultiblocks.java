@@ -16,7 +16,7 @@ import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.RecipeElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
@@ -175,7 +175,7 @@ public class GTNNMultiblocks {
                         CTNHCore.id("block/casings/solid/radiation_proof_machine_casing"),
                         CTNHCore.id("block/multiblock/large_naquadah_reactor"))
                 .register();
-        LARGE_DEHYDRATOR = REGISTRATE.multiblock("large_dehydrator", WorkableElectricMultiblockMachine::new)
+        LARGE_DEHYDRATOR = REGISTRATE.multiblock("large_dehydrator", RecipeElectricMultiblockMachine::new)
                 .cnLangValue("大型脱水机")
                 .rotationState(RotationState.NON_Y_AXIS)
                 .recipeTypes(CTNHRecipeTypes.DEHYDRATOR_RECIPES)
