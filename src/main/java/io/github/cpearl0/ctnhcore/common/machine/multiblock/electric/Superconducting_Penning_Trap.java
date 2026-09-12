@@ -55,6 +55,10 @@ public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachin
     @EN("Current stored power: %d EU")
     public static Lang trapElectric;
 
+    @CN("供电不足：约束场需要持续供电，机器无法运行")
+    @EN("Insufficient power: the containment field needs a continuous power supply, the machine cannot run")
+    public static Lang insufficientPower;
+
     @CN("允许存储电量上限:%deu")
     @EN("Maximum stored power: %d EU")
     public static Lang trapElectricMax;
@@ -150,7 +154,7 @@ public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachin
                 if (tickwarring >= 100) {
                     doExplosion(3f);
                 }
-                getRecipeLogic().setWaiting(Component.translatable("gtceu.recipe_logic.insufficient_in"));
+                getRecipeLogic().setWaiting(insufficientPower.translate());
             }
         } else {
             this.energyContainer.removeEnergy(this.energyContainer.getEnergyStored());
@@ -159,7 +163,7 @@ public class Superconducting_Penning_Trap extends RecipeElectricMultiblockMachin
             if (tickwarring > 200 && danger()) {
                 doExplosion(9f);
             }
-            getRecipeLogic().setWaiting(Component.translatable("gtceu.recipe_logic.insufficient_in"));
+            getRecipeLogic().setWaiting(insufficientPower.translate());
         }
     }
 

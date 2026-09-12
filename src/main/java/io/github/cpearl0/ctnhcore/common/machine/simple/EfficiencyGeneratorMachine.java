@@ -50,13 +50,12 @@ public class EfficiencyGeneratorMachine extends SimpleGeneratorMachine {
         }
 
         long recipeEUt = recipe.getOutputEUt();
-        if (recipeEUt <= 0) return RecipeModifier.DEFAULT_FAILURE;
+        if (recipeEUt <= 0) return null;
 
         int maxParallel = (int) (generator.getOverclockVoltage() / recipeEUt);
-        if (maxParallel <= 0) return RecipeModifier.DEFAULT_FAILURE;
+        if (maxParallel <= 0) return null;
 
         int parallels = ParallelLogic.getParallelAmountFast(group, recipe, maxParallel);
-        if (parallels <= 0) return RecipeModifier.DEFAULT_FAILURE;
 
         recipe.multiplyAllContents(parallels);
         recipe.parallels *= parallels;

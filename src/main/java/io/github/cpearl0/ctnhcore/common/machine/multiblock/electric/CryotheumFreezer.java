@@ -102,7 +102,7 @@ public class CryotheumFreezer extends RecipeElectricMultiblockMachine implements
             recipe.parallels *= parallel;
             return null;
         }
-        return RecipeModifier.DEFAULT_FAILURE;
+        return RecipeModifier.nullWrongType(CryotheumFreezer.class, machine);
     }
 
     @Override

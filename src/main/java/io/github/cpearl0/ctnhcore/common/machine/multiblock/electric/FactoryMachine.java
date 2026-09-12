@@ -2,7 +2,6 @@ package io.github.cpearl0.ctnhcore.common.machine.multiblock.electric;
 
 import io.github.cpearl0.ctnhcore.registry.CTNHItems;
 import io.github.cpearl0.ctnhcore.registry.CTNHRecipeModifiers;
-import io.github.cpearl0.ctnhcore.utils.CTNHCommonTooltips;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -234,7 +233,7 @@ public class FactoryMachine extends RecipeElectricMultiblockMachine implements I
             var recipeType = recipe.recipeType;
             var recipeTier = recipe.tier;
             if (fmachine.basicRate == 0) {
-                return CTNHCommonTooltips.gtceuRecipeModifierDefaultFail.translate();
+                return no_suitable_machine.translate();
             }
             recipe.multiplyDuration(2 / fmachine.basicRate * Math.pow(recipeTier, 2));
             if (recipeType.equals(GTRecipeTypes.CENTRIFUGE_RECIPES)) {

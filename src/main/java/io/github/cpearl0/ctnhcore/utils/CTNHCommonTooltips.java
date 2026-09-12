@@ -40,6 +40,10 @@ public class CTNHCommonTooltips {
     @EN("Recipe modification failed")
     public static Lang gtceuRecipeModifierDefaultFail;
 
+    @CN("该配方类型不被这台机器支持")
+    @EN("This recipe type is not supported by this machine")
+    public static Lang recipeModifierUnsupportedRecipeType;
+
     public static MutableComponent PARALLEL_HATCH = commonTooltipParallelHatch.translate()
             .withStyle(ChatFormatting.GOLD);
     public static MutableComponent SUBTICK_PARALLEL = commonTooltipSubtickOverclock.translate()

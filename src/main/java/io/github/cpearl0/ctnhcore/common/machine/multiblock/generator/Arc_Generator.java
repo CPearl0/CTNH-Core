@@ -35,6 +35,10 @@ public class Arc_Generator extends RecipeElectricMultiblockMachine implements IT
     @EN("Current Efficiency: %.2f%%")
     public static Lang arcgeneratorInfo3;
 
+    @CN("电弧强度不足：本次配方需要 %d，当前仅有 %d")
+    @EN("Insufficient arc intensity: this recipe needs %d, currently %d")
+    public static Lang arcIntensityInsufficient;
+
     public int arc = 0;
     public int arc_max = 0;
     public double efficiency = 0;
@@ -49,10 +53,11 @@ public class Arc_Generator extends RecipeElectricMultiblockMachine implements IT
 
     @Override
     public Component beforeWorking(@NotNull GTRecipe recipe) {
-        if (arc < recipe.data.getInt("requirearc")) {
-            return RecipeModifier.DEFAULT_FAILURE;
+        var requiredArc = recipe.data.getInt("requirearc");
+        if (arc < requiredArc) {
+            return arcIntensityInsufficient.translate(requiredArc, arc);
         }
-        arc -= recipe.data.getInt("requirearc") / 10;
+        arc -= requiredArc / 10;
         arc = Math.max(0, arc);
 
         return super.beforeWorking(recipe);
@@ -68,7 +73,7 @@ public class Arc_Generator extends RecipeElectricMultiblockMachine implements IT
             recipe.multiplyEUt(rotor);
             return null;
         }
-        return RecipeModifier.DEFAULT_FAILURE;
+        return RecipeModifier.nullWrongType(Arc_Generator.class, machine);
     }
 
     public void addDisplayText(List<Component> textList) {

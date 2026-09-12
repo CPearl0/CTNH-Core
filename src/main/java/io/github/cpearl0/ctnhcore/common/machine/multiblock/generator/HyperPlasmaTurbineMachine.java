@@ -171,12 +171,12 @@ public class HyperPlasmaTurbineMachine extends MultiblockComputationMachine {
 
         final long EUt = recipe.getOutputEUt();
         final long turbineMaxVoltage = hptm.getOverclockVoltage();
-
-        if (EUt <= 0 || turbineMaxVoltage <= EUt) return RecipeModifier.DEFAULT_FAILURE;
+        if (EUt <= 0) return null;
 
         // get the amount of parallel required to match the desired output voltage
         final double euMultiplier = getEfficiency();
         final int maxParallel = (int) (turbineMaxVoltage / EUt);
+        if (maxParallel <= 0) return null;
         final int actualParallel = ParallelLogic.getParallelAmountFast(group, recipe, maxParallel);
         final long actualEUt = EUt * actualParallel;
 

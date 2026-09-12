@@ -12,7 +12,6 @@ import com.gregtechceu.gtceu.api.recipe.handler.RecipeHandlerGroup;
 import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.machine.multiblock.generator.LargeCombustionEngineMachine;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
 import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
@@ -64,20 +63,19 @@ public class ChemicalGeneratorMachine extends RecipeElectricMultiblockMachine {
     public static Component recipeModifier(@NotNull MetaMachine machine, RecipeHandlerGroup group,
                                            @NotNull GTRecipe recipe) {
         if (!(machine instanceof ChemicalGeneratorMachine engineMachine)) {
-            return RecipeModifier.nullWrongType(LargeCombustionEngineMachine.class, machine);
+            return RecipeModifier.nullWrongType(ChemicalGeneratorMachine.class, machine);
         }
         long EUt = recipe.getOutputEUt();
-        // has lubricant
-        if (EUt > 0) {
-            int maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
-            int actualParallel = ParallelLogic.getParallelAmount(group, recipe, maxParallel);
-            double eutMultiplier = engineMachine.getProductionBoost();
-            recipe.multiplyAllContents(actualParallel);
-            recipe.multiplyEUt(eutMultiplier);
-            recipe.parallels *= actualParallel;
-            return null;
-        }
-        return RecipeModifier.DEFAULT_FAILURE;
+        if (EUt <= 0) return null;
+
+        int maxParallel = (int) (engineMachine.getOverclockVoltage() / EUt); // get maximum parallel
+        if (maxParallel <= 0) return null;
+        int actualParallel = ParallelLogic.getParallelAmount(group, recipe, maxParallel);
+        double eutMultiplier = engineMachine.getProductionBoost();
+        recipe.multiplyAllContents(actualParallel);
+        recipe.multiplyEUt(eutMultiplier);
+        recipe.parallels *= actualParallel;
+        return null;
     }
 
     protected double getProductionBoost() {

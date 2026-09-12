@@ -67,6 +67,6 @@ public class MeadowMachine extends KineticWorkableMultiblockMachine {
             }
             return null;
         }
-        return RecipeModifier.DEFAULT_FAILURE;
+        return RecipeModifier.nullWrongType(KineticWorkableMultiblockMachine.class, machine);
     }
 }

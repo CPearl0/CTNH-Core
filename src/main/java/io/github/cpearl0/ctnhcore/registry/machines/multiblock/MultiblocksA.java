@@ -2107,7 +2107,7 @@ public class MultiblocksA {
                 .rotationState(RotationState.NON_Y_AXIS)
                 .recipeType(CTNHRecipeTypes.CHEMICAL_GENERATOR)
                 .generator(true)
-                .recipeModifier(ChemicalGeneratorMachine::recipeModifier, true)
+                .recipeModifiers(true, GTRecipeModifiers.TIER_CHECK, ChemicalGeneratorMachine::recipeModifier)
                 .appearanceBlock(casing)
                 .pattern(definition -> FactoryBlockPattern.start()
                         .aisle("III", "PPP", "III")

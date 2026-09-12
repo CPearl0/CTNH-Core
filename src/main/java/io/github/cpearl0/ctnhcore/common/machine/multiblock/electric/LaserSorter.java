@@ -74,6 +74,6 @@ public class LaserSorter extends MultiblockComputationMachine {
             }
             return null;
         }
-        return RecipeModifier.DEFAULT_FAILURE;
+        return RecipeModifier.nullWrongType(LaserSorter.class, machine);
     }
 }

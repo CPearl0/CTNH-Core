@@ -361,7 +361,7 @@ public class CTNHMachines {
         NAQUADAH_REACTOR = CTNHMachineUtils.registerEfficiencyGeneratorMachines(
                 "naquadah_reactor",
                 CTNHRecipeTypes.NAQUADAH_REACTOR_RECIPES,
-                CTNHRecipeModifiers::naquadahReactor,
+                EfficiencyGeneratorMachine::recipeModifier,
                 tier -> tier * 32000,
                 EfficiencyGeneratorMachine::naquadahReactor,
                 tiersBetween(EV, UV));

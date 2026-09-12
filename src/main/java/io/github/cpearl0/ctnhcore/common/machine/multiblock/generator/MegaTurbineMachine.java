@@ -20,13 +20,20 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 
+import com.ctnhlang.CN;
+import com.ctnhlang.EN;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.vixhentx.mcmod.ctnhlib.langprovider.Lang;
 
 import java.util.List;
 
 public class MegaTurbineMachine extends RecipeElectricMultiblockMachine implements ITieredMachine {
+
+    @CN("未找到涡轮转子支架，多方块结构不完整")
+    @EN("No rotor holder found; the multiblock structure is incomplete")
+    public static Lang missingRotorHolder;
 
     public static final int MIN_DURABILITY_TO_WARN = 10;
 
@@ -80,13 +87,16 @@ public class MegaTurbineMachine extends RecipeElectricMultiblockMachine implemen
         }
 
         var rotorHolder = turbineMachine.getRotorHolder();
-        if (rotorHolder == null) return RecipeModifier.DEFAULT_FAILURE;
+        if (rotorHolder == null) return missingRotorHolder.translate();
+        if (!rotorHolder.hasRotor()) {
+            return Component.translatable("gtceu.recipe_modifier.missing_valid_turbine_rotor");
+        }
 
         long EUt = recipe.getOutputEUt();
         long turbineMaxVoltage = turbineMachine.getOverclockVoltage();
         double holderEfficiency = rotorHolder.getTotalEfficiency() / 100.0;
 
-        if (EUt <= 0 || turbineMaxVoltage <= EUt || holderEfficiency <= 0) return RecipeModifier.DEFAULT_FAILURE;
+        if (EUt <= 0 || turbineMaxVoltage <= EUt || holderEfficiency <= 0) return null;
 
         // get the amount of parallel required to match the desired output voltage
         int maxParallel = (int) (turbineMaxVoltage / EUt);

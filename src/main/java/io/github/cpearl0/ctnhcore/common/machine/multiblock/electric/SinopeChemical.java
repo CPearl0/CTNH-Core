@@ -34,6 +34,9 @@ public class SinopeChemical extends CoilWorkableElectricMultiblockMachine implem
     @EN("Parallel Count: %d")
     public static Lang sinopeChemicalInfoParallel;
 
+    @CN("线圈温度不足：无法计算加速等级（至少需要 1800K 的线圈）")
+    @EN("Coil temperature too low: cannot compute the acceleration tier (requires a coil of at least 1800K)")
+    public static Lang coilTierTooLow;
     public int parallel = 0;
     public int machine_tier = 0;
 
@@ -63,6 +66,7 @@ public class SinopeChemical extends CoilWorkableElectricMultiblockMachine implem
 
     public static Component recipeModifier(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         if (machine instanceof SinopeChemical zmachine) {
+            if (zmachine.machine_tier <= 0) return coilTierTooLow.translate();
             var maxparallel = ParallelLogic.getParallelAmount(group, recipe, zmachine.parallel);
             if (maxparallel == 0) return null;
             var reduce = Math.max(1 - 0.005 * maxparallel, 0.75);
@@ -73,7 +77,7 @@ public class SinopeChemical extends CoilWorkableElectricMultiblockMachine implem
             recipe.parallels *= maxparallel;
             return null;
         }
-        return RecipeModifier.DEFAULT_FAILURE;
+        return RecipeModifier.nullWrongType(SinopeChemical.class, machine);
     }
 
     public void addDisplayText(List<Component> textList) {

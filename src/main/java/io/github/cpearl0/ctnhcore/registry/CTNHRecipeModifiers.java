@@ -146,25 +146,6 @@ public class CTNHRecipeModifiers {
         return null;
     }
 
-    public static Component naquadahReactor(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
-        if (!(machine instanceof EfficiencyGeneratorMachine generator)) {
-            return RecipeModifier.nullWrongType(EfficiencyGeneratorMachine.class, machine);
-        }
-
-        long recipeEUt = recipe.getOutputEUt();
-        if (recipeEUt <= 0) return RecipeModifier.DEFAULT_FAILURE;
-
-        int maxParallel = (int) (generator.getOverclockVoltage() / recipeEUt);
-        if (maxParallel <= 0) return RecipeModifier.DEFAULT_FAILURE;
-
-        int multiplier = ParallelLogic.getParallelAmountFast(group, recipe, maxParallel);
-        if (multiplier <= 0) return RecipeModifier.DEFAULT_FAILURE;
-
-        recipe.multiplyEUt(multiplier);
-        recipe.multiplyDuration(((double) generator.efficiency / 100) / multiplier);
-        return null;
-    }
-
     public static Component rocketEngine(MetaMachine machine, RecipeHandlerGroup group, GTRecipe recipe) {
         return EfficiencyGeneratorMachine.recipeModifier(machine, group, recipe);
     }

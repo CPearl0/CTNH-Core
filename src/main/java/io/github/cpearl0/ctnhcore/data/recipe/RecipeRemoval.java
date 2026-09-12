@@ -51,7 +51,6 @@ public class RecipeRemoval {
      * 最终在 {@code RecipeManagerApplyMixin} 中统一处理。
      */
     public static void init() {
-
         // ===== 外部类删除（与 RecipeRemoval 同模块/相关模块） =====
         EIORecipes.eioRemovals();
         QuantumOmniRecipes.omniRemovals();
@@ -338,7 +337,6 @@ public class RecipeRemoval {
     }
 
     public static void gtceuRemovals() {
-
         remove(new RemoveFilter().id("gtceu:shaped/ulv_machine_hull"));
         remove(new RemoveFilter().id("gtceu:large_chemical_reactor/hydrogen_peroxide"));
         remove(new RemoveFilter().id("gtceu:distillation/distill_fermented_biomass"));
